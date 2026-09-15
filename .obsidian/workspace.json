@@ -1,0 +1,270 @@
+{
+  "main": {
+    "id": "2ff6c7f93d1d606c",
+    "type": "split",
+    "children": [
+      {
+        "id": "668fa99aa9059c0e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1452a01b182a24e5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Bem-vindo.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Bem-vindo"
+            }
+          },
+          {
+            "id": "7e1ac77dfb827c66",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "3.01.05. Mapeamento de Erros.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "3.01.05. Mapeamento de Erros"
+            }
+          },
+          {
+            "id": "e9bcdc4f7c0c0efd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Entrevistas RTB ✅ ❌/Yasmim Sabrina.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Yasmim Sabrina"
+            }
+          },
+          {
+            "id": "a44bf0c4f999201c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Entrevistas RTB ✅ ❌/Questionário.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Questionário"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c9b5618ea955402f",
+    "type": "split",
+    "children": [
+      {
+        "id": "2f17a118a5a611ac",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e0d3a00bc959286a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de arquivos"
+            }
+          },
+          {
+            "id": "adf253b63b5477c2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "evaluation",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Procurar"
+            }
+          },
+          {
+            "id": "6e967062e41ccb5b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "33364ca106563641",
+    "type": "split",
+    "children": [
+      {
+        "id": "d4a887344aae76cd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "32fe6d1e2f7dc119",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Bem-vindo.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Links inversos para Bem-vindo"
+            }
+          },
+          {
+            "id": "5fff1697d17185ef",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Bem-vindo.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Links de saída para Bem-vindo"
+            }
+          },
+          {
+            "id": "bd5ec8438593d9f4",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "6ff2474934345106",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas as propriedades"
+            }
+          },
+          {
+            "id": "31a9ed9ecf95143e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Bem-vindo.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Sumário de Bem-vindo"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "canvas:Criar novo canvas": false,
+      "daily-notes:Abrir a nota de hoje": false,
+      "templates:Inserir modelo": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Criar nova base": false
+    }
+  },
+  "active": "a44bf0c4f999201c",
+  "lastOpenFiles": [
+    "README.md",
+    "Entrevistas RTB ✅ ❌/Pergunta-Resposta-AdrianaTeste.md",
+    "Entrevistas RTB ✅ ❌/Pergunta-Resposta-CaioTeste.md",
+    "11 - Interview Evaluation/06 - Reports/Relatório-CaioTeste.md",
+    "SECOND_BRAIN.md",
+    "11 - Interview Evaluation/06 - Reports/Relatório-LuanaTeste.md",
+    "11 - Interview Evaluation/06 - Reports/Relatório-RamonTeste.md",
+    "11 - Interview Evaluation/06 - Reports/Relatório-AdrianaTeste.md",
+    "Entrevistas RTB ✅ ❌/Luciene Magalhães.md",
+    "AGENTS.md",
+    "Entrevistas RTB ✅ ❌/Questionário.md",
+    "Entrevistas RTB ✅ ❌/Teste.md",
+    "11 - Interview Evaluation/01 - Evaluation Framework/Evaluation Engine.md",
+    "02 - Technologies/Azure/Azure Monitor/Azure Monitor Alerts.md",
+    "11 - Interview Evaluation/03 - Evaluation Criteria/Evidence Model.md",
+    "99 - Templates/Technology.md",
+    "Sem título.md",
+    "3.01.05. Mapeamento de Erros.md",
+    "11 - Interview Evaluation/01 - Evaluation Framework/Job Context Model.md",
+    "11 - Interview Evaluation/01 - Evaluation Framework/Interview Evaluation Model.md",
+    "11 - Interview Evaluation/02 - Question Types/Question Taxonomy.md",
+    "11 - Interview Evaluation/04 - Rubrics/Scoring Rubric.md",
+    "11 - Interview Evaluation/00 - MOC/Interview Evaluation MOC.md",
+    "11 - Interview Evaluation/01 - Evaluation Framework/Evaluation Framework.md",
+    "11 - Interview Evaluation/06 - Reports",
+    "11 - Interview Evaluation/05 - Interview Records",
+    "11 - Interview Evaluation/04 - Rubrics",
+    "11 - Interview Evaluation/02 - Question Types",
+    "11 - Interview Evaluation/03 - Evaluation Criteria",
+    "11 - Interview Evaluation/00 - MOC",
+    "11 - Interview Evaluation/01 - Evaluation Framework",
+    "11 - Interview Evaluation",
+    "10 - Integration/Integration Gaps.md",
+    "10 - Integration/End-to-End Mental Model.md",
+    "10 - Integration",
+    "02 - Technologies/Azure/Azure Monitor"
+  ]
+}
