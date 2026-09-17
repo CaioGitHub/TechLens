@@ -16,6 +16,7 @@ Esta camada é separada da base de conhecimento técnico. Ela utiliza a base té
 ## Fundamentos
 
 - [[Evaluation Framework]]
+- [[Transcription Processing Model]]
 - [[Evaluation Engine]]
 - [[Interview Evaluation Model]]
 - [[Job Context Model]]
