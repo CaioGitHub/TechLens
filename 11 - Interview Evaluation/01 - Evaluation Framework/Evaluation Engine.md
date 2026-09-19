@@ -3,7 +3,7 @@ type: concept
 status: understood
 confidence: 100
 created: 2026-09-09
-updated: 2026-09-09
+updated: 2026-09-19
 tags:
   - interview-evaluation
   - meta
@@ -294,7 +294,7 @@ Confiança: Alta
 ...
 
 ### Conhecimentos relacionados
-- [[...]]
+- ...
 ```
 
 ## 27. Estrutura normalizada (esquema canônico)
@@ -312,6 +312,12 @@ evaluation:
     primary_type: ""
     secondary_dimensions: []
     complexity: ""
+
+  response:
+    id: ""              # identificador da resposta (ex.: "R03"), quando existir
+    text: ""
+    source:
+      segment_ids: []
 
   expected:
     essential: []
@@ -364,7 +370,7 @@ evaluation:
 
   rationale: ""
 
-  related_knowledge: []    # notas do Second Brain consultadas, ex.: "[[Dependency Inversion]]"
+  related_knowledge: []    # notas do Second Brain consultadas, ex.: "Dependency Inversion"
 ```
 
 Nem todos os campos precisam receber conteúdo quando a dimensão ou o elemento não for relevante à pergunta (usar `[]`, `"N/A"` ou omitir conforme o caso).
@@ -424,6 +430,483 @@ que elas demonstram e qual nota de 0 a 10 é justificável?
 ```
 
 Sem depender de gabarito literal, palavras-chave, quantidade de texto, cargo, experiência declarada ou preferência pessoal do avaliador. A avaliação deve ser fundamentada no conhecimento técnico, nas evidências e no contexto da pergunta.
+
+## 34. Responsabilidade operacional do Evaluation Engine
+
+O Evaluation Engine transforma um conjunto de evidências técnicas em uma avaliação estruturada segundo a [[Scoring Rubric]]:
+
+```text
+Question
+↓
+Response
+↓
+Evidence Set
+↓
+Rubric 0–10
+↓
+Evaluation
+```
+
+O Engine deve:
+
+1. receber a pergunta e sua taxonomia;
+2. receber a resposta estruturada;
+3. receber o Evidence Set já produzido pelo Stage 21;
+4. identificar as dimensões aplicáveis;
+5. aplicar os pesos de referência;
+6. excluir dimensões `N/A` e normalizar os pesos restantes;
+7. considerar evidências positivas, parciais, negativas, contraditórias, ausentes e insuficientes;
+8. considerar erros periféricos, relevantes, centrais e críticos;
+9. produzir avaliação dimensional;
+10. produzir score de `0–10`;
+11. produzir `rationale` proporcional e rastreável;
+12. produzir `evaluation.confidence`;
+13. preservar as referências de pergunta, resposta, evidência e transcript.
+
+O Engine não deve reconstruir evidências. Se uma evidência não estiver no Evidence Set, não pode ser criada apenas para completar uma dimensão ou melhorar a coerência da avaliação.
+
+## 35. O que não pertence ao Engine
+
+Permanecem nos estágios próprios:
+
+```text
+20.1–20.2 → participantes e speakers
+20.3       → perguntas
+20.4       → respostas
+20.5       → reconstrução e normalização
+20.6       → linking
+20.7       → validação da Structured Interview
+21         → extração e estruturação de evidências
+22         → critérios e escala da Rubrica
+23         → avaliação da pergunta + resposta
+```
+
+O Evaluation Engine não deve:
+
+- identificar participantes, atribuir speakers ou extrair perguntas;
+- reconstruir ou corrigir transcrições;
+- inventar, completar ou corrigir tecnicamente evidências;
+- inferir conhecimento não demonstrado;
+- usar currículo, cargo, anos de experiência ou confiança verbal como multiplicador;
+- inferir senioridade, potencial ou adequação absoluta;
+- criar ranking, recomendação de contratação ou decisão de aprovação/reprovação;
+- alterar o Evidence Model, a Rubrica ou a base técnica para acomodar uma resposta.
+
+## 36. EvaluationInput canônico
+
+O objeto de entrada deve reutilizar as estruturas existentes:
+
+```text
+EvaluationInput
+├── question
+├── response
+├── evidence_set
+├── applicable_dimensions
+└── contextual_metadata
+```
+
+Representação conceitual:
+
+```yaml
+evaluation_input:
+  question:
+    id: Q1
+    text: "..."
+    primary_type: troubleshooting
+    secondary_dimensions:
+      - reasoning
+      - observability
+    complexity: advanced
+
+  response:
+    id: R1
+    text: "..."
+    source:
+      segment_ids:
+        - S12
+
+  evidence_set:
+    source_validation_status: READY
+    evidence_ids:
+      - E1
+      - E2
+
+  applicable_dimensions:
+    - correctness
+    - completeness
+    - reasoning
+    - practical_application
+
+  contextual_metadata:
+    version: ""
+    job_context_id: ""
+```
+
+`evaluation_input` é uma entrada operacional; o objeto de saída continua sendo exclusivamente `evaluation`, conforme o schema canônico da seção 27. Não criar outro schema de avaliação.
+
+O `contextual_metadata` pode registrar versão, contexto técnico e referência de vaga, mas não pode alterar artificialmente a qualidade técnica da resposta. A referência de vaga informa relevância posterior; não é evidência da entrevista.
+
+## 37. Evidence Set como fonte exclusiva
+
+O Engine deve seguir:
+
+```text
+Evidence Set
+↓
+Relevância para a pergunta
+↓
+Força e qualificação da evidência
+↓
+Dimensional assessment
+↓
+Score integrado
+```
+
+Para cada dimensão, selecionar somente `evidence_id` existentes e relevantes. A ausência de uma evidência esperada não autoriza criar uma evidência negativa:
+
+```text
+absent ≠ incorrect
+insufficient ≠ candidate_does_not_know
+```
+
+Evidências `experience_declaration`, `scenario_application`, `uncertainty` e `demonstrated_experience` devem conservar sua natureza. Uma hipótese não pode ser convertida em experiência real; uma declaração não pode ser promovida automaticamente a demonstração técnica.
+
+## 38. Avaliação dimensional e pesos
+
+Cada dimensão aplicável deve ser analisada antes do score integrado:
+
+```yaml
+dimensions:
+  correctness:
+    applicable: true
+    assessment: "..."
+    evidence:
+      - E1
+  completeness:
+    applicable: true
+    assessment: "..."
+    evidence:
+      - E1
+      - E2
+  depth:
+    applicable: false
+    assessment: "N/A"
+    evidence: []
+```
+
+As dimensões canônicas e os pesos são:
+
+```text
+correctness            40%
+completeness           20%
+depth                  15%
+reasoning              10%
+practical_application  10%
+trade_offs              5%
+```
+
+Quando uma dimensão não for aplicável:
+
+```text
+dimension.applicable = false
+dimension.assessment = "N/A"
+dimension.evidence = []
+```
+
+Ela é excluída do conjunto avaliável. Para o conjunto `A` de dimensões aplicáveis:
+
+```text
+normalized_weight(d) = original_weight(d) /
+                       sum(original_weight(a) for a in A)
+```
+
+Não usar `N/A` para evitar uma dimensão difícil. Não tratar `N/A` como zero.
+
+## 39. Score integrado e julgamento
+
+Os pesos orientam a importância relativa das dimensões, mas a Rubrica determina julgamento integrado, não uma média mecânica obrigatória de rótulos qualitativos.
+
+Quando houver avaliações numéricas dimensionais explicitamente disponíveis, a referência matemática é:
+
+```text
+score_reference =
+Σ(dimension_score × normalized_weight)
+```
+
+Essa referência não substitui:
+
+- a centralidade da correção para a pergunta;
+- o impacto contextual de erro central ou crítico;
+- a distinção entre dimensão aplicável e não aplicável;
+- a necessidade de evitar dupla contagem da mesma evidência;
+- o julgamento integrado exigido pela Rubrica.
+
+O score final deve usar as âncoras `0`, `2`, `4`, `6`, `8` e `10`, com incrementos de `0.5` quando sustentados. Não criar teto universal para erro crítico. Um erro crítico central deve produzir impacto proporcional e ser explicado no `rationale`.
+
+## 40. Evidências positivas, negativas e contraditórias
+
+O Engine deve:
+
+- preservar todas as evidências utilizadas;
+- relacionar cada evidência às dimensões afetadas;
+- permitir `positive`, `partial`, `negative`, `contradictory`, `absent` e `insufficient`;
+- não tratar ausência como erro;
+- não deixar que muitas evidências positivas irrelevantes anulem um erro central;
+- não resolver contradições inventando uma terceira afirmação;
+- reduzir `evaluation.confidence` quando a contradição impedir conclusão segura;
+- explicar no `rationale` como a contradição afetou a avaliação.
+
+Autocorreções devem ser avaliadas como sequência completa: preservar a afirmação inicial, a correção e a qualidade técnica demonstrada depois. Não penalizar automaticamente toda autocorreção nem apagar o erro inicial.
+
+## 41. Rationale e confidence
+
+Toda saída deve possuir `rationale` proporcional às evidências. Deve explicar:
+
+```text
+quais evidence_ids foram considerados
+↓
+quais dimensões foram afetadas
+↓
+quais limitações, ausências ou contradições existem
+↓
+por que o score é compatível com a Rubrica
+```
+
+Evitar `"boa resposta"` ou qualquer conclusão não rastreável.
+
+`evaluation.confidence` é independente do score e das confianças anteriores:
+
+```text
+evaluation.confidence
+≠ extraction_confidence
+≠ reconstruction_confidence
+≠ linking_confidence
+≠ evidence_confidence
+```
+
+Pode existir:
+
+```text
+score: 2.0
+evaluation.confidence: high
+```
+
+quando houver alta confiança de que a experiência solicitada não foi demonstrada. Não usar tom, eloquência, cargo, senioridade ou currículo para elevar a confidence.
+
+## 42. Experiência, hipótese e limitação
+
+Perguntas de experiência continuam recebendo `0–10`:
+
+```text
+Nível 1 → somente declaração
+Nível 2 → declaração + poucos detalhes
+Nível 3 → experiência concreta
+Nível 4 → experiência concreta + raciocínio/trade-offs
+```
+
+O Engine deve manter:
+
+```text
+experience_declaration
+≠ demonstrated_experience
+≠ absence_of_experience
+```
+
+Para `"não sei"`, `"não lembro"`, `"acho que"` e `"se não me engano"`, avaliar somente o conteúdo efetivamente produzido. Não converter automaticamente incerteza em erro nem em desconhecimento absoluto.
+
+## 43. Job Context e agregação
+
+O [[Job Context Model]] pode informar requisitos, tecnologias e responsabilidades, mas não altera retroativamente a nota técnica:
+
+```text
+Interview Evidence
+≠ Job Relevance
+```
+
+Uma tecnologia prioritária para a vaga não recebe bônus; uma tecnologia menos relevante não recebe penalidade automática.
+
+Quando várias avaliações forem agregadas, preservar:
+
+- `evaluation.id`;
+- score individual;
+- `evaluation.confidence`;
+- dimensões;
+- evidências;
+- `question.id`, `response.id` e sources.
+
+Uma média é apenas um indicador quantitativo. Não transformá-la automaticamente em senioridade, ranking, contratação ou aprovação/reprovação.
+
+## 44. Rastreabilidade obrigatória
+
+Toda avaliação deve permitir:
+
+```text
+Evaluation
+↓
+Question
+↓
+Response
+↓
+Evidence Set
+↓
+Evidence
+↓
+source.segment_ids
+↓
+Transcript
+```
+
+Verificar antes de concluir:
+
+- `evaluation.id` existe, é único e estável;
+- `evaluation.question.id` existe quando a pergunta foi identificada;
+- `evaluation.response.id` existe quando a resposta foi identificada;
+- cada `evidence_id` referenciado existe;
+- cada evidência utilizada possui source quando disponível;
+- `source.segment_ids` pertencem à Structured Interview;
+- nenhum ID é criado para corrigir ou mascarar uma referência quebrada.
+
+Uma falha de rastreabilidade deve reduzir a confidence e pode bloquear a avaliação quando impedir auditoria da evidência central.
+
+## 45. Testes de invariância
+
+O Engine deve passar por testes de invariância:
+
+| Teste | Alteração isolada | Resultado esperado |
+|---|---|---|
+| Tamanho | adicionar texto irrelevante | score não aumenta |
+| Tom | tornar a fala mais confiante sem mudar conteúdo | score e confidence não aumentam |
+| Senioridade | adicionar `"Tenho 15 anos de experiência"` | score não muda |
+| Currículo | adicionar experiência no CV | não altera Interview Evidence nem score |
+| Complexidade | trocar pergunta simples por cenário mais complexo sem mudar o escopo avaliado | não conceder bônus automático |
+| Terminologia | adicionar jargão sem explicação | não aumentar score |
+| N/A | remover dimensão realmente não aplicável | normalizar pesos restantes |
+| Stack | usar alternativa válida quando stack não foi exigido | não penalizar por si só |
+
+## 46. Baselines de calibração
+
+Os casos abaixo são **baselines documentados** na [[Scoring Rubric]], não execuções históricas verificadas nesta base:
+
+```text
+CAL-01 ≈ 2.0
+CAL-02 ≈ 4.0
+CAL-03 ≈ 1.5
+CAL-04 ≈ 7.5 / 8.5
+CAL-05 ≈ 7.0
+CAL-06 ≈ 8.5
+CAL-07 ≈ 8.5
+CAL-08 ≈ 4.5
+CAL-09 ≈ 9.0
+CAL-10 ≈ 7.5
+```
+
+O Engine deve preservar especialmente:
+
+- `CAL-01`: `confidence: high` sobre a não demonstração, não sobre desconhecimento absoluto;
+- `CAL-09`: pergunta simples pode receber nota excelente;
+- `CAL-10`: pergunta complexa não recebe bônus automático.
+
+Não afirmar que os casos foram executados quando os artefatos históricos das Etapas 19/19.1 não estão disponíveis.
+
+## 47. Testes controlados da Etapa 23
+
+Os testes seguintes devem ser usados como regressão. Não processam candidatos reais:
+
+| # | Caso | Resultado esperado |
+|---:|---|---|
+| 1 | resposta correta | score alto proporcional ao escopo |
+| 2 | resposta incorreta | correctness baixa e rationale rastreável |
+| 3 | resposta parcialmente correta | preservar evidências corretas e incorretas |
+| 4 | resposta incompleta | reduzir completude, não inventar lacunas preenchidas |
+| 5 | resposta superficial | separar profundidade de correção |
+| 6 | resposta profunda | reconhecer relações, mecanismos e consequências sustentadas |
+| 7 | erro factual | impactar correctness proporcionalmente |
+| 8 | erro conceitual central | impacto forte, sem compensação por evidências irrelevantes |
+| 9 | erro periférico | impacto proporcional |
+| 10 | erro crítico | impacto contextual, sem teto universal |
+| 11 | trade-off correto | reconhecer consequência e condição sustentadas |
+| 12 | trade-off incorreto | registrar erro na dimensão afetada |
+| 13 | troubleshooting | valorizar investigação orientada por evidências |
+| 14 | cenário arquitetural | avaliar solução e raciocínio, não rótulo arquitetural |
+| 15 | experiência declarada | nota baixa possível, sem N/A automático |
+| 16 | experiência com poucos detalhes | demonstração parcial |
+| 17 | experiência concreta | avaliar aplicação realmente descrita |
+| 18 | experiência + trade-offs | reconhecer raciocínio adicional |
+| 19 | `"não sei"` | registrar limitação, não desconhecimento absoluto |
+| 20 | `"não lembro"` | preservar experiência declarada e limitação |
+| 21 | resposta hipotética | separar cenário de experiência real |
+| 22 | autocorreção | avaliar sequência e correção final |
+| 23 | fora do escopo | registrar falta de aderência sem criar nova pergunta |
+| 24 | pergunta composta | avaliar somente subtemas efetivamente perguntados |
+| 25 | dimensão N/A | excluir e normalizar pesos |
+| 26 | normalização de pesos | preservar proporções originais |
+| 27 | evidências contraditórias | preservar, relacionar e reduzir confidence quando necessário |
+| 28 | confidence alta + score baixo | permitir combinação |
+| 29 | confidence baixa + score alto | permitir quando evidência parece forte, mas é ambígua |
+| 30 | resposta curta excelente | permitir 9 ou 10 |
+| 31 | resposta longa superficial | não premiar extensão |
+| 32 | senioridade declarada | não alterar score |
+| 33 | tom excessivamente confiante | não alterar score |
+| 34 | pergunta simples | não limitar score |
+| 35 | pergunta complexa | não conceder bônus |
+| 36 | Job Context relevante | não alterar qualidade da resposta |
+| 37 | Job Context irrelevante | não contaminar a avaliação |
+| 38 | múltiplas evidências positivas | considerar relevância, não quantidade |
+| 39 | evidência positiva + negativa | preservar ambas e avaliar centralidade |
+| 40 | ausência de evidência | usar `absent`/`insufficient`, não `candidate_does_not_know` |
+
+## 48. Testes de rastreabilidade e separação
+
+Antes de declarar uma avaliação concluída:
+
+```text
+evaluation.id existe?
+question.id existe?
+response.id existe?
+todo evidence_id existe?
+todo evidence source existe quando esperado?
+source.segment_ids existem?
+```
+
+Também verificar que o Engine não:
+
+- extrai perguntas;
+- reconstrói respostas;
+- cria evidências;
+- atribui speakers;
+- decide senioridade;
+- decide contratação.
+
+## 49. Gate da Etapa 23
+
+O Engine pode declarar:
+
+```text
+EVALUATION_ENGINE_COMPLETE
+```
+
+quando:
+
+- o artefato canônico foi localizado;
+- Rubrica, Evidence Model e Question Taxonomy são compatíveis;
+- pesos e N/A estão compatíveis;
+- o schema de `evaluation` é único;
+- dimensões, score, confidence e rationale estão definidos;
+- rastreabilidade é preservada;
+- Job Context não altera artificialmente o score;
+- baselines CAL-01–CAL-10 estão documentados;
+- testes controlados, invariância e rastreabilidade estão definidos;
+- não há conflito estrutural conhecido.
+
+Os baselines não foram executados historicamente nesta base porque os artefatos das Etapas 19/19.1 não foram encontrados. Por isso, o status documental desta execução é:
+
+```text
+READY_WITH_WARNINGS
+```
+
+O warning não representa falha do candidato nem do mecanismo conceitual; representa ausência de evidência histórica de execução da calibração.
+
+`READY`, `READY_WITH_WARNINGS` e `BLOCKED` descrevem prontidão do artefato e nunca aprovação, reprovação, senioridade, ranking ou contratação.
 
 ## Ver também
 

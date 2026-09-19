@@ -3,7 +3,7 @@ type: concept
 status: understood
 confidence: 100
 created: 2026-09-09
-updated: 2026-09-09
+updated: 2026-09-19
 tags:
   - interview-evaluation
   - meta
@@ -398,6 +398,185 @@ Nunca:
 ```text
 Pergunta → Resposta parece boa → Nota intuitiva
 ```
+
+## 24. Auditoria da Etapa 19 e da Etapa 19.1
+
+A rubrica existente foi auditada contra os requisitos de calibração informados para as Etapas 19 e 19.1. A busca no repositório não encontrou documentos separados para essas etapas nem registros persistidos dos casos `CAL-01` a `CAL-10`. Portanto, os resultados abaixo são mantidos como **baseline de regressão declarado para esta etapa**, não como evidência de que uma execução histórica foi reprocessada neste momento.
+
+Não substituir esses resultados por uma nova interpretação. Qualquer execução futura deve comparar a nota produzida com a faixa esperada e registrar a justificativa quando houver divergência.
+
+| Caso | Cenário | Resultado esperado |
+|---|---|---|
+| `CAL-01` | Experiência declarada sem evidência concreta | aproximadamente `2.0`; `confidence: high` significa alta confiança de que a experiência não foi demonstrada, não que o candidato não conhece o assunto |
+| `CAL-02` | Virtual Threads superficial | aproximadamente `4.0`; terminologia correta sem explicação suficiente não deve inflar a nota |
+| `CAL-03` | Virtual Threads e Platform Threads invertidos | aproximadamente `1.5`; erro conceitual central afeta fortemente `correctness` |
+| `CAL-04` | Hexagonal Architecture | aproximadamente `7.5`; com camadas e trade-off condicional relevante, aproximadamente `8.5` |
+| `CAL-05` | Autocorreção sobre transação | aproximadamente `7.0`; preservar o erro inicial e reconhecer a autocorreção relevante |
+| `CAL-06` | Troubleshooting de latência | aproximadamente `8.5`; valorizar raciocínio sistemático orientado por evidências |
+| `CAL-07` | Arquitetura com escala horizontal | aproximadamente `8.5`; avaliar solução e raciocínio, não apenas a complexidade do cenário |
+| `CAL-08` | Azure Monitor reduzido a logs | aproximadamente `4.5`; logs isolados não representam domínio completo de observabilidade |
+| `CAL-09` | REST API simples | aproximadamente `9.0`; pergunta simples não limita uma resposta excelente |
+| `CAL-10` | Sistema distribuído de pagamentos | aproximadamente `7.5`; pergunta complexa não produz nota alta automaticamente |
+
+### 24.1 Correção do CAL-01
+
+O resultado `confidence: high` no `CAL-01` descreve a segurança da avaliação sobre as evidências disponíveis:
+
+```text
+Alta confiança de que a experiência solicitada não foi demonstrada
+nas evidências disponíveis.
+```
+
+Não significa:
+
+```text
+Alta confiança de que o candidato não conhece o assunto.
+```
+
+Essa distinção é obrigatória para perguntas de experiência e permanece compatível com a seção 8.1 e com [[Evidence Model]].
+
+## 25. Âncoras e faixas da escala 0–10
+
+A nota representa qualidade da evidência observada na pergunta, nunca senioridade. As âncoras principais permanecem `0`, `2`, `4`, `6`, `8` e `10`; as faixas abaixo formalizam os valores intermediários sem substituir os casos calibrados.
+
+| Faixa | Interpretação |
+|---|---|
+| `0` | Sem evidência técnica válida ou resposta incompatível com a pergunta |
+| `1–2` | Evidência muito fraca, insuficiente, contraditória ou com erro central; pode existir fragmento correto, mas ele não sustenta a resposta |
+| `3–4` | Evidência parcial e limitada; demonstra algum conhecimento isolado, mas possui lacunas relevantes, superficialidade ou erros importantes |
+| `5–6` | Evidência intermediária; demonstra compreensão relevante e funcional, mas ainda possui limitações de completude, profundidade, aplicação ou raciocínio |
+| `7–8` | Evidência forte; resposta majoritariamente correta, estruturada e aplicável, com poucas lacunas relevantes |
+| `9` | Evidência excelente; resposta correta, completa para o escopo perguntado e bem fundamentada quando as dimensões forem aplicáveis |
+| `10` | Evidência excepcional dentro do escopo da pergunta; não é sinônimo de senioridade e pode ocorrer em uma pergunta simples |
+
+Os valores `1.5`, `4.5`, `7.5` e outros incrementos de `0.5` são permitidos quando a diferença estiver sustentada pelas evidências. Não produzir precisão artificial.
+
+## 26. Testes de invariância e inversão
+
+Antes de finalizar uma avaliação, executar os testes abaixo. Alterar somente a variável indicada não deve produzir mudança indevida na nota:
+
+| Teste | Variação controlada | Resultado esperado |
+|---|---|---|
+| Tamanho | mesma evidência em resposta curta e longa | a versão longa não recebe vantagem por extensão |
+| Confiança/tom | mesma evidência em tom confiante e inseguro | o tom não altera a nota |
+| Senioridade declarada | adicionar `"Tenho 10 anos de experiência"` | a declaração não aumenta a nota |
+| Complexidade | comparar resposta excelente a pergunta simples com resposta mediana a pergunta avançada | complexidade não cria bônus automático; a resposta excelente pode receber nota maior |
+| Jargão | adicionar nomes de frameworks sem explicação | jargão isolado não aumenta a nota |
+| Stack | trocar a tecnologia por alternativa válida quando o stack não foi exigido | não penalizar a alternativa tecnicamente válida |
+| Ausência | remover detalhe opcional, mantendo o núcleo correto | não converter ausência opcional em erro ou desconhecimento |
+| N/A | marcar dimensão realmente não aplicável | remover a dimensão e normalizar os pesos restantes |
+
+## 27. Testes controlados da Rubrica
+
+Os testes são regressões comportamentais. Nenhum deles cria avaliação de candidato real ou substitui os casos de calibração. Cada teste deve registrar pergunta, resposta, Evidence Set, dimensões aplicáveis, nota, `evaluation.confidence` e justificativa.
+
+| # | Cenário | Comportamento esperado |
+|---:|---|---|
+| 1 | Resposta totalmente correta | nota alta proporcional ao escopo; todas as evidências rastreáveis |
+| 2 | Resposta totalmente incorreta | `correctness` muito baixa; não compensar erro central com eloquência |
+| 3 | Correta, porém incompleta | preservar correção e reduzir completude proporcionalmente |
+| 4 | Completa, porém superficial | separar completude de profundidade; não tratar volume como profundidade |
+| 5 | Profunda com erro factual | preservar profundidade/raciocínio e aplicar impacto forte em correção |
+| 6 | Resposta curta excelente | permitir `9` ou `10` quando o escopo estiver plenamente atendido |
+| 7 | Resposta longa superficial | não superar resposta curta correta apenas por extensão |
+| 8 | Pergunta simples com resposta excelente | permitir nota excelente dentro do escopo |
+| 9 | Pergunta complexa com resposta mediana | não conceder bônus pela complexidade |
+| 10 | Erro conceitual central | reduzir fortemente `correctness` e a nota integrada |
+| 11 | Erro conceitual periférico | impacto proporcional, sem destruir a resposta inteira |
+| 12 | Autocorreção espontânea | registrar erro e correção; considerar a melhora do raciocínio |
+| 13 | Trade-off relevante | reconhecer consequência, alternativa ou condição quando a pergunta exigir |
+| 14 | Troubleshooting sistemático | valorizar hipóteses, evidências, isolamento e validação |
+| 15 | Experiência somente declarada | nota baixa possível; não usar `N/A` nem concluir ausência de experiência |
+| 16 | Declaração com poucos detalhes | reconhecer demonstração parcial, sem promover domínio técnico |
+| 17 | Experiência concreta | avaliar aplicação, raciocínio e detalhes realmente demonstrados |
+| 18 | Experiência com trade-offs | reconhecer evidência adicional quando sustentada |
+| 19 | Dimensão não aplicável | marcar `N/A`, excluir do cálculo e não penalizar |
+| 20 | Normalização de pesos | redistribuir proporcionalmente apenas entre dimensões aplicáveis |
+| 21 | Confiança alta com evidência negativa | permitir confiança alta sobre o que não foi demonstrado |
+| 22 | Tom confiante sem evidência | não aumentar nota ou confiança da avaliação |
+| 23 | Declaração de senioridade | não usar cargo, anos ou autodeclaração como multiplicador |
+| 24 | Complexidades diferentes | avaliar evidência contra a pergunta, não dificuldade isolada |
+| 25 | Resposta fora do escopo | registrar ausência/insuficiência; não inventar evidências |
+| 26 | Resposta parcialmente relacionada | dar crédito somente ao conteúdo pertinente |
+| 27 | Resposta hipotética | separar `scenario_application` de experiência real |
+| 28 | `"Não lembro"` | preservar limitação; não classificar automaticamente como erro |
+| 29 | `"Não sei"` | registrar limitação; não concluir desconhecimento absoluto |
+| 30 | Evidências contraditórias | preservar ambas, relacionar `contradicts` e avaliar impacto contextual |
+
+## 28. Pesos, N/A e normalização
+
+Os pesos de referência continuam:
+
+```text
+correctness: 40%
+completeness: 20%
+depth: 15%
+reasoning: 10%
+practical_application: 10%
+trade_offs: 5%
+```
+
+Para uma avaliação com conjunto aplicável `A`, calcular apenas a proporção relativa:
+
+```text
+peso_normalizado(d) = peso_original(d) / soma_dos_pesos_aplicáveis
+```
+
+Exemplo:
+
+```text
+correctness = 40%
+completeness = 20%
+depth = N/A
+reasoning = 10%
+practical_application = N/A
+trade_offs = 5%
+
+soma aplicável = 75%
+correctness normalizado = 40 / 75
+completeness normalizado = 20 / 75
+reasoning normalizado = 10 / 75
+trade_offs normalizado = 5 / 75
+```
+
+Essa normalização preserva a importância relativa; não é um mecanismo para elevar artificialmente a nota. Se nenhuma dimensão relevante puder ser avaliada, não fabricar uma nota: registrar a insuficiência e reduzir a confiança conforme apropriado.
+
+Os pesos orientam o julgamento integrado e não autorizam média mecânica de rótulos qualitativos. A estrutura resultante deve continuar sendo o schema canônico de `evaluation` em [[Evaluation Engine]].
+
+## 29. Média, contexto e separação de decisões
+
+Uma média de avaliações, quando calculada em etapa posterior, é apenas um resumo quantitativo. Não representa automaticamente:
+
+```text
+média = senioridade
+média alta = contratação
+média baixa = rejeição
+```
+
+O contexto da vaga pode alterar a relevância de uma competência para uma oportunidade, mas não pode alterar artificialmente a qualidade técnica observada na resposta. Entrevista, experiência declarada e evidência externa permanecem separadas.
+
+## 30. Gate da Etapa 22
+
+O artefato pode declarar:
+
+```text
+RUBRIC_COMPLETE
+```
+
+quando:
+
+- a rubrica canônica foi localizada e auditada;
+- dimensões, pesos e N/A estão definidos;
+- a escala 0–10 está formalizada;
+- experiência, confiança e erros críticos estão separados;
+- rastreabilidade e schema canônico estão preservados;
+- os baselines de calibração estão registrados;
+- os testes de inversão e os 30 testes controlados foram definidos;
+- não há conflito estrutural conhecido com [[Evaluation Engine]].
+
+Como os documentos históricos da Etapa 19/19.1 não foram encontrados no repositório, a execução documental desta etapa deve reportar `READY_WITH_WARNINGS` até que esses artefatos sejam disponibilizados ou os casos sejam executados formalmente. Esse warning não altera os critérios da rubrica nem os resultados baseline declarados.
+
+`READY`, `READY_WITH_WARNINGS` e `BLOCKED` descrevem a prontidão do artefato e nunca representam aprovação, reprovação, senioridade ou contratação de candidato.
 
 ## Ver também
 
