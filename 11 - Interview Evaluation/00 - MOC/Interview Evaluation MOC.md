@@ -2,7 +2,7 @@
 type: reference
 status: learning
 created: 2026-09-09
-updated: 2026-09-09
+updated: 2026-09-20
 tags:
   - moc
   - interview-evaluation
@@ -17,6 +17,9 @@ Esta camada é separada da base de conhecimento técnico. Ela utiliza a base té
 
 - [[Evaluation Framework]]
 - [[Transcription Processing Model]]
+- [[Interview Evaluation Pipeline]]
+- [[End-to-End Validation]]
+- [[Reference Runtime]]
 - [[Evaluation Engine]]
 - [[Interview Evaluation Model]]
 - [[Job Context Model]]

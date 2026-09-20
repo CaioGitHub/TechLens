@@ -3,7 +3,7 @@ type: reference
 status: learning
 confidence: 100
 created: 2026-09-17
-updated: 2026-09-17
+updated: 2026-09-20
 tags:
   - interview-evaluation
   - meta
@@ -36,6 +36,10 @@ Identificação de Follow-ups
 Validação
 ↓
 Entrevista Estruturada
+↓
+Evidence Model
+↓
+Evidence Set
 ↓
 Evaluation Engine
 ```
