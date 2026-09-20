@@ -478,6 +478,43 @@ READY_WITH_WARNINGS
 O warning permanece por duas limitações conhecidas: o runtime é uma implementação de referência baseada em fixtures sintéticos anotados, não um parser de produção; e os baselines históricos das Etapas 19/19.1 continuam indisponíveis.
 ```
 
+## Stage 27 — Raw Synthetic Transcript Validation
+
+A Etapa 27 é uma execução distinta da validação estrutural da Etapa 25 e dos fixtures estruturados da Etapa 26. Ela utiliza `tests/synthetic_interview.py` e `run_synthetic_interview.py` para alimentar o Reference Runtime com uma transcrição bruta sintética.
+
+```yaml
+pipeline_version: "27-reference-1"
+segments: 28
+participants: 3
+questions: 12
+responses: 13
+evidence: 11
+evaluations: 10
+stage_27_tests: 80
+status: READY_WITH_WARNINGS
+fail: 0
+blocked: 0
+```
+
+Resultado:
+
+```text
+RAW TRANSCRIPT → 20.1 → 20.2 → 20.3 → 20.4 → 20.5 → 20.6 → 20.7
+→ Structured Interview → Evidence Set → Evaluation → Report Handoff
+```
+
+Todos os estágios passaram. `20.7`, Evidence Model e Evaluation propagaram `READY_WITH_WARNINGS` por causa de um segmento com speaker ambíguo. Traceability, idempotência, reprocessamento, stale detection, invariâncias e fronteiras de responsabilidade passaram.
+
+Distinção histórica preservada:
+
+```text
+Stage 25 — 30 cenários definidos; execução estrutural/runtime registrada separadamente
+Stage 26 — 31 testes sobre fixtures estruturados
+Stage 27 — 80 testes sobre uma transcrição bruta sintética
+```
+
+Nenhuma entrevista real foi processada e nenhum relatório real foi criado ou alterado.
+
 ## Ver também
 
 - [[Interview Evaluation Pipeline]]

@@ -12,7 +12,7 @@ tags:
 ---
 # Etapa 26 — Reference Runtime / Test Harness
 
-Esta nota documenta a implementação de referência local e determinística criada para executar os contratos das Etapas 20–25. Ela não é um sistema de produção, não usa LLM, internet ou serviços externos e não processa entrevistas reais.
+Esta nota documenta a implementação de referência local e determinística criada para executar os contratos das Etapas 20–25 e a execução de transcrição bruta sintética da Etapa 27. Ela não é um sistema de produção, não usa LLM, internet ou serviços externos e não processa entrevistas reais.
 
 ## 1. Localização e tecnologia
 
@@ -235,3 +235,30 @@ READY_WITH_WARNINGS
 ```
 
 O warning é limitado ao escopo de referência: fixtures anotados, ausência de parser de produção e baselines históricos indisponíveis.
+
+## 10. Etapa 27 — raw synthetic transcript
+
+A Etapa 27 reutiliza este runtime com o adaptador `raw_transcript` e executa:
+
+```text
+raw transcript
+→ 20.1–20.7
+→ Structured Interview
+→ Evidence Set
+→ Evaluation
+→ Report Handoff
+```
+
+O adaptador é determinístico e controlado por regras para o cenário sintético. Ele preserva o transcript bruto, timestamps, labels, intervenções, ambiguidades, `missing`, autocorreção, hipótese, experiência e source traceability. Não transforma o runtime em parser NLP/LLM de produção.
+
+Resultado registrado:
+
+```text
+28 segmentos
+3 participantes
+12 perguntas
+80 testes Stage 27
+READY_WITH_WARNINGS
+```
+
+Consulte [[Synthetic Interview Full Run]] para o oracle, a matriz de rastreabilidade, as invariantes e os resultados detalhados.

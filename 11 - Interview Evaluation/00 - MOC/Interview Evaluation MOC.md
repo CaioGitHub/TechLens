@@ -20,6 +20,7 @@ Esta camada é separada da base de conhecimento técnico. Ela utiliza a base té
 - [[Interview Evaluation Pipeline]]
 - [[End-to-End Validation]]
 - [[Reference Runtime]]
+- [[Synthetic Interview Full Run]]
 - [[Evaluation Engine]]
 - [[Interview Evaluation Model]]
 - [[Job Context Model]]

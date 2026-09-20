@@ -80,12 +80,108 @@ def _participants(fixture: dict[str, Any]) -> list[dict[str, Any]]:
     return deepcopy(fixture.get("participants", []))
 
 
-def _source(segment_id: str) -> dict[str, list[str]]:
-    return {"segment_ids": [segment_id]}
+def _source(segment_id: str, segments: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+    source: dict[str, Any] = {"segment_ids": [segment_id]}
+    if segments is not None:
+        segment = _find_segment(segments, segment_id)
+        if segment and segment.get("timestamp"):
+            source["timestamps"] = [segment["timestamp"]]
+    return source
 
 
 def _find_segment(segments: list[dict[str, Any]], segment_id: str) -> dict[str, Any] | None:
     return next((segment for segment in segments if segment["id"] == segment_id), None)
+
+
+def _prepare_raw_fixture(fixture: dict[str, Any]) -> dict[str, Any]:
+    """Adapt a controlled raw transcript into the existing stage contract."""
+    if "raw_transcript" not in fixture:
+        return fixture
+
+    participants = fixture.get("participants", [])
+    labels = {
+        participant["name"]: participant["role"]
+        for participant in participants
+        if participant.get("name")
+    }
+    previous_question_id: str | None = None
+    question_number = 0
+    response_number = 0
+    transcript: list[dict[str, Any]] = []
+
+    for raw in fixture["raw_transcript"]:
+        text = raw["text"]
+        role = labels.get(raw.get("speaker"), "unknown")
+        lower = text.strip().lower()
+        is_question = text.rstrip().endswith("?") or (
+            role == "interviewer"
+            and lower.startswith(("conte ", "explique ", "descreva ", "fale "))
+        )
+        candidate_question = role == "candidate" and is_question
+        segment: dict[str, Any] = {
+            "id": raw["id"],
+            "timestamp": raw.get("timestamp"),
+            "speaker_label": raw.get("speaker"),
+            "speaker_role": role,
+            "text": text,
+        }
+        if raw.get("speaker") in (None, "UNKNOWN"):
+            segment["ambiguous_speaker"] = True
+
+        if role == "interviewer" and is_question:
+            question_number += 1
+            question_id = f"Q{question_number}"
+            follow_up_of = None
+            if lower.startswith(("e ", "e se ", "e nesse", "e no ")):
+                follow_up_of = previous_question_id
+            segment.update(
+                {
+                    "kind": "question",
+                    "question_id": question_id,
+                    "follow_up_of": follow_up_of,
+                }
+            )
+            if lower.startswith(("quer dizer", "reformulando", "melhor:")):
+                segment["reformulation_of"] = previous_question_id
+            previous_question_id = question_id
+        elif role == "candidate" and not candidate_question:
+            response_number += 1
+            response_type = "direct"
+            if "não lembro" in lower or "nao lembro" in lower:
+                response_type = "uncertainty"
+            elif any(token in lower for token in ("provavelmente", "eu faria", "uma possibilidade")):
+                response_type = "hypothetical"
+            elif "já trabalhei" in lower or "tenho experiência" in lower:
+                response_type = "experience_declaration"
+            elif any(token in lower for token in ("configurei", "criei uma consulta", "em produção")):
+                response_type = "experience_with_evidence"
+            segment.update(
+                {
+                    "kind": "response",
+                    "response_id": f"R{response_number}",
+                    "question_id": previous_question_id or "unknown",
+                    "response_type": response_type,
+                }
+            )
+            if transcript and transcript[-1].get("kind") == "response":
+                if transcript[-1].get("question_id") == previous_question_id:
+                    segment["response_group_id"] = transcript[-1].get("response_id")
+        elif candidate_question:
+            segment.update(
+                {
+                    "kind": "question",
+                    "candidate_question": True,
+                    "question_id": f"CQ{response_number + 1}",
+                }
+            )
+        else:
+            segment["kind"] = "intervention"
+        transcript.append(segment)
+
+    prepared = deepcopy(fixture)
+    prepared["transcript"] = transcript
+    prepared["_raw_input"] = deepcopy(fixture["raw_transcript"])
+    return prepared
 
 
 def _stage_201(fixture: dict[str, Any]) -> tuple[list[dict[str, Any]], dict[str, Any]]:
@@ -146,7 +242,7 @@ def _stage_203(
             "question_id": question_id,
             "text": segment["text"],
             "primary_type": segment.get("primary_type", "technical"),
-            "source": _source(segment["id"]),
+            "source": _source(segment["id"], segments),
             "question_status": "identified",
             "follow_up_of": segment.get("follow_up_of"),
             "reformulation_of": segment.get("reformulation_of"),
@@ -177,6 +273,10 @@ def _stage_204(
                 f"{grouped[group_id]['text']} {segment['text']}"
             )
             grouped[group_id]["source"]["segment_ids"].append(segment["id"])
+            if segment.get("timestamp"):
+                grouped[group_id]["source"].setdefault("timestamps", []).append(
+                    segment["timestamp"]
+                )
             grouped[group_id]["needs_review"] = (
                 grouped[group_id]["needs_review"]
                 or bool(segment.get("needs_review", False))
@@ -189,7 +289,7 @@ def _stage_204(
             "original_segments": [segment["id"]],
             "response_status": "identified",
             "response_type": segment.get("response_type", "direct"),
-            "source": _source(segment["id"]),
+            "source": _source(segment["id"], segments),
             "needs_review": bool(segment.get("needs_review", False)),
             "speaker_id": segment.get("speaker_id"),
         }
@@ -279,8 +379,21 @@ def _stage_207(
     status = "BLOCKED" if blockers else ("READY_WITH_WARNINGS" if warnings else "READY")
     validation = {
         "status": status,
+        "summary": (
+            "Structured Interview validated"
+            if not blockers
+            else "Structured Interview blocked by validation issues"
+        ),
         "warnings": warnings,
         "blockers": blockers,
+        "issues": warnings + blockers,
+        "traceability": {
+            "participants": len(participants),
+            "segments": len(segments),
+            "questions": len(questions),
+            "responses": len(responses),
+        },
+        "readiness": status,
         "structured_interview": {
             "participants": deepcopy(participants),
             "segments": deepcopy(segments),
@@ -391,12 +504,31 @@ def _stage_23(
 def _stage_report(
     fixture: dict[str, Any],
     validation: dict[str, Any],
+    evidence_result: dict[str, Any],
     evaluations: list[dict[str, Any]],
 ) -> tuple[dict[str, Any], dict[str, Any]]:
+    structured = validation["structured_interview"]
+    segment_by_id = {segment["id"]: segment for segment in structured["segments"]}
+    evidence_by_id = {
+        item["evidence_id"]: item for item in evidence_result.get("evidence_set", [])
+    }
     report = {
         "report_id": _stable_id("REPORT", _fixture_id(fixture)),
         "fixture_id": _fixture_id(fixture),
+        "candidate": next(
+            (
+                participant
+                for participant in structured["participants"]
+                if participant.get("role") == "candidate"
+            ),
+            None,
+        ),
+        "participants": deepcopy(structured["participants"]),
+        "questions": deepcopy(structured["questions"]),
+        "responses": deepcopy(structured["responses"]),
+        "evidence": deepcopy(evidence_result.get("evidence_set", [])),
         "evaluations": deepcopy(evaluations),
+        "validation": deepcopy(validation),
         "warnings": list(validation["warnings"]),
         "traceability": [
             {
@@ -404,6 +536,22 @@ def _stage_report(
                 "question_id": evaluation["question_id"],
                 "response_id": evaluation["response_id"],
                 "evidence_ids": evaluation["evidence_ids"],
+                "source": {
+                    "segment_ids": [
+                        segment_id
+                        for evidence_id in evaluation["evidence_ids"]
+                        for segment_id in evidence_by_id[evidence_id]["source"]["segment_ids"]
+                    ],
+                    "participant_id": next(
+                        (
+                            segment_by_id[segment_id].get("participant_id")
+                            for evidence_id in evaluation["evidence_ids"]
+                            for segment_id in evidence_by_id[evidence_id]["source"]["segment_ids"]
+                            if segment_id in segment_by_id
+                        ),
+                        None,
+                    ),
+                },
             }
             for evaluation in evaluations
         ],
@@ -412,12 +560,12 @@ def _stage_report(
 
 
 def run_pipeline(fixture: dict[str, Any], job_context: dict[str, Any] | None = None) -> dict[str, Any]:
-    fixture = deepcopy(fixture)
+    fixture = _prepare_raw_fixture(deepcopy(fixture))
     run_id = _stable_id("RUN", _fixture_id(fixture))
     result: dict[str, Any] = {
         "run_id": run_id,
         "input_id": _fixture_id(fixture),
-        "pipeline_version": "26-reference-1",
+        "pipeline_version": fixture.get("pipeline_version", "26-reference-1"),
         "started_at": _now(),
         "completed_at": None,
         "status": "RUNNING",
@@ -428,6 +576,8 @@ def run_pipeline(fixture: dict[str, Any], job_context: dict[str, Any] | None = N
         "artifacts": {},
         "job_context": deepcopy(job_context),
     }
+    if fixture.get("_raw_input") is not None:
+        result["artifacts"]["raw_transcript"] = deepcopy(fixture["_raw_input"])
 
     participants, stage = _stage_201(fixture)
     result["stages"].append(stage)
@@ -479,10 +629,11 @@ def run_pipeline(fixture: dict[str, Any], job_context: dict[str, Any] | None = N
     result["stages"].append(stage)
     result["artifacts"]["evaluations"] = evaluations
 
-    report, stage = _stage_report(fixture, validation, evaluations)
+    report, stage = _stage_report(fixture, validation, evidence_result, evaluations)
     result["stages"].append(stage)
     result["artifacts"]["report"] = report
 
+    result["warnings"] = list(dict.fromkeys(result["warnings"]))
     result["readiness"] = (
         "READY_WITH_WARNINGS"
         if result["warnings"] or validation["status"] == "READY_WITH_WARNINGS"
