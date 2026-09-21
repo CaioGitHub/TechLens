@@ -21,6 +21,8 @@ Esta camada é separada da base de conhecimento técnico. Ela utiliza a base té
 - [[End-to-End Validation]]
 - [[Reference Runtime]]
 - [[Synthetic Interview Full Run]]
+- [[Semantic Blind Calibration]]
+- [[Adversarial Edge-Case Validation]]
 - [[Evaluation Engine]]
 - [[Interview Evaluation Model]]
 - [[Job Context Model]]

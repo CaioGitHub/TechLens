@@ -262,3 +262,34 @@ READY_WITH_WARNINGS
 ```
 
 Consulte [[Synthetic Interview Full Run]] para o oracle, a matriz de rastreabilidade, as invariantes e os resultados detalhados.
+
+## 11. Etapa 28 — semantic blind calibration
+
+A Etapa 28 adiciona casos semânticos independentes. O runtime recebe apenas `raw_transcript` e metadados operacionais; oracle, scores esperados e dimensões esperadas são comparados somente após a execução.
+
+```text
+20 casos lógicos
+21 execuções blind
+29 testes de calibração
+READY_WITH_WARNINGS
+```
+
+Consulte [[Semantic Blind Calibration]] para os casos, falhas iniciais, correções e limitações.
+
+## 12. Etapa 29 — adversarial / edge-case validation
+
+A Etapa 29 executa transcrições brutas sintéticas adversariais para tentar provocar:
+
+```text
+atribuição incorreta
+linking incorreto
+reconstrução inventada
+confusão entre entrevistador e candidato
+perda de contradições
+conversão de ausência em evidência negativa
+influência indevida de jargão, senioridade ou verbosity
+```
+
+Foram executados 30 casos principais, variantes de invariância e casos operacionais de `BLOCKED`, warning e baixa confidence de reconstrução. O resultado foi `READY_WITH_WARNINGS`, com 37 testes Stage 29 passando e nenhuma falha final.
+
+Consulte [[Adversarial Edge-Case Validation]] para a matriz, falhas iniciais, correções, limitações e o gate `ADVERSARIAL_EDGE_CASE_VALIDATION_COMPLETE`.

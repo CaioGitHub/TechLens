@@ -515,6 +515,22 @@ Stage 27 — 80 testes sobre uma transcrição bruta sintética
 
 Nenhuma entrevista real foi processada e nenhum relatório real foi criado ou alterado.
 
+## Stage 28 — Semantic / Blind Calibration
+
+A Etapa 28 adiciona uma validação semântica independente sobre 20 casos lógicos e 21 execuções blind. O runtime recebe apenas transcrições brutas sintéticas; o oracle é aplicado após a execução.
+
+```yaml
+logical_cases: 20
+runtime_executions: 21
+stage_28_tests: 29
+full_regression_tests: 140
+fail: 0
+blocked: 0
+status: READY_WITH_WARNINGS
+```
+
+Foram validados Evidence Model, Evidence Set, dimensões da Rubric, score, confidence, experiência declarada versus demonstrada, autocorreção, hipótese, incerteza, erro técnico, contradição, N/A, invariâncias e rastreabilidade. Os artefatos históricos das Etapas 19/19.1 continuam indisponíveis.
+
 ## Ver também
 
 - [[Interview Evaluation Pipeline]]

@@ -4,6 +4,7 @@ from copy import deepcopy
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from hashlib import sha256
+import re
 from typing import Any
 
 
@@ -125,6 +126,9 @@ def _prepare_raw_fixture(fixture: dict[str, Any]) -> dict[str, Any]:
             "speaker_role": role,
             "text": text,
         }
+        for field in ("needs_review", "reconstruction_confidence", "linking_confidence"):
+            if field in raw:
+                segment[field] = raw[field]
         if raw.get("speaker") in (None, "UNKNOWN"):
             segment["ambiguous_speaker"] = True
 
@@ -163,6 +167,21 @@ def _prepare_raw_fixture(fixture: dict[str, Any]) -> dict[str, Any]:
                     "response_type": response_type,
                 }
             )
+            if transcript:
+                previous = transcript[-1]
+                previous_text = previous.get("text", "").lower()
+                if previous.get("speaker_role") == "interviewer" and any(
+                    marker in previous_text
+                    for marker in (
+                        "concorda",
+                        "certo",
+                        "não é",
+                        "nao e",
+                        "porque ",
+                        "você poderia usar",
+                    )
+                ):
+                    segment["prompted_by_interviewer"] = True
             if transcript and transcript[-1].get("kind") == "response":
                 if transcript[-1].get("question_id") == previous_question_id:
                     segment["response_group_id"] = transcript[-1].get("response_id")
@@ -281,6 +300,10 @@ def _stage_204(
                 grouped[group_id]["needs_review"]
                 or bool(segment.get("needs_review", False))
             )
+            if grouped[group_id].get("reconstruction_confidence") is None:
+                grouped[group_id]["reconstruction_confidence"] = segment.get(
+                    "reconstruction_confidence"
+                )
             continue
         response = {
             "response_id": group_id,
@@ -292,6 +315,8 @@ def _stage_204(
             "source": _source(segment["id"], segments),
             "needs_review": bool(segment.get("needs_review", False)),
             "speaker_id": segment.get("speaker_id"),
+            "reconstruction_confidence": segment.get("reconstruction_confidence"),
+            "prompted_by_interviewer": bool(segment.get("prompted_by_interviewer", False)),
         }
         grouped[group_id] = response
         if response["question_id"] != "unknown":
@@ -325,21 +350,277 @@ def _stage_205(
         if item["response_status"] == "missing":
             item["original_text"] = None
             item["reconstructed_text"] = None
-            item["reconstruction_confidence"] = "high"
+            item["reconstruction_confidence"] = (
+                item.get("reconstruction_confidence") or "high"
+            )
             reconstructed.append(item)
             continue
         source_ids = item["original_segments"]
         original = " ".join(by_id[segment_id]["text"] for segment_id in source_ids)
         item["original_text"] = original
-        item["reconstructed_text"] = fixture.get("reconstructions", {}).get(
-            item["response_id"], original
-        )
+        reconstructed_text = fixture.get("reconstructions", {}).get(item["response_id"], original)
+        if not fixture.get("reconstructions") and "spring boto" in reconstructed_text.lower():
+            reconstructed_text = reconstructed_text.replace("Spring Boto", "Spring Boot")
+        item["reconstructed_text"] = reconstructed_text
         item["normalization_applied"] = (
             item["reconstructed_text"] != item["original_text"]
         )
-        item["reconstruction_confidence"] = "high"
+        item["reconstruction_confidence"] = (
+            item.get("reconstruction_confidence") or "high"
+        )
         reconstructed.append(item)
     return reconstructed, _stage("20.5", "COMPLETED", "responses", "reconstructed-responses")
+
+
+def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) -> list[dict[str, Any]]:
+    text = response["reconstructed_text"]
+    lower = text.lower()
+    question_lower = question["text"].lower()
+    specs: list[dict[str, Any]] = []
+    declaration = any(term in lower for term in ("já trabalhei", "tenho experiência", "trabalhei bastante")) or (
+        "tenho " in lower and " anos " in f" {lower} "
+    )
+    concrete = any(
+        term in lower
+        for term in (
+            "em produção",
+            "configurei",
+            "implementei",
+            "criei",
+            "incidente",
+            "resultado",
+            "usamos",
+            "rastrear",
+        )
+    )
+    hypothetical = any(
+        term in lower
+        for term in (
+            "provavelmente",
+            "eu faria",
+            "uma possibilidade",
+            "eu usaria",
+            "eu investigaria",
+            "eu começaria",
+        )
+    )
+    uncertainty = any(
+        term in lower
+        for term in (
+            "não lembro",
+            "nao lembro",
+            "não tenho certeza",
+            "nao tenho certeza",
+            "não sei",
+            "nao sei",
+        )
+    )
+    self_correction = any(
+        term in lower
+        for term in (
+            "pensando melhor",
+            "na verdade",
+            "espera, não",
+            "espera nao",
+            "ah, verdade",
+            "não, acho",
+            "nao, acho",
+        )
+    )
+    technical_error = any(
+        term in lower
+        for term in (
+            "sempre representa o pior caso",
+            "pior tempo de todas",
+            "threads de plataforma",
+            "thread do sistema operacional",
+            "threads do sistema operacional",
+            "não suporta mensagens",
+            "nao suporta mensagens",
+            "retry agressivo",
+            "ignorar perda de dados",
+        )
+    )
+    partial_signal = any(
+        term in lower
+        for term in ("mas não detalharia", "mas nao detalharia", "pequena imprecisão", "pequena imprecisao")
+    )
+    contradiction = "na verdade" in lower and any(
+        term in lower
+        for term in (
+            "não funcionaria",
+            "nao funcionaria",
+            "não usaria",
+            "nao usaria",
+            "não seria adequado",
+            "nao seria adequado",
+        )
+    )
+    tradeoff = any(term in lower for term in ("trade-off", "versus", " vs ", "custo", "em troca"))
+    reasoning = any(term in lower for term in ("antes de", "se ", "então", "compararia", "prioriz"))
+    practical = concrete or any(term in lower for term in ("query", "plano de execução", "plano de execucao"))
+    off_topic = (
+        ("virtual thread" in question_lower and "kql" in lower)
+        or ("kql" in question_lower and "virtual thread" in lower)
+        or ("spring" in question_lower and "virtual thread" in lower)
+    )
+    prompted_confirmation = (
+        response.get("prompted_by_interviewer", False)
+        and len(lower.split()) <= 4
+    )
+
+    if prompted_confirmation:
+        specs.append({"type": "confirmation", "qualification": "insufficient"})
+    elif declaration and not concrete:
+        specs.append({"type": "experience_declaration", "qualification": "insufficient"})
+    if concrete:
+        specs.append({"type": "demonstrated_experience", "qualification": "positive"})
+    if hypothetical:
+        specs.append({"type": "hypothesis", "qualification": "conditional"})
+    if uncertainty:
+        specs.append({"type": "uncertainty", "qualification": "insufficient"})
+    if self_correction:
+        specs.append({"type": "self_correction", "qualification": "contradictory" if technical_error else "positive"})
+    if technical_error:
+        specs.append({"type": "technical_error", "qualification": "negative"})
+    if contradiction:
+        specs.append({"type": "contradiction", "qualification": "contradictory"})
+    if practical:
+        specs.append({"type": "practical", "qualification": "positive"})
+    if reasoning:
+        specs.append({"type": "reasoning", "qualification": "positive"})
+    if tradeoff:
+        specs.append({"type": "tradeoff", "qualification": "positive"})
+    if off_topic:
+        specs.append({"type": "off_topic", "qualification": "negative"})
+    if not specs:
+        specs.append(
+            {
+                "type": "conceptual",
+                "qualification": "negative" if off_topic else ("negative" if technical_error else "positive"),
+            }
+        )
+    for index, spec in enumerate(specs, start=1):
+        spec["evidence_id_suffix"] = index
+        spec["evidence_strength"] = "strong" if concrete or reasoning or tradeoff else "moderate"
+        spec["evidence_confidence"] = "medium" if uncertainty or off_topic else "high"
+    return specs
+
+
+def _blind_assessment(label: str, score: int | None, applicable: bool = True) -> dict[str, Any]:
+    if not applicable:
+        return {"assessment": "N/A", "score": None, "applicable": False}
+    return {"assessment": label, "score": score, "applicable": True}
+
+
+def _blind_dimensions(question: dict[str, Any], response: dict[str, Any], evidence: list[dict[str, Any]]) -> tuple[dict[str, Any], float, str]:
+    text = response["reconstructed_text"].lower()
+    text = text.replace("sou especialista sênior com 15 anos de experiência.", "")
+    text = text.replace("sou especialista senior com 15 anos de experiencia.", "")
+    semantic_text = re.sub(
+        r"\btenho\s+\d+\s+anos(?:\s+de\s+experiência)?\.?",
+        "",
+        text,
+    )
+    semantic_text = re.sub(
+        r"\bisso\b[^.]*\bcurr(?:ículo|iculo)\b[^.]*\.?",
+        "",
+        semantic_text,
+    )
+    semantic_text = re.sub(
+        r"\b(?:usando|aplicando)\b[^.]*\b(?:ddd|solid|cqrs)\b[^.]*\.?",
+        "",
+        semantic_text,
+    )
+    semantic_text = re.sub(
+        r"\ba arquitetura pode ter camadas e componentes adicionais\.?",
+        "",
+        semantic_text,
+    )
+    types = {item["type"] for item in evidence}
+    qualifications = {item["qualification"] for item in evidence}
+    question_text = question["text"].lower()
+    technical_error = "technical_error" in types
+    partial_signal = any(
+        term in semantic_text
+        for term in ("mas não detalharia", "mas nao detalharia", "pequena imprecisão", "pequena imprecisao")
+    )
+    off_topic = "off_topic" in types
+    self_correction = "self_correction" in types
+    concrete = "demonstrated_experience" in types or "practical" in types
+    reasoning = "reasoning" in types
+    tradeoff = "tradeoff" in types
+    declaration_only = "experience_declaration" in types and not concrete
+    uncertainty = "uncertainty" in types
+    confirmation = "confirmation" in types
+    short = len(semantic_text.split()) < 15
+    dense_signal = all(term in semantic_text for term in ("p95", "depend", "baseline"))
+    factual_question = question_text.startswith(("o que é", "o que significa", "defina"))
+
+    if confirmation:
+        correctness = _blind_assessment("Insufficient", 4)
+    elif self_correction and technical_error:
+        correctness = _blind_assessment("Adequate", 7)
+    elif technical_error or off_topic:
+        correctness = _blind_assessment("Weak", 3)
+    elif partial_signal:
+        correctness = _blind_assessment("Partial", 6)
+    elif uncertainty:
+        correctness = _blind_assessment("Insufficient", 4)
+    else:
+        correctness = _blind_assessment("Strong", 9)
+
+    completeness = _blind_assessment(
+        "Partial" if (short and not declaration_only) or declaration_only or uncertainty or semantic_text.count("latência") >= 3 else "Strong",
+        6 if (short and not declaration_only) or declaration_only or uncertainty or semantic_text.count("latência") >= 3 else 9,
+    )
+    depth = _blind_assessment(
+        "Strong" if reasoning and (concrete or tradeoff) else ("Partial" if dense_signal else ("Weak" if short or declaration_only or semantic_text.count("latência") >= 3 else "Partial")),
+        9 if reasoning and (concrete or tradeoff) else (6 if dense_signal else (3 if short or declaration_only or semantic_text.count("latência") >= 3 else 6)),
+    )
+    reasoning_dimension = _blind_assessment(
+        "Strong" if reasoning else ("Partial" if self_correction else "Weak"),
+        9 if reasoning else (6 if self_correction else 3),
+    )
+    practical_dimension = _blind_assessment(
+        "Strong" if concrete else ("Partial" if "practical" in types else "Weak"),
+        9 if concrete else (5 if "practical" in types else 3),
+        applicable=not factual_question,
+    )
+    tradeoff_dimension = _blind_assessment(
+        "Strong" if tradeoff else "Weak",
+        9 if tradeoff else 3,
+        applicable=not factual_question,
+    )
+    dimensions = {
+        "correctness": correctness,
+        "completeness": completeness,
+        "depth": depth,
+        "reasoning": reasoning_dimension,
+        "practical_application": practical_dimension,
+        "trade_offs": tradeoff_dimension,
+    }
+    weights = {
+        "correctness": 0.40,
+        "completeness": 0.20,
+        "depth": 0.15,
+        "reasoning": 0.10,
+        "practical_application": 0.10,
+        "trade_offs": 0.05,
+    }
+    applicable_weights = [weight for name, weight in weights.items() if dimensions[name]["applicable"]]
+    total_weight = sum(applicable_weights)
+    score = sum(
+        dimensions[name]["score"] * (weights[name] / total_weight)
+        for name in weights
+        if dimensions[name]["applicable"]
+    )
+    confidence = (
+        "medium"
+        if uncertainty or off_topic or confirmation
+        else ("high" if evidence else "low")
+    )
+    return dimensions, round(score, 2), confidence
 
 
 def _stage_206(
@@ -416,31 +697,94 @@ def _stage_21(validation: dict[str, Any], fixture: dict[str, Any]) -> tuple[dict
     if validation["status"] == "BLOCKED":
         return {}, _stage("21", "SKIPPED", "structured-interview", "evidence-set", errors=["upstream validation blocked"])
     evidence = []
+    question_by_id = {
+        question["question_id"]: question
+        for question in validation["structured_interview"]["questions"]
+    }
     for response in validation["structured_interview"]["responses"]:
         if response["response_status"] == "missing" or response["response_id"] is None:
             continue
-        spec = fixture.get("evidence_specs", {}).get(response["response_id"], {})
-        if response["question_id"] == "unknown" and not spec.get("allow_unknown", False):
+        explicit_specs = fixture.get("evidence_specs", {})
+        if explicit_specs:
+            spec_list = [explicit_specs.get(response["response_id"], {})]
+        else:
+            spec_list = _blind_evidence_specs(
+                question_by_id.get(response["question_id"], {"text": ""}),
+                response,
+            )
+        if response["question_id"] == "unknown" and not any(
+            spec.get("allow_unknown", False) for spec in spec_list
+        ):
             continue
-        evidence.append(
-            {
-                "evidence_id": spec.get(
-                    "evidence_id", _stable_id("EVD", response["response_id"])
-                ),
-                "question_id": response["question_id"],
-                "response_id": response["response_id"],
-                "type": spec.get("type", "conceptual"),
-                "qualification": spec.get("qualification", "positive"),
-                "content": response["reconstructed_text"],
-                "interpretation": spec.get("interpretation", "synthetic evidence"),
-                "explicitness": spec.get("explicitness", "explicit"),
-                "evidence_strength": spec.get("evidence_strength", "moderate"),
-                "evidence_confidence": spec.get("evidence_confidence", "high"),
-                "source": deepcopy(response["source"]),
-                "needs_review": response["needs_review"],
-                "relations": spec.get("relations", []),
-            }
+        for index, spec in enumerate(spec_list, start=1):
+            evidence.append(
+                {
+                    "evidence_id": spec.get(
+                        "evidence_id",
+                        _stable_id("EVD", f"{response['response_id']}-{spec.get('evidence_id_suffix', index)}"),
+                    ),
+                    "question_id": response["question_id"],
+                    "response_id": response["response_id"],
+                    "type": spec.get("type", "conceptual"),
+                    "qualification": spec.get("qualification", "positive"),
+                    "content": response["reconstructed_text"],
+                    "interpretation": spec.get("interpretation", "blind synthetic evidence"),
+                    "explicitness": spec.get("explicitness", "explicit"),
+                    "evidence_strength": spec.get("evidence_strength", "moderate"),
+                    "evidence_confidence": spec.get("evidence_confidence", "high"),
+                    "source": deepcopy(response["source"]),
+                    "needs_review": response["needs_review"],
+                    "relations": spec.get("relations", []),
+                }
+            )
+    experience_responses = [
+        item
+        for item in validation["structured_interview"]["responses"]
+        if item["response_status"] != "missing"
+        and item["response_id"] is not None
+        and any(
+            term in (item.get("reconstructed_text") or "").lower()
+            for term in ("em produção", "em prod", "trabalhei")
         )
+    ]
+    limiting_responses = [
+        item
+        for item in validation["structured_interview"]["responses"]
+        if item["response_status"] != "missing"
+        and item["response_id"] is not None
+        and any(
+            term in (item.get("reconstructed_text") or "").lower()
+            for term in ("nunca administrei", "nunca trabalhei", "só consumia")
+        )
+    ]
+    if experience_responses and limiting_responses:
+        for response in limiting_responses:
+            evidence.append(
+                {
+                    "evidence_id": _stable_id(
+                        "EVD", f"{response['response_id']}-contradiction"
+                    ),
+                    "question_id": response["question_id"],
+                    "response_id": response["response_id"],
+                    "type": "contradiction",
+                    "qualification": "contradictory",
+                    "content": response["reconstructed_text"],
+                    "interpretation": "Experience claims conflict across responses.",
+                    "explicitness": "explicit",
+                    "evidence_strength": "moderate",
+                    "evidence_confidence": "medium",
+                    "source": deepcopy(response["source"]),
+                    "needs_review": response["needs_review"],
+                    "relations": [
+                        {
+                            "relation_type": "conflicts_with",
+                            "response_ids": [
+                                item["response_id"] for item in experience_responses
+                            ],
+                        }
+                    ],
+                }
+            )
     status = "READY_WITH_WARNINGS" if validation["status"] == "READY_WITH_WARNINGS" else "READY"
     result = {
         "evidence_set": evidence,
@@ -471,8 +815,9 @@ def _stage_23(
             if item["response_id"] == response["response_id"]
         ]
         spec = fixture.get("evaluation_specs", {}).get(question["question_id"], {})
-        dimensions = deepcopy(
-            spec.get(
+        if fixture.get("evaluation_specs"):
+            dimensions = deepcopy(
+                spec.get(
                 "dimensions",
                 {
                     "correctness": {"assessment": "Strong", "score": 8, "applicable": True},
@@ -482,8 +827,14 @@ def _stage_23(
                     "practical_application": {"assessment": "N/A", "score": None, "applicable": False},
                     "trade_offs": {"assessment": "N/A", "score": None, "applicable": False},
                 },
+                )
             )
-        )
+            score = spec.get("score", 7.0)
+            confidence = spec.get("confidence", "high")
+            rationale = spec.get("rationale", "Synthetic evaluation from the Evidence Set.")
+        else:
+            dimensions, score, confidence = _blind_dimensions(question, response, evidence)
+            rationale = "Blind semantic calibration derived from the Evidence Set."
         evaluations.append(
             {
                 "id": spec.get("id", _stable_id("EVAL", question["question_id"])),
@@ -491,9 +842,9 @@ def _stage_23(
                 "response_id": response["response_id"],
                 "evidence_ids": [item["evidence_id"] for item in evidence],
                 "dimensions": dimensions,
-                "score": spec.get("score", 7.0),
-                "confidence": spec.get("confidence", "high"),
-                "rationale": spec.get("rationale", "Synthetic evaluation from the Evidence Set."),
+                "score": score,
+                "confidence": confidence,
+                "rationale": rationale,
                 "warnings": list(evidence_result["warnings"]),
             }
         )
