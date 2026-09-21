@@ -184,6 +184,20 @@ NOT_EXECUTED: 0
 
 O caso `ADV-BLOCKED` é uma condição operacional esperada e não uma falha da etapa; `ADV-WARNING` continua sem fabricar avaliação quando não existe resposta atribuível.
 
+Após as correções estruturais da Etapa 30.1, a mesma execução passou a reportar:
+
+```text
+34 executions
+29 PASS
+4 PASS_WITH_WARNING
+1 BLOCKED as expected
+0 FAIL
+```
+
+Os warnings adicionais são intencionais: perguntas do candidato e respostas sem
+vínculo confiante agora são explicitamente sinalizadas em vez de serem tratadas
+silenciosamente como fluxo avaliável comum.
+
 ## 10. Limitações
 
 1. O runtime permanece determinístico e baseado em heurísticas controladas.

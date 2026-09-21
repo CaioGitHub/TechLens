@@ -251,6 +251,46 @@ raw transcript
 
 O adaptador é determinístico e controlado por regras para o cenário sintético. Ele preserva o transcript bruto, timestamps, labels, intervenções, ambiguidades, `missing`, autocorreção, hipótese, experiência e source traceability. Não transforma o runtime em parser NLP/LLM de produção.
 
+## 11. Etapa 30.1 — controlled correction
+
+A primeira execução do piloto real revelou que a validação mecânica podia retornar
+`READY` mesmo quando a estrutura semântica exigia revisão humana. A correção
+controlada adicionou classificação estrutural explícita para:
+
+```text
+interviewer_question
+candidate_question
+conversational_prompt
+intervention
+response
+```
+
+Perguntas do candidato são preservadas fora das perguntas avaliáveis. Intervenções
+do entrevistador são marcadas como não elegíveis para evidência do candidato.
+Quando uma intervenção substantiva encerra o contexto de uma resposta, o runtime
+não força a próxima fala do candidato ao vínculo anterior: o vínculo pode ser
+`unknown` e exige revisão.
+
+O runtime também deixou de aplicar normalizações específicas de termos reais. A
+reconstrução só ocorre quando existe contrato explícito de reconstrução upstream;
+caso contrário, o texto original é preservado.
+
+Regressões sintéticas da Etapa 30.1 cobrem prompts conversacionais, explicações do
+entrevistador, perguntas do candidato, fronteiras semânticas, preservação de
+ambiguidades e idempotência. A entrevista real não foi adicionada às fixtures.
+
+Resultado registrado:
+
+```text
+Stage 26–29: PASS
+Stage 30.1: PASS
+Full suite: 183/183 PASS
+```
+
+O runtime continua sendo uma referência determinística e não substitui o Human
+Review Gate. `READY_WITH_WARNINGS` não significa aprovação da entrevista nem
+validade automática do Evidence Model ou Evaluation Engine.
+
 Resultado registrado:
 
 ```text

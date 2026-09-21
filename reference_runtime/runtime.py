@@ -94,6 +94,103 @@ def _find_segment(segments: list[dict[str, Any]], segment_id: str) -> dict[str, 
     return next((segment for segment in segments if segment["id"] == segment_id), None)
 
 
+def _is_conversational_prompt(lower: str) -> bool:
+    return lower.startswith(
+        (
+            "quer falar mais alguma coisa",
+            "você tem alguma dúvida",
+            "voce tem alguma duvida",
+            "mais alguma dúvida",
+            "mais alguma duvida",
+            "tem dúvidas",
+            "tem duvidas",
+            "pode ficar à vontade",
+            "pode ficar a vontade",
+            "você diz ",
+            "voce diz ",
+            "quer falar, ",
+        )
+    )
+
+
+def _is_interviewer_comment(lower: str, text: str) -> bool:
+    if _is_conversational_prompt(lower):
+        return True
+    if lower.startswith(
+        (
+            "aí no final",
+            "ai no final",
+            "bora lá",
+            "bora la",
+            "top ",
+            "beleza, mais",
+        )
+    ):
+        return True
+    if len(text.split()) >= 18 and any(
+        marker in lower
+        for marker in (
+            "a gente",
+            "o cliente",
+            "o banco",
+            "porque ",
+            "então ",
+            "entao ",
+        )
+    ):
+        return True
+    return False
+
+
+def _question_kind(role: str, text: str) -> str | None:
+    lower = text.strip().lower()
+    candidate_interrogative = lower.startswith(
+        (
+            "como ",
+            "qual ",
+            "quais ",
+            "por que ",
+            "porque ",
+            "e como ",
+            "posso perguntar",
+            "uma dúvida",
+            "uma duvida",
+            "tenho uma dúvida",
+            "tenho uma duvida",
+        )
+    )
+    tag_question = lower.endswith(
+        ("não é?", "nao e?", "né?", "ne?", "não?", "nao?", "tá?", "ta?")
+    )
+    if role == "candidate" and candidate_interrogative and not tag_question:
+        return "candidate_question"
+    if role != "interviewer":
+        return None
+    explicit = text.rstrip().endswith("?")
+    indirect = lower.startswith(("conte ", "explique ", "descreva ", "fale "))
+    indirect_context = any(
+        marker in lower
+        for marker in (
+            "já chegou a usar",
+            "ja chegou a usar",
+            "saberia também",
+            "saberia tambem",
+            "trabalha com o que",
+            "vem utilizando",
+            "teria algum",
+        )
+    )
+    experience_prompt = (
+        "queria entender" in lower
+        and any(term in lower for term in ("experiência", "experiencia", "projetos"))
+    )
+    if not (explicit or indirect or experience_prompt or indirect_context):
+        return None
+    if _is_interviewer_comment(lower, text):
+        return "conversational_prompt"
+    return "interviewer_question"
+
+
 def _prepare_raw_fixture(fixture: dict[str, Any]) -> dict[str, Any]:
     """Adapt a controlled raw transcript into the existing stage contract."""
     if "raw_transcript" not in fixture:
@@ -107,6 +204,7 @@ def _prepare_raw_fixture(fixture: dict[str, Any]) -> dict[str, Any]:
     }
     previous_question_id: str | None = None
     question_number = 0
+    candidate_question_number = 0
     response_number = 0
     transcript: list[dict[str, Any]] = []
 
@@ -114,11 +212,8 @@ def _prepare_raw_fixture(fixture: dict[str, Any]) -> dict[str, Any]:
         text = raw["text"]
         role = labels.get(raw.get("speaker"), "unknown")
         lower = text.strip().lower()
-        is_question = text.rstrip().endswith("?") or (
-            role == "interviewer"
-            and lower.startswith(("conte ", "explique ", "descreva ", "fale "))
-        )
-        candidate_question = role == "candidate" and is_question
+        kind = _question_kind(role, text)
+        candidate_question = kind == "candidate_question"
         segment: dict[str, Any] = {
             "id": raw["id"],
             "timestamp": raw.get("timestamp"),
@@ -132,7 +227,7 @@ def _prepare_raw_fixture(fixture: dict[str, Any]) -> dict[str, Any]:
         if raw.get("speaker") in (None, "UNKNOWN"):
             segment["ambiguous_speaker"] = True
 
-        if role == "interviewer" and is_question:
+        if kind == "interviewer_question":
             question_number += 1
             question_id = f"Q{question_number}"
             follow_up_of = None
@@ -143,12 +238,41 @@ def _prepare_raw_fixture(fixture: dict[str, Any]) -> dict[str, Any]:
                     "kind": "question",
                     "question_id": question_id,
                     "follow_up_of": follow_up_of,
+                    "question_kind": "interviewer_question",
+                    "evaluation_eligible": True,
                 }
             )
             if lower.startswith(("quer dizer", "reformulando", "melhor:")):
                 segment["reformulation_of"] = previous_question_id
             previous_question_id = question_id
-        elif role == "candidate" and not candidate_question:
+        elif candidate_question:
+            candidate_question_number += 1
+            segment.update(
+                {
+                    "kind": "candidate_question",
+                    "candidate_question": True,
+                    "question_id": f"CQ{candidate_question_number}",
+                    "question_kind": "candidate_question",
+                    "evaluation_eligible": False,
+                }
+            )
+            previous_question_id = None
+        elif kind == "conversational_prompt":
+            segment.update(
+                {
+                    "kind": "intervention",
+                    "question_kind": "conversational_prompt",
+                    "evaluation_eligible": False,
+                    "needs_review": True,
+                }
+            )
+            if (
+                len(text.split()) >= 8
+                and transcript
+                and transcript[-1].get("kind") == "response"
+            ):
+                previous_question_id = None
+        elif role == "candidate":
             response_number += 1
             response_type = "direct"
             if "não lembro" in lower or "nao lembro" in lower:
@@ -165,6 +289,7 @@ def _prepare_raw_fixture(fixture: dict[str, Any]) -> dict[str, Any]:
                     "response_id": f"R{response_number}",
                     "question_id": previous_question_id or "unknown",
                     "response_type": response_type,
+                    "evaluation_eligible": True,
                 }
             )
             if transcript:
@@ -185,16 +310,16 @@ def _prepare_raw_fixture(fixture: dict[str, Any]) -> dict[str, Any]:
             if transcript and transcript[-1].get("kind") == "response":
                 if transcript[-1].get("question_id") == previous_question_id:
                     segment["response_group_id"] = transcript[-1].get("response_id")
-        elif candidate_question:
-            segment.update(
-                {
-                    "kind": "question",
-                    "candidate_question": True,
-                    "question_id": f"CQ{response_number + 1}",
-                }
-            )
         else:
             segment["kind"] = "intervention"
+            segment["evaluation_eligible"] = False
+            if (
+                role == "interviewer"
+                and len(text.split()) >= 8
+                and transcript
+                and transcript[-1].get("kind") == "response"
+            ):
+                previous_question_id = None
         transcript.append(segment)
 
     prepared = deepcopy(fixture)
@@ -252,7 +377,11 @@ def _stage_203(
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     questions: list[dict[str, Any]] = []
     for segment in segments:
-        if segment.get("kind") != "question" or segment.get("candidate_question"):
+        if (
+            segment.get("kind") != "question"
+            or segment.get("candidate_question")
+            or not segment.get("evaluation_eligible", True)
+        ):
             continue
         question_id = segment.get("question_id")
         if not question_id:
@@ -263,6 +392,8 @@ def _stage_203(
             "primary_type": segment.get("primary_type", "technical"),
             "source": _source(segment["id"], segments),
             "question_status": "identified",
+            "question_kind": segment.get("question_kind", "interviewer_question"),
+            "evaluation_eligible": True,
             "follow_up_of": segment.get("follow_up_of"),
             "reformulation_of": segment.get("reformulation_of"),
             "needs_review": bool(segment.get("needs_review", False)),
@@ -313,10 +444,12 @@ def _stage_204(
             "response_status": "identified",
             "response_type": segment.get("response_type", "direct"),
             "source": _source(segment["id"], segments),
-            "needs_review": bool(segment.get("needs_review", False)),
+            "needs_review": bool(segment.get("needs_review", False))
+            or question_id == "unknown",
             "speaker_id": segment.get("speaker_id"),
             "reconstruction_confidence": segment.get("reconstruction_confidence"),
             "prompted_by_interviewer": bool(segment.get("prompted_by_interviewer", False)),
+            "evaluation_eligible": question_id != "unknown",
         }
         grouped[group_id] = response
         if response["question_id"] != "unknown":
@@ -359,8 +492,6 @@ def _stage_205(
         original = " ".join(by_id[segment_id]["text"] for segment_id in source_ids)
         item["original_text"] = original
         reconstructed_text = fixture.get("reconstructions", {}).get(item["response_id"], original)
-        if not fixture.get("reconstructions") and "spring boto" in reconstructed_text.lower():
-            reconstructed_text = reconstructed_text.replace("Spring Boto", "Spring Boot")
         item["reconstructed_text"] = reconstructed_text
         item["normalization_applied"] = (
             item["reconstructed_text"] != item["original_text"]
@@ -657,6 +788,34 @@ def _stage_207(
                 blockers.append(f"missing source segment: {segment_id}")
     if any(segment.get("ambiguous_speaker") for segment in segments):
         warnings.append("speaker attribution requires review")
+    candidate_questions = [
+        segment for segment in segments if segment.get("kind") == "candidate_question"
+    ]
+    conversational_prompts = [
+        segment
+        for segment in segments
+        if segment.get("question_kind") == "conversational_prompt"
+    ]
+    unknown_responses = [
+        response
+        for response in responses
+        if response.get("response_status") != "missing"
+        and response.get("question_id") == "unknown"
+    ]
+    review_responses = [
+        response
+        for response in responses
+        if response.get("response_status") != "missing"
+        and response.get("needs_review")
+    ]
+    if candidate_questions:
+        warnings.append("candidate questions preserved outside evaluation questions")
+    if conversational_prompts:
+        warnings.append("conversational prompts require classification review")
+    if unknown_responses:
+        warnings.append("responses without a confident question link require review")
+    if review_responses:
+        warnings.append("response extraction requires review")
     status = "BLOCKED" if blockers else ("READY_WITH_WARNINGS" if warnings else "READY")
     validation = {
         "status": status,
@@ -673,7 +832,9 @@ def _stage_207(
             "segments": len(segments),
             "questions": len(questions),
             "responses": len(responses),
+            "candidate_questions": len(candidate_questions),
         },
+        "candidate_questions": deepcopy(candidate_questions),
         "readiness": status,
         "structured_interview": {
             "participants": deepcopy(participants),
@@ -703,6 +864,8 @@ def _stage_21(validation: dict[str, Any], fixture: dict[str, Any]) -> tuple[dict
     }
     for response in validation["structured_interview"]["responses"]:
         if response["response_status"] == "missing" or response["response_id"] is None:
+            continue
+        if not response.get("evaluation_eligible", True):
             continue
         explicit_specs = fixture.get("evidence_specs", {})
         if explicit_specs:
@@ -807,7 +970,11 @@ def _stage_23(
             (item for item in validation["structured_interview"]["responses"] if item["question_id"] == question["question_id"]),
             None,
         )
-        if response is None or response["response_status"] == "missing":
+        if (
+            response is None
+            or response["response_status"] == "missing"
+            or not response.get("evaluation_eligible", True)
+        ):
             continue
         evidence = [
             item
@@ -960,6 +1127,9 @@ def run_pipeline(fixture: dict[str, Any], job_context: dict[str, Any] | None = N
     )
     result["stages"].append(stage)
     result["artifacts"]["validation"] = validation
+    result["artifacts"]["candidate_questions"] = deepcopy(
+        validation.get("candidate_questions", [])
+    )
     result["warnings"].extend(validation["warnings"])
     if validation["status"] == "BLOCKED":
         result["status"] = "BLOCKED"
