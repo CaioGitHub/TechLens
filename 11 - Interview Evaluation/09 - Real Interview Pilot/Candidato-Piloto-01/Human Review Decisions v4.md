@@ -19,8 +19,9 @@ reviewer: human_reviewer
 review_timestamp: pending
 source: Pilot Input - Source Transcript v3.md
 structured_interview: Structured Interview - Controlled Correction v4.md
-decision_status: PENDING
-approval_status: BLOCKED
+decision_status: APPLIED
+approval_status: APPROVED_WITH_WARNINGS
+review_timestamp: 2026-09-21T21:15:33-03:00
 ```
 
 This file is the decision register for Stage 30.2. It intentionally does not infer human decisions from the transcript or from runtime classifications. `PENDING` entries must be resolved explicitly before an approved Structured Interview can be created.
@@ -186,4 +187,45 @@ STRUCTURED_INTERVIEW_APPROVED: false
 status: BLOCKED
 pending_items: 24 unknown links + 12 evaluation questions + 5 candidate questions + 13 needs-review segments + reconstruction/count decisions
 downstream_allowed: false
+```
+
+
+## Applied human decisions ? 2026-09-21
+
+The original preparation tables above are preserved as historical input. The following decisions were explicitly supplied and applied to v5 by `human_reviewer`.
+
+```yaml
+reviewer_status: APPROVED_WITH_WARNINGS
+status: COMPLETE
+unknowns: 24 reviewed individually
+unknowns_kept_unlinked: 4
+non_evaluable_acknowledgements_and_closings: 18
+candidate_questions_confirmed_or_added: 7
+question_evaluation_eligible: [Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q9, Q10, Q11]
+question_non_evaluable: [Q8, Q12]
+q8_relation: follow_up_of_Q7
+needs_review_segments_resolved: [NR01, NR02, NR03, NR04, NR05, NR06, NR07, NR08, NR09, NR10, NR11, NR12, NR13]
+reconstructions_approved: [T01, T02, T03, T04, T05, T06, T07, T09]
+reconstructions_kept_ambiguous: [T08]
+response_count_mapping: PENDING
+validation_status: READY_WITH_WARNINGS
+downstream_evaluation_executed: false
+```
+
+### Decision ledger
+
+| Decision | Affected IDs | Rationale | Source | Reviewer status |
+|---|---|---|---|---|
+| MARK_NON_EVALUABLE | R2, R35, R36, R38, R39, R40, R41, R44, R45, R46, R48, R49, R50, R51, R53, R54, R56 | acknowledgement, confirmation, deliberation or closing; no technical evidence | Human Review Matrix v4 + supplied Stage 30.2 decisions | APPLIED |
+| KEEP_UNKNOWN | R24 | context does not support safe reassignment | supplied Stage 30.2 decisions | APPLIED |
+| KEEP_UNKNOWN | R26, R52 | relation remains structurally uncertain; preserve review warning | supplied Stage 30.2 decisions | APPLIED |
+| CONFIRM_CANDIDATE_QUESTION | CQ1, CQ2, CQ3, CQ4, CQ5, R37, R43 | candidate questions remain outside evaluation and evidence | supplied Stage 30.2 decisions | APPLIED |
+| MARK_NON_EVALUABLE | R47, R55 | candidate conversational questions/closings do not become technical questions | supplied Stage 30.2 decisions | APPLIED |
+| MARK_EVALUABLE | Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q9, Q10, Q11 | explicit evaluation units retained | supplied Stage 30.2 decisions | APPLIED |
+| MERGE / FOLLOW_UP | Q8 ? Q7 | hexagonal prompt is clarification/continuation, not independent question | supplied Stage 30.2 decisions | APPLIED |
+| MARK_NON_EVALUABLE | Q12 | Daily/team routine is contextual, not a technical evaluation unit | supplied Stage 30.2 decisions | APPLIED |
+| CLASSIFY_NON_EVALUABLE | NR01?NR13 | interventions, explanations, clarifications and contextual prompt preserved without candidate evidence | supplied Stage 30.2 decisions | APPLIED |
+| RECONSTRUCT | T01, T02, T03, T04, T05, T06, T07, T09 | form-only reconstruction supported by transcript context | supplied Stage 30.2 decisions | APPLIED |
+| KEEP_AMBIGUOUS | T08 | no safe reconstruction for ZepSight without external information | supplied Stage 30.2 decisions | APPLIED |
+| KEEP_PENDING | D01, D02, D03 | v3 aggregate does not permit deterministic historical correspondence | supplied Stage 30.2 decisions | APPLIED |
 ```

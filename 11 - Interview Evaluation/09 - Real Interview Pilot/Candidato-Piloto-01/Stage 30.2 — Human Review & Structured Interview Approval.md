@@ -131,26 +131,26 @@ No approved artifact exists, so the comparison cannot be completed:
 | Reconstructions | 0 automatic | not created | pending |
 | Warnings | present | not created | pending |
 
-## 16. Remaining warnings
+## 16. Remaining warnings (pre-decision snapshot)
 
-The human review gate remains blocked because critical structural decisions are pending. This is a review-state blocker, not a candidate outcome.
+This section records the state before the explicit decisions supplied later in this document. The final post-decision state is recorded in sections 22?24.
 
-## 17. Validation
+## 17. Validation (pre-decision snapshot)
 
-The v4 runtime result remains `READY_WITH_WARNINGS`. Validation of a human-approved structure was not executed because no approved structure exists. Evidence Model, Evaluation Engine and final report processing were not executed.
+At the time of the preparation snapshot, the v4 runtime result was `READY_WITH_WARNINGS`. The post-decision v5 validation is recorded in section 22.
 
 ## 18. Traceability
 
 The source-to-segment traceability remains preserved through the v4 artifact and decision register. No source transcript segment was deleted or rewritten.
 
-## 19. Approval decision
+## 19. Approval decision (pre-decision snapshot)
 
 ```yaml
 approval: BLOCKED
-reason: explicit human decisions are not available for critical structural review items
+reason: explicit human decisions were not yet available at preparation time
 ```
 
-## 20. Gate
+## 20. Gate (pre-decision snapshot)
 
 ```text
 STRUCTURED_INTERVIEW_HUMAN_REVIEW_COMPLETE: NOT_REACHED
@@ -164,3 +164,39 @@ FINAL_REPORT: NOT_ALLOWED
 ## 21. Limitations
 
 This preparation artifact does not substitute for a human reviewer. It does not resolve ambiguous links, speaker attribution, response boundaries or reconstructions, and it does not evaluate the candidate.
+
+
+## 22. Applied review and v5 execution
+
+The explicit decisions supplied on 2026-09-21 were applied without altering the source transcript or v4. The resulting artifact is `Structured Interview - Controlled Correction v5.md`.
+
+```yaml
+stage_30_0_initial_run: BLOCKED
+stage_30_1_failure_analysis: COMPLETE
+stage_30_2_human_review: EXECUTED
+structured_interview_v5: CREATED
+validation_20_7: EXECUTED_AGAIN
+validation_status: READY_WITH_WARNINGS
+approval: APPROVED_WITH_WARNINGS
+unknown_links_retained: 4
+technical_reconstructions: 8
+ambiguous_terms_kept_original: 1
+response_count_mapping: PENDING
+evidence_model: NOT_EXECUTED
+evaluation_engine: NOT_EXECUTED
+```
+
+## 23. Applied decisions and remaining warnings
+
+Q8 is represented as a follow-up/continuation of Q7; Q12 is contextual and non-evaluable; candidate questions are excluded from evaluation; interviewer explanations and interventions remain non-evaluable; R26 and R52 remain unknown with review; and `ZepSight` remains unreconstructed. The 44?47 historical correspondence remains pending because v3 contains only an aggregate response count.
+
+## 24. Final gate
+
+```text
+STRUCTURED_INTERVIEW_HUMAN_REVIEW_COMPLETE
+STRUCTURED_INTERVIEW_APPROVED_WITH_WARNINGS
+STATUS: READY_WITH_WARNINGS
+DOWNSTREAM_EVIDENCE_MODEL: NOT_EXECUTED
+DOWNSTREAM_EVALUATION_ENGINE: NOT_EXECUTED
+FINAL_REPORT: NOT_CREATED
+```
