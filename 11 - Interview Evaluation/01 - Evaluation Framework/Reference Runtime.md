@@ -3,16 +3,17 @@ type: reference
 status: understood
 confidence: 100
 created: 2026-09-20
-updated: 2026-09-20
+updated: 2026-10-04
 tags:
   - interview-evaluation
   - runtime
   - test-harness
   - meta
+  - stage-26
 ---
 # Etapa 26 — Reference Runtime / Test Harness
 
-Esta nota documenta a implementação de referência local e determinística criada para executar os contratos das Etapas 20–25 e a execução de transcrição bruta sintética da Etapa 27. Ela não é um sistema de produção, não usa LLM, internet ou serviços externos e não processa entrevistas reais.
+Esta nota documenta a implementação de referência local e determinística criada para executar os contratos das Etapas 20–25 e o harness consolidado da Etapa 26. Ela não é um sistema de produção, não usa LLM, internet ou serviços externos e não processa entrevistas reais.
 
 ## 1. Localização e tecnologia
 
@@ -35,6 +36,8 @@ Arquivos:
 reference_runtime/
   __init__.py
   runtime.py
+  orchestration.py
+  harness.py
 
 tests/
   __init__.py
@@ -42,9 +45,10 @@ tests/
   test_reference_runtime.py
 
 run_reference_runtime_tests.py
+run_reference_harness.py
 ```
 
-O runtime fica fora de `11 - Interview Evaluation/` e consome contratos documentais sem substituir as notas canônicas.
+O runtime fica fora de `11 - Interview Evaluation/` e consome contratos documentais sem substituir as notas canônicas. O harness executa os conjuntos de validação em ordem, para em falhas e preserva códigos de saída.
 
 ## 2. Unidade de execução
 
@@ -183,7 +187,7 @@ Os testes verificam:
 
 ## 7. Resultado da execução
 
-Execução local realizada em `2026-09-20`:
+Execução histórica da implementação inicial realizada em `2026-09-20`:
 
 ```text
 31/31 PASS
@@ -192,7 +196,7 @@ Execução local realizada em `2026-09-20`:
 0 NOT_EXECUTED
 ```
 
-Os 31 testes são:
+Os 31 testes históricos são:
 
 ```text
 E2E-01 a E2E-30
@@ -212,21 +216,23 @@ Essas limitações não foram ocultadas nem usadas para alterar a Rubrica ou o E
 ## 9. Gate da Etapa 26
 
 ```text
-REFERENCE_RUNTIME_COMPLETE
+REFERENCE_HARNESS_COMPLETE_WITH_WARNINGS
 ```
 
 Critérios atendidos:
 
-- runtime mínimo existe;
+- runtime mínimo e orchestration existem;
 - test harness existe;
 - fixtures existem;
 - runner executa todos os testes e caso individual;
 - contratos essenciais são testáveis;
-- resultados são determinísticos;
+- resultados são determinísticos dentro da projeção que exclui timestamps operacionais;
+- fixtures são sintéticos e isolados;
+- o runner consolidado distingue falhas de warnings;
 - rastreabilidade é verificada;
 - `BLOCKED` interrompe downstream;
 - não houve alteração indevida das regras anteriores;
-- 31/31 testes passaram.
+- Os testes específicos da Etapa 26 e a regressão consolidada devem ser executados pelo `run_reference_harness.py`.
 
 Status:
 
@@ -234,7 +240,7 @@ Status:
 READY_WITH_WARNINGS
 ```
 
-O warning é limitado ao escopo de referência: fixtures anotados, ausência de parser de produção e baselines históricos indisponíveis.
+O warning é limitado ao escopo de referência: fixtures anotados, aprovações simuladas, ausência de parser/avaliador de produção, persistência de relatório apenas em memória e baselines históricos indisponíveis.
 
 ## 10. Etapa 27 — raw synthetic transcript
 
@@ -284,7 +290,7 @@ Resultado registrado:
 ```text
 Stage 26–29: PASS
 Stage 30.1: PASS
-Full suite: 183/183 PASS
+Full suite: 264/264 PASS in the current repository state
 ```
 
 O runtime continua sendo uma referência determinística e não substitui o Human

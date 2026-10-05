@@ -12,7 +12,7 @@ tags:
 ---
 # Etapa 25 — End-to-End Validation
 
-Esta nota valida os contratos ponta a ponta das Etapas 20–24 sem processar entrevista real. Os casos são sintéticos e controlados. Como o repositório não possui executor/runtime de pipeline, a execução operacional dos casos E2E permanece `NOT_EXECUTED`; as validações estruturais e as revisões manuais dos contratos são registradas separadamente.
+Esta nota registra a especificação histórica da validação ponta a ponta das Etapas 20–24. A execução operacional atual está documentada em `11 - Interview Evaluation/08 - Pipeline/End-to-End Validation.md` e utiliza o runtime de referência com fixtures sintéticas; o piloto real continua fora do escopo.
 
 ## 1. Objetivo e escopo
 
@@ -375,7 +375,7 @@ Resultado: `PASS`.
 
 ## 14. Limitações
 
-1. O repositório não possui executor/runtime de pipeline identificado.
+1. A execução utiliza runtime de referência, não um executor de produção.
 2. Os 30 casos E2E foram definidos e revisados contra os contratos, mas não executados operacionalmente.
 3. Os testes adicionais e invariantes foram revisados estruturalmente, não executados por runtime.
 4. Os baselines históricos das Etapas 19/19.1 não estão disponíveis.

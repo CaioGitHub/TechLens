@@ -45,7 +45,7 @@ Overall, the interview provides evidence of some functional conceptual knowledge
 
 ```yaml
 summary:
-  average_score: 4.3
+  average_score: 4.7
   median_score: 4.0
   minimum_score: 2.0
   maximum_score: 8.0
@@ -55,7 +55,7 @@ summary:
 
 | Indicator | Value |
 |---|---:|
-| Average score | 4.3 / 10 |
+| Average score | 4.7 / 10 |
 | Median | 4.0 / 10 |
 | Minimum | 2.0 / 10 |
 | Maximum | 8.0 / 10 |
@@ -68,10 +68,10 @@ The intervals are treated as lower-inclusive and upper-exclusive, except for the
 
 | Range | Count |
 |---|---:|
-| 0–2 | 1 |
-| 2–4 | 6 |
-| 4–6 | 1 |
-| 6–8 | 1 |
+| 0–2 | 0 |
+| 2–4 | 1 |
+| 4–6 | 6 |
+| 6–8 | 2 |
 | 8–10 | 1 |
 
 The distribution is concentrated in the partial-evidence range. One answer is very weak, one is strong, and the remaining results are spread across partial to adequate evidence; this pattern is more informative than the average alone.

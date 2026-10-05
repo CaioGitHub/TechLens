@@ -1,3 +1,50 @@
 from .runtime import PipelineBlocked, run_pipeline
+from .harness import (
+    HARNESS_VERSION,
+    Suite,
+    assert_synthetic_fixtures,
+    default_suites,
+    deterministic_projection,
+    run_harness,
+    temporary_workspace,
+    write_report,
+)
+from .orchestration import (
+    APPROVAL_REQUIRED,
+    BLOCKED,
+    COMPLETED,
+    COMPLETED_WITH_WARNINGS,
+    FAILED,
+    OrchestrationStore,
+    REQUIRES_HUMAN_REVIEW,
+    RUNNING,
+    content_hash,
+    resume_orchestration,
+    run_orchestration,
+    validate_orchestration_result,
+)
 
-__all__ = ["PipelineBlocked", "run_pipeline"]
+__all__ = [
+    "APPROVAL_REQUIRED",
+    "HARNESS_VERSION",
+    "BLOCKED",
+    "COMPLETED",
+    "COMPLETED_WITH_WARNINGS",
+    "FAILED",
+    "OrchestrationStore",
+    "PipelineBlocked",
+    "REQUIRES_HUMAN_REVIEW",
+    "RUNNING",
+    "Suite",
+    "assert_synthetic_fixtures",
+    "content_hash",
+    "default_suites",
+    "deterministic_projection",
+    "resume_orchestration",
+    "run_harness",
+    "run_orchestration",
+    "run_pipeline",
+    "temporary_workspace",
+    "validate_orchestration_result",
+    "write_report",
+]

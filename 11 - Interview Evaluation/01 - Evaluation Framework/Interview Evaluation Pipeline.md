@@ -3,7 +3,7 @@ type: reference
 status: understood
 confidence: 100
 created: 2026-09-20
-updated: 2026-09-20
+updated: 2026-10-04
 tags:
   - interview-evaluation
   - pipeline
@@ -769,7 +769,7 @@ O status desta nota é:
 READY_WITH_WARNINGS
 ```
 
-O warning é herdado dos artefatos anteriores: a Rubrica e o Evaluation Engine documentam baselines de calibração, mas os artefatos históricos das Etapas 19/19.1 não estão disponíveis. Além disso, esta etapa formaliza contratos documentais; não existe executor de runtime no repositório para afirmar execução operacional desses cenários.
+O warning é herdado dos artefatos anteriores: a Rubrica e o Evaluation Engine documentam baselines de calibração, mas os artefatos históricos das Etapas 19/19.1 não estão disponíveis. A execução de referência agora existe em `reference_runtime/orchestration.py`; ela é determinística e controlada por fixtures, não é um parser de produção nem processa entrevistas reais.
 
 Esse status não representa falha de candidato, score ou decisão de contratação.
 
@@ -785,7 +785,7 @@ Status operacional documental:
 READY_WITH_WARNINGS
 ```
 
-Nenhuma entrevista real foi processada. Nenhum score real foi produzido. Nenhum relatório real foi gerado nesta etapa.
+Nenhuma entrevista real foi processada. Nenhum score real foi produzido. Nenhum relatório real foi gerado nesta etapa. Os testes de Stage 24 exercitam a orchestration somente com fixtures sintéticas.
 
 ## Ver também
 
