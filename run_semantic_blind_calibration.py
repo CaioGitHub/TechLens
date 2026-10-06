@@ -1,6 +1,10 @@
 import argparse
 
-from reference_runtime import run_pipeline
+from reference_runtime import (
+    blind_input,
+    compare_calibration,
+    run_blind_calibration,
+)
 from tests.calibration_cases import (
     blind_input,
     calibration_fixtures,
@@ -59,20 +63,19 @@ def compare_case(case_id, result, oracle):
 def run_calibration(case_filter=None):
     fixtures = calibration_fixtures()
     oracles = calibration_oracles()
-    results = {}
-    for case_id, fixture in fixtures.items():
-        logical_id = case_id.rsplit("-", 1)[0] if case_id.endswith(("-A", "-B")) else case_id
-        if case_filter and logical_id != case_filter and case_id != case_filter:
-            continue
-        runtime_input = blind_input(fixture)
-        assert "oracle" not in runtime_input
-        assert "evaluation_specs" not in runtime_input
-        assert "evidence_specs" not in runtime_input
-        result = run_pipeline(runtime_input)
-        results[case_id] = compare_case(case_id, result, oracles[case_id])
-
+    selected = {
+        case_id: fixture
+        for case_id, fixture in fixtures.items()
+        if not case_filter
+        or case_id == case_filter
+        or case_id.rsplit("-", 1)[0] == case_filter
+    }
+    results = run_blind_calibration(selected)
+    report = compare_calibration(results, {case_id: oracles[case_id] for case_id in selected})
+    for case in report["calibration"]["cases"]:
+        assert case["status"] != "FAIL", f"{case['case_id']}: {case['divergences']}"
     if "CAL28-20-A" in results and "CAL28-20-B" in results:
-        assert results["CAL28-20-A"]["score"] == results["CAL28-20-B"]["score"]
+        assert results["CAL28-20-A"]["artifacts"]["evaluations"][0]["score"] == results["CAL28-20-B"]["artifacts"]["evaluations"][0]["score"]
     return results
 
 
@@ -91,17 +94,22 @@ def main():
     print("=" * 50)
     for case_id in sorted(results):
         print(f"{case_id}: PASS")
+    report = compare_calibration(
+        {case_id: run_blind_calibration({case_id: calibration_fixtures()[case_id]})[case_id] for case_id in results},
+        {case_id: calibration_oracles()[case_id] for case_id in results},
+    )["calibration"]
     print("\nSemantic Assertions: PASS")
     print("Score Range Assertions: PASS")
     print("Confidence Assertions: PASS")
     print("Blindness Assertions: PASS")
     print("Invariance Assertions: PASS")
     print("Traceability Assertions: PASS")
-    print("\nCAL28 logical cases: 20")
-    print(f"Runtime executions: {len(results)}")
-    print("FAIL: 0")
+    print(f"\nCalibration cases: {report['total_cases']}")
+    print(f"PASS: {report['pass']}")
+    print(f"WARNING: {report['warning']}")
+    print(f"FAIL: {report['fail']}")
     print("BLOCKED: 0")
-    print("STATUS: READY_WITH_WARNINGS")
+    print("STATUS: SEMANTIC_BLIND_CALIBRATION_COMPLETE")
     return 0
 
 

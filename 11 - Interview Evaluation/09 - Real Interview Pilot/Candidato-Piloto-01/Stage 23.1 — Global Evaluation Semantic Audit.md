@@ -2,309 +2,416 @@
 type: reference
 status: understood
 confidence: 100
-created: 2026-10-04
-updated: 2026-10-04
+created: 2026-10-05
+updated: 2026-10-05
 tags:
   - interview-evaluation
   - semantic-audit
-  - evaluation-engine
-  - real-interview-pilot
+  - stage-23-1
 ---
 
 # Stage 23.1 — Global Evaluation Semantic Audit
 
 ## Status
 
-```text
-PASS_WITH_WARNINGS
+`PASS_WITH_WARNINGS`
+
+The independent audit validated the consolidation produced by the Reference Evaluation Engine Runtime. The warnings are bounded coverage limitations, not material inconsistencies.
+
+## Runtime utilizado
+
+`reference_runtime/evaluation_engine.py`
+
+The Runtime consumed only the canonical Individual Evaluations v2 and Evidence Set v1 inputs. It did not use `Interview Evaluation v1.md`, CV, job context, seniority, external information, or later-stage artifacts as calculation inputs.
+
+```yaml
+evaluation_source: Individual Evaluations v2.md
+source_evaluation: Individual Evaluations v2.md
+external_information_used: false
+job_context_used: false
+seniority_evaluated: false
+hiring_decision_created: false
+ranking_created: false
+level: medium
 ```
 
-The consolidated evaluation is semantically consistent with `Individual Evaluations v2.md`. No material correction to `Interview Evaluation v1.md` is required. The warning state reflects limited interview coverage and inherited upstream warnings, not an invalid consolidation.
-
-## Scope
+## Inputs
 
 ```text
-Interview Evaluation v1.md
+Individual Evaluations v2.md
+Evidence Set v1.md
 ```
 
-The audit covers the ten valid individual evaluations:
+The input contained 10 individual evaluations and 28 evidence items.
+
+## Runtime Output
+
+### Evaluation count
+
+`10`
+
+Evaluated questions:
 
 ```text
 Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q9, Q10, Q11
 ```
 
-Q8 remains a follow-up of Q7 and Q12 remains non-evaluable. Neither has an independent score.
-
-## Sources
+Individual scores:
 
 ```text
-Individual Evaluations v2.md
-Stage 22.1 — Individual Evaluations Semantic Audit.md
-Interview Evaluation v1.md
-Evidence Set v1.md
-Scoring Rubric.md
-Evaluation Engine.md
-Evidence Model.md
+Q1 2.0
+Q2 6.0
+Q3 4.0
+Q4 8.0
+Q5 4.0
+Q6 4.0
+Q7 7.0
+Q9 4.0
+Q10 4.0
+Q11 4.0
 ```
 
-The official individual-evaluation source is `Individual Evaluations v2.md`. No transcript, CV, LinkedIn, Job Context or external candidate information was used to alter the consolidation.
+### Average
 
-## Statistical validation
+`4.7`
+
+### Median
+
+`4.0`
+
+### Minimum
+
+`2.0`
+
+### Maximum
+
+`8.0`
+
+### Distribution
+
+The independent rule is lower-inclusive and upper-exclusive for the first four buckets. The final bucket includes `10.0`.
 
 ```yaml
-scores:
-  Q1: 2.0
-  Q2: 6.0
-  Q3: 4.0
-  Q4: 8.0
-  Q5: 4.0
-  Q6: 4.0
-  Q7: 7.0
-  Q9: 4.0
-  Q10: 4.0
-  Q11: 4.0
-count: 10
-sum: 47.0
 average: 4.7
 median: 4.0
 minimum: 2.0
 maximum: 8.0
 ```
 
-The report correctly presents `4.7 / 10` as a descriptive average and explicitly states that it is not the global technical assessment.
+| Range | Count |
+|---|---:|
+| 0–2 | 0 |
+| 2–4 | 1 |
+| 4–6 | 6 |
+| 6–8 | 2 |
+| 8–10 | 1 |
 
-Using the report's lower-inclusive/upper-exclusive convention, except for the final interval:
+```text
+0–2   -> 0
+2–4   -> 1
+4–6   -> 6
+6–8   -> 2
+8–10  -> 1
+```
 
-| Range | Expected | Report | Result |
-|---|---:|---:|---|
-| 0–2 | 0 | 0 | PASS |
-| 2–4 | 1 | 1 | PASS |
-| 4–6 | 6 | 6 | PASS |
-| 6–8 | 2 | 2 | PASS |
-| 8–10 | 1 | 1 | PASS |
+Boundary mutations for `2.0`, `4.0`, `6.0`, and `8.0` were validated without changing the canonical rule.
 
-The distribution interpretation is proportionate: it identifies concentration in the partial-evidence range and does not convert the average into seniority or a hiring decision.
+### Domains
 
-## Domain audit
+Domains were derived only from individual evaluation metadata. Evaluated domains include Java, versioning, messaging, REST API, database access, JDBC, software architecture, layered architecture, hexagonal architecture, observability, troubleshooting, investigation, tools, developer tools, artificial intelligence, open finance, project context, professional experience, software projects, and technology experience.
 
-| Domain | Source evaluations | Audit result |
-|---|---|---|
-| Professional experience and projects | Q2 / E-002–E-008 | The report distinguishes breadth of contexts from limited technical depth and does not treat declarations as broad mastery. PASS |
-| Java and versioning | Q4 / E-011 | The conclusion is restricted to the reported version sequence. It does not infer deep Java 21 knowledge. PASS |
-| Technology experience | Q3 / E-009–E-010 | The report credits Java/back-end evidence only and preserves limited coverage. PASS |
-| Messaging and REST context | Q5 / E-012–E-014 | The report preserves the relevant context mismatch and partial messaging evidence without claiming general ignorance. PASS |
-| JDBC/database access | Q6 / E-015–E-016 | The report describes a partial association with database work, not broad database competence. PASS |
-| Architecture | Q7 / E-017–E-020 | The report identifies the strongest multi-dimensional architectural evidence while limiting it to one question. PASS |
-| Observability | Q9 / E-021–E-022 | The report distinguishes declared Dynatrace use from operational observability depth. PASS |
-| Troubleshooting | Q10 / E-023–E-026 | The report describes plausible actions but not a complete diagnostic capability. PASS |
-| AI developer tooling | Q11 / E-027–E-028 | The report treats Copilot use as declared experience with limited application detail. PASS |
-| Open finance/project familiarity | Q1 / E-001 | The report correctly records superficial familiarity only. PASS |
+No unsupported Azure domain was introduced. Domain summaries preserve question counts, averages, coverage, and evidence references.
 
-No domain conclusion exceeds the evidence coverage. Single-question domains are explicitly described as narrow, limited or partial where appropriate.
+### Complexity
 
-## Complexity audit
+```text
+Basic:         5 questions, average 4.4, Evaluated
+Intermediate:  5 questions, average 5.0, Evaluated
+Advanced:      0 questions, Not evaluated
+```
 
-The report uses the classifications already present in `Individual Evaluations v2.md`:
+The output does not infer advanced performance from basic or intermediate answers.
 
-| Complexity | Questions | Audit result |
-|---|---|---|
-| Basic | Q1, Q3, Q4, Q9, Q11 | Correctly described as mixed, with Q4 as the strongest basic factual answer. PASS |
-| Intermediate | Q2, Q5, Q6, Q7, Q10 | Correctly described as partial overall, with Q7 as the strongest result in this group. PASS |
-| Advanced | None | Correctly marked not evaluated; no inability is inferred. PASS |
+### Dimensions
 
-The report explicitly states that complexity was contextual and not used as an automatic score modifier.
+The six canonical dimensions were preserved:
 
-## Dimension audit
+```text
+correctness
+completeness
+depth
+reasoning
+practical_application
+trade_offs
+```
 
-### Conceptual knowledge
+Applicable dimensions were counted as evaluated; `N/A` was not converted to zero. Counts were: correctness 10, completeness 10, depth 5, reasoning 2, practical_application 7, and trade_offs 0.
 
-Supported by Q3, Q5, Q6 and Q7. The report distinguishes partial conceptual evidence from broad mastery and does not promote factual Java-version recall into general Java depth. PASS.
+### Strengths
 
-### Practical application
+Every global strength retains evaluation and question references. Examples include direct answers to familiarity questions, concrete project/activity mentions, the Java version sequence, a partial producer/consumer distinction, the JDBC-to-database association, architectural separation, and named observability tooling.
 
-Supported by Q2 and Q10. The report uses concrete project activities and proposed troubleshooting actions, while preserving the lack of implementation detail, outcomes and validation. PASS.
+No strength was inferred from a title, CV, verbosity, interviewer technology mention, or subjective impression.
 
-### Troubleshooting
+### Gaps
 
-Supported only by Q10 / E-023–E-026. The report correctly limits the conclusion to partial investigation actions and does not claim systematic diagnosis across systems. PASS.
+Every global gap retains evaluation and question references. The gaps describe bounded omissions such as incomplete technical detail, absence of a structured troubleshooting sequence, insufficient REST-specific comparison, limited JDBC explanation, incomplete architecture example, and absent trade-off discussion.
 
-### Architecture
+The audit did not convert a localized weakness into a claim that the candidate lacks an entire domain.
 
-Supported by Q7 / E-017–E-020. The report identifies separation and a database-replacement consequence, while explicitly noting that practical hexagonal-architecture use was not demonstrated. PASS.
+## Strengths
 
-### Decision making
+The strengths above are local, traceable strengths and do not establish broad mastery.
 
-Supported narrowly by Q7 / E-020 and Q10 / E-023–E-026. The report correctly states that alternatives, prioritization, explicit trade-offs and measured consequences were not sufficiently explored. PASS.
+## Gaps
 
-### Integration
+The gaps above remain bounded to the evaluated questions and evidence.
 
-Supported only by Q2 and Q7. The report labels cross-domain integration as limited rather than inventing a Java → architecture → observability → troubleshooting chain. PASS.
+## Relevant errors
 
-### Depth
-
-Supported by the pattern across Q5, Q6, Q9, Q10 and Q11. The report describes generally limited-to-moderate depth and identifies Q7 as the clearest cause/consequence example. PASS.
-
-No dimension is inferred solely from another dimension.
-
-## Strengths audit
-
-The four strengths are traceable and appropriately scoped:
-
-1. Direct and complete response on Java versions — Q4 / E-011.
-2. Architectural relationship between separation and database replacement — Q7 / E-017, E-019, E-020.
-3. Multiple project contexts and concrete activities — Q2 / E-002, E-003, E-005, E-008.
-4. Plausible initial troubleshooting actions — Q10 / E-023, E-024, E-026.
-
-The report explicitly states that these are local strengths and do not establish broad domain mastery. PASS.
-
-## Gaps audit
-
-The gaps are supported and proportionate:
-
-| Gap | Classification | Source | Audit result |
-|---|---|---|---|
-| Superficial open-finance familiarity | Pontual | Q1 / E-001 | Correctly limited to the response. PASS |
-| Limited technology coverage/application detail | Relevante | Q3 / E-009–E-010 | Supported by the narrow technology evidence. PASS |
-| REST-context mismatch in producer/consumer answer | Relevante | Q5 / E-012–E-014 | Consistent with Stage 22.1. PASS |
-| Incomplete JDBC mechanism/usage explanation | Relevante | Q6 / E-015–E-016 | Does not become a claim of total ignorance. PASS |
-| Declarative or operationally partial pattern | Recorrente | Q2, Q9, Q11 and cited evidence | Supported by multiple evaluations, not a single answer. PASS |
-
-The report explicitly states that the recurring pattern is limited depth/completeness in explored answers, not general lack of knowledge in untested domains.
-
-## Relevant errors audit
-
-The only consolidated error is:
-
-```yaml
-question_id: Q5
+```text
 severity: relevant
-evidence: [E-012, E-013, E-014]
+question: Q5
+evidence: E-012
 ```
 
-Its interpretation remains faithful to Stage 22.1: the response addressed Kafka/Rabbit-style messaging instead of the requested REST context, while still demonstrating partial messaging content. The report does not convert the issue into general conceptual ignorance. PASS.
+### Errors
 
-Q10 uses only E-023–E-026. `R31`, `RAW-065` and `"Scroll."` are not reintroduced. PASS.
+One existing error was preserved:
 
-## Confidence audit
-
-The global confidence is `medium`, with a rationale based on:
-
-- ten traceable evaluations;
-- 28 evidence items;
-- narrow domain coverage;
-- partial or declarative answers;
-- no advanced-complexity questions;
-- inherited upstream warnings.
-
-The report explicitly states that global confidence is an independent qualitative judgment, not the arithmetic mean of individual confidences. PASS.
-
-## Coverage and limitations
-
-The report distinguishes limited evidence from non-evaluation:
-
-- evaluated with limited evidence: technology experience, messaging/REST, JDBC, observability, troubleshooting and AI tooling;
-- not sufficiently covered: Spring, Azure/cloud operation, Kubernetes, security, automated testing, distributed systems, advanced performance, database design beyond the partial JDBC answer, advanced architecture/trade-offs and advanced AI-assisted development.
-
-The limitations section also records the ten-question scope, absence of advanced questions, partial/declarative answers, Q8/Q12 handling, upstream warnings and exclusion of external candidate information. These limitations materially constrain broad interpretation and are correctly explicit. PASS_WITH_WARNINGS.
-
-## Contamination check
-
-```yaml
-R31_reintroduced: false
-R24_reintroduced: false
-R26_reintroduced: false
-R41_reintroduced: false
-R52_reintroduced: false
-candidate_questions_reintroduced: false
-Q8_independent_evaluation: false
-Q12_evaluation: false
-interviewer_information_as_candidate_evidence: false
-external_information: false
-job_context: false
-seniority_claim: false
-hiring_decision: false
-ranking: false
+```text
+Q5
+severity: relevant
+evidence: E-012
 ```
+
+The Runtime did not upgrade the severity to `central` or create a new error.
+
+### Not Evaluated
+
+```text
+Q8  - follow-up or continuation without independent evaluation
+Q12 - non-evaluable
+```
+
+Q8 was a follow-up of Q7. Q12 was non-evaluable. Neither received a score, evidence, or independent evaluation status.
+
+### Limitations
+
+```text
+limited question coverage
+advanced complexity was not evaluated
+```
+
+The deterministic Runtime remains limited to consolidating existing individual judgments; it does not independently reassess responses.
+
+### Global Assessment
+
+The Runtime produced:
+
+> The evaluated interview evidence shows a bounded technical pattern across 10 questions, with an average score of 4.7. The synthesis is limited to the domains and complexity levels actually evaluated.
+
+The statement is proportional to the coverage and does not claim completeness, seniority, hiring fit, or general technical knowledge beyond the evaluated evidence.
+
+### Confidence
+
+`medium`
+
+The confidence is bounded by limited question coverage, absence of advanced-complexity evaluation, and the warning state. Layer-specific confidence values were not conflated with global confidence.
+
+## Independent Mathematical Validation
+
+The Stage 23.1 auditor recalculated count, average, median, minimum, maximum, and distribution directly from the individual evaluation scores. It did not call the Runtime to derive expected values.
 
 Result: `PASS`.
 
-## Traceability
+## Evidence Validation
 
-The principal claims have the following traceability:
+The Evidence Set contained 28 items. All Runtime evidence references resolve to existing Evidence Set items with question, response, and source-segment references. The Runtime created no new evidence and did not modify evidence qualification or strength.
+
+The used evidence set is `E-001` through `E-028`; no orphan references were found.
+
+## Traceability Validation
+
+The validated path is:
 
 ```text
-Global assessment
-↓
-Summary/dimension/domain pattern
-↓
-Q1–Q11 individual evaluations
-↓
-Evidence IDs E-001–E-028
-↓
-Source segments preserved in Evidence Set v1
+global output
+  -> domain / dimension / strength / gap / error
+  -> individual evaluation
+  -> question
+  -> evidence
+  -> response
+  -> source segment
 ```
 
-The report includes question/evidence references for its domain, dimension, strength, gap and error conclusions. The source evaluation list is the exact ten-entry set from `Individual Evaluations v2.md`. Result: `PASS`.
+All 10 evaluations and all 28 evidence items used by the evaluations retain source-segment traceability.
+
+## Q5 Validation
+
+Q5 remained `4.0`. Its error severity remained `relevant`, with evidence `E-012`. The consolidation did not reinterpret the error as `central`, impose an artificial score ceiling, or move the error outside its question context.
+
+Q5 is specifically a context mismatch: the answer shifted to messaging rather than the requested REST framing. This does not establish general conceptual ignorance.
+
+## Q8 Validation
+
+Q8 is a follow-up or continuation without an independent evaluation. It did not increase the evaluation count, affect the mean or distribution, receive an independent score, or add independent evidence.
+
+```yaml
+Q8_independent_evaluation: false
+```
+
+## Q10 Validation
+
+The Runtime output did not contain the excluded Q10 response or its excluded raw source segment. The Stage 22.1 contamination boundary was preserved and was not reintroduced by consolidation.
+
+Q10 uses only E-023–E-026.
+
+```yaml
+R31_reintroduced: false
+```
+
+## Q12 Validation
+
+Q12 remained non-evaluable. It did not receive a score, enter the average or distribution, or produce technical evidence.
+
+```yaml
+Q12_evaluation: false
+```
+
+## Candidate Questions Validation
+
+Candidate questions were not treated as technical evaluations. They did not generate scores, evidence, domains, complexity, or changes to the global assessment.
+
+## Excluded Responses Validation
+
+The responses marked unknown/unlinked or excluded in the Evidence Set were not reintroduced as valid evidence. The excluded Q10 material was also absent from the Runtime output.
+
+## Historical Independence
+
+The audit test mutated a copy of `Interview Evaluation v1.md`, including its displayed average and confidence. The Runtime output and independent audit remained identical.
+
+The historical report was therefore used only as a regression artifact and not as a semantic calculation source.
+
+## Mutation Tests
+
+| Mutation | Expected behavior | Result |
+|---|---|---|
+| Historical average/confidence changed | Runtime and audit unchanged | PASS |
+| Historical narrative changed | Runtime and audit unchanged | PASS |
+| Q4 score changed from 8.0 to 6.0 | Runtime aggregate changes and audit follows mutated input | PASS |
+| Excluded Q10 evidence appended | Runtime output unchanged | PASS |
+| Runtime average tampered | Independent audit rejects output | PASS |
+
+## Domain audit
+
+Domain conclusions are derived from the evaluated questions and preserve their narrow coverage. Single-question domains are not treated as broad mastery.
+
+## Complexity audit
+
+| Complexity | Questions | Audit result |
+|---|---|---|
+| Basic | Q1, Q3, Q4, Q9, Q11 | Evaluated with bounded evidence |
+| Intermediate | Q2, Q5, Q6, Q7, Q10 | Evaluated with bounded evidence |
+| Advanced | None | Not evaluated |
+
+## Dimension audit
+
+The six canonical dimensions preserve applicable versus `N/A` values. Partial evidence remains partial and does not establish broad mastery.
+
+## Coverage and limitations
+
+Coverage is limited to the ten evaluated questions. Areas not asked or not supported by evidence remain not evaluated rather than weak.
+
+## Confidence audit
+
+Global confidence is an independent qualitative judgment, not the arithmetic mean of individual confidences. The current level is `medium`.
 
 ## Language and proportionality
 
-The report uses bounded language such as “partial,” “limited,” “declared,” “not demonstrated,” “does not establish” and “areas actually explored.” It avoids absolute claims that the candidate does not know a subject and does not infer seniority, hiring outcome or job fit.
+The audit uses bounded language such as limited, partial, not demonstrated, and one question. A bounded technical synthesis is not a seniority or hiring conclusion.
 
-The phrase “strongest isolated result” is appropriately scoped to the evaluated answers and is followed by evidence references in the relevant sections. Result: `PASS`.
+## Traceability
+
+```text
+Global conclusion
+↓
+Evaluation
+↓
+Evidence item
+↓
+Source segment
+```
+
+`every_conclusion_has_question_and_evidence: true`
+
+## Invariance Tests
+
+The audit validated invariance to historical artifacts, excluded evidence, input immutability, response verbosity, seniority, CV, job context, hiring, ranking, and later-stage execution boundaries. These values are not part of the Runtime input or output.
+
+## Responsibility Tests
+
+Stage 23.1 may audit mathematics, traceability, proportionality, exclusions, warnings, and responsibility boundaries. It does not alter the Rubric, Evidence Model, Evaluation Engine, Individual Evaluations, or Evidence Set; create evidence; assign individual scores; define seniority; recommend hiring; rank candidates; or evaluate job fit.
 
 ## Findings
+
+No material semantic or mathematical inconsistency was found. No ERROR or CRITICAL finding was identified. No critical error was found.
 
 ```yaml
 findings:
   - id: GA-001
     severity: INFO
-    section: "Statistical validation"
-    description: "The report’s average and distribution were previously corrected before this audit; current values are internally consistent."
-    affected_claim: "Indicators and score distribution"
-    evidence: ["E-001", "E-002", "E-009", "E-011", "E-012", "E-015", "E-017", "E-021", "E-023", "E-027"]
     decision: "No correction required."
   - id: GA-002
     severity: WARNING
-    section: "Coverage and limitations"
-    description: "The consolidated synthesis is necessarily bounded because only ten questions were evaluated and no advanced question was covered."
-    affected_claim: "Global technical assessment"
-    evidence: ["E-001", "E-002", "E-009", "E-011", "E-012", "E-015", "E-017", "E-021", "E-023", "E-027"]
-    decision: "Already disclosed in the report; preserve warning state."
+    decision: "Preserve bounded coverage warning."
   - id: GA-003
     severity: WARNING
-    section: "Upstream limitations"
-    description: "Upstream unlinked responses, unreconstructed terminology, historical response-count discrepancy and incomplete confidence metadata remain inherited limitations."
-    affected_claim: "Confidence and coverage"
-    evidence: ["E-001", "E-002", "E-009", "E-011", "E-012", "E-015", "E-017", "E-021", "E-023", "E-027"]
-    decision: "Already disclosed in the report; no downstream reinterpretation."
+    decision: "Preserve upstream limitations without reinterpretation."
 ```
-
-No ERROR or CRITICAL finding was identified.
 
 ## Corrections
 
-```text
 None.
+
+## Warnings
+
+1. Question coverage is limited to 10 evaluated questions.
+2. Advanced complexity was not evaluated.
+
+These warnings appropriately constrain the global conclusion and confidence.
+
+## Limitations
+
+This audit validates consolidation invariants and traceability of the deterministic Reference Evaluation Engine Runtime. It does not replace semantic review of the canonical individual evaluations, recalculate their scores, or claim that the interview covers all technical knowledge.
+
+## Final Gate
+
+```text
+[PASS] Runtime output validated
+[PASS] Mathematical aggregation validated
+[PASS] Distribution validated
+[PASS] Individual evaluations preserved
+[PASS] Evidence boundaries preserved
+[PASS] Q5 validated
+[PASS] Q8 excluded from independent evaluation
+[PASS] Q10 contamination excluded
+[PASS] Q12 excluded
+[PASS] Candidate questions excluded
+[PASS] Unknown and excluded responses excluded
+[PASS] Historical report independence validated
+[PASS] Mutation tests validated
+[PASS] Invariance validated
+[PASS] Traceability validated
+[PASS] Responsibility boundaries validated
+
+GLOBAL_EVALUATION_AUDIT_COMPLETE_WITH_WARNINGS
 ```
 
-`Interview Evaluation v1.md` remains the valid consolidated artifact. No `Interview Evaluation v2.md` is required. Individual Evaluations v1/v2, Evidence Set v1, Rubric, Evidence Model, Evaluation Engine and upstream artifacts were not modified.
-
-## Final decision
-
-The consolidation is faithful to the audited individual evaluations. Its statistics are correct, its qualitative synthesis is more informative than the average without replacing it, its domain and dimension conclusions are proportionate, its limitations are explicit, and excluded material was not reintroduced.
-
-The result is approved for the Stage 23.1 audit gate with warnings. Stage 24 and all later stages remain outside this task.
+`Interview Evaluation v2.md` was not created.
 
 ## Idempotency
 
-```text
-PASS
-```
+`PASS`
 
-With unchanged inputs, the same statistical values, domain findings, warnings, status and gate are produced. No alternative report version was generated.
-
-## Gate
-
-```text
-GLOBAL_EVALUATION_AUDIT_COMPLETE_WITH_WARNINGS
-```
+With unchanged inputs, the same statistics, domains, warnings, status, and gate are produced. Stage 24 and all later stages remain outside this task.

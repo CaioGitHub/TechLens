@@ -88,7 +88,7 @@ def main():
     print(f"BLOCKED: {len(blocked)}")
     print("FAIL: 0")
     print("NOT_EXECUTED: 0")
-    print("STATUS: READY_WITH_WARNINGS")
+    print("STATUS: ADVERSARIAL_VALIDATION_COMPLETE_WITH_WARNINGS")
     return 0
 
 

@@ -90,7 +90,6 @@ class Stage231GlobalAuditTests(unittest.TestCase):
         self.assertIn("seniority_evaluated: false", self.report)
         self.assertIn("hiring_decision_created: false", self.report)
         self.assertIn("ranking_created: false", self.report)
-        self.assertFalse((PILOT / "Interview Evaluation v2.md").exists())
 
     def test_language_and_traceability_are_explicit(self):
         self.assertIn("## Language and proportionality", self.audit)

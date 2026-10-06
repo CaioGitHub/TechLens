@@ -1,4 +1,5 @@
 import copy
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -48,9 +49,11 @@ class Stage26ReferenceHarnessTests(unittest.TestCase):
         )
         report = run_harness(ROOT, suites=suites, runner=fake_runner)
         self.assertEqual(report["status"], "FAIL")
-        self.assertEqual(report["executed"], 2)
+        self.assertEqual(report["executed"], 3)
         self.assertEqual(report["planned"], 3)
-        self.assertEqual(report["suites"][-1]["return_code"], 1)
+        self.assertEqual(report["suites"][1]["return_code"], 1)
+        self.assertEqual(report["suites"][0]["status"], "PASS")
+        self.assertEqual(report["suites"][2]["status"], "PASS")
 
     def test_warning_identification_and_simulated_approval_flags(self):
         def fake_runner(command, **kwargs):
@@ -82,7 +85,10 @@ class Stage26ReferenceHarnessTests(unittest.TestCase):
         )
         first = run_harness(ROOT, suites=suites, runner=fake_runner)
         second = run_harness(ROOT, suites=suites, runner=fake_runner)
-        self.assertEqual(first, second)
+        self.assertEqual(
+            deterministic_projection(first),
+            deterministic_projection(second),
+        )
         self.assertEqual(first["failed"], 0)
         self.assertEqual(first["executed"], first["planned"])
 
@@ -120,6 +126,114 @@ class Stage26ReferenceHarnessTests(unittest.TestCase):
                 runner=interrupting_runner,
             )
         self.assertEqual(len(calls), 1)
+
+    def test_result_contract_contains_suite_and_summary_fields(self):
+        report = run_harness(
+            ROOT,
+            suites=(Suite("contract", ("contract",)),),
+            runner=lambda command, **kwargs: subprocess.CompletedProcess(
+                command, 0, "PASS", ""
+            ),
+        )
+        self.assertEqual(
+            set(("id", "name", "status", "duration_ms", "warnings", "errors", "artifacts"))
+            <= set(report["suites"][0]),
+            True,
+        )
+        self.assertEqual(report["passed"], 1)
+        self.assertEqual(report["failed"], 0)
+        self.assertEqual(report["blocked"], 0)
+
+    def test_blocked_is_distinct_from_failed(self):
+        report = run_harness(
+            ROOT,
+            suites=(Suite("blocked", ("blocked",)),),
+            runner=lambda command, **kwargs: subprocess.CompletedProcess(
+                command, 7, "BLOCKED: prerequisite", ""
+            ),
+        )
+        self.assertEqual(report["status"], "PASS_WITH_WARNINGS")
+        self.assertEqual(report["blocked"], 1)
+        self.assertEqual(report["failed"], 0)
+        self.assertEqual(report["suites"][0]["status"], "BLOCKED")
+
+    def test_parallel_suites_use_distinct_filesystem_workspaces(self):
+        def fake_runner(command, **kwargs):
+            workspace = Path(kwargs["cwd"])
+            marker = workspace / "parallel-marker.txt"
+            marker.write_text(workspace.name, encoding="utf-8")
+            return subprocess.CompletedProcess(command, 0, "PASS", "")
+
+        suites = tuple(Suite(f"suite-{index}", ("suite",)) for index in range(4))
+        report = run_harness(ROOT, suites=suites, runner=fake_runner, parallel=True)
+        self.assertEqual(report["status"], "PASS")
+        self.assertTrue(report["parallel"])
+        self.assertTrue(report["isolated"])
+        self.assertEqual(report["executed"], 4)
+
+    def test_parallel_failure_isolated_and_other_suites_complete(self):
+        def fake_runner(command, **kwargs):
+            if command[0] == "bad":
+                return subprocess.CompletedProcess(command, 2, "boom", "")
+            return subprocess.CompletedProcess(command, 0, "PASS", "")
+
+        report = run_harness(
+            ROOT,
+            suites=(
+                Suite("good-a", ("good",)),
+                Suite("bad", ("bad",)),
+                Suite("good-b", ("good",)),
+            ),
+            runner=fake_runner,
+            parallel=True,
+        )
+        self.assertEqual(report["status"], "FAIL")
+        self.assertEqual(report["executed"], 3)
+        self.assertEqual([item["status"] for item in report["suites"]], ["PASS", "FAIL", "PASS"])
+
+    def test_order_permutations_have_same_semantic_suite_results(self):
+        suites = (
+            Suite("a", ("a",)),
+            Suite("b", ("b",)),
+            Suite("c", ("c",)),
+        )
+
+        def fake_runner(command, **kwargs):
+            return subprocess.CompletedProcess(command, 0, "PASS", "")
+
+        reports = [
+            run_harness(ROOT, suites=order, runner=fake_runner)
+            for order in (suites, suites[::-1], (suites[1], suites[2], suites[0]))
+        ]
+        projections = [
+            [(item["name"], item["status"]) for item in report["suites"]]
+            for report in reports
+        ]
+        self.assertEqual({tuple(sorted(items)) for items in projections}, {tuple(sorted(projections[0]))})
+
+    def test_canonical_artifacts_are_unchanged_by_parallel_harness(self):
+        protected = (
+            ROOT / "11 - Interview Evaluation" / "09 - Real Interview Pilot" / "Candidato-Piloto-01" / "Interview Evaluation v1.md",
+            ROOT / "11 - Interview Evaluation" / "09 - Real Interview Pilot" / "Candidato-Piloto-01" / "Interview Evaluation v2.md",
+            ROOT / "11 - Interview Evaluation" / "09 - Real Interview Pilot" / "Candidato-Piloto-01" / "Evidence Set v1.md",
+            ROOT / "11 - Interview Evaluation" / "09 - Real Interview Pilot" / "Candidato-Piloto-01" / "Individual Evaluations v2.md",
+        )
+        before = {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in protected}
+        report = run_harness(ROOT, suites=(Suite("one", ("one",)), Suite("two", ("two",))), runner=lambda command, **kwargs: subprocess.CompletedProcess(command, 0, "PASS", ""), parallel=True)
+        after = {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in protected}
+        self.assertEqual(report["status"], "PASS")
+        self.assertEqual(before, after)
+
+    def test_nonzero_subprocess_error_is_preserved(self):
+        report = run_harness(
+            ROOT,
+            suites=(Suite("broken", ("broken",)),),
+            runner=lambda command, **kwargs: subprocess.CompletedProcess(
+                command, 3, "", "traceback: broken"
+            ),
+        )
+        self.assertEqual(report["status"], "FAIL")
+        self.assertIn("traceback: broken", report["suites"][0]["errors"][0])
 
 
 if __name__ == "__main__":

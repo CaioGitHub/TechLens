@@ -23,6 +23,32 @@ from .orchestration import (
     run_orchestration,
     validate_orchestration_result,
 )
+from .evaluation_engine import (
+    EvaluationInput,
+    EvaluationInputError,
+    load_evidence_set,
+    load_individual_evaluations,
+    load_pilot_input,
+    run_evaluation_engine,
+)
+from .global_audit import GlobalAuditError, audit_global_output, audit_input_copy
+from .materialization import (
+    materialize_interview_evaluation_v2,
+    render_interview_evaluation_v2,
+)
+from .interview_pipeline import (
+    PilotPaths,
+    detect_stale_artifacts,
+    run_interview_pipeline,
+    semantic_projection,
+)
+from .blind_calibration import (
+    FORBIDDEN_REFERENCE_KEYS,
+    blind_input,
+    run_blind_case,
+    run_blind_calibration,
+)
+from .calibration_comparator import compare_calibration, compare_calibration_case
 
 __all__ = [
     "APPROVAL_REQUIRED",
@@ -47,4 +73,25 @@ __all__ = [
     "temporary_workspace",
     "validate_orchestration_result",
     "write_report",
+    "EvaluationInput",
+    "EvaluationInputError",
+    "load_evidence_set",
+    "load_individual_evaluations",
+    "load_pilot_input",
+    "run_evaluation_engine",
+    "GlobalAuditError",
+    "audit_global_output",
+    "audit_input_copy",
+    "materialize_interview_evaluation_v2",
+    "render_interview_evaluation_v2",
+    "PilotPaths",
+    "detect_stale_artifacts",
+    "run_interview_pipeline",
+    "semantic_projection",
+    "FORBIDDEN_REFERENCE_KEYS",
+    "blind_input",
+    "run_blind_case",
+    "run_blind_calibration",
+    "compare_calibration",
+    "compare_calibration_case",
 ]
