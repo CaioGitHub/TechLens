@@ -634,8 +634,8 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
     )
     tradeoff = any(term in lower for term in ("trade-off", "versus", " vs ", "custo", "em troca"))
     reasoning = (
-        any(term in lower for term in ("antes de", "então", "compararia", "prioriz"))
-        or bool(re.search(r"\bse\b", lower))
+        any(term in lower for term in ("antes de", "então", "compararia", "prioriz", "escolheria"))
+        or bool(re.search(r"\b(?:se|fosse|caso)\b", lower))
     )
     practical = concrete or any(
         term in lower
@@ -648,8 +648,6 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
         term in lower
         for term in ("kafka", "rabbit", "producer", "consumer", "fila", "tópico", "topico", "mensager")
     )
-    question_anchors = _technical_anchors(question["text"])
-    response_anchors = _technical_anchors(text)
     named_tool = any(
         term in lower
         for term in (
@@ -664,42 +662,23 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
         )
     )
     declaration = declaration or (named_tool and not concrete)
-    rest_signal = any(term in lower for term in ("rest", "http", "endpoint", "api"))
-    off_topic = (
-        ("virtual thread" in question_lower and "kql" in lower)
-        or ("kql" in question_lower and "virtual thread" in lower)
-        or ("spring" in question_lower and "virtual thread" in lower)
-        or (
-            any(term in question_lower for term in ("rest", "api rest", "http", "endpoint"))
-            and messaging_signal
-            and not rest_signal
-        )
-        or _explicit_subject_mismatch(question_anchors, response_anchors, lower)
-        or (
-            not question_anchors
-            and response_anchors
-            and any(term in lower for term in ("também", "tambem", "além", "alem"))
-        )
-        or (
-            not question_anchors
-            and response_anchors
-            and any(
-                question_lower.startswith(prefix)
-                for prefix in (
-                    "como investigaria",
-                    "como aplicaria",
-                    "como desenharia",
-                    "como projetaria",
-                    "como funciona",
-                    "como testar",
-                    "como escolher",
-                )
-            )
-        )
-    )
+    off_topic = _is_semantic_off_topic(question["text"], text)
+    fragmented = len(lower.split()) <= 2
     multi_aspect_short = (
         len(lower.split()) <= 6
-        and any(term in question_lower for term in (" e ", "diferença", "diferenca"))
+        and any(
+            marker in question_lower
+            for marker in (
+                " e como ",
+                " e o que ",
+                " e qual ",
+                " e quais ",
+                " e por que ",
+                " e porque ",
+                "diferença entre",
+                "diferenca entre",
+            )
+        )
     )
     prompted_confirmation = (
         response.get("prompted_by_interviewer", False)
@@ -761,6 +740,7 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
                         "insufficient"
                         if (
                             insufficient_signal
+                            or fragmented
                             or any(term in lower for term in ("muito pouco", "bem por cima", "não sei", "nao sei"))
                         )
                         else "positive"
@@ -775,43 +755,202 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
     return specs
 
 
-def _technical_anchors(text: str) -> set[str]:
-    """Extract explicit technical subjects without requiring a technology-pair table."""
-    stopwords = {
-        "A", "As", "Com", "Como", "Da", "Das", "De", "Do", "Dos", "E", "Em",
-        "É", "Eu", "Explique", "Já", "Na", "No", "O", "Os", "Para", "Por",
-        "Que", "Qual", "Quando", "Se", "Um", "Uma", "Você", "Erro",
-        "Bom", "Primeiro", "Também", "Usaria", "Verificaria", "Acredito",
-        "Trabalhei", "Configurei", "Tivemos", "Em", "Containers", "Redes",
-        "Testes", "Métricas", "Logs", "Traces", "Dependências",
-    }
-    anchors = set()
-    first_token = True
-    for match in re.findall(r"\b[A-Z][A-Za-z0-9+#@.-]*\b", text):
-        normalized = match.lower()
-        verb_like_initial = (
-            first_token
-            and match.isascii()
-            and normalized.endswith(("aria", "eria", "iria", "ava", "ando", "endo", "indo"))
+_SEMANTIC_DOMAINS: dict[str, dict[str, set[str]]] = {
+    "docker": {
+        "question": {"docker"},
+        "valid": {"docker", "dockerfile", "bridge", "daemon", "overlay"},
+        "defining": {"docker", "dockerfile"},
+    },
+    "kubernetes": {
+        "question": {"kubernetes", "k8s"},
+        "valid": {"kubernetes", "k8s", "cluster", "clusters", "pod", "pods", "deployment", "deployments", "probe", "probes"},
+        "defining": {"kubernetes", "k8s", "orquestra containers"},
+    },
+    "sql": {
+        "question": {"sql", "banco relacional", "bancos relacionais"},
+        "valid": {"sql", "relacional", "tabela", "tabelas", "query", "queries", "consulta", "consultas", "índice", "indices", "índices", "banco"},
+        "defining": {"sql", "banco relacional", "bancos relacionais"},
+    },
+    "caching": {
+        "question": {"cache", "caching", "redis", "memcached"},
+        "valid": {"cache", "caching", "redis", "memcached", "memória", "memoria", "chave e valor", "latência", "latencia"},
+        "defining": {"redis", "memcached", "armazena dados em memória", "armazena dados em memoria", "chave e valor", "acelera leituras", "cache reduz latência", "cache reduz latencia"},
+    },
+    "dependency_injection": {
+        "question": {"dependency injection", "injeção de dependência", "injecao de dependencia"},
+        "valid": {"dependency injection", "injeção de dependência", "injecao de dependencia", "dependência de fora", "dependencia de fora"},
+        "defining": {"injeção de dependência", "injecao de dependencia", "dependência de fora"},
+    },
+    "spring_data": {
+        "question": {"spring data"},
+        "valid": {"spring data", "repository", "jpa", "hibernate"},
+        "defining": {"spring data", "abstrações para acesso a bancos", "abstracoes para acesso a bancos"},
+    },
+    "rest": {
+        "question": {"rest", "api rest", "endpoint"},
+        "valid": {"rest", "api rest", "http", "endpoint", "endpoints", "recurso", "recursos", "métodos", "metodos", "status", "produces", "consumes"},
+        "defining": {"rest usa recursos", "recursos e http"},
+    },
+    "messaging": {
+        "question": {"kafka", "rabbitmq", "rabbit", "mensageria"},
+        "valid": {"kafka", "rabbitmq", "rabbit", "mensageria", "fila", "filas", "tópico", "topico", "tópicos", "topicos", "producer", "consumer"},
+        "defining": {"kafka", "rabbitmq", "rabbit", "tópicos e consumidores", "topicos e consumidores", "fila do kafka", "parte de kafka"},
+    },
+    "oauth": {
+        "question": {"oauth", "oauth2"},
+        "valid": {"oauth", "oauth2", "autorização", "autorizacao", "token", "tokens"},
+        "defining": {"oauth", "oauth2"},
+    },
+    "signals": {
+        "question": {"angular signals", "signals"},
+        "valid": {"angular signals", "signals", "signal", "reatividade", "computed"},
+        "defining": {"angular signals"},
+    },
+    "css": {
+        "question": {"css"},
+        "valid": {"css", "estilo", "estilos", "layout"},
+        "defining": {"css define estilos", "css controla estilos"},
+    },
+    "security": {
+        "question": {"proteger uma api", "segurança de api", "seguranca de api"},
+        "valid": {"autenticação", "autenticacao", "autorização", "autorizacao", "token", "tokens", "jwt", "oauth", "rate limit", "waf"},
+        "defining": {"waf", "rate limit"},
+    },
+    "hexagonal": {
+        "question": {"arquitetura hexagonal", "hexagonal"},
+        "valid": {"hexagonal", "portas e adaptadores", "ports and adapters", "portas e adapters", "inverter dependências"},
+        "defining": {"portas e adaptadores", "portas e adapters", "ports and adapters", "inverter dependências"},
+    },
+    "event_driven": {
+        "question": {"event-driven"},
+        "valid": {"event-driven", "evento", "eventos", "consumidores desacoplados", "idempotência", "idempotencia"},
+        "defining": {"consumidores desacoplados e idempotência", "eventos, consumidores desacoplados"},
+    },
+    "jwt": {
+        "question": {"jwt"},
+        "valid": {"jwt", "assina tokens", "token jwt"},
+        "defining": {"jwt assina tokens", "jwt assina token"},
+    },
+    "ci_cd": {
+        "question": {"ci/cd", "ci cd"},
+        "valid": {"ci/cd", "jenkins", "pipeline"},
+        "defining": {"jenkins executa pipelines", "pipelines de ci/cd"},
+    },
+    "solid": {
+        "question": {"solid"},
+        "valid": {"solid", "responsabilidades", "abstrações", "abstracoes"},
+        "defining": {"separaria responsabilidades e dependeria de abstrações"},
+    },
+}
+
+_EXPERIENCE_QUESTION_MARKERS = (
+    "trajetória",
+    "trajetoria",
+    "projetos",
+    "tecnologias que tu usou",
+    "já atuou",
+    "ja atuou",
+    "atuava",
+    "atuou",
+    "já trabalhou",
+    "trabalhou com",
+    "já precisou usar",
+    "vocês usam",
+    "já chegou a usar",
+    "vem utilizando",
+    "no seu dia a dia",
+)
+
+
+def _is_semantic_off_topic(question_text: str, response_text: str) -> bool:
+    q_lower = question_text.lower()
+    r_lower = response_text.lower()
+
+    if (
+        ("virtual thread" in q_lower and "kql" in r_lower)
+        or ("kql" in q_lower and "virtual thread" in r_lower)
+        or ("spring" in q_lower and "virtual thread" in r_lower)
+    ):
+        return True
+
+    if any(marker in q_lower for marker in _EXPERIENCE_QUESTION_MARKERS):
+        return False
+
+    if any(
+        prefix in q_lower
+        for prefix in (
+            "como investigaria",
+            "como você investigaria",
+            "como voce investigaria",
+            "como resolveria um incidente",
         )
-        if match not in stopwords and len(match) > 1 and not verb_like_initial:
-            anchors.add(match.lower())
-        first_token = False
-    return anchors
+    ):
+        has_diagnostic = any(
+            term in r_lower
+            for term in (
+                "log",
+                "logs",
+                "trace",
+                "traces",
+                "métrica",
+                "metricas",
+                "dependência",
+                "dependencias",
+                "p95",
+                "p99",
+                "baseline",
+            )
+        )
+        has_alien = any(
+            any(def_term in r_lower for def_term in dom["defining"])
+            for dom in _SEMANTIC_DOMAINS.values()
+        )
+        if has_alien:
+            return True
+        if has_diagnostic:
+            return False
 
+    if "resiliente" in q_lower or "resiliência" in q_lower:
+        if any(
+            term in r_lower
+            for term in (
+                "timeout",
+                "retry",
+                "backoff",
+                "circuit breaker",
+                "observabilidade",
+            )
+        ):
+            return False
 
-def _explicit_subject_mismatch(
-    question_anchors: set[str],
-    response_anchors: set[str],
-    response_text: str,
-) -> bool:
-    if not question_anchors or not response_anchors:
-        return False
-    if question_anchors & response_anchors:
-        return False
-    first_sentence = re.split(r"[.!?]", response_text, maxsplit=1)[0].strip()
-    first_word = first_sentence.split(maxsplit=1)[0] if first_sentence else ""
-    return bool(first_word) and first_word.lower() in response_anchors
+    if "como escolheria" in q_lower or "como decidiria" in q_lower:
+        if any(
+            term in r_lower
+            for term in (
+                "trade-off",
+                "tradeoff",
+                "menor latência",
+                "consistência",
+            )
+        ):
+            return False
+
+    for d_name, dom in _SEMANTIC_DOMAINS.items():
+        if any(q_term in q_lower for q_term in dom["question"]):
+            has_valid = any(v in r_lower for v in dom["valid"])
+            other_defines = [
+                other_name
+                for other_name, other_dom in _SEMANTIC_DOMAINS.items()
+                if other_name != d_name
+                and any(d_term in r_lower for d_term in other_dom["defining"])
+            ]
+            if other_defines:
+                if not has_valid:
+                    return True
+                if any(term in r_lower for term in ("também", "tambem", "além", "alem")):
+                    return True
+
+    return False
 
 
 def _blind_assessment(label: str, score: int | None, applicable: bool = True) -> dict[str, Any]:

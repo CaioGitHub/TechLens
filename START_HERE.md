@@ -45,18 +45,14 @@ POST_CORRECTION_BLIND_VALIDATION_BLOCKED
 
 Stage 31.4
     ↓
-CURRENT STAGE
+SEMANTIC_RELEVANCE_INVARIANCE_REMEDIATION_COMPLETE
+
+Stage 31.5
+    ↓
+NEXT STAGE (Human vs System Revalidation)
 ```
 
-O Stage 31.4 trata:
-
-```text
-Semantic Relevance
-+
-Representation Invariance
-```
-
-Não avançar para Production Readiness enquanto o problema atual não estiver validado.
+O Stage 31.4 concluiu a remediação de pertinência semântica e invariância de representação sem overfitting e com 100% de passagem nos testes (526/526 PASS e Reference Harness 8/8 PASS_WITH_WARNINGS). O próximo passo metodológico é o Stage 31.5 (Human vs System Revalidation).
 
 ## Regra fundamental
 
