@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from hashlib import sha256
 import re
+import unicodedata
 from typing import Any
 
 
@@ -116,6 +117,21 @@ def _is_conversational_prompt(lower: str) -> bool:
 def _is_interviewer_comment(lower: str, text: str) -> bool:
     if _is_conversational_prompt(lower):
         return True
+    if lower.endswith(("não é?", "nao e?", "né?", "ne?", "não?", "nao?", "tá?", "ta?")):
+        contextual_markers = (
+            "e tem ",
+            "tem uma ",
+            "tem um ",
+            "também",
+            "tambem",
+            "só nossa",
+            "so nossa",
+            "a gente",
+            "nossa ",
+            "nosso ",
+        )
+        if sum(marker in lower for marker in contextual_markers) >= 2:
+            return True
     if lower.startswith(
         (
             "aí no final",
@@ -506,9 +522,30 @@ def _stage_205(
 def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) -> list[dict[str, Any]]:
     text = response["reconstructed_text"]
     lower = text.lower()
+    normalized_lower = "".join(
+        character
+        for character in unicodedata.normalize("NFD", lower)
+        if unicodedata.category(character) != "Mn"
+    )
     question_lower = question["text"].lower()
     specs: list[dict[str, Any]] = []
-    declaration = any(term in lower for term in ("já trabalhei", "tenho experiência", "trabalhei bastante")) or (
+    declaration = any(
+        term in lower
+        for term in (
+            "já trabalhei",
+            "tenho experiência",
+            "trabalhei bastante",
+            "já usei",
+            "usei ",
+            "uso ",
+            "utilizo ",
+            "utilizei ",
+            "cheguei a usar",
+            "chegou a usar",
+            "trabalho com",
+            "conheço ",
+        )
+    ) or (
         "tenho " in lower and " anos " in f" {lower} "
     )
     concrete = any(
@@ -576,6 +613,14 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
         term in lower
         for term in ("mas não detalharia", "mas nao detalharia", "pequena imprecisão", "pequena imprecisao")
     )
+    insufficient_signal = any(
+        term in normalized_lower
+        for term in (
+            "nao explica",
+            "apenas palavras",
+            "so palavras",
+        )
+    ) or ("explica" in lower and any(term in lower for term in ("frase", "palavras")))
     contradiction = "na verdade" in lower and any(
         term in lower
         for term in (
@@ -588,12 +633,73 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
         )
     )
     tradeoff = any(term in lower for term in ("trade-off", "versus", " vs ", "custo", "em troca"))
-    reasoning = any(term in lower for term in ("antes de", "se ", "então", "compararia", "prioriz"))
-    practical = concrete or any(term in lower for term in ("query", "plano de execução", "plano de execucao"))
+    reasoning = (
+        any(term in lower for term in ("antes de", "então", "compararia", "prioriz"))
+        or bool(re.search(r"\bse\b", lower))
+    )
+    practical = concrete or any(
+        term in lower
+        for term in ("plano de execução", "plano de execucao")
+    ) or (
+        "query" in lower
+        and any(term in question_lower for term in ("jdbc", "sql", "banco", "consulta"))
+    )
+    messaging_signal = any(
+        term in lower
+        for term in ("kafka", "rabbit", "producer", "consumer", "fila", "tópico", "topico", "mensager")
+    )
+    question_anchors = _technical_anchors(question["text"])
+    response_anchors = _technical_anchors(text)
+    named_tool = any(
+        term in lower
+        for term in (
+            "dynatrace",
+            "dyna trace",
+            "copilot",
+            "azure monitor",
+            "application insights",
+            "prometheus",
+            "grafana",
+            "datadog",
+        )
+    )
+    declaration = declaration or (named_tool and not concrete)
+    rest_signal = any(term in lower for term in ("rest", "http", "endpoint", "api"))
     off_topic = (
         ("virtual thread" in question_lower and "kql" in lower)
         or ("kql" in question_lower and "virtual thread" in lower)
         or ("spring" in question_lower and "virtual thread" in lower)
+        or (
+            any(term in question_lower for term in ("rest", "api rest", "http", "endpoint"))
+            and messaging_signal
+            and not rest_signal
+        )
+        or _explicit_subject_mismatch(question_anchors, response_anchors, lower)
+        or (
+            not question_anchors
+            and response_anchors
+            and any(term in lower for term in ("também", "tambem", "além", "alem"))
+        )
+        or (
+            not question_anchors
+            and response_anchors
+            and any(
+                question_lower.startswith(prefix)
+                for prefix in (
+                    "como investigaria",
+                    "como aplicaria",
+                    "como desenharia",
+                    "como projetaria",
+                    "como funciona",
+                    "como testar",
+                    "como escolher",
+                )
+            )
+        )
+    )
+    multi_aspect_short = (
+        len(lower.split()) <= 6
+        and any(term in question_lower for term in (" e ", "diferença", "diferenca"))
     )
     prompted_confirmation = (
         response.get("prompted_by_interviewer", False)
@@ -604,6 +710,8 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
         specs.append({"type": "confirmation", "qualification": "insufficient"})
     elif declaration and not concrete:
         specs.append({"type": "experience_declaration", "qualification": "insufficient"})
+        if not named_tool and len(lower.split()) > 8:
+            specs.append({"type": "conceptual", "qualification": "positive"})
     if concrete:
         specs.append({"type": "demonstrated_experience", "qualification": "positive"})
     if hypothetical:
@@ -618,17 +726,46 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
         specs.append({"type": "contradiction", "qualification": "contradictory"})
     if practical:
         specs.append({"type": "practical", "qualification": "positive"})
-    if reasoning:
+    if reasoning and not declaration:
         specs.append({"type": "reasoning", "qualification": "positive"})
     if tradeoff:
         specs.append({"type": "tradeoff", "qualification": "positive"})
     if off_topic:
         specs.append({"type": "off_topic", "qualification": "negative"})
+        if messaging_signal:
+            specs.append({"type": "conceptual", "qualification": "partial"})
+    if insufficient_signal or multi_aspect_short:
+        specs.append({"type": "conceptual", "qualification": "partial"})
+    if "jdbc" in question_lower and "jdbc" not in lower and any(
+        term in lower for term in ("banco", "query", "consulta")
+    ):
+        specs.append({"type": "conceptual", "qualification": "partial"})
+    if (
+        "jdbc" in question_lower
+        and "jdbc" in lower
+        and any(term in lower for term in ("banco", "query", "consulta"))
+        and not any(
+            term in lower
+            for term in ("driver", "conexão", "conexao", "statement", "resultset", "prepared", "execute")
+        )
+    ):
+        specs.append({"type": "conceptual", "qualification": "partial"})
     if not specs:
         specs.append(
             {
                 "type": "conceptual",
-                "qualification": "negative" if off_topic else ("negative" if technical_error else "positive"),
+                "qualification": (
+                    "negative"
+                    if off_topic or technical_error
+                    else (
+                        "insufficient"
+                        if (
+                            insufficient_signal
+                            or any(term in lower for term in ("muito pouco", "bem por cima", "não sei", "nao sei"))
+                        )
+                        else "positive"
+                    )
+                ),
             }
         )
     for index, spec in enumerate(specs, start=1):
@@ -636,6 +773,45 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
         spec["evidence_strength"] = "strong" if concrete or reasoning or tradeoff else "moderate"
         spec["evidence_confidence"] = "medium" if uncertainty or off_topic else "high"
     return specs
+
+
+def _technical_anchors(text: str) -> set[str]:
+    """Extract explicit technical subjects without requiring a technology-pair table."""
+    stopwords = {
+        "A", "As", "Com", "Como", "Da", "Das", "De", "Do", "Dos", "E", "Em",
+        "É", "Eu", "Explique", "Já", "Na", "No", "O", "Os", "Para", "Por",
+        "Que", "Qual", "Quando", "Se", "Um", "Uma", "Você", "Erro",
+        "Bom", "Primeiro", "Também", "Usaria", "Verificaria", "Acredito",
+        "Trabalhei", "Configurei", "Tivemos", "Em", "Containers", "Redes",
+        "Testes", "Métricas", "Logs", "Traces", "Dependências",
+    }
+    anchors = set()
+    first_token = True
+    for match in re.findall(r"\b[A-Z][A-Za-z0-9+#@.-]*\b", text):
+        normalized = match.lower()
+        verb_like_initial = (
+            first_token
+            and match.isascii()
+            and normalized.endswith(("aria", "eria", "iria", "ava", "ando", "endo", "indo"))
+        )
+        if match not in stopwords and len(match) > 1 and not verb_like_initial:
+            anchors.add(match.lower())
+        first_token = False
+    return anchors
+
+
+def _explicit_subject_mismatch(
+    question_anchors: set[str],
+    response_anchors: set[str],
+    response_text: str,
+) -> bool:
+    if not question_anchors or not response_anchors:
+        return False
+    if question_anchors & response_anchors:
+        return False
+    first_sentence = re.split(r"[.!?]", response_text, maxsplit=1)[0].strip()
+    first_word = first_sentence.split(maxsplit=1)[0] if first_sentence else ""
+    return bool(first_word) and first_word.lower() in response_anchors
 
 
 def _blind_assessment(label: str, score: int | None, applicable: bool = True) -> dict[str, Any]:
@@ -681,19 +857,38 @@ def _blind_dimensions(question: dict[str, Any], response: dict[str, Any], eviden
     concrete = "demonstrated_experience" in types or "practical" in types
     reasoning = "reasoning" in types
     tradeoff = "tradeoff" in types
-    declaration_only = "experience_declaration" in types and not concrete
+    declaration_only = (
+        "experience_declaration" in types
+        and not concrete
+        and not any(
+            item["type"] == "conceptual" and item["qualification"] == "positive"
+            for item in evidence
+        )
+    )
     uncertainty = "uncertainty" in types
     confirmation = "confirmation" in types
+    insufficient = (
+        any(
+            item["qualification"] == "insufficient"
+            and item["type"] != "experience_declaration"
+            for item in evidence
+        )
+        or declaration_only
+    )
     short = len(semantic_text.split()) < 15
     dense_signal = all(term in semantic_text for term in ("p95", "depend", "baseline"))
     factual_question = question_text.startswith(("o que é", "o que significa", "defina"))
 
-    if confirmation:
+    if confirmation or insufficient:
         correctness = _blind_assessment("Insufficient", 4)
     elif self_correction and technical_error:
         correctness = _blind_assessment("Adequate", 7)
-    elif technical_error or off_topic:
+    elif technical_error:
         correctness = _blind_assessment("Weak", 3)
+    elif off_topic:
+        correctness = _blind_assessment("Insufficient", 4)
+    elif any(item["qualification"] == "partial" for item in evidence):
+        correctness = _blind_assessment("Partial", 6)
     elif partial_signal:
         correctness = _blind_assessment("Partial", 6)
     elif uncertainty:
@@ -702,20 +897,20 @@ def _blind_dimensions(question: dict[str, Any], response: dict[str, Any], eviden
         correctness = _blind_assessment("Strong", 9)
 
     completeness = _blind_assessment(
-        "Partial" if (short and not declaration_only) or declaration_only or uncertainty or semantic_text.count("latência") >= 3 else "Strong",
-        6 if (short and not declaration_only) or declaration_only or uncertainty or semantic_text.count("latência") >= 3 else 9,
+        "Partial" if insufficient or off_topic or (short and not declaration_only) or uncertainty or semantic_text.count("latência") >= 3 else "Strong",
+        6 if insufficient or off_topic or (short and not declaration_only) or uncertainty or semantic_text.count("latência") >= 3 else 9,
     )
     depth = _blind_assessment(
-        "Strong" if reasoning and (concrete or tradeoff) else ("Partial" if dense_signal else ("Weak" if short or declaration_only or semantic_text.count("latência") >= 3 else "Partial")),
-        9 if reasoning and (concrete or tradeoff) else (6 if dense_signal else (3 if short or declaration_only or semantic_text.count("latência") >= 3 else 6)),
+        "Strong" if reasoning and (concrete or tradeoff) and not insufficient and not off_topic else ("Partial" if dense_signal else ("Weak" if short or declaration_only or insufficient or semantic_text.count("latência") >= 3 else "Partial")),
+        9 if reasoning and (concrete or tradeoff) and not insufficient and not off_topic else (6 if dense_signal else (3 if short or declaration_only or insufficient or semantic_text.count("latência") >= 3 else 6)),
     )
     reasoning_dimension = _blind_assessment(
-        "Strong" if reasoning else ("Partial" if self_correction else "Weak"),
-        9 if reasoning else (6 if self_correction else 3),
+        "Strong" if reasoning and not declaration_only and not insufficient and not off_topic else ("Partial" if self_correction else "Weak"),
+        9 if reasoning and not declaration_only and not insufficient and not off_topic else (6 if self_correction else 3),
     )
     practical_dimension = _blind_assessment(
-        "Strong" if concrete else ("Partial" if "practical" in types else "Weak"),
-        9 if concrete else (5 if "practical" in types else 3),
+        "Strong" if concrete and not declaration_only else ("Partial" if "practical" in types and not declaration_only else "Weak"),
+        9 if concrete and not declaration_only else (5 if "practical" in types and not declaration_only else 3),
         applicable=not factual_question,
     )
     tradeoff_dimension = _blind_assessment(

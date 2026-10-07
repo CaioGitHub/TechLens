@@ -49,6 +49,12 @@ from .blind_calibration import (
     run_blind_calibration,
 )
 from .calibration_comparator import compare_calibration, compare_calibration_case
+from .real_pilot import (
+    build_real_pilot_fixture,
+    parse_source_transcript,
+    render_derived_artifact,
+    run_real_pilot,
+)
 
 __all__ = [
     "APPROVAL_REQUIRED",
@@ -94,4 +100,8 @@ __all__ = [
     "run_blind_calibration",
     "compare_calibration",
     "compare_calibration_case",
+    "build_real_pilot_fixture",
+    "parse_source_transcript",
+    "render_derived_artifact",
+    "run_real_pilot",
 ]

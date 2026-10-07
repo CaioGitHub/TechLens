@@ -43,6 +43,35 @@ class Stage30FailureAnalysisTests(unittest.TestCase):
         self.assertEqual(result["artifacts"]["candidate_questions"], [])
         self.assertIn("conversational prompts", " ".join(result["warnings"]))
 
+    def test_contextual_tag_question_is_not_evaluable(self):
+        result = run_pipeline(
+            _fixture(
+                [
+                    {"speaker": "Synthetic Interviewer", "text": "Como investigaria a falha?"},
+                    {"speaker": "Synthetic Candidate", "text": "Eu começaria pelos logs."},
+                    {"speaker": "Synthetic Interviewer", "text": "E tem uma Daily também, só nossa, né?"},
+                    {"speaker": "Synthetic Candidate", "text": "Entendi."},
+                ],
+                "STAGE30-1-CONTEXTUAL-TAG",
+            )
+        )
+        self.assertEqual(len(result["artifacts"]["questions"]), 1)
+        self.assertEqual(result["artifacts"]["questions"][0]["text"], "Como investigaria a falha?")
+        self.assertEqual(result["artifacts"]["candidate_questions"], [])
+
+    def test_technical_tag_question_remains_evaluable(self):
+        result = run_pipeline(
+            _fixture(
+                [
+                    {"speaker": "Synthetic Interviewer", "text": "Você já usou Kafka, né?"},
+                    {"speaker": "Synthetic Candidate", "text": "Sim, em produção."},
+                ],
+                "STAGE30-1-TECHNICAL-TAG",
+            )
+        )
+        self.assertEqual(len(result["artifacts"]["questions"]), 1)
+        self.assertEqual(result["artifacts"]["questions"][0]["question_kind"], "interviewer_question")
+
     def test_interviewer_explanation_is_not_a_question_or_candidate_evidence(self):
         result = run_pipeline(
             _fixture(
