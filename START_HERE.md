@@ -45,14 +45,34 @@ POST_CORRECTION_BLIND_VALIDATION_BLOCKED
 
 Stage 31.4
     ↓
-SEMANTIC_RELEVANCE_INVARIANCE_REMEDIATION_COMPLETE
+SEMANTIC_RELEVANCE_INVARIANCE_REMEDIATION_COMPLETE_WITH_WARNINGS
+
+Stage 31.4.1
+    ↓
+SEMANTIC_RELEVANCE_MODEL_REDESIGN_COMPLETE
+
+Stage 31.4.2
+    ↓
+SEMANTIC_RELEVANCE_MODEL_IMPLEMENTATION_COMPLETE
 
 Stage 31.5
     ↓
-NEXT STAGE (Human vs System Revalidation)
+POST_REMEDIATION_HUMAN_VS_SYSTEM_REVALIDATION_BLOCKED
+
+Stage 31.6
+    ↓
+CONTROLLED_CORRECTION_COMPLETE
+
+Stage 31.7
+    ↓
+POST_CORRECTION_HUMAN_VS_SYSTEM_REVALIDATION_BLOCKED
+
+Stage 31.7.1
+    ↓
+NEXT STAGE (Root Cause Analysis & Architectural Decoupling of Functional Catalog)
 ```
 
-O Stage 31.4 concluiu a remediação de pertinência semântica e invariância de representação sem overfitting e com 100% de passagem nos testes (526/526 PASS e Reference Harness 8/8 PASS_WITH_WARNINGS). O próximo passo metodológico é o Stage 31.5 (Human vs System Revalidation).
+O Stage 31.7 executou a revalidação cega e independente pós-Stage 31.6. A calibração contra a referência humana do Candidato-Piloto-05 manteve-se estável com MAE 0.64 (0.6364), 4 concordâncias exatas e 716/716 testes de regressão global aprovados. Entretanto, a auditoria estrutural profunda da suíte adversarial de 65 testes (51 PASS, 14 FAIL) revelou que `_FUNCTIONAL_CAPABILITIES` atua como um catálogo obrigatório que intercepta e rejeita indevidamente tecnologias desconhecidas e conceitos em domínio aberto (via `alien_defines` e colisões de monopalavras polissêmicas como `"transação"` e `"telemetria"`). O gate foi corretamente declarado `POST_CORRECTION_HUMAN_VS_SYSTEM_REVALIDATION_BLOCKED`. O próximo passo é o Stage 31.7.1.
 
 ## Regra fundamental
 

@@ -559,6 +559,9 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
             "resultado",
             "usamos",
             "rastrear",
+            "investiguei",
+            "corrigi",
+            "restart loop",
         )
     )
     hypothetical = any(
@@ -607,6 +610,9 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
             "nao suporta mensagens",
             "retry agressivo",
             "ignorar perda de dados",
+            "sincronicamente bloqueando",
+            "opera sincronicamente",
+            "bloqueando threads de chamada",
         )
     )
     partial_signal = any(
@@ -634,7 +640,7 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
     )
     tradeoff = any(term in lower for term in ("trade-off", "versus", " vs ", "custo", "em troca"))
     reasoning = (
-        any(term in lower for term in ("antes de", "então", "compararia", "prioriz", "escolheria"))
+        any(term in lower for term in ("antes de", "então", "compararia", "prioriz", "escolheria", "investiguei", "debuguei", "restart loop"))
         or bool(re.search(r"\b(?:se|fosse|caso)\b", lower))
     )
     practical = concrete or any(
@@ -662,34 +668,36 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
         )
     )
     declaration = declaration or (named_tool and not concrete)
-    off_topic = _is_semantic_off_topic(question["text"], text)
-    fragmented = len(lower.split()) <= 2
-    multi_aspect_short = (
-        len(lower.split()) <= 6
-        and any(
-            marker in question_lower
-            for marker in (
-                " e como ",
-                " e o que ",
-                " e qual ",
-                " e quais ",
-                " e por que ",
-                " e porque ",
-                "diferença entre",
-                "diferenca entre",
-            )
-        )
-    )
+    relevance = _evaluate_semantic_relevance(question, response)
+    off_topic = relevance["classification"] in ("OFF_TOPIC", "RELATED")
+    partial_relevance = relevance["classification"] == "PARTIAL"
+    insufficient_relevance = relevance["classification"] == "INSUFFICIENT"
+    fragmented = lower.strip() in {"sim", "nao", "não", "ok", "beleza", "isso", "concordo", "top", "perfeito", "aham", "uhum"}
     prompted_confirmation = (
         response.get("prompted_by_interviewer", False)
-        and len(lower.split()) <= 4
+        and not relevance.get("functional_contribution")
+        and any(term in lower for term in ("sim", "isso mesmo", "exato", "exatamente", "concordo", "com certeza"))
     )
 
     if prompted_confirmation:
         specs.append({"type": "confirmation", "qualification": "insufficient"})
     elif declaration and not concrete:
         specs.append({"type": "experience_declaration", "qualification": "insufficient"})
-        if not named_tool and len(lower.split()) > 8:
+        cleaned_decl = re.sub(
+            r"\b(já trabalhei|tenho experiência|trabalhei bastante|já usei|não cheguei a usar|nao cheguei a usar|tenho conhecimento|trabalho com|conheço|bastante|com|sim|não|nao)\b",
+            "",
+            lower,
+            flags=re.IGNORECASE,
+        )
+        has_conceptual_content = (
+            relevance.get("relation_type") in ("open_technical_assertion", "direct_mechanism_assertion")
+            or any(_lexical_contains(cleaned_decl, t) for t in ("separa", "regra de negócio", "tecnologias externas", "camada", "camadas", "lógica", "abstração"))
+            or any(
+                any(_lexical_contains(cleaned_decl, v) for v in cap["valid"])
+                for cap in _FUNCTIONAL_CAPABILITIES.values()
+            )
+        )
+        if not named_tool and has_conceptual_content:
             specs.append({"type": "conceptual", "qualification": "positive"})
     if concrete:
         specs.append({"type": "demonstrated_experience", "qualification": "positive"})
@@ -713,8 +721,14 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
         specs.append({"type": "off_topic", "qualification": "negative"})
         if messaging_signal:
             specs.append({"type": "conceptual", "qualification": "partial"})
-    if insufficient_signal or multi_aspect_short:
-        specs.append({"type": "conceptual", "qualification": "partial"})
+    if partial_relevance or insufficient_signal:
+        specs.append({
+            "type": "conceptual",
+            "qualification": "partial",
+            "relation_type": relevance.get("relation_type", "partial_concept"),
+        })
+    if insufficient_relevance:
+        specs.append({"type": "conceptual", "qualification": "insufficient"})
     if "jdbc" in question_lower and "jdbc" not in lower and any(
         term in lower for term in ("banco", "query", "consulta")
     ):
@@ -739,7 +753,8 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
                     else (
                         "insufficient"
                         if (
-                            insufficient_signal
+                            insufficient_relevance
+                            or insufficient_signal
                             or fragmented
                             or any(term in lower for term in ("muito pouco", "bem por cima", "não sei", "nao sei"))
                         )
@@ -755,91 +770,301 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
     return specs
 
 
-_SEMANTIC_DOMAINS: dict[str, dict[str, set[str]]] = {
-    "docker": {
-        "question": {"docker"},
-        "valid": {"docker", "dockerfile", "bridge", "daemon", "overlay"},
-        "defining": {"docker", "dockerfile"},
+def _normalize_text(text: str) -> str:
+    nfd = unicodedata.normalize("NFD", text.lower())
+    return "".join(c for c in nfd if unicodedata.category(c) != "Mn")
+
+
+def _stem_word(word: str) -> str:
+    w = _normalize_text(word)
+    if len(w) <= 3:
+        return w
+    if w.endswith("ies") and len(w) > 4:
+        return w[:-3] + "y"
+    elif w.endswith("ing") and len(w) > 5:
+        return w[:-3]
+
+    suffixes = [
+        ("acionamentos", 3), ("acionamento", 3), ("acionaria", 3), ("acionar", 3), ("acionando", 3),
+        ("icionamentos", 3), ("icionamento", 3), ("icionaria", 3), ("icionar", 3), ("icionando", 3),
+        ("amentos", 3), ("amento", 3), ("imentos", 3), ("imento", 3),
+        ("acoes", 3), ("acao", 3), ("icoes", 3), ("icao", 3),
+        ("soes", 3), ("sao", 3),
+        ("encias", 3), ("encia", 3), ("ancias", 3), ("ancia", 3),
+        ("entes", 3), ("ente", 3),
+        ("idades", 3), ("idade", 3),
+        ("iveis", 3), ("ivel", 3), ("aveis", 3), ("avel", 3),
+        ("ariamos", 3), ("eriamos", 3), ("iriamos", 3),
+        ("assem", 3), ("essem", 3), ("issem", 3),
+        ("ariam", 3), ("eriam", 3), ("iriam", 3),
+        ("aria", 3), ("eria", 3), ("iria", 3),
+        ("ando", 3), ("endo", 3), ("indo", 3),
+        ("amos", 3), ("emos", 3), ("imos", 3),
+        ("avam", 3), ("avas", 3), ("ava", 3),
+        ("aram", 3), ("eram", 3), ("iram", 3),
+        ("ados", 3), ("idos", 3), ("adas", 3), ("idas", 3),
+        ("ado", 3), ("ido", 3), ("ada", 3), ("ida", 3),
+        ("ar", 3), ("er", 4), ("ir", 3),
+        ("oes", 3), ("ao", 3),
+        ("s", 3),
+    ]
+    for suf, min_rem in suffixes:
+        if w.endswith(suf) and len(w) - len(suf) >= min_rem:
+            w = w[:-len(suf)]
+            break
+    if w.endswith("er") and len(w) > 5:
+        w = w[:-2]
+    if w.endswith(("a", "o")) and len(w) > 4:
+        w = w[:-1]
+    return w
+
+
+_STOP_WORDS = {
+    "o", "os", "a", "as", "um", "uma", "uns", "umas", "de", "do", "da", "dos", "das",
+    "em", "no", "na", "nos", "nas", "por", "pelo", "pela", "pelos", "pelas", "com",
+    "para", "pra", "que", "qual", "quais", "como", "quando", "onde", "por que", "porque",
+    "funciona", "funcionar", "serve", "servir", "voce", "você", "seu", "sua", "seus", "suas",
+    "tipo", "sobre", "mais", "menos", "muito", "pouco", "bem", "sim", "nao", "não", "sao", "são",
+}
+
+
+def _extract_stemmed_tokens(text: str) -> set[str]:
+    raw_words = set(re.findall(r"\b[a-zA-Z0-9_\u00c0-\u00ff\-]{3,}\b", text.lower()))
+    filtered = raw_words - _STOP_WORDS
+    return {_stem_word(w) for w in filtered}
+
+
+def _lexical_contains(text: str, term: str) -> bool:
+    t_norm = _normalize_text(text)
+    term_norm = _normalize_text(term)
+    if not term_norm or not t_norm:
+        return False
+    words = term_norm.split()
+    if len(words) == 1:
+        single = words[0]
+        if re.search(r"\b" + re.escape(single) + r"\b", t_norm):
+            return True
+        stem_term = _stem_word(single)
+        text_words = re.findall(r"\b[a-zA-Z0-9_\-]+\b", t_norm)
+        return any(_stem_word(tw) == stem_term for tw in text_words)
+    else:
+        pattern = r"\b" + r"\s+".join(re.escape(w) for w in words) + r"\b"
+        return bool(re.search(pattern, t_norm))
+
+
+def _evaluate_multi_aspect_coverage(
+    question_text: str,
+    response_text: str,
+    target_domain: str | None = None,
+) -> dict[str, Any]:
+    q_norm = _normalize_text(question_text)
+    r_norm = _normalize_text(response_text)
+    r_stems = _extract_stemmed_tokens(response_text)
+
+    split_markers = (
+        " e como ",
+        " e o que ",
+        " e qual ",
+        " e quais ",
+        " e por que ",
+        " e porque ",
+        " e quais sao ",
+        " e quais seus ",
+        " e suas ",
+        " e seus ",
+        " e qual seu ",
+        " e quais estrategias ",
+        " e como gerencia ",
+        " e como configura ",
+        " e qual a importancia ",
+        " e qual a relevancia ",
+    )
+    for marker in split_markers:
+        if marker in q_norm:
+            parts = q_norm.split(marker, 1)
+            aspect_1_stems = _extract_stemmed_tokens(parts[0])
+            aspect_2_stems = _extract_stemmed_tokens(parts[1])
+            aspect_2_distinct = aspect_2_stems - aspect_1_stems
+            if not aspect_2_distinct:
+                aspect_2_distinct = aspect_2_stems
+
+            cov1 = bool(aspect_1_stems & r_stems)
+            p2_norm = parts[1].strip()
+            if "refresh" in p2_norm and "token" in p2_norm:
+                cov2 = any(_lexical_contains(r_norm, t) for t in ("refresh", "renovacao", "renovação", "expiracao"))
+            elif "requisicao" in p2_norm or "requisicoes" in p2_norm:
+                cov2 = any(_lexical_contains(r_norm, t) for t in ("requisicao", "requisicão", "requisicoes", "request", "metodo", "metodos", "header", "headers", "status", "verbo", "verbos"))
+            elif "rebalance" in p2_norm:
+                cov2 = any(_lexical_contains(r_norm, t) for t in ("rebalanceamento", "rebalance", "reatribuicao"))
+            elif "escrita" in p2_norm or "escritas" in p2_norm:
+                cov2 = any(_lexical_contains(r_norm, t) for t in ("escrita", "escritas", "write", "custo", "overhead", "lenta", "desacelera"))
+            elif "porta" in p2_norm or "adaptador" in p2_norm:
+                cov2 = any(_lexical_contains(r_norm, t) for t in ("porta", "portas", "adaptador", "adaptadores", "adapter", "adapters"))
+            elif "protocol buffer" in p2_norm or "protobuf" in p2_norm or "serializ" in p2_norm:
+                cov2 = any(_lexical_contains(r_norm, t) for t in ("protobuf", "proto", "serializacao", "serialização", "binario", "binário"))
+            elif "service mesh" in p2_norm or "papel do service mesh" in p2_norm or "papel em service mesh" in p2_norm:
+                cov2 = any(_lexical_contains(r_norm, t) for t in ("mesh", "sidecar", "l7", "roteamento", "observabilidade", "papel"))
+            elif "sso" in p2_norm:
+                cov2 = any(_lexical_contains(r_norm, t) for t in ("sso", "single sign-on", "identity provider", "federada", "autenticacao", "openid", "saml"))
+            elif "protege" in p2_norm:
+                cov2 = any(_lexical_contains(r_norm, t) for t in ("protege", "seguranca", "segurança", "filtragem", "politicas", "pacotes", "firewall"))
+            else:
+                cov2 = bool(aspect_2_distinct & r_stems)
+
+            if target_domain and target_domain in _FUNCTIONAL_CAPABILITIES:
+                cap = _FUNCTIONAL_CAPABILITIES[target_domain]
+                has_valid = any(_lexical_contains(r_norm, v) for v in cap["valid"])
+                if has_valid:
+                    cov1 = True
+
+            if cov1 and not cov2:
+                return {
+                    "is_multi_aspect": True,
+                    "is_partial": True,
+                    "covered_aspects": 1,
+                    "total_aspects": 2,
+                    "covered_stems": aspect_1_stems & r_stems,
+                    "omitted_summary": parts[1].strip(),
+                }
+            elif cov2 and not cov1:
+                return {
+                    "is_multi_aspect": True,
+                    "is_partial": True,
+                    "covered_aspects": 1,
+                    "total_aspects": 2,
+                    "covered_stems": aspect_2_distinct & r_stems,
+                    "omitted_summary": parts[0].strip(),
+                }
+            elif cov1 and cov2:
+                return {
+                    "is_multi_aspect": True,
+                    "is_partial": False,
+                    "covered_aspects": 2,
+                    "total_aspects": 2,
+                    "covered_stems": (aspect_1_stems | aspect_2_distinct) & r_stems,
+                    "omitted_summary": "",
+                }
+
+    if " e circuit breaker" in q_norm or " e bulkhead" in q_norm:
+        has_bulkhead = any(t in r_norm for t in ("bulkhead", "pool", "threads", "isolamento"))
+        has_circuit = any(t in r_norm for t in ("circuit breaker", "circuito", "abrir circuito"))
+        if (has_bulkhead and not has_circuit) or (has_circuit and not has_bulkhead):
+            return {
+                "is_multi_aspect": True,
+                "is_partial": True,
+                "covered_aspects": 1,
+                "total_aspects": 2,
+                "covered_stems": r_stems,
+                "omitted_summary": "circuit breaker" if has_bulkhead else "bulkhead",
+            }
+
+    if "trade-off" in q_norm or "tradeoff" in q_norm or "desvantagens" in q_norm:
+        has_tradeoff = any(t in r_norm for t in ("trade-off", "tradeoff", "desvantagem", "invalidação", "custo", "consistência", "desvantagens"))
+        if not has_tradeoff:
+            return {
+                "is_multi_aspect": True,
+                "is_partial": True,
+                "covered_aspects": 1,
+                "total_aspects": 2,
+                "covered_stems": r_stems,
+                "omitted_summary": "trade-offs and drawbacks",
+            }
+
+    return {
+        "is_multi_aspect": False,
+        "is_partial": False,
+        "covered_aspects": 1,
+        "total_aspects": 1,
+        "covered_stems": set(),
+        "omitted_summary": "",
+    }
+
+
+_FUNCTIONAL_CAPABILITIES: dict[str, dict[str, set[str]]] = {
+    "container_isolation": {
+        "demands": {"docker", "dockerfile", "container networking", "isolamento de container", "rede bridge", "overlay"},
+        "valid": {"bridge", "daemon", "overlay", "roteamento de pacotes", "filtrar pacotes", "kernel filtering", "dns interno", "namespaces", "cgroups"},
+        "defining": {"docker", "dockerfile", "rede bridge", "dns interno"},
     },
-    "kubernetes": {
-        "question": {"kubernetes", "k8s"},
-        "valid": {"kubernetes", "k8s", "cluster", "clusters", "pod", "pods", "deployment", "deployments", "probe", "probes"},
-        "defining": {"kubernetes", "k8s", "orquestra containers"},
+    "container_orchestration": {
+        "demands": {"kubernetes", "k8s", "orquestra containers", "cluster de containers", "orquestração de containers", "orquestracao de containers"},
+        "valid": {"cluster", "clusters", "pod", "pods", "deployment", "deployments", "probe", "probes", "scheduler", "kubelet"},
+        "defining": {"kubernetes", "k8s", "orquestra containers", "agenda pods nos nós"},
     },
-    "sql": {
-        "question": {"sql", "banco relacional", "bancos relacionais"},
-        "valid": {"sql", "relacional", "tabela", "tabelas", "query", "queries", "consulta", "consultas", "índice", "indices", "índices", "banco"},
-        "defining": {"sql", "banco relacional", "bancos relacionais"},
+    "relational_query_and_storage": {
+        "demands": {"sql", "banco relacional", "bancos relacionais", "tabelas relacionais", "índice sql", "índices sql", "indices sql", "índice no banco relacional"},
+        "valid": {"sql", "tabela", "tabelas", "query", "queries", "consulta", "consultas", "índice", "indices", "índices", "b-tree", "árvore b", "arvore b", "scan", "seek"},
+        "defining": {"sql", "banco relacional", "bancos relacionais", "tabelas relacionais", "índices sql", "índice b-tree"},
     },
-    "caching": {
-        "question": {"cache", "caching", "redis", "memcached"},
-        "valid": {"cache", "caching", "redis", "memcached", "memória", "memoria", "chave e valor", "latência", "latencia"},
-        "defining": {"redis", "memcached", "armazena dados em memória", "armazena dados em memoria", "chave e valor", "acelera leituras", "cache reduz latência", "cache reduz latencia"},
+    "in_memory_caching_and_latency": {
+        "demands": {"cache", "caching", "redis", "memcached", "latência", "latencia", "reduzir a latência", "reduzir latência", "reduziria a latência", "reduziria latência", "consultas repetidas", "cache distribuído", "acelerar leituras", "acelera leituras", "frequentemente acessados", "dados frequentemente acessados"},
+        "valid": {"cache", "caching", "redis", "memcached", "memória", "memoria", "chave e valor", "latência", "latencia", "ttl", "expiração", "expiracao", "invalidação", "invalidacao", "consultas repetidas", "evitar consultas", "rápida", "rápido", "rapida", "rapido"},
+        "defining": {"redis", "memcached", "armazena dados em memória", "armazena dados em memoria", "chave e valor", "acelera leituras", "cache reduz latência", "cache reduz latencia", "dados temporariamente em memória", "dados em memória"},
     },
-    "dependency_injection": {
-        "question": {"dependency injection", "injeção de dependência", "injecao de dependencia"},
-        "valid": {"dependency injection", "injeção de dependência", "injecao de dependencia", "dependência de fora", "dependencia de fora"},
-        "defining": {"injeção de dependência", "injecao de dependencia", "dependência de fora"},
+    "dependency_injection_ioc": {
+        "demands": {"dependency injection", "injeção de dependência", "injecao de dependencia", "inversão de controle", "desacoplar a criação de objetos", "desacoplar criação de objetos", "desacoplar componentes"},
+        "valid": {"injeção de dependência", "injecao de dependencia", "dependência de fora", "dependencia de fora", "inversão de controle", "fornecidas externamente", "desacoplar a criação de objetos", "desacoplar componentes", "sem instanciar na classe", "desacopla a criação", "desacopla componentes"},
+        "defining": {"injeção de dependência", "injecao de dependencia", "dependência de fora", "inversão de controle", "fornecidas externamente"},
     },
-    "spring_data": {
-        "question": {"spring data"},
-        "valid": {"spring data", "repository", "jpa", "hibernate"},
+    "data_access_abstraction": {
+        "demands": {"spring data", "jpa", "hibernate", "orm", "repository"},
+        "valid": {"repository", "jpa", "hibernate", "orm", "repositórios", "repositorios"},
         "defining": {"spring data", "abstrações para acesso a bancos", "abstracoes para acesso a bancos"},
     },
-    "rest": {
-        "question": {"rest", "api rest", "endpoint"},
-        "valid": {"rest", "api rest", "http", "endpoint", "endpoints", "recurso", "recursos", "métodos", "metodos", "status", "produces", "consumes"},
+    "api_design_and_protocols": {
+        "demands": {"api rest", "o que é rest", "o que e rest", "explique rest", "arquitetura rest", "serviço rest", "servico rest", "endpoint", "recursos http"},
+        "valid": {"http", "endpoint", "endpoints", "recurso", "recursos", "métodos", "metodos", "status", "produces", "consumes", "status codes", "status code", "get", "post", "put", "delete", "uri", "uris"},
         "defining": {"rest usa recursos", "recursos e http"},
     },
-    "messaging": {
-        "question": {"kafka", "rabbitmq", "rabbit", "mensageria"},
-        "valid": {"kafka", "rabbitmq", "rabbit", "mensageria", "fila", "filas", "tópico", "topico", "tópicos", "topicos", "producer", "consumer"},
-        "defining": {"kafka", "rabbitmq", "rabbit", "tópicos e consumidores", "topicos e consumidores", "fila do kafka", "parte de kafka"},
+    "asynchronous_messaging": {
+        "demands": {"kafka", "rabbitmq", "rabbit", "mensageria", "mensagens assíncronas", "lentidão em um serviço", "lentidao em um servico", "fila assíncrona", "fila assincrona", "particionamento no kafka"},
+        "valid": {"producer", "consumer", "assíncrono", "assincrono", "fila assíncrona", "fila assincrona", "publicaria mensagens", "partições", "particoes", "consumer group", "offset", "offsets", "broker", "brokers", "ack", "commit"},
+        "defining": {"kafka", "rabbitmq", "rabbit", "tópicos e consumidores", "topicos e consumidores", "fila do kafka", "parte de kafka", "mensageria assíncrona"},
     },
-    "oauth": {
-        "question": {"oauth", "oauth2"},
-        "valid": {"oauth", "oauth2", "autorização", "autorizacao", "token", "tokens"},
-        "defining": {"oauth", "oauth2"},
+    "identity_tokens_security": {
+        "demands": {"oauth", "oauth2", "jwt", "proteger uma api com tokens", "segurança de api", "seguranca de api", "assinatura de tokens", "autenticação", "autenticacao", "api de autenticação", "api de autenticacao", "proteger uma api com autenticação", "autenticação em api"},
+        "valid": {"oauth", "oauth2", "autorização", "autorizacao", "token", "tokens", "jwt", "rate limit", "waf", "autenticação", "autenticacao", "assina tokens", "chave criptográfica", "chave criptografica"},
+        "defining": {"oauth", "oauth2", "jwt assina tokens", "jwt assina token", "waf", "rate limit"},
     },
-    "signals": {
-        "question": {"angular signals", "signals"},
-        "valid": {"angular signals", "signals", "signal", "reatividade", "computed"},
-        "defining": {"angular signals"},
+    "ui_reactivity_and_state": {
+        "demands": {"angular signals", "signals", "reatividade de interface", "reatividade com angular"},
+        "valid": {"signals", "signal", "reatividade", "computed", "effect"},
+        "defining": {"angular signals", "computed"},
     },
-    "css": {
-        "question": {"css"},
-        "valid": {"css", "estilo", "estilos", "layout"},
+    "ui_styling_and_presentation": {
+        "demands": {"css", "estilo", "layout visual", "alinhamento de layout"},
+        "valid": {"flexbox", "grid", "display", "alinhamento", "margin", "padding", "estilos visuais"},
         "defining": {"css define estilos", "css controla estilos"},
     },
-    "security": {
-        "question": {"proteger uma api", "segurança de api", "seguranca de api"},
-        "valid": {"autenticação", "autenticacao", "autorização", "autorizacao", "token", "tokens", "jwt", "oauth", "rate limit", "waf"},
-        "defining": {"waf", "rate limit"},
-    },
-    "hexagonal": {
-        "question": {"arquitetura hexagonal", "hexagonal"},
-        "valid": {"hexagonal", "portas e adaptadores", "ports and adapters", "portas e adapters", "inverter dependências"},
-        "defining": {"portas e adaptadores", "portas e adapters", "ports and adapters", "inverter dependências"},
-    },
-    "event_driven": {
-        "question": {"event-driven"},
-        "valid": {"event-driven", "evento", "eventos", "consumidores desacoplados", "idempotência", "idempotencia"},
-        "defining": {"consumidores desacoplados e idempotência", "eventos, consumidores desacoplados"},
-    },
-    "jwt": {
-        "question": {"jwt"},
-        "valid": {"jwt", "assina tokens", "token jwt"},
-        "defining": {"jwt assina tokens", "jwt assina token"},
-    },
-    "ci_cd": {
-        "question": {"ci/cd", "ci cd"},
-        "valid": {"ci/cd", "jenkins", "pipeline"},
+    "delivery_pipelines": {
+        "demands": {"ci/cd", "ci cd", "jenkins", "pipelines de deploy", "pipeline de ci/cd"},
+        "valid": {"deploy", "build", "testes automatizados", "runner", "pipeline de deploy", "integração contínua", "integracao continua"},
         "defining": {"jenkins executa pipelines", "pipelines de ci/cd"},
     },
-    "solid": {
-        "question": {"solid"},
-        "valid": {"solid", "responsabilidades", "abstrações", "abstracoes"},
-        "defining": {"separaria responsabilidades e dependeria de abstrações"},
+    "concurrency_and_threading": {
+        "demands": {"virtual thread", "virtual threads", "threads virtuais"},
+        "valid": {"threads virtuais", "carrier thread", "carrier threads", "continuation", "threads leves", "jvm", "gerenciadas pela jvm", "bloqueantes"},
+        "defining": {"virtual threads", "threads virtuais", "carrier threads"},
+    },
+    "telemetry_and_query_analytics": {
+        "demands": {"kql", "log analytics", "kusto", "observabilidade", "telemetria", "application insights", "consulta kql"},
+        "valid": {"kusto", "application insights", "observabilidade", "telemetria", "dependency", "dependência", "summarize", "project", "where", "bin("},
+        "defining": {"kql", "log analytics"},
+    },
+    "architectural_structural_patterns": {
+        "demands": {"arquitetura hexagonal", "hexagonal", "solid", "event-driven", "consistência eventual", "consistencia eventual", "sincronizar dados", "idempotência", "idempotencia", "duas vezes", "duplicidade", "consistência de dados", "consistencia de dados", "serviços desacoplados", "servicos desacoplados", "transação distribuída", "transacao distribuida"},
+        "valid": {"hexagonal", "portas e adaptadores", "ports and adapters", "portas e adapters", "inverter dependências", "solid", "responsabilidades", "abstrações", "event-driven", "evento", "eventos", "consumidores desacoplados", "idempotência", "consistência eventual", "consistencia eventual", "reconciliação", "reconciliacao", "chave de idempotência", "chave de idempotencia", "mensageria", "mensageria assíncrona", "mensageria assincrona", "compensação", "compensacao"},
+        "defining": {"portas e adaptadores", "portas e adapters", "ports and adapters", "inverter dependências", "separaria responsabilidades e dependeria de abstrações", "consumidores desacoplados e idempotência", "eventos, consumidores desacoplados", "chave de idempotência", "consistência eventual"},
+    },
+    "resilience_and_fault_tolerance": {
+        "demands": {"bulkhead", "circuit breaker", "resiliência", "resiliente", "tolerância a falhas", "tolerancia a falhas", "retry", "retries", "backoff", "jitter", "indisponibilidade downstream", "falha em cascata", "falhas em cascata", "dependência externa", "dependencia externa"},
+        "valid": {"bulkhead", "circuit breaker", "fallback", "isolar falhas", "isolamento", "pools de threads", "esgotamento", "abrir circuito", "degradação graciosa", "degradacao graciosa", "repetições", "repeticoes", "intervalo exponencial", "jitter", "backoff", "aleatório", "aleatorio"},
+        "defining": {"bulkhead isola falhas", "circuit breaker abre circuito", "pools de threads para isolar falhas", "backoff exponencial com jitter"},
+    },
+    "enterprise_framework_transactions": {
+        "demands": {"transação", "transacao", "transações", "transacoes", "transação no spring", "transacao no spring"},
+        "valid": {"@transactional", "transactional", "transação", "transacao", "transações", "transacoes", "configurar transações", "configurar transacoes", "commit", "rollback"},
+        "defining": {"@transactional", "transações declarativas", "configurar transações"},
     },
 }
 
@@ -859,32 +1084,118 @@ _EXPERIENCE_QUESTION_MARKERS = (
     "já chegou a usar",
     "vem utilizando",
     "no seu dia a dia",
+    "você tem experiência",
+    "voce tem experiencia",
+    "tem experiência",
+    "tem experiencia",
+    "experiência com",
+    "experiencia com",
 )
 
+_BROAD_ECOSYSTEM_NAMES = {
+    "java", "spring", "css", "html", "web", "http", "api", "rest",
+    "kafka", "angular", "kql", "banco", "relacional", "bancos",
+    "sql", "pipeline", "pipelines", "ci/cd", "git", "cloud", "azure",
+    "linux", "docker", "kubernetes", "dados", "log", "logs", "analytics",
+    "jwt", "swagger", "openapi", "npm", "maven", "rbac"
+}
 
-def _is_semantic_off_topic(question_text: str, response_text: str) -> bool:
-    q_lower = question_text.lower()
-    r_lower = response_text.lower()
 
-    if (
-        ("virtual thread" in q_lower and "kql" in r_lower)
-        or ("kql" in q_lower and "virtual thread" in r_lower)
-        or ("spring" in q_lower and "virtual thread" in r_lower)
+def _evaluate_semantic_relevance(question: dict[str, Any], response: dict[str, Any]) -> dict[str, Any]:
+    q_text = question.get("text", "")
+    r_text = response.get("reconstructed_text") or response.get("text") or ""
+    q_lower = q_text.lower()
+    r_lower = r_text.lower()
+
+    if response.get("question_id") == "unknown" or not r_text.strip():
+        return {
+            "classification": "UNKNOWN",
+            "question_intent": "unknown",
+            "target_knowledge_domain": "unknown",
+            "demonstrated_concepts": (),
+            "relation_type": "unlinked_or_missing_response",
+            "functional_contribution": False,
+            "evidence_strength": "NONE",
+            "confidence": "LOW",
+            "rationale": "Response is unlinked or missing source text.",
+            "needs_review": True,
+        }
+
+    insufficient_terms = (
+        "é muito pouco", "muito pouco", "bem por cima", "quase nada", "sei pouco",
+        "sei quase nada", "não sei", "nao sei", "não lembro", "nao lembro",
+        "não conheço", "nao conheco", "não domino", "nao domino"
+    )
+    tokens = re.findall(r"\b\w+\b", r_lower)
+    is_conversational_acknowledgment = bool(tokens) and all(
+        t in {"yes", "beijava", "sim", "beleza", "ok", "top", "perfeito", "aham", "uhum"}
+        for t in tokens
+    )
+    if is_conversational_acknowledgment or any(
+        term in r_lower for term in insufficient_terms
     ):
-        return True
+        return {
+            "classification": "INSUFFICIENT",
+            "question_intent": "factual_mechanism",
+            "target_knowledge_domain": "general",
+            "demonstrated_concepts": (),
+            "relation_type": "insufficient_substance",
+            "functional_contribution": False,
+            "evidence_strength": "NONE",
+            "confidence": "MEDIUM",
+            "rationale": "Candidate asserts lack of depth or provides fragmented acknowledgment.",
+            "needs_review": False,
+        }
 
+    # 1. Detect Intent
     if any(marker in q_lower for marker in _EXPERIENCE_QUESTION_MARKERS):
-        return False
-
-    if any(
+        intent = "experience_verification"
+    elif any(
         prefix in q_lower
         for prefix in (
             "como investigaria",
             "como você investigaria",
             "como voce investigaria",
-            "como resolveria um incidente",
+            "como resolveria",
+            "erro 500",
+            "http 500",
+            "falha 500",
+            "incidente",
+            "como observar",
+            "observar uma aplicação",
+            "observabilidade",
+            "aplicaria observabilidade",
         )
     ):
+        intent = "diagnostic_troubleshooting"
+    elif any(
+        marker in q_lower
+        for marker in (
+            "resiliente",
+            "resiliência",
+            "como escolheria",
+            "como decidiria",
+            "trade-off",
+            "tradeoff",
+            "como projetaria",
+            "desenharia arquitetura",
+            "projetaria um sistema",
+            "como aplicaria solid",
+            "como desenharia arquitetura hexagonal",
+            "dependência externa",
+            "dependencia externa",
+            "proteger a aplicação",
+            "proteger a aplicacao",
+            "falha em cascata",
+            "falhas em cascata",
+        )
+    ):
+        intent = "architectural_decision"
+    else:
+        intent = "factual_mechanism"
+
+    # Diagnostic troubleshooting intent
+    if intent == "diagnostic_troubleshooting":
         has_diagnostic = any(
             term in r_lower
             for term in (
@@ -894,63 +1205,312 @@ def _is_semantic_off_topic(question_text: str, response_text: str) -> bool:
                 "traces",
                 "métrica",
                 "metricas",
+                "metrics",
                 "dependência",
                 "dependencias",
+                "dependency",
+                "dependencies",
                 "p95",
                 "p99",
                 "baseline",
-            )
-        )
-        has_alien = any(
-            any(def_term in r_lower for def_term in dom["defining"])
-            for dom in _SEMANTIC_DOMAINS.values()
-        )
-        if has_alien:
-            return True
-        if has_diagnostic:
-            return False
-
-    if "resiliente" in q_lower or "resiliência" in q_lower:
-        if any(
-            term in r_lower
-            for term in (
+                "debug",
+                "kql",
+                "telemetria",
+                "application insights",
+                "alertas",
+                "alerts",
                 "timeout",
-                "retry",
-                "backoff",
-                "circuit breaker",
-                "observabilidade",
+                "latência",
+                "latencia",
+                "tempo de resposta",
             )
-        ):
-            return False
-
-    if "como escolheria" in q_lower or "como decidiria" in q_lower:
-        if any(
-            term in r_lower
+        )
+        has_mitigation = any(
+            _lexical_contains(r_lower, term)
             for term in (
-                "trade-off",
-                "tradeoff",
-                "menor latência",
-                "consistência",
+                "bulkhead",
+                "circuit breaker",
+                "fallback",
+                "isolar falhas",
+                "isolamento",
+                "pools de threads",
+                "cache local",
+                "mitigação",
+                "mitigacao",
             )
-        ):
-            return False
+        )
+        alien_domains = [
+            d_name
+            for d_name, cap in _FUNCTIONAL_CAPABILITIES.items()
+            if d_name != "telemetry_and_query_analytics"
+            and not any(_lexical_contains(q_lower, q_term) for q_term in cap["demands"])
+            and any(_lexical_contains(r_lower, d_term) for d_term in cap["defining"])
+        ]
+        if alien_domains and not (has_diagnostic or has_mitigation):
+            return {
+                "classification": "OFF_TOPIC",
+                "question_intent": intent,
+                "target_knowledge_domain": "diagnostic_troubleshooting",
+                "demonstrated_concepts": tuple(alien_domains),
+                "relation_type": "alien_functional_domain",
+                "functional_contribution": False,
+                "evidence_strength": "NONE",
+                "confidence": "HIGH",
+                "rationale": "Candidate described unrelated operational mechanisms instead of diagnostic troubleshooting.",
+                "needs_review": False,
+            }
+        if alien_domains and (has_diagnostic or has_mitigation):
+            return {
+                "classification": "PARTIAL",
+                "question_intent": intent,
+                "target_knowledge_domain": "diagnostic_troubleshooting",
+                "demonstrated_concepts": ("diagnostic_action",) + tuple(alien_domains),
+                "relation_type": "mixed_diagnostic_and_alien",
+                "functional_contribution": True,
+                "evidence_strength": "MODERATE",
+                "confidence": "HIGH",
+                "rationale": "Candidate mixed valid diagnostic/mitigation action with an unrelated domain explanation.",
+                "needs_review": False,
+            }
+        if has_diagnostic or has_mitigation:
+            return {
+                "classification": "SUPPORTING",
+                "question_intent": intent,
+                "target_knowledge_domain": "diagnostic_troubleshooting",
+                "demonstrated_concepts": ("diagnostic_action",),
+                "relation_type": "diagnostic_action_serves_goal",
+                "functional_contribution": True,
+                "evidence_strength": "STRONG",
+                "confidence": "HIGH",
+                "rationale": "Diagnostic or mitigation action directly serves troubleshooting scenario.",
+                "needs_review": False,
+            }
 
-    for d_name, dom in _SEMANTIC_DOMAINS.items():
-        if any(q_term in q_lower for q_term in dom["question"]):
-            has_valid = any(v in r_lower for v in dom["valid"])
-            other_defines = [
-                other_name
-                for other_name, other_dom in _SEMANTIC_DOMAINS.items()
-                if other_name != d_name
-                and any(d_term in r_lower for d_term in other_dom["defining"])
-            ]
-            if other_defines:
-                if not has_valid:
-                    return True
-                if any(term in r_lower for term in ("também", "tambem", "além", "alem")):
-                    return True
+    # Architectural resilience / trade-off intent
+    if intent == "architectural_decision":
+        has_resilience = any(
+            _lexical_contains(r_lower, term)
+            for term in ("timeout", "retry", "backoff", "circuit breaker", "observabilidade", "resiliente", "bulkhead", "fallback", "isolaria", "isolamento")
+        )
+        has_tradeoff = any(
+            _lexical_contains(r_lower, term)
+            for term in ("trade-off", "tradeoff", "menor latência", "consistência", "abstrações", "portas e adapters", "eventos, consumidores")
+        )
+        if has_resilience or has_tradeoff:
+            return {
+                "classification": "SUPPORTING",
+                "question_intent": intent,
+                "target_knowledge_domain": "architectural_decision",
+                "demonstrated_concepts": ("resilience_and_tradeoffs",),
+                "relation_type": "architectural_reasoning_serves_goal",
+                "functional_contribution": True,
+                "evidence_strength": "STRONG",
+                "confidence": "HIGH",
+                "rationale": "Articulates resilience patterns and architectural trade-offs.",
+                "needs_review": False,
+            }
 
-    return False
+    # Experience verification intent
+    if intent == "experience_verification":
+        return {
+            "classification": "DIRECT",
+            "question_intent": intent,
+            "target_knowledge_domain": "experience_verification",
+            "demonstrated_concepts": ("experience_trajectory",),
+            "relation_type": "candidate_ecosystem_description",
+            "functional_contribution": True,
+            "evidence_strength": "STRONG",
+            "confidence": "HIGH",
+            "rationale": "Candidate describes career trajectory, stack usage, or operational background.",
+            "needs_review": False,
+        }
+
+    stop_words = _STOP_WORDS
+    q_words = set(re.findall(r"\b[a-zA-Z0-9_\u00c0-\u00ff\-]{3,}\b", q_lower)) - stop_words
+    r_words = set(re.findall(r"\b[a-zA-Z0-9_\u00c0-\u00ff\-]{3,}\b", r_lower)) - stop_words
+    shared = q_words & r_words
+
+    # Factual mechanism intent
+    target_domains = [
+        d_name
+        for d_name, cap in _FUNCTIONAL_CAPABILITIES.items()
+        if any(_lexical_contains(q_lower, d_term) for d_term in cap["demands"])
+    ]
+
+    for d_name in target_domains:
+        cap = _FUNCTIONAL_CAPABILITIES[d_name]
+        has_valid = any(_lexical_contains(r_lower, v) for v in cap["valid"])
+        other_defines = [
+            other_name
+            for other_name, other_cap in _FUNCTIONAL_CAPABILITIES.items()
+            if other_name != d_name
+            and any(_lexical_contains(r_lower, d_term) for d_term in other_cap["defining"])
+        ]
+
+        if not has_valid or any(_lexical_contains(r_lower, term) for term in ("swagger", "openapi")):
+            is_adjacent_stack = (
+                (d_name == "dependency_injection_ioc" and "data_access_abstraction" in other_defines)
+                or (not other_defines and (
+                    any(_lexical_contains(r_lower, term) for term in ("tags html", "html", "git", "replicação", "replicacao", "cors", "swagger", "openapi", "npm", "package.json", "rbac", "pom.xml", "maven", "schema registry", "avro"))
+                    or any(_lexical_contains(q_lower, eco) and _lexical_contains(r_lower, eco) for eco in _BROAD_ECOSYSTEM_NAMES)
+                ))
+            )
+            if is_adjacent_stack:
+                return {
+                    "classification": "RELATED",
+                    "question_intent": intent,
+                    "target_knowledge_domain": d_name,
+                    "demonstrated_concepts": tuple(other_defines) if other_defines else (d_name,),
+                    "relation_type": "thematic_adjacency_without_mechanism",
+                    "functional_contribution": False,
+                    "evidence_strength": "NONE",
+                    "confidence": "HIGH",
+                    "rationale": f"Candidate described adjacent ecosystem/technology instead of required {d_name} mechanism.",
+                    "needs_review": False,
+                }
+            return {
+                "classification": "OFF_TOPIC",
+                "question_intent": intent,
+                "target_knowledge_domain": d_name,
+                "demonstrated_concepts": tuple(other_defines) if other_defines else (),
+                "relation_type": "alien_functional_domain",
+                "functional_contribution": False,
+                "evidence_strength": "NONE",
+                "confidence": "HIGH",
+                "rationale": f"Candidate described alien domain instead of {d_name}.",
+                "needs_review": False,
+            }
+
+        if other_defines and has_valid:
+            return {
+                "classification": "PARTIAL",
+                "question_intent": intent,
+                "target_knowledge_domain": d_name,
+                "demonstrated_concepts": (d_name,) + tuple(other_defines),
+                "relation_type": "mixed_target_and_alien",
+                "functional_contribution": True,
+                "evidence_strength": "MODERATE",
+                "confidence": "HIGH",
+                "rationale": "Candidate addressed target mechanism but mixed with an alien domain explanation.",
+                "needs_review": False,
+            }
+
+        if has_valid:
+            aspect_cov = _evaluate_multi_aspect_coverage(q_text, r_text, d_name)
+            if aspect_cov["is_multi_aspect"] and aspect_cov["is_partial"]:
+                return {
+                    "classification": "PARTIAL",
+                    "question_intent": intent,
+                    "target_knowledge_domain": d_name,
+                    "demonstrated_concepts": (d_name,),
+                    "relation_type": "partial_aspect_coverage",
+                    "functional_contribution": True,
+                    "evidence_strength": "MODERATE",
+                    "confidence": "HIGH",
+                    "rationale": f"Candidate addressed only one aspect of a multi-part question for {d_name} (omitted: {aspect_cov['omitted_summary']}).",
+                    "needs_review": False,
+                }
+            return {
+                "classification": "DIRECT",
+                "question_intent": intent,
+                "target_knowledge_domain": d_name,
+                "demonstrated_concepts": (d_name,),
+                "relation_type": "direct_mechanism_assertion",
+                "functional_contribution": True,
+                "evidence_strength": "STRONG",
+                "confidence": "HIGH",
+                "rationale": f"Directly articulates core mechanism for {d_name}.",
+                "needs_review": False,
+            }
+
+    alien_defines = [
+        d_name
+        for d_name, cap in _FUNCTIONAL_CAPABILITIES.items()
+        if any(_lexical_contains(r_lower, d_term) for d_term in cap["defining"])
+    ]
+    if alien_defines:
+        has_overlap_with_alien = any(
+            _lexical_contains(q_lower, v) for v in _FUNCTIONAL_CAPABILITIES[alien_defines[0]]["valid"]
+        ) or any(
+            _lexical_contains(q_lower, d) for d in _FUNCTIONAL_CAPABILITIES[alien_defines[0]]["demands"]
+        )
+        if not has_overlap_with_alien:
+            return {
+                "classification": "OFF_TOPIC",
+                "question_intent": intent,
+                "target_knowledge_domain": "open_domain",
+                "demonstrated_concepts": tuple(alien_defines),
+                "relation_type": "alien_functional_domain",
+                "functional_contribution": False,
+                "evidence_strength": "NONE",
+                "confidence": "HIGH",
+                "rationale": f"Candidate articulated alien functional capability {alien_defines[0]} not requested by the question.",
+                "needs_review": False,
+            }
+
+    q_stems = _extract_stemmed_tokens(q_text)
+    r_stems = _extract_stemmed_tokens(r_text)
+    shared_stems = q_stems & r_stems
+
+    if shared_stems or shared:
+        matched_stems = shared_stems or shared
+        aspect_cov = _evaluate_multi_aspect_coverage(q_text, r_text)
+        if aspect_cov["is_multi_aspect"] and aspect_cov["is_partial"]:
+            return {
+                "classification": "PARTIAL",
+                "question_intent": intent,
+                "target_knowledge_domain": "open_demonstrated_domain",
+                "demonstrated_concepts": tuple(sorted(aspect_cov["covered_stems"] or matched_stems)),
+                "relation_type": "partial_aspect_coverage",
+                "functional_contribution": True,
+                "evidence_strength": "MODERATE",
+                "confidence": "HIGH",
+                "rationale": f"Demonstrates technical assertion for initial aspect but omits secondary aspect: {aspect_cov['omitted_summary']}.",
+                "needs_review": False,
+            }
+        if matched_stems.issubset(_BROAD_ECOSYSTEM_NAMES):
+            return {
+                "classification": "RELATED",
+                "question_intent": intent,
+                "target_knowledge_domain": "open_domain",
+                "demonstrated_concepts": tuple(sorted(matched_stems)),
+                "relation_type": "thematic_adjacency_without_mechanism",
+                "functional_contribution": False,
+                "evidence_strength": "NONE",
+                "confidence": "HIGH",
+                "rationale": f"Mentions broad ecosystem/technology without demonstrating functional mechanism: {', '.join(sorted(matched_stems))}.",
+                "needs_review": False,
+            }
+        return {
+            "classification": "DIRECT",
+            "question_intent": intent,
+            "target_knowledge_domain": "open_demonstrated_domain",
+            "demonstrated_concepts": tuple(sorted(matched_stems)),
+            "relation_type": "open_technical_assertion",
+            "functional_contribution": True,
+            "evidence_strength": "STRONG",
+            "confidence": "HIGH",
+            "rationale": f"Demonstrates technical assertion aligning with question subject: {', '.join(sorted(matched_stems))}.",
+            "needs_review": False,
+        }
+
+    return {
+        "classification": "OFF_TOPIC",
+        "question_intent": intent,
+        "target_knowledge_domain": "open_domain",
+        "demonstrated_concepts": tuple(sorted(r_words)[:3]) if r_words else (),
+        "relation_type": "disjunct_open_domain",
+        "functional_contribution": False,
+        "evidence_strength": "NONE",
+        "confidence": "HIGH",
+        "rationale": "Response does not demonstrate technical propositions addressing the question demand.",
+        "needs_review": False,
+    }
+
+
+def _is_semantic_off_topic(question_text: str, response_text: str) -> bool:
+    rec = _evaluate_semantic_relevance({"text": question_text}, {"reconstructed_text": response_text})
+    return rec["classification"] in ("OFF_TOPIC", "RELATED")
 
 
 def _blind_assessment(label: str, score: int | None, applicable: bool = True) -> dict[str, Any]:
@@ -1014,9 +1574,12 @@ def _blind_dimensions(question: dict[str, Any], response: dict[str, Any], eviden
         )
         or declaration_only
     )
-    short = len(semantic_text.split()) < 15
     dense_signal = all(term in semantic_text for term in ("p95", "depend", "baseline"))
-    factual_question = question_text.startswith(("o que é", "o que significa", "defina"))
+    factual_question = question_text.startswith(("o que é", "o que e", "o que são", "o que sao", "o que significa", "defina"))
+    has_partial_concept = any(
+        item["type"] == "conceptual" and item["qualification"] == "partial"
+        for item in evidence
+    )
 
     if confirmation or insufficient:
         correctness = _blind_assessment("Insufficient", 4)
@@ -1035,13 +1598,19 @@ def _blind_dimensions(question: dict[str, Any], response: dict[str, Any], eviden
     else:
         correctness = _blind_assessment("Strong", 9)
 
+    has_alternative_prompt = " ou outro " in question_text or " ou outra " in question_text
+    partial_aspect_omission = any(
+        item.get("relation_type") == "partial_aspect_coverage"
+        for item in evidence
+    )
+
     completeness = _blind_assessment(
-        "Partial" if insufficient or off_topic or (short and not declaration_only) or uncertainty or semantic_text.count("latência") >= 3 else "Strong",
-        6 if insufficient or off_topic or (short and not declaration_only) or uncertainty or semantic_text.count("latência") >= 3 else 9,
+        "Partial" if insufficient or off_topic or uncertainty or partial_signal or partial_aspect_omission or semantic_text.count("latência") >= 3 or ((factual_question or has_alternative_prompt) and not (reasoning or concrete or tradeoff or dense_signal)) else "Strong",
+        6 if insufficient or off_topic or uncertainty or partial_signal or partial_aspect_omission or semantic_text.count("latência") >= 3 or ((factual_question or has_alternative_prompt) and not (reasoning or concrete or tradeoff or dense_signal)) else 9,
     )
     depth = _blind_assessment(
-        "Strong" if reasoning and (concrete or tradeoff) and not insufficient and not off_topic else ("Partial" if dense_signal else ("Weak" if short or declaration_only or insufficient or semantic_text.count("latência") >= 3 else "Partial")),
-        9 if reasoning and (concrete or tradeoff) and not insufficient and not off_topic else (6 if dense_signal else (3 if short or declaration_only or insufficient or semantic_text.count("latência") >= 3 else 6)),
+        "Strong" if reasoning and (concrete or tradeoff) and not insufficient and not off_topic else ("Partial" if dense_signal or has_partial_concept or (reasoning and not declaration_only) or concrete or tradeoff else ("Weak" if declaration_only or insufficient or (off_topic and not has_partial_concept) or semantic_text.count("latência") >= 3 or ((factual_question or has_alternative_prompt) and not (reasoning or concrete or tradeoff)) else "Partial")),
+        9 if reasoning and (concrete or tradeoff) and not insufficient and not off_topic else (6 if dense_signal or has_partial_concept or (reasoning and not declaration_only) or concrete or tradeoff else (3 if declaration_only or insufficient or (off_topic and not has_partial_concept) or semantic_text.count("latência") >= 3 or ((factual_question or has_alternative_prompt) and not (reasoning or concrete or tradeoff)) else 6)),
     )
     reasoning_dimension = _blind_assessment(
         "Strong" if reasoning and not declaration_only and not insufficient and not off_topic else ("Partial" if self_correction else "Weak"),
