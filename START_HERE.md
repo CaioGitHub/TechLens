@@ -89,10 +89,26 @@ SEMANTIC_INTENT_GENERALIZATION_IMPLEMENTATION_COMPLETE_WITH_WARNINGS
 
 Stage 31.7.6
     ↓
-NEXT STAGE (Post-Implementation Blind Human vs System Revalidation)
+POST_GENERALIZATION_BLIND_REVALIDATION_BLOCKED
+
+Stage 31.7.7
+    ↓
+ROOT_CAUSE_ANALYSIS_AND_ARCHITECTURE_REDESIGN_COMPLETE
+
+Stage 31.7.8
+    ↓
+CONTROLLED_IMPLEMENTATION_COMPLETE_WITH_WARNINGS
+
+Stage 31.7.9
+    ↓
+POST_OPEN_DOMAIN_BLIND_REVALIDATION_BLOCKED
+
+Stage 31.7.10
+    ↓
+NEXT STAGE (Root Cause Analysis & Semantic Relation Nexus Remediation)
 ```
 
-O Stage 31.7.5 implementou e validou no runtime canônico (`reference_runtime/runtime.py`, SHA-256: `A0CFE48B933F587459BFF6AAF8B2BECABA5B7C00C4C87E7B5DDB6BDE985E46A6`) a arquitetura de Semantic Intent Generalization desenhada no Stage 31.7.4. Foram incorporadas as dataclasses estruturais (`QuestionDemand`, `QuestionIntent`, `TechnicalProposition`, `AspectCoverage`, `SemanticRelation`), o motor de relações causais problema → mecanismo totalmente desacoplado de catálogos fechados, a ancoragem estrita de entidades sem veredicto automático (`entity_match != DIRECT`), o tratamento de multi-aspectos e a distinção epistêmica de experiência. Todos os 170 testes independentes da nova suíte foram aprovados (100%), inclusive sob catálogo completamente esvaziado (`_FUNCTIONAL_CAPABILITIES = {}`), com 989 testes de regressão no repositório e 8/8 suítes do harness aprovadas. O gate foi declarado `SEMANTIC_INTENT_GENERALIZATION_IMPLEMENTATION_COMPLETE_WITH_WARNINGS`.
+O Stage 31.7.9 realizou a validação cega independente da arquitetura **Open-Domain Proposition & Semantic Relation** sobre o runtime 100% congelado (SHA-256: `2DAE8514CB37F133C22CAD785BD4BD79B5E7EDB462BA9E8D956A9A9BD64F376E`), avaliando 242 casos independentes contra oráculo humano independente. O resultado demonstrou superação total da barreira lexical (100% de acerto na Categoria P de False Negative Traps e 92.86% em Invariância de Representação), mas revelou uma nova vulnerabilidade estrutural: **Permissividade Proposicional (Bias de Falsos Positivos)**, onde 88 dos 101 erros foram falsos `DIRECT` causados por heurísticas de ação operativa excessivamente permissivas que ignoravam o nexo funcional entre a demanda e a resposta. Com 58.26% de concordância exata e falhas recorrentes nas categorias O (0%) e G (18.75%), o gate foi emitido como `POST_OPEN_DOMAIN_BLIND_REVALIDATION_BLOCKED`. A regressão histórica permaneceu integralmente intacta (1005/1005 testes, 8/8 suites do Harness).
 
 ## Regra fundamental
 

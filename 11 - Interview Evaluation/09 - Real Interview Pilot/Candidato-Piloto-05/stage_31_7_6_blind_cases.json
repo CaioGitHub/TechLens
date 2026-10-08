@@ -1,0 +1,1502 @@
+[
+  {
+    "id": "A01_dragonfly",
+    "group": "A_unseen_tech",
+    "question": "Como o Dragonfly escala operações em memória comparado ao Redis tradicional?",
+    "response": "Utiliza arquitetura multi-threaded moderna sobre a biblioteca Seastar dividindo dados por cores sem lock global."
+  },
+  {
+    "id": "A02_clickhouse",
+    "group": "A_unseen_tech",
+    "question": "Como a engine MergeTree do ClickHouse acelera buscas analíticas em tabelas gigantescas?",
+    "response": "Organiza partições em partes imutáveis mescladas em background e utiliza índices primários esparsos ordenados por chave."
+  },
+  {
+    "id": "A03_tikv",
+    "group": "A_unseen_tech",
+    "question": "Como o TiKV garante consistência ACID e alta disponibilidade em escala distribuída?",
+    "response": "Implementa protocolo de consenso Raft em múltiplos grupos de partições com controle de concorrência multiversão MVCC."
+  },
+  {
+    "id": "A04_envoy",
+    "group": "A_unseen_tech",
+    "question": "Como o Envoy gerencia conexões e roteamento dinâmico sem reiniciar o processo?",
+    "response": "Usa modelo de thread-local event loops não-bloqueantes e consome APIs de descoberta dinâmica xDS via streaming gRPC."
+  },
+  {
+    "id": "A05_flink",
+    "group": "A_unseen_tech",
+    "question": "Como o Apache Flink garante tolerância a falhas exatamente-uma-vez (exactly-once) em streams contínuos?",
+    "response": "Injeta barreiras no fluxo de eventos para capturar snapshots distribuídos assíncronos baseados no algoritmo de Chandy-Lamport."
+  },
+  {
+    "id": "A06_cassandra",
+    "group": "A_unseen_tech",
+    "question": "Como o Cassandra distribui dados entre nós sem um nó coordenador mestre?",
+    "response": "Utiliza anel de partições baseado em hash consistente e protocolo gossip descentralizado para sincronizar o estado do cluster."
+  },
+  {
+    "id": "A07_cilium",
+    "group": "A_unseen_tech",
+    "question": "Como o Cilium elimina o overhead de iptables na comunicação entre pods do Kubernetes?",
+    "response": "Carrega programas de kernel eBPF nos sockets e interfaces de rede para rotear pacotes diretamente através de mapas BPF na memória do kernel."
+  },
+  {
+    "id": "A08_tempo",
+    "group": "A_unseen_tech",
+    "question": "Como o Grafana Tempo armazena volumes massivos de traces distribuídos com custo operacional reduzido?",
+    "response": "Abandona índices invertidos caros gravando blocos colunares de traces diretamente em object storage como S3 ou GCS."
+  },
+  {
+    "id": "A09_vault",
+    "group": "A_unseen_tech",
+    "question": "Como o HashiCorp Vault protege a chave mestre de criptografia durante inicialização e unseal?",
+    "response": "Divide a chave de criptografia principal em fragmentos compartilhados utilizando o algoritmo de Shamir Secret Sharing exigindo um quórum mínimo para reconstrução."
+  },
+  {
+    "id": "A10_dagger",
+    "group": "A_unseen_tech",
+    "question": "Como o motor Dagger garante reprodutibilidade estrita em pipelines de build?",
+    "response": "Representa etapas de build como um grafo acíclico direcionado executado dentro de contêineres BuildKit com cache de camadas determinístico."
+  },
+  {
+    "id": "A11_iceberg",
+    "group": "A_unseen_tech",
+    "question": "Como o Apache Iceberg fornece transações ACID e time travel sobre arquivos Parquet em data lakes?",
+    "response": "Mantém uma árvore hierárquica de metadados com manifest lists e commits atômicos baseados em snapshots apontando para arquivos de dados imutáveis."
+  },
+  {
+    "id": "A12_qdrant",
+    "group": "A_unseen_tech",
+    "question": "Como o banco vetorial Qdrant busca embeddings similares em milissegundos sobre milhões de vetores?",
+    "response": "Constrói grafos navegáveis em camadas HNSW com quantização escalar em memória e filtragem de payload em tempo de travessia."
+  },
+  {
+    "id": "A13_openfaas",
+    "group": "A_unseen_tech",
+    "question": "Como o OpenFaaS encapsula código arbitrário para execução serveless orientada a eventos?",
+    "response": "Empacota o código em contêineres OCI padronizados utilizando o Classic Watchdog ou of-watchdog para converter requisições HTTP em stdin/stdout da função."
+  },
+  {
+    "id": "A14_pulumi",
+    "group": "A_unseen_tech",
+    "question": "Como o Pulumi orquestra infraestrutura em nuvem diferenciando-se de linguagens declarativas como HCL?",
+    "response": "Executa linguagens de uso geral como TypeScript ou Python comunicando-se via gRPC com um engine central que calcula diffs de estado de recursos."
+  },
+  {
+    "id": "A15_arangodb",
+    "group": "A_unseen_tech",
+    "question": "Como o ArangoDB unifica consultas entre documentos relacionais e grafos em uma única chamada?",
+    "response": "Utiliza a linguagem declarativa AQL permitindo joins entre coleções de documentos e travessias de grafos sobre coleções de arestas indexadas."
+  },
+  {
+    "id": "A16_zig",
+    "group": "A_unseen_tech",
+    "question": "Como a linguagem Zig previne erros de alocação oculta de memória em sistemas operacionais?",
+    "response": "Exige que alocadores sejam passados explicitamente como parâmetros nas funções, eliminando alocações ocultas e runtime embutido."
+  },
+  {
+    "id": "A17_axum",
+    "group": "A_unseen_tech",
+    "question": "Como o framework web Axum trata requisições concorrentes com alta performance?",
+    "response": "Constrói handlers fortemente tipados com extractors sobre o runtime assíncrono Tokio e middleware composable da pilha Tower."
+  },
+  {
+    "id": "A18_kong",
+    "group": "A_unseen_tech",
+    "question": "Como o Kong API Gateway intercepta tráfego HTTP para aplicar autenticação e rate limiting?",
+    "response": "Executa plugins escritos em Lua ou Go em fases específicas do ciclo de vida da requisição no motor Nginx com OpenResty."
+  },
+  {
+    "id": "A19_prometheus_tsdb",
+    "group": "A_unseen_tech",
+    "question": "Como o banco de séries temporais do Prometheus otimiza a gravação contínua de métricas numéricas?",
+    "response": "Agrupa amostras em blocos de duas horas em memória com compactação Gorilla delta-of-delta antes de persistir em segmentos imutáveis no disco."
+  },
+  {
+    "id": "A20_envoy_gateway",
+    "group": "A_unseen_tech",
+    "question": "Como o Envoy Gateway traduz recursos da Kubernetes Gateway API para o plano de dados?",
+    "response": "Atua como controller do Kubernetes assistindo GatewayClass e HTTPRoute gerando configurações de proxies Envoy via plano de controle xDS embutido."
+  },
+  {
+    "id": "B01_two_phase_commit",
+    "group": "B_concept_no_tech",
+    "question": "Como coordenar uma alteração de dados garantindo que todas as bases gravem ou nenhuma grave?",
+    "response": "O coordenador envia mensagem de preparação para os participantes votarem e somente envia ordem de efetivação definitiva se todos confirmarem prontidão."
+  },
+  {
+    "id": "B02_write_ahead_log",
+    "group": "B_concept_no_tech",
+    "question": "Como assegurar que dados em memória não sejam perdidos caso ocorra queda repentina de energia no servidor?",
+    "response": "Registramos as operações sequencialmente em arquivo em disco em modo append antes de modificar as estruturas principais de dados em memória."
+  },
+  {
+    "id": "B03_consistent_hashing",
+    "group": "B_concept_no_tech",
+    "question": "Como distribuir chaves entre servidores de modo que a entrada de uma nova máquina não force redistribuir todas as chaves existentes?",
+    "response": "Mapeia tanto os servidores quanto as chaves em um círculo virtual contínuo de posições atribuindo a chave ao primeiro servidor encontrado no sentido horário."
+  },
+  {
+    "id": "B04_read_write_lock",
+    "group": "B_concept_no_tech",
+    "question": "Como proteger uma estrutura compartilhada que sofre muitas consultas simultâneas mas poucas alterações sem travar leituras concorrentes?",
+    "response": "Utilizamos trava compartilhada para leitores permitindo leituras paralelas e trava exclusiva para escritores bloqueando qualquer acesso durante modificações."
+  },
+  {
+    "id": "B05_circuit_breaker_tripping",
+    "group": "B_concept_no_tech",
+    "question": "Como evitar que um serviço cliente esgote suas threads chamando continuamente um serviço dependente instável?",
+    "response": "Monitoramos taxa de erros acumulada e abrimos o circuito interrompendo chamadas externas e devolvendo contingência imediata por um período de descanso."
+  },
+  {
+    "id": "B06_bloom_filter",
+    "group": "B_concept_no_tech",
+    "question": "Como saber se um registro não existe no armazenamento em disco sem gastar uma leitura lenta de arquivo?",
+    "response": "Consultamos um vetor de bits na memória calculado com múltiplas funções de hash que garante com certeza absoluta se o item não está presente."
+  },
+  {
+    "id": "B07_connection_pooling",
+    "group": "B_concept_no_tech",
+    "question": "Como evitar a sobrecarga de abrir e fechar canal de rede com o banco a cada requisição de usuário?",
+    "response": "Mantemos conjunto de conexões ativas pré-abertas reutilizadas pelas threads e devolvidas ao repositório ao término da operação."
+  },
+  {
+    "id": "B08_leader_election",
+    "group": "B_concept_no_tech",
+    "question": "Como múltiplos nós autônomos decidem quem será o responsável por coordenar as operações de escrita?",
+    "response": "Os nós iniciam eleição com temporizadores aleatórios solicitando votos dos pares e o primeiro a obter maioria de quórum assume a liderança."
+  },
+  {
+    "id": "B09_lsm_compaction",
+    "group": "B_concept_no_tech",
+    "question": "Como evitar que gravações sequenciais em disco gerem acúmulo desordenado e degradação nas consultas com o tempo?",
+    "response": "Executamos rotinas de mesclagem em background que leem múltiplos arquivos ordenados descartam chaves sobrescritas e geram arquivos consolidados."
+  },
+  {
+    "id": "B10_edge_caching",
+    "group": "B_concept_no_tech",
+    "question": "Como entregar conteúdo estático para clientes em diferentes continentes sem sobrecarregar os servidores de origem?",
+    "response": "Espalhamos pontos de presença na borda geográfica que armazenam cópias locais com regras de tempo de expiração servindo diretamente os usuários vizinhos."
+  },
+  {
+    "id": "B11_database_sharding",
+    "group": "B_concept_no_tech",
+    "question": "Como distribuir o armazenamento de clientes quando o volume de dados excede a capacidade de uma única máquina?",
+    "response": "Fragmentamos o banco horizontalmente particionando as tabelas com base em uma chave de roteamento de cliente para instâncias isoladas."
+  },
+  {
+    "id": "B12_saga_pattern",
+    "group": "B_concept_no_tech",
+    "question": "Como garantir integridade em processos de negócio longos que passam por múltiplos módulos sem travar recursos com transações longas?",
+    "response": "Dividimos em série de transações locais encadeadas onde cada etapa bem-sucedida dispara a próxima e qualquer falha executa ações de compensação retroativas."
+  },
+  {
+    "id": "B13_event_sourcing",
+    "group": "B_concept_no_tech",
+    "question": "Como manter histórico auditável de cada modificação de estado sem perder o detalhe de como o valor final foi alcançado?",
+    "response": "Gravamos sequência imutável de acontecimentos fáticos em vez do estado atual e recalculamos o estado presente reproduzindo a sequência desde o início."
+  },
+  {
+    "id": "B14_cqrs",
+    "group": "B_concept_no_tech",
+    "question": "Como otimizar um sistema cuja modelagem para inserção rápida de dados conflita com os requisitos complexos de relatórios analíticos?",
+    "response": "Separamos os modelos lógicos e os repositórios em um modelo de comando focado em validação de escrita e um modelo de consulta desnormalizado para leitura."
+  },
+  {
+    "id": "B15_jittered_backoff",
+    "group": "B_concept_no_tech",
+    "question": "Como evitar que clientes que sofreram falha temporária façam tentativas sincronizadas e derrubem o servidor restabelecido?",
+    "response": "Multiplicamos o tempo de espera a cada nova tentativa adicionando variação aleatória de intervalo para espalhar os momentos de reenvio no tempo."
+  },
+  {
+    "id": "B16_heartbeat_probes",
+    "group": "B_concept_no_tech",
+    "question": "Como um grupo distribuído de servidores detecta rapidamente quando um integrante falhou ou caiu da rede?",
+    "response": "Cada nó envia pulsos periódicos de vida aos vizinhos e se um nó passar determinado limite de tempo sem emitir sinal ele é marcado como inoperante."
+  },
+  {
+    "id": "B17_optimistic_versioning",
+    "group": "B_concept_no_tech",
+    "question": "Como evitar sobrescrita indevida em cadastros editados em telas web sem manter o registro trancado no banco enquanto o usuário digita?",
+    "response": "Carregamos número de versão com os dados e na atualização incluímos a versão original na cláusula de gravação abortando se o registro tiver mudado."
+  },
+  {
+    "id": "B18_mtls_authentication",
+    "group": "B_concept_no_tech",
+    "question": "Como garantir que tanto o servidor comprove sua legitimidade quanto o cliente comprove quem é antes de trocar dados confidenciais?",
+    "response": "Ambos os lados trocam e validam mutuamente certificados digitais assinados por autoridade de confiança durante a negociação da conexão criptografada."
+  },
+  {
+    "id": "B19_correlation_tracing",
+    "group": "B_concept_no_tech",
+    "question": "Como rastrear o percurso de uma transação comercial que aciona sequencialmente cinco processos independentes?",
+    "response": "Geramos identificador único no ponto de entrada e repassamos esse mesmo código nos envelopes de comunicação registrando-o em todos os logs."
+  },
+  {
+    "id": "B20_sliding_window_limiter",
+    "group": "B_concept_no_tech",
+    "question": "Como conter abusos de acessos por minuto sem criar brechas nos momentos exatos de virada de minuto do relógio?",
+    "response": "Mantemos registro temporal das requisições recentes e calculamos a taxa em uma janela deslizante contínua descartando acessos que ultrapassem a cota."
+  },
+  {
+    "id": "C01_lost_updates_balance",
+    "group": "C_zero_lexical_overlap",
+    "question": "Dois caixas eletrônicos leem simultaneamente a mesma conta e gravam saldos conflitantes.",
+    "response": "Incluímos um campo sequencial no cadastro que é validado no instante da persistência descartando operações defasadas."
+  },
+  {
+    "id": "C02_traffic_burst_saturation",
+    "group": "C_zero_lexical_overlap",
+    "question": "Milhares de aparelhos enviam dados ao mesmo instante travando a recepção da infraestrutura.",
+    "response": "Estabelecemos um balde de créditos renovados em intervalo fixo descartando pacotes quando o saldo de créditos zera."
+  },
+  {
+    "id": "C03_cascading_service_freeze",
+    "group": "C_zero_lexical_overlap",
+    "question": "A lentidão extrema no parceiro de pagamentos consome todas as conexões da nossa plataforma.",
+    "response": "Abrimos o circuito após contagem de falhas devolvendo recusa imediata com mensagem de contingência aos clientes."
+  },
+  {
+    "id": "C04_duplicate_billing_click",
+    "group": "C_zero_lexical_overlap",
+    "question": "O comprador clica três vezes seguidas no botão de finalização debitando valores repetidos.",
+    "response": "Produzimos uma chave exclusiva para o pedido e checamos na base de liquidação rejeitando cobranças com a mesma chave."
+  },
+  {
+    "id": "C05_stale_cache_customer",
+    "group": "C_zero_lexical_overlap",
+    "question": "Usuários visualizam o endereço antigo de entrega mesmo após salvarem o novo cadastro.",
+    "response": "Disparamos rotina de expurgo imediato na camada volátil vinculada à alteração da entidade."
+  },
+  {
+    "id": "C06_untraceable_hops",
+    "group": "C_zero_lexical_overlap",
+    "question": "Um pedido desaparece no trajeto e ninguém sabe em qual servidor o processamento parou.",
+    "response": "Inserimos cabeçalhos de contexto com identificador correlacionado que acompanham cada salto do protocolo de rede."
+  },
+  {
+    "id": "C07_fast_producer_slow_consumer",
+    "group": "C_zero_lexical_overlap",
+    "question": "A fonte gera dados dez vezes mais rápido do que o trabalhador consegue gravar no disco.",
+    "response": "Aplicamos contrapressão onde o receptor sinaliza sua capacidade de absorção reduzindo o ritmo do transmissor."
+  },
+  {
+    "id": "C08_resource_starvation_partner",
+    "group": "C_zero_lexical_overlap",
+    "question": "Um único cliente corporativo consome todas as conexões disponíveis derrubando os demais clientes.",
+    "response": "Dividimos a infraestrutura em compartimentos estanques isolando pools dedicados para cada perfil de usuário."
+  },
+  {
+    "id": "C09_deadlock_circular_locks",
+    "group": "C_zero_lexical_overlap",
+    "question": "Duas tarefas travam mutuamente porque cada uma segura um recurso que a outra precisa para continuar.",
+    "response": "Imitamos um ordenamento hierárquico estrito obrigando todas as rotinas a adquirirem as travas na mesma sequência pré-definida."
+  },
+  {
+    "id": "C10_poison_pill_queue",
+    "group": "C_zero_lexical_overlap",
+    "question": "Uma mensagem corrompida faz o leitor reiniciar repetidamente sem que a fila consiga avançar.",
+    "response": "Roteamos para canal de descarte secundário após esgotamento de tentativas para inspeção isolada."
+  },
+  {
+    "id": "C11_configuration_drift",
+    "group": "C_zero_lexical_overlap",
+    "question": "Alterações manuais realizadas nas máquinas ao longo dos meses tornam impossível saber o estado dos servidores.",
+    "response": "Construímos imagens completas de máquina pré-configuradas e substituímos as instâncias sem intervenções manuais."
+  },
+  {
+    "id": "C12_tight_coupling_instantiation",
+    "group": "C_zero_lexical_overlap",
+    "question": "A classe cria internamente suas dependências tornando impossível substituir por dublês em testes unitários.",
+    "response": "Passamos os contratos abstratos por parâmetro no construtor delegando a criação ao ambiente externo."
+  },
+  {
+    "id": "C13_multi_service_rollback",
+    "group": "C_zero_lexical_overlap",
+    "question": "O primeiro serviço reserva o item, mas o terceiro serviço falha deixando dados inconsistentes entre os sistemas.",
+    "response": "Disparamos transações de estorno coordenadas para desfazer os passos anteriores em caso de interrupção."
+  },
+  {
+    "id": "C14_slow_table_scan",
+    "group": "C_zero_lexical_overlap",
+    "question": "A busca de um único registro varre centenas de milhares de linhas demorando segundos para responder.",
+    "response": "Estruturamos as chaves em árvores balanceadas que localizam a posição em saltos logarítmicos."
+  },
+  {
+    "id": "C15_process_visibility_leak",
+    "group": "C_zero_lexical_overlap",
+    "question": "Uma aplicação comprometida consegue enxergar as portas de rede e os processos em execução de outros programas no sistema operacional.",
+    "response": "Utilizamos tabelas de visualização isoladas no kernel do sistema particionando a visão de processos e redes."
+  },
+  {
+    "id": "C16_tampered_payload_jwt",
+    "group": "C_zero_lexical_overlap",
+    "question": "O usuário altera seu papel de permissão no corpo do token enviado sem autorização do servidor.",
+    "response": "Validamos a rubrica criptográfica com a chave pública rejeitando a requisição se os bytes tiverem sofrido alteração."
+  },
+  {
+    "id": "C17_memory_leak_oom",
+    "group": "C_zero_lexical_overlap",
+    "question": "O consumo de memória da aplicação sobe continuamente ao longo dos dias até o processo ser encerrado pelo sistema.",
+    "response": "Tiramos instantâneos da memória em momentos sucessivos para comparar quais estruturas retêm referências sem liberação."
+  },
+  {
+    "id": "C18_post_deploy_regression",
+    "group": "C_zero_lexical_overlap",
+    "question": "A nova versão publicada deixa o tempo de resposta mais lento sem gerar erros evidentes nos logs.",
+    "response": "Contrastamos os percentis elevados de duração contra as medições coletadas antes da atualização na telemetria."
+  },
+  {
+    "id": "C19_service_spoofing",
+    "group": "C_zero_lexical_overlap",
+    "question": "Um programa não autorizado se passa por um módulo interno e envia comandos falsos pela rede interna.",
+    "response": "Exigimos verificação recíproca de identidade criptográfica em cada canal estabelecido entre os serviços."
+  },
+  {
+    "id": "C20_blocking_io_threads",
+    "group": "C_zero_lexical_overlap",
+    "question": "Milhares de conexões simultâneas deixam o servidor paralisado porque cada espera por banco trava uma linha de processamento do sistema.",
+    "response": "Desacoplamos as rotinas do sistema operacional utilizando execuções leves montadas dinamicamente que cedem o controle nas pausas."
+  },
+  {
+    "id": "D01_k8s_direct",
+    "group": "D_entity_anchor",
+    "question": "Como configurar o Kubernetes para evitar tráfego em pods que ainda não inicializaram?",
+    "response": "No Kubernetes configuramos a readiness probe com checagem HTTP para que o kubelet só libere tráfego após o pod responder 200."
+  },
+  {
+    "id": "D02_kafka_direct",
+    "group": "D_entity_anchor",
+    "question": "Como o Kafka assegura que mensagens de um mesmo cliente sejam processadas em ordem estrita?",
+    "response": "No Kafka publicamos as mensagens com a mesma chave de partição para que caiam na mesma partição e sejam consumidas sequencialmente por offset."
+  },
+  {
+    "id": "D03_redis_direct",
+    "group": "D_entity_anchor",
+    "question": "Como o Redis gerencia a liberação de memória quando atinge o limite máximo configurado?",
+    "response": "O Redis avalia a política de eviction como volatile-lru ou allkeys-lru e remove chaves menos recentemente acessadas."
+  },
+  {
+    "id": "D04_docker_direct",
+    "group": "D_entity_anchor",
+    "question": "Como o Docker impede que um contêiner monopolize a memória RAM da máquina hospedeira?",
+    "response": "O Docker aplica limites de cgroups no kernel do Linux restringindo a quantidade máxima de bytes alocados ao processo."
+  },
+  {
+    "id": "D05_postgres_direct",
+    "group": "D_entity_anchor",
+    "question": "Como o PostgreSQL lida com leitura e escrita concorrente sem que leitores travem escritores?",
+    "response": "O PostgreSQL implementa controle multiversão MVCC onde leitores enxergam uma foto consistente do banco sem bloquear mutações de escritores."
+  },
+  {
+    "id": "D06_k8s_declarative",
+    "group": "D_entity_anchor",
+    "question": "Como configurar o Kubernetes para evitar tráfego em pods que ainda não inicializaram?",
+    "response": "Eu tenho três anos de experiência com Kubernetes atuando na sustentação de clusters."
+  },
+  {
+    "id": "D07_kafka_declarative",
+    "group": "D_entity_anchor",
+    "question": "Como o Kafka assegura que mensagens de um mesmo cliente sejam processadas em ordem estrita?",
+    "response": "Trabalhei bastante com Kafka na empresa anterior desenvolvendo serviços com mensageria."
+  },
+  {
+    "id": "D08_redis_declarative",
+    "group": "D_entity_anchor",
+    "question": "Como o Redis gerencia a liberação de memória quando atinge o limite máximo configurado?",
+    "response": "Utilizei Redis em projetos anteriores para guardar sessões de usuários."
+  },
+  {
+    "id": "D09_docker_declarative",
+    "group": "D_entity_anchor",
+    "question": "Como o Docker impede que um contêiner monopolize a memória RAM da máquina hospedeira?",
+    "response": "Uso Docker diariamente no meu ambiente de desenvolvimento para rodar imagens."
+  },
+  {
+    "id": "D10_postgres_declarative",
+    "group": "D_entity_anchor",
+    "question": "Como o PostgreSQL lida com leitura e escrita concorrente sem que leitores travem escritores?",
+    "response": "Já atuei quatro anos como desenvolvedor backend utilizando PostgreSQL como banco principal."
+  },
+  {
+    "id": "D11_k8s_infra_trivia",
+    "group": "D_entity_anchor",
+    "question": "Como configurar o Kubernetes para balancear carga entre réplicas de serviços?",
+    "response": "O Kubernetes é um projeto de código aberto mantido pela CNCF instalado na versão 1.28."
+  },
+  {
+    "id": "D12_kafka_infra_trivia",
+    "group": "D_entity_anchor",
+    "question": "Como o Kafka realiza o rebalanceamento de consumidores em um grupo?",
+    "response": "Nosso Kafka roda em cluster gerenciado na nuvem com três brokers em instâncias virtuais."
+  },
+  {
+    "id": "D13_redis_infra_trivia",
+    "group": "D_entity_anchor",
+    "question": "Como o Redis realiza a persistência com snapshots RDB?",
+    "response": "O Redis é desenvolvido em C e utiliza a porta padrão 6379 na nossa rede interna."
+  },
+  {
+    "id": "D14_docker_infra_trivia",
+    "group": "D_entity_anchor",
+    "question": "Como o Docker constrói o sistema de arquivos em camadas com overlay2?",
+    "response": "O Docker é mantido pela empresa Docker Inc e roda sobre servidores Linux Ubuntu."
+  },
+  {
+    "id": "D15_postgres_infra_trivia",
+    "group": "D_entity_anchor",
+    "question": "Como o PostgreSQL executa vacuum em tabelas com alto volume de updates?",
+    "response": "O PostgreSQL foi instalado na nossa esteira automatizada de infraestrutura no mês passado."
+  },
+  {
+    "id": "D16_k8s_alien",
+    "group": "D_entity_anchor",
+    "question": "Como configurar o Kubernetes para controlar limites de CPU em pods?",
+    "response": "No Kubernetes preparamos a receita de bolo misturando farinha e ovos para assar no forno."
+  },
+  {
+    "id": "D17_kafka_insufficient",
+    "group": "D_entity_anchor",
+    "question": "Como o Kafka garante a deduplicação de mensagens no produtor idempotente?",
+    "response": "Kafka... sim, beleza, com certeza conheço."
+  },
+  {
+    "id": "D18_redis_alien",
+    "group": "D_entity_anchor",
+    "question": "Como o Redis opera transações atômicas com MULTI e EXEC?",
+    "response": "No Redis organizamos as folhas de estilo CSS definindo cores de botões e espaçamento da página."
+  },
+  {
+    "id": "D19_docker_insufficient",
+    "group": "D_entity_anchor",
+    "question": "Como o Docker isola portas com drivers bridge de rede?",
+    "response": "Sobre Docker eu sei muito pouco, quase nada na verdade."
+  },
+  {
+    "id": "D20_postgres_alien",
+    "group": "D_entity_anchor",
+    "question": "Como o PostgreSQL utiliza o planejador de consultas com custos de estatísticas?",
+    "response": "No PostgreSQL configuramos rotas aéreas de aviões comerciais entre capitais europeias."
+  },
+  {
+    "id": "E01_http500_supporting",
+    "group": "E_supporting_vs_related",
+    "question": "Como você investigaria falhas repentinas com status HTTP 500 na rota de checkout?",
+    "response": "Inspecionaria os traces distribuídos e logs de exceção correlacionando os spans com erro para achar a dependência que falhou."
+  },
+  {
+    "id": "E02_http500_related",
+    "group": "E_supporting_vs_related",
+    "question": "Como você investigaria falhas repentinas com status HTTP 500 na rota de checkout?",
+    "response": "O protocolo HTTP especifica o código 500 na RFC como representação de erro interno do servidor de aplicação."
+  },
+  {
+    "id": "E03_pool_exhaustion_supporting",
+    "group": "E_supporting_vs_related",
+    "question": "Como diagnosticar lentidão provocada por esgotamento do pool de conexões com o banco?",
+    "response": "Analisaria métricas de conexões ativas versus tempo de espera na fila do pool identificando transações longas travadas."
+  },
+  {
+    "id": "E04_pool_exhaustion_related",
+    "group": "E_supporting_vs_related",
+    "question": "Como diagnosticar lentidão provocada por esgotamento do pool de conexões com o banco?",
+    "response": "O pool de conexões roda na porta TCP 5432 sobre instâncias Linux com núcleos Intel Xeon."
+  },
+  {
+    "id": "E05_cpu_spike_supporting",
+    "group": "E_supporting_vs_related",
+    "question": "Como descobrir a causa de um processo que subitamente satura a CPU em 100%?",
+    "response": "Capturaria profiling de amostragem de threads ou dumps sucessivos para localizar qual laço ou método está travando a execução."
+  },
+  {
+    "id": "E06_cpu_spike_related",
+    "group": "E_supporting_vs_related",
+    "question": "Como descobrir a causa de um processo que subitamente satura a CPU em 100%?",
+    "response": "Os servidores possuem 32 núcleos de processamento fabricados com arquitetura x86 moderna."
+  },
+  {
+    "id": "E07_slow_query_supporting",
+    "group": "E_supporting_vs_related",
+    "question": "Como otimizar uma consulta relacional que está demorando trinta segundos para retornar?",
+    "response": "Executaria o plano de execução com EXPLAIN ANALYZE para identificar se há varredura sequencial completa em tabelas grandes."
+  },
+  {
+    "id": "E08_slow_query_related",
+    "group": "E_supporting_vs_related",
+    "question": "Como otimizar uma consulta relacional que está demorando trinta segundos para retornar?",
+    "response": "A tabela relacional foi modelada em terceira forma normal e armazena 50 milhões de registros."
+  },
+  {
+    "id": "E09_cascading_protection_supporting",
+    "group": "E_supporting_vs_related",
+    "question": "Como proteger nossa API quando o provedor de cartão externo começa a falhar continuamente?",
+    "response": "Configuraria circuit breaker com timeout agressivo e resposta de fallback para degradar graciosamente sem travar os clientes."
+  },
+  {
+    "id": "E10_cascading_protection_related",
+    "group": "E_supporting_vs_related",
+    "question": "Como proteger nossa API quando o provedor de cartão externo começa a falhar continuamente?",
+    "response": "O provedor externo processa transações de cartões de crédito globais utilizando a nuvem."
+  },
+  {
+    "id": "E11_latency_deploy_supporting",
+    "group": "E_supporting_vs_related",
+    "question": "Como diagnosticar uma degradação severa no percentil 99 de latência logo após a publicação da nova versão?",
+    "response": "Compararia métricas de pausas de garbage collection e tempos de chamadas a bancos contra a baseline da versão anterior."
+  },
+  {
+    "id": "E12_latency_deploy_related",
+    "group": "E_supporting_vs_related",
+    "question": "Como diagnosticar uma degradação severa no percentil 99 de latência logo após a publicação da nova versão?",
+    "response": "A esteira automatizada de build gerou o artefato executável em 4 minutos antes do deploy."
+  },
+  {
+    "id": "E13_deadlock_supporting",
+    "group": "E_supporting_vs_related",
+    "question": "Como investigar ocorrências frequentes de impasses e cancelamentos por timeout de travas no banco?",
+    "response": "Examinaria os logs de contenção de travas do banco cruzando as transações concorrentes que competem pelos mesmos registros."
+  },
+  {
+    "id": "E14_deadlock_related",
+    "group": "E_supporting_vs_related",
+    "question": "Como investigar ocorrências frequentes de impasses e cancelamentos por timeout de travas no banco?",
+    "response": "O banco de dados relacional utiliza transações ACID em conformidade com as regras bancárias."
+  },
+  {
+    "id": "E15_consumer_lag_supporting",
+    "group": "E_supporting_vs_related",
+    "question": "Como investigar o crescimento contínuo da defasagem de mensagens na fila dos consumidores?",
+    "response": "Mediria o tempo de processamento unitário de mensagem e checaria se commits estão bloqueados ou se faltam partições para paralelizar."
+  },
+  {
+    "id": "E16_consumer_lag_related",
+    "group": "E_supporting_vs_related",
+    "question": "Como investigar o crescimento contínuo da defasagem de mensagens na fila dos consumidores?",
+    "response": "A infraestrutura de mensageria possui tópicos criados pela equipe de arquitetura há dois anos."
+  },
+  {
+    "id": "E17_memory_leak_supporting",
+    "group": "E_supporting_vs_related",
+    "question": "Como investigar consumo progressivo de memória até o término abrupto da aplicação por falta de espaço?",
+    "response": "Capturaria um dump de memória e usaria um analisador de heap para identificar quais instâncias acumulam maior retenção de bytes."
+  },
+  {
+    "id": "E18_memory_leak_related",
+    "group": "E_supporting_vs_related",
+    "question": "Como investigar consumo progressivo de memória até o término abrupto da aplicação por falta de espaço?",
+    "response": "Nossas máquinas virtuais estão hospedadas em servidores Linux com 64 gigabytes de memória."
+  },
+  {
+    "id": "E19_network_timeouts_supporting",
+    "group": "E_supporting_vs_related",
+    "question": "Como diagnosticar quedas intermitentes e timeouts em chamadas HTTP entre microsserviços?",
+    "response": "Coletaria métricas de handshake TLS e resolução DNS inspecionando timeouts de sockets na camada de rede da telemetria."
+  },
+  {
+    "id": "E20_network_timeouts_related",
+    "group": "E_supporting_vs_related",
+    "question": "Como diagnosticar quedas intermitentes e timeouts em chamadas HTTP entre microsserviços?",
+    "response": "A comunicação entre microsserviços ocorre sobre cabos de fibra ótica em redes de alta capacidade."
+  },
+  {
+    "id": "F01_rest_and_pagination_partial1",
+    "group": "F_multi_aspect",
+    "question": "Como projetar uma API REST e como estruturar a paginação de recursos?",
+    "response": "REST utiliza verbos HTTP semânticos e identificação clara de recursos em URIs."
+  },
+  {
+    "id": "F02_circuit_breaker_and_bulkhead_partial1",
+    "group": "F_multi_aspect",
+    "question": "Explique como funciona bulkhead e como atua o circuit breaker em resiliência.",
+    "response": "Bulkhead isola recursos em pools separados para que a falha de um módulo não esgote todas as threads do sistema."
+  },
+  {
+    "id": "F03_jwt_payload_and_signature_partial1",
+    "group": "F_multi_aspect",
+    "question": "Como o JWT transporta dados de usuário e como a assinatura criptográfica garante a integridade?",
+    "response": "O JWT carrega informações no payload codificadas em base64 estruturado em JSON."
+  },
+  {
+    "id": "F04_kafka_partitions_and_rebalance_partial1",
+    "group": "F_multi_aspect",
+    "question": "Como o Kafka particiona mensagens e como gerencia o rebalanceamento de consumidores?",
+    "response": "Distribui mensagens atribuindo uma chave hash para escolher a partição de destino no cluster."
+  },
+  {
+    "id": "F05_docker_namespaces_and_cgroups_partial1",
+    "group": "F_multi_aspect",
+    "question": "Como o Docker utiliza namespaces e como gerencia limites com cgroups?",
+    "response": "Namespaces isolam processos, redes e pontos de montagem para dar a ilusão de máquina dedicada."
+  },
+  {
+    "id": "F06_rest_and_pagination_partial2",
+    "group": "F_multi_aspect",
+    "question": "Como projetar uma API REST e como estruturar a paginação de recursos?",
+    "response": "A paginação usa parâmetros de limit e offset ou cursores para fatiar conjuntos de dados sem sobrecarregar a memória."
+  },
+  {
+    "id": "F07_circuit_breaker_and_bulkhead_partial2",
+    "group": "F_multi_aspect",
+    "question": "Explique como funciona bulkhead e como atua o circuit breaker em resiliência.",
+    "response": "O circuit breaker monitora taxa de erros e abre o circuito interrompendo requisições para evitar cascata."
+  },
+  {
+    "id": "F08_jwt_payload_and_signature_partial2",
+    "group": "F_multi_aspect",
+    "question": "Como o JWT transporta dados de usuário e como a assinatura criptográfica garante a integridade?",
+    "response": "A assinatura criptográfica valida o hash do cabeçalho e payload usando chave secreta para detectar adulteração."
+  },
+  {
+    "id": "F09_docker_namespaces_and_cgroups_partial2",
+    "group": "F_multi_aspect",
+    "question": "Como o Docker utiliza namespaces e como gerencia limites com cgroups?",
+    "response": "Os cgroups restringem a cota de CPU e quantidade de memória RAM que os processos podem consumir no hospedeiro."
+  },
+  {
+    "id": "F10_ports_and_adapters_partial",
+    "group": "F_multi_aspect",
+    "question": "Explique portas e adaptadores na arquitetura hexagonal.",
+    "response": "As portas definem interfaces puras pelas quais o domínio de negócio expõe e recebe dados do exterior."
+  },
+  {
+    "id": "F11_rest_and_pagination_full",
+    "group": "F_multi_aspect",
+    "question": "Como projetar uma API REST e como estruturar a paginação de recursos?",
+    "response": "REST utiliza verbos HTTP para manipular recursos identificados em URIs e a paginação usa cursor ou limit e offset para fatiar resultados."
+  },
+  {
+    "id": "F12_circuit_breaker_and_bulkhead_full",
+    "group": "F_multi_aspect",
+    "question": "Explique como funciona bulkhead e como atua o circuit breaker em resiliência.",
+    "response": "Bulkhead isola pools de threads para conter falhas e o circuit breaker abre o circuito interrompendo chamadas após falhas sucessivas."
+  },
+  {
+    "id": "F13_jwt_payload_and_signature_full",
+    "group": "F_multi_aspect",
+    "question": "Como o JWT transporta dados de usuário e como a assinatura criptográfica garante a integridade?",
+    "response": "O JWT transporta claims no payload em base64 e a assinatura criptográfica valida os dados com chave pública prevenindo adulteração."
+  },
+  {
+    "id": "F14_docker_namespaces_and_cgroups_full",
+    "group": "F_multi_aspect",
+    "question": "Como o Docker utiliza namespaces e como gerencia limites com cgroups?",
+    "response": "Namespaces isolam visão de processos e redes no kernel enquanto cgroups limitam quotas de CPU e consumo de memória."
+  },
+  {
+    "id": "F15_ports_and_adapters_full",
+    "group": "F_multi_aspect",
+    "question": "Explique portas e adaptadores na arquitetura hexagonal.",
+    "response": "Portas são contratos de interface do núcleo de negócio e adaptadores são as implementações técnicas concretas para bancos e APIs externas."
+  },
+  {
+    "id": "F16_three_demands_all_covered",
+    "group": "F_multi_aspect",
+    "question": "Como proteger APIs usando autenticação, rate limiting e circuit breaker?",
+    "response": "Aplicamos autenticação com tokens JWT, rate limiting por token bucket para conter rajadas e circuit breaker para isolar falhas em cascata."
+  },
+  {
+    "id": "F17_three_demands_two_covered",
+    "group": "F_multi_aspect",
+    "question": "Como proteger APIs usando autenticação, rate limiting e circuit breaker?",
+    "response": "Aplicamos autenticação com validação de tokens JWT e limitamos a taxa de chamadas usando algoritmo de token bucket."
+  },
+  {
+    "id": "F18_three_demands_one_covered",
+    "group": "F_multi_aspect",
+    "question": "Como proteger APIs usando autenticação, rate limiting e circuit breaker?",
+    "response": "Implementamos autenticação validando credenciais em cada requisição."
+  },
+  {
+    "id": "F19_three_demands_zero_covered_trivia",
+    "group": "F_multi_aspect",
+    "question": "Como proteger APIs usando autenticação, rate limiting e circuit breaker?",
+    "response": "Nossas APIs públicas rodam em contêineres gerenciados em nuvem."
+  },
+  {
+    "id": "F20_three_demands_alien",
+    "group": "F_multi_aspect",
+    "question": "Como proteger APIs usando autenticação, rate limiting e circuit breaker?",
+    "response": "Utilizamos tabelas relacionais de bancos SQL com índices btree e chaves primárias."
+  },
+  {
+    "id": "G01_experience_declaration_only",
+    "group": "G_epistemology",
+    "question": "Qual sua experiência prática configurando Kubernetes?",
+    "response": "Trabalhei dois anos com Kubernetes na empresa anterior."
+  },
+  {
+    "id": "G02_experience_demonstrated_concrete",
+    "group": "G_epistemology",
+    "question": "Como você solucionou incidentes de produção no Kubernetes?",
+    "response": "Em produção, configurei readiness probes nos pods e ajustamos limites de memória no deployment, eliminando os reinícios por OOM."
+  },
+  {
+    "id": "G03_pure_hypothesis",
+    "group": "G_epistemology",
+    "question": "Como você investigaria um deadlock no banco?",
+    "response": "Eu hipotetizaria que duas transações estão disputando linhas em ordem inversa e executaria uma análise dos logs de trava."
+  },
+  {
+    "id": "G04_pure_conceptual",
+    "group": "G_epistemology",
+    "question": "Como funcionam as virtual threads no Java?",
+    "response": "São threads leves gerenciadas pela JVM que desacoplam tarefas de threads de plataforma do sistema operacional."
+  },
+  {
+    "id": "G05_admitted_uncertainty",
+    "group": "G_epistemology",
+    "question": "Como funciona o algoritmo de consenso Raft?",
+    "response": "Não tenho certeza dos detalhes exatos do protocolo de eleição."
+  },
+  {
+    "id": "G06_self_correction_positive",
+    "group": "G_epistemology",
+    "question": "Como evitar travamento de leitura em concorrência?",
+    "response": "Eu usaria lock pessimista... na verdade, pensando melhor, para não travar a linha uso controle otimista com versionamento."
+  },
+  {
+    "id": "G07_career_trajectory_declaration",
+    "group": "G_epistemology",
+    "question": "Conte sobre seu histórico profissional em arquitetura.",
+    "response": "Atuei seis anos como engenheiro de software desenhando microsserviços."
+  },
+  {
+    "id": "G08_production_troubleshooting_concrete",
+    "group": "G_epistemology",
+    "question": "Como sua equipe tratou a degradação de performance após o último deploy?",
+    "response": "Investiguei o incidente em produção comparando o percentil P99 com a baseline e reverti a versão que continha query sem índice."
+  },
+  {
+    "id": "G09_hypothetical_proposal",
+    "group": "G_epistemology",
+    "question": "Como você estruturaria a proteção de uma API externa instável?",
+    "response": "Uma possibilidade seria implementar circuit breaker com fallback contingencial."
+  },
+  {
+    "id": "G10_studied_not_used",
+    "group": "G_epistemology",
+    "question": "Você já utilizou eBPF em produção?",
+    "response": "Nunca usei em produção, apenas estudei os conceitos de bytecode no kernel e filtros XDP."
+  },
+  {
+    "id": "G11_experience_with_tool_declaration",
+    "group": "G_epistemology",
+    "question": "Qual sua vivência com Kafka?",
+    "response": "Já usei Kafka na empresa anterior integrando microsserviços."
+  },
+  {
+    "id": "G12_concrete_cache_incident",
+    "group": "G_epistemology",
+    "question": "Como você atuou quando o cache caiu em produção?",
+    "response": "Quando tivemos falha de cache no cluster, configurei circuit breaker e aumentei réplicas de leitura no banco para absorver o tráfego."
+  },
+  {
+    "id": "G13_pure_theory_definition",
+    "group": "G_epistemology",
+    "question": "O que define a propriedade de isolamento no ACID?",
+    "response": "Garante que transações simultâneas não interfiram na visibilidade dos dados intermediários umas das outras."
+  },
+  {
+    "id": "G14_admitted_shallow_knowledge",
+    "group": "G_epistemology",
+    "question": "Como configurar o balanceamento dinâmico de partições no NATS JetStream?",
+    "response": "Sei bem por cima, quase nada na verdade dessa parte de configuração."
+  },
+  {
+    "id": "G15_tentative_speculation",
+    "group": "G_epistemology",
+    "question": "Como mitigar gargalo em escrita de chaves quentes no DynamoDB?",
+    "response": "Provavelmente adicionaria um sufixo aleatório na chave para espalhar as gravações entre diferentes partições."
+  },
+  {
+    "id": "G16_confirmed_experience_with_mechanism",
+    "group": "G_epistemology",
+    "question": "Como você utiliza índices no PostgreSQL no seu dia a dia?",
+    "response": "Trabalhei criando índices B-Tree compostos e examinando se as queries executavam seek com explain analyze."
+  },
+  {
+    "id": "G17_theoretical_tradeoff",
+    "group": "G_epistemology",
+    "question": "Qual o trade-off entre consistência forte e disponibilidade no Teorema CAP?",
+    "response": "Em caso de partição de rede, priorizar consistência exige rejeitar escritas enquanto priorizar disponibilidade exige aceitar dados temporariamente obsoletos."
+  },
+  {
+    "id": "G18_direct_declaration_no_substance",
+    "group": "G_epistemology",
+    "question": "Como configurar índices parciais no banco relacional?",
+    "response": "Tenho bastante experiência com banco relacional."
+  },
+  {
+    "id": "G19_concrete_observability_pipeline",
+    "group": "G_epistemology",
+    "question": "Como sua equipe estruturou telemetria de aplicações?",
+    "response": "Em produção, padronizamos a emissão de métricas e traces via OTLP exportando dados para um collector centralizado."
+  },
+  {
+    "id": "G20_hypothetical_backpressure",
+    "group": "G_epistemology",
+    "question": "O que você faria se a taxa de eventos saturasse os consumidores?",
+    "response": "Eu proporia implementar controle de fluxo com backpressure para frear a produção no remetente."
+  },
+  {
+    "id": "H01_occ_formal",
+    "group": "H_representation_invariance",
+    "question": "Como evitar conflito de gravação concorrente no mesmo registro?",
+    "response": "Aplicando controle de concorrência otimista com checagem atômica do contador de versão no momento do commit."
+  },
+  {
+    "id": "H02_occ_colloquial",
+    "group": "H_representation_invariance",
+    "question": "Como evitar conflito de gravação concorrente no mesmo registro?",
+    "response": "Coloco uma coluna de versão lá na tabela e na hora de salvar confiro se ninguém mudou a versão antes de mim."
+  },
+  {
+    "id": "H03_circuit_breaker_en",
+    "group": "H_representation_invariance",
+    "question": "Como evitar falha em cascata quando um parceiro externo começa a oscilar?",
+    "response": "Usaria circuit breaker para abrir o circuito após limite de erros e retornar resposta degradada via fallback."
+  },
+  {
+    "id": "H04_circuit_breaker_pt",
+    "group": "H_representation_invariance",
+    "question": "Como evitar falha em cascata quando um parceiro externo começa a oscilar?",
+    "response": "Colocaria um disjuntor que desliga as chamadas automaticamente quando acumula muitos erros e devolve um plano B."
+  },
+  {
+    "id": "H05_tracing_concise",
+    "group": "H_representation_invariance",
+    "question": "Como rastrear requisições através de dezenas de microsserviços?",
+    "response": "Injetando identificador de correlação nos cabeçalhos HTTP e propagando downstream."
+  },
+  {
+    "id": "H06_tracing_elaborate",
+    "group": "H_representation_invariance",
+    "question": "Como rastrear requisições através de dezenas de microsserviços?",
+    "response": "A estratégia essencial envolve gerar um identificador exclusivo no ponto de entrada da malha e repassar esse token de correlação dentro dos cabeçalhos HTTP para todos os serviços downstream garantindo a amarração dos registros."
+  },
+  {
+    "id": "H07_ratelimit_formal",
+    "group": "H_representation_invariance",
+    "question": "Como limitar o volume de chamadas abusivas por cliente?",
+    "response": "Implementando algoritmo de token bucket para descartar requisições excedentes da taxa permitida."
+  },
+  {
+    "id": "H08_ratelimit_conversational",
+    "group": "H_representation_invariance",
+    "question": "Como limitar o volume de chamadas abusivas por cliente?",
+    "response": "Eu usaria uma lógica de balde de fichas que vai gastando créditos e se o usuário passar do limite a gente barra."
+  },
+  {
+    "id": "H09_idempotency_tech",
+    "group": "H_representation_invariance",
+    "question": "Como evitar duplicidade de cobrança em reenvios de transação?",
+    "response": "Associando uma chave de idempotência checada em tabela de deduplicação antes da execução."
+  },
+  {
+    "id": "H10_idempotency_plain",
+    "group": "H_representation_invariance",
+    "question": "Como evitar duplicidade de cobrança em reenvios de transação?",
+    "response": "Gero uma chave única para a compra e se chegar uma requisição repetida com essa mesma chave eu recuso na hora."
+  },
+  {
+    "id": "H11_deadlock_formal",
+    "group": "H_representation_invariance",
+    "question": "Como prevenir deadlocks entre transações concorrentes?",
+    "response": "Adquirindo travas em ordem hierárquica estrita e global em todas as operações."
+  },
+  {
+    "id": "H12_deadlock_informal",
+    "group": "H_representation_invariance",
+    "question": "Como prevenir deadlocks entre transações concorrentes?",
+    "response": "A gente combina de sempre trancar as coisas na mesma ordem, tipo tabela A primeiro e depois tabela B pra ninguém travar o colega."
+  },
+  {
+    "id": "H13_cache_tech",
+    "group": "H_representation_invariance",
+    "question": "Como evitar acúmulo de dados desatualizados na memória de cache?",
+    "response": "Configurando TTL com expiração automática e invalidação ativa em eventos de alteração."
+  },
+  {
+    "id": "H14_cache_plain",
+    "group": "H_representation_invariance",
+    "question": "Como evitar acúmulo de dados desatualizados na memória de cache?",
+    "response": "Colocando tempo de vida nas chaves pra sumir sozinhas e apagando da memória sempre que o registro for atualizado."
+  },
+  {
+    "id": "H15_backpressure_formal",
+    "group": "H_representation_invariance",
+    "question": "O que fazer quando a produção de mensagens supera a capacidade do consumidor?",
+    "response": "Aplicar contrapressão no fluxo regulando a taxa do emissor conforme a capacidade de processamento do receptor."
+  },
+  {
+    "id": "H16_backpressure_intuitive",
+    "group": "H_representation_invariance",
+    "question": "O que fazer quando a produção de mensagens supera a capacidade do consumidor?",
+    "response": "O consumidor avisa que está cheio e faz o produtor pisar no freio até desafogar a fila."
+  },
+  {
+    "id": "H17_docker_short",
+    "group": "H_representation_invariance",
+    "question": "Como o Docker isola processos no sistema operacional?",
+    "response": "Usa namespaces para visibilidade e cgroups para cotas de recursos no kernel."
+  },
+  {
+    "id": "H18_docker_detailed",
+    "group": "H_representation_invariance",
+    "question": "Como o Docker isola processos no sistema operacional?",
+    "response": "O mecanismo de contenção opera essencialmente através de namespaces do Linux que limitam a visibilidade de processos e redes, combinado com cgroups para restringir quotas máximas de memória e CPU no kernel."
+  },
+  {
+    "id": "H19_vthreads_formal",
+    "group": "H_representation_invariance",
+    "question": "Como funcionam as virtual threads no Java?",
+    "response": "São threads leves gerenciadas pela JVM que montam dinamicamente em carrier threads sem bloquear threads do sistema operacional."
+  },
+  {
+    "id": "H20_vthreads_colloquial_typo",
+    "group": "H_representation_invariance",
+    "question": "Como funcionam as virtual threads no Java?",
+    "response": "Sao threads virtuais bem levezinhas na jvm que nao travam as threads do so quando fica esperando i/o."
+  },
+  {
+    "id": "H21_dip_formal",
+    "group": "H_representation_invariance",
+    "question": "Qual o objetivo da inversão de dependência?",
+    "response": "Desacoplar módulos de alto nível de implementações concretas recebendo abstrações pelo construtor."
+  },
+  {
+    "id": "H22_dip_informal",
+    "group": "H_representation_invariance",
+    "question": "Qual o objetivo da inversão de dependência?",
+    "response": "A classe recebe o que precisa de fora em vez de instanciar as coisas por conta própria pra facilitar testes."
+  },
+  {
+    "id": "H23_btree_formal",
+    "group": "H_representation_invariance",
+    "question": "Como o índice B-Tree acelera consultas no banco?",
+    "response": "Organiza chaves em nós balanceados permitindo busca logarítmica com seek rápido."
+  },
+  {
+    "id": "H24_btree_plain",
+    "group": "H_representation_invariance",
+    "question": "Como o índice B-Tree acelera consultas no banco?",
+    "response": "Estrutura as linhas numa árvore balanceada pra achar o registro em poucos passos sem ler a tabela inteira."
+  },
+  {
+    "id": "H25_mtls_formal",
+    "group": "H_representation_invariance",
+    "question": "Como garantir autenticação mútua entre pods na rede interna?",
+    "response": "Implementando mTLS com validação recíproca de certificados criptográficos emitidos por autoridade interna."
+  },
+  {
+    "id": "H26_mtls_plain",
+    "group": "H_representation_invariance",
+    "question": "Como garantir autenticação mútua entre pods na rede interna?",
+    "response": "Os dois lados trocam e checam certificados de segurança criptografados pra garantir quem é quem na conversa."
+  },
+  {
+    "id": "H27_dlq_formal",
+    "group": "H_representation_invariance",
+    "question": "Como lidar com mensagens que causam erro recorrente no consumidor?",
+    "response": "Encaminhando para uma dead-letter queue após esgotamento de retries para análise posterior."
+  },
+  {
+    "id": "H28_dlq_plain",
+    "group": "H_representation_invariance",
+    "question": "Como lidar com mensagens que causam erro recorrente no consumidor?",
+    "response": "Jogamos a mensagem com defeito numa fila de descarte secundária depois de tentar de novo algumas vezes."
+  },
+  {
+    "id": "H29_saga_formal",
+    "group": "H_representation_invariance",
+    "question": "Como coordenar transações entre múltiplos microsserviços?",
+    "response": "Adotando padrão Saga com transações locais encadeadas e ações de compensação em caso de rollback."
+  },
+  {
+    "id": "H30_saga_plain",
+    "group": "H_representation_invariance",
+    "question": "Como coordenar transações entre múltiplos microsserviços?",
+    "response": "Fazemos cada serviço rodar sua parte e se algum der ruim a gente dispara operações de estorno pra desfazer o que já fez."
+  },
+  {
+    "id": "H31_immutable_formal",
+    "group": "H_representation_invariance",
+    "question": "Como evitar desvios de configuração em servidores de produção?",
+    "response": "Adotando infraestrutura imutável gerando novas imagens de máquina em vez de alterar instâncias em execução."
+  },
+  {
+    "id": "H32_immutable_plain",
+    "group": "H_representation_invariance",
+    "question": "Como evitar desvios de configuração em servidores de produção?",
+    "response": "A gente nunca mexe no servidor rodando; cria uma imagem novinha pronta com tudo configurado e troca as máquinas."
+  },
+  {
+    "id": "H33_outbox_formal",
+    "group": "H_representation_invariance",
+    "question": "Como publicar eventos garantindo que a gravação no banco também aconteceu?",
+    "response": "Utilizando transactional outbox pattern persistindo o evento na mesma transação local do banco de dados."
+  },
+  {
+    "id": "H34_outbox_plain",
+    "group": "H_representation_invariance",
+    "question": "Como publicar eventos garantindo que a gravação no banco também aconteceu?",
+    "response": "Salvamos a mensagem numa tabela de eventos dentro da mesma transação do banco e um processo lê e despacha depois."
+  },
+  {
+    "id": "H35_bulkhead_formal",
+    "group": "H_representation_invariance",
+    "question": "Como evitar que um cliente lento esgote os recursos do sistema?",
+    "response": "Aplicando padrão bulkhead isolando pools de threads dedicados para que falhas fiquem confinadas."
+  },
+  {
+    "id": "H36_bulkhead_plain",
+    "group": "H_representation_invariance",
+    "question": "Como evitar que um cliente lento esgote os recursos do sistema?",
+    "response": "Separamos os limites em caixas isoladas com pools próprios pra que se um travar não congele o resto da aplicação."
+  },
+  {
+    "id": "H37_p99_formal",
+    "group": "H_representation_invariance",
+    "question": "Como identificar lentidão após atualizar a versão em produção?",
+    "response": "Comparando percentil 99 de latência e taxas de erro da telemetria contra a baseline histórica da versão anterior."
+  },
+  {
+    "id": "H38_p99_plain",
+    "group": "H_representation_invariance",
+    "question": "Como identificar lentidão após atualizar a versão em produção?",
+    "response": "Eu olharia os tempos das requisições mais lentas nos gráficos comparando como estava antes de subir a versão nova."
+  },
+  {
+    "id": "H39_eventual_formal",
+    "group": "H_representation_invariance",
+    "question": "Como sincronizar dados entre serviços sem transação distribuída em duas fases?",
+    "response": "Adotando consistência eventual com publicação de eventos assíncronos e rotinas de reconciliação em background."
+  },
+  {
+    "id": "H40_eventual_plain",
+    "group": "H_representation_invariance",
+    "question": "Como sincronizar dados entre serviços sem transação distribuída em duas fases?",
+    "response": "Mandamos eventos assíncronos e deixamos o outro lado atualizar no tempo dele rodando uma conferência periódica pra bater as pontas."
+  },
+  {
+    "id": "I01_transacao_concurrency_trap",
+    "group": "I_generic_tokens",
+    "question": "Como configurar o isolamento de rede entre contêineres?",
+    "response": "A transação entre sistemas bancários requer validações frequentes no banco de dados."
+  },
+  {
+    "id": "I02_cluster_actors_trap",
+    "group": "I_generic_tokens",
+    "question": "Como funciona o modelo de atores em concorrência?",
+    "response": "Nosso cluster de computadores tem nós espalhados pelo mundo na nuvem."
+  },
+  {
+    "id": "I03_endpoint_sql_trap",
+    "group": "I_generic_tokens",
+    "question": "Como otimizar consultas relacionais usando índices B-Tree?",
+    "response": "Criamos um endpoint rápido para receber dados de clientes pela internet."
+  },
+  {
+    "id": "I04_recurso_kafka_trap",
+    "group": "I_generic_tokens",
+    "question": "Como configurar particionamento de tópicos no Kafka?",
+    "response": "Dividimos recursos importantes em instâncias separadas para organizar os dados."
+  },
+  {
+    "id": "I05_thread_css_trap",
+    "group": "I_generic_tokens",
+    "question": "Como alinhar elementos no centro da tela com CSS Flexbox?",
+    "response": "A thread de execução do navegador renderiza os elementos gráficos da página."
+  },
+  {
+    "id": "I06_servidor_jwt_trap",
+    "group": "I_generic_tokens",
+    "question": "Como o JWT valida a autenticidade de claims?",
+    "response": "O servidor físico está localizado em um data center certificado na Europa."
+  },
+  {
+    "id": "I07_instancia_docker_trap",
+    "group": "I_generic_tokens",
+    "question": "Como o Docker isola o sistema de arquivos entre contêineres?",
+    "response": "Cada classe possui uma instância criada em memória durante a execução do programa."
+  },
+  {
+    "id": "I08_dados_circuit_breaker_trap",
+    "group": "I_generic_tokens",
+    "question": "Como funciona o circuit breaker na proteção de falhas em cascata?",
+    "response": "Os dados armazenados no banco são estruturados em linhas e colunas relacionais."
+  },
+  {
+    "id": "I09_servico_btree_trap",
+    "group": "I_generic_tokens",
+    "question": "Como a árvore B acelera a busca logarítmica de registros?",
+    "response": "Nosso serviço web atende requisições de clientes através de portas seguras."
+  },
+  {
+    "id": "I10_api_threads_trap",
+    "group": "I_generic_tokens",
+    "question": "Como funcionam as virtual threads no runtime da JVM?",
+    "response": "A API de pagamentos da empresa processa compras de clientes com cartão."
+  },
+  {
+    "id": "I11_transacao_cache_trap",
+    "group": "I_generic_tokens",
+    "question": "Como funciona a estratégia de cache write-through?",
+    "response": "Cada transação comercial gera uma nota fiscal enviada por email."
+  },
+  {
+    "id": "I12_cluster_rest_trap",
+    "group": "I_generic_tokens",
+    "question": "O que caracteriza a restrição stateless em uma arquitetura REST?",
+    "response": "As máquinas do cluster possuem conexões redundantes de energia e rede."
+  },
+  {
+    "id": "I13_endpoint_backpressure_trap",
+    "group": "I_generic_tokens",
+    "question": "Como o controle de fluxo por backpressure impede sobrecarga do consumidor?",
+    "response": "O endpoint de login aceita autenticação básica com usuário e senha."
+  },
+  {
+    "id": "I14_recurso_mtls_trap",
+    "group": "I_generic_tokens",
+    "question": "Como o mTLS autentica mutuamente cliente e servidor?",
+    "response": "O recurso de busca rápida no site permite achar produtos por palavra-chave."
+  },
+  {
+    "id": "I15_thread_kafka_trap",
+    "group": "I_generic_tokens",
+    "question": "Como garantir semântica exactly-once no Kafka?",
+    "response": "Criamos uma thread em segundo plano que imprime relatórios de vendas na impressora."
+  },
+  {
+    "id": "I16_servidor_docker_trap",
+    "group": "I_generic_tokens",
+    "question": "Como o Docker isola processos usando cgroups?",
+    "response": "O servidor de emails envia mensagens de recuperação de senha aos usuários."
+  },
+  {
+    "id": "I17_instancia_jwt_trap",
+    "group": "I_generic_tokens",
+    "question": "Como funciona o tempo de expiração exp de um token JWT?",
+    "response": "Criamos uma instância do banco de dados na nuvem para armazenar fotos de perfil."
+  },
+  {
+    "id": "I18_dados_observability_trap",
+    "group": "I_generic_tokens",
+    "question": "Como estruturar telemetria distribuída com traces e spans?",
+    "response": "Coletamos dados biográficos de clientes como endereço e número de telefone no cadastro."
+  },
+  {
+    "id": "I19_servico_concurrency_trap",
+    "group": "I_generic_tokens",
+    "question": "Como evitar deadlocks ao acessar múltiplos recursos concorrentes?",
+    "response": "Nosso serviço de entrega rápida leva encomendas em até duas horas."
+  },
+  {
+    "id": "I20_api_saga_trap",
+    "group": "I_generic_tokens",
+    "question": "Como orquestrar transações compensatórias no padrão Saga?",
+    "response": "A API do tempo meteorológico informa a previsão de chuva para amanhã."
+  },
+  {
+    "id": "J01_reverse_proxy_cache",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como acelerar o tempo de resposta em páginas web com consultas repetidas?",
+    "response": "Colocamos um proxy reverso na frente das aplicações armazenando em cache as respostas HTML completas."
+  },
+  {
+    "id": "J02_read_replicas_for_reads",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como desafogar o banco de dados sobrecarregado por consultas analíticas pesadas?",
+    "response": "Criamos réplicas de leitura assíncronas direcionando as queries analíticas para elas e poupando o nó primário de escrita."
+  },
+  {
+    "id": "J03_dataloader_n_plus_one",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como resolver o problema de dezenas de consultas em cascata para carregar itens filhos em listas?",
+    "response": "Implementamos um mecanismo de DataLoader acumulando os identificadores em lote para disparar uma única consulta agregada."
+  },
+  {
+    "id": "J04_change_data_capture_sync",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como alimentar um mecanismo de busca externa com dados do banco sem acoplar a escrita da aplicação?",
+    "response": "Utilizamos Change Data Capture lendo o log de transações do banco em background para replicar dados assincronamente."
+  },
+  {
+    "id": "J05_dead_letter_queue_handling",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como impedir que falhas de processamento em mensagens travem o consumo de uma fila assíncrona?",
+    "response": "Roteamos eventos que excedem o limite de retentativas para uma fila de descarte secundária (DLQ) para análise posterior."
+  },
+  {
+    "id": "J06_token_bucket_burst",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como proteger um endpoint público de picos momentâneos sem penalizar tráfego legítimo constante?",
+    "response": "Adotamos token bucket permitindo rajadas pontuais até a capacidade máxima do balde enquanto a taxa média permanece controlada."
+  },
+  {
+    "id": "J07_immutable_images_drift",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como garantir que todos os servidores em um cluster executem exatamente a mesma versão de pacotes sem divergência?",
+    "response": "Produzimos imagens de máquina imutáveis em esteira automatizada e substituímos os nós integralmente a cada publicação."
+  },
+  {
+    "id": "J08_service_mesh_mtls_encryption",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como criptografar e autenticar todo o tráfego entre microsserviços sem alterar o código das aplicações?",
+    "response": "Injetamos proxies sidecar de service mesh que interceptam o tráfego dos contêineres e negociam mTLS de forma transparente."
+  },
+  {
+    "id": "J09_bloom_filter_pre_check",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como evitar buscas caras no armazenamento em disco para chaves que sequer existem?",
+    "response": "Mantemos um filtro de Bloom em memória que descarta com certeza absoluta consultas para chaves ausentes antes do acesso a disco."
+  },
+  {
+    "id": "J10_outbox_pattern_delivery",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como garantir que um evento de negócio seja publicado após gravar no banco sem usar duas fases?",
+    "response": "Persistimos a mensagem na mesma transação local do banco em tabela de outbox e um despachante assíncrono lê e envia ao broker."
+  },
+  {
+    "id": "J11_saga_orchestration",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como coordenar uma transação distribuída que envolve pagamentos, estoque e logística sem lock global?",
+    "response": "Usamos padrão Saga com um orquestrador disparando comandos locais e executando compensações reversas se houver erro intermediário."
+  },
+  {
+    "id": "J12_graceful_degradation_cache",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como manter o site de e-commerce navegável mesmo com o banco de dados principal fora do ar?",
+    "response": "Configuramos resposta degradada servindo catálogo estático em cache com mensagem informando que compras estão temporariamente em espera."
+  },
+  {
+    "id": "J13_retry_with_jitter_storms",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como evitar que milhares de aparelhos façam retentativas no mesmo segundo após uma queda de rede?",
+    "response": "Adicionamos variação aleatória de jitter ao intervalo de backoff exponencial espalhando as tentativas dos clientes no tempo."
+  },
+  {
+    "id": "J14_bulkhead_thread_isolation",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como impedir que uma integração lenta com a receita federal derrube o restante das rotas do sistema?",
+    "response": "Alocamos um pool isolado de threads dedicado exclusivamente a esse serviço externo contendo a falha em um compartimento estanque."
+  },
+  {
+    "id": "J15_eventual_reconciliation",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como resolver discrepâncias financeiras entre dois sistemas sem exigir consistência imediata?",
+    "response": "Adotamos consistência eventual com mensagens assíncronas e executamos rotinas periódicas de reconciliação para corrigir diferenças."
+  },
+  {
+    "id": "J16_w3c_trace_context",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como manter a rastreabilidade ponta a ponta quando as requisições passam por gateways de terceiros?",
+    "response": "Adotamos o padrão W3C TraceContext propagando os cabeçalhos traceparent e tracestate através de todas as bordas de rede."
+  },
+  {
+    "id": "J17_lsm_tree_append_only",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como maximizar a taxa de gravação em bancos quando a inserção aleatória em disco satura a I/O?",
+    "response": "Utilizamos estrutura baseada em LSM-Tree gravando em memória e descarregando em disco em arquivos imutáveis sequenciais append-only."
+  },
+  {
+    "id": "J18_canary_deployment",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como mitigar o risco de publicar uma versão com bugs graves que afete todos os clientes ao mesmo tempo?",
+    "response": "Fazemos deploy canário direcionando inicialmente apenas 2% do tráfego para a nova versão e monitorando erros antes de expandir."
+  },
+  {
+    "id": "J19_horizontal_pod_autoscaling",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como lidar com oscilações sazonais de carga durante campanhas de marketing sem superdimensionar servidores fixos?",
+    "response": "Configuramos autoscaling horizontal baseado em utilização de CPU e métricas de fila para criar e destruir réplicas dinamicamente."
+  },
+  {
+    "id": "J20_readiness_probe_graceful_startup",
+    "group": "J_adjacent_mechanisms",
+    "question": "Como evitar erros de conexão enquanto uma aplicação Java pesada ainda está carregando o contexto do Spring no início?",
+    "response": "Configuramos readiness probe com período inicial de tolerância impedindo que o proxy encaminhe tráfego antes da inicialização completa."
+  },
+  {
+    "id": "K01_unlinked_unknown",
+    "group": "K_unknown_insufficient",
+    "question": "Como funciona o garbage collector ZGC no Java?",
+    "response": "Qualquer resposta aqui."
+  },
+  {
+    "id": "K02_empty_text",
+    "group": "K_unknown_insufficient",
+    "question": "Como o B-Tree indexa dados?",
+    "response": ""
+  },
+  {
+    "id": "K03_whitespace_only",
+    "group": "K_unknown_insufficient",
+    "question": "Como configurar particionamento no Kafka?",
+    "response": "    \n\t   "
+  },
+  {
+    "id": "K04_filler_sim_beleza",
+    "group": "K_unknown_insufficient",
+    "question": "Como você estruturaria a observabilidade da aplicação?",
+    "response": "Sim, beleza, concordo."
+  },
+  {
+    "id": "K05_admitted_ignorance_nao_sei",
+    "group": "K_unknown_insufficient",
+    "question": "Como o eBPF insere probes dinâmicos no kernel?",
+    "response": "Eu não sei, conheço muito pouco dessa parte."
+  },
+  {
+    "id": "K06_fragmented_aham",
+    "group": "K_unknown_insufficient",
+    "question": "Como funciona o particionamento no Kafka?",
+    "response": "Aham, sim."
+  },
+  {
+    "id": "K07_filler_top_perfeito",
+    "group": "K_unknown_insufficient",
+    "question": "Qual a diferença entre threads virtuais e threads de plataforma?",
+    "response": "Top, perfeito, entendi."
+  },
+  {
+    "id": "K08_admitted_shallow",
+    "group": "K_unknown_insufficient",
+    "question": "Como configurar políticas de eviction no Redis?",
+    "response": "Sei bem por cima, quase nada na verdade."
+  },
+  {
+    "id": "K09_evasive_phrase",
+    "group": "K_unknown_insufficient",
+    "question": "Como o Raft trata partições de rede divididas?",
+    "response": "Não lembro de cabeça agora como funciona."
+  },
+  {
+    "id": "K10_insufficient_signal_pouco",
+    "group": "K_unknown_insufficient",
+    "question": "Como configurar o balanceamento dinâmico de conexões?",
+    "response": "É muito pouco o que eu domino desse assunto."
+  },
+  {
+    "id": "K11_interviewer_echo",
+    "group": "K_unknown_insufficient",
+    "question": "Então você utilizou essa abordagem para conter a falha?",
+    "response": "Sim, com certeza, concordo."
+  },
+  {
+    "id": "K12_admitted_no_domino",
+    "group": "K_unknown_insufficient",
+    "question": "Como construir índices espaciais em bancos relacionais?",
+    "response": "Não domino essa área de índices geográficos."
+  },
+  {
+    "id": "K13_conversational_ok_entendi",
+    "group": "K_unknown_insufficient",
+    "question": "Como funciona o handshake do protocolo TLS 1.3?",
+    "response": "Ok, entendi, beleza."
+  },
+  {
+    "id": "K14_admitted_nao_conheco",
+    "group": "K_unknown_insufficient",
+    "question": "Como o ClickHouse compacta colunas com Gorilla e DoubleDelta?",
+    "response": "Não conheço como funciona esse tipo de compactação."
+  },
+  {
+    "id": "K15_filler_claro_com_certeza",
+    "group": "K_unknown_insufficient",
+    "question": "Como o eBPF valida segurança no verificador estático do kernel?",
+    "response": "Claro, com certeza, sim."
+  },
+  {
+    "id": "L01_circuit_breaker_inverted",
+    "group": "L_mutations",
+    "question": "Como evitar que a falha de um serviço externo cause indisponibilidade em cascata?",
+    "response": "Eu evitaria circuit breaker porque ele aumenta a propagação de falhas e acelera a sobrecarga do sistema."
+  },
+  {
+    "id": "L02_alien_domain_docker_to_sql",
+    "group": "L_mutations",
+    "question": "Como funciona o isolamento de processos no Docker?",
+    "response": "Para isolar criamos tabelas no banco relacional com chaves primárias e SQL."
+  },
+  {
+    "id": "L03_strip_mechanism_keep_entity",
+    "group": "L_mutations",
+    "question": "Como configurar readiness probe no Kubernetes?",
+    "response": "Temos um cluster de Kubernetes gerenciado na nuvem há três anos."
+  },
+  {
+    "id": "L04_buzzword_dilution",
+    "group": "L_mutations",
+    "question": "Como o índice B-Tree acelera consultas no banco relacional?",
+    "response": "Adotamos arquitetura moderna com escalabilidade em cloud e microsserviços ágeis com metodologia ágil contínua."
+  },
+  {
+    "id": "L05_random_lock_order_mutation",
+    "group": "L_mutations",
+    "question": "Como prevenir impasses mútuos entre transações concorrentes?",
+    "response": "Cada transação adquire travas em ordem aleatória sem nenhuma coordenação prévia entre recursos."
+  },
+  {
+    "id": "L06_cache_infinite_ttl_mutation",
+    "group": "L_mutations",
+    "question": "Como evitar acúmulo de dados desatualizados na memória de cache?",
+    "response": "Desativamos a expiração e configuramos chaves sem tempo de vida para reter dados para sempre."
+  },
+  {
+    "id": "L07_idempotency_stripped_to_counter",
+    "group": "L_mutations",
+    "question": "Como evitar duplicidade de cobrança em compras online?",
+    "response": "Contamos quantas vezes o usuário clicou na tela usando um contador visual no botão."
+  },
+  {
+    "id": "L08_backpressure_inverted_flood",
+    "group": "L_mutations",
+    "question": "O que fazer quando a entrada de mensagens supera o esgotamento da fila?",
+    "response": "Aceleramos o produtor para inundar a memória com buffers infinitos sem nenhum freio."
+  },
+  {
+    "id": "L09_tracing_stripped_to_print",
+    "group": "L_mutations",
+    "question": "Como rastrear requisições através de dezenas de microsserviços?",
+    "response": "Colocamos comandos de print no terminal da máquina local onde o desenvolvedor roda o código."
+  },
+  {
+    "id": "L10_multi_aspect_mutation_strip",
+    "group": "L_mutations",
+    "question": "Como projetar uma API REST e como estruturar a paginação de recursos?",
+    "response": "REST utiliza verbos HTTP para expor entidades em URIs padronizadas."
+  },
+  {
+    "id": "L11_diagnostic_to_hardware_trivia",
+    "group": "L_mutations",
+    "question": "Como você investigaria um consumo de CPU travado em 100%?",
+    "response": "O computador possui processador Intel i7 com refrigeração líquida montado no escritório."
+  },
+  {
+    "id": "L12_saga_blind_commit_mutation",
+    "group": "L_mutations",
+    "question": "Como coordenar transações entre múltiplos microsserviços?",
+    "response": "Ignoramos erros nos outros serviços e confirmamos a venda mesmo se a reserva de estoque falhar."
+  },
+  {
+    "id": "L13_experience_to_hypothetical",
+    "group": "L_mutations",
+    "question": "Como você resolveu o incidente de saturação de conexões?",
+    "response": "Se ocorresse um problema de conexões, eu provavelmente olharia transações presas e aumentaria o timeout."
+  },
+  {
+    "id": "L14_mtls_to_plaintext_mutation",
+    "group": "L_mutations",
+    "question": "Como garantir comunicação segura e autenticada entre pods na malha?",
+    "response": "Transmitimos dados em texto puro desativando qualquer certificado para acelerar a rede."
+  },
+  {
+    "id": "L15_index_to_full_scan_mutation",
+    "group": "L_mutations",
+    "question": "Como otimizar consultas relacionais usando índices B-Tree?",
+    "response": "Forçamos a consulta a ler todas as páginas de dados sequencialmente do início ao fim descartando qualquer índice."
+  }
+]

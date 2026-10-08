@@ -1,0 +1,2002 @@
+{
+  "A01_dragonfly": {
+    "id": "A01_dragonfly",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Articula diretamente a arquitetura multi-threaded core-per-thread do Dragonfly.",
+    "confidence": "HIGH"
+  },
+  "A02_clickhouse": {
+    "id": "A02_clickhouse",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Articula índice esparso e fusão imutável de partes da engine MergeTree.",
+    "confidence": "HIGH"
+  },
+  "A03_tikv": {
+    "id": "A03_tikv",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica consenso Multi-Raft e MVCC para transações ACID distribuídas.",
+    "confidence": "HIGH"
+  },
+  "A04_envoy": {
+    "id": "A04_envoy",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica event loops thread-local e protocolo dinâmico xDS.",
+    "confidence": "HIGH"
+  },
+  "A05_flink": {
+    "id": "A05_flink",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve barreiras de checkpoint assíncrono e snapshots Chandy-Lamport.",
+    "confidence": "HIGH"
+  },
+  "A06_cassandra": {
+    "id": "A06_cassandra",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Articula anel com hash consistente e protocolo gossip.",
+    "confidence": "HIGH"
+  },
+  "A07_cilium": {
+    "id": "A07_cilium",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica bypass de iptables através de eBPF e mapas BPF no kernel.",
+    "confidence": "HIGH"
+  },
+  "A08_tempo": {
+    "id": "A08_tempo",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica arquitetura sem índice invertido gravando blocos em object storage.",
+    "confidence": "HIGH"
+  },
+  "A09_vault": {
+    "id": "A09_vault",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Articula divisão de segredo via Shamir Secret Sharing e quórum para unseal.",
+    "confidence": "HIGH"
+  },
+  "A10_dagger": {
+    "id": "A10_dagger",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Articula representação em DAG executada via contêineres BuildKit com cache.",
+    "confidence": "HIGH"
+  },
+  "A11_iceberg": {
+    "id": "A11_iceberg",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve árvore de manifestos e commits atômicos de snapshots para transações ACID.",
+    "confidence": "HIGH"
+  },
+  "A12_qdrant": {
+    "id": "A12_qdrant",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica índice HNSW com quantização e filtragem de payload.",
+    "confidence": "HIGH"
+  },
+  "A13_openfaas": {
+    "id": "A13_openfaas",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica watchdog processando HTTP e stdin/stdout em contêineres OCI.",
+    "confidence": "HIGH"
+  },
+  "A14_pulumi": {
+    "id": "A14_pulumi",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Articula linguagens de uso geral comunicando via gRPC com engine de estado.",
+    "confidence": "HIGH"
+  },
+  "A15_arangodb": {
+    "id": "A15_arangodb",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica linguagem AQL com travessias em arestas e coleções de documentos.",
+    "confidence": "HIGH"
+  },
+  "A16_zig": {
+    "id": "A16_zig",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica alocadores explícitos passados por parâmetro e ausência de runtime.",
+    "confidence": "HIGH"
+  },
+  "A17_axum": {
+    "id": "A17_axum",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica handlers assíncronos sobre Tokio, extractors e Tower middleware.",
+    "confidence": "HIGH"
+  },
+  "A18_kong": {
+    "id": "A18_kong",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica fases de ciclo de vida OpenResty/Nginx com plugins Lua/Go.",
+    "confidence": "HIGH"
+  },
+  "A19_prometheus_tsdb": {
+    "id": "A19_prometheus_tsdb",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve compactação Gorilla delta-of-delta e blocos de tempo imutáveis.",
+    "confidence": "HIGH"
+  },
+  "A20_envoy_gateway": {
+    "id": "A20_envoy_gateway",
+    "group": "A_unseen_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica tradução de HTTPRoute/GatewayClass em configuração xDS para proxies Envoy.",
+    "confidence": "HIGH"
+  },
+  "B01_two_phase_commit": {
+    "id": "B01_two_phase_commit",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica fases de preparação e commit de protocolo transacional de duas fases.",
+    "confidence": "HIGH"
+  },
+  "B02_write_ahead_log": {
+    "id": "B02_write_ahead_log",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica mecanismo de write-ahead log append-only antes de mutação na memória.",
+    "confidence": "HIGH"
+  },
+  "B03_consistent_hashing": {
+    "id": "B03_consistent_hashing",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Articula anel contínuo de hash consistente minimizando realocação de dados.",
+    "confidence": "HIGH"
+  },
+  "B04_read_write_lock": {
+    "id": "B04_read_write_lock",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica trava de leitura compartilhada versus trava de escrita exclusiva.",
+    "confidence": "HIGH"
+  },
+  "B05_circuit_breaker_tripping": {
+    "id": "B05_circuit_breaker_tripping",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve abertura de circuito por taxa de erro acumulada e contingência.",
+    "confidence": "HIGH"
+  },
+  "B06_bloom_filter": {
+    "id": "B06_bloom_filter",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve estrutura probabilística com vetor de bits e hashing sem falsos negativos.",
+    "confidence": "HIGH"
+  },
+  "B07_connection_pooling": {
+    "id": "B07_connection_pooling",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica reutilização de conexões pré-estabelecidas gerenciadas em pool.",
+    "confidence": "HIGH"
+  },
+  "B08_leader_election": {
+    "id": "B08_leader_election",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica temporizadores aleatórios, solicitação de votos e quórum majoritário.",
+    "confidence": "HIGH"
+  },
+  "B09_lsm_compaction": {
+    "id": "B09_lsm_compaction",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve compactação por mesclagem em background e purga de sobrescritas.",
+    "confidence": "HIGH"
+  },
+  "B10_edge_caching": {
+    "id": "B10_edge_caching",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve borda geográfica distribuída com cópias locais e tempo de expiração.",
+    "confidence": "HIGH"
+  },
+  "B11_database_sharding": {
+    "id": "B11_database_sharding",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve fragmentação horizontal através de chave de partição para instâncias isoladas.",
+    "confidence": "HIGH"
+  },
+  "B12_saga_pattern": {
+    "id": "B12_saga_pattern",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica padrão saga com transações locais e passos de compensação em caso de erro.",
+    "confidence": "HIGH"
+  },
+  "B13_event_sourcing": {
+    "id": "B13_event_sourcing",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve gravação de eventos imutáveis e reconstrução do estado por reprodução.",
+    "confidence": "HIGH"
+  },
+  "B14_cqrs": {
+    "id": "B14_cqrs",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica segregação de responsabilidade entre modelos de comando e consulta.",
+    "confidence": "HIGH"
+  },
+  "B15_jittered_backoff": {
+    "id": "B15_jittered_backoff",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve retentativa com intervalo exponencial acrescido de variação aleatória.",
+    "confidence": "HIGH"
+  },
+  "B16_heartbeat_probes": {
+    "id": "B16_heartbeat_probes",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica pulsos periódicos de presença e detecção de nó inativo por timeout.",
+    "confidence": "HIGH"
+  },
+  "B17_optimistic_versioning": {
+    "id": "B17_optimistic_versioning",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve validação de versão na cláusula condicional de gravação.",
+    "confidence": "HIGH"
+  },
+  "B18_mtls_authentication": {
+    "id": "B18_mtls_authentication",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica validação mútua de certificados criptográficos digitais.",
+    "confidence": "HIGH"
+  },
+  "B19_correlation_tracing": {
+    "id": "B19_correlation_tracing",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve injeção e propagação de identificador único através de chamadas.",
+    "confidence": "HIGH"
+  },
+  "B20_sliding_window_limiter": {
+    "id": "B20_sliding_window_limiter",
+    "group": "B_concept_no_tech",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Articula taxa avaliada sobre janela deslizante contínua.",
+    "confidence": "HIGH"
+  },
+  "C01_lost_updates_balance": {
+    "id": "C01_lost_updates_balance",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Responde o problema de lost update através de versionamento sequencial sem repetir palavras-chave.",
+    "confidence": "HIGH"
+  },
+  "C02_traffic_burst_saturation": {
+    "id": "C02_traffic_burst_saturation",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica token bucket rate limiter para mitigar rajadas sem repetir termos da pergunta.",
+    "confidence": "HIGH"
+  },
+  "C03_cascading_service_freeze": {
+    "id": "C03_cascading_service_freeze",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Articula circuit breaker como mecanismo de isolamento de cascata.",
+    "confidence": "HIGH"
+  },
+  "C04_duplicate_billing_click": {
+    "id": "C04_duplicate_billing_click",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica idempotência através de chave única de pedido e validação de deduplicação.",
+    "confidence": "HIGH"
+  },
+  "C05_stale_cache_customer": {
+    "id": "C05_stale_cache_customer",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Articula invalidação explícita de cache volátil disparada por mutação.",
+    "confidence": "HIGH"
+  },
+  "C06_untraceable_hops": {
+    "id": "C06_untraceable_hops",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica propagação de contexto de rastreamento com identificador correlacionado.",
+    "confidence": "HIGH"
+  },
+  "C07_fast_producer_slow_consumer": {
+    "id": "C07_fast_producer_slow_consumer",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica controle de fluxo reativo por contrapressão.",
+    "confidence": "HIGH"
+  },
+  "C08_resource_starvation_partner": {
+    "id": "C08_resource_starvation_partner",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica bulkhead e segmentação de pools dedicados.",
+    "confidence": "HIGH"
+  },
+  "C09_deadlock_circular_locks": {
+    "id": "C09_deadlock_circular_locks",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica prevenção de deadlocks via hierarquia estrita de aquisição de travas.",
+    "confidence": "HIGH"
+  },
+  "C10_poison_pill_queue": {
+    "id": "C10_poison_pill_queue",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Articula isolamento de mensagens corrompidas em canal secundário (DLQ).",
+    "confidence": "HIGH"
+  },
+  "C11_configuration_drift": {
+    "id": "C11_configuration_drift",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica infraestrutura imutável via substituição por imagens pré-configuradas.",
+    "confidence": "HIGH"
+  },
+  "C12_tight_coupling_instantiation": {
+    "id": "C12_tight_coupling_instantiation",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica inversão de dependência e injeção por construtor.",
+    "confidence": "HIGH"
+  },
+  "C13_multi_service_rollback": {
+    "id": "C13_multi_service_rollback",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica compensação e estorno no padrão saga.",
+    "confidence": "HIGH"
+  },
+  "C14_slow_table_scan": {
+    "id": "C14_slow_table_scan",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica índice B-Tree com busca logarítmica para evitar scan de tabela.",
+    "confidence": "HIGH"
+  },
+  "C15_process_visibility_leak": {
+    "id": "C15_process_visibility_leak",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica isolamento por namespaces no kernel sem usar a palavra Docker.",
+    "confidence": "HIGH"
+  },
+  "C16_tampered_payload_jwt": {
+    "id": "C16_tampered_payload_jwt",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica validação de assinatura criptográfica para garantir integridade de token.",
+    "confidence": "HIGH"
+  },
+  "C17_memory_leak_oom": {
+    "id": "C17_memory_leak_oom",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica diagnóstico de vazamento de memória por comparação de heap dumps.",
+    "confidence": "HIGH"
+  },
+  "C18_post_deploy_regression": {
+    "id": "C18_post_deploy_regression",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica comparação de percentil P99 contra baseline histórica.",
+    "confidence": "HIGH"
+  },
+  "C19_service_spoofing": {
+    "id": "C19_service_spoofing",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica autenticação mútua criptográfica (mTLS) contra personificação.",
+    "confidence": "HIGH"
+  },
+  "C20_blocking_io_threads": {
+    "id": "C20_blocking_io_threads",
+    "group": "C_zero_lexical_overlap",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Explica threads virtuais/leves que não travam threads do sistema operacional.",
+    "confidence": "HIGH"
+  },
+  "D01_k8s_direct": {
+    "id": "D01_k8s_direct",
+    "group": "D_entity_anchor",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Contém entidade e articula probe de prontidão com kubelet.",
+    "confidence": "HIGH"
+  },
+  "D02_kafka_direct": {
+    "id": "D02_kafka_direct",
+    "group": "D_entity_anchor",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Contém entidade e articula chave de partição e offset sequencial.",
+    "confidence": "HIGH"
+  },
+  "D03_redis_direct": {
+    "id": "D03_redis_direct",
+    "group": "D_entity_anchor",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Contém entidade e articula políticas de despejo LRU.",
+    "confidence": "HIGH"
+  },
+  "D04_docker_direct": {
+    "id": "D04_docker_direct",
+    "group": "D_entity_anchor",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Contém entidade e articula restrições de cgroups no kernel.",
+    "confidence": "HIGH"
+  },
+  "D05_postgres_direct": {
+    "id": "D05_postgres_direct",
+    "group": "D_entity_anchor",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Contém entidade e articula isolamento MVCC.",
+    "confidence": "HIGH"
+  },
+  "D06_k8s_declarative": {
+    "id": "D06_k8s_declarative",
+    "group": "D_entity_anchor",
+    "human_relation": "RELATED",
+    "human_epistemic": "experience_declaration",
+    "rationale": "Declara tempo de trabalho com a entidade sem responder como configurar probes.",
+    "confidence": "HIGH"
+  },
+  "D07_kafka_declarative": {
+    "id": "D07_kafka_declarative",
+    "group": "D_entity_anchor",
+    "human_relation": "RELATED",
+    "human_epistemic": "experience_declaration",
+    "rationale": "Declara experiência prévia sem explicar particionamento ou ordenação.",
+    "confidence": "HIGH"
+  },
+  "D08_redis_declarative": {
+    "id": "D08_redis_declarative",
+    "group": "D_entity_anchor",
+    "human_relation": "RELATED",
+    "human_epistemic": "experience_declaration",
+    "rationale": "Cita uso anterior da ferramenta sem demonstrar mecanismos de despejo de memória.",
+    "confidence": "HIGH"
+  },
+  "D09_docker_declarative": {
+    "id": "D09_docker_declarative",
+    "group": "D_entity_anchor",
+    "human_relation": "RELATED",
+    "human_epistemic": "experience_declaration",
+    "rationale": "Menciona hábito de uso diário sem articular limitações de memória ou cgroups.",
+    "confidence": "HIGH"
+  },
+  "D10_postgres_declarative": {
+    "id": "D10_postgres_declarative",
+    "group": "D_entity_anchor",
+    "human_relation": "RELATED",
+    "human_epistemic": "experience_declaration",
+    "rationale": "Declara tempo de carreira com o banco sem explicar controle de concorrência ou MVCC.",
+    "confidence": "HIGH"
+  },
+  "D11_k8s_infra_trivia": {
+    "id": "D11_k8s_infra_trivia",
+    "group": "D_entity_anchor",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Fornece metadados e histórico da ferramenta sem responder o mecanismo de balanceamento.",
+    "confidence": "HIGH"
+  },
+  "D12_kafka_infra_trivia": {
+    "id": "D12_kafka_infra_trivia",
+    "group": "D_entity_anchor",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve topologia de instâncias na nuvem sem explicar o protocolo de rebalanceamento.",
+    "confidence": "HIGH"
+  },
+  "D13_redis_infra_trivia": {
+    "id": "D13_redis_infra_trivia",
+    "group": "D_entity_anchor",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Menciona linguagem e porta de rede sem detalhar mecanismo de persistência RDB.",
+    "confidence": "HIGH"
+  },
+  "D14_docker_infra_trivia": {
+    "id": "D14_docker_infra_trivia",
+    "group": "D_entity_anchor",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Menciona mantenedora corporativa e sistema operacional sem explicar camadas de arquivo.",
+    "confidence": "HIGH"
+  },
+  "D15_postgres_infra_trivia": {
+    "id": "D15_postgres_infra_trivia",
+    "group": "D_entity_anchor",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve evento de instalação em esteira sem explicar rotinas de vacuum.",
+    "confidence": "HIGH"
+  },
+  "D16_k8s_alien": {
+    "id": "D16_k8s_alien",
+    "group": "D_entity_anchor",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Cita o nome da tecnologia mas disserta sobre culinária/domínio alienígena.",
+    "confidence": "HIGH"
+  },
+  "D17_kafka_insufficient": {
+    "id": "D17_kafka_insufficient",
+    "group": "D_entity_anchor",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Cita a ferramenta mas apenas emite filler conversacional vago sem conteúdo.",
+    "confidence": "HIGH"
+  },
+  "D18_redis_alien": {
+    "id": "D18_redis_alien",
+    "group": "D_entity_anchor",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Cita Redis mas descreve estilização CSS/front-end completamente alienígena.",
+    "confidence": "HIGH"
+  },
+  "D19_docker_insufficient": {
+    "id": "D19_docker_insufficient",
+    "group": "D_entity_anchor",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Admite expressamente desconhecimento técnico sobre o assunto.",
+    "confidence": "HIGH"
+  },
+  "D20_postgres_alien": {
+    "id": "D20_postgres_alien",
+    "group": "D_entity_anchor",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Cita PostgreSQL mas descreve aviação comercial/domínio completamente desvinculado.",
+    "confidence": "HIGH"
+  },
+  "E01_http500_supporting": {
+    "id": "E01_http500_supporting",
+    "group": "E_supporting_vs_related",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Ação diagnóstica direta contribui para a resolução do incidente.",
+    "confidence": "HIGH"
+  },
+  "E02_http500_related": {
+    "id": "E02_http500_related",
+    "group": "E_supporting_vs_related",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Trivia teórica de especificação HTTP sem nenhuma ação diagnóstica.",
+    "confidence": "HIGH"
+  },
+  "E03_pool_exhaustion_supporting": {
+    "id": "E03_pool_exhaustion_supporting",
+    "group": "E_supporting_vs_related",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Propõe investigação de métricas de fila e transações abertas contribuindo funcionalmente.",
+    "confidence": "HIGH"
+  },
+  "E04_pool_exhaustion_related": {
+    "id": "E04_pool_exhaustion_related",
+    "group": "E_supporting_vs_related",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve ambiente de hardware e porta de rede sem propor investigação.",
+    "confidence": "HIGH"
+  },
+  "E05_cpu_spike_supporting": {
+    "id": "E05_cpu_spike_supporting",
+    "group": "E_supporting_vs_related",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Propõe profiling de amostragem e análise de método em loop para diagnóstico.",
+    "confidence": "HIGH"
+  },
+  "E06_cpu_spike_related": {
+    "id": "E06_cpu_spike_related",
+    "group": "E_supporting_vs_related",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Menciona contagem de núcleos físicos sem diagnosticar a causa do alto consumo.",
+    "confidence": "HIGH"
+  },
+  "E07_slow_query_supporting": {
+    "id": "E07_slow_query_supporting",
+    "group": "E_supporting_vs_related",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Ação de inspecionar plano de execução com EXPLAIN ANALYZE contribui diretamente.",
+    "confidence": "HIGH"
+  },
+  "E08_slow_query_related": {
+    "id": "E08_slow_query_related",
+    "group": "E_supporting_vs_related",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Descreve forma normal e contagem de registros sem fornecer ação de otimização.",
+    "confidence": "HIGH"
+  },
+  "E09_cascading_protection_supporting": {
+    "id": "E09_cascading_protection_supporting",
+    "group": "E_supporting_vs_related",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Propõe circuit breaker e fallback contingencial protegendo o sistema.",
+    "confidence": "HIGH"
+  },
+  "E10_cascading_protection_related": {
+    "id": "E10_cascading_protection_related",
+    "group": "E_supporting_vs_related",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Trivia sobre o modelo de negócio do provedor sem ações de resiliência.",
+    "confidence": "HIGH"
+  },
+  "E11_latency_deploy_supporting": {
+    "id": "E11_latency_deploy_supporting",
+    "group": "E_supporting_vs_related",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Ação diagnóstica comparando pausas de GC e dependências com baseline.",
+    "confidence": "HIGH"
+  },
+  "E12_latency_deploy_related": {
+    "id": "E12_latency_deploy_related",
+    "group": "E_supporting_vs_related",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Menciona duração de compilação da esteira sem diagnóstico de latência.",
+    "confidence": "HIGH"
+  },
+  "E13_deadlock_supporting": {
+    "id": "E13_deadlock_supporting",
+    "group": "E_supporting_vs_related",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Propõe análise cruzada de logs de contenção e transações concorrentes.",
+    "confidence": "HIGH"
+  },
+  "E14_deadlock_related": {
+    "id": "E14_deadlock_related",
+    "group": "E_supporting_vs_related",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Afirmação genérica sobre ACID sem investigação de deadlocks.",
+    "confidence": "HIGH"
+  },
+  "E15_consumer_lag_supporting": {
+    "id": "E15_consumer_lag_supporting",
+    "group": "E_supporting_vs_related",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Propõe métricas de tempo unitário, verificação de commit e análise de partição.",
+    "confidence": "HIGH"
+  },
+  "E16_consumer_lag_related": {
+    "id": "E16_consumer_lag_related",
+    "group": "E_supporting_vs_related",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Idade dos tópicos e menção à equipe sem ação investigativa de lag.",
+    "confidence": "HIGH"
+  },
+  "E17_memory_leak_supporting": {
+    "id": "E17_memory_leak_supporting",
+    "group": "E_supporting_vs_related",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Propõe heap dump e analisador de retenção para achar o leak.",
+    "confidence": "HIGH"
+  },
+  "E18_memory_leak_related": {
+    "id": "E18_memory_leak_related",
+    "group": "E_supporting_vs_related",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Capacidade de hardware da máquina sem investigação diagnóstica de leak.",
+    "confidence": "HIGH"
+  },
+  "E19_network_timeouts_supporting": {
+    "id": "E19_network_timeouts_supporting",
+    "group": "E_supporting_vs_related",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Propõe inspeção de DNS, handshake TLS e timeouts de sockets.",
+    "confidence": "HIGH"
+  },
+  "E20_network_timeouts_related": {
+    "id": "E20_network_timeouts_related",
+    "group": "E_supporting_vs_related",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Menciona infraestrutura física de fibra ótica sem diagnóstico de timeouts.",
+    "confidence": "HIGH"
+  },
+  "F01_rest_and_pagination_partial1": {
+    "id": "F01_rest_and_pagination_partial1",
+    "group": "F_multi_aspect",
+    "human_relation": "PARTIAL",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre princípios da arquitetura REST mas omite paginação de recursos.",
+    "confidence": "HIGH"
+  },
+  "F02_circuit_breaker_and_bulkhead_partial1": {
+    "id": "F02_circuit_breaker_and_bulkhead_partial1",
+    "group": "F_multi_aspect",
+    "human_relation": "PARTIAL",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre bulkhead mas omite o papel e funcionamento do circuit breaker.",
+    "confidence": "HIGH"
+  },
+  "F03_jwt_payload_and_signature_partial1": {
+    "id": "F03_jwt_payload_and_signature_partial1",
+    "group": "F_multi_aspect",
+    "human_relation": "PARTIAL",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre transporte de dados no payload mas omite validação de assinatura.",
+    "confidence": "HIGH"
+  },
+  "F04_kafka_partitions_and_rebalance_partial1": {
+    "id": "F04_kafka_partitions_and_rebalance_partial1",
+    "group": "F_multi_aspect",
+    "human_relation": "PARTIAL",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre particionamento por chave hash mas omite o processo de rebalanceamento.",
+    "confidence": "HIGH"
+  },
+  "F05_docker_namespaces_and_cgroups_partial1": {
+    "id": "F05_docker_namespaces_and_cgroups_partial1",
+    "group": "F_multi_aspect",
+    "human_relation": "PARTIAL",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre namespaces no kernel mas omite o controle de limites via cgroups.",
+    "confidence": "HIGH"
+  },
+  "F06_rest_and_pagination_partial2": {
+    "id": "F06_rest_and_pagination_partial2",
+    "group": "F_multi_aspect",
+    "human_relation": "PARTIAL",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre paginação por cursor/limit mas omite fundamentos de API REST.",
+    "confidence": "HIGH"
+  },
+  "F07_circuit_breaker_and_bulkhead_partial2": {
+    "id": "F07_circuit_breaker_and_bulkhead_partial2",
+    "group": "F_multi_aspect",
+    "human_relation": "PARTIAL",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre circuit breaker mas omite isolamento de recursos via bulkhead.",
+    "confidence": "HIGH"
+  },
+  "F08_jwt_payload_and_signature_partial2": {
+    "id": "F08_jwt_payload_and_signature_partial2",
+    "group": "F_multi_aspect",
+    "human_relation": "PARTIAL",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre assinatura criptográfica mas omite formato e transporte de dados.",
+    "confidence": "HIGH"
+  },
+  "F09_docker_namespaces_and_cgroups_partial2": {
+    "id": "F09_docker_namespaces_and_cgroups_partial2",
+    "group": "F_multi_aspect",
+    "human_relation": "PARTIAL",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre limites de CPU/RAM via cgroups mas omite isolamento com namespaces.",
+    "confidence": "HIGH"
+  },
+  "F10_ports_and_adapters_partial": {
+    "id": "F10_ports_and_adapters_partial",
+    "group": "F_multi_aspect",
+    "human_relation": "PARTIAL",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre portas no domínio mas omite o papel dos adaptadores de infraestrutura.",
+    "confidence": "HIGH"
+  },
+  "F11_rest_and_pagination_full": {
+    "id": "F11_rest_and_pagination_full",
+    "group": "F_multi_aspect",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre tanto arquitetura REST quanto técnica de paginação.",
+    "confidence": "HIGH"
+  },
+  "F12_circuit_breaker_and_bulkhead_full": {
+    "id": "F12_circuit_breaker_and_bulkhead_full",
+    "group": "F_multi_aspect",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre integralmente isolamento por bulkhead e interrupção por circuit breaker.",
+    "confidence": "HIGH"
+  },
+  "F13_jwt_payload_and_signature_full": {
+    "id": "F13_jwt_payload_and_signature_full",
+    "group": "F_multi_aspect",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre tanto transporte de claims quanto validação de integridade por assinatura.",
+    "confidence": "HIGH"
+  },
+  "F14_docker_namespaces_and_cgroups_full": {
+    "id": "F14_docker_namespaces_and_cgroups_full",
+    "group": "F_multi_aspect",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre isolamento por namespaces e imposição de cotas por cgroups.",
+    "confidence": "HIGH"
+  },
+  "F15_ports_and_adapters_full": {
+    "id": "F15_ports_and_adapters_full",
+    "group": "F_multi_aspect",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre tanto a definição de portas quanto a concretização de adaptadores.",
+    "confidence": "HIGH"
+  },
+  "F16_three_demands_all_covered": {
+    "id": "F16_three_demands_all_covered",
+    "group": "F_multi_aspect",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre as três demandas solicitadas: autenticação, rate limit e circuit breaker.",
+    "confidence": "HIGH"
+  },
+  "F17_three_demands_two_covered": {
+    "id": "F17_three_demands_two_covered",
+    "group": "F_multi_aspect",
+    "human_relation": "PARTIAL",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre autenticação e rate limiting, mas omite circuit breaker.",
+    "confidence": "HIGH"
+  },
+  "F18_three_demands_one_covered": {
+    "id": "F18_three_demands_one_covered",
+    "group": "F_multi_aspect",
+    "human_relation": "PARTIAL",
+    "human_epistemic": "conceptual",
+    "rationale": "Cobre apenas autenticação omitindo rate limit e circuit breaker.",
+    "confidence": "HIGH"
+  },
+  "F19_three_demands_zero_covered_trivia": {
+    "id": "F19_three_demands_zero_covered_trivia",
+    "group": "F_multi_aspect",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Menciona ambiente de nuvem sem cobrir nenhuma das três proteções solicitadas.",
+    "confidence": "HIGH"
+  },
+  "F20_three_demands_alien": {
+    "id": "F20_three_demands_alien",
+    "group": "F_multi_aspect",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Responde sobre modelagem de banco relacional sem relação com proteção de APIs.",
+    "confidence": "HIGH"
+  },
+  "G01_experience_declaration_only": {
+    "id": "G01_experience_declaration_only",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "experience_declaration",
+    "rationale": "Pergunta de histórico respondida com declaração de experiência pura.",
+    "confidence": "HIGH"
+  },
+  "G02_experience_demonstrated_concrete": {
+    "id": "G02_experience_demonstrated_concrete",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "demonstrated_experience",
+    "rationale": "Demonstra experiência prática concreta com ações e resultado.",
+    "confidence": "HIGH"
+  },
+  "G03_pure_hypothesis": {
+    "id": "G03_pure_hypothesis",
+    "group": "G_epistemology",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Formulação hipotética condicional propondo análise diagnóstica.",
+    "confidence": "HIGH"
+  },
+  "G04_pure_conceptual": {
+    "id": "G04_pure_conceptual",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Asserção puramente conceitual sobre o funcionamento da tecnologia.",
+    "confidence": "HIGH"
+  },
+  "G05_admitted_uncertainty": {
+    "id": "G05_admitted_uncertainty",
+    "group": "G_epistemology",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Declara incerteza explícita sem demonstrar conteúdo técnico.",
+    "confidence": "HIGH"
+  },
+  "G06_self_correction_positive": {
+    "id": "G06_self_correction_positive",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "self_correction",
+    "rationale": "Autocorreção que converge para a proposição correta.",
+    "confidence": "HIGH"
+  },
+  "G07_career_trajectory_declaration": {
+    "id": "G07_career_trajectory_declaration",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "experience_declaration",
+    "rationale": "Declaração de trajetória respondendo à pergunta de experiência.",
+    "confidence": "HIGH"
+  },
+  "G08_production_troubleshooting_concrete": {
+    "id": "G08_production_troubleshooting_concrete",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "demonstrated_experience",
+    "rationale": "Experiência demonstrada com investigação concreta de incidente.",
+    "confidence": "HIGH"
+  },
+  "G09_hypothetical_proposal": {
+    "id": "G09_hypothetical_proposal",
+    "group": "G_epistemology",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Proposta de solução formulada em modo conjuntivo condicional.",
+    "confidence": "HIGH"
+  },
+  "G10_studied_not_used": {
+    "id": "G10_studied_not_used",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "experience_declaration",
+    "rationale": "Delimita experiência real versus estudo acadêmico com precisão epistêmica.",
+    "confidence": "HIGH"
+  },
+  "G11_experience_with_tool_declaration": {
+    "id": "G11_experience_with_tool_declaration",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "experience_declaration",
+    "rationale": "Declaração afirmativa de uso prévio da ferramenta.",
+    "confidence": "HIGH"
+  },
+  "G12_concrete_cache_incident": {
+    "id": "G12_concrete_cache_incident",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "demonstrated_experience",
+    "rationale": "Relato de mitigação concreta durante incidente real.",
+    "confidence": "HIGH"
+  },
+  "G13_pure_theory_definition": {
+    "id": "G13_pure_theory_definition",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Definição conceitual exata da propriedade de isolamento.",
+    "confidence": "HIGH"
+  },
+  "G14_admitted_shallow_knowledge": {
+    "id": "G14_admitted_shallow_knowledge",
+    "group": "G_epistemology",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Reconhecimento aberto de desconhecimento superficial.",
+    "confidence": "HIGH"
+  },
+  "G15_tentative_speculation": {
+    "id": "G15_tentative_speculation",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "hypothesis",
+    "rationale": "Solução técnica correta (salting) apresentada como hipótese tentativa.",
+    "confidence": "HIGH"
+  },
+  "G16_confirmed_experience_with_mechanism": {
+    "id": "G16_confirmed_experience_with_mechanism",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "demonstrated_experience",
+    "rationale": "Combina declaração de histórico e aplicação prática demonstrada.",
+    "confidence": "HIGH"
+  },
+  "G17_theoretical_tradeoff": {
+    "id": "G17_theoretical_tradeoff",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Articulação de trade-off teórico conceitual.",
+    "confidence": "HIGH"
+  },
+  "G18_direct_declaration_no_substance": {
+    "id": "G18_direct_declaration_no_substance",
+    "group": "G_epistemology",
+    "human_relation": "RELATED",
+    "human_epistemic": "experience_declaration",
+    "rationale": "Declara experiência genérica sem responder à pergunta sobre índices parciais.",
+    "confidence": "HIGH"
+  },
+  "G19_concrete_observability_pipeline": {
+    "id": "G19_concrete_observability_pipeline",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "demonstrated_experience",
+    "rationale": "Demonstração factual de adoção técnica de observabilidade em equipe.",
+    "confidence": "HIGH"
+  },
+  "G20_hypothetical_backpressure": {
+    "id": "G20_hypothetical_backpressure",
+    "group": "G_epistemology",
+    "human_relation": "DIRECT",
+    "human_epistemic": "hypothesis",
+    "rationale": "Solução técnica válida formulada como proposta condicional.",
+    "confidence": "HIGH"
+  },
+  "H01_occ_formal": {
+    "id": "H01_occ_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação formal de OCC.",
+    "confidence": "HIGH"
+  },
+  "H02_occ_colloquial": {
+    "id": "H02_occ_colloquial",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação coloquial de OCC.",
+    "confidence": "HIGH"
+  },
+  "H03_circuit_breaker_en": {
+    "id": "H03_circuit_breaker_en",
+    "group": "H_representation_invariance",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Formulação com termos técnicos canônicos.",
+    "confidence": "HIGH"
+  },
+  "H04_circuit_breaker_pt": {
+    "id": "H04_circuit_breaker_pt",
+    "group": "H_representation_invariance",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Formulação em português simples e metáfora de disjuntor.",
+    "confidence": "HIGH"
+  },
+  "H05_tracing_concise": {
+    "id": "H05_tracing_concise",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Resposta curta e direta.",
+    "confidence": "HIGH"
+  },
+  "H06_tracing_elaborate": {
+    "id": "H06_tracing_elaborate",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Resposta extensa e elaborada.",
+    "confidence": "HIGH"
+  },
+  "H07_ratelimit_formal": {
+    "id": "H07_ratelimit_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação formal de token bucket.",
+    "confidence": "HIGH"
+  },
+  "H08_ratelimit_conversational": {
+    "id": "H08_ratelimit_conversational",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação conversacional com metáfora de fichas.",
+    "confidence": "HIGH"
+  },
+  "H09_idempotency_tech": {
+    "id": "H09_idempotency_tech",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação técnica com termo idempotência.",
+    "confidence": "HIGH"
+  },
+  "H10_idempotency_plain": {
+    "id": "H10_idempotency_plain",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação em linguagem comum sem jargão.",
+    "confidence": "HIGH"
+  },
+  "H11_deadlock_formal": {
+    "id": "H11_deadlock_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação formal com termo hierárquico estrito.",
+    "confidence": "HIGH"
+  },
+  "H12_deadlock_informal": {
+    "id": "H12_deadlock_informal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação informal com exemplo prático A e B.",
+    "confidence": "HIGH"
+  },
+  "H13_cache_tech": {
+    "id": "H13_cache_tech",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação com TTL e eventos de alteração.",
+    "confidence": "HIGH"
+  },
+  "H14_cache_plain": {
+    "id": "H14_cache_plain",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação em linguagem natural sem acrônimo.",
+    "confidence": "HIGH"
+  },
+  "H15_backpressure_formal": {
+    "id": "H15_backpressure_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação formal de controle de fluxo por contrapressão.",
+    "confidence": "HIGH"
+  },
+  "H16_backpressure_intuitive": {
+    "id": "H16_backpressure_intuitive",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Metáfora intuitiva de pisar no freio.",
+    "confidence": "HIGH"
+  },
+  "H17_docker_short": {
+    "id": "H17_docker_short",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Resposta suscinta direta.",
+    "confidence": "HIGH"
+  },
+  "H18_docker_detailed": {
+    "id": "H18_docker_detailed",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Resposta técnica altamente detalhada.",
+    "confidence": "HIGH"
+  },
+  "H19_vthreads_formal": {
+    "id": "H19_vthreads_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação técnica formal de virtual threads.",
+    "confidence": "HIGH"
+  },
+  "H20_vthreads_colloquial_typo": {
+    "id": "H20_vthreads_colloquial_typo",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação coloquial sem acentuação e diminutivo.",
+    "confidence": "HIGH"
+  },
+  "H21_dip_formal": {
+    "id": "H21_dip_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação formal de DIP.",
+    "confidence": "HIGH"
+  },
+  "H22_dip_informal": {
+    "id": "H22_dip_informal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação informal de receber dependência de fora.",
+    "confidence": "HIGH"
+  },
+  "H23_btree_formal": {
+    "id": "H23_btree_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação formal de árvore balanceada.",
+    "confidence": "HIGH"
+  },
+  "H24_btree_plain": {
+    "id": "H24_btree_plain",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação em linguagem natural sem scan.",
+    "confidence": "HIGH"
+  },
+  "H25_mtls_formal": {
+    "id": "H25_mtls_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação formal com mTLS.",
+    "confidence": "HIGH"
+  },
+  "H26_mtls_plain": {
+    "id": "H26_mtls_plain",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação sem sigla mTLS.",
+    "confidence": "HIGH"
+  },
+  "H27_dlq_formal": {
+    "id": "H27_dlq_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação formal com dead-letter queue.",
+    "confidence": "HIGH"
+  },
+  "H28_dlq_plain": {
+    "id": "H28_dlq_plain",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação em linguagem natural fila de descarte.",
+    "confidence": "HIGH"
+  },
+  "H29_saga_formal": {
+    "id": "H29_saga_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação formal com padrão Saga.",
+    "confidence": "HIGH"
+  },
+  "H30_saga_plain": {
+    "id": "H30_saga_plain",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação coloquial com estorno.",
+    "confidence": "HIGH"
+  },
+  "H31_immutable_formal": {
+    "id": "H31_immutable_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação formal de infraestrutura imutável.",
+    "confidence": "HIGH"
+  },
+  "H32_immutable_plain": {
+    "id": "H32_immutable_plain",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação plain sem alterar em produção.",
+    "confidence": "HIGH"
+  },
+  "H33_outbox_formal": {
+    "id": "H33_outbox_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação formal com transactional outbox.",
+    "confidence": "HIGH"
+  },
+  "H34_outbox_plain": {
+    "id": "H34_outbox_plain",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação sem o nome do padrão outbox.",
+    "confidence": "HIGH"
+  },
+  "H35_bulkhead_formal": {
+    "id": "H35_bulkhead_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação formal com bulkhead.",
+    "confidence": "HIGH"
+  },
+  "H36_bulkhead_plain": {
+    "id": "H36_bulkhead_plain",
+    "group": "H_representation_invariance",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação com metáfora de caixas isoladas.",
+    "confidence": "HIGH"
+  },
+  "H37_p99_formal": {
+    "id": "H37_p99_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Formulação formal com P99 e baseline.",
+    "confidence": "HIGH"
+  },
+  "H38_p99_plain": {
+    "id": "H38_p99_plain",
+    "group": "H_representation_invariance",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Formulação em linguagem comum sem sigla P99.",
+    "confidence": "HIGH"
+  },
+  "H39_eventual_formal": {
+    "id": "H39_eventual_formal",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação formal com consistência eventual.",
+    "confidence": "HIGH"
+  },
+  "H40_eventual_plain": {
+    "id": "H40_eventual_plain",
+    "group": "H_representation_invariance",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Formulação coloquial bater as pontas.",
+    "confidence": "HIGH"
+  },
+  "I01_transacao_concurrency_trap": {
+    "id": "I01_transacao_concurrency_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Palavra transação usada no sentido bancário para pergunta sobre isolamento de rede.",
+    "confidence": "HIGH"
+  },
+  "I02_cluster_actors_trap": {
+    "id": "I02_cluster_actors_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Palavra cluster usada genericamente sem responder sobre modelo de atores.",
+    "confidence": "HIGH"
+  },
+  "I03_endpoint_sql_trap": {
+    "id": "I03_endpoint_sql_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Palavra endpoint não responde otimização de consultas com índices.",
+    "confidence": "HIGH"
+  },
+  "I04_recurso_kafka_trap": {
+    "id": "I04_recurso_kafka_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Palavra recurso usada genericamente sem explicar partições ou chaves.",
+    "confidence": "HIGH"
+  },
+  "I05_thread_css_trap": {
+    "id": "I05_thread_css_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Palavra thread de execução não responde estilização Flexbox.",
+    "confidence": "HIGH"
+  },
+  "I06_servidor_jwt_trap": {
+    "id": "I06_servidor_jwt_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Menção a servidor físico não responde validação de claims do JWT.",
+    "confidence": "HIGH"
+  },
+  "I07_instancia_docker_trap": {
+    "id": "I07_instancia_docker_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Instância no sentido POO/classe não responde isolamento de arquivos Docker.",
+    "confidence": "HIGH"
+  },
+  "I08_dados_circuit_breaker_trap": {
+    "id": "I08_dados_circuit_breaker_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Dados relacionais não respondem ao mecanismo de circuit breaker.",
+    "confidence": "HIGH"
+  },
+  "I09_servico_btree_trap": {
+    "id": "I09_servico_btree_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Serviço web não responde funcionamento de árvore B.",
+    "confidence": "HIGH"
+  },
+  "I10_api_threads_trap": {
+    "id": "I10_api_threads_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "API de pagamentos não tem relação com modelo de threads virtuais na JVM.",
+    "confidence": "HIGH"
+  },
+  "I11_transacao_cache_trap": {
+    "id": "I11_transacao_cache_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Transação comercial e nota fiscal não respondem estratégia write-through.",
+    "confidence": "HIGH"
+  },
+  "I12_cluster_rest_trap": {
+    "id": "I12_cluster_rest_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Infraestrutura de cluster redundante não responde restrição stateless de REST.",
+    "confidence": "HIGH"
+  },
+  "I13_endpoint_backpressure_trap": {
+    "id": "I13_endpoint_backpressure_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Endpoint de login não responde controle de fluxo por backpressure.",
+    "confidence": "HIGH"
+  },
+  "I14_recurso_mtls_trap": {
+    "id": "I14_recurso_mtls_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Recurso de busca de site não responde autenticação mTLS.",
+    "confidence": "HIGH"
+  },
+  "I15_thread_kafka_trap": {
+    "id": "I15_thread_kafka_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Thread de impressão não responde semântica transacional do Kafka.",
+    "confidence": "HIGH"
+  },
+  "I16_servidor_docker_trap": {
+    "id": "I16_servidor_docker_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Servidor de emails não responde controle de recursos por cgroups.",
+    "confidence": "HIGH"
+  },
+  "I17_instancia_jwt_trap": {
+    "id": "I17_instancia_jwt_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Instância de banco de fotos não responde claim exp de token JWT.",
+    "confidence": "HIGH"
+  },
+  "I18_dados_observability_trap": {
+    "id": "I18_dados_observability_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Dados cadastrais pessoais não respondem telemetria de traces e spans.",
+    "confidence": "HIGH"
+  },
+  "I19_servico_concurrency_trap": {
+    "id": "I19_servico_concurrency_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Serviço de entrega logística não responde prevenção de deadlocks.",
+    "confidence": "HIGH"
+  },
+  "I20_api_saga_trap": {
+    "id": "I20_api_saga_trap",
+    "group": "I_generic_tokens",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "API de previsão do tempo não responde orquestração do padrão Saga.",
+    "confidence": "HIGH"
+  },
+  "J01_reverse_proxy_cache": {
+    "id": "J01_reverse_proxy_cache",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "conceptual",
+    "rationale": "Proxy reverso com cache de borda é mecanismo adjacente válido para acelerar leituras repetidas.",
+    "confidence": "HIGH"
+  },
+  "J02_read_replicas_for_reads": {
+    "id": "J02_read_replicas_for_reads",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Réplicas de leitura são mecanismo direto e eficaz para desafogar leituras do nó primário.",
+    "confidence": "HIGH"
+  },
+  "J03_dataloader_n_plus_one": {
+    "id": "J03_dataloader_n_plus_one",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "DataLoader em lote é o mecanismo canônico contra problema N+1.",
+    "confidence": "HIGH"
+  },
+  "J04_change_data_capture_sync": {
+    "id": "J04_change_data_capture_sync",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "CDC a partir do log transacional é mecanismo de desacoplamento de sincronização.",
+    "confidence": "HIGH"
+  },
+  "J05_dead_letter_queue_handling": {
+    "id": "J05_dead_letter_queue_handling",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "DLQ após retentativas exauridas é mecanismo canônico contra poisoned messages.",
+    "confidence": "HIGH"
+  },
+  "J06_token_bucket_burst": {
+    "id": "J06_token_bucket_burst",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Token bucket permite rajadas pontuais enquanto limita taxa média.",
+    "confidence": "HIGH"
+  },
+  "J07_immutable_images_drift": {
+    "id": "J07_immutable_images_drift",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Imagens imutáveis substituídas integralmente eliminam configuration drift.",
+    "confidence": "HIGH"
+  },
+  "J08_service_mesh_mtls_encryption": {
+    "id": "J08_service_mesh_mtls_encryption",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Sidecar proxies negociando mTLS transparente na camada de rede da malha.",
+    "confidence": "HIGH"
+  },
+  "J09_bloom_filter_pre_check": {
+    "id": "J09_bloom_filter_pre_check",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Filtro de Bloom em memória eliminando leituras a disco para chaves inexistentes.",
+    "confidence": "HIGH"
+  },
+  "J10_outbox_pattern_delivery": {
+    "id": "J10_outbox_pattern_delivery",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Padrão Transactional Outbox garante entrega at-least-once com transação local única.",
+    "confidence": "HIGH"
+  },
+  "J11_saga_orchestration": {
+    "id": "J11_saga_orchestration",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Saga com orquestração e transações compensatórias.",
+    "confidence": "HIGH"
+  },
+  "J12_graceful_degradation_cache": {
+    "id": "J12_graceful_degradation_cache",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "conceptual",
+    "rationale": "Degradação graciosa servindo catálogo em cache em contingência.",
+    "confidence": "HIGH"
+  },
+  "J13_retry_with_jitter_storms": {
+    "id": "J13_retry_with_jitter_storms",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Jitter em retentativas descompassa rajadas simultâneas de clientes.",
+    "confidence": "HIGH"
+  },
+  "J14_bulkhead_thread_isolation": {
+    "id": "J14_bulkhead_thread_isolation",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "conceptual",
+    "rationale": "Bulkhead isolando pools de threads protege recursos globais.",
+    "confidence": "HIGH"
+  },
+  "J15_eventual_reconciliation": {
+    "id": "J15_eventual_reconciliation",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Consistência eventual aliada a reconciliação periódica de saldos.",
+    "confidence": "HIGH"
+  },
+  "J16_w3c_trace_context": {
+    "id": "J16_w3c_trace_context",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "Propagação via padrão aberto W3C TraceContext garante rastreabilidade heterogênea.",
+    "confidence": "HIGH"
+  },
+  "J17_lsm_tree_append_only": {
+    "id": "J17_lsm_tree_append_only",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "DIRECT",
+    "human_epistemic": "conceptual",
+    "rationale": "LSM-Tree com gravações sequenciais append-only maximiza taxa de escrita.",
+    "confidence": "HIGH"
+  },
+  "J18_canary_deployment": {
+    "id": "J18_canary_deployment",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "conceptual",
+    "rationale": "Deploy canário progressivo com monitoramento de telemetria mitiga riscos de liberação.",
+    "confidence": "HIGH"
+  },
+  "J19_horizontal_pod_autoscaling": {
+    "id": "J19_horizontal_pod_autoscaling",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "conceptual",
+    "rationale": "Escalonamento horizontal dinâmico por métricas absorve oscilações sazonais.",
+    "confidence": "HIGH"
+  },
+  "J20_readiness_probe_graceful_startup": {
+    "id": "J20_readiness_probe_graceful_startup",
+    "group": "J_adjacent_mechanisms",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "conceptual",
+    "rationale": "Readiness probe bloqueia tráfego prematuro durante startup demorado.",
+    "confidence": "HIGH"
+  },
+  "K01_unlinked_unknown": {
+    "id": "K01_unlinked_unknown",
+    "group": "K_unknown_insufficient",
+    "human_relation": "UNKNOWN",
+    "human_epistemic": "uncertainty",
+    "rationale": "Resposta desvinculada sem question_id válido deve retornar UNKNOWN.",
+    "confidence": "HIGH"
+  },
+  "K02_empty_text": {
+    "id": "K02_empty_text",
+    "group": "K_unknown_insufficient",
+    "human_relation": "UNKNOWN",
+    "human_epistemic": "uncertainty",
+    "rationale": "Texto vazio deve retornar UNKNOWN.",
+    "confidence": "HIGH"
+  },
+  "K03_whitespace_only": {
+    "id": "K03_whitespace_only",
+    "group": "K_unknown_insufficient",
+    "human_relation": "UNKNOWN",
+    "human_epistemic": "uncertainty",
+    "rationale": "Texto apenas com espaços em branco deve retornar UNKNOWN.",
+    "confidence": "HIGH"
+  },
+  "K04_filler_sim_beleza": {
+    "id": "K04_filler_sim_beleza",
+    "group": "K_unknown_insufficient",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Filler conversacional fragmentado sem conteúdo técnico.",
+    "confidence": "HIGH"
+  },
+  "K05_admitted_ignorance_nao_sei": {
+    "id": "K05_admitted_ignorance_nao_sei",
+    "group": "K_unknown_insufficient",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Admissão explícita de falta de conhecimento.",
+    "confidence": "HIGH"
+  },
+  "K06_fragmented_aham": {
+    "id": "K06_fragmented_aham",
+    "group": "K_unknown_insufficient",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Interjeição afirmativa vazia.",
+    "confidence": "HIGH"
+  },
+  "K07_filler_top_perfeito": {
+    "id": "K07_filler_top_perfeito",
+    "group": "K_unknown_insufficient",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Aceno conversacional sem explicação técnica.",
+    "confidence": "HIGH"
+  },
+  "K08_admitted_shallow": {
+    "id": "K08_admitted_shallow",
+    "group": "K_unknown_insufficient",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Declaração de conhecimento superficial insuficiente.",
+    "confidence": "HIGH"
+  },
+  "K09_evasive_phrase": {
+    "id": "K09_evasive_phrase",
+    "group": "K_unknown_insufficient",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Declaração de esquecimento temporário sem proposição.",
+    "confidence": "HIGH"
+  },
+  "K10_insufficient_signal_pouco": {
+    "id": "K10_insufficient_signal_pouco",
+    "group": "K_unknown_insufficient",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Afirmação de pouco domínio da matéria.",
+    "confidence": "HIGH"
+  },
+  "K11_interviewer_echo": {
+    "id": "K11_interviewer_echo",
+    "group": "K_unknown_insufficient",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "confirmation",
+    "rationale": "Confirmação monossilábica instigada pelo entrevistador sem contribuição técnica.",
+    "confidence": "HIGH"
+  },
+  "K12_admitted_no_domino": {
+    "id": "K12_admitted_no_domino",
+    "group": "K_unknown_insufficient",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Admissão clara de falta de domínio do tópico.",
+    "confidence": "HIGH"
+  },
+  "K13_conversational_ok_entendi": {
+    "id": "K13_conversational_ok_entendi",
+    "group": "K_unknown_insufficient",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Filler conversacional triplo sem proposição funcional.",
+    "confidence": "HIGH"
+  },
+  "K14_admitted_nao_conheco": {
+    "id": "K14_admitted_nao_conheco",
+    "group": "K_unknown_insufficient",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Declaração formal de não conhecimento.",
+    "confidence": "HIGH"
+  },
+  "K15_filler_claro_com_certeza": {
+    "id": "K15_filler_claro_com_certeza",
+    "group": "K_unknown_insufficient",
+    "human_relation": "INSUFFICIENT",
+    "human_epistemic": "uncertainty",
+    "rationale": "Expressão de assentimento sem substância técnica.",
+    "confidence": "HIGH"
+  },
+  "L01_circuit_breaker_inverted": {
+    "id": "L01_circuit_breaker_inverted",
+    "group": "L_mutations",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "hypothesis",
+    "rationale": "Inversão causal afirmando que circuit breaker acelera falhas deve alterar para não-direto.",
+    "confidence": "HIGH"
+  },
+  "L02_alien_domain_docker_to_sql": {
+    "id": "L02_alien_domain_docker_to_sql",
+    "group": "L_mutations",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Substituição completa por tabelas relacionais SQL desvinculada de Docker.",
+    "confidence": "HIGH"
+  },
+  "L03_strip_mechanism_keep_entity": {
+    "id": "L03_strip_mechanism_keep_entity",
+    "group": "L_mutations",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Remoção do mecanismo mantendo apenas a entidade deve mudar de DIRECT para RELATED.",
+    "confidence": "HIGH"
+  },
+  "L04_buzzword_dilution": {
+    "id": "L04_buzzword_dilution",
+    "group": "L_mutations",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Diluição por buzzwords vazios deve classificar como OFF_TOPIC.",
+    "confidence": "HIGH"
+  },
+  "L05_random_lock_order_mutation": {
+    "id": "L05_random_lock_order_mutation",
+    "group": "L_mutations",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Ordem aleatória de travas contradiz frontalmente a prevenção de deadlocks.",
+    "confidence": "HIGH"
+  },
+  "L06_cache_infinite_ttl_mutation": {
+    "id": "L06_cache_infinite_ttl_mutation",
+    "group": "L_mutations",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Reter dados para sempre sem expiração contradiz a eliminação de dados obsoletos.",
+    "confidence": "HIGH"
+  },
+  "L07_idempotency_stripped_to_counter": {
+    "id": "L07_idempotency_stripped_to_counter",
+    "group": "L_mutations",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Contador visual no botão não garante idempotência nem deduplicação transacional.",
+    "confidence": "HIGH"
+  },
+  "L08_backpressure_inverted_flood": {
+    "id": "L08_backpressure_inverted_flood",
+    "group": "L_mutations",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Inundar com buffers infinitos agrava a saturação em vez de regular fluxo.",
+    "confidence": "HIGH"
+  },
+  "L09_tracing_stripped_to_print": {
+    "id": "L09_tracing_stripped_to_print",
+    "group": "L_mutations",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Print local no terminal não fornece rastreabilidade distribuída entre serviços.",
+    "confidence": "HIGH"
+  },
+  "L10_multi_aspect_mutation_strip": {
+    "id": "L10_multi_aspect_mutation_strip",
+    "group": "L_mutations",
+    "human_relation": "PARTIAL",
+    "human_epistemic": "conceptual",
+    "rationale": "Remoção do aspecto de paginação deve rebaixar o veredicto de DIRECT para PARTIAL.",
+    "confidence": "HIGH"
+  },
+  "L11_diagnostic_to_hardware_trivia": {
+    "id": "L11_diagnostic_to_hardware_trivia",
+    "group": "L_mutations",
+    "human_relation": "RELATED",
+    "human_epistemic": "conceptual",
+    "rationale": "Mudar ação de profiling para descrição de cooler/computador deve mudar para RELATED.",
+    "confidence": "HIGH"
+  },
+  "L12_saga_blind_commit_mutation": {
+    "id": "L12_saga_blind_commit_mutation",
+    "group": "L_mutations",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Ignorar erros e confirmar venda quebra a consistência transacional do processo.",
+    "confidence": "HIGH"
+  },
+  "L13_experience_to_hypothetical": {
+    "id": "L13_experience_to_hypothetical",
+    "group": "L_mutations",
+    "human_relation": "SUPPORTING",
+    "human_epistemic": "hypothesis",
+    "rationale": "Mudança do modo factual em produção para conjuntivo hipotético altera status epistêmico.",
+    "confidence": "HIGH"
+  },
+  "L14_mtls_to_plaintext_mutation": {
+    "id": "L14_mtls_to_plaintext_mutation",
+    "group": "L_mutations",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Desativar certificados e usar texto puro contradiz diretamente segurança e autenticação.",
+    "confidence": "HIGH"
+  },
+  "L15_index_to_full_scan_mutation": {
+    "id": "L15_index_to_full_scan_mutation",
+    "group": "L_mutations",
+    "human_relation": "OFF_TOPIC",
+    "human_epistemic": "conceptual",
+    "rationale": "Forçar leitura sequencial descartando índices contradiz a aceleração logarítmica solicitada.",
+    "confidence": "HIGH"
+  }
+}

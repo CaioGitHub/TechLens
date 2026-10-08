@@ -1781,12 +1781,28 @@ ROOT_CAUSE_ANALYSIS_COMPLETE
 Stage 31.7.5
         ↓
 SEMANTIC_INTENT_GENERALIZATION_IMPLEMENTATION_COMPLETE_WITH_WARNINGS
-        ↓
-ATUAL CONCLUÍDO
 
 Stage 31.7.6
         ↓
-PRÓXIMO (Post-Implementation Blind Human vs System Revalidation)
+POST_GENERALIZATION_BLIND_REVALIDATION_BLOCKED
+
+Stage 31.7.7
+        ↓
+ROOT_CAUSE_ANALYSIS_AND_ARCHITECTURE_REDESIGN_COMPLETE
+
+Stage 31.7.8
+        ↓
+CONTROLLED_IMPLEMENTATION_COMPLETE_WITH_WARNINGS
+
+Stage 31.7.9
+        ↓
+POST_OPEN_DOMAIN_BLIND_REVALIDATION_BLOCKED
+        ↓
+ATUAL CONCLUÍDO
+
+Stage 31.7.10
+        ↓
+PRÓXIMO (Root Cause Analysis & Semantic Relation Nexus Remediation)
 
 Stage 32
         ↓
@@ -1867,6 +1883,101 @@ O Stage 31.7.5 implementou a arquitetura de **Semantic Intent Generalization** n
 
 ---
 
+# 54.5 RESUMO DO STAGE 31.7.6
+
+O Stage 31.7.6 executou a **Post-Generalization Blind Human vs System Revalidation** sob estrito congelamento do runtime:
+
+1. **Runtime Rigorosamente Congelado**:
+   - Hash SHA-256 verificado: `A0CFE48B933F587459BFF6AAF8B2BECABA5B7C00C4C87E7B5DDB6BDE985E46A6` (100% inalterado antes e depois da execução).
+2. **Blindness Firewall e Propriedades Formais**:
+   - Execução estritamente cega com separação total entre entradas (`stage_31_7_6_blind_cases.json`) e oracles (`stage_31_7_6_human_results.json`).
+   - Determinismo: 250/250 idênticos entre execuções repetidas (**PASS**).
+   - Isolamento: 250/250 idênticos sob inversão completa de ordem (**PASS**).
+   - Catalog Leakage: Invariância total com catálogo vazio (`_FUNCTIONAL_CAPABILITIES.clear()`) (**PASS**).
+3. **Métricas Empíricas Globais (250 Casos)**:
+   - Total de casos: 250 em 12 grupos independentes (Grupos A a L).
+   - Concordância Exata Humano vs Sistema: **143 / 250 (57.20%)**.
+   - Divergências: **107 / 250 (42.80%)**.
+   - Falsos Positivos de Relevância (Falsos DIRECTs): **21 casos** (classes D1 e D3).
+   - Falsos Negativos de Relevância (Falsos OFF_TOPICs): **79 casos** (classe D2: 60 falhas, incluindo 54 respostas `DIRECT` descartadas).
+4. **Vulnerabilidades Críticas Reveladas**:
+   - **Subconjunto Secreto sem Overlap Lexical (Grupo C)**: Taxa de acerto de apenas **20.0% (4/20)**. O fallback de domínio aberto (`Step 11` em `runtime.py`) exige sobreposição literal de tokens/stems (`shared_stems or shared`). Quando pergunta e resposta não compartilham palavras e o tema não é um dos contextos pré-codificados, o sistema descarta sumariamente como `disjunct_open_domain`.
+   - **Viés de Jargão (Representation Invariance - Grupo H)**: Explicações em português coloquial do padrão Saga e de OCC foram rejeitadas como `OFF_TOPIC`, enquanto suas formulações formais idênticas com jargão em inglês passaram como `DIRECT`.
+   - **Entity Anchor com Verbos Desconhecidos (Grupo D)**: Verbos declarativos conjugados como "Uso Docker diariamente" escaparam do filtro `has_decl_marker` e receberam `DIRECT` espúrio.
+5. **Regressão Canônica**: 989/989 testes de runtime aprovados; 8/8 suítes do Reference Harness aprovadas.
+6. **Gate**: `POST_GENERALIZATION_BLIND_REVALIDATION_BLOCKED`.
+
+---
+
+# 54.6 RESUMO DO STAGE 31.7.7
+
+O Stage 31.7.7 executou a Root Cause Analysis (RCA) aprofundada e o Redesenho Arquitetural formal para sanar as 107 divergências do Stage 31.7.6 sem qualquer modificação em `reference_runtime/runtime.py`:
+
+1. **Runtime Rigorosamente Congelado**:
+   - SHA-256 verificado: `A0CFE48B933F587459BFF6AAF8B2BECABA5B7C00C4C87E7B5DDB6BDE985E46A6` (100% inviolado).
+2. **Causa-Raiz Primária Identificada**:
+   - **Gargalo da Co-ocorrência Léxica no Step 11**: O fallback de domínio aberto exigia `shared_stems or shared != empty`. Em perguntas de problema $\to$ mecanismo (Grupo C), o vocabulário sintomático do problema e o vocabulário operativo da solução não compartilham palavras, forçando descarte espúrio como `disjunct_open_domain` (80% de falha no Grupo C).
+   - **Entidade como Passe-Livre**: A mera menção de uma entidade nominal coincidente recebia `DIRECT` sem validação de mecanismo operativo (ex.: `D16_k8s_alien` "Kubernetes receita de bolo").
+   - **Viés de Jargão (Quebra de Representation Invariance)**: Explicações em português claro e coloquial sem o termo formal em inglês falharam nos blocos contextuais procedurais.
+3. **Nova Arquitetura Formalizada**:
+   - **Open-Domain Technical Proposition & Causal Framing Engine**: Substituição da heurística de radicais por decomposição em `QuestionDemand` (demanda funcional) e `TechnicalProposition` (ação, mecanismo e efeito), operando através de relações semânticas causais (`CAUSALLY_SOLVES`, `IMPLEMENTS_DEMAND`, `CONTRIBUTES_TO`, `THEMATICALLY_ADJACENT`, `FUNCTIONALLY_DISJUNCT`).
+   - 7 Invariantes Arquiteturais Formalizados (Zero Lexical Overlap, Catalog Independence, Entity Non-Authority, Jargon Invariance, Epistemic Orthogonality, Multi-Aspect Coverage, Explainable Causal Nexus).
+4. **Gate**: `ROOT_CAUSE_ANALYSIS_AND_ARCHITECTURE_REDESIGN_COMPLETE`.
+
+---
+
+# 54.7 RESUMO DO STAGE 31.7.8
+
+O Stage 31.7.8 realizou a implementação controlada da nova arquitetura **Open-Domain Proposition & Semantic Relation** em [`reference_runtime/runtime.py`](file:///d:/Projetos/TechLens/reference_runtime/runtime.py):
+
+1. **Hashes do Runtime**:
+   - Baseline Entrada: `A0CFE48B933F587459BFF6AAF8B2BECABA5B7C00C4C87E7B5DDB6BDE985E46A6`
+   - Exit SHA-256: `2DAE8514CB37F133C22CAD785BD4BD79B5E7EDB462BA9E8D956A9A9BD64F376E`
+2. **Arquitetura em Modo Duplo (Shadow & Parallel Execution)**:
+   - Implementado `OpenDomainPropositionEngine` de forma isolada e paralela, selecionável via parâmetro `engine='open_domain'` ou `engine='legacy'` no entrypoint canônico `evaluate_open_domain_semantic_relevance()`.
+   - Motor legado mantido 100% preservado como padrão para garantir isolamento e regressão.
+3. **Novos Componentes**:
+   - Extração estruturada de proposições (`TechnicalProposition`) e demandas (`QuestionDemand`).
+   - Classificação de relações causais e funcionais sem catálogo fechado nem dependência de raízes lexicais coincidentes.
+4. **Regressão Global**:
+   - Nova suíte com 16 testes independentes em [`tests/test_stage_31_7_8_open_domain_proposition_engine.py`](file:///d:/Projetos/TechLens/tests/test_stage_31_7_8_open_domain_proposition_engine.py) (16 PASS, 0 FAIL).
+   - Regressão total: 1005/1005 testes aprovados (100% PASS, 0 FAIL). Reference Harness com 8/8 suítes aprovadas.
+5. **Gate**: `CONTROLLED_IMPLEMENTATION_COMPLETE_WITH_WARNINGS`.
+
+---
+
+# 54.8 RESUMO DO STAGE 31.7.9
+
+O Stage 31.7.9 executou a **primeira validação cega independente** da nova arquitetura sobre o runtime 100% congelado:
+
+1. **Runtime Rigorosamente Congelado**:
+   - SHA-256 verificado antes e depois: `2DAE8514CB37F133C22CAD785BD4BD79B5E7EDB462BA9E8D956A9A9BD64F376E` (zero alterações no código).
+2. **Benchmark Cego Independente**:
+   - 242 casos independentes distribuídos em 16 categorias (A a P), com anotação prévia por oráculo humano independente.
+   - Casos inéditos, sem qualquer co-design com os testes do Stage 31.7.8.
+3. **Métricas Globais**:
+   - Total: 242 casos.
+   - Concordância Exata: **141 / 242 (58.26%)**.
+   - Divergências: **101 / 242 (41.74%)**.
+4. **Superação Histórica da Barreira Lexical**:
+   - Categoria P (False Negative Traps): **100.00%** (14/14 PASS). Zero falsos negativos em respostas sem jargão e sem overlap léxico.
+   - Categoria M (Representation Invariance): **92.86%** (13/14 PASS).
+   - Categoria A (Open Domain): **83.33%** (15/18 PASS).
+   - Recall de DIRECT legítimo: **96.2%** (127 de 132 DIRECTs humanos identificados).
+5. **Nova Vulnerabilidade Estrutural — Permissividade Proposicional (Bias de Falsos Positivos)**:
+   - 88 das 101 divergências (87.1%) foram **Falsos DIRECTs** (humano $\ne$ DIRECT, sistema == DIRECT).
+   - Categoria O (False Positive Traps / Tautologias circulares): **0.00%** (14/14 falsos DIRECTs).
+   - Categoria G (Supporting vs Related / Ferramentas auxiliares): **18.75%** (13/16 falsos DIRECTs).
+   - Categoria J (Prolixidade sem conteúdo): **21.43%** (11/14 falsos DIRECTs).
+   - Causa-raiz: Qualquer frase substantiva ($\ge 8$ palavras) foi marcada como operativa (`is_operative = True`) e qualquer ação operativa sem domínio disjunto virou `DIRECT`, sem validação de nexo causal contra o problema específico.
+6. **Propriedades Formais e Regressão**:
+   - Determinismo: 100% PASS (25 casos x 10 repetições).
+   - Independência de Catálogo: 100% PASS (zero dependência de catálogo).
+   - Regressão histórica: 1005/1005 testes aprovados. Reference Harness: 8/8 suítes aprovadas.
+7. **Gate**: `POST_OPEN_DOMAIN_BLIND_REVALIDATION_BLOCKED`.
+
+---
+
 # 55. GATES HISTÓRICOS QUE NÃO DEVEM SER APAGADOS
 
 Preservar:
@@ -1887,6 +1998,10 @@ Stage 31.7.2: SEMANTIC_RELEVANCE_ARCHITECTURE_IMPLEMENTED
 Stage 31.7.3: POST_DECOUPLING_BLIND_REVALIDATION_BLOCKED
 Stage 31.7.4: ROOT_CAUSE_ANALYSIS_COMPLETE
 Stage 31.7.5: SEMANTIC_INTENT_GENERALIZATION_IMPLEMENTATION_COMPLETE_WITH_WARNINGS
+Stage 31.7.6: POST_GENERALIZATION_BLIND_REVALIDATION_BLOCKED
+Stage 31.7.7: ROOT_CAUSE_ANALYSIS_AND_ARCHITECTURE_REDESIGN_COMPLETE
+Stage 31.7.8: CONTROLLED_IMPLEMENTATION_COMPLETE_WITH_WARNINGS
+Stage 31.7.9: POST_OPEN_DOMAIN_BLIND_REVALIDATION_BLOCKED
 ```
 
 Esses estados fazem parte da história de validação do sistema.

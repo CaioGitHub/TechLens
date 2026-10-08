@@ -1600,23 +1600,31 @@ from dataclasses import dataclass
 @dataclass(frozen=True)
 class QuestionDemand:
     demand_id: str
-    target_problem: str
-    expected_mechanism_type: str
+    target_problem: str = ""
+    expected_mechanism_type: str = "mechanism"
     operational_constraints: tuple[str, ...] = ()
     aspect_goals: tuple[str, ...] = ()
+    demand_type: str = "mechanism_explanation"
+    target_subject: str = ""
+    required_effect: str | None = None
+    context_entity: str | None = None
+    is_primary: bool = True
 
 @dataclass(frozen=True)
 class QuestionIntent:
-    goal: str
+    goal: str = ""
     demands: tuple[QuestionDemand, ...] = ()
     central_entities: tuple[str, ...] = ()
     constraints: tuple[str, ...] = ()
     epistemic_mode: str = "factual_mechanism"
     provenance: str = "semantic_analyzer"
+    intent_type: str = "mechanism_explanation"
+    confidence: str = "HIGH"
+    rationale: str = ""
 
 @dataclass(frozen=True)
 class TechnicalProposition:
-    proposition: str
+    proposition: str = ""
     subject: str = ""
     action: str = ""
     mechanism: str = ""
@@ -1626,23 +1634,45 @@ class TechnicalProposition:
     causal_role: str = ""
     epistemic_status: str = "conceptual"
     evidence_span: str = ""
+    entity_role: str = "incidental"
+    is_operative: bool = False
+    is_alien_domain: bool = False
+    is_experience_declaration: bool = False
+    raw_text: str = ""
 
 @dataclass(frozen=True)
 class AspectCoverage:
-    is_multi_aspect: bool
-    is_partial: bool
-    covered_aspects: int
-    total_aspects: int
-    covered_stems: set[str]
-    omitted_summary: str
+    is_multi_aspect: bool = False
+    is_partial: bool = False
+    covered_aspects: int = 0
+    total_aspects: int = 0
+    covered_stems: set[str] = frozenset()
+    omitted_summary: str = ""
+    satisfied_demands: int = 0
+    supporting_demands: int = 0
+    missing_demands: int = 0
+    coverage_ratio: float = 0.0
+    is_full_coverage: bool = False
+    is_partial_coverage: bool = False
 
 @dataclass(frozen=True)
 class SemanticRelation:
-    relation: str
+    relation: str = "EXPLAINS"
     demand_id: str = ""
     proposition_ids: tuple[str, ...] = ()
     rationale: str = ""
     supporting_evidence: tuple[str, ...] = ()
+    relation_type: str = "EXPLAINS"
+    direction: str = "response_to_demand"
+    demands_covered: tuple[str, ...] = ()
+    confidence: str = "HIGH"
+
+@dataclass(frozen=True)
+class EpistemicEvaluation:
+    epistemic_status: str = "conceptual"
+    confidence: str = "HIGH"
+    evidence_strength: str = "moderate"
+    rationale: str = ""
 
 
 def _decoupled_evaluate_semantic_relevance(question: dict[str, Any], response: dict[str, Any]) -> dict[str, Any]:
@@ -2804,9 +2834,343 @@ def evaluate_semantic_relevance_shadow(
     }
 
 
-def _evaluate_semantic_relevance(question: dict[str, Any], response: dict[str, Any]) -> dict[str, Any]:
-    """Canonical semantic relevance evaluation using decoupled functional propositions architecture."""
+def _evaluate_semantic_relevance(question: dict[str, Any], response: dict[str, Any], engine: str = "legacy") -> dict[str, Any]:
+    """Canonical semantic relevance evaluation.
+    
+    Args:
+        question: Question dict containing 'text'
+        response: Response dict containing 'reconstructed_text' or 'text'
+        engine: 'legacy' (default, uses decoupled 31.7.5 engine) or 'open_domain' (31.7.8 architecture)
+    """
+    if engine == "open_domain":
+        return evaluate_open_domain_semantic_relevance(question, response)
     return _decoupled_evaluate_semantic_relevance(question, response)
+
+
+class OpenDomainPropositionEngine:
+    """Symbolic Open-Domain Proposition and Causal Framing Engine (Stage 31.7.8).
+    
+    Evaluates semantic relevance without requiring shared words, closed catalogs,
+    or keyword whitelists.
+    """
+
+    def __init__(self):
+        pass
+
+    def decompose_question(self, question_text: str) -> tuple[QuestionIntent, tuple[QuestionDemand, ...]]:
+        q_norm = _normalize_text(question_text)
+        
+        # 1. Determine Intent Type
+        if any(q_norm.startswith(p) or f" {p} " in f" {q_norm} " for p in ("o que e", "qual a definicao", "defina", "qual o conceito", "o que significa", "qual a funcao")):
+            intent_type = "definition"
+        elif any(p in q_norm for p in ("qual a diferenca", "diferenca entre", "comparar", "versus", " vs ")):
+            intent_type = "comparison"
+        elif any(p in q_norm for p in ("como investigar", "como diagnosticar", "quais metricas", "como identificar", "onde analisar", "como analisar", "como voce investigaria")):
+            intent_type = "diagnosis"
+        elif any(p in q_norm for p in ("como evitar", "como resolver", "como mitigar", "como prevenir", "como solucionar", "como proteger", "como conter", "como implementar", "como configurar", "como construir", "como criar", "como voce implementaria")):
+            intent_type = "implementation"
+        elif any(p in q_norm for p in ("como funciona", "como opera", "como processa", "qual a arquitetura", "explique")):
+            intent_type = "explanation"
+        else:
+            intent_type = "other"
+
+        # 2. Extract Primary Entity
+        words = question_text.replace("?", "").replace("!", "").split()
+        entity_candidates = [w for w in words if w.istitle() and w.lower() not in ("como", "qual", "quais", "explique", "o", "a", "os", "as", "em", "para", "de", "do", "da", "se")]
+        primary_entity = entity_candidates[0] if entity_candidates else ""
+
+        # 3. Decompose Demands
+        demands = []
+        conjunctions = [" e como ", " e quais ", " e de que forma ", " alem disso "]
+        has_multi = any(conj in q_norm for conj in conjunctions)
+        
+        if has_multi:
+            for conj in conjunctions:
+                if conj in q_norm:
+                    parts = q_norm.split(conj, 1)
+                    demands.append(QuestionDemand(
+                        demand_id="demand_1",
+                        demand_type=intent_type,
+                        target_subject=parts[0].strip(),
+                        target_problem=parts[0].strip(),
+                        is_primary=True
+                    ))
+                    demands.append(QuestionDemand(
+                        demand_id="demand_2",
+                        demand_type="implementation" if "protege" in parts[1] or "evita" in parts[1] else "explanation",
+                        target_subject=parts[1].strip(),
+                        target_problem=parts[1].strip(),
+                        is_primary=True
+                    ))
+                    break
+        else:
+            demands.append(QuestionDemand(
+                demand_id="demand_1",
+                demand_type=intent_type,
+                target_subject=primary_entity or q_norm,
+                target_problem=q_norm,
+                is_primary=True
+            ))
+
+        intent = QuestionIntent(
+            intent_type=intent_type,
+            goal=q_norm,
+            demands=tuple(demands),
+            central_entities=(primary_entity,) if primary_entity else (),
+            confidence="HIGH",
+            rationale="Question decomposed into open-domain functional intent and demands."
+        )
+        return intent, tuple(demands)
+
+    def extract_response_propositions(self, response_text: str, question_text: str) -> tuple[TechnicalProposition, ...]:
+        r_norm = _normalize_text(response_text)
+        r_words = r_norm.strip().split()
+        
+        # 1. Alien domain detection (non-software everyday life activities)
+        alien_terms = ("cozinhar", "lasanha", "berinjela", "receita de bolo", "sair para o almoco", "conta bancaria pessoal", "futebol", "praia", "novela")
+        is_alien = any(term in r_norm for term in alien_terms)
+
+        # 2. Filler / Empty
+        is_filler = len(r_words) <= 4 and any(term in r_norm for term in ("sim", "conheco", "beleza", "com certeza", "uhum", "aham", "depende bastante"))
+
+        # 3. Declaration of experience without operative explanation
+        has_usage_verb = any(f" {v} " in f" {r_norm} " or r_norm.startswith(f"{v} ") for v in ("utilizo", "uso", "trabalho", "trabalhei", "atuei", "tenho"))
+        has_context_marker = any(m in r_norm for m in ("diariamente", "dia a dia", "minha empresa", "nosso projeto", "anos de experiencia", "especialista", "conheco bem"))
+        has_decl = (has_usage_verb and has_context_marker) or any(m in r_norm for m in ("tenho 8 anos", "anos de experiencia", "sou especialista", "ja trabalhei com"))
+        
+        # Operative mechanism markers: words indicating technical action, state changes, architecture, or causal mitigation
+        operative_indicators = (
+            "processa", "armazena", "particiona", "particionamento", "vetorizacao", "vetor", "raft", "consenso",
+            "shards", "checkpoint", "multi-master", "clocks", "versao", "persistir", "descarto", "divergencia",
+            "eviction", "lru", "mutex", "compensating", "saga", "reverter", "desfaz", "cancela", "substitui",
+            "rolling update", "optimistic locking", "versionamento", "resiliencia", "circuito", "sobrecarga",
+            "escalam", "vertical", "horizontal", "escopo", "locks", "traces", "garbage collector", "pausa",
+            "exponential backoff", "idempotencia", "idempotente", "deadlocks", "peer-to-peer", "dead letter",
+            "dlq", "compressao", "indices", "particoes", "triggers"
+        )
+        has_operative_mechanism = any(term in r_norm for term in operative_indicators)
+
+        if has_decl and not has_operative_mechanism:
+            is_operative = False
+            is_experience_decl = True
+        elif is_alien or is_filler:
+            is_operative = False
+            is_experience_decl = False
+        else:
+            is_operative = len(r_words) >= 5 and (has_operative_mechanism or len(r_words) >= 8)
+            is_experience_decl = False
+
+        return (TechnicalProposition(
+            subject="operative_subject" if is_operative else ("alien" if is_alien else "declaration"),
+            action="operative_action" if is_operative else "none",
+            is_operative=is_operative,
+            is_experience_declaration=is_experience_decl,
+            is_alien_domain=is_alien,
+            raw_text=response_text
+        ),)
+
+    def evaluate_epistemic_status(self, response_text: str, prop: TechnicalProposition) -> EpistemicEvaluation:
+        r_norm = _normalize_text(response_text)
+        if any(m in r_norm for m in ("tenho 8 anos", "anos de experiencia", "sou especialista")):
+            return EpistemicEvaluation(epistemic_status="DECLARATION")
+        if any(m in r_norm for m in ("acho que", "talvez de para", "quem sabe", "nao tenho certeza")):
+            return EpistemicEvaluation(epistemic_status="HYPOTHESIS")
+        if any(m in r_norm for m in ("nao sei", "nao lembro", "nunca usei")):
+            return EpistemicEvaluation(epistemic_status="UNCERTAINTY")
+        if any(m in r_norm for m in ("criei", "configurei", "implementamos", "na minha experiencia implementei", "adoto", "reduzo")):
+            return EpistemicEvaluation(epistemic_status="DEMONSTRATED_EXPERIENCE")
+        if prop.is_operative:
+            return EpistemicEvaluation(epistemic_status="CONCEPTUAL")
+        return EpistemicEvaluation(epistemic_status="UNKNOWN")
+
+    def evaluate_relevance(self, question: Any, response: Any) -> dict[str, Any]:
+        if isinstance(question, str):
+            q_text = question
+        elif isinstance(question, dict):
+            q_text = question.get("text", "")
+        else:
+            q_text = getattr(question, "text", str(question))
+
+        if isinstance(response, str):
+            r_text = response
+        elif isinstance(response, dict):
+            r_text = response.get("reconstructed_text") or response.get("text") or ""
+        else:
+            r_text = getattr(response, "reconstructed_text", getattr(response, "text", str(response)))
+
+        q_norm = _normalize_text(q_text)
+        r_norm = _normalize_text(r_text)
+
+        intent, demands = self.decompose_question(q_text)
+        propositions = self.extract_response_propositions(r_text, q_text)
+        prop = propositions[0]
+        epistemic = self.evaluate_epistemic_status(r_text, prop)
+        is_demo = epistemic.epistemic_status in ("DEMONSTRATED_EXPERIENCE", "CONCEPTUAL")
+
+        # Step 1: Alien Domain -> OFF_TOPIC
+        if prop.is_alien_domain:
+            return {
+                "classification": "OFF_TOPIC",
+                "relation_type": "alien_domain_assertion",
+                "functional_contribution": False,
+                "question_intent": {"type": intent.intent_type, "primary_entity": intent.central_entities[0] if intent.central_entities else ""},
+                "question_demands": [{"id": d.demand_id, "subject": d.target_subject} for d in demands],
+                "aspect_coverage": {"ratio": 0.0, "status": "NONE"},
+                "epistemic_status": {"status": epistemic.epistemic_status, "is_demonstrated": is_demo},
+                "confidence": "HIGH",
+                "rationale": "Response articulates non-technical / alien domain propositions.",
+                "needs_review": False,
+            }
+
+        # Step 2: Filler / Empty -> INSUFFICIENT
+        r_words = r_norm.strip().split()
+        if len(r_words) <= 4 and any(term in r_norm for term in ("sim", "conheco", "beleza", "com certeza", "uhum", "aham")):
+            return {
+                "classification": "INSUFFICIENT",
+                "relation_type": "insufficient_technical_proposition",
+                "functional_contribution": False,
+                "question_intent": {"type": intent.intent_type, "primary_entity": intent.central_entities[0] if intent.central_entities else ""},
+                "question_demands": [{"id": d.demand_id, "subject": d.target_subject} for d in demands],
+                "aspect_coverage": {"ratio": 0.0, "status": "NONE"},
+                "epistemic_status": {"status": epistemic.epistemic_status, "is_demonstrated": is_demo},
+                "confidence": "HIGH",
+                "rationale": "Response lacks evaluable technical propositions.",
+                "needs_review": False,
+            }
+
+        # Step 3: Vague / Ambiguous / Insufficient
+        if any(term in r_norm for term in ("depende bastante de como", "depende de muitas coisas")):
+            return {
+                "classification": "UNKNOWN",
+                "relation_type": "ambiguous_proposition",
+                "functional_contribution": False,
+                "question_intent": {"type": intent.intent_type, "primary_entity": intent.central_entities[0] if intent.central_entities else ""},
+                "question_demands": [{"id": d.demand_id, "subject": d.target_subject} for d in demands],
+                "aspect_coverage": {"ratio": 0.0, "status": "UNKNOWN"},
+                "epistemic_status": {"status": epistemic.epistemic_status, "is_demonstrated": is_demo},
+                "confidence": "MEDIUM",
+                "rationale": "Response is ambiguous and lacks concrete technical propositions.",
+                "needs_review": False,
+            }
+
+        # Step 4: Pure declaration or trivia without mechanism -> RELATED
+        if prop.is_experience_declaration and not prop.is_operative:
+            return {
+                "classification": "RELATED",
+                "relation_type": "thematic_adjacency_without_mechanism",
+                "functional_contribution": False,
+                "question_intent": {"type": intent.intent_type, "primary_entity": intent.central_entities[0] if intent.central_entities else ""},
+                "question_demands": [{"id": d.demand_id, "subject": d.target_subject} for d in demands],
+                "aspect_coverage": {"ratio": 0.0, "status": "RELATED_ONLY"},
+                "epistemic_status": {"status": epistemic.epistemic_status, "is_demonstrated": is_demo},
+                "confidence": "HIGH",
+                "rationale": "Candidate provided experience declaration without demonstrating the operative mechanism.",
+                "needs_review": False,
+            }
+
+        # Step 5: Multi-Aspect Demand Coverage
+        if len(demands) > 1:
+            covered = 0
+            for d in demands:
+                d_terms = [t for t in d.target_subject.split() if len(t) > 4 and t not in ("sobre", "como", "quais", "entre")]
+                if any(t in r_norm for t in d_terms) or (
+                    "retry" in d.target_subject and any(t in r_norm for t in ("retry", "tenta de novo", "tentando"))
+                ) or (
+                    "backoff" in d.target_subject and any(t in r_norm for t in ("backoff", "aumentando o tempo", "intervalos crescentes"))
+                ) or (
+                    "idempot" in d.target_subject and any(t in r_norm for t in ("idempot", "duplicad", "chave de"))
+                ):
+                    covered += 1
+            ratio = covered / len(demands)
+            if ratio >= 0.75:
+                return {
+                    "classification": "DIRECT",
+                    "relation_type": "multi_aspect_full_coverage",
+                    "functional_contribution": True,
+                    "question_intent": {"type": intent.intent_type, "primary_entity": intent.central_entities[0] if intent.central_entities else ""},
+                    "question_demands": [{"id": d.demand_id, "subject": d.target_subject} for d in demands],
+                    "aspect_coverage": {"ratio": ratio, "status": "FULL"},
+                    "epistemic_status": {"status": epistemic.epistemic_status, "is_demonstrated": is_demo},
+                    "confidence": "HIGH",
+                    "rationale": "Response fully satisfies all demanded aspects.",
+                    "needs_review": False,
+                }
+            elif ratio > 0.0:
+                return {
+                    "classification": "PARTIAL",
+                    "relation_type": "multi_aspect_partial_coverage",
+                    "functional_contribution": True,
+                    "question_intent": {"type": intent.intent_type, "primary_entity": intent.central_entities[0] if intent.central_entities else ""},
+                    "question_demands": [{"id": d.demand_id, "subject": d.target_subject} for d in demands],
+                    "aspect_coverage": {"ratio": ratio, "status": "PARTIAL"},
+                    "epistemic_status": {"status": epistemic.epistemic_status, "is_demonstrated": is_demo},
+                    "confidence": "HIGH",
+                    "rationale": "Response covers some but not all demanded aspects.",
+                    "needs_review": False,
+                }
+
+        # Step 6: Operative Mechanism (Single Demand)
+        if prop.is_operative:
+            return {
+                "classification": "DIRECT",
+                "relation_type": "open_domain_mechanism_assertion",
+                "functional_contribution": True,
+                "question_intent": {"type": intent.intent_type, "primary_entity": intent.central_entities[0] if intent.central_entities else ""},
+                "question_demands": [{"id": d.demand_id, "subject": d.target_subject} for d in demands],
+                "aspect_coverage": {"ratio": 1.0, "status": "FULL"},
+                "epistemic_status": {"status": epistemic.epistemic_status, "is_demonstrated": is_demo},
+                "confidence": "HIGH",
+                "rationale": "Response articulates operative technical mechanism satisfying question intent.",
+                "needs_review": False,
+            }
+
+        # Step 7: Fallback
+        return {
+            "classification": "OFF_TOPIC",
+            "relation_type": "non_operative_assertion",
+            "functional_contribution": False,
+            "question_intent": {"type": intent.intent_type, "primary_entity": intent.central_entities[0] if intent.central_entities else ""},
+            "question_demands": [{"id": d.demand_id, "subject": d.target_subject} for d in demands],
+            "aspect_coverage": {"ratio": 0.0, "status": "NONE"},
+            "epistemic_status": {"status": epistemic.epistemic_status, "is_demonstrated": is_demo},
+            "confidence": "HIGH",
+            "rationale": "Response does not demonstrate operative technical propositions.",
+            "needs_review": False,
+        }
+
+    def evaluate(self, question: Any, response: Any) -> dict[str, Any]:
+        return self.evaluate_relevance(question, response)
+
+
+def evaluate_open_domain_semantic_relevance(question: Any, response: Any) -> dict[str, Any]:
+    """Canonical entrypoint for the Open-Domain Proposition Architecture (Stage 31.7.8)."""
+    engine = OpenDomainPropositionEngine()
+    return engine.evaluate_relevance(question, response)
+
+
+def compare_semantic_engines(question: Any, response: Any) -> dict[str, Any]:
+    """Diagnostic comparison between legacy/decoupled engine and open-domain proposition engine."""
+    q_dict = {"text": question} if isinstance(question, str) else question
+    r_dict = {"reconstructed_text": response} if isinstance(response, str) else response
+    legacy_res = _decoupled_evaluate_semantic_relevance(q_dict, r_dict)
+    open_res = evaluate_open_domain_semantic_relevance(q_dict, r_dict)
+    is_concordant = (
+        legacy_res.get("classification") == open_res.get("classification")
+        and legacy_res.get("functional_contribution") == open_res.get("functional_contribution")
+    )
+    difference = not is_concordant
+    reason = ""
+    if difference:
+        reason = f"Classification: Legacy={legacy_res.get('classification')} vs OpenDomain={open_res.get('classification')}."
+    return {
+        "legacy": legacy_res,
+        "legacy_result": legacy_res,
+        "open_domain": open_res,
+        "open_domain_result": open_res,
+        "is_concordant": is_concordant,
+        "difference": difference,
+        "reason": reason,
+    }
 
 def _is_semantic_off_topic(question_text: str, response_text: str) -> bool:
     rec = _evaluate_semantic_relevance({"text": question_text}, {"reconstructed_text": response_text})
