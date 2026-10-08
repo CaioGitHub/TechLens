@@ -69,10 +69,30 @@ POST_CORRECTION_HUMAN_VS_SYSTEM_REVALIDATION_BLOCKED
 
 Stage 31.7.1
     ↓
-NEXT STAGE (Root Cause Analysis & Architectural Decoupling of Functional Catalog)
+ROOT_CAUSE_ANALYSIS_COMPLETE
+
+Stage 31.7.2
+    ↓
+SEMANTIC_RELEVANCE_ARCHITECTURE_IMPLEMENTED
+
+Stage 31.7.3
+    ↓
+POST_DECOUPLING_BLIND_REVALIDATION_BLOCKED
+
+Stage 31.7.4
+    ↓
+ROOT_CAUSE_ANALYSIS_COMPLETE
+
+Stage 31.7.5
+    ↓
+SEMANTIC_INTENT_GENERALIZATION_IMPLEMENTATION_COMPLETE_WITH_WARNINGS
+
+Stage 31.7.6
+    ↓
+NEXT STAGE (Post-Implementation Blind Human vs System Revalidation)
 ```
 
-O Stage 31.7 executou a revalidação cega e independente pós-Stage 31.6. A calibração contra a referência humana do Candidato-Piloto-05 manteve-se estável com MAE 0.64 (0.6364), 4 concordâncias exatas e 716/716 testes de regressão global aprovados. Entretanto, a auditoria estrutural profunda da suíte adversarial de 65 testes (51 PASS, 14 FAIL) revelou que `_FUNCTIONAL_CAPABILITIES` atua como um catálogo obrigatório que intercepta e rejeita indevidamente tecnologias desconhecidas e conceitos em domínio aberto (via `alien_defines` e colisões de monopalavras polissêmicas como `"transação"` e `"telemetria"`). O gate foi corretamente declarado `POST_CORRECTION_HUMAN_VS_SYSTEM_REVALIDATION_BLOCKED`. O próximo passo é o Stage 31.7.1.
+O Stage 31.7.5 implementou e validou no runtime canônico (`reference_runtime/runtime.py`, SHA-256: `A0CFE48B933F587459BFF6AAF8B2BECABA5B7C00C4C87E7B5DDB6BDE985E46A6`) a arquitetura de Semantic Intent Generalization desenhada no Stage 31.7.4. Foram incorporadas as dataclasses estruturais (`QuestionDemand`, `QuestionIntent`, `TechnicalProposition`, `AspectCoverage`, `SemanticRelation`), o motor de relações causais problema → mecanismo totalmente desacoplado de catálogos fechados, a ancoragem estrita de entidades sem veredicto automático (`entity_match != DIRECT`), o tratamento de multi-aspectos e a distinção epistêmica de experiência. Todos os 170 testes independentes da nova suíte foram aprovados (100%), inclusive sob catálogo completamente esvaziado (`_FUNCTIONAL_CAPABILITIES = {}`), com 989 testes de regressão no repositório e 8/8 suítes do harness aprovadas. O gate foi declarado `SEMANTIC_INTENT_GENERALIZATION_IMPLEMENTATION_COMPLETE_WITH_WARNINGS`.
 
 ## Regra fundamental
 

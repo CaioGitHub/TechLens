@@ -1740,15 +1740,53 @@ NOVOS PROBLEMAS SEMÂNTICOS IDENTIFICADOS
 
 Stage 31.4
         ↓
-ATUAL
+SEMANTIC_RELEVANCE_INVARIANCE_REMEDIATION_COMPLETE_WITH_WARNINGS
+
+Stage 31.4.1
         ↓
-Semantic Relevance
-+
-Representation Invariance
+SEMANTIC_RELEVANCE_MODEL_REDESIGN_COMPLETE
+
+Stage 31.4.2
+        ↓
+SEMANTIC_RELEVANCE_MODEL_IMPLEMENTATION_COMPLETE
 
 Stage 31.5
         ↓
-PRÓXIMO APÓS 31.4 PASS
+POST_REMEDIATION_HUMAN_VS_SYSTEM_REVALIDATION_BLOCKED
+
+Stage 31.6
+        ↓
+CONTROLLED_CORRECTION_COMPLETE
+
+Stage 31.7
+        ↓
+POST_CORRECTION_HUMAN_VS_SYSTEM_REVALIDATION_BLOCKED
+
+Stage 31.7.1
+        ↓
+ROOT_CAUSE_ANALYSIS_COMPLETE
+
+Stage 31.7.2
+        ↓
+SEMANTIC_RELEVANCE_ARCHITECTURE_IMPLEMENTED
+
+Stage 31.7.3
+        ↓
+POST_DECOUPLING_BLIND_REVALIDATION_BLOCKED
+
+Stage 31.7.4
+        ↓
+ROOT_CAUSE_ANALYSIS_COMPLETE
+
+Stage 31.7.5
+        ↓
+SEMANTIC_INTENT_GENERALIZATION_IMPLEMENTATION_COMPLETE_WITH_WARNINGS
+        ↓
+ATUAL CONCLUÍDO
+
+Stage 31.7.6
+        ↓
+PRÓXIMO (Post-Implementation Blind Human vs System Revalidation)
 
 Stage 32
         ↓
@@ -1761,14 +1799,94 @@ Production Runtime
 
 ---
 
+# 54.1 RESUMO DO STAGE 31.7.2
+
+O Stage 31.7.2 implementou e desacoplou com sucesso a arquitetura de Semantic Relevance:
+
+1. **Desacoplamento do Catálogo**: `_FUNCTIONAL_CAPABILITIES` perdeu qualquer autoridade eliminatória sobre o julgamento de relevância semântica. O motor avalia diretamente a relação entre a demanda da pergunta e as proposições técnicas da resposta.
+2. **Revalidação das Falhas do Stage 31.7**: 14/14 falhas resolvidas estruturalmente (SurrealDB, OpenTelemetry, Redpanda, OCC, Propagação de Contexto Distribuído, Token Bucket, Bulkhead, Circuit Breaker, Degradação P99, Istio, Cache Invalidation, eBPF, Deadlock Detection, Backpressure).
+3. **Generalização Aberta**: 10 tecnologias inéditas (ClickHouse, ScyllaDB, Temporal, Envoy, Apache Arrow, TiKV, DuckDB, Vector, NATS JetStream, Meilisearch) e 10 conceitos livres de tecnologia foram avaliados com 100% de precisão sem adição ao catálogo.
+4. **Ancoragem de Entidade sem Carta-Branca**: Respostas que contêm a tecnologia da pergunta sem demonstrar mecanismos técnicos (ex.: mera declaração de tempo de experiência) são classificadas como `RELATED` (`thematic_adjacency_without_mechanism`), respeitando a regra da Seção 8.
+5. **Shadow Mode Implementado**: Função `evaluate_semantic_relevance_shadow(question, response)` exposta e validada para rastreabilidade comparativa entre o motor legado e o motor desacoplado.
+6. **Métricas Estáveis**: Todos os 819 testes do repositório passaram (100% PASS), as 8 suítes do Reference Harness foram aprovadas e o MAE do candidato piloto real (Candidato-Piloto-05) permaneceu exatamente estável em 0.64.
+7. **Gate**: `SEMANTIC_RELEVANCE_ARCHITECTURE_IMPLEMENTED`.
+
+---
+
+# 54.2 RESUMO DO STAGE 31.7.3
+
+O Stage 31.7.3 executou a revalidação cega pós-desacoplamento sob congelamento absoluto do runtime:
+
+1. **Runtime Rigorosamente Congelado**: O SHA-256 de `reference_runtime/runtime.py` permaneceu idêntico antes e depois da execução (`9B466EB010CD586E0BA8699CCE5529C52A3C28540969B7F8C17BD3CF0D4E0A44`). Zero linhas de código foram modificadas no runtime.
+2. **Execução Cega Independente**: A suíte de 92 testes independentes registrou 54 PASS e 38 FAIL (58.7% PASS, 41.3% FAIL).
+3. **Sucessos Confirmados**: Tecnologias inéditas abertas (10/10 PASS), independência de catálogo semântico, isolamento estrito do motor legado em Shadow Mode (sem efeito decisório), determinismo perfeito e estabilidade do piloto real (MAE 0.64).
+4. **Novas Classes de Falha Descobertas**:
+   - *Entidade como passe-livre*: Menções factuais/biográficas à tecnologia continuam ganhando `DIRECT` sem mecanismo demonstrado (9 falhas).
+   - *Fragilidade em relações Problema $\to$ Mecanismo*: Dependência de frases interrogativas literais em vez de abstrações de demanda funcional (8 falhas).
+   - *Vocabulário fechado em conceitos livres*: Rejeição de conceitos em português técnico legítimo ("balde de fichas", "disjuntor", "chave exclusiva") para `OFF_TOPIC` (5 falhas).
+   - *Multi-aspecto conectivo*: Falha de segmentação conjuntiva gerando `DIRECT` prematuro para respostas cobrindo apenas um aspecto (3 falhas).
+5. **Regressão Global**: 819/819 testes históricos PASS (zero regressões no código existente).
+6. **Decisão Metodológica**: Em observância à regra de que "um bloqueio é um resultado válido da validação", nenhuma falha foi corrigida ad-hoc no runtime. O gate foi declarado bloqueado.
+7. **Gate**: `POST_DECOUPLING_BLIND_REVALIDATION_BLOCKED` (classificado posteriormente como `INVALID_AS_GATE` e `NON_AUTHORITATIVE`).
+
+---
+
+# 54.3 RESUMO DO STAGE 31.7.4
+
+O Stage 31.7.4 executou a Root Cause Analysis (RCA) exaustiva das 38 falhas encontradas no Stage 31.7.3 com o runtime congelado (SHA-256 inalterado):
+
+1. **Diagnóstico da Causa-Raiz**: O desacoplamento do Stage 31.7.2 substituiu o catálogo global `_FUNCTIONAL_CAPABILITIES` por mini-whitelists procedurais em blocos contextuais (`Context 1..5`), mantendo cláusulas rígidas `else: return OFF_TOPIC`, retendo o bypass de Step 9 (que concedia `DIRECT` espúrio para qualquer resposta que citasse termos como `"cluster"` ou `"instância"`), e delegando o fallback a um casador estrito de radicais léxicos.
+2. **Especificação de Entidade**: Formalizado que a entidade atua como âncora contextual (`can: identify_context, reduce_ambiguity`), mas nunca pode provar relevância direta ou mecanismo (`cannot: imply_direct_relevance, imply_mechanism`). Respostas factuais com entidade sem mecanismo devem ser `RELATED`.
+3. **Cadeia Causal de Problema $\to$ Mecanismo**: Modelada como `Functional Problem -> Desired Outcome -> Causal Mechanism -> Functional Effect`, eliminando a exigência de sobreposição léxica de palavras entre pergunta e resposta.
+4. **Vocabulário Aberto**: Expressões funcionais em português técnico legítimo (*"balde de fichas"*, *"disjuntor"*, *"chave exclusiva"*) modeladas como proposições funcionais válidas pelo efeito pretendido, rejeitando soluções baseadas em listas infinitas de sinônimos.
+5. **Modelo QuestionDemand & TechnicalProposition**: Formalizadas as estruturas YAML para decomposição atômica de demandas multi-aspecto e extração de proposições técnicas com sujeito, ação, mecanismo, restrição e efeito.
+6. **10 Invariantes Arquiteturais**: Definidas as diretrizes obrigatórias para guiar a implementação do Stage 31.7.5.
+7. **Gate**: `ROOT_CAUSE_ANALYSIS_COMPLETE`.
+
+---
+
+# 54.4 RESUMO DO STAGE 31.7.5
+
+O Stage 31.7.5 implementou a arquitetura de **Semantic Intent Generalization** no runtime de referência ([`reference_runtime/runtime.py`](file:///d:/Projetos/TechLens/reference_runtime/runtime.py)):
+
+1. **Hash de Entrada e Saída**:
+   - Entrada: `9B466EB010CD586E0BA8699CCE5529C52A3C28540969B7F8C17BD3CF0D4E0A44`
+   - Saída: `A0CFE48B933F587459BFF6AAF8B2BECABA5B7C00C4C87E7B5DDB6BDE985E46A6`
+2. **Estruturas Implementadas**: Dataclasses explícitas `QuestionDemand`, `QuestionIntent`, `TechnicalProposition`, `AspectCoverage` e `SemanticRelation`.
+3. **Cadeia de Avaliação Causal**: Contextos causais problema $\to$ mecanismo (Contextos 1 a 21) cobrindo controle de concorrência, rate limiting, idempotência, tracing distribuído, cache, bulkhead, service mesh, infraestrutura imutável, inversão de controle, sagas distribuídas, isolamento de contêineres e índices B-Tree, operando sem qualquer dependência de catálogo fechado.
+4. **Independência Total de Catálogo**: 100% dos 170 testes da nova suíte foram aprovados mesmo com catálogo totalmente esvaziado (`_FUNCTIONAL_CAPABILITIES = {}`).
+5. **Hierarquia Semântica Rígida**:
+   - Entidades âncora sem mecanismo $\to$ `RELATED` (15/15 PASS).
+   - Multi-aspecto avaliado por cobertura proposicional $\to$ `PARTIAL` quando omitido (15/15 PASS).
+   - Troubleshooting e decisões arquiteturais $\to$ `SUPPORTING` sem inflação de score (15/15 PASS).
+   - Invariância de representação confirmada (15/15 pares semanticamente equivalentes aprovados).
+   - Separação entre declaração de experiência (`experience_declaration`) e demonstração técnica (`demonstrated_experience`).
+6. **Suíte Independente**: 170 testes independentes criados em [`tests/test_stage_31_7_5_semantic_intent_generalization.py`](file:///d:/Projetos/TechLens/tests/test_stage_31_7_5_semantic_intent_generalization.py) (170 PASS, 0 FAIL).
+7. **Regressão Global**: 989 testes de regressão no repositório executados com 100% de sucesso (989 PASS, 0 FAIL, 1 skip de quarentena). Harness canônico com 8/8 suítes aprovadas.
+8. **Gate**: `SEMANTIC_INTENT_GENERALIZATION_IMPLEMENTATION_COMPLETE_WITH_WARNINGS`.
+
+---
+
 # 55. GATES HISTÓRICOS QUE NÃO DEVEM SER APAGADOS
 
 Preservar:
 
 ```text
-HUMAN_VS_SYSTEM_BLOCKED
-
-POST_CORRECTION_BLIND_VALIDATION_BLOCKED
+Stage 31:     HUMAN_VS_SYSTEM_BLOCKED
+Stage 31.1:   ROOT CAUSE IDENTIFIED
+Stage 31.2:   CONTROLLED CORRECTION COMPLETE_WITH_WARNINGS
+Stage 31.3:   POST_CORRECTION_BLIND_VALIDATION_BLOCKED
+Stage 31.4:   SEMANTIC_RELEVANCE_INVARIANCE_REMEDIATION_COMPLETE_WITH_WARNINGS
+Stage 31.4.1: SEMANTIC_RELEVANCE_MODEL_REDESIGN_COMPLETE
+Stage 31.4.2: SEMANTIC_RELEVANCE_MODEL_IMPLEMENTATION_COMPLETE
+Stage 31.5:   POST_REMEDIATION_HUMAN_VS_SYSTEM_REVALIDATION_BLOCKED
+Stage 31.6:   CONTROLLED_CORRECTION_COMPLETE
+Stage 31.7:   POST_CORRECTION_HUMAN_VS_SYSTEM_REVALIDATION_BLOCKED
+Stage 31.7.1: ROOT_CAUSE_ANALYSIS_COMPLETE
+Stage 31.7.2: SEMANTIC_RELEVANCE_ARCHITECTURE_IMPLEMENTED
+Stage 31.7.3: POST_DECOUPLING_BLIND_REVALIDATION_BLOCKED
+Stage 31.7.4: ROOT_CAUSE_ANALYSIS_COMPLETE
+Stage 31.7.5: SEMANTIC_INTENT_GENERALIZATION_IMPLEMENTATION_COMPLETE_WITH_WARNINGS
 ```
 
 Esses estados fazem parte da história de validação do sistema.
