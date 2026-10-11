@@ -113,10 +113,34 @@ CONTROLLED_DEMAND_PROPOSITION_IMPLEMENTATION_COMPLETE
 
 Stage 31.7.12
     ↓
-NEXT STAGE (Independent Contract Validation and Blind Semantic Revalidation Design)
+INDEPENDENT_CONTRACT_AUDIT_AND_BLIND_VALIDATION_DESIGN_COMPLETE
+
+Stage 31.7.13
+    ↓
+BLIND_SEMANTIC_REVALIDATION_BLOCKED
+
+Stage 31.7.14
+    ↓
+INDEPENDENT_BLIND_VALIDATION_RCA_COMPLETE
+
+Stage 31.7.15
+    ↓
+CONTROLLED_CORRECTION_PLAN_COMPLETE
+
+Stage 31.7.16
+    ↓
+CONTROLLED_IMPLEMENTATION_COMPLETE_PENDING_BLIND_VALIDATION
+
+Stage 31.7.17
+    ↓
+BLIND_SEMANTIC_REVALIDATION_BLOCKED
+
+Stage 31.7.18
+    ↓
+NEXT STAGE (Root Cause Analysis & Architecture Remediation for Propositional Precision, Tautology Detection and Demand Conjunctive Satisfaction)
 ```
 
-O Stage 31.7.11 implementou de forma controlada a arquitetura **Demand-Proposition Nexus Architecture** em `reference_runtime/runtime.py` (Exit SHA-256: `5545C47ECD92C04265CA3FFB46266FDE814CC564B2F69CA91E4B230CBE04BF3E`). A implementação eliminou a heurística de proxy de tamanho de resposta (`len(r_words) >= 8`) e os atalhos permissivos para `DIRECT`, implementando a avaliação de nexus par-a-par (`FUNCTIONALLY_SOLVES`, `CONTRIBUTES_TO`, `THEMATICALLY_ADJACENT`, `ANTITHESIS_OPPOSED`, `DOMAIN_DISJUNCT`, `UNKNOWN`/`INSUFFICIENT`) e epistemologia desacoplada. O motor legado (`engine="legacy"`) foi mantido inalterado como padrão para garantir compatibilidade histórica total. Todos os 1013 testes da suíte canônica passaram (100% PASS), a suíte contratual cobriu 8 categorias (A a H) e o Reference Harness determinístico executou com status `PASS_WITH_WARNINGS` (8/8 suítes). O gate foi emitido como `CONTROLLED_DEMAND_PROPOSITION_IMPLEMENTATION_COMPLETE`.
+O Stage 31.7.17 executou a revalidação semântica cega independente do runtime congelado no Stage 31.7.16 (`AF3C1A14A435074C703A370591DFE8F91862789D9C536121EB3370F06CFF0CCB`) sobre 200 casos técnicos inéditos (0% de sobreposição com os 250 casos do Stage 31.7.13). A validação seguiu protocolo estritamente cego e determinístico. O runtime demonstrou avanço expressivo em Recall de DIRECT (88,89%, superando a meta de $\ge 85\%$) e na classificação de SUPPORTING (96,0%), mantendo regressão canônica perfeita de 1.024 testes aprovados (`OK (skipped=1)`) e Reference Harness 8/8 aprovado. No entanto, o runtime falhou em 5 dos 7 critérios de aceitação: Concordância Exata atingiu 62,00% (meta $\ge 75\%$), Precisão de DIRECT foi de 47,62% (meta $\ge 70\%$), Falsos DIRECTs entre divergências foi de 57,89% (meta $\le 10\%$), Recall de PARTIAL foi de 45,71% (meta $\ge 60\%$) e Invariância de Representação foi de 61,54% (meta $\ge 80\%$). A auditoria semântica revelou 44 falsos DIRECTs gerados por falta de conjunção estrita em perguntas multi-demanda (14 casos PARTIAL), confusão entre descrição histórica/institucional e resolução mecânica (15 casos RELATED), tautologias circulares não detectadas (6 casos UNKNOWN) e vazamento léxico em antíteses/casos cotidianos (7 casos OFF_TOPIC). O gate formal emitido foi `GATE: BLIND_SEMANTIC_REVALIDATION_BLOCKED`. A próxima etapa é o **Stage 31.7.18 — Root Cause Analysis & Architecture Remediation for Propositional Precision, Tautology Detection and Demand Conjunctive Satisfaction**.
 
 ## Regra fundamental
 

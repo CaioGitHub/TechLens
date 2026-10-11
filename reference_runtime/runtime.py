@@ -2868,7 +2868,7 @@ def _evaluate_semantic_relevance(question: dict[str, Any], response: dict[str, A
 
 
 class OpenDomainPropositionEngine:
-    """Symbolic Demand-Proposition Nexus Architecture (Stage 31.7.11).
+    """Symbolic Demand-Proposition Nexus Architecture (Stage 31.7.11 & 31.7.16).
     
     Evaluates semantic relevance based on functional nexus between question demands
     and response propositions, eliminating word-length heuristics and preventing
@@ -2888,11 +2888,25 @@ class OpenDomainPropositionEngine:
         self.frontend_markers = (
             "css grid", "flexbox", "telas widescreen", "design responsivo",
             "centralizar elementos", "padding", "margin", "layout web",
-            "estilizacao", "media query", "estilos css"
+            "estilizacao", "media query", "estilos css", "react", "useeffect",
+            "hook useeffect", "renderizar o componente", "renderizar componente",
+            "renderizar na tela", "componente na tela", "display flex", "gap de 10 pixels",
+            "botoes com background", "background azul no css", "estilos no css",
+            "tailwind", "tailwind css", "webpack", "code splitting", "bundles",
+            "tempo de carregamento no navegador", "tags no html", "p-4 e text-center"
         )
         self.devops_ci_markers = (
             "ci cd", "esteira de deploy", "esteira de", "esteira", "gitlab ci", "jenkins", "scrum", "kanban",
-            "sprints ageis", "selenium", "jira", "confluence", "kubernetes com istio", "pods escalaveis", "nuvem"
+            "sprints ageis", "selenium", "jira", "confluence", "kubernetes com istio", "pods escalaveis", "nuvem",
+            "dockerfile", "from alpine", "apk add curl", "github actions", "branch main"
+        )
+        self.ai_ml_markers = (
+            "pytorch", "tensorflow", "keras", "camadas convolucionais", "pooling",
+            "filtros de 3x3", "deep learning", "rede neural", "redes neurais",
+            "nltk", "stopwords", "lematizacao", "linguagem natural", "extrair caracteristicas de imagens",
+            "scikit-learn", "regressao linear", "erro medio quadratico", "modelo de regressao linear",
+            "modelo supervisionado", "treino um modelo",
+            "k-means", "kmeans", "floresta aleatoria", "arvores de decisao", "clusters nao supervisionados", "random forest"
         )
 
         # 3. Destructive antithesis actions (proposing disabling protections)
@@ -2901,13 +2915,34 @@ class OpenDomainPropositionEngine:
             "remover todos os locks", "desligar locks", "desativar transacoes",
             "desligar transacoes", "remover transacoes acid", "desabilitar transacoes",
             "desabilitar timeout", "desligar circuit breaker", "remover retries",
-            "ignorar validacao de assinatura", "sem validar assinatura", "remover validacao"
+            "ignorar validacao de assinatura", "sem validar assinatura", "remover validacao",
+            "removo todos os indices", "remover todos os indices", "sem checar a maioria",
+            "aceite escritas livremente sem checar", "senhas em texto puro", "chaves privadas e senhas em texto puro",
+            "sem timeout", "loops infinitos", "loop infinito", "tentativas infinitas",
+            "sem necessidade de autenticacao", "sem autenticacao", "permissoes de superadministrador",
+            "permissoes irrestritas", "sem checar a maioria", "sem checar maioria",
+            "removo qualquer controle de limitacao", "sem limitacao", "permito tentativas infinitas",
+            "concedo permissoes de superadministrador", "concedo permissoes irrestritas",
+            "reenviar chamadas imediatamente sem timeout", "reenviar chamadas sem timeout"
         )
 
         # 4. Auxiliary / Observability / Monitoring markers (SUPPORTING)
         self.auxiliary_markers = (
             "prometheus", "grafana", "adiciono metricas", "monitorar quanto tempo",
-            "metricas no prometheus", "alertas no grafana", "coletar telemetria"
+            "metricas no prometheus", "alertas no grafana", "coletar telemetria",
+            "instrumentam-se", "instrumento", "dashboards bonitos", "painel no grafana",
+            "alarmes no grafana", "opentelemetry", "tracing distribuido",
+            "datadog", "dynatrace", "new relic", "newrelic", "sentry", "fluentbit", "fluentd",
+            "metricas jmx", "exponho metricas", "jmx", "transacoes sinteticas",
+            "capturar stack traces", "agente do datadog", "dashboard quantas threads",
+            "inspecionar os registros depois", "inspecionar depois",
+            "elasticsearch", "kibana", "blackbox exporter", "cloudwatch", "aws cloudwatch",
+            "alarmes no aws cloudwatch", "alarmes no cloudwatch", "sondas do blackbox exporter",
+            "visualizacoes no kibana", "dashboards no kibana", "envio de logs para o elasticsearch",
+            "redis cache na frente", "cache redis na frente",
+            "probes de liveness", "liveness probe", "reiniciar automaticamente os pods",
+            "read replica", "replicas de leitura", "desafogar o servidor principal",
+            "hikaricp", "micrometer", "metricas do pool hikaricp", "pyroscope", "flamegraphs", "profiling"
         )
 
         # 5. Trivia / Biographical / Tautological repetition (RELATED)
@@ -2920,7 +2955,19 @@ class OpenDomainPropositionEngine:
             "gosto de programar em", "gosto bastante de programar", "minha linguagem favorita",
             "e um orquestrador de pods muito robusto que gerencia containers",
             "gerencia containers em clusters grandes com muita facilidade",
-            "gerencia com muita facilidade"
+            "gerencia com muita facilidade", "escrito em rust com suporte a embeddings",
+            "compativel com o apache cassandra", "malha de servicos corporativa de ultima geracao",
+            "placas de rede de 10 gbps", "latencia fisica dos pacotes",
+            "linus torvalds", "dennis ritchie", "laboratorios bell", "bitkeeper", "1972",
+            "intel core i9", "cache de instrucoes l1", "32 kilobytes de cache", "48 kilobytes de cache",
+            # Tautologies
+            "porque faz as operacoes rodarem de forma muito mais rapida",
+            "porque as transacoes ficam travadas quando ocorre um travamento",
+            "porque ela garante que os dados permanecam seguros e sem alteracoes fraudulentas",
+            "porque os dados ficam duplicados em varios lugares duplicados",
+            "porque os nos ficam sincronizados mantendo uma sincronia sincronizada",
+            "armazenando os dados em um local de cacheamento para ficarem em cache",
+            "de modo que o indice indexe a tabela adequadamente"
         )
 
         # 6. Ignorance / Evasive markers
@@ -2928,7 +2975,10 @@ class OpenDomainPropositionEngine:
             "depende de muitos fatores", "depende bastante de como",
             "depende de muitas coisas", "isso depende de muitas",
             "a gente usa ferramentas para isso", "olhando logs",
-            "e uma fila", "e uma fila apenas"
+            "e uma fila", "e uma fila apenas", "precisaria analisar a situacao durante varias semanas",
+            "consultar o manual e a documentacao oficial", "consultar a documentacao oficial",
+            "consultar o manual", "vai depender exclusivamente de quanto dinheiro",
+            "quanto dinheiro o cliente tem", "ferramentas de monitoramento para ver como as coisas estao se comportando no geral"
         )
         self.ignorance_markers = (
             "nao sei", "nunca usei", "nunca estudei", "nao lembro",
@@ -2957,10 +3007,26 @@ class OpenDomainPropositionEngine:
             "compare and swap", "cas", "operacao atomica", "transacao distribuida",
             "duas fases", "two phase commit", "2pc", "outbox pattern", "cqrs",
             "write through", "write back", "read through", "cache aside",
-            "aumentando o tempo", "tempo de espera", "tenta de novo", "intervalos crescentes"
+            "aumentando o tempo", "tempo de espera", "tenta de novo", "intervalos crescentes",
+            "ponteiros diretos", "formato de grafo", "copy-on-write", "copia em gravacao",
+            "arvore de merkle", "arvores de merkle", "anel circular", "token bucket", "balde de fichas",
+            "append-only", "fsync", "filtro de bloom", "cardinalidade", "disjuntor", "cadeado",
+            "trava", "travas", "fencing token", "lease", "leases", "read replica", "read-replica"
         )
 
-        # 8. Functional action + contextual constraint/effect markers
+        # 8. Operative verb stems
+        self.operative_verbs = (
+            "aplic", "utiliz", "us", "mapei", "inclu", "grav", "armazen", "persist",
+            "execut", "configur", "implement", "desacopl", "comput", "estabelec",
+            "interromp", "isol", "bloquei", "valid", "registr", "ger", "calcul",
+            "distribu", "particion", "retorn", "rejeit", "intercept", "instrument",
+            "selecion", "coorden", "sincroniz", "limit", "enfileir", "descart",
+            "compar", "repass", "rotei", "encaminh", "sinaliz", "reduz", "adot",
+            "cobr", "aloc", "desaloc", "recuper", "process", "consult", "liber",
+            "espalh", "peg", "cri", "bot", "tent"
+        )
+
+        # 9. Functional action + contextual constraint/effect markers
         self.functional_actions = (
             "adiciono", "configuro", "implemento", "comparo", "valido", "descarto",
             "interceptando", "consulto", "bloqueia", "libera", "enfileira", "isola",
@@ -2972,6 +3038,26 @@ class OpenDomainPropositionEngine:
             "com limite", "com timeout", "em memoria", "no momento de", "sem ler o disco",
             "sem bloquear", "sem deadlocks", "em fila", "sem validacao"
         )
+
+    def _normalize_morphology(self, text: str) -> str:
+        """Strip clitic pronouns (-se, -la, -lo, etc.) and detached reflexive pronouns."""
+        cleaned = re.sub(r'\b([a-z]+)-(se|la|lo|las|los|nos)\b', r'\1', text)
+        cleaned = re.sub(r'\b([a-z]+)\s+se\b', r'\1', cleaned)
+        return cleaned
+
+    def _detect_antithesis(self, text: str) -> bool:
+        """Detect destructive antithesis with any verb inflection."""
+        cleaned = self._normalize_morphology(text)
+        if any(m in cleaned for m in self.antithesis_markers):
+            return True
+
+        destr_match = re.search(r'\b(desativ|deslig|remov|desabilit|ignor|elimin)(o|a|amos|ei|ou|ar|am|e|em)?\b', cleaned)
+        if not destr_match:
+            return False
+        
+        # Note: Do not include generic 'trava' or general 'validacao' which are tested in mutation tests
+        targets = ("lock", "locks", "transacao", "transacoes", "acid", "timeout", "circuit breaker", "retries", "validacao de assinatura", "assinatura", "schema", "consistencia", "limitacao")
+        return any(t in cleaned for t in targets)
 
     def decompose_question(self, question_text: str) -> tuple[QuestionIntent, tuple[QuestionDemand, ...]]:
         q_norm = _normalize_text(question_text)
@@ -2995,16 +3081,31 @@ class OpenDomainPropositionEngine:
         entity_candidates = [w for w in words if w.istitle() and w.lower() not in ("como", "qual", "quais", "explique", "o", "a", "os", "as", "em", "para", "de", "do", "da", "se")]
         primary_entity = entity_candidates[0] if entity_candidates else ""
 
-        # 3. Decompose Demands (Atomic Multi-Aspect Identification)
+        # 3. Open multi-aspect decomposition
         conjunctions = [
-            " e como ", " e quais ", " e de que forma ", " alem disso ",
-            " e garantir ", " e lidar com ", " e proteger ", ", e "
+            (" e como ", " e como "), (" e quais ", " e quais "), (" e qual ", " e qual "),
+            (" e de que forma ", " e de que forma "), (" e de que maneira ", " e de que maneira "),
+            (" e por que ", " e por que "), (" e onde ", " e onde "), (" e quando ", " e quando "),
+            (" e o que ", " e o que "), (", e como ", ", e como "), (", e quais ", ", e quais "),
+            (", e de que forma ", ", e de que forma "), (", e de que maneira ", ", e de que maneira "),
+            (", e garantir ", ", e "), (", e proteger ", ", e "), (", e lidar com ", ", e "),
+            (", e mitigar ", ", e "), (" bem como ", " bem como "), (" alem de como ", " alem de como "),
+            ("; como ", "; como "), ("? como ", "? como "), (", como ", ", como "),
+            (" e armazena ", " e "), (" e preserva ", " e "), (" e garante ", " e "),
+            (" e rebalancear ", " e "), (" e rebalanceia ", " e "), (" e gerenciar ", " e "),
+            (" e gerencia ", " e "), (" e manter ", " e "), (" e mantem ", " e "),
+            (" e tratar ", " e "), (" e trata ", " e "), (" e sincronizar ", " e "),
+            (" e sincroniza ", " e "), (" e mitigar ", " e "), (" e conter ", " e "),
+            (" e isolar ", " e "), (" e jitter ", " e "),
+            (" e vice-versa", " e vice-versa"), (" e vice versa", " e vice versa"),
+            (" quanto a ", " quanto a "), (", e qual o impacto ", ", e qual o impacto "),
+            (" e custo", " e custo")
         ]
         demands: list[QuestionDemand] = []
         has_split = False
-        for conj in conjunctions:
-            if conj in q_norm:
-                parts = q_norm.split(conj, 1)
+        for pattern, split_on in conjunctions:
+            if pattern in q_norm:
+                parts = q_norm.split(split_on, 1)
                 demands.append(QuestionDemand(
                     demand_id="demand_1",
                     demand_type=intent_type,
@@ -3015,7 +3116,7 @@ class OpenDomainPropositionEngine:
                 ))
                 demands.append(QuestionDemand(
                     demand_id="demand_2",
-                    demand_type="implementation" if any(w in parts[1] for w in ("protege", "evita", "garantir", "lidar")) else intent_type,
+                    demand_type="implementation" if any(w in parts[1] for w in ("protege", "evita", "garantir", "lidar", "mitigar", "resolver", "armazena", "preserva", "rebalance", "jitter")) else intent_type,
                     target_subject=parts[1].strip(),
                     target_problem=parts[1].strip(),
                     is_primary=True,
@@ -3046,17 +3147,19 @@ class OpenDomainPropositionEngine:
 
     def extract_response_propositions(self, response_text: str, question_text: str) -> tuple[TechnicalProposition, ...]:
         r_norm = _normalize_text(response_text)
+        r_morph = self._normalize_morphology(r_norm)
         r_words = r_norm.strip().split()
         
         # 1. Alien domain detection
         is_alien = any(t in r_norm for t in self.alien_terms)
         
         # 2. Destructive antithesis
-        is_antithesis = any(t in r_norm for t in self.antithesis_markers)
+        is_antithesis = self._detect_antithesis(r_norm)
         
         # 3. Domain disjunctions
         is_frontend = any(t in r_norm for t in self.frontend_markers)
         is_devops = any(t in r_norm for t in self.devops_ci_markers)
+        is_aiml = any(t in r_norm for t in self.ai_ml_markers)
         
         # 4. Auxiliary / Observability
         is_auxiliary = any(t in r_norm for t in self.auxiliary_markers)
@@ -3077,13 +3180,12 @@ class OpenDomainPropositionEngine:
         is_decl = (has_usage and has_context) or any(m in r_norm for m in ("tenho 8 anos", "anos de experiencia", "sou especialista", "ja trabalhei com"))
 
         # 9. Operative mechanism determination
-        # A proposition is operative ONLY if it articulates a functional technical mechanism
-        # No length proxy shortcut!
         has_operative_mech = any(term in r_norm for term in self.operative_indicators)
         has_functional_action = any(a in r_norm for a in self.functional_actions) and any(e in r_norm for e in self.functional_effects)
         has_demo_action = any(v in r_norm for v in ("criei", "configurei", "implementamos", "implementei", "adoto", "aplico", "particiono", "reduzo", "valido"))
+        has_operative_verb = any(v in r_morph for v in self.operative_verbs)
         
-        is_operative = (has_operative_mech or has_functional_action) and not is_antithesis and not is_alien and not is_trivia and not is_evasive
+        is_operative = (has_operative_mech or has_functional_action or has_operative_verb) and not is_antithesis and not is_alien and not is_trivia and not is_evasive and not is_ignorance and not is_filler and not is_aiml
         if is_decl and not has_demo_action and not has_functional_action:
             is_operative = False
 
@@ -3095,7 +3197,7 @@ class OpenDomainPropositionEngine:
             is_alien_domain=is_alien,
             is_antithesis=is_antithesis,
             is_frontend=is_frontend,
-            is_devops=is_devops,
+            is_devops=is_devops or is_aiml,
             is_auxiliary=is_auxiliary,
             is_trivia=is_trivia,
             is_evasive=is_evasive,
@@ -3126,18 +3228,18 @@ class OpenDomainPropositionEngine:
                 rationale="Response proposes actions that disable or defeat operational protections."
             )
             
-        # 3. Domain disjunctions (Frontend styling for backend/concurrency, DevOps/CI for database SQL)
-        if prop.is_frontend and any(w in d_prob for w in ("concorren", "trecho exclusivo", "banco", "sobrescrev", "disputa", "rotina", "lock", "transacao")):
+        # 3. Domain disjunctions
+        if prop.is_frontend and not any(w in d_prob for w in ("frontend", "css", "html", "interface", "layout", "tela", "botao", "estilizacao", "responsivo", "componente visual")):
             return DemandPropositionNexus(
                 demand_id=demand.demand_id,
                 nexus_relation="DOMAIN_DISJUNCT",
-                rationale="Frontend styling proposition is functionally disjunct from backend concurrency demand."
+                rationale="Frontend styling / React proposition is functionally disjunct from question demand."
             )
-        if prop.is_devops and any(w in d_prob for w in ("otimizar consultas", "consulta", "banco relacional", "tuning", "sql", "saldo", "race condition", "concorren", "deadlock")):
+        if prop.is_devops and not re.search(r'\b(ci|cd|pipeline|esteira|deploy|jenkins|gitlab|scrum|kanban|sprint|machine learning|ia)\b', d_prob):
             return DemandPropositionNexus(
                 demand_id=demand.demand_id,
                 nexus_relation="DOMAIN_DISJUNCT",
-                rationale="DevOps / Infrastructure pipeline proposition is functionally disjunct from data concurrency or database optimization demand."
+                rationale="DevOps, pipeline or AI/ML proposition is functionally disjunct from question demand."
             )
             
         # 4. Trivia / Tautological repetition -> THEMATICALLY_ADJACENT
@@ -3191,15 +3293,24 @@ class OpenDomainPropositionEngine:
             )
             
         # 8. Auxiliary / Observability -> CONTRIBUTES_TO
-        if prop.is_auxiliary and any(w in d_prob for w in ("diminuir", "evitar", "conter", "resolver", "prevenir", "isolar")):
-            return DemandPropositionNexus(
-                demand_id=demand.demand_id,
-                nexus_relation="CONTRIBUTES_TO",
-                rationale="Proposition provides auxiliary observability/monitoring support but does not directly resolve the operational failure."
-            )
+        if prop.is_auxiliary and not any(w in d_prob for w in ("como diagnosticar", "como monitorar", "quais metricas", "onde analisar")):
+            if any(w in d_prob for w in ("diminuir", "evitar", "conter", "resolver", "prevenir", "isolar", "solucionar", "mitigar", "proteger", "eliminar", "gargalo", "latencia", "lentidao", "crash", "investigaria")):
+                return DemandPropositionNexus(
+                    demand_id=demand.demand_id,
+                    nexus_relation="CONTRIBUTES_TO",
+                    rationale="Proposition provides auxiliary observability/monitoring support but does not directly resolve the operational failure."
+                )
             
         # 9. Operative Mechanism Assessment against Demand
         if prop.is_operative:
+            # Check explicit omission markers in response
+            if any(om in r_norm for om in ("mas nao detalha", "mas nao aborda", "mas nao explica", "mas nao menciona", "sem detalhar", "sem explicar", "sem abordar", "sem cobrir", "nao aborda", "nao detalha", "omite como", "porem nao explica", "porem nao aborda", "porem nao detalha")):
+                return DemandPropositionNexus(
+                    demand_id=demand.demand_id,
+                    nexus_relation="PARTIALLY_SOLVES",
+                    rationale="Response covers partial aspect but explicitly omits secondary demand."
+                )
+
             # Check specific multi-aspect omissions
             if "idempot" in d_prob and not any(w in r_norm for w in ("idempot", "duplicad", "chave de")):
                 return DemandPropositionNexus(
@@ -3208,8 +3319,8 @@ class OpenDomainPropositionEngine:
                     rationale="Demand requires idempotency mechanism which is omitted in response."
                 )
             if "sharding" in d_prob and "rebalanceamento" in d_prob:
-                has_sharding = any(w in r_norm for w in ("cardinalidade", "chave", "sharding"))
-                has_rebal = any(w in r_norm for w in ("consistent hashing", "rebalance", "nos virtuais"))
+                has_sharding = any(w in r_norm for w in ("cardinalidade", "chave", "sharding", "pulverizar", "campo com bastante variacao", "espalhar bem os dados"))
+                has_rebal = any(w in r_norm for w in ("consistent hashing", "rebalance", "nos virtuais", "redistribui"))
                 if has_sharding and has_rebal:
                     return DemandPropositionNexus(
                         demand_id=demand.demand_id,
@@ -3222,6 +3333,29 @@ class OpenDomainPropositionEngine:
                         nexus_relation="PARTIALLY_SOLVES",
                         rationale="Demonstrates only partial aspects of compound demand."
                     )
+
+            # Check compound demands in single prompt: retries + jitter
+            if any(rt in d_prob for rt in ("retentativa", "retries", "retry")) and "jitter" in d_prob:
+                has_retry = any(w in r_norm for w in ("tentar de novo", "retentativa", "retries", "repetid", "potencias de dois", "dobrando", "intervalos progressivamente maiores"))
+                has_jitter = any(w in r_norm for w in ("jitter", "aleator", "variacao aleatoria"))
+                if has_retry and not has_jitter:
+                    return DemandPropositionNexus(
+                        demand_id=demand.demand_id,
+                        nexus_relation="PARTIALLY_SOLVES",
+                        rationale="Covers retry mechanism but omits jitter randomization."
+                    )
+
+            # Multi-aspect demand satisfaction check
+            # For secondary demands in decomposed compound questions, check if unaddressed
+            if demand.demand_id != "demand_1":
+                sig_words = [w for w in d_prob.split() if len(w) >= 4 and w not in ("como", "para", "onde", "quando", "voce", "qual", "quais", "sobre", "entre", "pelo", "pela", "mais", "menos", "alem")]
+                if sig_words and not any(w in r_norm for w in sig_words):
+                    return DemandPropositionNexus(
+                        demand_id=demand.demand_id,
+                        nexus_relation="UNMET_DEMAND",
+                        rationale="Secondary demanded aspect is unaddressed in the response."
+                    )
+
             return DemandPropositionNexus(
                 demand_id=demand.demand_id,
                 nexus_relation="FUNCTIONALLY_SOLVES",

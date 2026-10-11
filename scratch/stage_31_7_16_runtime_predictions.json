@@ -1,0 +1,1252 @@
+[
+  {
+    "id": "A01_surrealdb",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "A02_duckdb",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "A03_tigris",
+    "ref": "DIRECT",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "A04_valkey",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "A05_aetherdb",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "A06_vortexstream",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "A07_chronosync",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "A08_zenithkv",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "A09_nebula_graph_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "A10_meilisearch_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "A11_quantumlock_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "A12_hypercache_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "A13_qdrant_related",
+    "ref": "RELATED",
+    "pred": "RELATED"
+  },
+  {
+    "id": "A14_scylladb_related",
+    "ref": "RELATED",
+    "pred": "RELATED"
+  },
+  {
+    "id": "A15_omnimesh_related",
+    "ref": "RELATED",
+    "pred": "RELATED"
+  },
+  {
+    "id": "B01_consistent_hashing",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "B02_optimistic_concurrency",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "B03_circuit_breaker",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "B04_wal",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "B05_bloom_filter",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "B06_read_replicas",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "B07_sharding_range",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "B08_idempotency_key",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "B09_deadlock_ordering",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "B10_exponential_backoff",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "B11_token_bucket",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "B12_quorums_distributed",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "B13_bloom_filter_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "B14_wal_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "B15_circuit_breaker_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "C01_cap_theorem_ca_cp",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "C02_sql_vs_nosql_tradeoffs",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "C03_sync_vs_async_comms",
+    "ref": "DIRECT",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "C04_pessimistic_vs_optimistic",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "C05_horizontal_vs_vertical_scaling",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "C06_cap_only_consistency",
+    "ref": "PARTIAL",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "C07_sql_nosql_only_schema",
+    "ref": "PARTIAL",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "C08_sync_async_only_coupling",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "C09_pessimistic_optimistic_no_threads",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "C10_scaling_only_hardware",
+    "ref": "PARTIAL",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "C11_jwt_vs_session_only_jwt",
+    "ref": "PARTIAL",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "C12_tcp_vs_udp_only_tcp",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "C13_rest_vs_graphql_only_rest",
+    "ref": "PARTIAL",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "C14_b_tree_vs_lsm_only_b_tree",
+    "ref": "PARTIAL",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "C15_stateful_vs_stateless_only_stateless",
+    "ref": "PARTIAL",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "C16_b_tree_vs_hash_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "C17_kafka_vs_rabbitmq_partial",
+    "ref": "PARTIAL",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "C18_read_committed_vs_serializable_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "C19_api_key_vs_mtls_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "D01_prometheus_grafana_latency",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D02_opentelemetry_traces_timeout",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D03_datadog_apm_cpu",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D04_elk_logs_errors",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D05_loki_monitoring_memory",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D06_blackbox_exporter_uptime",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D07_jmx_metrics_threadpool",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D08_micrometer_gc_pauses",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D09_cloudwatch_disk_io",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D10_sentry_exceptions",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D11_zipkin_propagation",
+    "ref": "SUPPORTING",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "D12_vector_telemetry_pipeline",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D13_fluentbit_kubernetes_events",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D14_dynatrace_synthetic_checks",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D15_kibana_visualizations_errors",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D21_redis_cache_for_write_locks",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D22_rate_limiting_for_backend_crash",
+    "ref": "SUPPORTING",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "D23_kubernetes_liveness_probe",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D24_dead_letter_queue_aux",
+    "ref": "SUPPORTING",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "D25_read_replica_write_bottleneck",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D26_hikari_pool_metrics",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D27_pyroscope_profiling",
+    "ref": "SUPPORTING",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "D28_correlation_id_logging",
+    "ref": "SUPPORTING",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "D29_slow_query_log_pg",
+    "ref": "SUPPORTING",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "D30_heap_dump_on_oom",
+    "ref": "SUPPORTING",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "D31_canary_error_metrics",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D32_pagerduty_runbooks",
+    "ref": "SUPPORTING",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "D33_cgroup_throttling_metrics",
+    "ref": "SUPPORTING",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "D16_how_to_monitor_latency",
+    "ref": "DIRECT",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D17_how_to_trace_calls",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "D18_how_to_capture_thread_dumps",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "D19_prometheus_mention_no_mech",
+    "ref": "RELATED",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "D20_grafana_mention_no_mech",
+    "ref": "RELATED",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "E01_drop_all_indexes_for_queries",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "E02_disable_transactions_for_money",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "E03_disable_rate_limiting_ddos",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "E04_ignore_circuit_breaker_failures",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "E05_disable_wal_for_durability",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "E06_skip_signature_verification_jwt",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "E07_disable_deadlock_detection",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "E08_grant_full_permissions_zero_trust",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "E09_disable_quorum_split_brain",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "E10_commit_plain_passwords_git",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "E11_controlled_stress_test",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "E12_controlled_chaos_engineering",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "F01_css_grid_for_consensus",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "F02_linear_regression_deadlock",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "F03_flexbox_for_query_optimization",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "F04_convolutional_network_for_dns",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "F05_tailwind_for_kafka_partitions",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "F06_nlp_lemmatization_memory_leak",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "F07_webpack_bundle_for_quorums",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "F08_k_means_clustering_indexes",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "F09_react_hook_for_sharding",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "F10_random_forest_for_tcp_handshake",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "F11_dockerfile_for_sql_perf",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "F12_redux_store_for_wal",
+    "ref": "OFF_TOPIC",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "F13_devops_monitoring_db_related",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "F14_network_bandwidth_for_concurrency",
+    "ref": "RELATED",
+    "pred": "RELATED"
+  },
+  {
+    "id": "F15_ci_cd_pipeline_for_caching",
+    "ref": "RELATED",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "G01_culinary_baking_for_locks",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "G02_soccer_tactics_for_wal",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "G03_gardening_for_circuit_breaker",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "G04_home_renovation_for_sharding",
+    "ref": "OFF_TOPIC",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "G05_astronomy_for_indexes",
+    "ref": "OFF_TOPIC",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "G06_pet_care_for_raft",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "G07_automotive_mechanics_for_bloom",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "G08_tourism_for_consistent_hashing",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "G09_carpentry_for_quorums",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "G10_music_harmony_for_token_bucket",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "G11_dental_care_for_backoff",
+    "ref": "OFF_TOPIC",
+    "pred": "RELATED"
+  },
+  {
+    "id": "G12_personal_budget_groceries",
+    "ref": "OFF_TOPIC",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "H01_linus_torvalds_git_trivia",
+    "ref": "RELATED",
+    "pred": "RELATED"
+  },
+  {
+    "id": "H02_postgres_stonebraker_history",
+    "ref": "RELATED",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "H03_cpu_l1_cache_sizes",
+    "ref": "RELATED",
+    "pred": "RELATED"
+  },
+  {
+    "id": "H04_java_gosling_duke_trivia",
+    "ref": "RELATED",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "H05_redis_sanfilippo_antirez",
+    "ref": "RELATED",
+    "pred": "RELATED"
+  },
+  {
+    "id": "H06_ddr5_memory_frequencies",
+    "ref": "RELATED",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "H07_c_language_ritchie_unix",
+    "ref": "RELATED",
+    "pred": "RELATED"
+  },
+  {
+    "id": "H08_nvme_pcie_lanes",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "H11_apollo_11_trivia_for_sql",
+    "ref": "OFF_TOPIC",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "H12_eiffel_tower_trivia_for_jwt",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "I01_experience_sharding_claim_only",
+    "ref": "RELATED",
+    "pred": "RELATED"
+  },
+  {
+    "id": "I02_experience_kafka_claim_only",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "I03_experience_deadlocks_claim_only",
+    "ref": "RELATED",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "I04_experience_circuit_breaker_claim_only",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "I05_experience_bloom_filter_claim_only",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "I06_experience_wal_claim_only",
+    "ref": "RELATED",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "I07_experience_token_bucket_claim_only",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "I08_experience_sharding_demonstrated",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "I09_experience_kafka_demonstrated",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "I10_experience_deadlocks_demonstrated",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "I11_experience_circuit_breaker_demonstrated",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "I12_experience_bloom_filter_demonstrated",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "J01_speculation_partitioning_partial",
+    "ref": "PARTIAL",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "J02_speculation_circuit_breaker_partial",
+    "ref": "PARTIAL",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "J03_speculation_bloom_filter_partial",
+    "ref": "PARTIAL",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "J04_speculation_wal_partial",
+    "ref": "PARTIAL",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "J05_speculation_token_bucket_partial",
+    "ref": "PARTIAL",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "J06_speculation_deadlock_order_direct",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "J07_speculation_idempotency_key_direct",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "J08_speculation_consistent_hashing_direct",
+    "ref": "DIRECT",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "J09_speculation_ai_magic_locks",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "J10_speculation_more_servers_sharding",
+    "ref": "RELATED",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "J11_speculation_random_retry_timeout",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "J12_speculation_quantum_crypto_jwt",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "K01_concise_optimistic_locking",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "K02_concise_deadlock_order",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "K03_concise_circuit_breaker",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "K04_concise_idempotency_key",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "K05_concise_bloom_filter",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "K06_concise_wal",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "K07_concise_token_bucket",
+    "ref": "DIRECT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "K08_concise_exponential_backoff",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "K11_concise_vague_good_practices",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "K12_concise_vague_cloud_scaling",
+    "ref": "RELATED",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "L01_buzzword_soup_blockchain_quantum",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "L02_buzzword_soup_metaverse_web3",
+    "ref": "OFF_TOPIC",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "L03_buzzword_soup_omnichannel_growth",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "L04_buzzword_soup_edge_computing_vr",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "L05_buzzword_soup_big_data_paradigm",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "L06_buzzword_soup_cyber_mesh_zero_trust",
+    "ref": "OFF_TOPIC",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "L07_buzzword_soup_lean_six_sigma",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "L08_buzzword_soup_iot_smart_cities",
+    "ref": "OFF_TOPIC",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "L09_buzzword_soup_devsecops_culture",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "L10_buzzword_tech_stack_sharding",
+    "ref": "RELATED",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "L11_buzzword_tech_stack_deadlocks",
+    "ref": "RELATED",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "L12_buzzword_tech_stack_bloom_filter",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "L13_buzzword_tech_stack_wal",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "L14_buzzword_tech_stack_token_bucket",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "L15_buzzword_tech_stack_quorums",
+    "ref": "RELATED",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "M01_evasive_depends_on_context",
+    "ref": "UNKNOWN",
+    "pred": "UNKNOWN"
+  },
+  {
+    "id": "M02_evasive_depends_on_company",
+    "ref": "UNKNOWN",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "M03_tautology_fast_is_quick",
+    "ref": "UNKNOWN",
+    "pred": "RELATED"
+  },
+  {
+    "id": "M04_tautology_locks_block",
+    "ref": "UNKNOWN",
+    "pred": "RELATED"
+  },
+  {
+    "id": "M05_evasive_relative_architecture",
+    "ref": "UNKNOWN",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "M06_evasive_senior_consultant",
+    "ref": "UNKNOWN",
+    "pred": "UNKNOWN"
+  },
+  {
+    "id": "M07_tautology_secure_is_safe",
+    "ref": "UNKNOWN",
+    "pred": "RELATED"
+  },
+  {
+    "id": "M08_evasive_it_depends_tradeoffs",
+    "ref": "UNKNOWN",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "M09_tautology_atomic_indivisible",
+    "ref": "UNKNOWN",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "M10_evasive_check_documentation",
+    "ref": "UNKNOWN",
+    "pred": "UNKNOWN"
+  },
+  {
+    "id": "M11_evasive_depends_on_budget",
+    "ref": "UNKNOWN",
+    "pred": "UNKNOWN"
+  },
+  {
+    "id": "M12_tautology_cache_stores",
+    "ref": "UNKNOWN",
+    "pred": "RELATED"
+  },
+  {
+    "id": "M13_evasive_depends_on_cloud",
+    "ref": "UNKNOWN",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "M14_tautology_indexes_index",
+    "ref": "UNKNOWN",
+    "pred": "RELATED"
+  },
+  {
+    "id": "M15_evasive_monitoring_infrastructure",
+    "ref": "UNKNOWN",
+    "pred": "UNKNOWN"
+  },
+  {
+    "id": "N01_ignorance_never_used",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N02_ignorance_never_studied",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N03_ignorance_dont_remember",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N04_filler_concordo_plenamente",
+    "ref": "INSUFFICIENT",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "N05_filler_conheco",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N06_filler_tranquilo_entendido",
+    "ref": "INSUFFICIENT",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "N07_filler_ok_uhum",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N08_ignorance_never_worked",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N09_filler_aham_entendi",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N10_ignorance_dont_know_concept",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N11_filler_sim_bastante",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N12_ignorance_dont_recall_difference",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N13_filler_com_certeza_sim",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N14_ignorance_never_heard",
+    "ref": "INSUFFICIENT",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "N15_filler_perfeito_sei",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N16_ignorance_no_knowledge_base",
+    "ref": "INSUFFICIENT",
+    "pred": "RELATED"
+  },
+  {
+    "id": "N17_ignorance_never_used_protocol",
+    "ref": "INSUFFICIENT",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "N18_ignorance_uncomfortable_details",
+    "ref": "INSUFFICIENT",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "N19_ignorance_unfamiliar_distributed",
+    "ref": "INSUFFICIENT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "N20_ignorance_cannot_state_mechanism",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N21_ignorance_never_configured_multi_master",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N22_ignorance_no_idea_data_structure",
+    "ref": "INSUFFICIENT",
+    "pred": "RELATED"
+  },
+  {
+    "id": "N23_ignorance_forgotten_syntax_commands",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "N24_ignorance_unfamiliar_library",
+    "ref": "INSUFFICIENT",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "N25_ignorance_cannot_explain_scenario",
+    "ref": "INSUFFICIENT",
+    "pred": "INSUFFICIENT"
+  },
+  {
+    "id": "O01_formal_consistent_hashing",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O02_informal_consistent_hashing",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O03_formal_optimistic_locking",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O04_informal_optimistic_locking",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O05_formal_deadlock_order",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O06_informal_deadlock_order",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O07_formal_token_bucket",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O08_informal_token_bucket",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O09_formal_circuit_breaker",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O10_informal_circuit_breaker",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O11_formal_wal",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O12_informal_wal",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O13_formal_bloom_filter",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O14_informal_bloom_filter",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "O15_formal_retry_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "O16_informal_retry_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "O17_formal_sharding_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "O18_informal_sharding_partial",
+    "ref": "PARTIAL",
+    "pred": "PARTIAL"
+  },
+  {
+    "id": "O19_formal_observability_supporting",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "O20_informal_observability_supporting",
+    "ref": "SUPPORTING",
+    "pred": "SUPPORTING"
+  },
+  {
+    "id": "P01_mutation_strict_order_base",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "P02_mutation_random_order_flip",
+    "ref": "OFF_TOPIC",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "P03_mutation_idempotency_base",
+    "ref": "DIRECT",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "P04_mutation_idempotency_drop_check",
+    "ref": "PARTIAL",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "P05_mutation_optimistic_drop_version",
+    "ref": "PARTIAL",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "P06_mutation_invert_lock_to_disable",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "P07_mutation_circuit_drop_threshold",
+    "ref": "PARTIAL",
+    "pred": "DIRECT"
+  },
+  {
+    "id": "P08_mutation_invert_circuit_breaker_to_disable",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "P09_mutation_invert_acid_to_disable",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  },
+  {
+    "id": "P10_mutation_invert_jwt_validation_to_disable",
+    "ref": "OFF_TOPIC",
+    "pred": "OFF_TOPIC"
+  }
+]

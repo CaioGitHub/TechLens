@@ -1,0 +1,3632 @@
+[
+  {
+    "id": "D01_vector_hnsw",
+    "group": "DIRECT_TECH",
+    "question_text": "Como o banco vetorial Milvus realiza buscas aproximadas de vizinhos mais próximos em larga escala?",
+    "response_text": "Constrói-se um grafo hierárquico navegável de mundo pequeno (HNSW), indexando os vetores em camadas com saltos longos nas camadas superiores e busca gulosa refinada nas camadas inferiores.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "busca aproximada de vizinhos mais próximos em larga escala"
+    ],
+    "satisfied_aspects": [
+      "grafo hierárquico navegável HNSW em camadas"
+    ],
+    "semantic_rationale": "Descreve detalhadamente o mecanismo algorítmico do grafo HNSW resolvendo a busca vetorial em larga escala.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D02_vector_hnsw_informal",
+    "group": "DIRECT_TECH",
+    "question_text": "Como o banco vetorial Milvus realiza buscas aproximadas de vizinhos mais próximos em larga escala?",
+    "response_text": "A gente monta uma malha de grafos em camadas estilo HNSW: você pula rápido pelas conexões distantes no topo e vai descendo até achar os vetores mais parecidos bem no fundo.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "busca aproximada de vizinhos mais próximos em larga escala"
+    ],
+    "satisfied_aspects": [
+      "malha de grafos HNSW em camadas"
+    ],
+    "semantic_rationale": "Expressão informal que descreve exatamente o mecanismo funcional de busca em camadas com HNSW.",
+    "linguistic_form": "informal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D03_compaction_lsm",
+    "group": "DIRECT_TECH",
+    "question_text": "Como o RocksDB impede a explosão de arquivos e desaloca dados excluídos na arquitetura LSM-Tree?",
+    "response_text": "Executa-se compactação leveled em segundo plano, mesclando ordenadamente SSTables de níveis menores para níveis maiores e descartando registros marcados com marcadores de deleção (tombstones).",
+    "human_classification": "DIRECT",
+    "demands": [
+      "impedir explosão de arquivos e desalocar dados excluídos"
+    ],
+    "satisfied_aspects": [
+      "compactação leveled com mesclagem e tombstones"
+    ],
+    "semantic_rationale": "Explica o processo de compactação leveled e o uso de tombstones para expurgar registros.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D04_compaction_lsm_active",
+    "group": "DIRECT_TECH",
+    "question_text": "Como o RocksDB impede a explosão de arquivos e desaloca dados excluídos na arquitetura LSM-Tree?",
+    "response_text": "Eu configuro a compactação leveled para rodar em background, consolidando os arquivos SSTable entre os níveis e eliminando as chaves que possuem tombstones.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "impedir explosão de arquivos e desalocar dados excluídos"
+    ],
+    "satisfied_aspects": [
+      "compactação leveled e tombstones"
+    ],
+    "semantic_rationale": "Formulação ativa em 1ª pessoa descrevendo a mesma mecânica operacional de compactação e tombstones.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D05_raft_log_matching",
+    "group": "DIRECT_TECH",
+    "question_text": "Como o protocolo Raft assegura que entradas de log confirmadas nunca sejam sobrescritas por um novo líder?",
+    "response_text": "A eleição de líder só elege nós com log estritamente mais atualizado que a maioria, e novos líderes nunca truncam entradas já comitadas pelo quórum anterior.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "assegurar que entradas comitadas nunca sejam sobrescritas"
+    ],
+    "satisfied_aspects": [
+      "restrição de eleição baseada no quórum e invariância de log"
+    ],
+    "semantic_rationale": "Aborda a propriedade de Log Matching e a restrição de eleição garantindo consistência no Raft.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D06_raft_log_matching_short",
+    "group": "DIRECT_TECH",
+    "question_text": "Como o protocolo Raft assegura que entradas de log confirmadas nunca sejam sobrescritas por um novo líder?",
+    "response_text": "Exigindo que o novo líder contenha todas as entradas comitadas da maioria antes de receber votos para assumir.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "assegurar que entradas comitadas nunca sejam sobrescritas"
+    ],
+    "satisfied_aspects": [
+      "exigência de log comitado majoritário na eleição"
+    ],
+    "semantic_rationale": "Resposta concisa direta que atende perfeitamente ao requisito essencial de consenso do Raft.",
+    "linguistic_form": "concise",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D07_distributed_lock_fencing",
+    "group": "DIRECT_TECH",
+    "question_text": "Como evitar que um cliente pausado por Stop-the-World cause corrupção de dados ao despertar e gravar no storage?",
+    "response_text": "Utiliza-se um fencing token monotônico gerado pelo coordenador de locks, de forma que o storage rejeite qualquer gravação cujo token seja inferior ao último aceito.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "evitar corrupção por cliente pausado após perda de lock"
+    ],
+    "satisfied_aspects": [
+      "fencing token monotônico validado no storage"
+    ],
+    "semantic_rationale": "Explica a solução canônica de fencing tokens monotônicos para clientes pausados por GC.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D08_distributed_lock_fencing_informal",
+    "group": "DIRECT_TECH",
+    "question_text": "Como evitar que um cliente pausado por Stop-the-World cause corrupção de dados ao despertar e gravar no storage?",
+    "response_text": "A gente associa um número sequencial crescente que o lock entrega; se a thread congelar e acordar atrasada, o banco vê que o número dela é velho e barra o comando na porta.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "evitar corrupção por cliente pausado após perda de lock"
+    ],
+    "satisfied_aspects": [
+      "número sequencial crescente validado no banco"
+    ],
+    "semantic_rationale": "Paráfrase informal correta e funcional do conceito de fencing token.",
+    "linguistic_form": "informal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D09_kafka_zero_copy",
+    "group": "DIRECT_TECH",
+    "question_text": "Como o broker do Kafka atinge taxa massiva de transferência na leitura de tópicos para a rede?",
+    "response_text": "Emprega-se a chamada de sistema sendfile (Zero-Copy), transferindo blocos do page cache do sistema operacional diretamente para o buffer da placa de rede sem copiar para o espaço de usuário.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "atingir taxa massiva de transferência de leitura para rede"
+    ],
+    "satisfied_aspects": [
+      "chamada sendfile zero-copy do page cache para socket"
+    ],
+    "semantic_rationale": "Explica o mecanismo de Zero-Copy via sendfile da Linux VFS para o socket.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D10_kafka_zero_copy_active",
+    "group": "DIRECT_TECH",
+    "question_text": "Como o broker do Kafka atinge taxa massiva de transferência na leitura de tópicos para a rede?",
+    "response_text": "O Kafka utiliza o recurso de zero-copy através da syscall sendfile, direcionando os dados do pagecache direto para a interface de rede sem passar pela memória da JVM.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "atingir taxa massiva de transferência de leitura para rede"
+    ],
+    "satisfied_aspects": [
+      "syscall sendfile do pagecache para rede sem JVM"
+    ],
+    "semantic_rationale": "Voz ativa em 3ª pessoa descrevendo com exatidão a redução de contexto de memória.",
+    "linguistic_form": "active_3rd",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D11_crdt_pn_counter",
+    "group": "DIRECT_TECH",
+    "question_text": "Como sincronizar um contador distribuído com incrementos e decrementos sem usar travas globais?",
+    "response_text": "Modela-se o estado como um PN-Counter (CRDT), mantendo dois vetores monotônicos de soma para adições e subtrações e calculando a diferença entre as somas parciais por fusão de estados.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "sincronizar contador com adições e subtrações sem travas"
+    ],
+    "satisfied_aspects": [
+      "PN-Counter CRDT com dois vetores monotônicos de soma"
+    ],
+    "semantic_rationale": "Descreve a estrutura matemática e funcional de um PN-Counter convergente.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D12_crdt_pn_counter_informal",
+    "group": "DIRECT_TECH",
+    "question_text": "Como sincronizar um contador distribuído com incrementos e decrementos sem usar travas globais?",
+    "response_text": "A gente cria duas listas que só crescem: uma que soma todas as entradas e outra que soma todas as saídas de cada máquina, depois junta tudo fazendo o total de uma menos a outra.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "sincronizar contador com adições e subtrações sem travas"
+    ],
+    "satisfied_aspects": [
+      "listas monotônicas de entrada e saída com diferença"
+    ],
+    "semantic_rationale": "Explicação conceitual informal de um PN-Counter sem termos em inglês, perfeitamente válida.",
+    "linguistic_form": "informal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D13_database_sharding_virtual_nodes",
+    "group": "DIRECT_TECH",
+    "question_text": "Como evitar hot spots de tráfego em partições ao adicionar novos servidores a um anel distribuído?",
+    "response_text": "Atribui-se múltiplos nós virtuais para cada servidor físico ao longo do espaço de hash, espalhando uniformemente os intervalos do anel e equilibrando a redistribuição de chaves.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "evitar hot spots de tráfego ao adicionar servidores"
+    ],
+    "satisfied_aspects": [
+      "nós virtuais por servidor físico no anel de hash"
+    ],
+    "semantic_rationale": "Mecanismo de nós virtuais em consistent hashing para distribuição uniforme de carga.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D14_database_sharding_virtual_nodes_active",
+    "group": "DIRECT_TECH",
+    "question_text": "Como evitar hot spots de tráfego em partições ao adicionar novos servidores a um anel distribuído?",
+    "response_text": "Eu crio nós virtuais para cada nó físico no consistent hashing, garantindo que a carga seja fatiada em centenas de posições aleatórias no anel.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "evitar hot spots de tráfego ao adicionar servidores"
+    ],
+    "satisfied_aspects": [
+      "nós virtuais no consistent hashing"
+    ],
+    "semantic_rationale": "Formulação ativa direta explicando o mesmo mecanismo de dispersão estatística.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D15_outbox_debezium_cdc",
+    "group": "DIRECT_TECH",
+    "question_text": "Como publicar eventos garantindo que uma transação de banco de dados e a emissão da mensagem sejam atômicas?",
+    "response_text": "Grava-se o evento em uma tabela de outbox na mesma transação relacional dos dados e captura-se a alteração assincronamente via Change Data Capture (CDC) lendo o log binário do banco.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "publicar eventos com atomicidade entre banco e mensageria"
+    ],
+    "satisfied_aspects": [
+      "tabela outbox na transação local e CDC lendo log binário"
+    ],
+    "semantic_rationale": "Descreve o Transactional Outbox Pattern com integração CDC lendo WAL.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D16_outbox_debezium_cdc_informal",
+    "group": "DIRECT_TECH",
+    "question_text": "Como publicar eventos garantindo que uma transação de banco de dados e a emissão da mensagem sejam atômicas?",
+    "response_text": "Você salva o evento numa tabelinha auxiliar junto com os dados na mesma transação com begin/commit, e coloca um conector ouvindo o log do banco pra mandar a mensagem pro Kafka.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "publicar eventos com atomicidade entre banco e mensageria"
+    ],
+    "satisfied_aspects": [
+      "tabela auxiliar na transação com begin/commit e conector no log"
+    ],
+    "semantic_rationale": "Paráfrase informal correta do Transactional Outbox Pattern.",
+    "linguistic_form": "informal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D17_saga_choreography_compensating",
+    "group": "DIRECT_TECH",
+    "question_text": "Como desfazer operações parciais em múltiplos serviços autônomos sem usar transações distribuídas de duas fases?",
+    "response_text": "Implementa-se o padrão Saga coreografado onde a falha de uma etapa dispara eventos de compensação que executam estornos lógicos nos serviços participantes.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "desfazer operações parciais em múltiplos serviços sem 2PC"
+    ],
+    "satisfied_aspects": [
+      "padrão Saga com eventos de compensação e estorno lógico"
+    ],
+    "semantic_rationale": "Explica o funcionamento de Sagas com transações de compensação sem locks globais.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D18_saga_choreography_compensating_short",
+    "group": "DIRECT_TECH",
+    "question_text": "Como desfazer operações parciais em múltiplos serviços autônomos sem usar transações distribuídas de duas fases?",
+    "response_text": "Disparando transações compensatórias em cascata para estornar as etapas executadas anteriormente.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "desfazer operações parciais em múltiplos serviços sem 2PC"
+    ],
+    "satisfied_aspects": [
+      "transações compensatórias em cascata"
+    ],
+    "semantic_rationale": "Resposta curta direta e suficiente.",
+    "linguistic_form": "concise",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D19_tls_session_resumption",
+    "group": "DIRECT_TECH",
+    "question_text": "Como reduzir a latência de handshake em conexões HTTPS recorrentes para o mesmo cliente?",
+    "response_text": "Utiliza-se Session Tickets (TLS Resumption), onde o servidor emite um tíquete criptografado que o cliente reenvia para restabelecer a chave simétrica em uma única viagem de ida e volta (1-RTT).",
+    "human_classification": "DIRECT",
+    "demands": [
+      "reduzir latência de handshake HTTPS recorrente"
+    ],
+    "satisfied_aspects": [
+      "TLS Session Tickets criptografados em 1-RTT"
+    ],
+    "semantic_rationale": "Explica TLS Session Tickets com restabelecimento de chave em 1-RTT.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D20_rate_limiting_sliding_window",
+    "group": "DIRECT_TECH",
+    "question_text": "Como aplicar limitação de taxa em APIs evitando o problema de rajada concentrada na virada de janela?",
+    "response_text": "Implementa-se o algoritmo de janela deslizante (Sliding Window Log ou Counter), ponderando a contagem de requisições da janela anterior pela fração de tempo transcorrido no minuto atual.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "limitação de taxa evitando rajadas na virada de janela"
+    ],
+    "satisfied_aspects": [
+      "algoritmo de janela deslizante com ponderação temporal"
+    ],
+    "semantic_rationale": "Explica Sliding Window com ponderação temporal entre janelas consecutivas.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D21_grpc_bidirectional_streaming",
+    "group": "DIRECT_TECH",
+    "question_text": "Como manter comunicação contínua e assíncrona de dados estruturados em tempo real entre dois microsserviços?",
+    "response_text": "Adota-se gRPC com streaming bidirecional sobre HTTP/2, multiplexando múltiplos canais de requisições e respostas sobre a mesma conexão TCP persistente com serialização Protobuf.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "comunicação contínua e assíncrona em tempo real entre microsserviços"
+    ],
+    "satisfied_aspects": [
+      "gRPC streaming bidirecional sobre HTTP/2 com multiplexação e Protobuf"
+    ],
+    "semantic_rationale": "Descreve gRPC bidirecional com HTTP/2 e Protobuf.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D22_epoll_event_loop",
+    "group": "DIRECT_TECH",
+    "question_text": "Como servidores de rede de alta performance conseguem atender dezenas de milhares de conexões simultâneas com poucas threads?",
+    "response_text": "Utiliza-se multiplexação de I/O não bloqueante via epoll (ou kqueue), registrando os descritores de socket em um loop de eventos que só acorda as threads quando ocorrem notificações prontas para leitura ou escrita.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "atender dezenas de milhares de conexões simultâneas com poucas threads"
+    ],
+    "satisfied_aspects": [
+      "I/O não bloqueante com epoll e event loop baseado em notificações"
+    ],
+    "semantic_rationale": "Explica multiplexação com epoll e event-driven I/O.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D23_memory_pool_fragmentation",
+    "group": "DIRECT_TECH",
+    "question_text": "Como evitar fragmentação de memória e pausas imprevisíveis em sistemas de negociação financeira de baixa latência?",
+    "response_text": "Aloca-se previamente buffers contíguos de tamanho fixo em pools de objetos na inicialização da aplicação, reaproveitando as estruturas sem solicitar memória do sistema operacional em tempo de execução.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "evitar fragmentação de memória e pausas imprevisíveis em baixa latência"
+    ],
+    "satisfied_aspects": [
+      "buffers contíguos em pools de objetos de tamanho fixo pré-alocados"
+    ],
+    "semantic_rationale": "Explica memory pools contíguos e reaproveitamento de objetos para zero-allocation runtime.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D24_circuit_breaker_half_open",
+    "group": "DIRECT_TECH",
+    "question_text": "Como um circuit breaker determina com segurança se um microsserviço com falhas se recuperou antes de liberar todo o tráfego?",
+    "response_text": "Transita-se para o estado meio-aberto (half-open) após um período de repouso, permitindo a passagem de uma quantidade restrita de requisições de teste e fechando o circuito apenas se a taxa de sucesso for total.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "determinar com segurança recuperação de microsserviço antes de liberar tráfego"
+    ],
+    "satisfied_aspects": [
+      "estado meio-aberto half-open com requisições de teste limitadas"
+    ],
+    "semantic_rationale": "Explica o estado half-open e a transição gradual com amostras de teste.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D25_wal_checkpoint_truncate",
+    "group": "DIRECT_TECH",
+    "question_text": "Como os motores de banco de dados impedem o crescimento infinito do log de escrita sequencial (WAL)?",
+    "response_text": "Realizam-se checkpoints periódicos sincronizando todas as páginas sujas da memória para os arquivos de dados em disco e truncando os segmentos do WAL anteriores ao ponto de verificação.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "impedir crescimento infinito do WAL"
+    ],
+    "satisfied_aspects": [
+      "checkpoints periódicos sincronizando páginas sujas e truncando segmentos"
+    ],
+    "semantic_rationale": "Explica checkpoints periódicos e expurgo de logs anteriores ao flush.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D26_deadlock_detection_cycle",
+    "group": "DIRECT_TECH",
+    "question_text": "Como um banco de dados relacional detecta e resolve travamentos mútuos entre transações concorrentes?",
+    "response_text": "O motor constrói um grafo de espera direcionado (wait-for graph), identifica ciclos de dependência circular entre as transações e aborta a transação de menor custo computacional executando rollback.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "detectar e resolver travamentos mútuos concorrentes"
+    ],
+    "satisfied_aspects": [
+      "grafo de espera com detecção de ciclos e rollback da transação de menor custo"
+    ],
+    "semantic_rationale": "Mecanismo completo de wait-for graph, cycle detection e rollback de vítima.",
+    "linguistic_form": "active_3rd",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D27_optimistic_locking_version_check",
+    "group": "DIRECT_TECH",
+    "question_text": "Como garantir que duas alterações simultâneas no mesmo saldo não causem perda de atualizações?",
+    "response_text": "Inclui-se um número de versão no registro e executa-se o update com a condição de que a versão na tabela seja idêntica à versão lida, incrementando a versão ou abortando caso nenhuma linha seja afetada.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "garantir que alterações simultâneas não causem perda de atualizações"
+    ],
+    "satisfied_aspects": [
+      "coluna de versão com condição no update e incremento ou abort"
+    ],
+    "semantic_rationale": "Explicação técnica completa de optimistic locking com cláusula WHERE version = v.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D28_consistent_hashing_ring_walk",
+    "group": "DIRECT_TECH",
+    "question_text": "Como mapear chaves para servidores de armazenamento minimizando o número de chaves realocadas ao redimensionar nós?",
+    "response_text": "Mapeia-se as chaves e os nós em um anel circular de 0 a 2^32-1, onde cada chave é armazenada no primeiro nó encontrado ao percorrer o anel em sentido horário a partir da sua posição de hash.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "mapear chaves minimizando realocações ao redimensionar nós"
+    ],
+    "satisfied_aspects": [
+      "anel circular de hash percorrido em sentido horário para o primeiro nó"
+    ],
+    "semantic_rationale": "Explica hashing consistente e o anel percorrido em sentido horário.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D29_token_bucket_refill_rate",
+    "group": "DIRECT_TECH",
+    "question_text": "Como controlar vazão de requisições aceitando surtos pontuais sem sobrecarregar a capacidade da infraestrutura?",
+    "response_text": "Emprega-se um balde de fichas (token bucket) que acumula tokens em uma taxa fixa de reposição até o limite do balde, consumindo um token por requisição e rejeitando chegadas quando o balde estiver vazio.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "controlar vazão aceitando surtos pontuais sem sobrecarregar"
+    ],
+    "satisfied_aspects": [
+      "token bucket acumulando fichas em taxa fixa até limite e rejeitando sem tokens"
+    ],
+    "semantic_rationale": "Descreve o algoritmo de balde de fichas acomodando rajadas.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D30_bloom_filter_bit_array",
+    "group": "DIRECT_TECH",
+    "question_text": "Como evitar operações caras de leitura em disco para verificar se uma chave inexiste em arquivos de armazenamento?",
+    "response_text": "Consulta-se um filtro de Bloom em memória RAM contendo um vetor de bits calculado por múltiplas funções hash; se qualquer bit correspondente for zero, tem-se a garantia matemática de que a chave não existe no disco.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "evitar leituras caras em disco para chaves inexistentes"
+    ],
+    "satisfied_aspects": [
+      "filtro de Bloom em RAM com vetor de bits e múltiplas funções hash"
+    ],
+    "semantic_rationale": "Explica o filtro de Bloom em RAM garantindo ausência de falsos negativos.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D31_read_repair_quorum",
+    "group": "DIRECT_TECH",
+    "question_text": "Como bancos NoSQL distribuídos corrigem divergências silenciosas entre réplicas durante consultas comuns de clientes?",
+    "response_text": "Aplica-se Read Repair: quando o cliente consulta com quórum e recebe hashes de versão divergentes entre as réplicas, o nó coordenador detecta a versão mais recente e atualiza assincronamente as réplicas desatualizadas.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "corrigir divergências silenciosas entre réplicas durante consultas"
+    ],
+    "satisfied_aspects": [
+      "Read Repair com quórum identificando versão recente e atualizando réplicas defasadas"
+    ],
+    "semantic_rationale": "Descreve o mecanismo de Read Repair em Cassandra/Dynamo.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D32_gossip_protocol_failure_detector",
+    "group": "DIRECT_TECH",
+    "question_text": "Como os nós de um cluster descentralizado detectam falhas de servidores sem depender de um mestre centralizador?",
+    "response_text": "Utiliza-se o protocolo de fofoca (Gossip Protocol) com detector de falhas Phi Accural, enviando heartbeats periódicos aleatórios entre nós e calculando a probabilidade de falha com base no histórico de intervalos de chegada.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "detectar falhas sem mestre centralizador"
+    ],
+    "satisfied_aspects": [
+      "Gossip protocol com detector Phi Accrual e heartbeats periódicos aleatórios"
+    ],
+    "semantic_rationale": "Explica Gossip com Phi Accrual Failure Detector descentralizado.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D33_write_behind_caching",
+    "group": "DIRECT_TECH",
+    "question_text": "Como desonerar o banco relacional de picos extremos de escrita em rotinas de contabilidade?",
+    "response_text": "Adota-se write-behind caching (write-back), confirmando as alterações instantaneamente na camada de cache em memória e persistindo-as em lote no banco relacional de forma assíncrona por meio de um processo em fila.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "desonerar banco relacional de picos de escrita"
+    ],
+    "satisfied_aspects": [
+      "write-behind caching confirmando em memória e persistindo em lote assíncrono"
+    ],
+    "semantic_rationale": "Explica o padrão de write-behind para agregação de escritas em lote.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D34_idempotent_consumer_database_dedup",
+    "group": "DIRECT_TECH",
+    "question_text": "Como evitar duplicidade ao processar eventos de pagamento entregues mais de uma vez por um broker at-least-once?",
+    "response_text": "Registra-se a chave de idempotência do evento em uma tabela com restrição de unicidade (unique constraint) antes de processar a cobrança, descartando a mensagem caso ocorra colisão de chave duplicada.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "evitar duplicidade ao processar eventos at-least-once"
+    ],
+    "satisfied_aspects": [
+      "tabela com unique constraint na chave de idempotência descartando colisões"
+    ],
+    "semantic_rationale": "Explica idempotência estrita com restrição de unicidade transacional.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D35_vector_quantization_ivf_pq",
+    "group": "DIRECT_TECH",
+    "question_text": "Como comprimir vetores em bancos vetoriais de larga escala sem esgotar a memória RAM disponível?",
+    "response_text": "Aplica-se quantização de produto (Product Quantization com índice IVF-PQ), decompondo os vetores em sub-espaços menores e substituindo cada vetor por centróides representados por códigos de 8 bits.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "comprimir vetores em larga escala sem esgotar memória RAM"
+    ],
+    "satisfied_aspects": [
+      "Product Quantization IVF-PQ decompondo em sub-espaços e centróides de 8 bits"
+    ],
+    "semantic_rationale": "Descreve Product Quantization para compressão e busca em memória vetorial.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D36_two_phase_commit_coordinator",
+    "group": "DIRECT_TECH",
+    "question_text": "Como garantir atomicidade rigorosa quando uma transação altera simultaneamente dados em dois bancos independentes?",
+    "response_text": "Executa-se o protocolo Two-Phase Commit (2PC): o coordenador envia a mensagem prepare solicitando que os nós travem recursos e confirmem prontidão, e somente envia commit final se todas as réplicas votarem afirmativamente.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "garantir atomicidade entre dois bancos independentes"
+    ],
+    "satisfied_aspects": [
+      "protocolo 2PC com fase prepare de travamento e fase commit sob consenso unânime"
+    ],
+    "semantic_rationale": "Explica a mecânica de 2PC com coordenador, fases de prepare e commit.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D37_database_partition_pruning",
+    "group": "DIRECT_TECH",
+    "question_text": "Como o otimizador de consultas de banco de dados reduz o volume de blocos lidos em tabelas particionadas por data?",
+    "response_text": "Aplica-se poda de partição (Partition Pruning), analisando os predicados de filtro da cláusula WHERE na compilação da query para ignorar completamente os índices e diretórios das partições fora do intervalo solicitado.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "reduzir blocos lidos em tabelas particionadas por data"
+    ],
+    "satisfied_aspects": [
+      "Partition Pruning analisando WHERE para ignorar partições fora do intervalo"
+    ],
+    "semantic_rationale": "Descreve Partition Pruning estático e dinâmico.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D38_lock_striping_concurrency",
+    "group": "DIRECT_TECH",
+    "question_text": "Como diminuir contenção de bloqueios em estruturas de dados compartilhadas acessadas por dezenas de threads simultâneas?",
+    "response_text": "Emprega-se segmentação de travas (Lock Striping), distribuindo o acesso sobre um arranjo de múltiplos locks independentes onde cada chave ou bucket da coleção adquire apenas a trava associada ao seu hash.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "diminuir contenção de bloqueios em estruturas compartilhadas"
+    ],
+    "satisfied_aspects": [
+      "Lock Striping distribuindo chaves sobre arranjo de locks independentes por hash"
+    ],
+    "semantic_rationale": "Descreve Lock Striping (técnica de ConcurrentHashMap).",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D39_btree_prefix_compression",
+    "group": "DIRECT_TECH",
+    "question_text": "Como diminuir o espaço ocupado por índices em colunas de strings longas sem degradar o tempo de busca?",
+    "response_text": "Aplica-se compressão de prefixo nas páginas da árvore B, armazenando o prefixo comum dos registros uma única vez no cabeçalho da página e gravando apenas os sufixos diferenciadores em cada nó folha.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "diminuir espaço de índices de strings sem degradar busca"
+    ],
+    "satisfied_aspects": [
+      "compressão de prefixo armazenando prefixo comum no cabeçalho e gravando sufixos"
+    ],
+    "semantic_rationale": "Explica compressão de prefixo em blocos de B-Tree.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D40_read_committed_snapshot_isolation",
+    "group": "DIRECT_TECH",
+    "question_text": "Como permitir leituras concorrentes em tabelas sem bloquear transações de escrita e sem ler dados sujos?",
+    "response_text": "Habilita-se Snapshot Isolation (RCSI) via controle de concorrência multiversão (MVCC), permitindo que consultas leiam a última versão confirmada no histórico de linhas antes do início do comando.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "permitir leituras sem bloquear escrita e sem ler dados sujos"
+    ],
+    "satisfied_aspects": [
+      "Snapshot Isolation via MVCC lendo última versão confirmada no histórico"
+    ],
+    "semantic_rationale": "Explica Snapshot Isolation e MVCC.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D41_unseen_technology_supergraph",
+    "group": "DIRECT_TECH",
+    "question_text": "Como a tecnologia fictícia ChronoSync preserva a consistência de estado entre réplicas móveis desconectadas?",
+    "response_text": "Ela calcula vetores de relógio de Lamport em cada mutação offline e executa uma mesclagem de três vias baseada em árvores de Merkle assim que a conexão de rede é restabelecida.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "preservar consistência entre réplicas móveis desconectadas"
+    ],
+    "satisfied_aspects": [
+      "vetores de Lamport offline e mesclagem de três vias com árvores de Merkle"
+    ],
+    "semantic_rationale": "Tecnologia fictícia com mecanismo técnico perfeitamente articulado e direto.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D42_unseen_technology_nanoshard",
+    "group": "DIRECT_TECH",
+    "question_text": "Como a ferramenta emergente FlowPlex gerencia o escalonamento horizontal de pipelines de agregação em tempo real?",
+    "response_text": "Mapeia-se as mensagens em micro-partições dinâmicas na memória e reatribui-se os workers utilizando tabelas de dispersão distribuídas quando a taxa de chegada ultrapassa o limiar de consumo.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "gerenciar escalonamento horizontal de agregação em tempo real"
+    ],
+    "satisfied_aspects": [
+      "micro-partições dinâmicas em memória com reatribuição de workers por dispersão"
+    ],
+    "semantic_rationale": "Tecnologia emergente com mecanismo operacional direto.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D43_long_direct_detailed",
+    "group": "DIRECT_TECH",
+    "question_text": "Como evitar esgotamento de conexões JDBC em microsserviços de alto tráfego sob concorrência intensa?",
+    "response_text": "Configura-se um pool de conexões otimizado como HikariCP definindo tamanho máximo estrito compatível com os núcleos do banco, ativando timeout de aquisição de 2 segundos para falhar rápido e garantindo que todas as transações fechem os recursos em blocos try-with-resources imediatamente após a execução da query.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "evitar esgotamento de conexões JDBC sob alta concorrência"
+    ],
+    "satisfied_aspects": [
+      "pool HikariCP dimensionado aos núcleos, timeout de aquisição e try-with-resources"
+    ],
+    "semantic_rationale": "Explicação longa e abrangente que atende com precisão cirúrgica à demanda operacional.",
+    "linguistic_form": "verbose",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D44_short_direct_concise",
+    "group": "DIRECT_TECH",
+    "question_text": "Como isolar a execução de código não confiável em funções serverless de borda (edge computing)?",
+    "response_text": "Executando as funções dentro de WebAssembly sandboxes isoladas com restrição rigorosa de acesso a memória e chamadas de sistema.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "isolar execução de código não confiável em edge computing"
+    ],
+    "satisfied_aspects": [
+      "WebAssembly sandboxes isoladas com restrição de memória e syscalls"
+    ],
+    "semantic_rationale": "Resposta concisa e direta que resolve exatamente a demanda de isolamento.",
+    "linguistic_form": "concise",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "D45_active_1st_direct_experience",
+    "group": "DIRECT_TECH",
+    "question_text": "Como resolver problemas de lock exclusivo prolongado provocado por comandos de criação de índices em bancos de produção?",
+    "response_text": "Eu executo a criação do índice utilizando a cláusula CONCURRENTLY do PostgreSQL, permitindo que as consultas e escritas continuem operando normalmente enquanto o banco constrói o índice em duas passagens sequenciais.",
+    "human_classification": "DIRECT",
+    "demands": [
+      "resolver lock exclusivo por criação de índices em produção"
+    ],
+    "satisfied_aspects": [
+      "CREATE INDEX CONCURRENTLY permitindo operações contínuas em duas passagens"
+    ],
+    "semantic_rationale": "Experiência demonstrada em 1ª pessoa com mecanismo exato e adequado.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P01_multi_aspect_omit_jitter",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como implementar retries com backoff exponencial e como adicionar jitter para prevenir o problema de thundering herd?",
+    "response_text": "Implementa-se uma rotina de retentativa que multiplica o tempo de espera por dois a cada falha consecutiva até atingir o tempo máximo pré-determinado.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "implementar retries com backoff exponencial",
+      "adicionar jitter para prevenir thundering herd"
+    ],
+    "satisfied_aspects": [
+      "implementar retries com backoff exponencial"
+    ],
+    "semantic_rationale": "Apresenta o backoff exponencial de forma correta, mas omite completamente o mecanismo de jitter e thundering herd.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P02_multi_aspect_omit_rebalance",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como escolher a chave de sharding e como rebalancear as partições quando ocorre crescimento desbalanceado de dados?",
+    "response_text": "Seleciona-se uma chave de partição com alta cardinalidade para espalhar uniformemente os registros entre os servidores do cluster.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "escolher chave de sharding",
+      "rebalancear partições sob crescimento desbalanceado"
+    ],
+    "satisfied_aspects": [
+      "escolher chave de sharding"
+    ],
+    "semantic_rationale": "Responde com precisão à escolha da chave, porém não aborda o rebalanceamento de partições.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P03_compare_jwt_session_omit_revocation",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Compare autenticação stateless via JWT e stateful via sessão quanto a escalabilidade horizontal e facilidade de revogação de acessos.",
+    "response_text": "O JWT permite escalabilidade horizontal imediata porque os nós da aplicação não precisam consultar armazenamento compartilhado para checar credenciais.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "comparar JWT e sessão em escalabilidade horizontal",
+      "comparar facilidade de revogação de acessos"
+    ],
+    "satisfied_aspects": [
+      "comparar JWT em escalabilidade horizontal"
+    ],
+    "semantic_rationale": "Cobre a escalabilidade do JWT, mas não compara a facilidade de revogação de sessão.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P04_compare_b_tree_lsm_omit_writes",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Compare árvores B-Tree e LSM-Tree quanto a velocidade de leitura pontual e vazão de escrita em lote.",
+    "response_text": "As árvores B-Tree possuem excelente desempenho em leituras pontuais aleatórias porque mantêm as páginas balanceadas e ordenadas em disco com saltos determinísticos.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "velocidade de leitura pontual B-Tree vs LSM",
+      "vazão de escrita em lote B-Tree vs LSM"
+    ],
+    "satisfied_aspects": [
+      "velocidade de leitura pontual B-Tree"
+    ],
+    "semantic_rationale": "Cobre as leituras em B-Tree, mas omite a vazão de escritas massivas em LSM-Tree.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P05_explicit_omission_text",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como o algoritmo Raft conduz a eleição de um líder e como sincroniza os logs com os seguidores?",
+    "response_text": "Ele elege o líder por meio de votação por maioria simples de quórum com timeouts aleatórios, mas não detalha como as entradas de log são transmitidas e replicadas aos seguidores.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "eleição de líder no Raft",
+      "sincronização de logs com seguidores"
+    ],
+    "satisfied_aspects": [
+      "eleição de líder no Raft"
+    ],
+    "semantic_rationale": "A própria resposta declara expressamente que não detalha a sincronização dos logs.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P06_explicit_omission_text_informal",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como configurar replicação síncrona no PostgreSQL e como gerenciar o failover automático do primário?",
+    "response_text": "A gente configura synchronous_commit para forçar gravação nas réplicas, porém não explica como configurar o script de failover nem o orquestrador que promove a máquina secundária.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "configurar replicação síncrona",
+      "gerenciar failover automático"
+    ],
+    "satisfied_aspects": [
+      "configurar replicação síncrona"
+    ],
+    "semantic_rationale": "Contém marcador explícito de omissão ('porém não explica como configurar o script de failover').",
+    "linguistic_form": "informal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P07_compare_sync_async_omit_burst",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Quais as diferenças entre chamadas síncronas HTTP e comunicação assíncrona por mensageria quanto a acoplamento temporal e resiliência a picos?",
+    "response_text": "No modelo síncrono HTTP o remetente fica bloqueado aguardando o processamento do destinatário, enquanto na mensageria assíncrona o remetente despacha a mensagem e continua seu fluxo desacoplado no tempo.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "acoplamento temporal HTTP vs mensageria",
+      "resiliência a picos de tráfego"
+    ],
+    "satisfied_aspects": [
+      "acoplamento temporal HTTP vs mensageria"
+    ],
+    "semantic_rationale": "Analisa exaustivamente o acoplamento temporal, mas omite a absorção de picos de tráfego (buffering).",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P08_compare_optimistic_pessimistic_omit_threads",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Em que cenários deve-se optar por bloqueio pessimista e em quais por controle otimista, e qual o impacto em contenção de threads?",
+    "response_text": "Usa-se bloqueio pessimista quando a probabilidade de colisão é alta e lock otimista quando colisões são raras.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "cenários para bloqueio pessimista vs otimista",
+      "impacto em contenção de threads"
+    ],
+    "satisfied_aspects": [
+      "cenários para bloqueio pessimista vs otimista"
+    ],
+    "semantic_rationale": "Identifica os cenários de uso, mas não analisa o impacto na contenção e enfileiramento de threads no pool.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P09_compare_protobuf_json_omit_cpu",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Compare a serialização de mensagens via Protocol Buffers binário e JSON textual quanto a consumo de banda de rede e sobrecarga de parsing de CPU.",
+    "response_text": "O Protobuf reduz drasticamente o tráfego de rede gerando cargas binárias compactas codificadas em varints, exigindo muito menos bytes trafegados por mensagem.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "consumo de banda Protobuf vs JSON",
+      "sobrecarga de parsing de CPU"
+    ],
+    "satisfied_aspects": [
+      "consumo de banda de rede com Protobuf"
+    ],
+    "semantic_rationale": "Explica a economia de banda de rede com Protobuf, mas omite a análise da sobrecarga de parsing de CPU entre formatos.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P10_compare_modular_monolith_microservices_omit_sagas",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Compare arquiteturas monolíticas modulares e microsserviços distribuídos quanto a fronteiras transacionais no banco de dados e overhead de latência de rede entre domínios.",
+    "response_text": "Monólitos modulares executam operações entre domínios dentro de um mesmo processo compartilhando transações ACID locais no banco, eliminando a sobrecarga de round-trips de rede entre serviços.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "fronteiras transacionais monólito vs microsserviços",
+      "overhead de latência de rede entre domínios"
+    ],
+    "satisfied_aspects": [
+      "fronteiras transacionais locais e eliminação de overhead no monólito"
+    ],
+    "semantic_rationale": "Explica a transacionalidade local do monólito modular, mas não aprofunda o impacto de transações distribuídas e latência em microsserviços.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P11_multi_aspect_idempotency_storage",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como projetar endpoints de pagamento garantindo idempotência e como armazenar os comprovantes com expiração?",
+    "response_text": "Gera-se um hash único da transação financeira na chegada e valida-se se a cobrança já foi confirmada anteriormente.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "garantir idempotência em pagamento",
+      "armazenar comprovantes com expiração"
+    ],
+    "satisfied_aspects": [
+      "garantir idempotência em pagamento"
+    ],
+    "semantic_rationale": "Aborda a geração de hash de idempotência, mas omite o armazenamento com TTL/expiração de comprovantes.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P12_multi_aspect_idempotency_storage_informal",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como projetar endpoints de pagamento garantindo idempotência e como armazenar os comprovantes com expiração?",
+    "response_text": "Eu coloco uma chave única no payload da requisição para barrar se o cliente tentar cobrar duas vezes a mesma conta.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "garantir idempotência em pagamento",
+      "armazenar comprovantes com expiração"
+    ],
+    "satisfied_aspects": [
+      "garantir idempotência em pagamento"
+    ],
+    "semantic_rationale": "Atende à primeira demanda de forma informal, mas ignora a expiração do comprovante.",
+    "linguistic_form": "informal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P13_event_sourcing_cqrs_omit_projections",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Em arquiteturas orientadas a eventos, compare os padrões Event Sourcing e CQRS quanto a rastreabilidade histórica de mutações e complexidade de projeção de visões de leitura.",
+    "response_text": "O Event Sourcing garante rastreabilidade temporal absoluta registrando cada mutação como um evento imutável em um log sequencial de append-only.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "rastreabilidade histórica em Event Sourcing",
+      "complexidade de projeção em CQRS"
+    ],
+    "satisfied_aspects": [
+      "rastreabilidade temporal absoluta no Event Sourcing"
+    ],
+    "semantic_rationale": "Cobre a rastreabilidade via log append-only do Event Sourcing, mas omite as projeções de leitura e sincronização assíncrona do CQRS.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P14_cache_aside_omit_invalidation",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como implementar a estratégia Cache-Aside e como lidar com a invalidação de dados desatualizados?",
+    "response_text": "A aplicação primeiro consulta o cache em memória; se houver miss, busca o registro no banco de dados e salva o resultado no cache antes de responder.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "implementar fluxo Cache-Aside",
+      "invalidação de dados desatualizados"
+    ],
+    "satisfied_aspects": [
+      "implementar fluxo Cache-Aside"
+    ],
+    "semantic_rationale": "Descreve perfeitamente o fluxo de leitura Cache-Aside, mas não explica a estratégia de invalidação na escrita.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P15_two_phase_commit_omit_failure",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como opera o protocolo Two-Phase Commit e como o sistema se recupera caso o coordenador falhe durante a fase de commit?",
+    "response_text": "O coordenador envia a ordem de prepare para todas as réplicas participantes e, recebendo aprovação unânime, despacha a ordem de commit definitivo.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "operação do Two-Phase Commit",
+      "recuperação sob falha do coordenador em commit"
+    ],
+    "satisfied_aspects": [
+      "operação do Two-Phase Commit"
+    ],
+    "semantic_rationale": "Explica o caminho feliz de 2PC, mas omite a resolução de bloqueio quando o coordenador cai.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P16_cqrs_omit_eventual_consistency",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como estruturar uma arquitetura CQRS separando comandos de consultas e como lidar com o delay de consistência eventual na interface?",
+    "response_text": "Separa-se o modelo de escrita com comandos que alteram o estado em tabelas transacionais e projeta-se tabelas desnormalizadas em views para atender as leituras com alta velocidade.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "estruturar arquitetura CQRS",
+      "lidar com delay de consistência eventual na UI"
+    ],
+    "satisfied_aspects": [
+      "estruturar arquitetura CQRS"
+    ],
+    "semantic_rationale": "Explica a separação de modelos em CQRS, mas ignora a mitigação do delay de leitura na interface.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P17_kafka_partitions_omit_rebalance",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como particionar tópicos no Kafka para permitir processamento paralelo e como tratar rebalanceamentos sem travar os consumidores?",
+    "response_text": "Configura-se múltiplas partições no tópico distribuindo as mensagens por hash da chave de negócio, permitindo que cada consumidor do grupo processe sua partição concorrentemente.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "particionar tópicos para processamento paralelo",
+      "tratar rebalanceamentos sem travamentos"
+    ],
+    "satisfied_aspects": [
+      "particionar tópicos para processamento paralelo"
+    ],
+    "semantic_rationale": "Explica o paralelismo por partição, mas omite o tratamento de rebalanceamento (Cooperative Sticky Assignor).",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P18_deadlock_detection_omit_victim_selection",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como os bancos relacionais identificam ciclos de deadlocks e qual o critério utilizado para selecionar a transação que sofrerá rollback?",
+    "response_text": "O banco de dados inspeciona as dependências de locks ativos montando um grafo direcionado e detectando a existência de ciclos fechados de espera.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "identificar ciclos de deadlocks no grafo",
+      "critério de seleção da transação vítima"
+    ],
+    "satisfied_aspects": [
+      "identificar ciclos de deadlocks no grafo"
+    ],
+    "semantic_rationale": "Explica a identificação de ciclos, mas não menciona o critério de custo para escolha da vítima.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P19_redis_distributed_lock_omit_clock_drift",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como funciona o algoritmo Redlock para bloqueios distribuídos em múltiplos nós Redis e como mitigar riscos de desvio de relógio (clock drift)?",
+    "response_text": "O cliente tenta adquirir a trava com o mesmo valor aleatório na maioria estrita das instâncias independentes de Redis com timeout curto.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "funcionamento do algoritmo Redlock",
+      "mitigação de riscos de clock drift"
+    ],
+    "satisfied_aspects": [
+      "funcionamento do algoritmo Redlock"
+    ],
+    "semantic_rationale": "Descreve a aquisição majoritária no Redlock, mas omite o impacto e a mitigação de clock drift.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P20_mutation_omit_version_check",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como aplicar concorrência otimista com versionamento para impedir atualizações concorrentes sujas?",
+    "response_text": "Lê-se o registro do banco de dados na aplicação e na hora de salvar grava-se diretamente o novo valor na tabela de forma transacional.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "concorrência otimista com versionamento"
+    ],
+    "satisfied_aspects": [
+      "leitura e gravação na tabela"
+    ],
+    "semantic_rationale": "Omite a verificação da cláusula de versão no update; apenas descreve uma gravação transacional simples.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P21_mutation_omit_idempotency_lookup",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como processar requisições em gateways de pagamentos garantindo deduplicação de cobranças repetidas?",
+    "response_text": "Recebo a requisição do cliente com o valor e despacho a cobrança imediatamente para o adquirente de cartão de crédito.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "deduplicação de cobranças repetidas"
+    ],
+    "satisfied_aspects": [
+      "receber requisição e despachar cobrança"
+    ],
+    "semantic_rationale": "Processa o pagamento mas omite qualquer consulta a chaves de deduplicação ou idempotência.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P22_mutation_omit_token_bucket_limit",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como proteger APIs contra excesso de tráfego utilizando algoritmos de balde de fichas (token bucket)?",
+    "response_text": "A gente adiciona fichas continuamente em uma variável de controle para registrar as chamadas que chegam dos usuários.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "proteger APIs via token bucket"
+    ],
+    "satisfied_aspects": [
+      "adicionar fichas em variável de controle"
+    ],
+    "semantic_rationale": "Menciona o acúmulo de fichas, mas não define a limitação nem o bloqueio quando as fichas esgotam.",
+    "linguistic_form": "informal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P23_compare_dynamo_spanner_omit_stale",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Compare o modelo de consistência eventual em Dynamo-style databases e linearizabilidade em Spanner quanto a latência de escrita e garantias contra leituras obsoletas.",
+    "response_text": "O modelo de consistência eventual em bancos Dynamo permite escritas ultra-rápidas com baixa latência local sem aguardar consenso síncrono global entre nós.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "latência de escrita Dynamo vs Spanner",
+      "garantias contra leituras obsoletas"
+    ],
+    "satisfied_aspects": [
+      "baixa latência de escrita em consistência eventual"
+    ],
+    "semantic_rationale": "Aborda a latência de escrita no Dynamo, mas omite as garantias contra leituras obsoletas e a comparação com linearizabilidade.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P24_compare_sql_nosql_omit_consistency",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Compare bancos relacionais SQL e NoSQL colunares quanto a flexibilidade de schema e garantias de consistência ACID.",
+    "response_text": "Bancos NoSQL oferecem esquemas dinâmicos flexíveis permitindo que cada linha possua campos distintos sem necessidade de migrações pesadas de DDL.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "flexibilidade de schema SQL vs NoSQL",
+      "garantias de consistência ACID"
+    ],
+    "satisfied_aspects": [
+      "flexibilidade de schema NoSQL"
+    ],
+    "semantic_rationale": "Trata da flexibilidade de esquema, mas omite a comparação de garantias transacionais ACID.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P25_compare_grpc_rest_omit_browser",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Compare gRPC e REST HTTP/JSON quanto a overhead de serialização e facilidade de depuração no navegador.",
+    "response_text": "O gRPC utiliza codificação binária Protocol Buffers que reduz drasticamente o tamanho do payload e o processamento de serialização se comparado com o formato textual JSON do REST.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "overhead de serialização gRPC vs REST",
+      "depuração no navegador"
+    ],
+    "satisfied_aspects": [
+      "overhead de serialização gRPC com Protobuf"
+    ],
+    "semantic_rationale": "Analisa a serialização binária com Protobuf, mas omite a depuração humana em DevTools de navegadores.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P26_circuit_breaker_omit_fallback",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como configurar circuit breakers com timeouts agressivos e como fornecer respostas de fallback gracioso para manter a experiência do usuário?",
+    "response_text": "Ajusta-se o disjuntor para abrir a conexão instantaneamente após três falhas consecutivas ou requisições que excedam 500 milissegundos de espera.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "configurar circuit breaker com timeout",
+      "fornecer fallback gracioso na UI"
+    ],
+    "satisfied_aspects": [
+      "configurar circuit breaker com timeout"
+    ],
+    "semantic_rationale": "Define o limiar de abertura e timeout, mas omite o retorno de fallback de degradação graciosa.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P27_tls_handshake_omit_alpn",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como o handshake TLS 1.3 reduz o tempo de estabelecimento de conexão e como negocia a versão do protocolo de aplicação via ALPN?",
+    "response_text": "No TLS 1.3 o cliente envia suas chaves de compartilhamento Diffie-Hellman na mensagem ClientHello inicial, reduzindo a negociação para apenas um round-trip (1-RTT).",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "redução de tempo em TLS 1.3",
+      "negociação de protocolo via ALPN"
+    ],
+    "satisfied_aspects": [
+      "redução de tempo de negociação TLS 1.3 em 1-RTT"
+    ],
+    "semantic_rationale": "Explica o 1-RTT do TLS 1.3, mas omite a extensão ALPN para negociação HTTP/2.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P28_kubernetes_hpa_omit_custom_metrics",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como o Horizontal Pod Autoscaler escala pods baseado em uso de CPU e como configura escalonamento por métricas customizadas de mensageria?",
+    "response_text": "O controlador compara periodicamente o consumo médio de CPU dos containers contra o alvo definido no manifesto, aumentando o número de réplicas quando o limiar for excedido.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "escalar pods baseado em CPU",
+      "escalonamento por métricas customizadas de mensageria"
+    ],
+    "satisfied_aspects": [
+      "escalar pods baseado em CPU"
+    ],
+    "semantic_rationale": "Explica HPA por CPU, mas omite escalonamento por métricas customizadas (tamanho de fila/lag).",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P29_distributed_tracing_omit_propagation",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como instrumentar tracing distribuído gerando spans em microsserviços e como propagar o contexto de rastreio entre requisições HTTP?",
+    "response_text": "Cada serviço gera um identificador único de span para marcar o início e término da execução interna das suas funções de negócio.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "gerar spans em microsserviços",
+      "propagar contexto de rastreio entre requisições HTTP"
+    ],
+    "satisfied_aspects": [
+      "gerar spans em microsserviços"
+    ],
+    "semantic_rationale": "Explica a criação do span interno, mas não aborda a injeção e extração de headers W3C Trace Context.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P30_speculation_partitioning_partial_novel",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como mitigar contenção extrema de locks em tabelas de auditoria volumosas?",
+    "response_text": "Acho que talvez dê para criar partições por intervalo de data, embora eu não tenha certeza exata de como configurar a criação automática das partições no banco.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "mitigar contenção extrema de locks em tabelas volumosas"
+    ],
+    "satisfied_aspects": [
+      "particionamento por data hipotético"
+    ],
+    "semantic_rationale": "Apresenta a ideia válida de particionamento, mas declara expressamente desconhecimento sobre a implementação.",
+    "linguistic_form": "speculative",
+    "epistemic_status": "HYPOTHESIS",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P31_speculation_circuit_partial_novel",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como proteger um microsserviço de backend contra sobrecarga em cascata de terceiros?",
+    "response_text": "Imagino que uma ideia seria interceptar as chamadas e cortar o tráfego com circuit breaker, mas nunca configurei o limiar de transição na prática.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "proteger microsserviço contra sobrecarga em cascata"
+    ],
+    "satisfied_aspects": [
+      "ideia de circuit breaker hipotética"
+    ],
+    "semantic_rationale": "Apresenta o padrão arquitetural correto, mas expressa incerteza e omite a parametrização.",
+    "linguistic_form": "speculative",
+    "epistemic_status": "HYPOTHESIS",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P32_multi_aspect_oauth_omit_pkce",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como implementar fluxo de autorização OAuth 2.0 Authorization Code e como utilizar PKCE para proteger clientes públicos sem chave secreta?",
+    "response_text": "O cliente redireciona o usuário para o servidor de autorização, obtém um código temporário de autorização e troca esse código pelo token de acesso.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "fluxo Authorization Code",
+      "proteger com PKCE em clientes públicos"
+    ],
+    "satisfied_aspects": [
+      "fluxo Authorization Code básico"
+    ],
+    "semantic_rationale": "Explica o fluxo Authorization Code, mas omite completamente o Code Verifier e Code Challenge do PKCE.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P33_multi_aspect_database_index_omit_covering",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como otimizar consultas analíticas criando índices compostos e como utilizar índices de cobertura (covering index) para eliminar acessos à tabela?",
+    "response_text": "Cria-se um índice composto ordenando as colunas de acordo com a seletividade e filtros mais utilizados na cláusula WHERE.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "otimizar consultas com índices compostos",
+      "eliminar acessos à tabela via covering index"
+    ],
+    "satisfied_aspects": [
+      "índices compostos baseados na seletividade do WHERE"
+    ],
+    "semantic_rationale": "Aborda o índice composto, mas omite a cláusula INCLUDE e o conceito de covering index.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P34_multi_aspect_docker_multistage_omit_security",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como utilizar builds multi-estágio no Docker para diminuir o tamanho da imagem e como garantir a execução com usuário não-root?",
+    "response_text": "Utiliza-se uma imagem pesada com compilador para gerar o binário na primeira etapa e copia-se apenas o executável final para uma imagem distroless enxuta na segunda etapa.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "diminuir tamanho com multi-stage build",
+      "garantir execução com usuário não-root"
+    ],
+    "satisfied_aspects": [
+      "multi-stage build com compilação e cópia do binário"
+    ],
+    "semantic_rationale": "Explica com perfeição o multi-stage build, mas omite a criação e troca para usuário não-root.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "P35_multi_aspect_cqrs_event_sourcing_omit_snapshot",
+    "group": "PARTIAL_COVERAGE",
+    "question_text": "Como reconstruir o estado de entidades em Event Sourcing e como utilizar snapshots periódicos para acelerar a inicialização?",
+    "response_text": "Reconstrói-se o estado corrente lendo a sequência imutável de eventos passados a partir do log e aplicando cada mutação sequencialmente sobre o objeto.",
+    "human_classification": "PARTIAL",
+    "demands": [
+      "reconstruir estado em Event Sourcing",
+      "utilizar snapshots periódicos para aceleração"
+    ],
+    "satisfied_aspects": [
+      "reconstruir estado lendo eventos imutáveis em sequência"
+    ],
+    "semantic_rationale": "Descreve o replay de eventos, mas ignora completamente a geração de snapshots periódicos.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S01_prometheus_grafana_deadlock",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como resolver travamentos mútuos frequentes (deadlocks) em rotinas de fechamento bancário?",
+    "response_text": "Configuro alertas no Grafana e exponho métricas do Prometheus para identificar quais transações demoram mais tempo presas.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "resolver deadlocks em fechamento bancário"
+    ],
+    "satisfied_aspects": [
+      "métricas no Prometheus e alertas no Grafana para identificação"
+    ],
+    "semantic_rationale": "Métricas e alertas ajudam a diagnosticar mas não resolvem a causa raiz dos deadlocks.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S02_prometheus_grafana_deadlock_pronominal",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como resolver travamentos mútuos frequentes (deadlocks) em rotinas de fechamento bancário?",
+    "response_text": "Instrumentam-se as rotinas com métricas no Prometheus e alarmes no Grafana para monitorar a frequência de travamentos.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "resolver deadlocks em fechamento bancário"
+    ],
+    "satisfied_aspects": [
+      "métricas e alarmes para monitorar frequência"
+    ],
+    "semantic_rationale": "Formulação passiva pronominal com ferramenta de monitoramento que fornece auxílio diagnóstico sem resolver o defeito.",
+    "linguistic_form": "pronominal_se",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S03_datadog_apm_concurrency",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como eliminar concorrência descontrolada e corrupção de saldo em pagamentos compartilhados?",
+    "response_text": "Instalamos o agente do Datadog para coletar traces distribuídos e criamos um dashboard para acompanhar a taxa de requisições por segundo.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "eliminar concorrência descontrolada e corrupção de saldo"
+    ],
+    "satisfied_aspects": [
+      "agente Datadog com traces distribuídos e dashboard"
+    ],
+    "semantic_rationale": "Traces do Datadog oferecem suporte diagnóstico mas não eliminam concorrência descontrolada.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S04_new_relic_db_bottleneck",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como resolver gargalos de escrita e contenção de linhas em banco relacional sobrecarregado?",
+    "response_text": "Configuro o New Relic APM para inspecionar os tempos de execução das queries e receber notificações quando o banco atingir saturação.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "resolver gargalos de escrita e contenção de linhas"
+    ],
+    "satisfied_aspects": [
+      "New Relic APM inspecionando tempos de execução"
+    ],
+    "semantic_rationale": "Notificações de APM dão visibilidade operacional mas não resolvem a contenção de linhas.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S05_cloudwatch_memory_leak",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como conter vazamento contínuo de memória que causa travamentos diários na aplicação?",
+    "response_text": "Configuro alarmes no AWS CloudWatch para disparar alertas por e-mail sempre que a taxa de uso de RAM ultrapassar 85%.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "conter vazamento contínuo de memória"
+    ],
+    "satisfied_aspects": [
+      "alarmes no CloudWatch disparando e-mails de consumo de RAM"
+    ],
+    "semantic_rationale": "Alarmes no CloudWatch alertam sobre o sintoma mas não contêm a causa do vazamento de memória.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S06_elasticsearch_kibana_crash",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como solucionar falhas intermitentes de processamento de lote em microsserviço financeiro?",
+    "response_text": "Envio todos os logs para o Elasticsearch e monto painéis no Kibana para visualizar a quantidade de exceções registradas a cada hora.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "solucionar falhas intermitentes de processamento de lote"
+    ],
+    "satisfied_aspects": [
+      "envio de logs para Elasticsearch e painéis no Kibana"
+    ],
+    "semantic_rationale": "Centralização de logs no Kibana apoia o diagnóstico mas não corrige os erros no lote.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S07_blackbox_exporter_dns",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como mitigar indisponibilidade provocada por resolução defeituosa de DNS entre regiões?",
+    "response_text": "Configuro sondas do Blackbox Exporter para efetuar requisições a cada 15 segundos e emitir alerta quando o endpoint falhar.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "mitigar indisponibilidade por falha de DNS"
+    ],
+    "satisfied_aspects": [
+      "sondas Blackbox Exporter alertando sobre falhas"
+    ],
+    "semantic_rationale": "Sondas de monitoramento sintético apenas detectam a falha, sem resolver a resolução de DNS.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S08_pyroscope_cpu_spike",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como conter picos severos de uso de CPU que travam a aplicação em horários de pico?",
+    "response_text": "Instalo o Pyroscope na aplicação para coletar flamegraphs contínuos de execução e identificar os métodos com maior consumo de ciclos.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "conter picos severos de uso de CPU"
+    ],
+    "satisfied_aspects": [
+      "Pyroscope com flamegraphs contínuos identificando métodos"
+    ],
+    "semantic_rationale": "Profiling com Pyroscope é ferramenta auxiliar para mapear onde a CPU é gasta, sem consertar o código.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S09_opentelemetry_traces_latency",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como diminuir latência de processamento em cadeia de chamadas síncronas entre microsserviços?",
+    "response_text": "Instrumento o código com OpenTelemetry exportando traces distribuídos para o Jaeger para localizar onde as requisições engasgam.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "diminuir latência de processamento em cadeia síncrona"
+    ],
+    "satisfied_aspects": [
+      "instrumentação OpenTelemetry e Jaeger para localizar atrasos"
+    ],
+    "semantic_rationale": "Mapeamento de gargalos com OpenTelemetry é diagnóstico auxiliar, sem diminuir a latência diretamente.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S10_sentry_exceptions_audit",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como evitar interrupções de checkout provocadas por exceções não tratadas no pagamento?",
+    "response_text": "Adiciono o Sentry na aplicação para capturar o stack trace exato e receber aviso no Slack assim que ocorrer um erro 500.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "evitar interrupções de checkout por exceções"
+    ],
+    "satisfied_aspects": [
+      "Sentry capturando stack trace e enviando aviso no Slack"
+    ],
+    "semantic_rationale": "Captura de stack trace pelo Sentry é telemetria auxiliar; não evita a interrupção do checkout.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S11_micrometer_jmx_connection_pool",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como resolver esgotamento de conexões no pool de banco de dados sob tráfego massivo?",
+    "response_text": "Exponho métricas de conexões ativas e pendentes via Micrometer e JMX para acompanhar o volume de threads represadas.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "resolver esgotamento de conexões no pool"
+    ],
+    "satisfied_aspects": [
+      "métricas de conexões ativas e pendentes via Micrometer e JMX"
+    ],
+    "semantic_rationale": "Expor métricas de pool apoia a visibilidade mas não resolve o esgotamento das conexões.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S12_k8s_liveness_probe_leak",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como eliminar vazamento contínuo de memória em processo de backend?",
+    "response_text": "Configuro liveness probes no Kubernetes para reiniciar os pods automaticamente assim que o container parar de responder.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "eliminar vazamento contínuo de memória"
+    ],
+    "satisfied_aspects": [
+      "liveness probe reiniciando pods automaticamente"
+    ],
+    "semantic_rationale": "Reiniciar pods via probe mitiga a indisponibilidade, mas não elimina o vazamento de memória do código.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S13_read_replica_write_bottleneck",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como eliminar o gargalo de escrita em banco de dados que atingiu o limite físico de IOPS do disco primário?",
+    "response_text": "Crio duas réplicas de leitura para balancear as consultas analíticas e aliviar o servidor principal de queries de select.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "eliminar gargalo de escrita em banco com IOPS saturado"
+    ],
+    "satisfied_aspects": [
+      "réplicas de leitura balanceando consultas e aliviando selects"
+    ],
+    "semantic_rationale": "Réplicas de leitura aliviam leituras, mas não eliminam o limite de IOPS de escrita no nó primário.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S14_redis_cache_write_locks",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como solucionar contenção severa de bloqueios em linhas concorrentes de atualização de saldo?",
+    "response_text": "Adiciono cache Redis na frente para desafogar as consultas de leitura frequentes da conta.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "solucionar contenção de bloqueios em linhas de atualização de saldo"
+    ],
+    "satisfied_aspects": [
+      "cache Redis para desafogar leituras da conta"
+    ],
+    "semantic_rationale": "Aliviar consultas de saldo com Redis é mitigação periférica; não soluciona a contenção nas escritas concorrentes.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S15_fluentbit_log_aggregator",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como conter corrupção de dados gerada por cancelamentos inesperados de sessões de usuários?",
+    "response_text": "Instalo o FluentBit nos servidores para centralizar todos os arquivos de log e auditar os registros de cancelamento depois do ocorrido.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "conter corrupção de dados gerada por cancelamentos"
+    ],
+    "satisfied_aspects": [
+      "FluentBit centralizando logs para auditar depois"
+    ],
+    "semantic_rationale": "Auditoria post-mortem de logs não contém nem impede a corrupção de dados.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S16_datadog_synthetic_tests",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como prevenir degradação de performance na rota crítica de autenticação sob cargas extremas?",
+    "response_text": "Agendo transações sintéticas periódicas no Datadog para monitorar o tempo de resposta do endpoint a cada minuto.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "prevenir degradação de performance na rota de autenticação"
+    ],
+    "satisfied_aspects": [
+      "transações sintéticas no Datadog monitorando tempo de resposta"
+    ],
+    "semantic_rationale": "Testes sintéticos apoiam o monitoramento, sem prevenir a degradação de desempenho.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S17_dynatrace_anomaly_detection",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como resolver falhas misteriosas de conectividade entre instâncias de banco de dados distribuído?",
+    "response_text": "Ativo o módulo de inteligência do Dynatrace para mapear a topologia e sinalizar anomalias de conexão na infraestrutura.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "resolver falhas de conectividade entre instâncias"
+    ],
+    "satisfied_aspects": [
+      "Dynatrace mapeando topologia e sinalizando anomalias"
+    ],
+    "semantic_rationale": "Detecção de anomalias oferece auxílio analítico mas não resolve a causa física de conectividade.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S18_prometheus_alerts_disk_full",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como evitar colapso de nós de dados por esgotamento repentino de espaço em disco?",
+    "response_text": "Configuro alertas no Prometheus para avisar no canal de suporte assim que o volume do disco atingir 90% de ocupação.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "evitar colapso por esgotamento de disco"
+    ],
+    "satisfied_aspects": [
+      "alertas no Prometheus avisando quando o disco atingir 90%"
+    ],
+    "semantic_rationale": "Alertar sobre disco cheio é proteção auxiliar de monitoramento, sem gerenciar ou expurgar os dados.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S19_grafana_dashboard_threads",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como solucionar travamento de threads causado por loops infinitos em processamento assíncrono?",
+    "response_text": "Monto um painel no Grafana para exibir quantas threads estão em execução e o consumo agregado de memória.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "solucionar travamento de threads causado por loops"
+    ],
+    "satisfied_aspects": [
+      "painel no Grafana exibindo threads em execução e memória"
+    ],
+    "semantic_rationale": "Visualizar contagem de threads não corrige o loop infinito.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S20_kibana_error_rate_visualization",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como conter falhas silenciosas de cálculo financeiro em microsserviço de faturamento?",
+    "response_text": "Crio visualizações no Kibana para acompanhar a taxa percentual de erros por minuto nas mensagens processadas.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "conter falhas silenciosas de cálculo financeiro"
+    ],
+    "satisfied_aspects": [
+      "visualizações no Kibana acompanhando taxa de erros"
+    ],
+    "semantic_rationale": "Exibir taxa de erro é telemetria auxiliar de suporte operacional.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S21_cloudwatch_io_throttling",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como mitigar travamentos de escrita provocados por saturação de IOPS em banco relacional na nuvem?",
+    "response_text": "Configuro alarmes no AWS CloudWatch para monitorar a métrica de IOPS consumidas e enviar alerta quando houver estrangulamento.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "mitigar travamentos de escrita por saturação de IOPS"
+    ],
+    "satisfied_aspects": [
+      "alarmes no CloudWatch monitorando métrica de IOPS e throttling"
+    ],
+    "semantic_rationale": "Alerta no CloudWatch sobre estrangulamento de IOPS é diagnóstico complementar.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S22_sentry_release_tracking",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como prevenir bugs de regressão funcional introduzidos em novos deploys de microsserviços?",
+    "response_text": "Integro o Sentry na esteira para rastrear novos lançamentos e notificar os desenvolvedores quando um novo erro aparecer.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "prevenir bugs de regressão funcional em deploys"
+    ],
+    "satisfied_aspects": [
+      "Sentry rastreando lançamentos e notificando sobre novos erros"
+    ],
+    "semantic_rationale": "Rastreamento de erros pós-deploy auxilia a equipe mas não previne a introdução do bug no código.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S23_hikaricp_leak_detection_threshold",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como eliminar vazamento silencioso de conexões em rotinas legadas com queries abertas?",
+    "response_text": "Ativo o leakDetectionThreshold do HikariCP para gerar logs com stack trace quando uma conexão demorar mais de 5 segundos para ser devolvida ao pool.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "eliminar vazamento silencioso de conexões em rotinas legadas"
+    ],
+    "satisfied_aspects": [
+      "leakDetectionThreshold do HikariCP gerando logs com stack trace"
+    ],
+    "semantic_rationale": "Identificação de vazamento via threshold de pool é diagnóstico de suporte sem corrigir a query legada.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S24_blackbox_http_probes",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como resolver indisponibilidade crônica de rede entre microsserviços em diferentes data centers?",
+    "response_text": "Configuro sondas do Blackbox Exporter para testar requisições HTTP entre os nós e avisar se a latência subir.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "resolver indisponibilidade de rede entre data centers"
+    ],
+    "satisfied_aspects": [
+      "sondas do Blackbox Exporter testando HTTP e avisando sobre latência"
+    ],
+    "semantic_rationale": "Monitoramento de latência por sondas auxilia na percepção da falha, sem resolver a estabilidade da rede.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "S25_pyroscope_memory_allocations",
+    "group": "SUPPORTING_MONITORING",
+    "question_text": "Como diminuir pausas de garbage collector provocadas por alocações massivas de objetos efêmeros?",
+    "response_text": "Instalo o Pyroscope para mapear a taxa de alocação de memória por método e ver quais trechos do código estão instanciando mais dados.",
+    "human_classification": "SUPPORTING",
+    "demands": [
+      "diminuir pausas de garbage collector por alocações massivas"
+    ],
+    "satisfied_aspects": [
+      "Pyroscope mapeando alocações de memória por método"
+    ],
+    "semantic_rationale": "Mapeamento de alocações via flamegraph fornece evidência diagnóstica auxiliar sem alterar as estruturas de dados.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R01_milvus_hnsw_description",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o motor de busca vetorial Milvus constrói índices HNSW distribuídos para consultas de similaridade?",
+    "response_text": "O Milvus é um projeto de código aberto sob a Linux Foundation bastante utilizado por equipes de ciência de dados para projetos de embeddings corporativos.",
+    "human_classification": "RELATED",
+    "demands": [
+      "construção de índices HNSW distribuídos no Milvus"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de indexação HNSW demonstrado"
+    ],
+    "semantic_rationale": "Descreve a fundação mantenedora e adoção por equipes sem explicar o algoritmo de grafo HNSW.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R02_clickhouse_columnar_description",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o ClickHouse processa consultas analíticas agregadas em alta velocidade através de armazenamento colunar vetorizado?",
+    "response_text": "O ClickHouse foi criado na Rússia para a plataforma de analytics Yandex Metrica e possui ampla documentação comunitária em diversos idiomas.",
+    "human_classification": "RELATED",
+    "demands": [
+      "processamento analítico agregado com colunas vetorizadas no ClickHouse"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo vetorizado demonstrado"
+    ],
+    "semantic_rationale": "Fornece contexto de origem e documentação sem explicar a vetorização colunar.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R03_quantum_router_fictional_description",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como a ferramenta fictícia QuantumRouter otimiza rotas de pacotes IP usando algoritmos genéticos?",
+    "response_text": "O QuantumRouter é uma solução corporativa inovadora anunciada em um congresso de redes para transformar a governança de telecomunicações.",
+    "human_classification": "RELATED",
+    "demands": [
+      "otimização de rotas IP via algoritmos genéticos"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de roteamento ou algoritmo genético demonstrado"
+    ],
+    "semantic_rationale": "Discurso comercial de marketing sem apresentar nenhum algoritmo ou mecanismo operacional.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R04_sqlite_awards_history",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o SQLite assegura atomicidade em transações de arquivo único utilizando journaling de rollback?",
+    "response_text": "O criador do SQLite recebeu prêmios de engenharia de software da ACM em reconhecimento pela sua contribuição à comunidade global de tecnologia.",
+    "human_classification": "RELATED",
+    "demands": [
+      "atomicidade em arquivo único via rollback journal no SQLite"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de rollback journal demonstrado"
+    ],
+    "semantic_rationale": "Menção a premiações do autor sem explicar o arquivo de journal de rollback.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R05_false_sharing_cache_line_trivia",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como prevenir falsas gravações em compartilhamento de linhas de cache (false sharing) em threads paralelas?",
+    "response_text": "A arquitetura x86_64 possui uma linha de cache padrão de 64 bytes que pode ser consultada no manual de microarquitetura da Intel.",
+    "human_classification": "RELATED",
+    "demands": [
+      "prevenir false sharing em threads paralelas"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de alinhamento ou padding demonstrado"
+    ],
+    "semantic_rationale": "Cita a dimensão física da linha de cache sem demonstrar alinhamento ou espaçamento de variáveis concorrentes.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R06_golang_gc_creators_trivia",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o coletor de lixo do Go minimiza pausas de Stop-The-World através do algoritmo tricromático concorrente?",
+    "response_text": "A linguagem Go foi idealizada por Robert Griesemer, Rob Pike e Ken Thompson no Google em 2007 para simplificar a engenharia de software de grande porte.",
+    "human_classification": "RELATED",
+    "demands": [
+      "minimização de Stop-The-World via algoritmo tricromático no Go"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo tricromático demonstrado"
+    ],
+    "semantic_rationale": "Cita os fundadores da linguagem e ano de criação sem explicar as cores do algoritmo tricromático de GC.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R07_declaration_kubernetes_experience",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como configurar políticas de rede (NetworkPolicies) no Kubernetes para isolar namespaces sensíveis?",
+    "response_text": "Eu utilizo Kubernetes diariamente na minha empresa e tenho mais de 8 anos de experiência em administração de clusters corporativos.",
+    "human_classification": "RELATED",
+    "demands": [
+      "configurar NetworkPolicies no Kubernetes para isolar namespaces"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de NetworkPolicy demonstrado"
+    ],
+    "semantic_rationale": "Declaração pura de experiência profissional sem demonstrar configuração técnica de NetworkPolicy.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DECLARATION",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R08_declaration_postgresql_experience",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como otimizar consultas analíticas complexas com Window Functions no PostgreSQL?",
+    "response_text": "Eu trabalho com PostgreSQL há mais de 10 anos na nossa empresa e sou especialista sênior em bancos de dados relacionais.",
+    "human_classification": "RELATED",
+    "demands": [
+      "otimizar consultas com Window Functions no PostgreSQL"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de Window Functions demonstrado"
+    ],
+    "semantic_rationale": "Declaração de senioridade e tempo de carreira sem demonstrar mecanismo técnico de Window Functions.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DECLARATION",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R09_declaration_kafka_experience",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como evitar perda de mensagens quando um broker do Kafka é encerrado forçadamente?",
+    "response_text": "Eu utilizo Apache Kafka nos projetos da minha empresa no dia a dia e conheço bem a plataforma de mensageria.",
+    "human_classification": "RELATED",
+    "demands": [
+      "evitar perda de mensagens sob encerramento de broker"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de acks, min.insync.replicas demonstrado"
+    ],
+    "semantic_rationale": "Declaração genérica de uso cotidiano sem explicar configurações de resiliência.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DECLARATION",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R10_declaration_redis_experience",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como configurar persistência AOF com fsync a cada segundo no Redis?",
+    "response_text": "Eu tenho 7 anos de experiência com Redis e atuo como líder técnico em arquitetura de caches corporativos.",
+    "human_classification": "RELATED",
+    "demands": [
+      "configurar persistência AOF com fsync a cada segundo no Redis"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de persistência AOF demonstrado"
+    ],
+    "semantic_rationale": "Declaração de cargo e anos de atuação sem fornecer os parâmetros de configuração do Redis.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DECLARATION",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R11_kubernetes_docker_tautology",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o Kubernetes gerencia a integridade e ciclo de vida de containers em nós de computação?",
+    "response_text": "O Kubernetes é um orquestrador de pods muito robusto que gerencia containers em clusters grandes com muita facilidade.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como Kubernetes gerencia ciclo de vida de containers"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de kubelet, pod lifecycle demonstrado"
+    ],
+    "semantic_rationale": "Repetição tautológica laudatória sobre gerenciar containers com facilidade, sem mecanismo.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R12_linux_kernel_history",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o agendador CFS (Completely Fair Scheduler) do kernel Linux equilibra o tempo de CPU entre processos concorrentes?",
+    "response_text": "O kernel Linux foi lançado inicialmente em 1991 como um projeto pessoal de um estudante finlandês baseado no sistema Minix.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como CFS equilibra tempo de CPU entre processos"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de CFS, vruntime, red-black tree demonstrado"
+    ],
+    "semantic_rationale": "Histórico sobre o surgimento do kernel sem responder à mecânica do agendador CFS.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R13_python_gil_history",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como contornar o Global Interpreter Lock (GIL) do Python para acelerar processamento matemático paralelo?",
+    "response_text": "O Python foi concebido por Guido van Rossum no final dos anos 80 nos Países Baixos como sucessor da linguagem ABC.",
+    "human_classification": "RELATED",
+    "demands": [
+      "contornar o GIL do Python para processamento paralelo"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de multiprocessing, ctypes, nogil demonstrado"
+    ],
+    "semantic_rationale": "Curiosidade biográfica sobre o criador do Python sem explicar como contornar o GIL.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R14_rust_memory_model_history",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o compilador do Rust assegura segurança de memória em tempo de compilação sem usar garbage collector?",
+    "response_text": "O Rust foi desenvolvido originalmente por Graydon Hoare na Mozilla e eleito a linguagem favorita em pesquisas do Stack Overflow.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como compilador Rust assegura segurança de memória sem GC"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de borrow checker, lifetimes demonstrado"
+    ],
+    "semantic_rationale": "Fatos históricos e pesquisas de popularidade sem explicar ownership, borrowing ou lifetimes.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R15_java_virtual_threads_history",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como as Virtual Threads do Java mapeiam milhares de tarefas concorrentes sobre poucos threads de sistema operacional?",
+    "response_text": "O projeto Loom levou vários anos de desenvolvimento dentro do OpenJDK até ser lançado oficialmente na versão 21 do Java.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como Virtual Threads mapeiam tarefas sobre threads de SO"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de carrier threads, continuations demonstrado"
+    ],
+    "semantic_rationale": "Histórico da release e do Projeto Loom sem explicar carrier threads ou continuações de runtime.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R16_surrealdb_general_opinion",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o SurrealDB conecta registros em formato de grafo sem necessidade de joins relacionais pesados?",
+    "response_text": "O SurrealDB é um banco de dados moderno excelente para trabalhar com múltiplos modelos de dados de forma unificada.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como SurrealDB conecta registros em formato de grafo sem joins"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de ponteiros diretos em grafo demonstrado"
+    ],
+    "semantic_rationale": "Elogio de marketing sobre modelo unificado sem explicar ponteiros de nós.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R17_duckdb_general_opinion",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o motor DuckDB processa consultas analíticas colunares executando em processo no cliente?",
+    "response_text": "O DuckDB é uma ferramenta analítica muito leve frequentemente chamada de SQLite das consultas de Big Data.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como DuckDB processa consultas analíticas colunares em processo"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de execução colunar vetorizada demonstrado"
+    ],
+    "semantic_rationale": "Metáfora comercial ('SQLite do Big Data') sem detalhar execução analítica vetorizada.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R18_clickhouse_general_opinion",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o ClickHouse atinge alta taxa de compressão e velocidade em leituras colunares massivas?",
+    "response_text": "O ClickHouse foi criado pela Yandex e é famoso mundialmente por ser incrivelmente veloz em análises de telemetria de web.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como ClickHouse atinge alta compressão e velocidade colunar"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de compressão por coluna demonstrado"
+    ],
+    "semantic_rationale": "Origem e reputação de velocidade sem demonstrar algoritmos de compressão de blocos.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R19_etcd_raft_general_opinion",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o etcd gerencia a consistência de chave-valor distribuída sob partições de rede?",
+    "response_text": "O etcd é um componente de infraestrutura mantido pela Cloud Native Computing Foundation amplamente utilizado na nuvem.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como etcd gerencia consistência de chave-valor sob partições"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de quórum ou Raft demonstrado"
+    ],
+    "semantic_rationale": "Metadados institucionais (CNCF, nuvem) sem explicar o algoritmo de consenso Raft.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R20_grpc_protobuf_general_opinion",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o compilador protoc gera stubs tipados a partir de definições de serviço em arquivos proto?",
+    "response_text": "O Protocol Buffers foi criado pelo Google para serialização corporativa interna e possui excelente documentação pública.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como protoc gera stubs tipados a partir de arquivos proto"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de compilação ou geração de stubs demonstrado"
+    ],
+    "semantic_rationale": "Origem corporativa do Google sem explicar a geração de código pelo protoc.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R21_graphql_facebook_history",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o GraphQL compila e resolve campos encadeados em um grafo de tipos unificado?",
+    "response_text": "O GraphQL foi desenvolvido pelo Facebook em 2012 para resolver problemas nos aplicativos móveis de notícias.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como GraphQL compila e resolve campos encadeados"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de AST, resolvers demonstrado"
+    ],
+    "semantic_rationale": "Histórico de desenvolvimento pelo Facebook sem explicar a árvore de resolvers.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R22_redis_antirez_history",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o Redis gerencia estruturas de dados em memória utilizando um único loop de eventos?",
+    "response_text": "O Redis foi criado pelo programador italiano Salvatore Sanfilippo (antirez) enquanto tentava melhorar a performance de um site.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como Redis gerencia estruturas em memória via loop de eventos"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de single-threaded event loop demonstrado"
+    ],
+    "semantic_rationale": "Histórico biográfico do criador do Redis sem explicar a arquitetura single-threaded.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R23_elasticsearch_shay_banon_history",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o Elasticsearch distribui sharding e índices invertidos entre os nós de um cluster?",
+    "response_text": "O criador Shay Banon desenvolveu o predecessor Compass para criar um livro de receitas culinárias para sua esposa.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como Elasticsearch distribui sharding e índices invertidos"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de Lucene, índice invertido demonstrado"
+    ],
+    "semantic_rationale": "Curiosidade anedótica da origem do projeto sem responder ao mecanismo de busca textual.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R24_nginx_igor_sysoev_history",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o Nginx utiliza processos de trabalho baseados em eventos para atingir baixa latência como proxy reverso?",
+    "response_text": "O software foi criado pelo desenvolvedor russo Igor Sysoev nos anos 2000 para lidar com o problema do site Rambler.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como Nginx usa processos de trabalho baseados em eventos"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de worker processes, non-blocking sockets demonstrado"
+    ],
+    "semantic_rationale": "Fato histórico sem explicar arquitetura de eventos do Nginx.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R25_sqlite_richard_hipp_history",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o SQLite gerencia concorrência em transações locais utilizando arquivos de lock no sistema de arquivos?",
+    "response_text": "O criador Richard Hipp inventou o SQLite enquanto trabalhava na Marinha americana para dispensar instalação de servidores dedicados.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como SQLite gerencia concorrência via locks de filesystem"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de lock de arquivo do SQLite demonstrado"
+    ],
+    "semantic_rationale": "Anedota militar sem responder ao funcionamento de locks no SQLite.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R26_declaration_docker_daily",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o Docker utiliza namespaces de PID e cgroups do kernel Linux para isolar containers?",
+    "response_text": "Eu utilizo Docker e Kubernetes diariamente na minha empresa e conheço bastante sobre containerização moderna.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como Docker usa namespaces de PID e cgroups"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de kernel namespaces ou cgroups demonstrado"
+    ],
+    "semantic_rationale": "Declaração de familiaridade e uso corporativo sem explicar os primitivos de isolamento do Linux.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DECLARATION",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R27_declaration_react_seniority",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o Virtual DOM reconcilia alterações de estado através do algoritmo de diffing em árvore?",
+    "response_text": "Eu tenho 6 anos de experiência com React e desenvolvo aplicações web ricas todos os dias no meu trabalho.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como Virtual DOM reconcilia alterações via diffing"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de diffing em árvore demonstrado"
+    ],
+    "semantic_rationale": "Declaração de tempo de experiência no ecossistema sem demonstrar algoritmo de reconciliação.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DECLARATION",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R28_hardware_ram_ddr5_trivia",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como alinhar estruturas de dados na memória para evitar penalidades de acesso não alinhado na CPU?",
+    "response_text": "Minha máquina corporativa tem 64 gigabytes de memória RAM DDR5 com frequência de 5600 megatransfers por segundo.",
+    "human_classification": "RELATED",
+    "demands": [
+      "alinhar estruturas na memória para evitar penalidades de acesso"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de alinhamento de memória demonstrado"
+    ],
+    "semantic_rationale": "Detalhes da máquina pessoal do candidato sem demonstrar técnica de alinhamento de memória.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DECLARATION",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R29_hardware_nvme_disk_trivia",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como funcionam operações de escrita sequencial em SSDs NVMe para prolongar a vida útil das células de memória flash?",
+    "response_text": "O servidor possui quatro discos SSD NVMe em RAID com barramento PCI Express 4.0 de altíssima velocidade.",
+    "human_classification": "RELATED",
+    "demands": [
+      "operações de escrita sequencial em SSD NVMe e vida útil"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de wear leveling demonstrado"
+    ],
+    "semantic_rationale": "Especificação da placa controladora do servidor sem responder à preservação das células flash.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "R30_software_version_trivia",
+    "group": "RELATED_THEMATIC",
+    "question_text": "Como o Apache Kafka 3.0 opera sem o ZooKeeper através do protocolo de metadados KRaft?",
+    "response_text": "A versão 3.0 do Apache Kafka foi lançada em setembro de 2021 pela equipe de desenvolvedores da Confluent.",
+    "human_classification": "RELATED",
+    "demands": [
+      "como Kafka 3.0 opera sem ZooKeeper através do KRaft"
+    ],
+    "satisfied_aspects": [
+      "nenhum mecanismo de KRaft demonstrado"
+    ],
+    "semantic_rationale": "Data de lançamento da versão sem explicar o protocolo de metadados KRaft.",
+    "linguistic_form": "formal",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O01_antithesis_drop_locks",
+    "group": "OFF_TOPIC_ANTITHESIS",
+    "question_text": "Como resolver concorrência de escritas e prevenir sobreposições em tabelas financeiras concorrentes?",
+    "response_text": "Para resolver isso, desativo todos os locks do banco e deixo todas as transações gravarem livremente sem controle de concorrência.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "prevenir sobreposições em tabelas financeiras concorrentes"
+    ],
+    "satisfied_aspects": [
+      "ação destrutiva que desativa locks e piora a corrupção"
+    ],
+    "semantic_rationale": "Propõe desligar travas de proteção, violando a exigência de segurança operacional.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O02_antithesis_drop_locks_inflected",
+    "group": "OFF_TOPIC_ANTITHESIS",
+    "question_text": "Como resolver concorrência de escritas e prevenir sobreposições em tabelas financeiras concorrentes?",
+    "response_text": "Removo qualquer bloqueio ou restrição de concorrência e autorizo escritas simultâneas diretas na tabela sem travar linhas.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "prevenir sobreposições em tabelas financeiras concorrentes"
+    ],
+    "satisfied_aspects": [
+      "ação destrutiva de remoção de bloqueios"
+    ],
+    "semantic_rationale": "Flexão verbal na 1ª pessoa que propõe a remoção de mecanismos de proteção contra corrupção.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O03_antithesis_drop_acid_transactions",
+    "group": "OFF_TOPIC_ANTITHESIS",
+    "question_text": "Como garantir consistência em transferências bancárias que debitam de uma conta e creditam em outra?",
+    "response_text": "Desligo transações ACID para escrever direto no banco sem intermediários, acelerando o processo e ignorando falhas no meio.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "garantir consistência em transferências bancárias"
+    ],
+    "satisfied_aspects": [
+      "ação destrutiva de desligar transações ACID"
+    ],
+    "semantic_rationale": "Elimina a garantia atômica indispensável em transferências financeiras.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O04_antithesis_infinite_loop_no_timeout",
+    "group": "OFF_TOPIC_ANTITHESIS",
+    "question_text": "Como gerenciar timeouts e cancelamentos em pipelines de processamento assíncrono para liberar recursos presos?",
+    "response_text": "Elimino qualquer configuração de timeout e instruo as rotinas a esperarem eternamente em loops bloqueantes sem nunca desistir.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "gerenciar timeouts e cancelamentos para liberar recursos"
+    ],
+    "satisfied_aspects": [
+      "ação destrutiva que bloqueia eternamente em loop"
+    ],
+    "semantic_rationale": "Antítese operacional que perpetua o consumo de recursos bloqueados.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O05_antithesis_grant_full_admin_no_auth",
+    "group": "OFF_TOPIC_ANTITHESIS",
+    "question_text": "Como configurar políticas de segurança de rede (NetworkPolicies) em clusters Kubernetes para segmentar namespaces?",
+    "response_text": "Desabilito todo o firewall e libero todas as portas e tráfegos entre todos os pods e a internet pública sem nenhuma restrição.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "configurar NetworkPolicies para segmentar namespaces"
+    ],
+    "satisfied_aspects": [
+      "ação destrutiva desabilitando firewall e liberando tráfego irrestrito"
+    ],
+    "semantic_rationale": "Antítese que elimina qualquer segmentação de segurança de rede.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O06_antithesis_plain_text_passwords",
+    "group": "OFF_TOPIC_ANTITHESIS",
+    "question_text": "Como proteger credenciais de usuários e tokens sensíveis contra vazamentos em banco de dados?",
+    "response_text": "Gravo senhas em texto puro no banco de dados para evitar custo de computação com funções hash criptográficas.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "proteger credenciais e tokens contra vazamentos"
+    ],
+    "satisfied_aspects": [
+      "ação destrutiva de gravar senhas em texto puro"
+    ],
+    "semantic_rationale": "Prática destrutiva frontalmente oposta à segurança criptográfica de senhas.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O07_antithesis_disable_rate_limiting",
+    "group": "OFF_TOPIC_ANTITHESIS",
+    "question_text": "Como proteger rotas públicas de reset de senha contra abuso automatizado e enumeração de e-mails?",
+    "response_text": "Retiro todos os limites de chamadas e envio e-mails para qualquer endereço solicitado sem validar existência ou frequência.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "proteger rotas de reset de senha contra abuso"
+    ],
+    "satisfied_aspects": [
+      "ação destrutiva retirando limites e enviando e-mails indiscriminadamente"
+    ],
+    "semantic_rationale": "Antítese que facilita o abuso automatizado de e-mails.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O08_antithesis_drop_indexes_for_perf",
+    "group": "OFF_TOPIC_ANTITHESIS",
+    "question_text": "Como acelerar consultas críticas em tabelas com milhões de registros que sofrem lentidão severa?",
+    "response_text": "Removo todos os índices da tabela para que o banco não gaste processamento gerenciando árvores de índices.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "acelerar consultas críticas em tabelas volumosas"
+    ],
+    "satisfied_aspects": [
+      "ação destrutiva de remoção de todos os índices"
+    ],
+    "semantic_rationale": "A remoção de índices força table scan completo em milhões de linhas, piorando a lentidão.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O09_antithesis_skip_quorum_writes",
+    "group": "OFF_TOPIC_ANTITHESIS",
+    "question_text": "Como evitar inconsistência de dados em cluster distribuído sujeito a partições de rede?",
+    "response_text": "Aceite escritas livremente sem checar a maioria das réplicas, gravando em qualquer nó isolado que responder primeiro.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "evitar inconsistência em cluster sob partição"
+    ],
+    "satisfied_aspects": [
+      "ação destrutiva de aceitar escritas sem quórum"
+    ],
+    "semantic_rationale": "Gera split-brain e divergência irreparável de dados.",
+    "linguistic_form": "active_3rd",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O10_antithesis_skip_signature_validation",
+    "group": "OFF_TOPIC_ANTITHESIS",
+    "question_text": "Como validar tokens JWT com segurança para impedir que atacantes forjem permissões no payload?",
+    "response_text": "Aceito qualquer token recebido sem validar assinatura criptográfica para diminuir latência na checagem de autorização.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "validar tokens JWT impedindo forja de permissões"
+    ],
+    "satisfied_aspects": [
+      "ação destrutiva de aceitar tokens sem validação de assinatura"
+    ],
+    "semantic_rationale": "Anula completamente a segurança de assinatura de tokens de acesso.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O11_frontend_css_grid_for_consensus",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como o algoritmo de Paxos garante que um único valor seja escolhido em um sistema assíncrono sujeito a falhas?",
+    "response_text": "Eu adiciono uma classe no elemento HTML com display flex e coloco justify-content center para centralizar os cards na tela.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "garantir valor único via Paxos em sistema assíncrono"
+    ],
+    "satisfied_aspects": [
+      "estilização visual CSS flexbox"
+    ],
+    "semantic_rationale": "Domínio frontend de centralização CSS totalmente disjunto de consenso em Paxos.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O12_frontend_tailwind_for_kafka",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como particionar tópicos no Apache Kafka para garantir ordem estrita por chave de mensagem?",
+    "response_text": "Uso as classes utilitárias text-gray-500 e border-rounded do Tailwind CSS para estipular a borda das caixas de texto no formulário.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "particionar tópicos garantindo ordem por chave no Kafka"
+    ],
+    "satisfied_aspects": [
+      "classes utilitárias de Tailwind CSS no formulário"
+    ],
+    "semantic_rationale": "Estilização de bordas no Tailwind não resolve particionamento de tópicos Kafka.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O13_frontend_react_useeffect_for_deadlock",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como o algoritmo de duas fases (2PL) previne inconsistências em execuções transacionais concorrentes?",
+    "response_text": "Crio um hook personalizado com useState no React para guardar o valor digitado no input do usuário na tela.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "prevenir inconsistências via 2PL em transações concorrentes"
+    ],
+    "satisfied_aspects": [
+      "hook useState do React para input de formulário"
+    ],
+    "semantic_rationale": "Estado de componente React no navegador não tem relação com controle de concorrência 2PL.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O14_frontend_webpack_code_splitting_for_quorum",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como definir a composição de grupos de replicação no Raft para sobreviver a falhas de minoria?",
+    "response_text": "Configuro dynamic imports no Vite para dividir o bundle em módulos menores carregados sob demanda na página inicial.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "composição de grupos no Raft para tolerar falhas de minoria"
+    ],
+    "satisfied_aspects": [
+      "divisão de bundles com dynamic imports no Vite"
+    ],
+    "semantic_rationale": "Otimização de bundling no Vite não tem nexo com quórum no Raft.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O15_frontend_media_queries_for_wal",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como sincronizar logs de transação com disco (fsync) para evitar perda de dados em quedas de energia?",
+    "response_text": "Aplico media queries com max-width de 768 pixels no CSS para ocultar a barra lateral em telas de smartphones.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "sincronizar logs de transação via fsync contra quedas de energia"
+    ],
+    "satisfied_aspects": [
+      "media queries ocultando barra lateral em smartphones"
+    ],
+    "semantic_rationale": "Responsividade CSS em telas móveis não se relaciona à persistência fsync de transações.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O16_ml_linear_regression_deadlock",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como prevenir deadlocks distribuídos em transações de microsserviços via ordered locking?",
+    "response_text": "Ajusto os hiperparâmetros de uma regressão logística no Scikit-Learn calculando a matriz de confusão e a acurácia global do modelo.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "prevenir deadlocks distribuídos via ordered locking"
+    ],
+    "satisfied_aspects": [
+      "regressão logística no Scikit-Learn e matriz de confusão"
+    ],
+    "semantic_rationale": "Treinamento de regressão logística supervisionada é ortogonal à ordenação de locks distribuídos.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O17_ml_kmeans_clustering_indexes",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como estruturar índices compostos no PostgreSQL para suportar filtros de igualdade e ordenação por intervalo?",
+    "response_text": "Executo o método fit do algoritmo K-Means com k igual a cinco para agrupar clientes por faixa de renda.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "estruturar índices compostos para igualdade e ordenação"
+    ],
+    "satisfied_aspects": [
+      "K-Means agrupando clientes por faixa de renda"
+    ],
+    "semantic_rationale": "Clusterização não supervisionada de clientes é ortogonal à indexação no PostgreSQL.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O18_ml_random_forest_tcp_handshake",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como o algoritmo Nagle reduz o envio de pacotes minúsculos em fluxos de rede sob TCP?",
+    "response_text": "Treino um classificador XGBoost com profundidade máxima quatro para prever inadimplência bancária de proponentes.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "reduzir pacotes minúsculos via algoritmo de Nagle no TCP"
+    ],
+    "satisfied_aspects": [
+      "XGBoost prevendo inadimplência bancária"
+    ],
+    "semantic_rationale": "Classificação com XGBoost é disjunta de controle de buffering de pacotes em TCP.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O19_ml_pytorch_cnn_consistent_hashing",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como o consistent hashing distribui chaves de armazenamento entre múltiplos nós de um cluster?",
+    "response_text": "Eu defino uma rede neural convolucional no PyTorch com camadas de convolução de filtros 3x3 e max pooling para classificar imagens.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "consistent hashing distribuindo chaves entre nós"
+    ],
+    "satisfied_aspects": [
+      "CNN no PyTorch com filtros 3x3 e max pooling"
+    ],
+    "semantic_rationale": "Classificação de imagens com redes convolucionais é completamente disjunta de hashing consistente.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O20_ml_nlp_stopwords_sharding",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como escolher a chave de sharding em bancos de dados distribuídos para pulverizar registros?",
+    "response_text": "Aplico remoção de stopwords e lematização de textos em português com a biblioteca NLTK para processamento de linguagem natural.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "escolher chave de sharding em banco distribuído"
+    ],
+    "satisfied_aspects": [
+      "remoção de stopwords e lematização com NLTK"
+    ],
+    "semantic_rationale": "Pré-processamento textual com NLTK é ortogonal ao particionamento de tabelas em bancos distribuídos.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O21_devops_dockerfile_for_sql_perf",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como reescrever subconsultas correlacionadas pesadas utilizando janelamento SQL (window functions)?",
+    "response_text": "Adiciono uma etapa no Dockerfile com a diretiva COPY requirements.txt e executo pip install para construir a imagem Docker.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "reescrever subconsultas correlacionadas com window functions"
+    ],
+    "satisfied_aspects": [
+      "diretiva COPY e pip install em Dockerfile"
+    ],
+    "semantic_rationale": "Instalação de pacotes em imagem Docker não responde à otimização de consultas SQL.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "CONCEPTUAL",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O22_devops_ci_pipeline_for_caching",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como configurar políticas de despejo LFU (Least Frequently Used) em nós de cache em memória?",
+    "response_text": "Criamos um workflow no GitLab CI que roda linters automáticos e publica artefatos no repositório de pacotes a cada tag criada.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "configurar políticas de despejo LFU em cache"
+    ],
+    "satisfied_aspects": [
+      "workflow no GitLab CI rodando linters e gerando tags"
+    ],
+    "semantic_rationale": "Esteira de lint no GitLab CI não resolve despejo de dados LFU em cache.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O23_devops_jira_scrum_for_deadlock",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como usar grafos direcionados de alocação de recursos para detectar deadlocks em tempo de execução?",
+    "response_text": "Nós fazemos reuniões semanais de planejamento de sprint no Jira para estimar histórias de usuário em story points.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "usar grafos direcionados de alocação de recursos para detectar deadlocks"
+    ],
+    "satisfied_aspects": [
+      "reuniões de planejamento e story points no Jira"
+    ],
+    "semantic_rationale": "Estimativas em story points no Jira são ortogonais à análise de grafos de deadlock.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DECLARATION",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O24_devops_selenium_for_b_tree",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como as árvores B-Tree mantêm tempo logarítmico determinístico em operações de busca pontual?",
+    "response_text": "Executo testes automatizados de ponta a ponta com Selenium WebDriver simulando cliques de usuários no formulário de login.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "árvores B-Tree mantendo tempo logarítmico"
+    ],
+    "satisfied_aspects": [
+      "testes E2E com Selenium WebDriver simulando cliques no login"
+    ],
+    "semantic_rationale": "Testes de interface com Selenium não explicam a estrutura algorítmica de árvores B-Tree.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O25_devops_confluence_for_wal",
+    "group": "OFF_TOPIC_ORTHOGONAL",
+    "question_text": "Como o Write-Ahead Logging (WAL) permite recuperação rápida após falha catastrófica de processo no banco?",
+    "response_text": "Escrevemos artigos no Confluence organizados em pastas para catalogar as boas práticas de integração do time de suporte.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "como WAL permite recuperação após falha catastrófica"
+    ],
+    "satisfied_aspects": [
+      "artigos no Confluence organizados em pastas"
+    ],
+    "semantic_rationale": "Documentação de processos no Confluence é disjunta de logs WAL de banco de dados.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "DECLARATION",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O26_alien_cooking_lasagna",
+    "group": "OFF_TOPIC_ALIEN",
+    "question_text": "Como implementar controle de concorrência otimista com versionamento em registros disputados?",
+    "response_text": "Eu gosto de preparar lasanha de berinjela aos sábados, fatiando os ingredientes com molho de tomate e assando no forno médio.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "controle de concorrência otimista com versionamento"
+    ],
+    "satisfied_aspects": [
+      "receita de culinária preparando lasanha de berinjela"
+    ],
+    "semantic_rationale": "Domínio culinário completamente alienígena à computação.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O27_alien_sports_football",
+    "group": "OFF_TOPIC_ALIEN",
+    "question_text": "Como projetar esquemas de particionamento de tabelas por hash para balancear I/O de disco?",
+    "response_text": "Acompanhei a vitória do meu time de basquete no ginásio municipal vibrando a cada arremesso de três pontos marcado.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "projetar particionamento por hash para balancear I/O"
+    ],
+    "satisfied_aspects": [
+      "assistir jogo de basquete no ginásio"
+    ],
+    "semantic_rationale": "Tema esportivo recreativo alienígena à engenharia de software.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O28_alien_outdoor_bicycle",
+    "group": "OFF_TOPIC_ALIEN",
+    "question_text": "Como gerenciar pools de threads assíncronos para evitar rejeição de tarefas sob picos repentinos?",
+    "response_text": "Fiz uma caminhada relaxante na praia no fim da tarde ouvindo o barulho das ondas do mar e colhendo conchas.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "gerenciar pools de threads assíncronos contra rejeição de tarefas"
+    ],
+    "satisfied_aspects": [
+      "caminhada na praia colhendo conchas"
+    ],
+    "semantic_rationale": "Passeio na praia é atividade recreativa alienígena a sistemas concorrentes.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O29_alien_shopping_mall",
+    "group": "OFF_TOPIC_ALIEN",
+    "question_text": "Como calcular a assinatura de uma mensagem usando HMAC-SHA256 para autenticar webhooks externos?",
+    "response_text": "Visitei uma feira de artesanato na praça central para escolher vasos de cerâmica coloridos para decorar a varanda.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "calcular HMAC-SHA256 para autenticar webhooks"
+    ],
+    "satisfied_aspects": [
+      "comprar vasos de cerâmica em feira de artesanato"
+    ],
+    "semantic_rationale": "Compra de artesanato doméstico alienígena à criptografia.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O30_alien_cinema_movie",
+    "group": "OFF_TOPIC_ALIEN",
+    "question_text": "Como o algoritmo de consenso Zab do ZooKeeper garante ordenação estrita de atualizações de estado?",
+    "response_text": "Fui ao teatro assistir a uma peça dramática de época e gostei muito da atuação dos atores principais no palco.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "ordenação de atualizações via Zab no ZooKeeper"
+    ],
+    "satisfied_aspects": [
+      "assistir peça de teatro"
+    ],
+    "semantic_rationale": "Apreciação de peça de teatro alienígena a sistemas distribuídos.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O31_alien_supermarket",
+    "group": "OFF_TOPIC_ALIEN",
+    "question_text": "Como configurar replicação semissíncrona no MySQL para evitar perda de transações comprometidas?",
+    "response_text": "Passei na padaria pela manhã para comprar pão francês quentinho, queijo minas e café moído na hora.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "configurar replicação semissíncrona no MySQL"
+    ],
+    "satisfied_aspects": [
+      "compras matinais na padaria"
+    ],
+    "semantic_rationale": "Café da manhã doméstico é tema alienígena a bancos de dados relacionais.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O32_alien_dishes_cleaning",
+    "group": "OFF_TOPIC_ALIEN",
+    "question_text": "Como evitar condição de corrida em contadores distribuídos usando instruções atômicas compare-and-swap?",
+    "response_text": "Reguei todas as plantas da sala e podei os galhos secos da samambaia que fica pendurada na janela.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "evitar condição de corrida com compare-and-swap atômico"
+    ],
+    "satisfied_aspects": [
+      "cuidar de plantas e regar samambaia"
+    ],
+    "semantic_rationale": "Jardinagem doméstica é atividade alienígena à computação.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O33_alien_tv_soap_opera",
+    "group": "OFF_TOPIC_ALIEN",
+    "question_text": "Como o broker do Kafka atinge taxa massiva de transferência na leitura de tópicos para a rede?",
+    "response_text": "Eu assisto à novela das nove na televisão todas as noites enquanto descanso no sofá da sala.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "taxa massiva de transferência de leitura no Kafka"
+    ],
+    "satisfied_aspects": [
+      "assistir novela na televisão"
+    ],
+    "semantic_rationale": "Hábito doméstico alienígena.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O34_alien_videogame",
+    "group": "OFF_TOPIC_ALIEN",
+    "question_text": "Como balancear tráfego HTTP entre instâncias de aplicação usando o algoritmo de menor número de conexões?",
+    "response_text": "Montei um quebra-cabeça de mil peças com desenho de montanhas nevadas durante as minhas férias em família.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "balancear tráfego HTTP via least connections"
+    ],
+    "satisfied_aspects": [
+      "montar quebra-cabeça de montanhas"
+    ],
+    "semantic_rationale": "Jogo de quebra-cabeça é atividade lúdica alienígena à infraestrutura de rede.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "O35_alien_bank_account_personal",
+    "group": "OFF_TOPIC_ALIEN",
+    "question_text": "Como o isolation level Serializable previne anomalias de escrita distorcida (write skew)?",
+    "response_text": "Fui até a agência dos correios despachar uma encomenda postal que precisava ser entregue na casa da minha avó.",
+    "human_classification": "OFF_TOPIC",
+    "demands": [
+      "prevenir anomalia write skew via isolation level Serializable"
+    ],
+    "satisfied_aspects": [
+      "despachar encomenda nos correios"
+    ],
+    "semantic_rationale": "Envio de pacote postal alienígena a anomalias de isolamento transacional.",
+    "linguistic_form": "active_1st",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I01_ignorant_never_used",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como o mecanismo de consenso Raft elege um novo líder após expiração de heartbeat?",
+    "response_text": "Nunca usei essa tecnologia e não sei como responder.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "eleição de líder no Raft"
+    ],
+    "satisfied_aspects": [
+      "declaração de ignorância"
+    ],
+    "semantic_rationale": "Candidato declara explicitamente ignorância e falta de uso.",
+    "linguistic_form": "concise",
+    "epistemic_status": "UNCERTAINTY",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I02_ignorant_dont_remember",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como configurar balanceamento de nós virtuais em consistent hashing?",
+    "response_text": "Não lembro agora de cabeça como funciona isso.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "configurar nós virtuais em consistent hashing"
+    ],
+    "satisfied_aspects": [
+      "declaração de esquecimento"
+    ],
+    "semantic_rationale": "Candidato expressa esquecimento, não fornecendo proposição técnica.",
+    "linguistic_form": "concise",
+    "epistemic_status": "UNCERTAINTY",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I03_ignorant_never_studied",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como funciona a detecção de ciclos em grafos de espera para resolução de deadlocks?",
+    "response_text": "Nunca estudei esse assunto a fundo na minha carreira.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "detecção de ciclos em grafos de espera"
+    ],
+    "satisfied_aspects": [
+      "declaração de falta de estudo"
+    ],
+    "semantic_rationale": "Declaração explícita de desconhecimento.",
+    "linguistic_form": "concise",
+    "epistemic_status": "UNCERTAINTY",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I04_filler_monosyllabic_sim",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Você saberia explicar como o protocolo Paxos garante consenso em redes assíncronas?",
+    "response_text": "Sim, com certeza.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "explicar como Paxos garante consenso"
+    ],
+    "satisfied_aspects": [
+      "confirmação conversacional monossilábica"
+    ],
+    "semantic_rationale": "Filler conversacional vazio sem conteúdo técnico avaliável.",
+    "linguistic_form": "filler",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I05_filler_ok_beleza",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como evitar concorrência descontrolada em atualizações de saldo?",
+    "response_text": "Beleza, ok.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "evitar concorrência descontrolada"
+    ],
+    "satisfied_aspects": [
+      "interjeição de preenchimento"
+    ],
+    "semantic_rationale": "Apenas interjeição conversacional sem substância.",
+    "linguistic_form": "filler",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I06_filler_conheco_bem",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como o Kafka lida com offsets de mensagens não confirmadas?",
+    "response_text": "Conheço bem, sim.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "como Kafka lida com offsets"
+    ],
+    "satisfied_aspects": [
+      "afirmação conversacional de conhecimento"
+    ],
+    "semantic_rationale": "Afirma conhecer mas não articula nenhuma proposição explicativa.",
+    "linguistic_form": "filler",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I07_evasive_depends_on_factors",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Qual a melhor estratégia para particionar um banco de dados relacional massivo?",
+    "response_text": "Isso depende de muitos fatores e varia conforme a situação específica de cada empresa.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "estratégia para particionar banco relacional"
+    ],
+    "satisfied_aspects": [
+      "frase evasiva genérica"
+    ],
+    "semantic_rationale": "Evasiva genérica sem apontar critérios ou mecanismos técnicos.",
+    "linguistic_form": "evasive",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I08_evasive_we_use_tools",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como isolar componentes lentos para evitar esgotamento de conexões?",
+    "response_text": "A gente usa ferramentas para isso no dia a dia olhando os servidores.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "isolar componentes lentos para evitar esgotamento"
+    ],
+    "satisfied_aspects": [
+      "evasiva genérica mencionando ferramentas"
+    ],
+    "semantic_rationale": "Resposta vaga que não cita nem descreve nenhuma ferramenta ou técnica.",
+    "linguistic_form": "evasive",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I09_evasive_looking_logs",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como identificar se uma consulta SQL está causando table scan em produção?",
+    "response_text": "A gente descobre olhando logs quando o sistema começa a reclamar.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "identificar table scan em produção"
+    ],
+    "satisfied_aspects": [
+      "evasiva genérica 'olhando logs'"
+    ],
+    "semantic_rationale": "Falta mecanismo técnico (explain analyze, execution plan, etc.).",
+    "linguistic_form": "evasive",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I10_evasive_consult_docs",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como configurar réplicas de leitura com balanceamento de carga no PostgreSQL?",
+    "response_text": "Para saber esses detalhes operacionais você precisa abrir o manual oficial e pesquisar nos guias da documentação.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "configurar réplicas de leitura com balanceamento no PostgreSQL"
+    ],
+    "satisfied_aspects": [
+      "evasiva orientando a buscar na documentação"
+    ],
+    "semantic_rationale": "Evasiva remetendo à documentação sem instrução técnica.",
+    "linguistic_form": "evasive",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I11_evasive_depends_on_budget",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como dimensionar o cluster de brokers para suportar um milhão de mensagens por segundo?",
+    "response_text": "Essa resposta depende inteiramente da verba financeira que a diretoria liberou para gastar em infraestrutura no trimestre.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "dimensionar cluster de brokers para 1M msg/s"
+    ],
+    "satisfied_aspects": [
+      "evasiva financeira orçamentária"
+    ],
+    "semantic_rationale": "Evasão orçamentária sem apontar cálculos de capacidade ou partições.",
+    "linguistic_form": "evasive",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I12_evasive_senior_consultant",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como remodelar tabelas transacionais legadas para viabilizar migração para banco distribuído?",
+    "response_text": "Seria preciso contratar uma consultoria especializada por vários meses para conseguir emitir qualquer parecer sobre isso.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "remodelar tabelas legadas para migração para banco distribuído"
+    ],
+    "satisfied_aspects": [
+      "evasiva adiando para consultoria externa"
+    ],
+    "semantic_rationale": "Evasão delegando a consultoria externa sem descrever padrões técnicos.",
+    "linguistic_form": "evasive",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I13_evasive_just_a_queue",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como o RabbitMQ garante entrega confiável com confirmações de publicação e consumo?",
+    "response_text": "É uma fila apenas.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "como RabbitMQ garante entrega com confirmações"
+    ],
+    "satisfied_aspects": [
+      "definição minimalista vazia"
+    ],
+    "semantic_rationale": "Definição minimalista de quatro palavras que não explica confirmações de publisher ou consumer acks.",
+    "linguistic_form": "concise",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I14_filler_uhum_ok",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como o protocolo Raft gerencia o envio de heartbeats para manter liderança?",
+    "response_text": "Uhum, ok, beleza.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "gerenciamento de heartbeats no Raft"
+    ],
+    "satisfied_aspects": [
+      "interjeições conversacionais"
+    ],
+    "semantic_rationale": "Conteúdo sem proposições técnicas.",
+    "linguistic_form": "filler",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I15_ignorant_never_read_about_it",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como funciona a compressão de prefixos em nós internos de índices em árvore B?",
+    "response_text": "Nunca li nada sobre isso.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "compressão de prefixos em árvore B"
+    ],
+    "satisfied_aspects": [
+      "declaração de ignorância"
+    ],
+    "semantic_rationale": "Declaração de desconhecimento absoluto.",
+    "linguistic_form": "concise",
+    "epistemic_status": "UNCERTAINTY",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I16_evasive_generic_monitoring",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como mitigar gargalos de contenção de travas em bancos de dados de alta concorrência?",
+    "response_text": "A gente costuma ligar observabilidade genérica para acompanhar como o sistema está reagindo como um todo.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "mitigar gargalos de contenção de travas"
+    ],
+    "satisfied_aspects": [
+      "evasiva genérica mencionando observabilidade"
+    ],
+    "semantic_rationale": "Vagueza sem ferramentas nem mecanismos de mitigação de locks.",
+    "linguistic_form": "evasive",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I17_filler_aham",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como funciona o handshake do protocolo TCP para sincronização de números de sequência?",
+    "response_text": "Aham, sim.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "handshake do protocolo TCP"
+    ],
+    "satisfied_aspects": [
+      "filler conversacional"
+    ],
+    "semantic_rationale": "Sem proposição técnica avaliável.",
+    "linguistic_form": "filler",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "I18_ignorant_dont_recall",
+    "group": "INSUFFICIENT_EVIDENCE",
+    "question_text": "Como um Bloom Filter calcula a probabilidade de falsos positivos com base no número de funções hash?",
+    "response_text": "Não recordo agora como é a fórmula disso.",
+    "human_classification": "INSUFFICIENT",
+    "demands": [
+      "cálculo de falsos positivos no Bloom Filter"
+    ],
+    "satisfied_aspects": [
+      "declaração de esquecimento"
+    ],
+    "semantic_rationale": "Expressão explícita de esquecimento.",
+    "linguistic_form": "concise",
+    "epistemic_status": "UNCERTAINTY",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "U01_tautology_fast_is_quick",
+    "group": "UNKNOWN_TAUTOLOGY",
+    "question_text": "Como a desnormalização de tabelas analíticas acelera relatórios de fechamento mensal?",
+    "response_text": "A desnormalização acelera os relatórios analíticos porque ela faz com que as operações de leitura fiquem muito mais rápidas.",
+    "human_classification": "UNKNOWN",
+    "demands": [
+      "como desnormalização acelera relatórios analíticos"
+    ],
+    "satisfied_aspects": [
+      "circularidade: acelera porque fica mais rápido"
+    ],
+    "semantic_rationale": "Tautologia circular pura: afirma que acelera porque faz ficar mais rápido, sem citar eliminação de joins.",
+    "linguistic_form": "tautology",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "U02_tautology_locks_block",
+    "group": "UNKNOWN_TAUTOLOGY",
+    "question_text": "Por que transações que disputam locks exclusivos entram em estado de espera mútua?",
+    "response_text": "Elas entram em espera mútua porque uma transação fica esperando a outra esperar num processo em que ambas esperam.",
+    "human_classification": "UNKNOWN",
+    "demands": [
+      "por que transações entram em espera mútua"
+    ],
+    "satisfied_aspects": [
+      "circularidade: esperam porque ficam esperando"
+    ],
+    "semantic_rationale": "Tautologia circular pura de espera repetida.",
+    "linguistic_form": "tautology",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "U03_tautology_secure_is_safe",
+    "group": "UNKNOWN_TAUTOLOGY",
+    "question_text": "Como o mascaramento de dados sensíveis protege informações confidenciais em logs de auditoria?",
+    "response_text": "O mascaramento protege informações confidenciais porque ele garante que os dados fiquem protegidos de modo sigiloso e confidencial.",
+    "human_classification": "UNKNOWN",
+    "demands": [
+      "como mascaramento protege informações em logs"
+    ],
+    "satisfied_aspects": [
+      "circularidade: protege porque fica protegido e confidencial"
+    ],
+    "semantic_rationale": "Tautologia circular sem citar hashing, truncamento ou ofuscação.",
+    "linguistic_form": "tautology",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "U04_tautology_cache_stores",
+    "group": "UNKNOWN_TAUTOLOGY",
+    "question_text": "Como o armazenamento temporário em camadas de buffer reduz a pressão sobre discos magnéticos?",
+    "response_text": "O buffer reduz a pressão armazenando os dados em uma estrutura de bufferização que serve justamente de buffer.",
+    "human_classification": "UNKNOWN",
+    "demands": [
+      "como buffer temporário reduz pressão em disco"
+    ],
+    "satisfied_aspects": [
+      "circularidade: bufferiza na estrutura de buffer que serve de buffer"
+    ],
+    "semantic_rationale": "Tautologia circular que repete buffer sem explicar agregação em memória ou escrita em lote.",
+    "linguistic_form": "tautology",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "U05_tautology_indexes_index",
+    "group": "UNKNOWN_TAUTOLOGY",
+    "question_text": "Como a estruturação de chaves ordenadas simplifica buscas por prefixo em tabelas de dados?",
+    "response_text": "Chaves ordenadas simplificam as buscas porque quando estão ordenadas a busca acontece em ordem de maneira ordenada.",
+    "human_classification": "UNKNOWN",
+    "demands": [
+      "como chaves ordenadas simplificam busca por prefixo"
+    ],
+    "satisfied_aspects": [
+      "circularidade: ordenadas porque busca ocorre em ordem ordenada"
+    ],
+    "semantic_rationale": "Tautologia circular pura de ordenação.",
+    "linguistic_form": "tautology",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "U06_tautology_duplicate_duplicates",
+    "group": "UNKNOWN_TAUTOLOGY",
+    "question_text": "Como réplicas síncronas evitam perda de dados quando um servidor sofre pane física?",
+    "response_text": "As réplicas evitam perdas porque os dados ficam duplicados em vários lugares duplicados.",
+    "human_classification": "UNKNOWN",
+    "demands": [
+      "como réplicas síncronas evitam perda de dados"
+    ],
+    "satisfied_aspects": [
+      "repetição circular 'duplicados em lugares duplicados'"
+    ],
+    "semantic_rationale": "Tautologia circular sem explicar o quórum ou a confirmação de escrita em disco.",
+    "linguistic_form": "tautology",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "U07_tautology_sync_synchronizes",
+    "group": "UNKNOWN_TAUTOLOGY",
+    "question_text": "Como o protocolo Raft mantém a consistência de dados entre múltiplos servidores?",
+    "response_text": "Ele mantém a consistência porque os nós ficam sincronizados mantendo uma sincronia sincronizada.",
+    "human_classification": "UNKNOWN",
+    "demands": [
+      "como Raft mantém consistência entre servidores"
+    ],
+    "satisfied_aspects": [
+      "repetição circular 'sincronizados em sincronia sincronizada'"
+    ],
+    "semantic_rationale": "Tautologia circular sem explicar eleição de líder ou quórum de confirmação de log.",
+    "linguistic_form": "tautology",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "U08_tautology_compression_compresses",
+    "group": "UNKNOWN_TAUTOLOGY",
+    "question_text": "Como algoritmos de compressão reduzem o tráfego de rede na transferência de grandes volumes de dados?",
+    "response_text": "Eles reduzem o tráfego comprimindo os pacotes de forma que o tamanho fique comprimido e com compressão aplicada.",
+    "human_classification": "UNKNOWN",
+    "demands": [
+      "como compressão reduz tráfego de rede"
+    ],
+    "satisfied_aspects": [
+      "repetição circular 'comprimindo de forma que fique comprimido'"
+    ],
+    "semantic_rationale": "Tautologia circular sem explicar dicionários, Huffman ou eliminação de redundâncias de bytes.",
+    "linguistic_form": "tautology",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "U09_tautology_isolated_isolates",
+    "group": "UNKNOWN_TAUTOLOGY",
+    "question_text": "Como o isolamento em transações ACID impede que operações concorrentes interfiram entre si?",
+    "response_text": "O isolamento impede interferências isolando as transações para que cada uma fique isolada em isolamento próprio.",
+    "human_classification": "UNKNOWN",
+    "demands": [
+      "como isolamento impede interferência entre transações"
+    ],
+    "satisfied_aspects": [
+      "repetição circular 'isolando para ficar isolada em isolamento'"
+    ],
+    "semantic_rationale": "Tautologia circular sem citar locks, versionamento de linhas ou níveis de isolamento ANSI SQL.",
+    "linguistic_form": "tautology",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "U10_tautology_durable_durability",
+    "group": "UNKNOWN_TAUTOLOGY",
+    "question_text": "Como a durabilidade de banco de dados assegura que dados confirmados não se percam após queda de energia?",
+    "response_text": "A durabilidade assegura isso tornando os dados duráveis para que permaneçam com durabilidade garantida.",
+    "human_classification": "UNKNOWN",
+    "demands": [
+      "como durabilidade assegura sobrevivência a queda de energia"
+    ],
+    "satisfied_aspects": [
+      "repetição circular 'duráveis para permanecer com durabilidade'"
+    ],
+    "semantic_rationale": "Tautologia circular sem citar escrita em meio persistente não-volátil ou fsync.",
+    "linguistic_form": "tautology",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "U11_tautology_partition_partitions",
+    "group": "UNKNOWN_TAUTOLOGY",
+    "question_text": "Como a divisão de tabelas em partições melhora a velocidade de varreduras em bancos de dados?",
+    "response_text": "A divisão melhora a velocidade particionando a tabela em várias partições particionadas.",
+    "human_classification": "UNKNOWN",
+    "demands": [
+      "como divisão em partições melhora velocidade"
+    ],
+    "satisfied_aspects": [
+      "repetição circular 'particionando em partições particionadas'"
+    ],
+    "semantic_rationale": "Tautologia circular pura.",
+    "linguistic_form": "tautology",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  },
+  {
+    "id": "U12_tautology_resilient_resilience",
+    "group": "UNKNOWN_TAUTOLOGY",
+    "question_text": "Como padrões de resiliência mantêm a disponibilidade de serviços de backend sob falhas parciais?",
+    "response_text": "Eles mantêm a disponibilidade fornecendo resiliência para que o sistema se torne resiliente com alta resiliência.",
+    "human_classification": "UNKNOWN",
+    "demands": [
+      "como padrões mantêm disponibilidade sob falhas"
+    ],
+    "satisfied_aspects": [
+      "repetição circular 'fornecendo resiliência para ficar resiliente'"
+    ],
+    "semantic_rationale": "Tautologia circular sem descrever circuit breaker, timeout ou retries.",
+    "linguistic_form": "tautology",
+    "epistemic_status": "UNKNOWN",
+    "adjudication_confidence": "HIGH",
+    "has_ambiguity": false
+  }
+]

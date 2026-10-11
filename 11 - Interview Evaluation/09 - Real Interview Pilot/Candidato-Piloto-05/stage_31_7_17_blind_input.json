@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "D01_vector_hnsw",
+    "question_text": "Como o banco vetorial Milvus realiza buscas aproximadas de vizinhos mais próximos em larga escala?",
+    "response_text": "Constrói-se um grafo hierárquico navegável de mundo pequeno (HNSW), indexando os vetores em camadas com saltos longos nas camadas superiores e busca gulosa refinada nas camadas inferiores."
+  },
+  {
+    "id": "D02_vector_hnsw_informal",
+    "question_text": "Como o banco vetorial Milvus realiza buscas aproximadas de vizinhos mais próximos em larga escala?",
+    "response_text": "A gente monta uma malha de grafos em camadas estilo HNSW: você pula rápido pelas conexões distantes no topo e vai descendo até achar os vetores mais parecidos bem no fundo."
+  },
+  {
+    "id": "D03_compaction_lsm",
+    "question_text": "Como o RocksDB impede a explosão de arquivos e desaloca dados excluídos na arquitetura LSM-Tree?",
+    "response_text": "Executa-se compactação leveled em segundo plano, mesclando ordenadamente SSTables de níveis menores para níveis maiores e descartando registros marcados com marcadores de deleção (tombstones)."
+  },
+  {
+    "id": "D04_compaction_lsm_active",
+    "question_text": "Como o RocksDB impede a explosão de arquivos e desaloca dados excluídos na arquitetura LSM-Tree?",
+    "response_text": "Eu configuro a compactação leveled para rodar em background, consolidando os arquivos SSTable entre os níveis e eliminando as chaves que possuem tombstones."
+  },
+  {
+    "id": "D05_raft_log_matching",
+    "question_text": "Como o protocolo Raft assegura que entradas de log confirmadas nunca sejam sobrescritas por um novo líder?",
+    "response_text": "A eleição de líder só elege nós com log estritamente mais atualizado que a maioria, e novos líderes nunca truncam entradas já comitadas pelo quórum anterior."
+  },
+  {
+    "id": "D06_raft_log_matching_short",
+    "question_text": "Como o protocolo Raft assegura que entradas de log confirmadas nunca sejam sobrescritas por um novo líder?",
+    "response_text": "Exigindo que o novo líder contenha todas as entradas comitadas da maioria antes de receber votos para assumir."
+  },
+  {
+    "id": "D07_distributed_lock_fencing",
+    "question_text": "Como evitar que um cliente pausado por Stop-the-World cause corrupção de dados ao despertar e gravar no storage?",
+    "response_text": "Utiliza-se um fencing token monotônico gerado pelo coordenador de locks, de forma que o storage rejeite qualquer gravação cujo token seja inferior ao último aceito."
+  },
+  {
+    "id": "D08_distributed_lock_fencing_informal",
+    "question_text": "Como evitar que um cliente pausado por Stop-the-World cause corrupção de dados ao despertar e gravar no storage?",
+    "response_text": "A gente associa um número sequencial crescente que o lock entrega; se a thread congelar e acordar atrasada, o banco vê que o número dela é velho e barra o comando na porta."
+  },
+  {
+    "id": "D09_kafka_zero_copy",
+    "question_text": "Como o broker do Kafka atinge taxa massiva de transferência na leitura de tópicos para a rede?",
+    "response_text": "Emprega-se a chamada de sistema sendfile (Zero-Copy), transferindo blocos do page cache do sistema operacional diretamente para o buffer da placa de rede sem copiar para o espaço de usuário."
+  },
+  {
+    "id": "D10_kafka_zero_copy_active",
+    "question_text": "Como o broker do Kafka atinge taxa massiva de transferência na leitura de tópicos para a rede?",
+    "response_text": "O Kafka utiliza o recurso de zero-copy através da syscall sendfile, direcionando os dados do pagecache direto para a interface de rede sem passar pela memória da JVM."
+  },
+  {
+    "id": "D11_crdt_pn_counter",
+    "question_text": "Como sincronizar um contador distribuído com incrementos e decrementos sem usar travas globais?",
+    "response_text": "Modela-se o estado como um PN-Counter (CRDT), mantendo dois vetores monotônicos de soma para adições e subtrações e calculando a diferença entre as somas parciais por fusão de estados."
+  },
+  {
+    "id": "D12_crdt_pn_counter_informal",
+    "question_text": "Como sincronizar um contador distribuído com incrementos e decrementos sem usar travas globais?",
+    "response_text": "A gente cria duas listas que só crescem: uma que soma todas as entradas e outra que soma todas as saídas de cada máquina, depois junta tudo fazendo o total de uma menos a outra."
+  },
+  {
+    "id": "D13_database_sharding_virtual_nodes",
+    "question_text": "Como evitar hot spots de tráfego em partições ao adicionar novos servidores a um anel distribuído?",
+    "response_text": "Atribui-se múltiplos nós virtuais para cada servidor físico ao longo do espaço de hash, espalhando uniformemente os intervalos do anel e equilibrando a redistribuição de chaves."
+  },
+  {
+    "id": "D14_database_sharding_virtual_nodes_active",
+    "question_text": "Como evitar hot spots de tráfego em partições ao adicionar novos servidores a um anel distribuído?",
+    "response_text": "Eu crio nós virtuais para cada nó físico no consistent hashing, garantindo que a carga seja fatiada em centenas de posições aleatórias no anel."
+  },
+  {
+    "id": "D15_outbox_debezium_cdc",
+    "question_text": "Como publicar eventos garantindo que uma transação de banco de dados e a emissão da mensagem sejam atômicas?",
+    "response_text": "Grava-se o evento em uma tabela de outbox na mesma transação relacional dos dados e captura-se a alteração assincronamente via Change Data Capture (CDC) lendo o log binário do banco."
+  },
+  {
+    "id": "D16_outbox_debezium_cdc_informal",
+    "question_text": "Como publicar eventos garantindo que uma transação de banco de dados e a emissão da mensagem sejam atômicas?",
+    "response_text": "Você salva o evento numa tabelinha auxiliar junto com os dados na mesma transação com begin/commit, e coloca um conector ouvindo o log do banco pra mandar a mensagem pro Kafka."
+  },
+  {
+    "id": "D17_saga_choreography_compensating",
+    "question_text": "Como desfazer operações parciais em múltiplos serviços autônomos sem usar transações distribuídas de duas fases?",
+    "response_text": "Implementa-se o padrão Saga coreografado onde a falha de uma etapa dispara eventos de compensação que executam estornos lógicos nos serviços participantes."
+  },
+  {
+    "id": "D18_saga_choreography_compensating_short",
+    "question_text": "Como desfazer operações parciais em múltiplos serviços autônomos sem usar transações distribuídas de duas fases?",
+    "response_text": "Disparando transações compensatórias em cascata para estornar as etapas executadas anteriormente."
+  },
+  {
+    "id": "D19_tls_session_resumption",
+    "question_text": "Como reduzir a latência de handshake em conexões HTTPS recorrentes para o mesmo cliente?",
+    "response_text": "Utiliza-se Session Tickets (TLS Resumption), onde o servidor emite um tíquete criptografado que o cliente reenvia para restabelecer a chave simétrica em uma única viagem de ida e volta (1-RTT)."
+  },
+  {
+    "id": "D20_rate_limiting_sliding_window",
+    "question_text": "Como aplicar limitação de taxa em APIs evitando o problema de rajada concentrada na virada de janela?",
+    "response_text": "Implementa-se o algoritmo de janela deslizante (Sliding Window Log ou Counter), ponderando a contagem de requisições da janela anterior pela fração de tempo transcorrido no minuto atual."
+  },
+  {
+    "id": "D21_grpc_bidirectional_streaming",
+    "question_text": "Como manter comunicação contínua e assíncrona de dados estruturados em tempo real entre dois microsserviços?",
+    "response_text": "Adota-se gRPC com streaming bidirecional sobre HTTP/2, multiplexando múltiplos canais de requisições e respostas sobre a mesma conexão TCP persistente com serialização Protobuf."
+  },
+  {
+    "id": "D22_epoll_event_loop",
+    "question_text": "Como servidores de rede de alta performance conseguem atender dezenas de milhares de conexões simultâneas com poucas threads?",
+    "response_text": "Utiliza-se multiplexação de I/O não bloqueante via epoll (ou kqueue), registrando os descritores de socket em um loop de eventos que só acorda as threads quando ocorrem notificações prontas para leitura ou escrita."
+  },
+  {
+    "id": "D23_memory_pool_fragmentation",
+    "question_text": "Como evitar fragmentação de memória e pausas imprevisíveis em sistemas de negociação financeira de baixa latência?",
+    "response_text": "Aloca-se previamente buffers contíguos de tamanho fixo em pools de objetos na inicialização da aplicação, reaproveitando as estruturas sem solicitar memória do sistema operacional em tempo de execução."
+  },
+  {
+    "id": "D24_circuit_breaker_half_open",
+    "question_text": "Como um circuit breaker determina com segurança se um microsserviço com falhas se recuperou antes de liberar todo o tráfego?",
+    "response_text": "Transita-se para o estado meio-aberto (half-open) após um período de repouso, permitindo a passagem de uma quantidade restrita de requisições de teste e fechando o circuito apenas se a taxa de sucesso for total."
+  },
+  {
+    "id": "D25_wal_checkpoint_truncate",
+    "question_text": "Como os motores de banco de dados impedem o crescimento infinito do log de escrita sequencial (WAL)?",
+    "response_text": "Realizam-se checkpoints periódicos sincronizando todas as páginas sujas da memória para os arquivos de dados em disco e truncando os segmentos do WAL anteriores ao ponto de verificação."
+  },
+  {
+    "id": "D26_deadlock_detection_cycle",
+    "question_text": "Como um banco de dados relacional detecta e resolve travamentos mútuos entre transações concorrentes?",
+    "response_text": "O motor constrói um grafo de espera direcionado (wait-for graph), identifica ciclos de dependência circular entre as transações e aborta a transação de menor custo computacional executando rollback."
+  },
+  {
+    "id": "D27_optimistic_locking_version_check",
+    "question_text": "Como garantir que duas alterações simultâneas no mesmo saldo não causem perda de atualizações?",
+    "response_text": "Inclui-se um número de versão no registro e executa-se o update com a condição de que a versão na tabela seja idêntica à versão lida, incrementando a versão ou abortando caso nenhuma linha seja afetada."
+  },
+  {
+    "id": "D28_consistent_hashing_ring_walk",
+    "question_text": "Como mapear chaves para servidores de armazenamento minimizando o número de chaves realocadas ao redimensionar nós?",
+    "response_text": "Mapeia-se as chaves e os nós em um anel circular de 0 a 2^32-1, onde cada chave é armazenada no primeiro nó encontrado ao percorrer o anel em sentido horário a partir da sua posição de hash."
+  },
+  {
+    "id": "D29_token_bucket_refill_rate",
+    "question_text": "Como controlar vazão de requisições aceitando surtos pontuais sem sobrecarregar a capacidade da infraestrutura?",
+    "response_text": "Emprega-se um balde de fichas (token bucket) que acumula tokens em uma taxa fixa de reposição até o limite do balde, consumindo um token por requisição e rejeitando chegadas quando o balde estiver vazio."
+  },
+  {
+    "id": "D30_bloom_filter_bit_array",
+    "question_text": "Como evitar operações caras de leitura em disco para verificar se uma chave inexiste em arquivos de armazenamento?",
+    "response_text": "Consulta-se um filtro de Bloom em memória RAM contendo um vetor de bits calculado por múltiplas funções hash; se qualquer bit correspondente for zero, tem-se a garantia matemática de que a chave não existe no disco."
+  },
+  {
+    "id": "D31_read_repair_quorum",
+    "question_text": "Como bancos NoSQL distribuídos corrigem divergências silenciosas entre réplicas durante consultas comuns de clientes?",
+    "response_text": "Aplica-se Read Repair: quando o cliente consulta com quórum e recebe hashes de versão divergentes entre as réplicas, o nó coordenador detecta a versão mais recente e atualiza assincronamente as réplicas desatualizadas."
+  },
+  {
+    "id": "D32_gossip_protocol_failure_detector",
+    "question_text": "Como os nós de um cluster descentralizado detectam falhas de servidores sem depender de um mestre centralizador?",
+    "response_text": "Utiliza-se o protocolo de fofoca (Gossip Protocol) com detector de falhas Phi Accural, enviando heartbeats periódicos aleatórios entre nós e calculando a probabilidade de falha com base no histórico de intervalos de chegada."
+  },
+  {
+    "id": "D33_write_behind_caching",
+    "question_text": "Como desonerar o banco relacional de picos extremos de escrita em rotinas de contabilidade?",
+    "response_text": "Adota-se write-behind caching (write-back), confirmando as alterações instantaneamente na camada de cache em memória e persistindo-as em lote no banco relacional de forma assíncrona por meio de um processo em fila."
+  },
+  {
+    "id": "D34_idempotent_consumer_database_dedup",
+    "question_text": "Como evitar duplicidade ao processar eventos de pagamento entregues mais de uma vez por um broker at-least-once?",
+    "response_text": "Registra-se a chave de idempotência do evento em uma tabela com restrição de unicidade (unique constraint) antes de processar a cobrança, descartando a mensagem caso ocorra colisão de chave duplicada."
+  },
+  {
+    "id": "D35_vector_quantization_ivf_pq",
+    "question_text": "Como comprimir vetores em bancos vetoriais de larga escala sem esgotar a memória RAM disponível?",
+    "response_text": "Aplica-se quantização de produto (Product Quantization com índice IVF-PQ), decompondo os vetores em sub-espaços menores e substituindo cada vetor por centróides representados por códigos de 8 bits."
+  },
+  {
+    "id": "D36_two_phase_commit_coordinator",
+    "question_text": "Como garantir atomicidade rigorosa quando uma transação altera simultaneamente dados em dois bancos independentes?",
+    "response_text": "Executa-se o protocolo Two-Phase Commit (2PC): o coordenador envia a mensagem prepare solicitando que os nós travem recursos e confirmem prontidão, e somente envia commit final se todas as réplicas votarem afirmativamente."
+  },
+  {
+    "id": "D37_database_partition_pruning",
+    "question_text": "Como o otimizador de consultas de banco de dados reduz o volume de blocos lidos em tabelas particionadas por data?",
+    "response_text": "Aplica-se poda de partição (Partition Pruning), analisando os predicados de filtro da cláusula WHERE na compilação da query para ignorar completamente os índices e diretórios das partições fora do intervalo solicitado."
+  },
+  {
+    "id": "D38_lock_striping_concurrency",
+    "question_text": "Como diminuir contenção de bloqueios em estruturas de dados compartilhadas acessadas por dezenas de threads simultâneas?",
+    "response_text": "Emprega-se segmentação de travas (Lock Striping), distribuindo o acesso sobre um arranjo de múltiplos locks independentes onde cada chave ou bucket da coleção adquire apenas a trava associada ao seu hash."
+  },
+  {
+    "id": "D39_btree_prefix_compression",
+    "question_text": "Como diminuir o espaço ocupado por índices em colunas de strings longas sem degradar o tempo de busca?",
+    "response_text": "Aplica-se compressão de prefixo nas páginas da árvore B, armazenando o prefixo comum dos registros uma única vez no cabeçalho da página e gravando apenas os sufixos diferenciadores em cada nó folha."
+  },
+  {
+    "id": "D40_read_committed_snapshot_isolation",
+    "question_text": "Como permitir leituras concorrentes em tabelas sem bloquear transações de escrita e sem ler dados sujos?",
+    "response_text": "Habilita-se Snapshot Isolation (RCSI) via controle de concorrência multiversão (MVCC), permitindo que consultas leiam a última versão confirmada no histórico de linhas antes do início do comando."
+  },
+  {
+    "id": "D41_unseen_technology_supergraph",
+    "question_text": "Como a tecnologia fictícia ChronoSync preserva a consistência de estado entre réplicas móveis desconectadas?",
+    "response_text": "Ela calcula vetores de relógio de Lamport em cada mutação offline e executa uma mesclagem de três vias baseada em árvores de Merkle assim que a conexão de rede é restabelecida."
+  },
+  {
+    "id": "D42_unseen_technology_nanoshard",
+    "question_text": "Como a ferramenta emergente FlowPlex gerencia o escalonamento horizontal de pipelines de agregação em tempo real?",
+    "response_text": "Mapeia-se as mensagens em micro-partições dinâmicas na memória e reatribui-se os workers utilizando tabelas de dispersão distribuídas quando a taxa de chegada ultrapassa o limiar de consumo."
+  },
+  {
+    "id": "D43_long_direct_detailed",
+    "question_text": "Como evitar esgotamento de conexões JDBC em microsserviços de alto tráfego sob concorrência intensa?",
+    "response_text": "Configura-se um pool de conexões otimizado como HikariCP definindo tamanho máximo estrito compatível com os núcleos do banco, ativando timeout de aquisição de 2 segundos para falhar rápido e garantindo que todas as transações fechem os recursos em blocos try-with-resources imediatamente após a execução da query."
+  },
+  {
+    "id": "D44_short_direct_concise",
+    "question_text": "Como isolar a execução de código não confiável em funções serverless de borda (edge computing)?",
+    "response_text": "Executando as funções dentro de WebAssembly sandboxes isoladas com restrição rigorosa de acesso a memória e chamadas de sistema."
+  },
+  {
+    "id": "D45_active_1st_direct_experience",
+    "question_text": "Como resolver problemas de lock exclusivo prolongado provocado por comandos de criação de índices em bancos de produção?",
+    "response_text": "Eu executo a criação do índice utilizando a cláusula CONCURRENTLY do PostgreSQL, permitindo que as consultas e escritas continuem operando normalmente enquanto o banco constrói o índice em duas passagens sequenciais."
+  },
+  {
+    "id": "P01_multi_aspect_omit_jitter",
+    "question_text": "Como implementar retries com backoff exponencial e como adicionar jitter para prevenir o problema de thundering herd?",
+    "response_text": "Implementa-se uma rotina de retentativa que multiplica o tempo de espera por dois a cada falha consecutiva até atingir o tempo máximo pré-determinado."
+  },
+  {
+    "id": "P02_multi_aspect_omit_rebalance",
+    "question_text": "Como escolher a chave de sharding e como rebalancear as partições quando ocorre crescimento desbalanceado de dados?",
+    "response_text": "Seleciona-se uma chave de partição com alta cardinalidade para espalhar uniformemente os registros entre os servidores do cluster."
+  },
+  {
+    "id": "P03_compare_jwt_session_omit_revocation",
+    "question_text": "Compare autenticação stateless via JWT e stateful via sessão quanto a escalabilidade horizontal e facilidade de revogação de acessos.",
+    "response_text": "O JWT permite escalabilidade horizontal imediata porque os nós da aplicação não precisam consultar armazenamento compartilhado para checar credenciais."
+  },
+  {
+    "id": "P04_compare_b_tree_lsm_omit_writes",
+    "question_text": "Compare árvores B-Tree e LSM-Tree quanto a velocidade de leitura pontual e vazão de escrita em lote.",
+    "response_text": "As árvores B-Tree possuem excelente desempenho em leituras pontuais aleatórias porque mantêm as páginas balanceadas e ordenadas em disco com saltos determinísticos."
+  },
+  {
+    "id": "P05_explicit_omission_text",
+    "question_text": "Como o algoritmo Raft conduz a eleição de um líder e como sincroniza os logs com os seguidores?",
+    "response_text": "Ele elege o líder por meio de votação por maioria simples de quórum com timeouts aleatórios, mas não detalha como as entradas de log são transmitidas e replicadas aos seguidores."
+  },
+  {
+    "id": "P06_explicit_omission_text_informal",
+    "question_text": "Como configurar replicação síncrona no PostgreSQL e como gerenciar o failover automático do primário?",
+    "response_text": "A gente configura synchronous_commit para forçar gravação nas réplicas, porém não explica como configurar o script de failover nem o orquestrador que promove a máquina secundária."
+  },
+  {
+    "id": "P07_compare_sync_async_omit_burst",
+    "question_text": "Quais as diferenças entre chamadas síncronas HTTP e comunicação assíncrona por mensageria quanto a acoplamento temporal e resiliência a picos?",
+    "response_text": "No modelo síncrono HTTP o remetente fica bloqueado aguardando o processamento do destinatário, enquanto na mensageria assíncrona o remetente despacha a mensagem e continua seu fluxo desacoplado no tempo."
+  },
+  {
+    "id": "P08_compare_optimistic_pessimistic_omit_threads",
+    "question_text": "Em que cenários deve-se optar por bloqueio pessimista e em quais por controle otimista, e qual o impacto em contenção de threads?",
+    "response_text": "Usa-se bloqueio pessimista quando a probabilidade de colisão é alta e lock otimista quando colisões são raras."
+  },
+  {
+    "id": "P09_compare_protobuf_json_omit_cpu",
+    "question_text": "Compare a serialização de mensagens via Protocol Buffers binário e JSON textual quanto a consumo de banda de rede e sobrecarga de parsing de CPU.",
+    "response_text": "O Protobuf reduz drasticamente o tráfego de rede gerando cargas binárias compactas codificadas em varints, exigindo muito menos bytes trafegados por mensagem."
+  },
+  {
+    "id": "P10_compare_modular_monolith_microservices_omit_sagas",
+    "question_text": "Compare arquiteturas monolíticas modulares e microsserviços distribuídos quanto a fronteiras transacionais no banco de dados e overhead de latência de rede entre domínios.",
+    "response_text": "Monólitos modulares executam operações entre domínios dentro de um mesmo processo compartilhando transações ACID locais no banco, eliminando a sobrecarga de round-trips de rede entre serviços."
+  },
+  {
+    "id": "P11_multi_aspect_idempotency_storage",
+    "question_text": "Como projetar endpoints de pagamento garantindo idempotência e como armazenar os comprovantes com expiração?",
+    "response_text": "Gera-se um hash único da transação financeira na chegada e valida-se se a cobrança já foi confirmada anteriormente."
+  },
+  {
+    "id": "P12_multi_aspect_idempotency_storage_informal",
+    "question_text": "Como projetar endpoints de pagamento garantindo idempotência e como armazenar os comprovantes com expiração?",
+    "response_text": "Eu coloco uma chave única no payload da requisição para barrar se o cliente tentar cobrar duas vezes a mesma conta."
+  },
+  {
+    "id": "P13_event_sourcing_cqrs_omit_projections",
+    "question_text": "Em arquiteturas orientadas a eventos, compare os padrões Event Sourcing e CQRS quanto a rastreabilidade histórica de mutações e complexidade de projeção de visões de leitura.",
+    "response_text": "O Event Sourcing garante rastreabilidade temporal absoluta registrando cada mutação como um evento imutável em um log sequencial de append-only."
+  },
+  {
+    "id": "P14_cache_aside_omit_invalidation",
+    "question_text": "Como implementar a estratégia Cache-Aside e como lidar com a invalidação de dados desatualizados?",
+    "response_text": "A aplicação primeiro consulta o cache em memória; se houver miss, busca o registro no banco de dados e salva o resultado no cache antes de responder."
+  },
+  {
+    "id": "P15_two_phase_commit_omit_failure",
+    "question_text": "Como opera o protocolo Two-Phase Commit e como o sistema se recupera caso o coordenador falhe durante a fase de commit?",
+    "response_text": "O coordenador envia a ordem de prepare para todas as réplicas participantes e, recebendo aprovação unânime, despacha a ordem de commit definitivo."
+  },
+  {
+    "id": "P16_cqrs_omit_eventual_consistency",
+    "question_text": "Como estruturar uma arquitetura CQRS separando comandos de consultas e como lidar com o delay de consistência eventual na interface?",
+    "response_text": "Separa-se o modelo de escrita com comandos que alteram o estado em tabelas transacionais e projeta-se tabelas desnormalizadas em views para atender as leituras com alta velocidade."
+  },
+  {
+    "id": "P17_kafka_partitions_omit_rebalance",
+    "question_text": "Como particionar tópicos no Kafka para permitir processamento paralelo e como tratar rebalanceamentos sem travar os consumidores?",
+    "response_text": "Configura-se múltiplas partições no tópico distribuindo as mensagens por hash da chave de negócio, permitindo que cada consumidor do grupo processe sua partição concorrentemente."
+  },
+  {
+    "id": "P18_deadlock_detection_omit_victim_selection",
+    "question_text": "Como os bancos relacionais identificam ciclos de deadlocks e qual o critério utilizado para selecionar a transação que sofrerá rollback?",
+    "response_text": "O banco de dados inspeciona as dependências de locks ativos montando um grafo direcionado e detectando a existência de ciclos fechados de espera."
+  },
+  {
+    "id": "P19_redis_distributed_lock_omit_clock_drift",
+    "question_text": "Como funciona o algoritmo Redlock para bloqueios distribuídos em múltiplos nós Redis e como mitigar riscos de desvio de relógio (clock drift)?",
+    "response_text": "O cliente tenta adquirir a trava com o mesmo valor aleatório na maioria estrita das instâncias independentes de Redis com timeout curto."
+  },
+  {
+    "id": "P20_mutation_omit_version_check",
+    "question_text": "Como aplicar concorrência otimista com versionamento para impedir atualizações concorrentes sujas?",
+    "response_text": "Lê-se o registro do banco de dados na aplicação e na hora de salvar grava-se diretamente o novo valor na tabela de forma transacional."
+  },
+  {
+    "id": "P21_mutation_omit_idempotency_lookup",
+    "question_text": "Como processar requisições em gateways de pagamentos garantindo deduplicação de cobranças repetidas?",
+    "response_text": "Recebo a requisição do cliente com o valor e despacho a cobrança imediatamente para o adquirente de cartão de crédito."
+  },
+  {
+    "id": "P22_mutation_omit_token_bucket_limit",
+    "question_text": "Como proteger APIs contra excesso de tráfego utilizando algoritmos de balde de fichas (token bucket)?",
+    "response_text": "A gente adiciona fichas continuamente em uma variável de controle para registrar as chamadas que chegam dos usuários."
+  },
+  {
+    "id": "P23_compare_dynamo_spanner_omit_stale",
+    "question_text": "Compare o modelo de consistência eventual em Dynamo-style databases e linearizabilidade em Spanner quanto a latência de escrita e garantias contra leituras obsoletas.",
+    "response_text": "O modelo de consistência eventual em bancos Dynamo permite escritas ultra-rápidas com baixa latência local sem aguardar consenso síncrono global entre nós."
+  },
+  {
+    "id": "P24_compare_sql_nosql_omit_consistency",
+    "question_text": "Compare bancos relacionais SQL e NoSQL colunares quanto a flexibilidade de schema e garantias de consistência ACID.",
+    "response_text": "Bancos NoSQL oferecem esquemas dinâmicos flexíveis permitindo que cada linha possua campos distintos sem necessidade de migrações pesadas de DDL."
+  },
+  {
+    "id": "P25_compare_grpc_rest_omit_browser",
+    "question_text": "Compare gRPC e REST HTTP/JSON quanto a overhead de serialização e facilidade de depuração no navegador.",
+    "response_text": "O gRPC utiliza codificação binária Protocol Buffers que reduz drasticamente o tamanho do payload e o processamento de serialização se comparado com o formato textual JSON do REST."
+  },
+  {
+    "id": "P26_circuit_breaker_omit_fallback",
+    "question_text": "Como configurar circuit breakers com timeouts agressivos e como fornecer respostas de fallback gracioso para manter a experiência do usuário?",
+    "response_text": "Ajusta-se o disjuntor para abrir a conexão instantaneamente após três falhas consecutivas ou requisições que excedam 500 milissegundos de espera."
+  },
+  {
+    "id": "P27_tls_handshake_omit_alpn",
+    "question_text": "Como o handshake TLS 1.3 reduz o tempo de estabelecimento de conexão e como negocia a versão do protocolo de aplicação via ALPN?",
+    "response_text": "No TLS 1.3 o cliente envia suas chaves de compartilhamento Diffie-Hellman na mensagem ClientHello inicial, reduzindo a negociação para apenas um round-trip (1-RTT)."
+  },
+  {
+    "id": "P28_kubernetes_hpa_omit_custom_metrics",
+    "question_text": "Como o Horizontal Pod Autoscaler escala pods baseado em uso de CPU e como configura escalonamento por métricas customizadas de mensageria?",
+    "response_text": "O controlador compara periodicamente o consumo médio de CPU dos containers contra o alvo definido no manifesto, aumentando o número de réplicas quando o limiar for excedido."
+  },
+  {
+    "id": "P29_distributed_tracing_omit_propagation",
+    "question_text": "Como instrumentar tracing distribuído gerando spans em microsserviços e como propagar o contexto de rastreio entre requisições HTTP?",
+    "response_text": "Cada serviço gera um identificador único de span para marcar o início e término da execução interna das suas funções de negócio."
+  },
+  {
+    "id": "P30_speculation_partitioning_partial_novel",
+    "question_text": "Como mitigar contenção extrema de locks em tabelas de auditoria volumosas?",
+    "response_text": "Acho que talvez dê para criar partições por intervalo de data, embora eu não tenha certeza exata de como configurar a criação automática das partições no banco."
+  },
+  {
+    "id": "P31_speculation_circuit_partial_novel",
+    "question_text": "Como proteger um microsserviço de backend contra sobrecarga em cascata de terceiros?",
+    "response_text": "Imagino que uma ideia seria interceptar as chamadas e cortar o tráfego com circuit breaker, mas nunca configurei o limiar de transição na prática."
+  },
+  {
+    "id": "P32_multi_aspect_oauth_omit_pkce",
+    "question_text": "Como implementar fluxo de autorização OAuth 2.0 Authorization Code e como utilizar PKCE para proteger clientes públicos sem chave secreta?",
+    "response_text": "O cliente redireciona o usuário para o servidor de autorização, obtém um código temporário de autorização e troca esse código pelo token de acesso."
+  },
+  {
+    "id": "P33_multi_aspect_database_index_omit_covering",
+    "question_text": "Como otimizar consultas analíticas criando índices compostos e como utilizar índices de cobertura (covering index) para eliminar acessos à tabela?",
+    "response_text": "Cria-se um índice composto ordenando as colunas de acordo com a seletividade e filtros mais utilizados na cláusula WHERE."
+  },
+  {
+    "id": "P34_multi_aspect_docker_multistage_omit_security",
+    "question_text": "Como utilizar builds multi-estágio no Docker para diminuir o tamanho da imagem e como garantir a execução com usuário não-root?",
+    "response_text": "Utiliza-se uma imagem pesada com compilador para gerar o binário na primeira etapa e copia-se apenas o executável final para uma imagem distroless enxuta na segunda etapa."
+  },
+  {
+    "id": "P35_multi_aspect_cqrs_event_sourcing_omit_snapshot",
+    "question_text": "Como reconstruir o estado de entidades em Event Sourcing e como utilizar snapshots periódicos para acelerar a inicialização?",
+    "response_text": "Reconstrói-se o estado corrente lendo a sequência imutável de eventos passados a partir do log e aplicando cada mutação sequencialmente sobre o objeto."
+  },
+  {
+    "id": "S01_prometheus_grafana_deadlock",
+    "question_text": "Como resolver travamentos mútuos frequentes (deadlocks) em rotinas de fechamento bancário?",
+    "response_text": "Configuro alertas no Grafana e exponho métricas do Prometheus para identificar quais transações demoram mais tempo presas."
+  },
+  {
+    "id": "S02_prometheus_grafana_deadlock_pronominal",
+    "question_text": "Como resolver travamentos mútuos frequentes (deadlocks) em rotinas de fechamento bancário?",
+    "response_text": "Instrumentam-se as rotinas com métricas no Prometheus e alarmes no Grafana para monitorar a frequência de travamentos."
+  },
+  {
+    "id": "S03_datadog_apm_concurrency",
+    "question_text": "Como eliminar concorrência descontrolada e corrupção de saldo em pagamentos compartilhados?",
+    "response_text": "Instalamos o agente do Datadog para coletar traces distribuídos e criamos um dashboard para acompanhar a taxa de requisições por segundo."
+  },
+  {
+    "id": "S04_new_relic_db_bottleneck",
+    "question_text": "Como resolver gargalos de escrita e contenção de linhas em banco relacional sobrecarregado?",
+    "response_text": "Configuro o New Relic APM para inspecionar os tempos de execução das queries e receber notificações quando o banco atingir saturação."
+  },
+  {
+    "id": "S05_cloudwatch_memory_leak",
+    "question_text": "Como conter vazamento contínuo de memória que causa travamentos diários na aplicação?",
+    "response_text": "Configuro alarmes no AWS CloudWatch para disparar alertas por e-mail sempre que a taxa de uso de RAM ultrapassar 85%."
+  },
+  {
+    "id": "S06_elasticsearch_kibana_crash",
+    "question_text": "Como solucionar falhas intermitentes de processamento de lote em microsserviço financeiro?",
+    "response_text": "Envio todos os logs para o Elasticsearch e monto painéis no Kibana para visualizar a quantidade de exceções registradas a cada hora."
+  },
+  {
+    "id": "S07_blackbox_exporter_dns",
+    "question_text": "Como mitigar indisponibilidade provocada por resolução defeituosa de DNS entre regiões?",
+    "response_text": "Configuro sondas do Blackbox Exporter para efetuar requisições a cada 15 segundos e emitir alerta quando o endpoint falhar."
+  },
+  {
+    "id": "S08_pyroscope_cpu_spike",
+    "question_text": "Como conter picos severos de uso de CPU que travam a aplicação em horários de pico?",
+    "response_text": "Instalo o Pyroscope na aplicação para coletar flamegraphs contínuos de execução e identificar os métodos com maior consumo de ciclos."
+  },
+  {
+    "id": "S09_opentelemetry_traces_latency",
+    "question_text": "Como diminuir latência de processamento em cadeia de chamadas síncronas entre microsserviços?",
+    "response_text": "Instrumento o código com OpenTelemetry exportando traces distribuídos para o Jaeger para localizar onde as requisições engasgam."
+  },
+  {
+    "id": "S10_sentry_exceptions_audit",
+    "question_text": "Como evitar interrupções de checkout provocadas por exceções não tratadas no pagamento?",
+    "response_text": "Adiciono o Sentry na aplicação para capturar o stack trace exato e receber aviso no Slack assim que ocorrer um erro 500."
+  },
+  {
+    "id": "S11_micrometer_jmx_connection_pool",
+    "question_text": "Como resolver esgotamento de conexões no pool de banco de dados sob tráfego massivo?",
+    "response_text": "Exponho métricas de conexões ativas e pendentes via Micrometer e JMX para acompanhar o volume de threads represadas."
+  },
+  {
+    "id": "S12_k8s_liveness_probe_leak",
+    "question_text": "Como eliminar vazamento contínuo de memória em processo de backend?",
+    "response_text": "Configuro liveness probes no Kubernetes para reiniciar os pods automaticamente assim que o container parar de responder."
+  },
+  {
+    "id": "S13_read_replica_write_bottleneck",
+    "question_text": "Como eliminar o gargalo de escrita em banco de dados que atingiu o limite físico de IOPS do disco primário?",
+    "response_text": "Crio duas réplicas de leitura para balancear as consultas analíticas e aliviar o servidor principal de queries de select."
+  },
+  {
+    "id": "S14_redis_cache_write_locks",
+    "question_text": "Como solucionar contenção severa de bloqueios em linhas concorrentes de atualização de saldo?",
+    "response_text": "Adiciono cache Redis na frente para desafogar as consultas de leitura frequentes da conta."
+  },
+  {
+    "id": "S15_fluentbit_log_aggregator",
+    "question_text": "Como conter corrupção de dados gerada por cancelamentos inesperados de sessões de usuários?",
+    "response_text": "Instalo o FluentBit nos servidores para centralizar todos os arquivos de log e auditar os registros de cancelamento depois do ocorrido."
+  },
+  {
+    "id": "S16_datadog_synthetic_tests",
+    "question_text": "Como prevenir degradação de performance na rota crítica de autenticação sob cargas extremas?",
+    "response_text": "Agendo transações sintéticas periódicas no Datadog para monitorar o tempo de resposta do endpoint a cada minuto."
+  },
+  {
+    "id": "S17_dynatrace_anomaly_detection",
+    "question_text": "Como resolver falhas misteriosas de conectividade entre instâncias de banco de dados distribuído?",
+    "response_text": "Ativo o módulo de inteligência do Dynatrace para mapear a topologia e sinalizar anomalias de conexão na infraestrutura."
+  },
+  {
+    "id": "S18_prometheus_alerts_disk_full",
+    "question_text": "Como evitar colapso de nós de dados por esgotamento repentino de espaço em disco?",
+    "response_text": "Configuro alertas no Prometheus para avisar no canal de suporte assim que o volume do disco atingir 90% de ocupação."
+  },
+  {
+    "id": "S19_grafana_dashboard_threads",
+    "question_text": "Como solucionar travamento de threads causado por loops infinitos em processamento assíncrono?",
+    "response_text": "Monto um painel no Grafana para exibir quantas threads estão em execução e o consumo agregado de memória."
+  },
+  {
+    "id": "S20_kibana_error_rate_visualization",
+    "question_text": "Como conter falhas silenciosas de cálculo financeiro em microsserviço de faturamento?",
+    "response_text": "Crio visualizações no Kibana para acompanhar a taxa percentual de erros por minuto nas mensagens processadas."
+  },
+  {
+    "id": "S21_cloudwatch_io_throttling",
+    "question_text": "Como mitigar travamentos de escrita provocados por saturação de IOPS em banco relacional na nuvem?",
+    "response_text": "Configuro alarmes no AWS CloudWatch para monitorar a métrica de IOPS consumidas e enviar alerta quando houver estrangulamento."
+  },
+  {
+    "id": "S22_sentry_release_tracking",
+    "question_text": "Como prevenir bugs de regressão funcional introduzidos em novos deploys de microsserviços?",
+    "response_text": "Integro o Sentry na esteira para rastrear novos lançamentos e notificar os desenvolvedores quando um novo erro aparecer."
+  },
+  {
+    "id": "S23_hikaricp_leak_detection_threshold",
+    "question_text": "Como eliminar vazamento silencioso de conexões em rotinas legadas com queries abertas?",
+    "response_text": "Ativo o leakDetectionThreshold do HikariCP para gerar logs com stack trace quando uma conexão demorar mais de 5 segundos para ser devolvida ao pool."
+  },
+  {
+    "id": "S24_blackbox_http_probes",
+    "question_text": "Como resolver indisponibilidade crônica de rede entre microsserviços em diferentes data centers?",
+    "response_text": "Configuro sondas do Blackbox Exporter para testar requisições HTTP entre os nós e avisar se a latência subir."
+  },
+  {
+    "id": "S25_pyroscope_memory_allocations",
+    "question_text": "Como diminuir pausas de garbage collector provocadas por alocações massivas de objetos efêmeros?",
+    "response_text": "Instalo o Pyroscope para mapear a taxa de alocação de memória por método e ver quais trechos do código estão instanciando mais dados."
+  },
+  {
+    "id": "R01_milvus_hnsw_description",
+    "question_text": "Como o motor de busca vetorial Milvus constrói índices HNSW distribuídos para consultas de similaridade?",
+    "response_text": "O Milvus é um projeto de código aberto sob a Linux Foundation bastante utilizado por equipes de ciência de dados para projetos de embeddings corporativos."
+  },
+  {
+    "id": "R02_clickhouse_columnar_description",
+    "question_text": "Como o ClickHouse processa consultas analíticas agregadas em alta velocidade através de armazenamento colunar vetorizado?",
+    "response_text": "O ClickHouse foi criado na Rússia para a plataforma de analytics Yandex Metrica e possui ampla documentação comunitária em diversos idiomas."
+  },
+  {
+    "id": "R03_quantum_router_fictional_description",
+    "question_text": "Como a ferramenta fictícia QuantumRouter otimiza rotas de pacotes IP usando algoritmos genéticos?",
+    "response_text": "O QuantumRouter é uma solução corporativa inovadora anunciada em um congresso de redes para transformar a governança de telecomunicações."
+  },
+  {
+    "id": "R04_sqlite_awards_history",
+    "question_text": "Como o SQLite assegura atomicidade em transações de arquivo único utilizando journaling de rollback?",
+    "response_text": "O criador do SQLite recebeu prêmios de engenharia de software da ACM em reconhecimento pela sua contribuição à comunidade global de tecnologia."
+  },
+  {
+    "id": "R05_false_sharing_cache_line_trivia",
+    "question_text": "Como prevenir falsas gravações em compartilhamento de linhas de cache (false sharing) em threads paralelas?",
+    "response_text": "A arquitetura x86_64 possui uma linha de cache padrão de 64 bytes que pode ser consultada no manual de microarquitetura da Intel."
+  },
+  {
+    "id": "R06_golang_gc_creators_trivia",
+    "question_text": "Como o coletor de lixo do Go minimiza pausas de Stop-The-World através do algoritmo tricromático concorrente?",
+    "response_text": "A linguagem Go foi idealizada por Robert Griesemer, Rob Pike e Ken Thompson no Google em 2007 para simplificar a engenharia de software de grande porte."
+  },
+  {
+    "id": "R07_declaration_kubernetes_experience",
+    "question_text": "Como configurar políticas de rede (NetworkPolicies) no Kubernetes para isolar namespaces sensíveis?",
+    "response_text": "Eu utilizo Kubernetes diariamente na minha empresa e tenho mais de 8 anos de experiência em administração de clusters corporativos."
+  },
+  {
+    "id": "R08_declaration_postgresql_experience",
+    "question_text": "Como otimizar consultas analíticas complexas com Window Functions no PostgreSQL?",
+    "response_text": "Eu trabalho com PostgreSQL há mais de 10 anos na nossa empresa e sou especialista sênior em bancos de dados relacionais."
+  },
+  {
+    "id": "R09_declaration_kafka_experience",
+    "question_text": "Como evitar perda de mensagens quando um broker do Kafka é encerrado forçadamente?",
+    "response_text": "Eu utilizo Apache Kafka nos projetos da minha empresa no dia a dia e conheço bem a plataforma de mensageria."
+  },
+  {
+    "id": "R10_declaration_redis_experience",
+    "question_text": "Como configurar persistência AOF com fsync a cada segundo no Redis?",
+    "response_text": "Eu tenho 7 anos de experiência com Redis e atuo como líder técnico em arquitetura de caches corporativos."
+  },
+  {
+    "id": "R11_kubernetes_docker_tautology",
+    "question_text": "Como o Kubernetes gerencia a integridade e ciclo de vida de containers em nós de computação?",
+    "response_text": "O Kubernetes é um orquestrador de pods muito robusto que gerencia containers em clusters grandes com muita facilidade."
+  },
+  {
+    "id": "R12_linux_kernel_history",
+    "question_text": "Como o agendador CFS (Completely Fair Scheduler) do kernel Linux equilibra o tempo de CPU entre processos concorrentes?",
+    "response_text": "O kernel Linux foi lançado inicialmente em 1991 como um projeto pessoal de um estudante finlandês baseado no sistema Minix."
+  },
+  {
+    "id": "R13_python_gil_history",
+    "question_text": "Como contornar o Global Interpreter Lock (GIL) do Python para acelerar processamento matemático paralelo?",
+    "response_text": "O Python foi concebido por Guido van Rossum no final dos anos 80 nos Países Baixos como sucessor da linguagem ABC."
+  },
+  {
+    "id": "R14_rust_memory_model_history",
+    "question_text": "Como o compilador do Rust assegura segurança de memória em tempo de compilação sem usar garbage collector?",
+    "response_text": "O Rust foi desenvolvido originalmente por Graydon Hoare na Mozilla e eleito a linguagem favorita em pesquisas do Stack Overflow."
+  },
+  {
+    "id": "R15_java_virtual_threads_history",
+    "question_text": "Como as Virtual Threads do Java mapeiam milhares de tarefas concorrentes sobre poucos threads de sistema operacional?",
+    "response_text": "O projeto Loom levou vários anos de desenvolvimento dentro do OpenJDK até ser lançado oficialmente na versão 21 do Java."
+  },
+  {
+    "id": "R16_surrealdb_general_opinion",
+    "question_text": "Como o SurrealDB conecta registros em formato de grafo sem necessidade de joins relacionais pesados?",
+    "response_text": "O SurrealDB é um banco de dados moderno excelente para trabalhar com múltiplos modelos de dados de forma unificada."
+  },
+  {
+    "id": "R17_duckdb_general_opinion",
+    "question_text": "Como o motor DuckDB processa consultas analíticas colunares executando em processo no cliente?",
+    "response_text": "O DuckDB é uma ferramenta analítica muito leve frequentemente chamada de SQLite das consultas de Big Data."
+  },
+  {
+    "id": "R18_clickhouse_general_opinion",
+    "question_text": "Como o ClickHouse atinge alta taxa de compressão e velocidade em leituras colunares massivas?",
+    "response_text": "O ClickHouse foi criado pela Yandex e é famoso mundialmente por ser incrivelmente veloz em análises de telemetria de web."
+  },
+  {
+    "id": "R19_etcd_raft_general_opinion",
+    "question_text": "Como o etcd gerencia a consistência de chave-valor distribuída sob partições de rede?",
+    "response_text": "O etcd é um componente de infraestrutura mantido pela Cloud Native Computing Foundation amplamente utilizado na nuvem."
+  },
+  {
+    "id": "R20_grpc_protobuf_general_opinion",
+    "question_text": "Como o compilador protoc gera stubs tipados a partir de definições de serviço em arquivos proto?",
+    "response_text": "O Protocol Buffers foi criado pelo Google para serialização corporativa interna e possui excelente documentação pública."
+  },
+  {
+    "id": "R21_graphql_facebook_history",
+    "question_text": "Como o GraphQL compila e resolve campos encadeados em um grafo de tipos unificado?",
+    "response_text": "O GraphQL foi desenvolvido pelo Facebook em 2012 para resolver problemas nos aplicativos móveis de notícias."
+  },
+  {
+    "id": "R22_redis_antirez_history",
+    "question_text": "Como o Redis gerencia estruturas de dados em memória utilizando um único loop de eventos?",
+    "response_text": "O Redis foi criado pelo programador italiano Salvatore Sanfilippo (antirez) enquanto tentava melhorar a performance de um site."
+  },
+  {
+    "id": "R23_elasticsearch_shay_banon_history",
+    "question_text": "Como o Elasticsearch distribui sharding e índices invertidos entre os nós de um cluster?",
+    "response_text": "O criador Shay Banon desenvolveu o predecessor Compass para criar um livro de receitas culinárias para sua esposa."
+  },
+  {
+    "id": "R24_nginx_igor_sysoev_history",
+    "question_text": "Como o Nginx utiliza processos de trabalho baseados em eventos para atingir baixa latência como proxy reverso?",
+    "response_text": "O software foi criado pelo desenvolvedor russo Igor Sysoev nos anos 2000 para lidar com o problema do site Rambler."
+  },
+  {
+    "id": "R25_sqlite_richard_hipp_history",
+    "question_text": "Como o SQLite gerencia concorrência em transações locais utilizando arquivos de lock no sistema de arquivos?",
+    "response_text": "O criador Richard Hipp inventou o SQLite enquanto trabalhava na Marinha americana para dispensar instalação de servidores dedicados."
+  },
+  {
+    "id": "R26_declaration_docker_daily",
+    "question_text": "Como o Docker utiliza namespaces de PID e cgroups do kernel Linux para isolar containers?",
+    "response_text": "Eu utilizo Docker e Kubernetes diariamente na minha empresa e conheço bastante sobre containerização moderna."
+  },
+  {
+    "id": "R27_declaration_react_seniority",
+    "question_text": "Como o Virtual DOM reconcilia alterações de estado através do algoritmo de diffing em árvore?",
+    "response_text": "Eu tenho 6 anos de experiência com React e desenvolvo aplicações web ricas todos os dias no meu trabalho."
+  },
+  {
+    "id": "R28_hardware_ram_ddr5_trivia",
+    "question_text": "Como alinhar estruturas de dados na memória para evitar penalidades de acesso não alinhado na CPU?",
+    "response_text": "Minha máquina corporativa tem 64 gigabytes de memória RAM DDR5 com frequência de 5600 megatransfers por segundo."
+  },
+  {
+    "id": "R29_hardware_nvme_disk_trivia",
+    "question_text": "Como funcionam operações de escrita sequencial em SSDs NVMe para prolongar a vida útil das células de memória flash?",
+    "response_text": "O servidor possui quatro discos SSD NVMe em RAID com barramento PCI Express 4.0 de altíssima velocidade."
+  },
+  {
+    "id": "R30_software_version_trivia",
+    "question_text": "Como o Apache Kafka 3.0 opera sem o ZooKeeper através do protocolo de metadados KRaft?",
+    "response_text": "A versão 3.0 do Apache Kafka foi lançada em setembro de 2021 pela equipe de desenvolvedores da Confluent."
+  },
+  {
+    "id": "O01_antithesis_drop_locks",
+    "question_text": "Como resolver concorrência de escritas e prevenir sobreposições em tabelas financeiras concorrentes?",
+    "response_text": "Para resolver isso, desativo todos os locks do banco e deixo todas as transações gravarem livremente sem controle de concorrência."
+  },
+  {
+    "id": "O02_antithesis_drop_locks_inflected",
+    "question_text": "Como resolver concorrência de escritas e prevenir sobreposições em tabelas financeiras concorrentes?",
+    "response_text": "Removo qualquer bloqueio ou restrição de concorrência e autorizo escritas simultâneas diretas na tabela sem travar linhas."
+  },
+  {
+    "id": "O03_antithesis_drop_acid_transactions",
+    "question_text": "Como garantir consistência em transferências bancárias que debitam de uma conta e creditam em outra?",
+    "response_text": "Desligo transações ACID para escrever direto no banco sem intermediários, acelerando o processo e ignorando falhas no meio."
+  },
+  {
+    "id": "O04_antithesis_infinite_loop_no_timeout",
+    "question_text": "Como gerenciar timeouts e cancelamentos em pipelines de processamento assíncrono para liberar recursos presos?",
+    "response_text": "Elimino qualquer configuração de timeout e instruo as rotinas a esperarem eternamente em loops bloqueantes sem nunca desistir."
+  },
+  {
+    "id": "O05_antithesis_grant_full_admin_no_auth",
+    "question_text": "Como configurar políticas de segurança de rede (NetworkPolicies) em clusters Kubernetes para segmentar namespaces?",
+    "response_text": "Desabilito todo o firewall e libero todas as portas e tráfegos entre todos os pods e a internet pública sem nenhuma restrição."
+  },
+  {
+    "id": "O06_antithesis_plain_text_passwords",
+    "question_text": "Como proteger credenciais de usuários e tokens sensíveis contra vazamentos em banco de dados?",
+    "response_text": "Gravo senhas em texto puro no banco de dados para evitar custo de computação com funções hash criptográficas."
+  },
+  {
+    "id": "O07_antithesis_disable_rate_limiting",
+    "question_text": "Como proteger rotas públicas de reset de senha contra abuso automatizado e enumeração de e-mails?",
+    "response_text": "Retiro todos os limites de chamadas e envio e-mails para qualquer endereço solicitado sem validar existência ou frequência."
+  },
+  {
+    "id": "O08_antithesis_drop_indexes_for_perf",
+    "question_text": "Como acelerar consultas críticas em tabelas com milhões de registros que sofrem lentidão severa?",
+    "response_text": "Removo todos os índices da tabela para que o banco não gaste processamento gerenciando árvores de índices."
+  },
+  {
+    "id": "O09_antithesis_skip_quorum_writes",
+    "question_text": "Como evitar inconsistência de dados em cluster distribuído sujeito a partições de rede?",
+    "response_text": "Aceite escritas livremente sem checar a maioria das réplicas, gravando em qualquer nó isolado que responder primeiro."
+  },
+  {
+    "id": "O10_antithesis_skip_signature_validation",
+    "question_text": "Como validar tokens JWT com segurança para impedir que atacantes forjem permissões no payload?",
+    "response_text": "Aceito qualquer token recebido sem validar assinatura criptográfica para diminuir latência na checagem de autorização."
+  },
+  {
+    "id": "O11_frontend_css_grid_for_consensus",
+    "question_text": "Como o algoritmo de Paxos garante que um único valor seja escolhido em um sistema assíncrono sujeito a falhas?",
+    "response_text": "Eu adiciono uma classe no elemento HTML com display flex e coloco justify-content center para centralizar os cards na tela."
+  },
+  {
+    "id": "O12_frontend_tailwind_for_kafka",
+    "question_text": "Como particionar tópicos no Apache Kafka para garantir ordem estrita por chave de mensagem?",
+    "response_text": "Uso as classes utilitárias text-gray-500 e border-rounded do Tailwind CSS para estipular a borda das caixas de texto no formulário."
+  },
+  {
+    "id": "O13_frontend_react_useeffect_for_deadlock",
+    "question_text": "Como o algoritmo de duas fases (2PL) previne inconsistências em execuções transacionais concorrentes?",
+    "response_text": "Crio um hook personalizado com useState no React para guardar o valor digitado no input do usuário na tela."
+  },
+  {
+    "id": "O14_frontend_webpack_code_splitting_for_quorum",
+    "question_text": "Como definir a composição de grupos de replicação no Raft para sobreviver a falhas de minoria?",
+    "response_text": "Configuro dynamic imports no Vite para dividir o bundle em módulos menores carregados sob demanda na página inicial."
+  },
+  {
+    "id": "O15_frontend_media_queries_for_wal",
+    "question_text": "Como sincronizar logs de transação com disco (fsync) para evitar perda de dados em quedas de energia?",
+    "response_text": "Aplico media queries com max-width de 768 pixels no CSS para ocultar a barra lateral em telas de smartphones."
+  },
+  {
+    "id": "O16_ml_linear_regression_deadlock",
+    "question_text": "Como prevenir deadlocks distribuídos em transações de microsserviços via ordered locking?",
+    "response_text": "Ajusto os hiperparâmetros de uma regressão logística no Scikit-Learn calculando a matriz de confusão e a acurácia global do modelo."
+  },
+  {
+    "id": "O17_ml_kmeans_clustering_indexes",
+    "question_text": "Como estruturar índices compostos no PostgreSQL para suportar filtros de igualdade e ordenação por intervalo?",
+    "response_text": "Executo o método fit do algoritmo K-Means com k igual a cinco para agrupar clientes por faixa de renda."
+  },
+  {
+    "id": "O18_ml_random_forest_tcp_handshake",
+    "question_text": "Como o algoritmo Nagle reduz o envio de pacotes minúsculos em fluxos de rede sob TCP?",
+    "response_text": "Treino um classificador XGBoost com profundidade máxima quatro para prever inadimplência bancária de proponentes."
+  },
+  {
+    "id": "O19_ml_pytorch_cnn_consistent_hashing",
+    "question_text": "Como o consistent hashing distribui chaves de armazenamento entre múltiplos nós de um cluster?",
+    "response_text": "Eu defino uma rede neural convolucional no PyTorch com camadas de convolução de filtros 3x3 e max pooling para classificar imagens."
+  },
+  {
+    "id": "O20_ml_nlp_stopwords_sharding",
+    "question_text": "Como escolher a chave de sharding em bancos de dados distribuídos para pulverizar registros?",
+    "response_text": "Aplico remoção de stopwords e lematização de textos em português com a biblioteca NLTK para processamento de linguagem natural."
+  },
+  {
+    "id": "O21_devops_dockerfile_for_sql_perf",
+    "question_text": "Como reescrever subconsultas correlacionadas pesadas utilizando janelamento SQL (window functions)?",
+    "response_text": "Adiciono uma etapa no Dockerfile com a diretiva COPY requirements.txt e executo pip install para construir a imagem Docker."
+  },
+  {
+    "id": "O22_devops_ci_pipeline_for_caching",
+    "question_text": "Como configurar políticas de despejo LFU (Least Frequently Used) em nós de cache em memória?",
+    "response_text": "Criamos um workflow no GitLab CI que roda linters automáticos e publica artefatos no repositório de pacotes a cada tag criada."
+  },
+  {
+    "id": "O23_devops_jira_scrum_for_deadlock",
+    "question_text": "Como usar grafos direcionados de alocação de recursos para detectar deadlocks em tempo de execução?",
+    "response_text": "Nós fazemos reuniões semanais de planejamento de sprint no Jira para estimar histórias de usuário em story points."
+  },
+  {
+    "id": "O24_devops_selenium_for_b_tree",
+    "question_text": "Como as árvores B-Tree mantêm tempo logarítmico determinístico em operações de busca pontual?",
+    "response_text": "Executo testes automatizados de ponta a ponta com Selenium WebDriver simulando cliques de usuários no formulário de login."
+  },
+  {
+    "id": "O25_devops_confluence_for_wal",
+    "question_text": "Como o Write-Ahead Logging (WAL) permite recuperação rápida após falha catastrófica de processo no banco?",
+    "response_text": "Escrevemos artigos no Confluence organizados em pastas para catalogar as boas práticas de integração do time de suporte."
+  },
+  {
+    "id": "O26_alien_cooking_lasagna",
+    "question_text": "Como implementar controle de concorrência otimista com versionamento em registros disputados?",
+    "response_text": "Eu gosto de preparar lasanha de berinjela aos sábados, fatiando os ingredientes com molho de tomate e assando no forno médio."
+  },
+  {
+    "id": "O27_alien_sports_football",
+    "question_text": "Como projetar esquemas de particionamento de tabelas por hash para balancear I/O de disco?",
+    "response_text": "Acompanhei a vitória do meu time de basquete no ginásio municipal vibrando a cada arremesso de três pontos marcado."
+  },
+  {
+    "id": "O28_alien_outdoor_bicycle",
+    "question_text": "Como gerenciar pools de threads assíncronos para evitar rejeição de tarefas sob picos repentinos?",
+    "response_text": "Fiz uma caminhada relaxante na praia no fim da tarde ouvindo o barulho das ondas do mar e colhendo conchas."
+  },
+  {
+    "id": "O29_alien_shopping_mall",
+    "question_text": "Como calcular a assinatura de uma mensagem usando HMAC-SHA256 para autenticar webhooks externos?",
+    "response_text": "Visitei uma feira de artesanato na praça central para escolher vasos de cerâmica coloridos para decorar a varanda."
+  },
+  {
+    "id": "O30_alien_cinema_movie",
+    "question_text": "Como o algoritmo de consenso Zab do ZooKeeper garante ordenação estrita de atualizações de estado?",
+    "response_text": "Fui ao teatro assistir a uma peça dramática de época e gostei muito da atuação dos atores principais no palco."
+  },
+  {
+    "id": "O31_alien_supermarket",
+    "question_text": "Como configurar replicação semissíncrona no MySQL para evitar perda de transações comprometidas?",
+    "response_text": "Passei na padaria pela manhã para comprar pão francês quentinho, queijo minas e café moído na hora."
+  },
+  {
+    "id": "O32_alien_dishes_cleaning",
+    "question_text": "Como evitar condição de corrida em contadores distribuídos usando instruções atômicas compare-and-swap?",
+    "response_text": "Reguei todas as plantas da sala e podei os galhos secos da samambaia que fica pendurada na janela."
+  },
+  {
+    "id": "O33_alien_tv_soap_opera",
+    "question_text": "Como o broker do Kafka atinge taxa massiva de transferência na leitura de tópicos para a rede?",
+    "response_text": "Eu assisto à novela das nove na televisão todas as noites enquanto descanso no sofá da sala."
+  },
+  {
+    "id": "O34_alien_videogame",
+    "question_text": "Como balancear tráfego HTTP entre instâncias de aplicação usando o algoritmo de menor número de conexões?",
+    "response_text": "Montei um quebra-cabeça de mil peças com desenho de montanhas nevadas durante as minhas férias em família."
+  },
+  {
+    "id": "O35_alien_bank_account_personal",
+    "question_text": "Como o isolation level Serializable previne anomalias de escrita distorcida (write skew)?",
+    "response_text": "Fui até a agência dos correios despachar uma encomenda postal que precisava ser entregue na casa da minha avó."
+  },
+  {
+    "id": "I01_ignorant_never_used",
+    "question_text": "Como o mecanismo de consenso Raft elege um novo líder após expiração de heartbeat?",
+    "response_text": "Nunca usei essa tecnologia e não sei como responder."
+  },
+  {
+    "id": "I02_ignorant_dont_remember",
+    "question_text": "Como configurar balanceamento de nós virtuais em consistent hashing?",
+    "response_text": "Não lembro agora de cabeça como funciona isso."
+  },
+  {
+    "id": "I03_ignorant_never_studied",
+    "question_text": "Como funciona a detecção de ciclos em grafos de espera para resolução de deadlocks?",
+    "response_text": "Nunca estudei esse assunto a fundo na minha carreira."
+  },
+  {
+    "id": "I04_filler_monosyllabic_sim",
+    "question_text": "Você saberia explicar como o protocolo Paxos garante consenso em redes assíncronas?",
+    "response_text": "Sim, com certeza."
+  },
+  {
+    "id": "I05_filler_ok_beleza",
+    "question_text": "Como evitar concorrência descontrolada em atualizações de saldo?",
+    "response_text": "Beleza, ok."
+  },
+  {
+    "id": "I06_filler_conheco_bem",
+    "question_text": "Como o Kafka lida com offsets de mensagens não confirmadas?",
+    "response_text": "Conheço bem, sim."
+  },
+  {
+    "id": "I07_evasive_depends_on_factors",
+    "question_text": "Qual a melhor estratégia para particionar um banco de dados relacional massivo?",
+    "response_text": "Isso depende de muitos fatores e varia conforme a situação específica de cada empresa."
+  },
+  {
+    "id": "I08_evasive_we_use_tools",
+    "question_text": "Como isolar componentes lentos para evitar esgotamento de conexões?",
+    "response_text": "A gente usa ferramentas para isso no dia a dia olhando os servidores."
+  },
+  {
+    "id": "I09_evasive_looking_logs",
+    "question_text": "Como identificar se uma consulta SQL está causando table scan em produção?",
+    "response_text": "A gente descobre olhando logs quando o sistema começa a reclamar."
+  },
+  {
+    "id": "I10_evasive_consult_docs",
+    "question_text": "Como configurar réplicas de leitura com balanceamento de carga no PostgreSQL?",
+    "response_text": "Para saber esses detalhes operacionais você precisa abrir o manual oficial e pesquisar nos guias da documentação."
+  },
+  {
+    "id": "I11_evasive_depends_on_budget",
+    "question_text": "Como dimensionar o cluster de brokers para suportar um milhão de mensagens por segundo?",
+    "response_text": "Essa resposta depende inteiramente da verba financeira que a diretoria liberou para gastar em infraestrutura no trimestre."
+  },
+  {
+    "id": "I12_evasive_senior_consultant",
+    "question_text": "Como remodelar tabelas transacionais legadas para viabilizar migração para banco distribuído?",
+    "response_text": "Seria preciso contratar uma consultoria especializada por vários meses para conseguir emitir qualquer parecer sobre isso."
+  },
+  {
+    "id": "I13_evasive_just_a_queue",
+    "question_text": "Como o RabbitMQ garante entrega confiável com confirmações de publicação e consumo?",
+    "response_text": "É uma fila apenas."
+  },
+  {
+    "id": "I14_filler_uhum_ok",
+    "question_text": "Como o protocolo Raft gerencia o envio de heartbeats para manter liderança?",
+    "response_text": "Uhum, ok, beleza."
+  },
+  {
+    "id": "I15_ignorant_never_read_about_it",
+    "question_text": "Como funciona a compressão de prefixos em nós internos de índices em árvore B?",
+    "response_text": "Nunca li nada sobre isso."
+  },
+  {
+    "id": "I16_evasive_generic_monitoring",
+    "question_text": "Como mitigar gargalos de contenção de travas em bancos de dados de alta concorrência?",
+    "response_text": "A gente costuma ligar observabilidade genérica para acompanhar como o sistema está reagindo como um todo."
+  },
+  {
+    "id": "I17_filler_aham",
+    "question_text": "Como funciona o handshake do protocolo TCP para sincronização de números de sequência?",
+    "response_text": "Aham, sim."
+  },
+  {
+    "id": "I18_ignorant_dont_recall",
+    "question_text": "Como um Bloom Filter calcula a probabilidade de falsos positivos com base no número de funções hash?",
+    "response_text": "Não recordo agora como é a fórmula disso."
+  },
+  {
+    "id": "U01_tautology_fast_is_quick",
+    "question_text": "Como a desnormalização de tabelas analíticas acelera relatórios de fechamento mensal?",
+    "response_text": "A desnormalização acelera os relatórios analíticos porque ela faz com que as operações de leitura fiquem muito mais rápidas."
+  },
+  {
+    "id": "U02_tautology_locks_block",
+    "question_text": "Por que transações que disputam locks exclusivos entram em estado de espera mútua?",
+    "response_text": "Elas entram em espera mútua porque uma transação fica esperando a outra esperar num processo em que ambas esperam."
+  },
+  {
+    "id": "U03_tautology_secure_is_safe",
+    "question_text": "Como o mascaramento de dados sensíveis protege informações confidenciais em logs de auditoria?",
+    "response_text": "O mascaramento protege informações confidenciais porque ele garante que os dados fiquem protegidos de modo sigiloso e confidencial."
+  },
+  {
+    "id": "U04_tautology_cache_stores",
+    "question_text": "Como o armazenamento temporário em camadas de buffer reduz a pressão sobre discos magnéticos?",
+    "response_text": "O buffer reduz a pressão armazenando os dados em uma estrutura de bufferização que serve justamente de buffer."
+  },
+  {
+    "id": "U05_tautology_indexes_index",
+    "question_text": "Como a estruturação de chaves ordenadas simplifica buscas por prefixo em tabelas de dados?",
+    "response_text": "Chaves ordenadas simplificam as buscas porque quando estão ordenadas a busca acontece em ordem de maneira ordenada."
+  },
+  {
+    "id": "U06_tautology_duplicate_duplicates",
+    "question_text": "Como réplicas síncronas evitam perda de dados quando um servidor sofre pane física?",
+    "response_text": "As réplicas evitam perdas porque os dados ficam duplicados em vários lugares duplicados."
+  },
+  {
+    "id": "U07_tautology_sync_synchronizes",
+    "question_text": "Como o protocolo Raft mantém a consistência de dados entre múltiplos servidores?",
+    "response_text": "Ele mantém a consistência porque os nós ficam sincronizados mantendo uma sincronia sincronizada."
+  },
+  {
+    "id": "U08_tautology_compression_compresses",
+    "question_text": "Como algoritmos de compressão reduzem o tráfego de rede na transferência de grandes volumes de dados?",
+    "response_text": "Eles reduzem o tráfego comprimindo os pacotes de forma que o tamanho fique comprimido e com compressão aplicada."
+  },
+  {
+    "id": "U09_tautology_isolated_isolates",
+    "question_text": "Como o isolamento em transações ACID impede que operações concorrentes interfiram entre si?",
+    "response_text": "O isolamento impede interferências isolando as transações para que cada uma fique isolada em isolamento próprio."
+  },
+  {
+    "id": "U10_tautology_durable_durability",
+    "question_text": "Como a durabilidade de banco de dados assegura que dados confirmados não se percam após queda de energia?",
+    "response_text": "A durabilidade assegura isso tornando os dados duráveis para que permaneçam com durabilidade garantida."
+  },
+  {
+    "id": "U11_tautology_partition_partitions",
+    "question_text": "Como a divisão de tabelas em partições melhora a velocidade de varreduras em bancos de dados?",
+    "response_text": "A divisão melhora a velocidade particionando a tabela em várias partições particionadas."
+  },
+  {
+    "id": "U12_tautology_resilient_resilience",
+    "question_text": "Como padrões de resiliência mantêm a disponibilidade de serviços de backend sob falhas parciais?",
+    "response_text": "Eles mantêm a disponibilidade fornecendo resiliência para que o sistema se torne resiliente com alta resiliência."
+  }
+]
