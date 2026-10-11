@@ -105,10 +105,18 @@ POST_OPEN_DOMAIN_BLIND_REVALIDATION_BLOCKED
 
 Stage 31.7.10
     ↓
-NEXT STAGE (Root Cause Analysis & Semantic Relation Nexus Remediation)
+ROOT_CAUSE_ANALYSIS_AND_DEMAND_SATISFACTION_REDESIGN_COMPLETE
+
+Stage 31.7.11
+    ↓
+CONTROLLED_DEMAND_PROPOSITION_IMPLEMENTATION_COMPLETE
+
+Stage 31.7.12
+    ↓
+NEXT STAGE (Independent Contract Validation and Blind Semantic Revalidation Design)
 ```
 
-O Stage 31.7.9 realizou a validação cega independente da arquitetura **Open-Domain Proposition & Semantic Relation** sobre o runtime 100% congelado (SHA-256: `2DAE8514CB37F133C22CAD785BD4BD79B5E7EDB462BA9E8D956A9A9BD64F376E`), avaliando 242 casos independentes contra oráculo humano independente. O resultado demonstrou superação total da barreira lexical (100% de acerto na Categoria P de False Negative Traps e 92.86% em Invariância de Representação), mas revelou uma nova vulnerabilidade estrutural: **Permissividade Proposicional (Bias de Falsos Positivos)**, onde 88 dos 101 erros foram falsos `DIRECT` causados por heurísticas de ação operativa excessivamente permissivas que ignoravam o nexo funcional entre a demanda e a resposta. Com 58.26% de concordância exata e falhas recorrentes nas categorias O (0%) e G (18.75%), o gate foi emitido como `POST_OPEN_DOMAIN_BLIND_REVALIDATION_BLOCKED`. A regressão histórica permaneceu integralmente intacta (1005/1005 testes, 8/8 suites do Harness).
+O Stage 31.7.11 implementou de forma controlada a arquitetura **Demand-Proposition Nexus Architecture** em `reference_runtime/runtime.py` (Exit SHA-256: `5545C47ECD92C04265CA3FFB46266FDE814CC564B2F69CA91E4B230CBE04BF3E`). A implementação eliminou a heurística de proxy de tamanho de resposta (`len(r_words) >= 8`) e os atalhos permissivos para `DIRECT`, implementando a avaliação de nexus par-a-par (`FUNCTIONALLY_SOLVES`, `CONTRIBUTES_TO`, `THEMATICALLY_ADJACENT`, `ANTITHESIS_OPPOSED`, `DOMAIN_DISJUNCT`, `UNKNOWN`/`INSUFFICIENT`) e epistemologia desacoplada. O motor legado (`engine="legacy"`) foi mantido inalterado como padrão para garantir compatibilidade histórica total. Todos os 1013 testes da suíte canônica passaram (100% PASS), a suíte contratual cobriu 8 categorias (A a H) e o Reference Harness determinístico executou com status `PASS_WITH_WARNINGS` (8/8 suítes). O gate foi emitido como `CONTROLLED_DEMAND_PROPOSITION_IMPLEMENTATION_COMPLETE`.
 
 ## Regra fundamental
 

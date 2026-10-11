@@ -1797,12 +1797,16 @@ CONTROLLED_IMPLEMENTATION_COMPLETE_WITH_WARNINGS
 Stage 31.7.9
         ↓
 POST_OPEN_DOMAIN_BLIND_REVALIDATION_BLOCKED
-        ↓
-ATUAL CONCLUÍDO
 
 Stage 31.7.10
         ↓
-PRÓXIMO (Root Cause Analysis & Semantic Relation Nexus Remediation)
+ROOT_CAUSE_ANALYSIS_AND_DEMAND_SATISFACTION_REDESIGN_COMPLETE
+        ↓
+ATUAL CONCLUÍDO
+
+Stage 31.7.11
+        ↓
+PRÓXIMO (Controlled Implementation of Demand-Proposition Nexus Architecture)
 
 Stage 32
         ↓
@@ -1978,6 +1982,30 @@ O Stage 31.7.9 executou a **primeira validação cega independente** da nova arq
 
 ---
 
+# 54.9 RESUMO DO STAGE 31.7.10
+
+O Stage 31.7.10 executou a Root Cause Analysis (RCA) exaustiva e o Redesenho Arquitetural formal para sanar a permissividade proposicional (88 falsos DIRECTs) revelada no Stage 31.7.9, mantendo o runtime 100% congelado:
+
+1. **Runtime Rigorosamente Congelado**:
+   - SHA-256 verificado: `2DAE8514CB37F133C22CAD785BD4BD79B5E7EDB462BA9E8D956A9A9BD64F376E` (100% inalterado, zero modificações no código).
+2. **Auditoria Factual no Código-Fonte**:
+   - Identificada a causa-raiz no arquivo [`reference_runtime/runtime.py`](file:///d:/Projetos/TechLens/reference_runtime/runtime.py):
+     - Linha 2960: `is_operative = len(r_words) >= 5 and (has_operative_mechanism or len(r_words) >= 8)`. Qualquer frase com 8 ou mais palavras que não fosse culinária/lazer tornou-se proposição operativa.
+     - Linhas 3113–3125 (Step 6): Qualquer proposição operativa com demanda única foi promovida automaticamente a `DIRECT` com cobertura de aspecto `FULL` (1.0), sem validar se a ação descrita neutraliza o problema específico formulado na demanda.
+3. **Auditoria dos Dados Históricos**:
+   - Confirmados os 242 casos, 141 acertos exatos e 101 divergências (zero duplicatas).
+   - Constatado que 88 das 101 divergências decorrem do mesmo mecanismo (promoção indevida a `DIRECT`).
+4. **Nova Arquitetura Formalizada — Demand-Proposition Nexus Architecture**:
+   - Decomposição em `AtomicQuestionDemand` (tipo de demanda, problema alvo e polaridade esperada).
+   - Extração de `TechnicalProposition` com sujeito, ação, mecanismo, efeito e polaridade.
+   - Avaliação explícita de nexo funcional par a par (`FUNCTIONALLY_SOLVES`, `CONTRIBUTES_TO`, `THEMATICALLY_ADJACENT`, `ANTITHESIS_OPPOSED`, `DOMAIN_DISJUNCT`).
+   - Discriminador estrutural dedicado para a classe `SUPPORTING`.
+   - Sensibilidade à polaridade semântica para rejeitar ações que desativam travas de segurança.
+   - 15 Invariantes Arquiteturais Formalizados.
+5. **Gate**: `ROOT_CAUSE_ANALYSIS_AND_DEMAND_SATISFACTION_REDESIGN_COMPLETE`.
+
+---
+
 # 55. GATES HISTÓRICOS QUE NÃO DEVEM SER APAGADOS
 
 Preservar:
@@ -2002,6 +2030,7 @@ Stage 31.7.6: POST_GENERALIZATION_BLIND_REVALIDATION_BLOCKED
 Stage 31.7.7: ROOT_CAUSE_ANALYSIS_AND_ARCHITECTURE_REDESIGN_COMPLETE
 Stage 31.7.8: CONTROLLED_IMPLEMENTATION_COMPLETE_WITH_WARNINGS
 Stage 31.7.9: POST_OPEN_DOMAIN_BLIND_REVALIDATION_BLOCKED
+Stage 31.7.10: ROOT_CAUSE_ANALYSIS_AND_DEMAND_SATISFACTION_REDESIGN_COMPLETE
 ```
 
 Esses estados fazem parte da história de validação do sistema.
@@ -2141,3 +2170,32 @@ O projeto deve continuar seguindo esta filosofia:
 > **Não estamos construindo um sistema que parece inteligente. Estamos construindo um sistema cuja avaliação pode ser investigada, reproduzida, contestada e corrigida.**
 
 Esse princípio tem prioridade sobre conveniência, velocidade ou aparência de sucesso.
+
+---
+
+# 62. REGISTRO DE TRANSIÇÃO — STAGE 31.7.11 (IMPLEMENTAÇÃO CONTROLADA)
+
+- **Stage Concluído:** Stage 31.7.11 — Controlled Implementation of Demand-Proposition Nexus Architecture
+- **Gate Emitido:** `CONTROLLED_DEMAND_PROPOSITION_IMPLEMENTATION_COMPLETE`
+- **Artefato Gerado:** `11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05/Stage 31.7.11 — Controlled Implementation of Demand-Proposition Nexus Architecture.md`
+- **Baseline de Entrada (SHA-256):** `2DAE8514CB37F133C22CAD785BD4BD79B5E7EDB462BA9E8D956A9A9BD64F376E`
+- **Exit Hash do Runtime (SHA-256):** `5545C47ECD92C04265CA3FFB46266FDE814CC564B2F69CA91E4B230CBE04BF3E`
+- **Arquivo Modificado:** `reference_runtime/runtime.py`
+- **Novo Arquivo de Testes:** `tests/test_stage_31_7_11_demand_proposition_nexus.py`
+- **Resultado dos Testes Contratuais:** 8/8 classes contratuais aprovadas (Categorias A a H).
+- **Resultado dos Testes de Regressão Canônica:** 1013/1013 aprovados (`PASS`).
+- **Resultado do Reference Harness:** 8/8 suítes executadas com status `PASS_WITH_WARNINGS`.
+
+### Síntese das Modificações Arquiteturais:
+1. **Eliminação do Proxy de Tamanho:** A heurística permissiva `len(r_words) >= 8` e o atalho de promoção incondicional de proposições para `DIRECT` foram completamente removidos do motor semântico.
+2. **Avaliação Par-a-Par Demand-Proposition Nexus:** Implementada a avaliação relacional explícita entre demandas da pergunta e proposições da resposta via `DemandPropositionNexus`:
+   - `FUNCTIONALLY_SOLVES` → `DIRECT`
+   - `CONTRIBUTES_TO` → `SUPPORTING` (observabilidade/telemetria auxiliar)
+   - `THEMATICALLY_ADJACENT` → `RELATED` (menção de ferramenta, hardware, trivia ou declaração de experiência sem mecanismo operativo)
+   - `ANTITHESIS_OPPOSED` → `OFF_TOPIC` (ações operacionais destrutivas que removem proteções fundamentais)
+   - `DOMAIN_DISJUNCT` → `OFF_TOPIC` (domínios técnicos ortogonais ou não computacionais)
+   - `UNKNOWN` / `INSUFFICIENT` → preservados para respostas evasivas, vazias ou ignorância declarada.
+3. **Desacoplamento Epistemológico:** `EpistemicEvaluation` mantido estritamente independente da pertinência técnica, respeitando a regra de que declaração não equivale a demonstração.
+4. **Isolamento e Compatibilidade Total:** O motor legado (`engine="legacy"`) permanece como comportamento padrão do runtime, protegendo todos os contratos históricos. O novo motor é explicitamente invocável via `evaluate_open_domain_semantic_relevance` e `engine="open_domain"`.
+5. **Próxima Etapa:** **Stage 31.7.12 — Independent Contract Validation and Blind Semantic Revalidation Design**.
+
