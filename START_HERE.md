@@ -137,10 +137,26 @@ BLIND_SEMANTIC_REVALIDATION_BLOCKED
 
 Stage 31.7.18
     ↓
-NEXT STAGE (Root Cause Analysis & Architecture Remediation for Propositional Precision, Tautology Detection and Demand Conjunctive Satisfaction)
+RCA_COMPLETE_CORRECTION_PLAN_READY
+
+Stage 31.7.19
+    ↓
+CORRECTION_PLAN_READY_FOR_CONTROLLED_IMPLEMENTATION
+
+Stage 31.7.20
+    ↓
+IMPLEMENTATION_COMPLETE_PENDING_INDEPENDENT_BLIND_VALIDATION
+
+Stage 31.7.21
+    ↓
+BLIND_SEMANTIC_REVALIDATION_BLOCKED
+
+Stage 31.7.22
+    ↓
+NEXT STAGE (Root Cause Analysis & Semantic Precision Remediation Architecture — Cycle 4)
 ```
 
-O Stage 31.7.17 executou a revalidação semântica cega independente do runtime congelado no Stage 31.7.16 (`AF3C1A14A435074C703A370591DFE8F91862789D9C536121EB3370F06CFF0CCB`) sobre 200 casos técnicos inéditos (0% de sobreposição com os 250 casos do Stage 31.7.13). A validação seguiu protocolo estritamente cego e determinístico. O runtime demonstrou avanço expressivo em Recall de DIRECT (88,89%, superando a meta de $\ge 85\%$) e na classificação de SUPPORTING (96,0%), mantendo regressão canônica perfeita de 1.024 testes aprovados (`OK (skipped=1)`) e Reference Harness 8/8 aprovado. No entanto, o runtime falhou em 5 dos 7 critérios de aceitação: Concordância Exata atingiu 62,00% (meta $\ge 75\%$), Precisão de DIRECT foi de 47,62% (meta $\ge 70\%$), Falsos DIRECTs entre divergências foi de 57,89% (meta $\le 10\%$), Recall de PARTIAL foi de 45,71% (meta $\ge 60\%$) e Invariância de Representação foi de 61,54% (meta $\ge 80\%$). A auditoria semântica revelou 44 falsos DIRECTs gerados por falta de conjunção estrita em perguntas multi-demanda (14 casos PARTIAL), confusão entre descrição histórica/institucional e resolução mecânica (15 casos RELATED), tautologias circulares não detectadas (6 casos UNKNOWN) e vazamento léxico em antíteses/casos cotidianos (7 casos OFF_TOPIC). O gate formal emitido foi `GATE: BLIND_SEMANTIC_REVALIDATION_BLOCKED`. A próxima etapa é o **Stage 31.7.18 — Root Cause Analysis & Architecture Remediation for Propositional Precision, Tautology Detection and Demand Conjunctive Satisfaction**.
+O Stage 31.7.21 concluiu a revalidação semântica cega e independente do runtime corrigido no Stage 31.7.20 (`reference_runtime/runtime.py`, SHA-256 congelado verificado: `75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC`). A validação foi conduzida sobre 250 casos de teste inéditos com zero sobreposição com benchmarks históricos, sem alterações de código no runtime e sem relaxamento de testes. A regressão canônica obteve 100% de conformidade (1.038 testes unitários e 15 testes do Reference Harness aprovados). Contudo, 6 dos 7 critérios quantitativos de aceite falharam: Concordância Exata de 68,00% (alvo $\ge 75\%$), Recall de DIRECT de 81,54% (alvo $\ge 85\%$), Precisão de DIRECT de 53,00% (alvo $\ge 70\%$), Falsos DIRECT entre divergências de 58,75% (alvo $\le 10\%$), Recall de PARTIAL de 37,78% (alvo $\ge 60\%$) e Invariância de Representação de 68,75% (alvo $\ge 80\%$). A salvaguarda de evitação e polaridade (Grupo I) obteve 92,86% de acurácia, confirmando o avanço na mitigação de antítese, mas a promoção indevida de respostas parciais (`PARTIAL` -> `DIRECT`: 25 casos) e afirmações históricas/declarações de experiência (`RELATED` -> `DIRECT`: 8 casos) revelou limites das regras heurísticas em orações simples multi-aspecto. Em respeito estrito às regras metodológicas, o gate emitido é `BLIND_SEMANTIC_REVALIDATION_BLOCKED`. A próxima etapa é o **Stage 31.7.22 — Root Cause Analysis & Semantic Precision Remediation Architecture (Cycle 4)**.
 
 ## Regra fundamental
 

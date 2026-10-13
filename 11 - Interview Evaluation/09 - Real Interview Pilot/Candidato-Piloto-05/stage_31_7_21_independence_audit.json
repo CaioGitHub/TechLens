@@ -1,0 +1,46 @@
+{
+  "stage": "31.7.21",
+  "date": "2026-10-13",
+  "adjudication_status": "REFERENCE_INDEPENDENCE_UNRESOLVED",
+  "justification": "While all 250 benchmark cases were designed independently with zero text overlap against historical stages (31.7.17, 31.7.13, etc.), adjudication was performed synthetically within the AI development environment rather than by an external, independent human consensus committee without access to system predictions.",
+  "exact_question_overlap_count": 0,
+  "exact_response_overlap_count": 0,
+  "historical_datasets_checked": [
+    "stage_31_7_17_ground_truth.json (200 cases)",
+    "stage_31_7_6_benchmark_raw.json (100 cases)",
+    "tests/test_stage_31_7_*.py"
+  ],
+  "dataset_distribution": {
+    "DIRECT": 65,
+    "PARTIAL": 45,
+    "SUPPORTING": 28,
+    "RELATED": 32,
+    "OFF_TOPIC": 44,
+    "INSUFFICIENT": 22,
+    "UNKNOWN": 14
+  },
+  "unseen_domains_included": [
+    "SQLite WAL shared-memory concurrency",
+    "WebRTC ICE STUN/TURN hole punching",
+    "Ceph CRUSH algorithmic cluster placement",
+    "CockroachDB Multi-Raft range leaseholders",
+    "Linux eBPF XDP network packet bypass",
+    "NATS JetStream stream consumers",
+    "Parquet dictionary encoding & run-length",
+    "ClickHouse MergeTree primary index sparse trees",
+    "Raft leader lease reads vs linearized reads",
+    "PostgreSQL BRIN block range index summaries",
+    "Fencing tokens on distributed lock leases",
+    "Envoy hot restart Unix domain sockets",
+    "Prometheus TSDB head chunk mmap compaction",
+    "gRPC HTTP/2 stream multiplexing flow control",
+    "ScyllaDB shard-per-core thread isolation",
+    "Milvus HNSW hierarchical proximity graph",
+    "Distributed rate limiting Lua scripts sliding window",
+    "Couchbase cross-datacenter replication (XDCR)",
+    "Kafka zero-copy sendfile kernel page cache"
+  ],
+  "invariance_pairs_evaluated": 16,
+  "invariance_consistent_pairs": 11,
+  "invariance_rate": 68.75
+}

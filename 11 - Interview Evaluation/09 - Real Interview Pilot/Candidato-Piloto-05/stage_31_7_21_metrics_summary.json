@@ -1,0 +1,180 @@
+{
+  "dataset_size": 250,
+  "exact_agreement": {
+    "correct": 170,
+    "total": 250,
+    "percentage": 68.0,
+    "target": ">= 75.0%",
+    "passed": false
+  },
+  "direct_recall": {
+    "tp": 53,
+    "support": 65,
+    "percentage": 81.54,
+    "target": ">= 85.0%",
+    "passed": false
+  },
+  "direct_precision": {
+    "tp": 53,
+    "predicted_count": 100,
+    "percentage": 53.0,
+    "target": ">= 70.0%",
+    "passed": false
+  },
+  "false_direct_among_divergences": {
+    "false_direct_count": 47,
+    "total_divergences": 80,
+    "percentage": 58.75,
+    "target": "<= 10.0%",
+    "passed": false
+  },
+  "partial_recall": {
+    "tp": 17,
+    "support": 45,
+    "percentage": 37.78,
+    "target": ">= 60.0%",
+    "passed": false
+  },
+  "representation_invariance": {
+    "consistent_pairs": 11,
+    "total_pairs": 16,
+    "percentage": 68.75,
+    "target": ">= 80.0%",
+    "passed": false
+  },
+  "canonical_regression": {
+    "total_tests": 1038,
+    "passed": true,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0,
+    "harness_tests": 15,
+    "harness_passed": 15,
+    "target": "Zero unexplained failures"
+  },
+  "overall_criteria_passed": false,
+  "class_metrics": {
+    "DIRECT": {
+      "tp": 53,
+      "fp": 47,
+      "fn": 12,
+      "support": 65,
+      "predicted_count": 100,
+      "precision": 53.0,
+      "recall": 81.54,
+      "f1": 64.24
+    },
+    "PARTIAL": {
+      "tp": 17,
+      "fp": 9,
+      "fn": 28,
+      "support": 45,
+      "predicted_count": 26,
+      "precision": 65.38,
+      "recall": 37.78,
+      "f1": 47.89
+    },
+    "SUPPORTING": {
+      "tp": 25,
+      "fp": 1,
+      "fn": 3,
+      "support": 28,
+      "predicted_count": 26,
+      "precision": 96.15,
+      "recall": 89.29,
+      "f1": 92.59
+    },
+    "RELATED": {
+      "tp": 21,
+      "fp": 0,
+      "fn": 11,
+      "support": 32,
+      "predicted_count": 21,
+      "precision": 100.0,
+      "recall": 65.62,
+      "f1": 79.25
+    },
+    "OFF_TOPIC": {
+      "tp": 39,
+      "fp": 12,
+      "fn": 5,
+      "support": 44,
+      "predicted_count": 51,
+      "precision": 76.47,
+      "recall": 88.64,
+      "f1": 82.11
+    },
+    "INSUFFICIENT": {
+      "tp": 8,
+      "fp": 0,
+      "fn": 14,
+      "support": 22,
+      "predicted_count": 8,
+      "precision": 100.0,
+      "recall": 36.36,
+      "f1": 53.33
+    },
+    "UNKNOWN": {
+      "tp": 7,
+      "fp": 11,
+      "fn": 7,
+      "support": 14,
+      "predicted_count": 18,
+      "precision": 38.89,
+      "recall": 50.0,
+      "f1": 43.75
+    }
+  },
+  "group_breakdown": {
+    "A_functional_satisfaction": {
+      "correct": 26,
+      "total": 30,
+      "accuracy": 86.67
+    },
+    "B_partial_responses": {
+      "correct": 7,
+      "total": 30,
+      "accuracy": 23.33
+    },
+    "C_auxiliary_contribution": {
+      "correct": 25,
+      "total": 28,
+      "accuracy": 89.29
+    },
+    "D_thematic_proximity": {
+      "correct": 21,
+      "total": 32,
+      "accuracy": 65.62
+    },
+    "E_alien_off_topic": {
+      "correct": 27,
+      "total": 30,
+      "accuracy": 90.0
+    },
+    "F_insufficient_evidence": {
+      "correct": 8,
+      "total": 22,
+      "accuracy": 36.36
+    },
+    "G_uncertainty_circularity": {
+      "correct": 7,
+      "total": 14,
+      "accuracy": 50.0
+    },
+    "H_compound_multi_aspect": {
+      "correct": 11,
+      "total": 18,
+      "accuracy": 61.11
+    },
+    "I_polarity_avoidance_guard": {
+      "correct": 13,
+      "total": 14,
+      "accuracy": 92.86
+    },
+    "J_representation_invariance": {
+      "correct": 25,
+      "total": 32,
+      "accuracy": 78.12
+    }
+  }
+}

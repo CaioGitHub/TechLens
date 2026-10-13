@@ -1,0 +1,2033 @@
+{
+  "total_divergences": 80,
+  "divergence_rate": 32.0,
+  "false_direct_rate_div": 58.75,
+  "category_counts": {
+    "demand_decomposition_or_partial_coverage_underestimation": 9,
+    "polarity_or_lexical_absence_overpenalized": 8,
+    "partial_coverage_classified_as_complete": 25,
+    "UNRESOLVED": 1,
+    "false_direct_functional_relation_overestimation": 22,
+    "evasive_or_insufficient_content_overinterpreted": 14,
+    "circularity_or_epistemic_uncertainty_undetected": 1
+  },
+  "divergences": [
+    {
+      "case_id": "A13_roaring_bitmaps",
+      "group": "A_functional_satisfaction",
+      "question_text": "O que são Roaring Bitmaps e como eles compactam conjuntos de dados com densidades variáveis?",
+      "response_text": "São estruturas de bitmap particionadas em chunks de 16 bits que alternam dinamicamente entre arrays de inteiros para regiões esparsas e bitsets contínuos para regiões densas.",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "multi_aspect_partial_coverage",
+      "primary_demands": [
+        "conceito e mecanismo de compactação de Roaring Bitmaps"
+      ],
+      "satisfied_aspects": [
+        "partição em chunks de 16 bits alternando entre array e bitset"
+      ],
+      "response_propositions": [
+        "multi_aspect_partial_coverage"
+      ],
+      "functional_relation": "multi_aspect_partial_coverage",
+      "demand_coverage": "PARTIAL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "demand_decomposition_or_partial_coverage_underestimation",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "A17_tcp_syn_flood",
+      "group": "A_functional_satisfaction",
+      "question_text": "Como diagnosticar e conter um ataque de TCP SYN flood em um balanceador Linux?",
+      "response_text": "Verifico o estouro da fila de conexões pendentes com netstat e ativo a proteção de tcp_syncookies no sysctl para responder com números de sequência criptográficos sem alocar memória.",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "multi_aspect_partial_coverage",
+      "primary_demands": [
+        "diagnóstico e contenção de SYN flood no Linux"
+      ],
+      "satisfied_aspects": [
+        "identificação de fila pendente e ativação de tcp_syncookies"
+      ],
+      "response_propositions": [
+        "multi_aspect_partial_coverage"
+      ],
+      "functional_relation": "multi_aspect_partial_coverage",
+      "demand_coverage": "PARTIAL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "demand_decomposition_or_partial_coverage_underestimation",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "A23_fencing_tokens_concept",
+      "group": "A_functional_satisfaction",
+      "question_text": "O que é um fencing token e como ele impede corrupção de dados após pausas de GC em clientes de lock distribuído?",
+      "response_text": "É um identificador numérico estritamente crescente gerado pelo coordenador de locks; o storage rejeita qualquer gravação que apresente um token inferior ao último token já gravado.",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "multi_aspect_partial_coverage",
+      "primary_demands": [
+        "conceito e função de fencing token contra pausas de GC"
+      ],
+      "satisfied_aspects": [
+        "número estritamente crescente validado pelo storage para barrar escritas obsoletas"
+      ],
+      "response_propositions": [
+        "multi_aspect_partial_coverage"
+      ],
+      "functional_relation": "multi_aspect_partial_coverage",
+      "demand_coverage": "PARTIAL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "demand_decomposition_or_partial_coverage_underestimation",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "A29_postgres_vacuum_bloat",
+      "group": "A_functional_satisfaction",
+      "question_text": "Como o processo de VACUUM do PostgreSQL recupera espaço em tabelas com alto volume de updates?",
+      "response_text": "Percorre as páginas da tabela identificando dead tuples cujas transações já finalizaram e marca essas linhas no Free Space Map para que futuros inserts possam reaproveitar o espaço.",
+      "reference_class": "DIRECT",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "non_operative_assertion",
+      "primary_demands": [
+        "recuperação de espaço via VACUUM no PostgreSQL"
+      ],
+      "satisfied_aspects": [
+        "varredura de dead tuples e registro no Free Space Map para reuso"
+      ],
+      "response_propositions": [
+        "non_operative_assertion"
+      ],
+      "functional_relation": "non_operative_assertion",
+      "demand_coverage": "NONE",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "polarity_or_lexical_absence_overpenalized",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B02_partial_2pc_coordinator_crash",
+      "group": "B_partial_responses",
+      "question_text": "Como o Two-Phase Commit garante atomicidade distribuída e o que ocorre se o coordenador falhe durante a fase de commit?",
+      "response_text": "Na fase de prepare o coordenador pergunta se todos podem commitar e se todos responderem sim ele envia commit global, garantindo que ninguém desvie.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "multi_aspect_full_coverage",
+      "primary_demands": [
+        "garantia de atomicidade e tratamento de falha do coordenador no 2PC"
+      ],
+      "satisfied_aspects": [
+        "protocolo básico prepare/commit"
+      ],
+      "response_propositions": [
+        "multi_aspect_full_coverage"
+      ],
+      "functional_relation": "multi_aspect_full_coverage",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B03_partial_raft_append_entries",
+      "group": "B_partial_responses",
+      "question_text": "Como o líder do Raft replica entradas de log para seguidores e sincroniza logs desatualizados?",
+      "response_text": "O líder envia mensagens AppendEntries contendo novas entradas para todos os seguidores e aguarda a confirmação da maioria para commitar.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "multi_aspect_full_coverage",
+      "primary_demands": [
+        "replicação normal de log e sincronização de nós desatualizados no Raft"
+      ],
+      "satisfied_aspects": [
+        "AppendEntries para maioria no fluxo normal"
+      ],
+      "response_propositions": [
+        "multi_aspect_full_coverage"
+      ],
+      "functional_relation": "multi_aspect_full_coverage",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B04_partial_cqrs_eventual_consistency",
+      "group": "B_partial_responses",
+      "question_text": "Como o padrão CQRS separa comandos e consultas e lida com latência de projeção eventual?",
+      "response_text": "Separamos o modelo de escrita em tabelas transacionais normalizadas e enviamos eventos para atualizar leituras otimizadas no Elasticsearch.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "SUPPORTING",
+      "question_intent": "auxiliary_observability_support",
+      "primary_demands": [
+        "separação comando/consulta no CQRS e tratamento de latência eventual"
+      ],
+      "satisfied_aspects": [
+        "separação de modelos de escrita e leitura"
+      ],
+      "response_propositions": [
+        "auxiliary_observability_support"
+      ],
+      "functional_relation": "auxiliary_observability_support",
+      "demand_coverage": "SUPPORTING_ONLY",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "UNRESOLVED",
+      "evidence": [
+        "Response provides auxiliary observability/monitoring contribution without directly solving."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B05_partial_circuit_breaker_half_open",
+      "group": "B_partial_responses",
+      "question_text": "Como um Circuit Breaker transita entre os estados fechado, aberto e meio-aberto para recuperação?",
+      "response_text": "Ele monitora taxa de erros no estado fechado e quando atinge o limiar ele abre o circuito para rejeitar chamadas imediatamente.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "transição completa entre fechado, aberto e meio-aberto no circuit breaker"
+      ],
+      "satisfied_aspects": [
+        "transição de fechado para aberto"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B07_partial_saga_orchestration_compensation",
+      "group": "B_partial_responses",
+      "question_text": "Como uma saga orquestrada coordena transações locais e executa compensações em caso de falha?",
+      "response_text": "Um serviço orquestrador central envia comandos sequenciais para cada microsserviço executar sua transação local via mensageria.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "coordenação de transações locais e execução de transações compensatórias"
+      ],
+      "satisfied_aspects": [
+        "orquestração sequencial de transações locais"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B08_partial_spanner_truetime",
+      "group": "B_partial_responses",
+      "question_text": "Como o Google Spanner fornece consistência estrita externamente e lida com incerteza do TrueTime?",
+      "response_text": "Ele utiliza relógios atômicos e receptores GPS sincronizados para atribuir timestamps de commit a cada transação.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "consistência externa e tratamento de incerteza de relógio no Spanner"
+      ],
+      "satisfied_aspects": [
+        "atribuição de timestamps via TrueTime"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B09_partial_grpc_keepalive_streams",
+      "group": "B_partial_responses",
+      "question_text": "Como o gRPC mantém conexões HTTP/2 ativas através de keepalives e detecta proxies intermediários mortos?",
+      "response_text": "Configuramos pings periódicos de keepalive no cliente para enviar frames PING no canal HTTP/2 a cada 30 segundos.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "keepalive em HTTP/2 e detecção de timeout de proxies mortos"
+      ],
+      "satisfied_aspects": [
+        "envio de frames PING em intervalos regulares"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B10_partial_redis_cluster_resharding",
+      "group": "B_partial_responses",
+      "question_text": "Como o Redis Cluster redistribui hash slots durante resharding e redireciona clientes com ASK/MOVED?",
+      "response_text": "O cluster divide o espaço em 16384 slots e move chaves de um nó para outro usando o comando MIGRATE com lock atômico por chave.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "migração de hash slots e redirecionamento de clientes com ASK/MOVED"
+      ],
+      "satisfied_aspects": [
+        "partição de slots e migração física de chaves"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B13_partial_kubernetes_pdb_drain",
+      "group": "B_partial_responses",
+      "question_text": "Como PodDisruptionBudgets (PDB) protegem aplicações durante operações de drain em nós do Kubernetes?",
+      "response_text": "O PDB define o minAvailable ou maxUnavailable de réplicas que devem permanecer saudáveis durante interrupções voluntárias na infraestrutura.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "funcionamento do PDB e interação com o processo de drain"
+      ],
+      "satisfied_aspects": [
+        "definição de orçamento de disponibilidade mínima/máxima"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B16_partial_deduplication_without_storage",
+      "group": "B_partial_responses",
+      "question_text": "Como implementar deduplicação de mensagens em filas assíncronas e expirar chaves processadas?",
+      "response_text": "Calculamos o hash SHA-256 do corpo da mensagem e checamos se esse hash já foi processado antes de despachar para o handler de negócio.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "deduplicação por hash e expiração com TTL de chaves processadas"
+      ],
+      "satisfied_aspects": [
+        "verificação de hash de deduplicação antes do processamento"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B18_partial_rate_limiting_sliding_window",
+      "group": "B_partial_responses",
+      "question_text": "Como funciona o algoritmo Sliding Window Counter de rate limiting e como calcular a taxa de requisições no limite da janela?",
+      "response_text": "Dividimos o tempo em fatias e mantemos contadores para a janela anterior e atual para suavizar rajadas entre viradas de minuto.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "non_operative_assertion",
+      "primary_demands": [
+        "conceito de janelas deslizantes e cálculo ponderado na borda da janela"
+      ],
+      "satisfied_aspects": [
+        "divisão em janelas consecutivas para amortecer rajadas"
+      ],
+      "response_propositions": [
+        "non_operative_assertion"
+      ],
+      "functional_relation": "non_operative_assertion",
+      "demand_coverage": "NONE",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "polarity_or_lexical_absence_overpenalized",
+      "evidence": [
+        "Response does not demonstrate technical propositions satisfying demands."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B19_partial_spanner_read_write_split",
+      "group": "B_partial_responses",
+      "question_text": "Como bancos distribuídos separam transações de leitura pura sem lock de transações com escrita via 2PC?",
+      "response_text": "As transações de leitura pura são executadas em um timestamp fixo no passado consultando réplicas locais sem adquirir travas de bloqueio.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "leituras sem lock via snapshot timestamp e escritas concorrentes via 2PC"
+      ],
+      "satisfied_aspects": [
+        "leitura em timestamp histórico sem travas"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B20_partial_connection_pool_starvation",
+      "group": "B_partial_responses",
+      "question_text": "Como investigar esgotamento de pool de conexões com banco e evitar bloqueio perpétuo de threads?",
+      "response_text": "Inspecionamos se o número de conexões ativas atingiu o maximumPoolSize configurado no driver de banco de dados.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "investigação de esgotamento e configuração de timeout de aquisição para evitar travamento perpétuo"
+      ],
+      "satisfied_aspects": [
+        "verificação de conexões ativas contra o limite do pool"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B21_partial_canary_deployment_routing",
+      "group": "B_partial_responses",
+      "question_text": "Como projetar canários de deploy com Service Mesh dividindo tráfego por peso e monitorando taxas de erro?",
+      "response_text": "Configuramos uma rota ponderada no VirtualService direcionando 90% das requisições para a versão estável e 10% para o canário.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "divisão de tráfego por peso e monitoramento de taxas de erro com rollback automático"
+      ],
+      "satisfied_aspects": [
+        "roteamento ponderado de tráfego via VirtualService"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B22_partial_kafka_rebalance_protocol",
+      "group": "B_partial_responses",
+      "question_text": "Como o Cooperative Sticky Assignor do Kafka evita pausas globais em rebalanceamentos de grupos de consumidores?",
+      "response_text": "Ele mantém a maior parte das partições atribuídas aos seus donos atuais durante o rebalanceamento em vez de revogar tudo.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "rebalanceamento cooperativo e migração em rodadas sem stop-the-world"
+      ],
+      "satisfied_aspects": [
+        "retenção de partições válidas durante a redistribuição"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B23_partial_database_deadlock_victim",
+      "group": "B_partial_responses",
+      "question_text": "Como o banco relacional identifica deadlocks e escolhe qual transação abortar como vítima?",
+      "response_text": "O mecanismo roda um detector que encontra ciclos de dependência entre transações travadas aguardando locks de outras transações.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "identificação de ciclos de deadlock e critério de escolha da transação vítima"
+      ],
+      "satisfied_aspects": [
+        "detecção de ciclos de espera entre transações"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B24_partial_tls_sni_routing",
+      "group": "B_partial_responses",
+      "question_text": "Como balanceadores de carga utilizam Server Name Indication (SNI) para rotear tráfego TLS e selecionar o certificado correto?",
+      "response_text": "O cliente informa o hostname pretendido no campo SNI da mensagem Client Hello do handshake TLS antes da encriptação.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "envio do hostname via SNI no Client Hello e seleção dinâmica do certificado correspondente"
+      ],
+      "satisfied_aspects": [
+        "indicação do hostname pelo cliente no Client Hello"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B25_partial_distributed_tracing_propagation",
+      "group": "B_partial_responses",
+      "question_text": "Como o OpenTelemetry propaga o contexto de rastreamento entre serviços HTTP e cria spans filhos?",
+      "response_text": "Injetamos os cabeçalhos traceparent e tracestate no header HTTP da chamada de saída para repassar o trace ID para o receptor.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "injeção de cabeçalhos de contexto e extração no receptor com criação de span filho"
+      ],
+      "satisfied_aspects": [
+        "injeção dos cabeçalhos traceparent na requisição de saída"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B26_partial_caching_thundering_herd",
+      "group": "B_partial_responses",
+      "question_text": "Como mitigar o problema de Thundering Herd quando uma chave crítica expira no cache e dezenas de threads consultam o banco?",
+      "response_text": "Adotamos uma trava distribuída ou mutex local para que apenas uma única thread execute a consulta ao banco de dados.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "bloqueio exclusivo de recarga e retorno de dados stale ou espera das demais threads"
+      ],
+      "satisfied_aspects": [
+        "mutex restringindo uma thread para regeneração"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B27_partial_memory_dump_leak_suspect",
+      "group": "B_partial_responses",
+      "question_text": "Como capturar um heap dump de um processo em produção sem derrubar a aplicação e analisar os objetos dominantes?",
+      "response_text": "Executamos o comando jcmd <pid> GC.heap_dump /tmp/dump.hprof em uma réplica retirada previamente do balanceamento para evitar impacto.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "captura segura de dump e análise do dominator tree para identificar o leak suspect"
+      ],
+      "satisfied_aspects": [
+        "captura segura com isolamento da instância"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B28_partial_acid_isolation_levels",
+      "group": "B_partial_responses",
+      "question_text": "Compare os níveis de isolamento Read Committed e Repeatable Read quanto a leituras não-repetíveis e phantom reads.",
+      "response_text": "No Read Committed cada query vê um novo snapshot dos dados commitados, permitindo que leituras subsequentes vejam valores diferentes se outra transação commitar.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "non_operative_assertion",
+      "primary_demands": [
+        "comparação de Read Committed e Repeatable Read para non-repeatable e phantom reads"
+      ],
+      "satisfied_aspects": [
+        "comportamento de Read Committed com leitura não-repetível"
+      ],
+      "response_propositions": [
+        "non_operative_assertion"
+      ],
+      "functional_relation": "non_operative_assertion",
+      "demand_coverage": "NONE",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "polarity_or_lexical_absence_overpenalized",
+      "evidence": [
+        "Response does not demonstrate technical propositions satisfying demands."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B29_partial_wireguard_handshake",
+      "group": "B_partial_responses",
+      "question_text": "Como o protocolo WireGuard estabelece túneis seguros e valida tráfego de entrada via Cryptokey Routing?",
+      "response_text": "O tráfego de entrada é validado checando a chave pública do remetente e garantindo que o IP de origem esteja na lista de AllowedIPs associada àquela chave.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "handshake Noise protocol e roteamento via AllowedIPs em WireGuard"
+      ],
+      "satisfied_aspects": [
+        "validação de IP de origem contra AllowedIPs associado à chave pública"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "B30_partial_database_sharding_routing",
+      "group": "B_partial_responses",
+      "question_text": "Como projetar o roteamento de queries em bancos com sharding e lidar com scatter-gather em queries sem shard key?",
+      "response_text": "O roteador calcula o hash da shard key informada no WHERE e despacha a consulta diretamente para o shard responsável.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "roteamento direcionado por chave e mecanismo scatter-gather para queries sem shard key"
+      ],
+      "satisfied_aspects": [
+        "roteamento direto com chave de partição"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "C17_aux_log_analytics_slow_queries",
+      "group": "C_auxiliary_contribution",
+      "question_text": "Como conter degradação severa de queries em banco relacional que travam a aplicação?",
+      "response_text": "Configuramos o envio de logs de slow queries para o Azure Log Analytics e executamos consultas KQL diárias para auditar os piores casos.",
+      "reference_class": "SUPPORTING",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "contenção de degradação severa de queries lentas"
+      ],
+      "satisfied_aspects": [
+        "auditoria de slow queries com Azure Log Analytics"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "C18_aux_jaeger_tracing_database_lock",
+      "group": "C_auxiliary_contribution",
+      "question_text": "Como resolver contenção de locks exclusivos em linhas de clientes durante fechamento contábil?",
+      "response_text": "Adicionamos traces do Jaeger em cada transação para saber exatamente em qual método do backend a execução permaneceu mais tempo.",
+      "reference_class": "SUPPORTING",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "resolução de contenção de locks em fechamento contábil"
+      ],
+      "satisfied_aspects": [
+        "rastreamento distribuído no Jaeger para tempo de execução"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "C28_aux_datadog_database_deadlock_alert",
+      "group": "C_auxiliary_contribution",
+      "question_text": "Como impedir que deadlocks no banco de dados travem transações financeiras críticas?",
+      "response_text": "Adicionamos métricas no Datadog para acompanhar o total de deadlocks reportados pelo banco por minuto.",
+      "reference_class": "SUPPORTING",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "prevenção de deadlocks em transações financeiras"
+      ],
+      "satisfied_aspects": [
+        "métrica de deadlocks por minuto no Datadog"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "D07_meta_cncf_opentelemetry",
+      "group": "D_thematic_proximity",
+      "question_text": "Como funciona o algoritmo de amostragem probabilística (head-based sampling) no coletor OpenTelemetry?",
+      "response_text": "O OpenTelemetry é o segundo maior projeto da CNCF em termos de velocidade de commits, ganhando muita popularidade entre empresas de tecnologia.",
+      "reference_class": "RELATED",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "non_operative_assertion",
+      "primary_demands": [
+        "amostragem probabilística head-based no OpenTelemetry Collector"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "non_operative_assertion"
+      ],
+      "functional_relation": "non_operative_assertion",
+      "demand_coverage": "NONE",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "polarity_or_lexical_absence_overpenalized",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "D12_meta_cockroach_spanner_clone",
+      "group": "D_thematic_proximity",
+      "question_text": "Como o CockroachDB implementa transações ACID distribuídas através de registros de transação e timestamps híbridos?",
+      "response_text": "O CockroachDB foi fundado por ex-engenheiros do Google inspirados pelo design do paper do Spanner para bancos SQL globais.",
+      "reference_class": "RELATED",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "non_operative_assertion",
+      "primary_demands": [
+        "transações ACID distribuídas e registros transacionais no CockroachDB"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "non_operative_assertion"
+      ],
+      "functional_relation": "non_operative_assertion",
+      "demand_coverage": "NONE",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "polarity_or_lexical_absence_overpenalized",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "D19_meta_scylladb_cassandra_compatibility",
+      "group": "D_thematic_proximity",
+      "question_text": "Como o ScyllaDB elimina pausas de GC reescrevendo o Cassandra em C++ com arquitetura shared-nothing e Seastar reactor?",
+      "response_text": "O ScyllaDB é compatível com o protocolo do Apache Cassandra e foi projetado para ser um substituto direto de bancos NoSQL colunares.",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "arquitetura shared-nothing e Seastar reactor no ScyllaDB"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "D20_trivia_nginx_creator_rambler",
+      "group": "D_thematic_proximity",
+      "question_text": "Como a arquitetura orientada a eventos do NGINX processa milhares de conexões HTTP simultâneas com poucos workers?",
+      "response_text": "O NGINX foi escrito pelo programador russo Igor Sysoev no início dos anos 2000 para atender ao tráfego do portal de notícias Rambler.",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "modelo assíncrono não-bloqueante e event loop do NGINX"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "D22_decl_redis_cache_usage",
+      "group": "D_thematic_proximity",
+      "question_text": "Como o Redis implementa algoritmos de eviction como LRU aproximado e LFU em estruturas com limites de memória?",
+      "response_text": "Já usei o Redis em diversos projetos para fazer cache de respostas HTTP rápidas e nunca tivemos nenhum tipo de lentidão perceptível.",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "algoritmos de eviction LRU/LFU aproximados no Redis"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "D25_decl_kubernetes_pod_deploy",
+      "group": "D_thematic_proximity",
+      "question_text": "Como o mecanismo de Leader Election do Kubernetes impede que múltiplos operadores executem reconciliações simultâneas?",
+      "response_text": "Nossa equipe sobe e gerencia dezenas de pods em produção diariamente no Kubernetes e sabemos criar deployments muito bem.",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "mecanismo de Leader Election com Lease objects no Kubernetes"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "D27_trivia_intel_cpu_pipeline",
+      "group": "D_thematic_proximity",
+      "question_text": "Como mitigar branch mispredictions em loops computacionais intensivos em linguagens compiladas?",
+      "response_text": "Os manuais de arquitetura de computadores explicam que os processadores possuem pipelines profundos de até vinte estágios distintos.",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "mitigação de branch mispredictions em loops intensivos"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "D28_meta_temporal_orchestration",
+      "group": "D_thematic_proximity",
+      "question_text": "Como o Temporal garante execução durável de workflows mesmo se os nós executores sofrerem crash repentino?",
+      "response_text": "O Temporal é uma ferramenta de código aberto bastante adotada por empresas globais para substituição de cron jobs legados.",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "execução durável de workflows e replay de eventos no Temporal"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "D29_decl_microservices_experience",
+      "group": "D_thematic_proximity",
+      "question_text": "Como o padrão Saga coreografado propaga falhas e executa compensações entre múltiplos serviços autônomos?",
+      "response_text": "Trabalhei cinco anos na empresa anterior desenvolvendo dezenas de microsserviços interconectados em arquitetura moderna.",
+      "reference_class": "RELATED",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "non_operative_assertion",
+      "primary_demands": [
+        "propagação de eventos de falha e compensação reversa em Saga coreografada"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "non_operative_assertion"
+      ],
+      "functional_relation": "non_operative_assertion",
+      "demand_coverage": "NONE",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "polarity_or_lexical_absence_overpenalized",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "D30_trivia_database_codd_relational",
+      "group": "D_thematic_proximity",
+      "question_text": "Como o otimizador de queries escolhe entre Nested Loop Join e Hash Join baseado em estatísticas de custo?",
+      "response_text": "O modelo relacional de banco de dados foi formalizado pelo cientista da computação Edgar F. Codd em 1970 na IBM.",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "otimizador de queries e escolha de algoritmos de join por custo"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "D32_decl_nosql_cassandra_usage",
+      "group": "D_thematic_proximity",
+      "question_text": "Como o Cassandra garante linearizabilidade em Lightweight Transactions (LWT) utilizando Paxos em quatro fases?",
+      "response_text": "Na nossa infraestrutura já utilizamos Cassandra há muitos anos e conhecemos bem as propriedades de escalabilidade horizontal do banco.",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "Lightweight Transactions (LWT) e Paxos no Cassandra"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "E27_alien_bgp_to_graphql_schema",
+      "group": "E_alien_off_topic",
+      "question_text": "Como roteadores BGP convergem rotas autônomas evitando loops com AS-Path?",
+      "response_text": "Declaramos tipos no schema do GraphQL com resolvers assíncronos para buscar dados em endpoints REST.",
+      "reference_class": "OFF_TOPIC",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "convergência e prevenção de loops no BGP"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "E29_alien_kql_for_virtual_threads",
+      "group": "E_alien_off_topic",
+      "question_text": "Como as Virtual Threads do Java desacolam tarefas de carrier threads durante operações de I/O bloqueante?",
+      "response_text": "Executamos queries KQL no Azure Log Analytics para filtrar eventos com summarize e count por categoria de erro.",
+      "reference_class": "OFF_TOPIC",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "desacoplamento de carrier threads em Virtual Threads Java"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "E30_alien_rabbitmq_for_envoy_proxy",
+      "group": "E_alien_off_topic",
+      "question_text": "Como o proxy Envoy realiza load balancing L7 com algoritmo round-robin ponderado entre endpoints saudáveis?",
+      "response_text": "Configuramos exchanges do tipo topic no RabbitMQ com filas e dead-letter exchanges para descarte de mensagens.",
+      "reference_class": "OFF_TOPIC",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "balanceamento L7 ponderado no Envoy"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F01_vague_depends_on_factors",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como você estruturaria a retenção de dados históricos em clusters Elasticsearch sem estourar o disco?",
+      "response_text": "Olha, isso depende de muitos fatores e depende bastante de como a equipe resolver estruturar as coisas.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "ambiguous_proposition",
+      "primary_demands": [
+        "retenção de dados históricos e gestão de disco no Elasticsearch"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "ambiguous_proposition"
+      ],
+      "functional_relation": "ambiguous_proposition",
+      "demand_coverage": "UNKNOWN",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F02_vague_tools_exist",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como investigar alto consumo de heap e travamento de garbage collector em microsserviços?",
+      "response_text": "A gente usa ferramentas para isso e dá uma olhada nos logs para ver como as coisas estão se comportando no geral.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "ambiguous_proposition",
+      "primary_demands": [
+        "investigação de alto consumo de heap e travamento de GC"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "ambiguous_proposition"
+      ],
+      "functional_relation": "ambiguous_proposition",
+      "demand_coverage": "UNKNOWN",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F03_vague_consult_documentation",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como configurar o isolamento de rede entre pods com NetworkPolicies no Kubernetes?",
+      "response_text": "Eu precisaria consultar o manual e a documentação oficial para lembrar os parâmetros exatos de configuração.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "ambiguous_proposition",
+      "primary_demands": [
+        "configuração de NetworkPolicies para isolamento de pods"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "ambiguous_proposition"
+      ],
+      "functional_relation": "ambiguous_proposition",
+      "demand_coverage": "UNKNOWN",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F04_vague_client_budget",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como projetar uma topologia de banco de dados multi-região com alta disponibilidade e menor latência de leitura?",
+      "response_text": "Vai depender exclusivamente de quanto dinheiro e verba financeira a diretoria liberou para investir em infraestrutura.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "ambiguous_proposition",
+      "primary_demands": [
+        "topologia multi-região com alta disponibilidade e baixa latência de leitura"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "ambiguous_proposition"
+      ],
+      "functional_relation": "ambiguous_proposition",
+      "demand_coverage": "UNKNOWN",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F05_vague_hire_consultancy",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como arquitetar a transição de um monólito com banco relacional compartilhado para serviços com banco por serviço?",
+      "response_text": "Recomendo contratar uma consultoria especializada para emitir um parecer sobre isso antes de tomar decisões técnicas.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "ambiguous_proposition",
+      "primary_demands": [
+        "estratégia de transição para banco de dados por serviço"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "ambiguous_proposition"
+      ],
+      "functional_relation": "ambiguous_proposition",
+      "demand_coverage": "UNKNOWN",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F08_filler_agree",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como balanceadores de carga L7 distribuem tráfego gRPC utilizando HTTP/2 multiplexado?",
+      "response_text": "Sim, com certeza, concordo plenamente.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "non_operative_assertion",
+      "primary_demands": [
+        "balanceamento de carga L7 em conexões gRPC multiplexadas"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "non_operative_assertion"
+      ],
+      "functional_relation": "non_operative_assertion",
+      "demand_coverage": "NONE",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F10_vague_it_is_a_queue",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como funciona o particionamento e ordenação de mensagens no Apache Kafka?",
+      "response_text": "É uma fila apenas, é uma fila.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "ambiguous_proposition",
+      "primary_demands": [
+        "mecanismo de particionamento e ordenação no Kafka"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "ambiguous_proposition"
+      ],
+      "functional_relation": "ambiguous_proposition",
+      "demand_coverage": "UNKNOWN",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F11_vague_need_weeks_analysis",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como mitigar gargalos graves de latência em endpoints de checkout de e-commerce sob alto tráfego?",
+      "response_text": "Precisaria analisar a situação durante várias semanas para conseguir entender o contexto de negócio.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "ambiguous_proposition",
+      "primary_demands": [
+        "mitigação de latência em checkout de alto tráfego"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "ambiguous_proposition"
+      ],
+      "functional_relation": "ambiguous_proposition",
+      "demand_coverage": "UNKNOWN",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F14_vague_depends_on_many_things",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como desenhar uma estratégia de particionamento de banco relacional para tabelas com bilhões de registros?",
+      "response_text": "Isso depende de muitas coisas, tem que avaliar com calma cada caso.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "ambiguous_proposition",
+      "primary_demands": [
+        "estratégia de particionamento para tabelas bilionárias"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "ambiguous_proposition"
+      ],
+      "functional_relation": "ambiguous_proposition",
+      "demand_coverage": "UNKNOWN",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F16_vague_monitoring_tools_general",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como diagnosticar vazamentos de conexões em pools JDBC em aplicações corporativas?",
+      "response_text": "A gente usa ferramentas de monitoramento para ver como as coisas estão se comportando no geral na infraestrutura.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "ambiguous_proposition",
+      "primary_demands": [
+        "diagnóstico de vazamento de conexões JDBC"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "ambiguous_proposition"
+      ],
+      "functional_relation": "ambiguous_proposition",
+      "demand_coverage": "UNKNOWN",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F18_vague_depends_on_team_decision",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como arquitetar a consistência em microsserviços quando transações distribuídas clássicas (2PC) são inviáveis?",
+      "response_text": "Depende bastante de como a diretoria e os arquitetos decidirem encaminhar os projetos.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "ambiguous_proposition",
+      "primary_demands": [
+        "consistência alternativa a 2PC em microsserviços"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "ambiguous_proposition"
+      ],
+      "functional_relation": "ambiguous_proposition",
+      "demand_coverage": "UNKNOWN",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F20_vague_consult_official_docs",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como configurar mutual TLS com certificados rotativos em proxies Envoy?",
+      "response_text": "Teria que consultar a documentação oficial para ver os nomes dos campos exatos do YAML.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "ambiguous_proposition",
+      "primary_demands": [
+        "configuração de mTLS e rotação com SDS no Envoy"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "ambiguous_proposition"
+      ],
+      "functional_relation": "ambiguous_proposition",
+      "demand_coverage": "UNKNOWN",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F21_filler_conheco_bem",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como o kernel Linux utiliza eBPF para observabilidade de chamadas de sistema com tracepoints?",
+      "response_text": "Sim, conheço, já vi falar bastante.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "non_operative_assertion",
+      "primary_demands": [
+        "uso de tracepoints e eBPF para observabilidade"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "non_operative_assertion"
+      ],
+      "functional_relation": "non_operative_assertion",
+      "demand_coverage": "NONE",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "F22_vague_budget_approval",
+      "group": "F_insufficient_evidence",
+      "question_text": "Como planejar a redundância de data centers para tolerar desastres geográficos em sistemas bancários?",
+      "response_text": "Vai depender exclusivamente de quanta verba da diretoria liberou para os custos de nuvem.",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "domain_disjunct_assertion",
+      "primary_demands": [
+        "planejamento de redundância geográfica contra desastres"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "domain_disjunct_assertion"
+      ],
+      "functional_relation": "domain_disjunct_assertion",
+      "demand_coverage": "NONE",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "evasive_or_insufficient_content_overinterpreted",
+      "evidence": [
+        "Response is functionally disjunct from the question domain."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "G01_tautology_replication",
+      "group": "G_uncertainty_circularity",
+      "question_text": "Como a replicação de dados garante alta disponibilidade em clusters distribuídos?",
+      "response_text": "A replicação garante disponibilidade porque mantém os dados replicados para que fiquem replicados em várias réplicas replicadas.",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "como a replicação garante disponibilidade"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "G04_tautology_deadlock_waiting",
+      "group": "G_uncertainty_circularity",
+      "question_text": "Como transações entram em deadlock quando disputam recursos compartilhados?",
+      "response_text": "Elas entram em deadlock porque ficam esperando uma transação esperar a outra esperar mantendo uma espera de quem está esperando.",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "non_operative_assertion",
+      "primary_demands": [
+        "mecanismo de deadlock por disputa de recursos"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "non_operative_assertion"
+      ],
+      "functional_relation": "non_operative_assertion",
+      "demand_coverage": "NONE",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "circularity_or_epistemic_uncertainty_undetected",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "G08_tautology_compression",
+      "group": "G_uncertainty_circularity",
+      "question_text": "Como a compressão de payloads reduz a utilização de banda de rede em chamadas remotas?",
+      "response_text": "Reduz o consumo comprimindo os pacotes de forma que o tamanho fique comprimido com a compressão aplicada.",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "como compressão reduz banda de rede"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "G10_tautology_distribution",
+      "group": "G_uncertainty_circularity",
+      "question_text": "Como balanceadores de carga espalham requisições de clientes entre instâncias ativas?",
+      "response_text": "Eles espalham a carga distribuindo entre os servidores distribuídos para manter a distribuição distribuída.",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "como balanceadores espalham requisições"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "G11_tautology_availability",
+      "group": "G_uncertainty_circularity",
+      "question_text": "Como réplicas distribuídas garantem alta disponibilidade para usuários de sistemas de missão crítica?",
+      "response_text": "Elas garantem disponibilidade mantendo o sistema disponível para ficar disponível quando alguém precisar da disponibilidade.",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "garantia de alta disponibilidade via réplicas"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "G12_tautology_index_indexing",
+      "group": "G_uncertainty_circularity",
+      "question_text": "Como a criação de índices acelera buscas em tabelas de grande volume?",
+      "response_text": "Os índices aceleram as consultas de modo que o índice indexe a tabela adequadamente criando uma indexação indexada.",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "aceleração de buscas por índices"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "G14_tautology_transactions_locking",
+      "group": "G_uncertainty_circularity",
+      "question_text": "Como concorrência de escrita gera travamento mútuo em tabelas de banco de dados?",
+      "response_text": "Elas travam porque as transações ficam travadas quando ocorre um travamento de coisas travando.",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "como concorrência gera travamento mútuo"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "H01_full_sharding_rebalance",
+      "group": "H_compound_multi_aspect",
+      "question_text": "Como projetar sharding em banco NoSQL com chaves de partição e rebalancear nós dinamicamente?",
+      "response_text": "Selecionamos chaves com alta cardinalidade para espalhar bem os dados e utilizamos consistent hashing com nós virtuais para rebalancear partições dinamicamente sem indisponibilidade.",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "multi_aspect_partial_coverage",
+      "primary_demands": [
+        "projeto de chaves de sharding",
+        "rebalanceamento dinâmico de nós"
+      ],
+      "satisfied_aspects": [
+        "chaves com alta cardinalidade",
+        "consistent hashing com nós virtuais redistribuindo nós"
+      ],
+      "response_propositions": [
+        "multi_aspect_partial_coverage"
+      ],
+      "functional_relation": "multi_aspect_partial_coverage",
+      "demand_coverage": "PARTIAL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "demand_decomposition_or_partial_coverage_underestimation",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "H04_full_ratelimit_retry_after",
+      "group": "H_compound_multi_aspect",
+      "question_text": "Como configurar rate limiting distribuído usando Redis e como notificar clientes bloqueados com cabeçalhos HTTP adequados?",
+      "response_text": "Implementamos um algoritmo de sliding window com scripts Lua no Redis para contagem atômica de requisições e retornamos status 429 com o cabeçalho Retry-After indicando os segundos restantes.",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "multi_aspect_partial_coverage",
+      "primary_demands": [
+        "rate limiting distribuído no Redis",
+        "notificação com cabeçalhos HTTP adequados"
+      ],
+      "satisfied_aspects": [
+        "sliding window atômico em Redis",
+        "status 429 com cabeçalho Retry-After"
+      ],
+      "response_propositions": [
+        "multi_aspect_partial_coverage"
+      ],
+      "functional_relation": "multi_aspect_partial_coverage",
+      "demand_coverage": "PARTIAL",
+      "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+      "divergence_category": "demand_decomposition_or_partial_coverage_underestimation",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "H07_full_token_bucket_burst_enforcement",
+      "group": "H_compound_multi_aspect",
+      "question_text": "Como o algoritmo Token Bucket tolera bursts pontuais e como aplicar limitação de taxa em requisições excedentes?",
+      "response_text": "Ele acumula fichas até a capacidade máxima do balde para acomodar picos instantâneos e, quando as fichas se esgotam, rejeita chamadas excedentes retornando HTTP 429 Too Many Requests.",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "multi_aspect_partial_coverage",
+      "primary_demands": [
+        "tolerância a bursts de requisições",
+        "limitação e rejeição de excedentes"
+      ],
+      "satisfied_aspects": [
+        "capacidade máxima acumulando fichas",
+        "rejeição com HTTP 429 quando balde esgota"
+      ],
+      "response_propositions": [
+        "multi_aspect_partial_coverage"
+      ],
+      "functional_relation": "multi_aspect_partial_coverage",
+      "demand_coverage": "PARTIAL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "demand_decomposition_or_partial_coverage_underestimation",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "H09_full_optimistic_concurrency_version_conflict",
+      "group": "H_compound_multi_aspect",
+      "question_text": "Como implementar controle de concorrência otimista com versionamento e tratar conflitos de concorrência na aplicação?",
+      "response_text": "Incluímos uma coluna de versão numérica na tabela e atualizamos com WHERE versao = :antiga; se nenhuma linha for afetada, a aplicação captura o conflito, recarrega o estado atual e repete a transação.",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "multi_aspect_partial_coverage",
+      "primary_demands": [
+        "controle de versão com WHERE atômico",
+        "tratamento de conflito na aplicação com recarga e retry"
+      ],
+      "satisfied_aspects": [
+        "cláusula WHERE versao atômica",
+        "tratamento com recarga e repetição da operação"
+      ],
+      "response_propositions": [
+        "multi_aspect_partial_coverage"
+      ],
+      "functional_relation": "multi_aspect_partial_coverage",
+      "demand_coverage": "PARTIAL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "demand_decomposition_or_partial_coverage_underestimation",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "H14_partial_lsm_omits_bloom",
+      "group": "H_compound_multi_aspect",
+      "question_text": "Como LSM-Trees otimizam vazão de escrita e utilizam Filtros de Bloom para acelerar leituras?",
+      "response_text": "A escrita é acelerada gravando sequencialmente em append-only na memória e gerando arquivos SSTables ordenados em lotes no disco.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "otimização de vazão de escrita em LSM",
+        "Filtros de Bloom acelerando leituras"
+      ],
+      "satisfied_aspects": [
+        "escrita sequencial append em memória e SSTables"
+      ],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "H15_partial_raft_omits_divergence",
+      "group": "H_compound_multi_aspect",
+      "question_text": "Como o líder do Raft replica logs com os seguidores e sincroniza réplicas desatualizadas?",
+      "response_text": "O nó líder empacota os comandos em mensagens AppendEntries e aguarda a confirmação da maioria dos seguidores para commitar.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "multi_aspect_full_coverage",
+      "primary_demands": [
+        "replicação normal de logs com maioria",
+        "sincronização de nós divergentes com decremento de nextIndex"
+      ],
+      "satisfied_aspects": [
+        "AppendEntries para maioria dos seguidores"
+      ],
+      "response_propositions": [
+        "multi_aspect_full_coverage"
+      ],
+      "functional_relation": "multi_aspect_full_coverage",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "H17_partial_2pc_omits_coordinator_crash",
+      "group": "H_compound_multi_aspect",
+      "question_text": "Como o Two-Phase Commit garante atomicidade distribuída e como recuperar se o coordenador falhe durante a fase de commit?",
+      "response_text": "O coordenador envia a mensagem de prepare para os nós e aguarda confirmação unânime antes de enviar a ordem de commit.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "multi_aspect_full_coverage",
+      "primary_demands": [
+        "atomicidade via prepare/commit em 2PC",
+        "recuperação de falha do coordenador via logs persistidos"
+      ],
+      "satisfied_aspects": [
+        "coordenação prepare/commit com confirmação unânime"
+      ],
+      "response_propositions": [
+        "multi_aspect_full_coverage"
+      ],
+      "functional_relation": "multi_aspect_full_coverage",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "I04_avoidance_disable_auth",
+      "group": "I_polarity_avoidance_guard",
+      "question_text": "Como proteger endpoints internos de microsserviços contra requisições não autorizadas?",
+      "response_text": "Validamos tokens JWT em cada chamada na borda da aplicação porque nunca devemos desativar autenticação entre serviços.",
+      "reference_class": "DIRECT",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "destructive_antithesis_assertion",
+      "primary_demands": [
+        "proteção de endpoints internos contra não autorizados"
+      ],
+      "satisfied_aspects": [
+        "validação de JWT na borda proibindo desativação de autenticação"
+      ],
+      "response_propositions": [
+        "destructive_antithesis_assertion"
+      ],
+      "functional_relation": "destructive_antithesis_assertion",
+      "demand_coverage": "NONE",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "polarity_or_lexical_absence_overpenalized",
+      "evidence": [
+        "Response proposes action that opposes or disables required protections."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "J13_fencing_token_detailed",
+      "group": "J_representation_invariance",
+      "question_text": "O que é um fencing token e como ele impede corrupção de dados em locks distribuídos?",
+      "response_text": "É um identificador numérico estritamente crescente gerado pelo coordenador de locks; o storage rejeita qualquer gravação que apresente um token inferior ao último token já gravado por clientes anteriores.",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "multi_aspect_partial_coverage",
+      "primary_demands": [
+        "conceito e função de fencing tokens"
+      ],
+      "satisfied_aspects": [
+        "número monotônico crescente validado no storage rejeitando tokens inferiores"
+      ],
+      "response_propositions": [
+        "multi_aspect_partial_coverage"
+      ],
+      "functional_relation": "multi_aspect_partial_coverage",
+      "demand_coverage": "PARTIAL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "demand_decomposition_or_partial_coverage_underestimation",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "J14_fencing_token_concise",
+      "group": "J_representation_invariance",
+      "question_text": "O que é um fencing token e como ele impede corrupção de dados em locks distribuídos?",
+      "response_text": "É um número sequencial que sobe a cada lock; o storage confere esse número e descarta escritas com token antigo de clientes que travaram.",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "multi_aspect_partial_coverage",
+      "primary_demands": [
+        "conceito e função de fencing tokens"
+      ],
+      "satisfied_aspects": [
+        "número sequencial crescente conferido no storage descartando escritas antigas"
+      ],
+      "response_propositions": [
+        "multi_aspect_partial_coverage"
+      ],
+      "functional_relation": "multi_aspect_partial_coverage",
+      "demand_coverage": "PARTIAL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "demand_decomposition_or_partial_coverage_underestimation",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "J20_raft_election_concise",
+      "group": "J_representation_invariance",
+      "question_text": "Como nós seguidores iniciam e vencem uma eleição de líder no algoritmo Raft?",
+      "response_text": "O nó espera o timeout estourar, passa pro próximo termo, vota em si mesmo e pede voto pros outros nós até conseguir a maioria.",
+      "reference_class": "DIRECT",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "non_operative_assertion",
+      "primary_demands": [
+        "eleição de líder no Raft"
+      ],
+      "satisfied_aspects": [
+        "timeout, próximo termo, voto próprio e obtenção de maioria"
+      ],
+      "response_propositions": [
+        "non_operative_assertion"
+      ],
+      "functional_relation": "non_operative_assertion",
+      "demand_coverage": "NONE",
+      "epistemic_status": "UNKNOWN",
+      "divergence_category": "polarity_or_lexical_absence_overpenalized",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "J25_partial_2pc_detailed",
+      "group": "J_representation_invariance",
+      "question_text": "Como o Two-Phase Commit garante atomicidade distribuída e como recuperar se o coordenador falhe durante a fase de commit?",
+      "response_text": "Na fase de prepare o coordenador pergunta se todos podem commitar e se todos responderem sim ele envia commit global, garantindo que ninguém desvie da decisão.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "multi_aspect_full_coverage",
+      "primary_demands": [
+        "atomicidade via prepare/commit em 2PC e recuperação de falha do coordenador"
+      ],
+      "satisfied_aspects": [
+        "protocolo básico prepare/commit"
+      ],
+      "response_propositions": [
+        "multi_aspect_full_coverage"
+      ],
+      "functional_relation": "multi_aspect_full_coverage",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "J26_partial_2pc_concise",
+      "group": "J_representation_invariance",
+      "question_text": "Como o Two-Phase Commit garante atomicidade distribuída e como recuperar se o coordenador falhe durante a fase de commit?",
+      "response_text": "O coordenador pede voto no prepare e se todos confirmarem ele manda o commit pra geral fechar junto.",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "multi_aspect_full_coverage",
+      "primary_demands": [
+        "atomicidade via prepare/commit em 2PC e recuperação de falha do coordenador"
+      ],
+      "satisfied_aspects": [
+        "voto no prepare e envio de commit geral"
+      ],
+      "response_propositions": [
+        "multi_aspect_full_coverage"
+      ],
+      "functional_relation": "multi_aspect_full_coverage",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "partial_coverage_classified_as_complete",
+      "evidence": [
+        "Response functionally solves all demanded aspects."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "J28_antithesis_locks_colloquial",
+      "group": "J_representation_invariance",
+      "question_text": "Como resolver concorrência de escritas e deadlocks em transações financeiras críticas?",
+      "response_text": "Pra resolver logo eu arranco todas as travas e locks do banco e deixo todo mundo gravar solto sem bloquear nada.",
+      "reference_class": "OFF_TOPIC",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "resolução de concorrência e deadlocks em transações financeiras"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "J30_antithesis_acid_passive",
+      "group": "J_representation_invariance",
+      "question_text": "Como garantir integridade e isolamento em operações financeiras com débitos e créditos simultâneos?",
+      "response_text": "Transações ACID são totalmente desabilitadas e os registros são gravados diretamente em disco sem validação transacional.",
+      "reference_class": "OFF_TOPIC",
+      "predicted_class": "DIRECT",
+      "question_intent": "open_domain_mechanism_assertion",
+      "primary_demands": [
+        "garantia de integridade e isolamento financeiro"
+      ],
+      "satisfied_aspects": [],
+      "response_propositions": [
+        "open_domain_mechanism_assertion"
+      ],
+      "functional_relation": "open_domain_mechanism_assertion",
+      "demand_coverage": "FULL",
+      "epistemic_status": "CONCEPTUAL",
+      "divergence_category": "false_direct_functional_relation_overestimation",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence": "HIGH"
+    }
+  ]
+}

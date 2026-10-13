@@ -309,8 +309,8 @@ class Stage3178OpenDomainPropositionEngineTests(unittest.TestCase):
         # Opposite/harmful mechanism mutation
         r_mutated_opposite = "Para resolver isso, removo todas as travas e deixo todas as threads escreverem livremente sem validação de versão."
         res_opposite = evaluate_open_domain_semantic_relevance(q, r_mutated_opposite)
-        # Even if technically counter-productive, it addresses concurrency, but is marked supporting/contrasting
-        self.assertIn(res_opposite["classification"], ["DIRECT", "SUPPORTING", "RELATED"])
+        # Under Stage 31.7.19 CR-04 contract, destructive antithesis is OFF_TOPIC (or contrasting)
+        self.assertIn(res_opposite["classification"], ["OFF_TOPIC", "RELATED", "SUPPORTING"])
 
         # Alien domain mutation with same surface words
         r_mutated_alien = "Eu verifico o saldo da minha conta bancária pessoal no celular antes de sair para o almoço com meus colegas."
