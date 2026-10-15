@@ -1,0 +1,84 @@
+{
+  "stage": "31.7.24",
+  "title": "Stage 31.7.24 Runtime Manifest",
+  "date": "2026-10-14",
+  "author": "Antigravity Pair Programmer & Knowledge Manager",
+  "runtime": {
+    "file": "reference_runtime/runtime.py",
+    "baseline_sha256": "75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC",
+    "remediated_sha256": "36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7",
+    "pre_implementation_backup": "reference_runtime/runtime.py.stage_31_7_24_pre_implementation",
+    "pre_implementation_backup_sha256": "75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC"
+  },
+  "contract_tests": {
+    "file": "tests/test_stage_31_7_24_contract_tests.py",
+    "sha256": "5E2F3BB37BD11A4233F5F27F4F182EE9C0A9FB68E1CAE8E6B90276D78866448D",
+    "total_tests": 9,
+    "passed": 9,
+    "status": "PASS"
+  },
+  "canonical_regression": {
+    "total_tests": 1047,
+    "passed": 1046,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0,
+    "harness_tests": 15,
+    "harness_passed": 15,
+    "status": "PASS_WITH_ZERO_REGRESSIONS"
+  },
+  "implemented_components": [
+    {
+      "name": "SemanticIntentAndDemandExtractor",
+      "class": "reference_runtime.runtime.SemanticIntentAndDemandExtractor",
+      "responsibility": "Decomposes questions into conjunctive atomic demands, identifies multi-state aspect goals (closed/open/half-open, coordination/compensation, commit/abort/crash), and enforces aspect completeness criteria without closed word lists."
+    },
+    {
+      "name": "PropositionDiscourseFilter",
+      "class": "reference_runtime.runtime.PropositionDiscourseFilter",
+      "responsibility": "Classifies candidate propositions into discourse genres (MECHANISM_EXPLANATION, HISTORICAL_TRIVIA, PERSONAL_DECLARATION, EVASIVE_DEFLECTION, AMBIGUOUS_STATEMENT, SPECULATIVE_ASSERTION) and prevents non-operative sentences from claiming operative status."
+    },
+    {
+      "name": "MorphologicalCircularityAnalyzer",
+      "class": "reference_runtime.runtime.MorphologicalCircularityAnalyzer",
+      "responsibility": "Detects tautological circular reasoning across 11 unified Portuguese cognate families without information gain, distinguishing valid technical definitions from empty subject-predicate repetitions."
+    },
+    {
+      "name": "DemandPropositionNexusBipartiteMatcher",
+      "class": "reference_runtime.runtime.DemandPropositionNexusBipartiteMatcher",
+      "responsibility": "Performs exact bipartite matching between each atomic question demand and candidate technical propositions, checking operational mechanism validity, failure/recovery handling, and preventing single-word cross-satisfaction."
+    },
+    {
+      "name": "StrictOntologyRelevanceAggregator",
+      "class": "reference_runtime.runtime.StrictOntologyRelevanceAggregator",
+      "responsibility": "Aggregates demand-level nexus evaluations into the 7 canonical classes under strict ontological precedence rules (EVASIVE -> INSUFFICIENT, AMBIGUOUS -> UNKNOWN, ANTITHESIS -> OFF_TOPIC, ADJACENT -> RELATED, AUXILIARY -> SUPPORTING, PARTIAL -> PARTIAL, FULL -> DIRECT)."
+    }
+  ],
+  "canonical_classes": [
+    "DIRECT",
+    "PARTIAL",
+    "SUPPORTING",
+    "RELATED",
+    "OFF_TOPIC",
+    "INSUFFICIENT",
+    "UNKNOWN"
+  ],
+  "invariants_verified": [
+    "I-01: Deterministic evaluation (same input strictly produces same output)",
+    "I-02: Zero closed lexical catalogs for domain-specific pairs",
+    "I-03: Strict conjunctive satisfaction (100% of primary demands required for DIRECT)",
+    "I-04: Non-operative discourse genres cannot satisfy functional demands",
+    "I-05: Tautological circular explanations mapped strictly to UNKNOWN",
+    "I-06: Evasive non-technical responses mapped strictly to INSUFFICIENT",
+    "I-07: Destructive antitheses mapped strictly to OFF_TOPIC unless guarded by prevention context",
+    "I-08: Auxiliary observability mapped to SUPPORTING before entity adjacency fallthrough",
+    "I-09: Multi-state failure/crash aspects cannot be satisfied by coordinator tokens alone",
+    "I-10: Epistemic status separation preserved across all pipeline stages",
+    "I-11: Full traceability in return dictionary (demands, propositions, nexuses, rationale)",
+    "I-12: Zero backward-compatibility breaking changes to evaluate_open_domain_semantic_relevance()",
+    "I-13: Preservation of all historical benchmarks and ground truth artifacts",
+    "I-14: Representation invariance across informal, formal, and concise technical phrasings",
+    "I-15: Zero regression in canonical test suite and Reference Harness"
+  ],
+  "gate": "IMPLEMENTATION_COMPLETE_PENDING_INDEPENDENT_BLIND_VALIDATION"
+}

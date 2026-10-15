@@ -1,0 +1,2120 @@
+{
+  "stage": "31.7.22",
+  "description": "Comprehensive Root Cause Analysis catalog for all 80 divergences observed in Stage 31.7.21",
+  "total_divergences": 80,
+  "root_cause_distribution": {
+    "CR-01": 28,
+    "CR-08": 12,
+    "CR-04": 11,
+    "CR-02": 8,
+    "CR-06": 6,
+    "CR-03": 6,
+    "CR-07": 5,
+    "CR-05": 4
+  },
+  "runtime_component_distribution": {
+    "decompose_question": 19,
+    "_detect_antithesis": 17,
+    "assess_demand_nexus": 16,
+    "extract_response_propositions": 11,
+    "evaluate_relevance": 11,
+    "_detect_structural_circularity": 6
+  },
+  "divergence_catalog": [
+    {
+      "case_id": "A13_roaring_bitmaps",
+      "group": "A_functional_satisfaction",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "other",
+      "primary_demands": [
+        "o que sao roaring bitmaps",
+        "eles compactam conjuntos de dados com densidades variaveis?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "PARTIAL",
+      "functional_relation": "multi_aspect_partial_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "The engine over-segmented the demand or penalized a concise functional response for not repeating explicit sub-aspect keywords.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "The response solved the mechanism compactly without mentioning redundant secondary terms."
+      ]
+    },
+    {
+      "case_id": "A17_tcp_syn_flood",
+      "group": "A_functional_satisfaction",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "diagnosis",
+      "primary_demands": [
+        "como diagnosticar",
+        "conter um ataque de tcp syn flood em um balanceador linux?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "PARTIAL",
+      "functional_relation": "multi_aspect_partial_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "The engine over-segmented the demand or penalized a concise functional response for not repeating explicit sub-aspect keywords.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "The response solved the mechanism compactly without mentioning redundant secondary terms."
+      ]
+    },
+    {
+      "case_id": "A23_fencing_tokens_concept",
+      "group": "A_functional_satisfaction",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "definition",
+      "primary_demands": [
+        "o que e um fencing token",
+        "ele impede corrupcao de dados apos pausas de gc em clientes de lock distribuido?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "PARTIAL",
+      "functional_relation": "multi_aspect_partial_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "The engine over-segmented the demand or penalized a concise functional response for not repeating explicit sub-aspect keywords.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "The response solved the mechanism compactly without mentioning redundant secondary terms."
+      ]
+    },
+    {
+      "case_id": "A29_postgres_vacuum_bloat",
+      "group": "A_functional_satisfaction",
+      "reference_class": "DIRECT",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o processo de vacuum do postgresql recupera espaco em tabelas com alto volume de updates?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "NONE",
+      "functional_relation": "non_operative_assertion",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Lexical absence of expected target tokens or over-triggering of disjunction/antithesis rules penalized a valid technical response.",
+      "root_cause_id": "CR-08",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Strict domain filters without semantic similarity fallback."
+      ]
+    },
+    {
+      "case_id": "B02_partial_2pc_coordinator_crash",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o two-phase commit garante atomicidade distribuida",
+        "ocorre se o coordenador falhe durante a fase de commit?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "multi_aspect_full_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "Multi-aspect demands were extracted, but evaluate_demand_nexus matched isolated tokens from demand_2 in the response, assigning FUNCTIONALLY_SOLVES to both demands from a single response proposition without verifying 1-to-1 propositional coverage.",
+      "root_cause_id": "CR-06",
+      "evidence": [
+        "Response functionally solves all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Demand-2 nexus checker lacks propositional segmentation."
+      ]
+    },
+    {
+      "case_id": "B03_partial_raft_append_entries",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o lider do raft replica entradas de log para seguidores",
+        "sincroniza logs desatualizados?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "multi_aspect_full_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "Multi-aspect demands were extracted, but evaluate_demand_nexus matched isolated tokens from demand_2 in the response, assigning FUNCTIONALLY_SOLVES to both demands from a single response proposition without verifying 1-to-1 propositional coverage.",
+      "root_cause_id": "CR-06",
+      "evidence": [
+        "Response functionally solves all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Demand-2 nexus checker lacks propositional segmentation."
+      ]
+    },
+    {
+      "case_id": "B04_partial_cqrs_eventual_consistency",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "SUPPORTING",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o padrao cqrs separa comandos e consultas e lida com latencia de projecao eventual?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "SUPPORTING_ONLY",
+      "functional_relation": "auxiliary_observability_support",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "Misalignment between PARTIAL and SUPPORTING due to heuristic threshold boundaries.",
+      "root_cause_id": "CR-05",
+      "evidence": [
+        "Response provides auxiliary observability/monitoring contribution without directly solving."
+      ],
+      "confidence_in_root_cause": "MEDIUM",
+      "alternative_explanations": []
+    },
+    {
+      "case_id": "B05_partial_circuit_breaker_half_open",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como um circuit breaker transita entre os estados fechado, aberto e meio-aberto para recuperacao?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B07_partial_saga_orchestration_compensation",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como uma saga orquestrada coordena transacoes locais e executa compensacoes em caso de falha?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B08_partial_spanner_truetime",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o google spanner fornece consistencia estrita externamente e lida com incerteza do truetime?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B09_partial_grpc_keepalive_streams",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o grpc mantem conexoes http/2 ativas atraves de keepalives e detecta proxies intermediarios mortos?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B10_partial_redis_cluster_resharding",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o redis cluster redistribui hash slots durante resharding e redireciona clientes com ask/moved?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B13_partial_kubernetes_pdb_drain",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como poddisruptionbudgets (pdb) protegem aplicacoes durante operacoes de drain em nos do kubernetes?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B16_partial_deduplication_without_storage",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "implementation",
+      "primary_demands": [
+        "como implementar deduplicacao de mensagens em filas assincronas e expirar chaves processadas?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B18_partial_rate_limiting_sliding_window",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "explanation",
+      "primary_demands": [
+        "como funciona o algoritmo sliding window counter de rate limiting",
+        "calcular a taxa de requisicoes no limite da janela?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "NONE",
+      "functional_relation": "non_operative_assertion",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Lexical absence of expected target tokens or over-triggering of disjunction/antithesis rules penalized a valid technical response.",
+      "root_cause_id": "CR-08",
+      "evidence": [
+        "Response does not demonstrate technical propositions satisfying demands."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Strict domain filters without semantic similarity fallback."
+      ]
+    },
+    {
+      "case_id": "B19_partial_spanner_read_write_split",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como bancos distribuidos separam transacoes de leitura pura sem lock de transacoes com escrita via 2pc?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B20_partial_connection_pool_starvation",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "diagnosis",
+      "primary_demands": [
+        "como investigar esgotamento de pool de conexoes com banco e evitar bloqueio perpetuo de threads?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B21_partial_canary_deployment_routing",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como projetar canarios de deploy com service mesh dividindo trafego por peso e monitorando taxas de erro?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B22_partial_kafka_rebalance_protocol",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o cooperative sticky assignor do kafka evita pausas globais em rebalanceamentos de grupos de consumidores?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B23_partial_database_deadlock_victim",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o banco relacional identifica deadlocks e escolhe qual transacao abortar como vitima?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B24_partial_tls_sni_routing",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como balanceadores de carga utilizam server name indication (sni) para rotear trafego tls e selecionar o certificado correto?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B25_partial_distributed_tracing_propagation",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o opentelemetry propaga o contexto de rastreamento entre servicos http e cria spans filhos?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B26_partial_caching_thundering_herd",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "implementation",
+      "primary_demands": [
+        "como mitigar o problema de thundering herd quando uma chave critica expira no cache e dezenas de threads consultam o banco?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B27_partial_memory_dump_leak_suspect",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como capturar um heap dump de um processo em producao sem derrubar a aplicacao e analisar os objetos dominantes?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B28_partial_acid_isolation_levels",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "other",
+      "primary_demands": [
+        "compare os niveis de isolamento read committed e repeatable read",
+        "leituras nao-repetiveis e phantom reads."
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "NONE",
+      "functional_relation": "non_operative_assertion",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Lexical absence of expected target tokens or over-triggering of disjunction/antithesis rules penalized a valid technical response.",
+      "root_cause_id": "CR-08",
+      "evidence": [
+        "Response does not demonstrate technical propositions satisfying demands."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Strict domain filters without semantic similarity fallback."
+      ]
+    },
+    {
+      "case_id": "B29_partial_wireguard_handshake",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o protocolo wireguard estabelece tuneis seguros e valida trafego de entrada via cryptokey routing?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "B30_partial_database_sharding_routing",
+      "group": "B_partial_responses",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como projetar o roteamento de queries em bancos com sharding e lidar com scatter-gather em queries sem shard key?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "C17_aux_log_analytics_slow_queries",
+      "group": "C_auxiliary_contribution",
+      "reference_class": "SUPPORTING",
+      "predicted_class": "DIRECT",
+      "question_intent": "implementation",
+      "primary_demands": [
+        "como conter degradacao severa de queries em banco relacional que travam a aplicacao?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "extract_response_propositions",
+      "failure_mechanism": "General action verbs or biographical/historical tokens were matched by wide stem lists (has_operative_verb), while unstemmed declaration/trivia markers failed to trigger, marking the non-operative context as an operative technical solution.",
+      "root_cause_id": "CR-05",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Candidate used active technical verbs in an autobiographical or historical context."
+      ]
+    },
+    {
+      "case_id": "C18_aux_jaeger_tracing_database_lock",
+      "group": "C_auxiliary_contribution",
+      "reference_class": "SUPPORTING",
+      "predicted_class": "DIRECT",
+      "question_intent": "implementation",
+      "primary_demands": [
+        "como resolver contencao de locks exclusivos em linhas de clientes durante fechamento contabil?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "extract_response_propositions",
+      "failure_mechanism": "General action verbs or biographical/historical tokens were matched by wide stem lists (has_operative_verb), while unstemmed declaration/trivia markers failed to trigger, marking the non-operative context as an operative technical solution.",
+      "root_cause_id": "CR-05",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Candidate used active technical verbs in an autobiographical or historical context."
+      ]
+    },
+    {
+      "case_id": "C28_aux_datadog_database_deadlock_alert",
+      "group": "C_auxiliary_contribution",
+      "reference_class": "SUPPORTING",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como impedir que deadlocks no banco de dados travem transacoes financeiras criticas?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "extract_response_propositions",
+      "failure_mechanism": "General action verbs or biographical/historical tokens were matched by wide stem lists (has_operative_verb), while unstemmed declaration/trivia markers failed to trigger, marking the non-operative context as an operative technical solution.",
+      "root_cause_id": "CR-05",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Candidate used active technical verbs in an autobiographical or historical context."
+      ]
+    },
+    {
+      "case_id": "D07_meta_cncf_opentelemetry",
+      "group": "D_thematic_proximity",
+      "reference_class": "RELATED",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "explanation",
+      "primary_demands": [
+        "como funciona o algoritmo de amostragem probabilistica (head-based sampling) no coletor opentelemetry?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "NONE",
+      "functional_relation": "non_operative_assertion",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Lexical absence of expected target tokens or over-triggering of disjunction/antithesis rules penalized a valid technical response.",
+      "root_cause_id": "CR-08",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Strict domain filters without semantic similarity fallback."
+      ]
+    },
+    {
+      "case_id": "D12_meta_cockroach_spanner_clone",
+      "group": "D_thematic_proximity",
+      "reference_class": "RELATED",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o cockroachdb implementa transacoes acid distribuidas atraves de registros de transacao e timestamps hibridos?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "NONE",
+      "functional_relation": "non_operative_assertion",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Lexical absence of expected target tokens or over-triggering of disjunction/antithesis rules penalized a valid technical response.",
+      "root_cause_id": "CR-08",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Strict domain filters without semantic similarity fallback."
+      ]
+    },
+    {
+      "case_id": "D19_meta_scylladb_cassandra_compatibility",
+      "group": "D_thematic_proximity",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o scylladb elimina pausas de gc reescrevendo o cassandra em c++ com arquitetura shared-nothing e seastar reactor?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "extract_response_propositions",
+      "failure_mechanism": "General action verbs or biographical/historical tokens were matched by wide stem lists (has_operative_verb), while unstemmed declaration/trivia markers failed to trigger, marking the non-operative context as an operative technical solution.",
+      "root_cause_id": "CR-02",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Candidate used active technical verbs in an autobiographical or historical context."
+      ]
+    },
+    {
+      "case_id": "D20_trivia_nginx_creator_rambler",
+      "group": "D_thematic_proximity",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como a arquitetura orientada a eventos do nginx processa milhares de conexoes http simultaneas com poucos workers?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "extract_response_propositions",
+      "failure_mechanism": "General action verbs or biographical/historical tokens were matched by wide stem lists (has_operative_verb), while unstemmed declaration/trivia markers failed to trigger, marking the non-operative context as an operative technical solution.",
+      "root_cause_id": "CR-02",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Candidate used active technical verbs in an autobiographical or historical context."
+      ]
+    },
+    {
+      "case_id": "D22_decl_redis_cache_usage",
+      "group": "D_thematic_proximity",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o redis implementa algoritmos de eviction como lru aproximado e lfu em estruturas com limites de memoria?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "extract_response_propositions",
+      "failure_mechanism": "General action verbs or biographical/historical tokens were matched by wide stem lists (has_operative_verb), while unstemmed declaration/trivia markers failed to trigger, marking the non-operative context as an operative technical solution.",
+      "root_cause_id": "CR-02",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Candidate used active technical verbs in an autobiographical or historical context."
+      ]
+    },
+    {
+      "case_id": "D25_decl_kubernetes_pod_deploy",
+      "group": "D_thematic_proximity",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o mecanismo de leader election do kubernetes impede que multiplos operadores executem reconciliacoes simultaneas?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "extract_response_propositions",
+      "failure_mechanism": "General action verbs or biographical/historical tokens were matched by wide stem lists (has_operative_verb), while unstemmed declaration/trivia markers failed to trigger, marking the non-operative context as an operative technical solution.",
+      "root_cause_id": "CR-02",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Candidate used active technical verbs in an autobiographical or historical context."
+      ]
+    },
+    {
+      "case_id": "D27_trivia_intel_cpu_pipeline",
+      "group": "D_thematic_proximity",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "implementation",
+      "primary_demands": [
+        "como mitigar branch mispredictions em loops computacionais intensivos em linguagens compiladas?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "extract_response_propositions",
+      "failure_mechanism": "General action verbs or biographical/historical tokens were matched by wide stem lists (has_operative_verb), while unstemmed declaration/trivia markers failed to trigger, marking the non-operative context as an operative technical solution.",
+      "root_cause_id": "CR-02",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Candidate used active technical verbs in an autobiographical or historical context."
+      ]
+    },
+    {
+      "case_id": "D28_meta_temporal_orchestration",
+      "group": "D_thematic_proximity",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o temporal garante execucao duravel de workflows mesmo se os nos executores sofrerem crash repentino?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "extract_response_propositions",
+      "failure_mechanism": "General action verbs or biographical/historical tokens were matched by wide stem lists (has_operative_verb), while unstemmed declaration/trivia markers failed to trigger, marking the non-operative context as an operative technical solution.",
+      "root_cause_id": "CR-02",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Candidate used active technical verbs in an autobiographical or historical context."
+      ]
+    },
+    {
+      "case_id": "D29_decl_microservices_experience",
+      "group": "D_thematic_proximity",
+      "reference_class": "RELATED",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o padrao saga coreografado propaga falhas e executa compensacoes entre multiplos servicos autonomos?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "NONE",
+      "functional_relation": "non_operative_assertion",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Lexical absence of expected target tokens or over-triggering of disjunction/antithesis rules penalized a valid technical response.",
+      "root_cause_id": "CR-08",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Strict domain filters without semantic similarity fallback."
+      ]
+    },
+    {
+      "case_id": "D30_trivia_database_codd_relational",
+      "group": "D_thematic_proximity",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o otimizador de queries escolhe entre nested loop join e hash join baseado em estatisticas de custo?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "extract_response_propositions",
+      "failure_mechanism": "General action verbs or biographical/historical tokens were matched by wide stem lists (has_operative_verb), while unstemmed declaration/trivia markers failed to trigger, marking the non-operative context as an operative technical solution.",
+      "root_cause_id": "CR-02",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Candidate used active technical verbs in an autobiographical or historical context."
+      ]
+    },
+    {
+      "case_id": "D32_decl_nosql_cassandra_usage",
+      "group": "D_thematic_proximity",
+      "reference_class": "RELATED",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o cassandra garante linearizabilidade em lightweight transactions (lwt) utilizando paxos em quatro fases?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "extract_response_propositions",
+      "failure_mechanism": "General action verbs or biographical/historical tokens were matched by wide stem lists (has_operative_verb), while unstemmed declaration/trivia markers failed to trigger, marking the non-operative context as an operative technical solution.",
+      "root_cause_id": "CR-02",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Candidate used active technical verbs in an autobiographical or historical context."
+      ]
+    },
+    {
+      "case_id": "E27_alien_bgp_to_graphql_schema",
+      "group": "E_alien_off_topic",
+      "reference_class": "OFF_TOPIC",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como roteadores bgp convergem rotas autonomas evitando loops com as-path?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Colloquial phrasing ('a gente tira a trava') or passive voice ('quando as travas forem retiradas') bypassed antithesis patterns and activated operative verb stems, promoting a destructive action to DIRECT.",
+      "root_cause_id": "CR-07",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Antithesis regex only targeted formal imperative structures."
+      ]
+    },
+    {
+      "case_id": "E29_alien_kql_for_virtual_threads",
+      "group": "E_alien_off_topic",
+      "reference_class": "OFF_TOPIC",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como as virtual threads do java desacolam tarefas de carrier threads durante operacoes de i/o bloqueante?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Colloquial phrasing ('a gente tira a trava') or passive voice ('quando as travas forem retiradas') bypassed antithesis patterns and activated operative verb stems, promoting a destructive action to DIRECT.",
+      "root_cause_id": "CR-07",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Antithesis regex only targeted formal imperative structures."
+      ]
+    },
+    {
+      "case_id": "E30_alien_rabbitmq_for_envoy_proxy",
+      "group": "E_alien_off_topic",
+      "reference_class": "OFF_TOPIC",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o proxy envoy realiza load balancing l7 com algoritmo round-robin ponderado entre endpoints saudaveis?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Colloquial phrasing ('a gente tira a trava') or passive voice ('quando as travas forem retiradas') bypassed antithesis patterns and activated operative verb stems, promoting a destructive action to DIRECT.",
+      "root_cause_id": "CR-07",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Antithesis regex only targeted formal imperative structures."
+      ]
+    },
+    {
+      "case_id": "F01_vague_depends_on_factors",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "other",
+      "primary_demands": [
+        "como voce estruturaria a retencao de dados historicos em clusters elasticsearch sem estourar o disco?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "UNKNOWN",
+      "functional_relation": "ambiguous_proposition",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "evaluate_relevance",
+      "failure_mechanism": "Hardcoded mapping in evaluate_relevance routes prop.is_evasive directly to UNKNOWN ('ambiguous_proposition') instead of INSUFFICIENT, conflating lack of evaluable technical evidence with true epistemic uncertainty or indeterminacy.",
+      "root_cause_id": "CR-04",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Historical ambiguity between UNKNOWN and INSUFFICIENT in early evaluation engines."
+      ]
+    },
+    {
+      "case_id": "F02_vague_tools_exist",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "diagnosis",
+      "primary_demands": [
+        "como investigar alto consumo de heap e travamento de garbage collector em microsservicos?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "UNKNOWN",
+      "functional_relation": "ambiguous_proposition",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "evaluate_relevance",
+      "failure_mechanism": "Hardcoded mapping in evaluate_relevance routes prop.is_evasive directly to UNKNOWN ('ambiguous_proposition') instead of INSUFFICIENT, conflating lack of evaluable technical evidence with true epistemic uncertainty or indeterminacy.",
+      "root_cause_id": "CR-04",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Historical ambiguity between UNKNOWN and INSUFFICIENT in early evaluation engines."
+      ]
+    },
+    {
+      "case_id": "F03_vague_consult_documentation",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "implementation",
+      "primary_demands": [
+        "como configurar o isolamento de rede entre pods com networkpolicies no kubernetes?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "UNKNOWN",
+      "functional_relation": "ambiguous_proposition",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "evaluate_relevance",
+      "failure_mechanism": "Hardcoded mapping in evaluate_relevance routes prop.is_evasive directly to UNKNOWN ('ambiguous_proposition') instead of INSUFFICIENT, conflating lack of evaluable technical evidence with true epistemic uncertainty or indeterminacy.",
+      "root_cause_id": "CR-04",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Historical ambiguity between UNKNOWN and INSUFFICIENT in early evaluation engines."
+      ]
+    },
+    {
+      "case_id": "F04_vague_client_budget",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "other",
+      "primary_demands": [
+        "como projetar uma topologia de banco de dados multi-regiao com alta disponibilidade e menor latencia de leitura?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "UNKNOWN",
+      "functional_relation": "ambiguous_proposition",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "evaluate_relevance",
+      "failure_mechanism": "Hardcoded mapping in evaluate_relevance routes prop.is_evasive directly to UNKNOWN ('ambiguous_proposition') instead of INSUFFICIENT, conflating lack of evaluable technical evidence with true epistemic uncertainty or indeterminacy.",
+      "root_cause_id": "CR-04",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Historical ambiguity between UNKNOWN and INSUFFICIENT in early evaluation engines."
+      ]
+    },
+    {
+      "case_id": "F05_vague_hire_consultancy",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "other",
+      "primary_demands": [
+        "como arquitetar a transicao de um monolito com banco relacional compartilhado para servicos com banco por servico?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "UNKNOWN",
+      "functional_relation": "ambiguous_proposition",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "evaluate_relevance",
+      "failure_mechanism": "Hardcoded mapping in evaluate_relevance routes prop.is_evasive directly to UNKNOWN ('ambiguous_proposition') instead of INSUFFICIENT, conflating lack of evaluable technical evidence with true epistemic uncertainty or indeterminacy.",
+      "root_cause_id": "CR-04",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Historical ambiguity between UNKNOWN and INSUFFICIENT in early evaluation engines."
+      ]
+    },
+    {
+      "case_id": "F08_filler_agree",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "other",
+      "primary_demands": [
+        "como balanceadores de carga l7 distribuem trafego grpc utilizando http/2 multiplexado?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "NONE",
+      "functional_relation": "non_operative_assertion",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Lexical absence of expected target tokens or over-triggering of disjunction/antithesis rules penalized a valid technical response.",
+      "root_cause_id": "CR-08",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Strict domain filters without semantic similarity fallback."
+      ]
+    },
+    {
+      "case_id": "F10_vague_it_is_a_queue",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "explanation",
+      "primary_demands": [
+        "como funciona o particionamento e ordenacao de mensagens no apache kafka?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "UNKNOWN",
+      "functional_relation": "ambiguous_proposition",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "evaluate_relevance",
+      "failure_mechanism": "Hardcoded mapping in evaluate_relevance routes prop.is_evasive directly to UNKNOWN ('ambiguous_proposition') instead of INSUFFICIENT, conflating lack of evaluable technical evidence with true epistemic uncertainty or indeterminacy.",
+      "root_cause_id": "CR-04",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Historical ambiguity between UNKNOWN and INSUFFICIENT in early evaluation engines."
+      ]
+    },
+    {
+      "case_id": "F11_vague_need_weeks_analysis",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "implementation",
+      "primary_demands": [
+        "como mitigar gargalos graves de latencia em endpoints de checkout de e-commerce sob alto trafego?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "UNKNOWN",
+      "functional_relation": "ambiguous_proposition",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "evaluate_relevance",
+      "failure_mechanism": "Hardcoded mapping in evaluate_relevance routes prop.is_evasive directly to UNKNOWN ('ambiguous_proposition') instead of INSUFFICIENT, conflating lack of evaluable technical evidence with true epistemic uncertainty or indeterminacy.",
+      "root_cause_id": "CR-04",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Historical ambiguity between UNKNOWN and INSUFFICIENT in early evaluation engines."
+      ]
+    },
+    {
+      "case_id": "F14_vague_depends_on_many_things",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "other",
+      "primary_demands": [
+        "como desenhar uma estrategia de particionamento de banco relacional para tabelas com bilhoes de registros?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "UNKNOWN",
+      "functional_relation": "ambiguous_proposition",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "evaluate_relevance",
+      "failure_mechanism": "Hardcoded mapping in evaluate_relevance routes prop.is_evasive directly to UNKNOWN ('ambiguous_proposition') instead of INSUFFICIENT, conflating lack of evaluable technical evidence with true epistemic uncertainty or indeterminacy.",
+      "root_cause_id": "CR-04",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Historical ambiguity between UNKNOWN and INSUFFICIENT in early evaluation engines."
+      ]
+    },
+    {
+      "case_id": "F16_vague_monitoring_tools_general",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "diagnosis",
+      "primary_demands": [
+        "como diagnosticar vazamentos de conexoes em pools jdbc em aplicacoes corporativas?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "UNKNOWN",
+      "functional_relation": "ambiguous_proposition",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "evaluate_relevance",
+      "failure_mechanism": "Hardcoded mapping in evaluate_relevance routes prop.is_evasive directly to UNKNOWN ('ambiguous_proposition') instead of INSUFFICIENT, conflating lack of evaluable technical evidence with true epistemic uncertainty or indeterminacy.",
+      "root_cause_id": "CR-04",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Historical ambiguity between UNKNOWN and INSUFFICIENT in early evaluation engines."
+      ]
+    },
+    {
+      "case_id": "F18_vague_depends_on_team_decision",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "other",
+      "primary_demands": [
+        "como arquitetar a consistencia em microsservicos quando transacoes distribuidas classicas (2pc) sao inviaveis?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "UNKNOWN",
+      "functional_relation": "ambiguous_proposition",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "evaluate_relevance",
+      "failure_mechanism": "Hardcoded mapping in evaluate_relevance routes prop.is_evasive directly to UNKNOWN ('ambiguous_proposition') instead of INSUFFICIENT, conflating lack of evaluable technical evidence with true epistemic uncertainty or indeterminacy.",
+      "root_cause_id": "CR-04",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Historical ambiguity between UNKNOWN and INSUFFICIENT in early evaluation engines."
+      ]
+    },
+    {
+      "case_id": "F20_vague_consult_official_docs",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "UNKNOWN",
+      "question_intent": "implementation",
+      "primary_demands": [
+        "como configurar mutual tls com certificados rotativos em proxies envoy?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "UNKNOWN",
+      "functional_relation": "ambiguous_proposition",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "evaluate_relevance",
+      "failure_mechanism": "Hardcoded mapping in evaluate_relevance routes prop.is_evasive directly to UNKNOWN ('ambiguous_proposition') instead of INSUFFICIENT, conflating lack of evaluable technical evidence with true epistemic uncertainty or indeterminacy.",
+      "root_cause_id": "CR-04",
+      "evidence": [
+        "Response is ambiguous and lacks concrete technical propositions."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Historical ambiguity between UNKNOWN and INSUFFICIENT in early evaluation engines."
+      ]
+    },
+    {
+      "case_id": "F21_filler_conheco_bem",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o kernel linux utiliza ebpf para observabilidade de chamadas de sistema com tracepoints?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "NONE",
+      "functional_relation": "non_operative_assertion",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Lexical absence of expected target tokens or over-triggering of disjunction/antithesis rules penalized a valid technical response.",
+      "root_cause_id": "CR-08",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Strict domain filters without semantic similarity fallback."
+      ]
+    },
+    {
+      "case_id": "F22_vague_budget_approval",
+      "group": "F_insufficient_evidence",
+      "reference_class": "INSUFFICIENT",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "other",
+      "primary_demands": [
+        "como planejar a redundancia de data centers para tolerar desastres geograficos em sistemas bancarios?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "NONE",
+      "functional_relation": "domain_disjunct_assertion",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Lexical absence of expected target tokens or over-triggering of disjunction/antithesis rules penalized a valid technical response.",
+      "root_cause_id": "CR-08",
+      "evidence": [
+        "Response is functionally disjunct from the question domain."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Strict domain filters without semantic similarity fallback."
+      ]
+    },
+    {
+      "case_id": "G01_tautology_replication",
+      "group": "G_uncertainty_circularity",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como a replicacao de dados garante alta disponibilidade em clusters distribuidos?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "_detect_structural_circularity",
+      "failure_mechanism": "Tautological circular reasoning used morphological variations or cognates (e.g. replicação/replicados, compressão/comprimindo, travamento/travando) that bypassed the static stem list or failed the 'if stem in q_norm' check due to nominalization/verb divergence.",
+      "root_cause_id": "CR-03",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Presence of functional grammatical connectives ('mantem', 'de forma que') was interpreted as substantive informational gain."
+      ]
+    },
+    {
+      "case_id": "G04_tautology_deadlock_waiting",
+      "group": "G_uncertainty_circularity",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "other",
+      "primary_demands": [
+        "como transacoes entram em deadlock quando disputam recursos compartilhados?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "NONE",
+      "functional_relation": "non_operative_assertion",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Lexical absence of expected target tokens or over-triggering of disjunction/antithesis rules penalized a valid technical response.",
+      "root_cause_id": "CR-08",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Strict domain filters without semantic similarity fallback."
+      ]
+    },
+    {
+      "case_id": "G08_tautology_compression",
+      "group": "G_uncertainty_circularity",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como a compressao de payloads reduz a utilizacao de banda de rede em chamadas remotas?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "_detect_structural_circularity",
+      "failure_mechanism": "Tautological circular reasoning used morphological variations or cognates (e.g. replicação/replicados, compressão/comprimindo, travamento/travando) that bypassed the static stem list or failed the 'if stem in q_norm' check due to nominalization/verb divergence.",
+      "root_cause_id": "CR-03",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Presence of functional grammatical connectives ('mantem', 'de forma que') was interpreted as substantive informational gain."
+      ]
+    },
+    {
+      "case_id": "G10_tautology_distribution",
+      "group": "G_uncertainty_circularity",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como balanceadores de carga espalham requisicoes de clientes entre instancias ativas?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "_detect_structural_circularity",
+      "failure_mechanism": "Tautological circular reasoning used morphological variations or cognates (e.g. replicação/replicados, compressão/comprimindo, travamento/travando) that bypassed the static stem list or failed the 'if stem in q_norm' check due to nominalization/verb divergence.",
+      "root_cause_id": "CR-03",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Presence of functional grammatical connectives ('mantem', 'de forma que') was interpreted as substantive informational gain."
+      ]
+    },
+    {
+      "case_id": "G11_tautology_availability",
+      "group": "G_uncertainty_circularity",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como replicas distribuidas garantem alta disponibilidade para usuarios de sistemas de missao critica?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "_detect_structural_circularity",
+      "failure_mechanism": "Tautological circular reasoning used morphological variations or cognates (e.g. replicação/replicados, compressão/comprimindo, travamento/travando) that bypassed the static stem list or failed the 'if stem in q_norm' check due to nominalization/verb divergence.",
+      "root_cause_id": "CR-03",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Presence of functional grammatical connectives ('mantem', 'de forma que') was interpreted as substantive informational gain."
+      ]
+    },
+    {
+      "case_id": "G12_tautology_index_indexing",
+      "group": "G_uncertainty_circularity",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como a criacao de indices acelera buscas em tabelas de grande volume?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "_detect_structural_circularity",
+      "failure_mechanism": "Tautological circular reasoning used morphological variations or cognates (e.g. replicação/replicados, compressão/comprimindo, travamento/travando) that bypassed the static stem list or failed the 'if stem in q_norm' check due to nominalization/verb divergence.",
+      "root_cause_id": "CR-03",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Presence of functional grammatical connectives ('mantem', 'de forma que') was interpreted as substantive informational gain."
+      ]
+    },
+    {
+      "case_id": "G14_tautology_transactions_locking",
+      "group": "G_uncertainty_circularity",
+      "reference_class": "UNKNOWN",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como concorrencia de escrita gera travamento mutuo em tabelas de banco de dados?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "_detect_structural_circularity",
+      "failure_mechanism": "Tautological circular reasoning used morphological variations or cognates (e.g. replicação/replicados, compressão/comprimindo, travamento/travando) that bypassed the static stem list or failed the 'if stem in q_norm' check due to nominalization/verb divergence.",
+      "root_cause_id": "CR-03",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Presence of functional grammatical connectives ('mantem', 'de forma que') was interpreted as substantive informational gain."
+      ]
+    },
+    {
+      "case_id": "H01_full_sharding_rebalance",
+      "group": "H_compound_multi_aspect",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "other",
+      "primary_demands": [
+        "como projetar sharding em banco nosql com chaves de particao",
+        "rebalancear nos dinamicamente?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "PARTIAL",
+      "functional_relation": "multi_aspect_partial_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "The engine over-segmented the demand or penalized a concise functional response for not repeating explicit sub-aspect keywords.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "The response solved the mechanism compactly without mentioning redundant secondary terms."
+      ]
+    },
+    {
+      "case_id": "H04_full_ratelimit_retry_after",
+      "group": "H_compound_multi_aspect",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "implementation",
+      "primary_demands": [
+        "como configurar rate limiting distribuido usando redis",
+        "notificar clientes bloqueados com cabecalhos http adequados?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "PARTIAL",
+      "functional_relation": "multi_aspect_partial_coverage",
+      "epistemic_status": "DEMONSTRATED_EXPERIENCE",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "The engine over-segmented the demand or penalized a concise functional response for not repeating explicit sub-aspect keywords.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "The response solved the mechanism compactly without mentioning redundant secondary terms."
+      ]
+    },
+    {
+      "case_id": "H07_full_token_bucket_burst_enforcement",
+      "group": "H_compound_multi_aspect",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o algoritmo token bucket tolera bursts pontuais",
+        "aplicar limitacao de taxa em requisicoes excedentes?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "PARTIAL",
+      "functional_relation": "multi_aspect_partial_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "The engine over-segmented the demand or penalized a concise functional response for not repeating explicit sub-aspect keywords.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "The response solved the mechanism compactly without mentioning redundant secondary terms."
+      ]
+    },
+    {
+      "case_id": "H09_full_optimistic_concurrency_version_conflict",
+      "group": "H_compound_multi_aspect",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "implementation",
+      "primary_demands": [
+        "como implementar controle de concorrencia otimista com versionamento",
+        "tratar conflitos de concorrencia na aplicacao?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "PARTIAL",
+      "functional_relation": "multi_aspect_partial_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "The engine over-segmented the demand or penalized a concise functional response for not repeating explicit sub-aspect keywords.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "The response solved the mechanism compactly without mentioning redundant secondary terms."
+      ]
+    },
+    {
+      "case_id": "H14_partial_lsm_omits_bloom",
+      "group": "H_compound_multi_aspect",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como lsm-trees otimizam vazao de escrita e utilizam filtros de bloom para acelerar leituras?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "decompose_question",
+      "failure_mechanism": "Question contains multiple interdependent technical aspects (states, actions, or error handlers) in a single grammatical clause without explicit interrogative coordination. Parser collapsed requirements into single demand_1, which was satisfied by the partial response.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Response might be considered sufficient under a very lenient interpretation, but ground truth strictly expects coverage of all core operational aspects."
+      ]
+    },
+    {
+      "case_id": "H15_partial_raft_omits_divergence",
+      "group": "H_compound_multi_aspect",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o lider do raft replica logs com os seguidores",
+        "sincroniza replicas desatualizadas?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "multi_aspect_full_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "Multi-aspect demands were extracted, but evaluate_demand_nexus matched isolated tokens from demand_2 in the response, assigning FUNCTIONALLY_SOLVES to both demands from a single response proposition without verifying 1-to-1 propositional coverage.",
+      "root_cause_id": "CR-06",
+      "evidence": [
+        "Response functionally solves all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Demand-2 nexus checker lacks propositional segmentation."
+      ]
+    },
+    {
+      "case_id": "H17_partial_2pc_omits_coordinator_crash",
+      "group": "H_compound_multi_aspect",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o two-phase commit garante atomicidade distribuida",
+        "recuperar se o coordenador falhe durante a fase de commit?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "multi_aspect_full_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "Multi-aspect demands were extracted, but evaluate_demand_nexus matched isolated tokens from demand_2 in the response, assigning FUNCTIONALLY_SOLVES to both demands from a single response proposition without verifying 1-to-1 propositional coverage.",
+      "root_cause_id": "CR-06",
+      "evidence": [
+        "Response functionally solves all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Demand-2 nexus checker lacks propositional segmentation."
+      ]
+    },
+    {
+      "case_id": "I04_avoidance_disable_auth",
+      "group": "I_polarity_avoidance_guard",
+      "reference_class": "DIRECT",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "implementation",
+      "primary_demands": [
+        "como proteger endpoints internos de microsservicos contra requisicoes nao autorizadas?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "NONE",
+      "functional_relation": "destructive_antithesis_assertion",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Lexical absence of expected target tokens or over-triggering of disjunction/antithesis rules penalized a valid technical response.",
+      "root_cause_id": "CR-08",
+      "evidence": [
+        "Response proposes action that opposes or disables required protections."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Strict domain filters without semantic similarity fallback."
+      ]
+    },
+    {
+      "case_id": "J13_fencing_token_detailed",
+      "group": "J_representation_invariance",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "definition",
+      "primary_demands": [
+        "o que e um fencing token",
+        "ele impede corrupcao de dados em locks distribuidos?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "PARTIAL",
+      "functional_relation": "multi_aspect_partial_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "The engine over-segmented the demand or penalized a concise functional response for not repeating explicit sub-aspect keywords.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "The response solved the mechanism compactly without mentioning redundant secondary terms."
+      ]
+    },
+    {
+      "case_id": "J14_fencing_token_concise",
+      "group": "J_representation_invariance",
+      "reference_class": "DIRECT",
+      "predicted_class": "PARTIAL",
+      "question_intent": "definition",
+      "primary_demands": [
+        "o que e um fencing token",
+        "ele impede corrupcao de dados em locks distribuidos?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "PARTIAL",
+      "functional_relation": "multi_aspect_partial_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "The engine over-segmented the demand or penalized a concise functional response for not repeating explicit sub-aspect keywords.",
+      "root_cause_id": "CR-01",
+      "evidence": [
+        "Response satisfies some but not all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "The response solved the mechanism compactly without mentioning redundant secondary terms."
+      ]
+    },
+    {
+      "case_id": "J20_raft_election_concise",
+      "group": "J_representation_invariance",
+      "reference_class": "DIRECT",
+      "predicted_class": "OFF_TOPIC",
+      "question_intent": "other",
+      "primary_demands": [
+        "como nos seguidores iniciam e vencem uma eleicao de lider no algoritmo raft?"
+      ],
+      "response_propositions": [
+        "none"
+      ],
+      "demand_coverage": "NONE",
+      "functional_relation": "non_operative_assertion",
+      "epistemic_status": "UNKNOWN",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Lexical absence of expected target tokens or over-triggering of disjunction/antithesis rules penalized a valid technical response.",
+      "root_cause_id": "CR-08",
+      "evidence": [
+        "Response does not demonstrate operative technical mechanism addressing demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Strict domain filters without semantic similarity fallback."
+      ]
+    },
+    {
+      "case_id": "J25_partial_2pc_detailed",
+      "group": "J_representation_invariance",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o two-phase commit garante atomicidade distribuida",
+        "recuperar se o coordenador falhe durante a fase de commit?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "multi_aspect_full_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "Multi-aspect demands were extracted, but evaluate_demand_nexus matched isolated tokens from demand_2 in the response, assigning FUNCTIONALLY_SOLVES to both demands from a single response proposition without verifying 1-to-1 propositional coverage.",
+      "root_cause_id": "CR-06",
+      "evidence": [
+        "Response functionally solves all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Demand-2 nexus checker lacks propositional segmentation."
+      ]
+    },
+    {
+      "case_id": "J26_partial_2pc_concise",
+      "group": "J_representation_invariance",
+      "reference_class": "PARTIAL",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como o two-phase commit garante atomicidade distribuida",
+        "recuperar se o coordenador falhe durante a fase de commit?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "multi_aspect_full_coverage",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "assess_demand_nexus",
+      "failure_mechanism": "Multi-aspect demands were extracted, but evaluate_demand_nexus matched isolated tokens from demand_2 in the response, assigning FUNCTIONALLY_SOLVES to both demands from a single response proposition without verifying 1-to-1 propositional coverage.",
+      "root_cause_id": "CR-06",
+      "evidence": [
+        "Response functionally solves all demanded aspects."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Demand-2 nexus checker lacks propositional segmentation."
+      ]
+    },
+    {
+      "case_id": "J28_antithesis_locks_colloquial",
+      "group": "J_representation_invariance",
+      "reference_class": "OFF_TOPIC",
+      "predicted_class": "DIRECT",
+      "question_intent": "implementation",
+      "primary_demands": [
+        "como resolver concorrencia de escritas e deadlocks em transacoes financeiras criticas?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Colloquial phrasing ('a gente tira a trava') or passive voice ('quando as travas forem retiradas') bypassed antithesis patterns and activated operative verb stems, promoting a destructive action to DIRECT.",
+      "root_cause_id": "CR-07",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Antithesis regex only targeted formal imperative structures."
+      ]
+    },
+    {
+      "case_id": "J30_antithesis_acid_passive",
+      "group": "J_representation_invariance",
+      "reference_class": "OFF_TOPIC",
+      "predicted_class": "DIRECT",
+      "question_intent": "other",
+      "primary_demands": [
+        "como garantir integridade e isolamento em operacoes financeiras com debitos e creditos simultaneos?"
+      ],
+      "response_propositions": [
+        "operative_action"
+      ],
+      "demand_coverage": "FULL",
+      "functional_relation": "open_domain_mechanism_assertion",
+      "epistemic_status": "CONCEPTUAL",
+      "runtime_component": "_detect_antithesis",
+      "failure_mechanism": "Colloquial phrasing ('a gente tira a trava') or passive voice ('quando as travas forem retiradas') bypassed antithesis patterns and activated operative verb stems, promoting a destructive action to DIRECT.",
+      "root_cause_id": "CR-07",
+      "evidence": [
+        "Response functionally solves the question demand."
+      ],
+      "confidence_in_root_cause": "HIGH",
+      "alternative_explanations": [
+        "Antithesis regex only targeted formal imperative structures."
+      ]
+    }
+  ]
+}

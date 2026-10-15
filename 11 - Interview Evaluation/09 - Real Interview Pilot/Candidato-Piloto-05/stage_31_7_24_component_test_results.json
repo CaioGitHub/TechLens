@@ -1,0 +1,40 @@
+{
+  "suite": "tests.test_stage_31_7_24_contract_tests",
+  "total_tests": 9,
+  "passed": 9,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "execution_time_seconds": 0.0126,
+  "status": "PASS",
+  "test_cases": [
+    {
+      "name": "TC-01: Multi-state demand decomposition and aspect goal assignment",
+      "status": "PASS"
+    },
+    {
+      "name": "TC-02: Proposition discourse genre classification and operativity filter",
+      "status": "PASS"
+    },
+    {
+      "name": "TC-03: Morphological circularity and cognate family detection",
+      "status": "PASS"
+    },
+    {
+      "name": "TC-04: Demand-proposition nexus bipartite matching with multi-aspect coverage",
+      "status": "PASS"
+    },
+    {
+      "name": "TC-05: Strict ontological aggregation and class exclusivity",
+      "status": "PASS"
+    },
+    {
+      "name": "TC-06: Representation invariance across informal, formal, and concise phrasings",
+      "status": "PASS"
+    },
+    {
+      "name": "TC-07: Uncertainty, evasion, and ambiguity preservation",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "DIRECT": {
+    "DIRECT": 50,
+    "PARTIAL": 1,
+    "SUPPORTING": 0,
+    "RELATED": 2,
+    "OFF_TOPIC": 2,
+    "INSUFFICIENT": 0,
+    "UNKNOWN": 0
+  },
+  "PARTIAL": {
+    "DIRECT": 0,
+    "PARTIAL": 42,
+    "SUPPORTING": 0,
+    "RELATED": 1,
+    "OFF_TOPIC": 2,
+    "INSUFFICIENT": 0,
+    "UNKNOWN": 0
+  },
+  "SUPPORTING": {
+    "DIRECT": 7,
+    "PARTIAL": 1,
+    "SUPPORTING": 17,
+    "RELATED": 0,
+    "OFF_TOPIC": 3,
+    "INSUFFICIENT": 0,
+    "UNKNOWN": 0
+  },
+  "RELATED": {
+    "DIRECT": 22,
+    "PARTIAL": 0,
+    "SUPPORTING": 0,
+    "RELATED": 6,
+    "OFF_TOPIC": 4,
+    "INSUFFICIENT": 0,
+    "UNKNOWN": 0
+  },
+  "OFF_TOPIC": {
+    "DIRECT": 34,
+    "PARTIAL": 0,
+    "SUPPORTING": 0,
+    "RELATED": 0,
+    "OFF_TOPIC": 10,
+    "INSUFFICIENT": 0,
+    "UNKNOWN": 0
+  },
+  "INSUFFICIENT": {
+    "DIRECT": 7,
+    "PARTIAL": 0,
+    "SUPPORTING": 0,
+    "RELATED": 0,
+    "OFF_TOPIC": 11,
+    "INSUFFICIENT": 6,
+    "UNKNOWN": 0
+  },
+  "UNKNOWN": {
+    "DIRECT": 0,
+    "PARTIAL": 0,
+    "SUPPORTING": 0,
+    "RELATED": 0,
+    "OFF_TOPIC": 1,
+    "INSUFFICIENT": 0,
+    "UNKNOWN": 21
+  }
+}

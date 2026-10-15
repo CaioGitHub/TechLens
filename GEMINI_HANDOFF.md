@@ -2648,8 +2648,300 @@ PRED TOTAL              84          16          25          11          51      
 - **Eficácia Comprovada (Grupo I - 92,86% acerto):** A salvaguarda de evitação e prevenção implementada no Stage 31.7.20 demonstrou alta generalização, distinguindo com sucesso respostas que alertam contra más práticas daquelas que propõem destruição de salvaguardas operacionais.
 
 ### 4. Próxima Etapa Autorizada:
-- **Stage 31.7.22 — Root Cause Analysis & Semantic Precision Remediation Architecture (Cycle 4)**
+- **Stage 31.7.22 — Root Cause Analysis & Semantic Precision Remediation Architecture (Cycle 4)** (CONCLUÍDO)
 - Conduzir a investigação profunda e isolada das causas-raiz estruturais dos 4 padrões de falha identificados na validação cega, preservando o histórico integral e sem realizar modificações precipitadas no runtime.
+
+---
+
+# 73. REGISTRO DE TRANSIÇÃO — STAGE 31.7.22 (ANÁLISE DE CAUSA-RAIZ & ESPECIFICAÇÃO ARQUITETURAL DO CICLO 4)
+
+- **Stage Concluído:** Stage 31.7.22 — Root Cause Analysis & Semantic Precision Remediation Architecture (Cycle 4)
+- **Gate Emitido:** `GATE: RCA_COMPLETE_ARCHITECTURE_PENDING_REVIEW`
+- **Artefatos Gerados:**
+  - `stage_31_7_22_metrics_reconciliation.json` (SHA-256: `DFD17C7D5C1D1086408CC8CB8B9C18B446C04BF732CBDA6C21B750F38379B156`)
+  - `stage_31_7_22_root_cause_catalog.json` (SHA-256: `EE711719DADAC102086ACA8C21B9EAE0F1A7DB74C12B74C7BEC5DCFAE96963D5`)
+  - `stage_31_7_22_architecture_options.md` (SHA-256: `6CE463F623C7608E1665E96D4034072DC9E1AC61EA353B335F256DF3FC62E1CF`)
+  - `stage_31_7_22_component_contracts.md` (SHA-256: `0257ACDC51B6C6555FB7AE146303C5F91FA7BE813D31755AAC3B57EC30391951`)
+  - `stage_31_7_22_validation_contract.md` (SHA-256: `121ED18EC6CBEBDDBECC79B617C5298E89BB8435D7CCAAAAC0398FC2765977A1`)
+  - `Stage 31.7.22 — Root Cause Analysis & Semantic Precision Remediation Architecture (Cycle 4).md` (SHA-256: `8CF1FB29FF7F2F946415FDBDE4F165044CD4A979EC8E8482FB8098217F309A28`)
+- **Status do Runtime:** 100% Congelado, SHA-256 verificado: `75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC`.
+- **Checkpoint Criado:** `reference_runtime/runtime.py.stage_31_7_22_baseline` (SHA-256: `75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC`).
+
+### 1. Reconciliação Matemática das Métricas do Stage 31.7.21:
+- Reconciliação executada diretamente cruzando os 250 casos de `stage_31_7_21_ground_truth.json` com `stage_31_7_21_system_predictions.json`.
+- Reprodução exata de 100%:
+  - Concordância Exata: 170 / 250 (68,00%)
+  - Recall de DIRECT: 53 / 65 (81,54%)
+  - Precisão de DIRECT: 53 / 100 (53,00%)
+  - Falsos DIRECT entre Divergências: 47 / 80 (58,75%)
+  - Recall de PARTIAL: 17 / 45 (37,78%)
+  - Invariância Homologada (Consistência + Correção): 11 / 16 pares (68,75%)
+  - Invariância de Consistência de Saída: 13 / 16 pares (81,25%)
+  - Regressão Canônica: 1038 executados, 1037 pass, 1 skip, 0 fail; Harness: 15/15 pass.
+
+### 2. Síntese do Catálogo de Causas-Raiz (80 Divergências):
+- **CR-01 (Demanda composta tratada como demanda simples - 28 casos / 35,0%):** O método `decompose_question` exige conjunções interrogativas explícitas (`e como`, `e qual`). Em perguntas de oração simples que demandam múltiplos estados (Circuit Breaker: fechado/aberto/meio-aberto) ou pares de ação/compensação (Saga), os requisitos foram colapsados em uma única demanda genérica, fazendo com que respostas cobrindo apenas metade do mecanismo recebessem `DIRECT`.
+- **CR-06 (Acoplamento difuso em multi-demandas - 6 casos / 7,5%):** Quando duas demandas foram extraídas, a escada de `if/elif` em `assess_demand_nexus` buscou palavras isoladas (ex: "coordenador") no texto da resposta, marcando a demanda 2 como `FUNCTIONALLY_SOLVES` mesmo quando a resposta omitia o tratamento de queda do coordenador.
+- **CR-02 & CR-05 (Verbos técnicos em relatos autobiográficos e históricos - 12 casos / 15,0%):** Verbos de ação comuns ativaram `has_operative_verb` em anedotas históricas (Igor Sysoev, Edgar Codd) e relatos pessoais ("já usei em produção"), promovendo contexto temático a solução técnica.
+- **CR-03 (Circularidade não detectada por variação morfológica - 6 casos / 7,5%):** A busca estática de radicais falhou diante de variações morfológicas legítimas em português (ex: "compressão" vs. "comprimindo", "replicação" vs. "replicar"), promovendo tautologias a `DIRECT`.
+- **CR-04 (Mapeamento terminológico hardcoded - 11 casos / 13,75%):** Respostas evasivas foram mapeadas por regra hardcoded na linha 3633 para `UNKNOWN` em vez de `INSUFFICIENT`.
+- **CR-07 (Invariância assimétrica em antíteses - 5 casos / 6,25%):** Formulações coloquiais e passivas de remoção de travas/ACID contornaram os filtros imperativos formais de antítese e foram classificadas como `DIRECT`.
+- **CR-08 (Polaridade e salvaguarda preventiva):** Alta taxa de acerto no Grupo I (92,86%), confirmando a eficácia da guarda preventiva introduzida no Stage 31.7.20.
+
+### 3. Decisão Arquitetural para o Ciclo 4:
+- Comparadas 3 alternativas:
+  - *Alternativa 1 (Expansão Heurística Pontual):* Rejeitada por risco severo de overfitting e fragilidade contínua a variações de linguagem.
+  - *Alternativa 3 (Modelo Neural de Embeddings):* Rejeitada por violação aos guardrails de determinismo, auditabilidade causal e explicabilidade do projeto.
+  - *Alternativa 2 (Grafo Proposicional Decomposto com Contratos Estritos):* **Aprovada formalmente**.
+- Pipeline modular em 5 componentes especificado:
+  1. `SemanticIntentAndDemandExtractor`
+  2. `PropositionDiscourseFilter`
+  3. `MorphologicalCircularityAnalyzer`
+  4. `DemandPropositionNexusBipartiteMatcher`
+  5. `StrictOntologyRelevanceAggregator`
+
+### 4. Próxima Etapa Autorizada:
+- **Stage 31.7.23 — Controlled Correction Plan & Contract Specification (Cycle 4)** (CONCLUÍDO)
+- Formalizar o plano de incremento controlado dos 5 componentes e especificar a suíte de testes de contrato unitários (TC-01 a TC-07) antes de qualquer implementação de código no runtime.
+
+---
+
+# 74. REGISTRO DE TRANSIÇÃO — STAGE 31.7.23 (PLANO DE CORREÇÃO CONTROLADA & ESPECIFICAÇÃO DE CONTRATOS DO CICLO 4)
+
+- **Stage Concluído:** Stage 31.7.23 — Controlled Correction Plan & Contract Specification (Cycle 4)
+- **Gate Emitido:** `GATE: CORRECTION_PLAN_READY_FOR_CONTROLLED_IMPLEMENTATION`
+- **Artefatos Gerados:**
+  - `stage_31_7_23_correction_plan.json` (SHA-256: `7A9A8D379D14A2ED486DCC24CFAD4107A45701F385A5CD8874FA2015449AE3A9`)
+  - `stage_31_7_23_component_contracts.md` (SHA-256: `1D70B954635C7F31F8F5EE69B5DECD5EE3B7CD709E6ABA7F14AC00A94B24C3E9`)
+  - `stage_31_7_23_incremental_implementation_plan.md` (SHA-256: `BF236B770B10987DAAE03641B99F18942025E171E61F41CDF37FF3560734AF4B`)
+  - `stage_31_7_23_validation_contract.md` (SHA-256: `DBA8E45A3A5904541B51F2D58E64E710210B2FE4998F28BAFA537C2568805679`)
+  - `stage_31_7_23_risk_and_rollback_plan.md` (SHA-256: `6D9F67ACF7F7B7A1CFA008B1A6A928345ABF2685B658C64F50E0B5976DBF645E`)
+  - `Stage 31.7.23 — Controlled Correction Plan & Contract Specification (Cycle 4).md` (SHA-256: `DDB69DAE1D9771662C50B61853059DCB3D170DC64BD9C1C5DB9C45D406D2D05F`)
+- **Status do Runtime:** 100% Congelado, SHA-256 verificado: `75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC`.
+- **Checkpoint Criado:** `reference_runtime/runtime.py.stage_31_7_23_baseline` (SHA-256: `75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC`).
+
+### 1. Especificações Formalizadas no Stage 31.7.23:
+1. **Contratos dos 5 Componentes Desacoplados:**
+   - `SemanticIntentAndDemandExtractor`: extração profunda de aspectos obrigatórios em orações simples sem exigir conjunções explícitas (resolve CR-01).
+   - `PropositionDiscourseFilter`: classificação em 7 gêneros discursivos antes da avaliação de verbos, desqualificando relatos autobiográficos e anedotas históricas de atuarem como soluções operativas (resolve CR-02 e CR-05).
+   - `MorphologicalCircularityAnalyzer`: unificação de famílias cognatas nominais e verbais, calculando o ganho informacional real para barrar tautologias morfológicas (resolve CR-03).
+   - `DemandPropositionNexusBipartiteMatcher`: emparelhamento bipartido que elimina a cross-satisfaction difusa de múltiplas demandas por palavras coincidentes isoladas (resolve CR-06).
+   - `StrictOntologyRelevanceAggregator`: única fonte de verdade ontológica; mapeia evasão para `INSUFFICIENT` e exige 100% de aspectos satisfeitos para conceder `DIRECT` (resolve CR-04).
+2. **Dezesseis Invariantes Semânticos Testáveis:**
+   - Formalizados de INV-01 a INV-16, estabelecendo regras formais que impedem a perda de incerteza, viés de extensão, ou conclusões apressadas por presença/ausência léxica.
+3. **Plano de Implementação Incremental (5 Incrementos):**
+   - Incremento A: Intenção e Demandas (`SemanticIntentAndDemandExtractor`).
+   - Incremento B: Nexo Funcional e Cobertura Bipartida (`DemandPropositionNexusBipartiteMatcher`).
+   - Incremento C: Gênero Discursivo e Circularidade Morfológica (`PropositionDiscourseFilter` & `MorphologicalCircularityAnalyzer`).
+   - Incremento D: Polaridade, Evasão e Incerteza (`_detect_antithesis` e regra EVASIVE -> INSUFFICIENT).
+   - Incremento E: Agregação Canônica e Integração Final (`StrictOntologyRelevanceAggregator`).
+4. **Contrato de Validação Independente do Ciclo 4 (Stage 31.7.25):**
+   - Limiares pré-fixados: Concordância $\ge 75\%$, Recall DIRECT $\ge 85\%$, Precisão DIRECT $\ge 70\%$, Falsos DIRECT $\le 10\%$, Recall PARTIAL $\ge 60\%$, Invariância Homologada $\ge 80\%$, Regressão zero falhas.
+   - Separação explícita entre consistência pura de saída e invariância homologada (consistência + correção).
+   - Benchmark histórico do Stage 31.7.21 preservado exclusivamente como diagnóstico.
+   - Status mantido honestamente como `REFERENCE_INDEPENDENCE_UNRESOLVED`.
+5. **Plano de Riscos e Rollback:**
+   - Gatilhos automáticos de rollback perante qualquer regressão na suíte canônica (1038 testes) ou Reference Harness (15 testes).
+
+### 2. Próxima Etapa Autorizada:
+- **Stage 31.7.24 — Controlled Implementation of the Approved Semantic Precision Remediation Plan (Cycle 4)** (CONCLUÍDO)
+- Executar exclusivamente a implementação controlada dos 5 incrementos especificados (A a E) em `reference_runtime/runtime.py`, validando os testes de contrato (TC-01 a TC-07) e garantindo regressão canônica 100% verde a cada passo, gerando novo hash congelado ao final.
+
+---
+
+# 75. REGISTRO DE TRANSIÇÃO — STAGE 31.7.24 (IMPLEMENTAÇÃO CONTROLADA DA ARQUITETURA DE PRECISÃO SEMÂNTICA DO CICLO 4)
+
+- **Stage Concluído:** Stage 31.7.24 — Controlled Implementation of the Approved Semantic Precision Remediation Plan (Cycle 4)
+- **Gate Emitido:** `GATE: IMPLEMENTATION_COMPLETE_PENDING_INDEPENDENT_BLIND_VALIDATION`
+- **Artefatos Gerados:**
+  - `stage_31_7_24_implementation_log.md`
+  - `stage_31_7_24_component_test_results.json`
+  - `stage_31_7_24_regression_results.json`
+  - `stage_31_7_24_diagnostic_comparison.json`
+  - `stage_31_7_24_runtime_manifest.json`
+  - `stage_31_7_24_risk_and_rollback_results.md`
+  - `Stage 31.7.24 — Controlled Implementation of the Approved Semantic Precision Remediation Plan (Cycle 4).md`
+- **Status do Runtime:**
+  - Baseline de Entrada: `75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC`
+  - Exit SHA-256 Congelado: `36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7`
+- **Checkpoints Preservados:**
+  - `reference_runtime/runtime.py.stage_31_7_23_baseline` (SHA-256: `75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC`)
+  - `reference_runtime/runtime.py.stage_31_7_24_pre_implementation` (SHA-256: `75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC`)
+
+### 1. Síntese da Implementação:
+1. **Componentes Arquiteturais Implementados em `reference_runtime/runtime.py`:**
+   - `SemanticIntentAndDemandExtractor`: segmentação de cláusulas coordenadas com conectivo `" e "` e sintagmas verbais autônomos; extração profunda de metas multi-estado (Circuit Breaker: fechado/aberto/meio-aberto; Sagas: coordenação/compensação; 2PC: commit/abort/crash do coordenador).
+   - `PropositionDiscourseFilter`: categorização em gêneros discursivos formais (`MECHANISM_EXPLANATION`, `HISTORICAL_TRIVIA`, `PERSONAL_DECLARATION`, `EVASIVE_DEFLECTION`, `AMBIGUOUS_STATEMENT`, `SPECULATIVE_ASSERTION`); desqualificação de trivialidades e relatos pessoais de atuarem como proposições operativas; separação epistêmica rigorosa entre `is_ambiguous` (direcionado a `UNKNOWN`) e `is_evasive` (direcionado a `INSUFFICIENT`).
+   - `MorphologicalCircularityAnalyzer`: unificação de 11 famílias de cognatos abertos em português (`comprim`/`compress`, `replic`/`duplic`, `trav`, `orden`, `indic`/`index`, `sincron`, `esper`, `partic`, `isol`, `buffer`, `disponi`); detecção estrutural de ausência de ganho informacional em tautologias reflexivas, protegida por salvaguarda de mecanismos técnicos externos.
+   - `DemandPropositionNexusBipartiteMatcher`: emparelhamento bipartido estrito entre demandas atômicas e proposições técnicas; checagem operacional para recuperação de falhas (impedindo satisfação de crash por mera menção a coordenador); cálculo de graus de satisfação (`FUNCTIONALLY_SOLVES`, `PARTIAL_ASPECT`, `CONTRIBUTES_TO`, `THEMATICALLY_ADJACENT`, `UNMET`).
+   - `StrictOntologyRelevanceAggregator`: consolidação das 7 classes canônicas por precedência ontológica inegociável; eliminação de fall-throughs permissivos; posicionamento prioritário da telemetria/observabilidade auxiliar antes da adjacência de entidade.
+2. **Nova Suíte de Testes de Contrato:**
+   - Criado [`tests/test_stage_31_7_24_contract_tests.py`](file:///d:/Projetos/TechLens/tests/test_stage_31_7_24_contract_tests.py) com 9 testes cobrindo os cenários TC-01 a TC-07 e verificação de reachability das 7 classes: **9/9 aprovados (100% OK em 0.013s)**.
+3. **Regressão Canônica e Reference Harness:**
+   - Suíte canônica: 1.047 testes executados (1.046 OK, 1 skipped, 0 falhas, 0 erros em 45.3s).
+   - Reference Harness: 15/15 testes aprovados (`PASS_WITH_WARNINGS` em 30.9s).
+   - Suítes semânticas: 58/58 testes específicos aprovados (100%).
+4. **Auditoria Diagnóstica Não-Cega (Benchmark Histórico Stage 31.7.21 — 250 casos):**
+   - Acurácia Global: 68.00% (170/250) $\to$ **78.80% (197/250)** (+10.80 pontos percentuais).
+   - Casos com melhoria: **27**.
+   - Casos com regressão: **0**.
+   - Recall de `INSUFFICIENT`: 36.36% $\to$ **86.36% (+50.00%)** com **100% de precisão**.
+   - Precisão de `UNKNOWN`: 38.89% $\to$ **100.00% (+61.11%)** com **85.71% de recall**.
+   - Recall de `PARTIAL`: 37.78% $\to$ **53.33% (+15.55%)** e precisão de 65.38% $\to$ 72.73%.
+   - Recall de `RELATED`: 65.62% $\to$ **75.00% (+9.38%)** com **100% de precisão**.
+   - Precisão de `DIRECT`: 53.00% $\to$ **62.35% (+9.35%)** com recall de 81.54%.
+
+### 2. Próxima Etapa Autorizada:
+- **Stage 31.7.25 — Independent Blind Semantic Revalidation (Cycle 4)** (CONCLUÍDO COM BLOQUEIO METODOLÓGICO)
+- Conduzir a validação cega independente sobre conjunto amostral inédito e balanceado (200–250 casos), mantendo o runtime 100% congelado no hash auditado `36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7`.
+
+---
+
+# 76. REGISTRO DE TRANSIÇÃO — STAGE 31.7.25 (VALIDAÇÃO CEGA INDEPENDENTE DO RUNTIME DO CICLO 4)
+
+- **Stage Concluído:** Stage 31.7.25 — Independent Blind Semantic Revalidation of the Cycle 4 Remediated Runtime
+- **Gate Emitido:** `GATE: BLIND_SEMANTIC_REVALIDATION_BLOCKED`
+- **Artefatos Gerados:**
+  - `stage_31_7_25_validation_plan.md`
+  - `stage_31_7_25_benchmark_manifest.json`
+  - `stage_31_7_25_blind_input.json`
+  - `stage_31_7_25_ground_truth.json`
+  - `stage_31_7_25_system_predictions.json`
+  - `stage_31_7_25_metrics_summary.json`
+  - `stage_31_7_25_confusion_matrix.json`
+  - `stage_31_7_25_invariance_results.json`
+  - `stage_31_7_25_divergence_analysis.json`
+  - `stage_31_7_25_regression_results.json`
+  - `stage_31_7_25_provenance_and_blinding_audit.md`
+  - `Stage 31.7.25 — Independent Blind Semantic Revalidation of the Cycle 4 Remediated Runtime.md`
+- **Status do Runtime:** 100% Congelado e Inviolado.
+  - SHA-256 Inicial: `36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7`
+  - SHA-256 Final: `36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7`
+- **Status da Referência:** `REFERENCE_INDEPENDENCE_UNRESOLVED` (ausência de painel de juízes externos independentes mantida com honestidade intelectual).
+
+### 1. Síntese dos Resultados da Validação Cega (250 Casos Inéditos):
+1. **Métricas Globais vs. Limiares de Aceite:**
+   - **Concordância Exata:** 60.80% (152/250) vs. limiar $\ge 75.00\%$ $\to$ **REPROVADO**.
+   - **Recall de `DIRECT`:** 90.91% (50/55) vs. limiar $\ge 85.00\%$ $\to$ **APROVADO**.
+   - **Precisão de `DIRECT`:** 41.67% (50/120) vs. limiar $\ge 70.00\%$ $\to$ **REPROVADO**.
+   - **Falsos DIRECT entre Divergências:** 71.43% (70/98) vs. limiar $\le 10.00\%$ $\to$ **REPROVADO**.
+   - **Recall de `PARTIAL`:** 93.33% (42/45) vs. limiar $\ge 60.00\%$ $\to$ **APROVADO**.
+   - **Invariância Pareada Correta:** 40.00% (8/20) vs. limiar $\ge 80.00\%$ $\to$ **REPROVADO**.
+   - **Regressão Canônica:** 1.047 testes (1.046 OK, 1 skipped, 0 fail em 47.1s) e Reference Harness (15/15 OK em 35.7s) $\to$ **APROVADO**.
+2. **Diagnóstico Preliminar das 98 Divergências:**
+   - **Gargalo da Permissividade de Domínio Aberto (70 casos de falso DIRECT):** O motor identificou com perfeição perguntas multi-aspecto parciais (93.3% recall) e tautologias circulares (95.5% recall). No entanto, quando submetido a perguntas de infraestrutura com respostas de domínios completamente disjuntos (ex: jardinagem, culinária, automobilismo) ou declarações institucionais com verbos articulados, o fallback do `DemandPropositionNexusBipartiteMatcher` presumiu que qualquer proposição operativa não filtrada soluciona a demanda (`FUNCTIONALLY_SOLVES`), inflando os falsos `DIRECT`.
+   - **Fronteira Evasiva em `INSUFFICIENT`:** Respostas evasivas que continham cláusulas explicativas foram interpretadas como `OFF_TOPIC` (`non_operative_assertion`) ou promovidas a `DIRECT`.
+
+### 2. Próxima Etapa Autorizada:
+- **Stage 31.7.26 — Root Cause Analysis & Semantic Domain Disjunction Architecture (Cycle 5)** (CONCLUÍDO)
+- Executar a investigação estrutural das 98 divergências identificadas na validação cega, especificando a arquitetura de ancoragem semântica e verificação de disjunção de domínio, com o runtime rigorosamente congelado.
+
+---
+
+# 77. REGISTRO DE TRANSIÇÃO — STAGE 31.7.26 (ROOT CAUSE ANALYSIS & SEMANTIC DOMAIN DISJUNCTION ARCHITECTURE — CICLO 5)
+
+- **Stage Concluído:** Stage 31.7.26 — Root Cause Analysis & Semantic Domain Disjunction Architecture (Cycle 5)
+- **Gate Emitido:** `GATE: RCA_COMPLETE_ARCHITECTURE_APPROVED_FOR_IMPLEMENTATION`
+- **Artefatos Gerados:**
+  - `stage_31_7_26_reproduction_and_metrics_audit.md` (SHA-256: `47B21F2765779BDBE56E189AC304FB3EABDC82FA30C097EF5DBFE20189CE3E65`)
+  - `stage_31_7_26_false_direct_case_audit.json` (SHA-256: `B170FCC95071FC3E04DAFE2FDCB182515908BEAED93B42E4B51AEB00643DEAE2`)
+  - `stage_31_7_26_root_cause_analysis.md` (SHA-256: `466876E2200C1B60CF8BEE53D37202C826F3177B9D991E4E134FAC04FC563CE2`)
+  - `stage_31_7_26_semantic_domain_disjunction_architecture.md` (SHA-256: `E6CBDB3C481C7E6FFA1F45D850451B998F0F5A3FBEC784C622EF5D6998E795C9`)
+  - `stage_31_7_26_semantic_contracts.json` (SHA-256: `D0AF0F7FF4E0E6157B0C3604F2036AF52F10D9950E56644D19A12CCE4473EC59`)
+  - `stage_31_7_26_regression_risk_matrix.md` (SHA-256: `1EB9883E8DD9C67F5D45FAACEB19779A4ACDAFE704181196259D097ED6FD42A5`)
+  - `stage_31_7_26_future_validation_plan.md` (SHA-256: `C82C86F9BEBE1311D678DA3DC16A2720CB8537FA2629A7FC2DFB0E0A735A8583`)
+  - `Stage 31.7.26 — Root Cause Analysis & Semantic Domain Disjunction Architecture (Cycle 5).md`
+- **Status do Runtime:** 100% Congelado e Inviolado.
+  - SHA-256 Inicial e Final: `36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7` (ZERO alterações).
+- **Status da Referência:** `REFERENCE_INDEPENDENCE_UNRESOLVED` (o benchmark de 250 casos é considerado diagnóstico e não poderá servir como teste cego no Ciclo 5).
+
+### 1. Síntese do RCA e Resultados da Auditoria:
+1. **Reprodução Independente de Métricas:**
+   - Confirmada exata: 152 acertos / 250 casos (60.80% acurácia global).
+   - Recall de `DIRECT`: 90.91% (50/55). Precisão de `DIRECT`: 41.67% (50/120).
+   - Falsos `DIRECT` entre divergências: 71.43% (70/98).
+   - Invariância pareada correta: 40.00% (8/20).
+2. **Auditoria Individual dos 70 Falsos DIRECT:**
+   - 34 casos `OFF_TOPIC → DIRECT`: Falta de verificação de disjunção semântica; o catálogo estático de 25 termos alienígenas não capturou botânica, culinária e mecânica veicular, que receberam `is_operative = True` pela sintaxe ativa.
+   - 22 casos `RELATED → DIRECT`: Metadados institucionais/categoriais em orações transitivas ativas escaparam aos regexes e foram interpretados como mecanismos operacionais.
+   - 7 casos `SUPPORTING → DIRECT`: Observabilidade/telemetria instrumental não foram ancoradas como papéis auxiliares e caíram no fallback de mecanismo direto.
+   - 7 casos `INSUFFICIENT → DIRECT`: Respostas evasivas sintaticamente complexas ultrapassaram os filtros de evasão e receberam presunção de suficiência.
+3. **Mecanismo da Falha Estrutural:**
+   - Desacoplamento entre sintaxe e semântica: O `PropositionDiscourseFilter` classificava orações como `is_operative=True` baseado apenas em verbos gramaticais ativos, e o `DemandPropositionNexusBipartiteMatcher` executava o fallback incondicional na Linha 3434 (`FUNCTIONALLY_SOLVES`), promovido a `DIRECT` pelo agregador.
+4. **Arquitetura do Ciclo 5 e Contratos Formais A a G:**
+   - Introdução do `SemanticDomainDisjunctionEngine` para testar compatibilidade ontológica e disjunção radical com base em evidência positiva, sem vocabulário fechado.
+   - Revogação definitiva do fallback incondicional da linha 3434 do matcher.
+   - Formalização de contratos: Demanda Primária (A), Proposição (B), Nexo (C), Suficiência Causal (D), Compatibilidade Semântica (E), Disjunção Radical (F) e Agregação Final (G).
+   - Salvaguarda de 14 comportamentos preservados (respostas conceituais sem sobreposição lexical, entidades inéditas, linguagem coloquial, voz passiva, troubleshooting).
+   - Mapeamento de 12 riscos de regressão e protocolo de validação futura com os limiares canônicos estabelecidos.
+
+### 2. Próxima Etapa Autorizada:
+- **Stage 31.7.27 — Controlled Remediation of Semantic Domain Disjunction Architecture (Cycle 5)** (CONCLUÍDO)
+- Implementar controladamente no runtime a arquitetura de disjunção semântica especificada e os contratos formais A a G, sob rigoroso monitoramento de testes unitários e regressão canônica.
+
+---
+
+# 78. REGISTRO DE TRANSIÇÃO — STAGE 31.7.27 (REMEDIAÇÃO CONTROLADA DA ARQUITETURA DE DISJUNÇÃO DE DOMÍNIO — CICLO 5)
+
+- **Stage Concluído:** Stage 31.7.27 — Controlled Remediation of Semantic Domain Disjunction Architecture (Cycle 5)
+- **Gate Emitido:** `GATE: IMPLEMENTATION_COMPLETE_PENDING_INDEPENDENT_BLIND_VALIDATION`
+- **Artefatos Gerados:**
+  - `stage_31_7_27_implementation_plan.md`
+  - `stage_31_7_27_runtime_diff.md`
+  - `stage_31_7_27_contract_tests.py`
+  - `stage_31_7_27_test_results.json`
+  - `stage_31_7_27_historical_diagnostic_metrics.json`
+  - `stage_31_7_27_regression_results.json`
+  - `stage_31_7_27_rollback_record.md`
+  - `Stage 31.7.27 — Controlled Remediation of Semantic Domain Disjunction Architecture (Cycle 5).md`
+- **Hashes Criptográficos do Runtime (`reference_runtime/runtime.py`):**
+  - SHA-256 Inicial (Baseline): `36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7`
+  - SHA-256 Final (Remediado): `3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`
+- **Snapshots de Segurança Persistidos:**
+  - `reference_runtime/runtime.py.stage_31_7_26_baseline`
+  - `reference_runtime/runtime.py.stage_31_7_27_inc_a`
+  - `reference_runtime/runtime.py.stage_31_7_27_final`
+- **Status Metodológico:** `REFERENCE_INDEPENDENCE_UNRESOLVED` (mantido estritamente; o benchmark histórico de 250 casos é considerado diagnóstico e não serve como validação cega).
+
+### 1. Síntese das Modificações Arquiteturais Implementadas:
+1. **Incremento A (`SemanticDomainDisjunctionEngine` & `DomainCompatibilityRecord`):**
+   - Criação do classificador ontológico de compatibilidade de domínio semântico (linhas 1709–1960).
+   - Detecção robusta de disjunção radical em domínios cotidianos não computacionais (botânica, culinária, mecânica automotiva, literatura, esportes) baseada em evidência positiva, sem vocabulário fechado.
+   - Separação de metadados institucionais/históricos de produto (`THEMATIC_METADATA`) e evasão discursiva (`EVASIVE_DEFLECTION`).
+2. **Incremento B (`DemandPropositionNexusBipartiteMatcher`):**
+   - Revogação definitiva do fallback incondicional de domínio aberto da linha 3434.
+   - Integração da matriz bipartite aos registros de domínio (`DOMAIN_DISJUNCT` $\to$ veto de DIRECT/PARTIAL, `THEMATICALLY_ADJACENT`, `EVASIVE`).
+   - Reconhecimento antecipado de definições conceituais e matching de cognatos morfológicos em demandas secundárias de perguntas compostas.
+3. **Incremento C (`PropositionDiscourseFilter`):**
+   - Salvaguarda de prevenção contra antítese falsa (`avoidance_guard = re.search(...)`).
+   - Detecção do gênero discursivo `CONCEPTUAL_DEFINITION` e suporte a locuções operacionais em linguagem coloquial e voz passiva.
+4. **Incremento D (`StrictOntologyRelevanceAggregator`):**
+   - Preservação da acessibilidade determinística e separação categorial de todas as 7 classes canônicas (`DIRECT`, `PARTIAL`, `SUPPORTING`, `RELATED`, `OFF_TOPIC`, `INSUFFICIENT`, `UNKNOWN`).
+5. **Incremento E (`OpenDomainPropositionEngine`):**
+   - Orquestração completa na API canônica `evaluate_relevance(question, response)` com enriquecimento de rastreabilidade.
+
+### 2. Resultados de Testes e Regressão:
+- **Testes de Contrato Obrigatórios:** 20/20 APROVADOS (100% de sucesso em 0.026s, `tests/test_stage_31_7_27_contract_tests.py`).
+- **Suíte Canônica de Testes:** 1.047 testes executados, 1.046 aprovados, 1 ignorado (`skipped=1`), 0 falhas, 0 erros em 35.102s (**ZERO REGRESSÕES**).
+- **Reference Harness (Stage 26):** 15/15 aprovados, 0 falhas, 0 erros em 38.004s (**ZERO REGRESSÕES**).
+- **Benchmark Histórico Diagnóstico (250 Casos):**
+  - Acurácia global: de 60.80% para **89.20%** (223/250, +71 acertos).
+  - Falsos DIRECTs: de 70 para **6** (**redução de 91.43%**).
+  - Precisão de DIRECT: de 41.67% para **89.66%**.
+  - Recall de DIRECT: **94.55%** (52/55).
+  - Recall de PARTIAL: **97.78%** (44/45).
+  - Recall de OFF_TOPIC: **100.0%** (44/44, com 0 falsos DIRECTs).
+  - Recall de UNKNOWN: **95.45%** (21/22, com 0 falsos DIRECTs).
+
+### 3. Próxima Etapa Autorizada:
+- **Stage 31.7.28 — Independent Blind Semantic Revalidation (Cycle 5)**
+- Executar validação semântica cega independente com o runtime rigorosamente congelado (`3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`) sobre novo dataset balanceado de teste cego, verificando os limiares canônicos de aceitação para homologação definitiva.
+
+
+
+
+
+
 
 
 

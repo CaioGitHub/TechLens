@@ -1,0 +1,113 @@
+{
+  "stage": "31.7.27",
+  "suite_name": "Stage31727ContractTests",
+  "total_contract_tests": 20,
+  "passed": 20,
+  "failed": 0,
+  "errors": 0,
+  "success_rate": 1.0,
+  "elapsed_seconds": 0.0223,
+  "timestamp": "2026-10-15T01:50:45Z",
+  "tests": [
+    {
+      "test_name": "test_tc_01_no_lexical_overlap_correct",
+      "description": "TC-01: Resposta correta sem sobreposição lexical deve ser DIRECT.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_02_semantically_disjoint_domain",
+      "description": "TC-02: Resposta de domínio semanticamente disjunto (botânica) deve ser OFF_TOPIC.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_03_thematic_no_functional_mechanism",
+      "description": "TC-03: Resposta temática sem atendimento funcional (metadados institucionais) deve ser RELATED.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_04_auxiliary_observability_support",
+      "description": "TC-04: Contribuição auxiliar de observabilidade/telemetria deve ser SUPPORTING.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_05_compound_partial_fulfillment",
+      "description": "TC-05: Atendimento parcial de pergunta composta deve ser PARTIAL.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_06_compound_full_fulfillment",
+      "description": "TC-06: Atendimento completo de pergunta composta deve ser DIRECT.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_07_insufficient_deflection",
+      "description": "TC-07: Resposta insuficiente e evasiva com predicado genérico deve ser INSUFFICIENT.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_08_genuine_unknown",
+      "description": "TC-08: Indeterminação genuína com expressão semanticamente ambígua deve ser UNKNOWN.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_09_definition_no_causality_required",
+      "description": "TC-09: Pergunta de definição sem exigência causal operacional satisfeita conceitualmente deve ser DIRECT.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_10_historical_direct_answer",
+      "description": "TC-10: Pergunta histórica diretamente respondida deve ser DIRECT.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_11_comparison_direct_answer",
+      "description": "TC-11: Pergunta comparativa diretamente respondida com os critérios fundamentais deve ser DIRECT.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_12_diagnosis_causal_answer",
+      "description": "TC-12: Pergunta de diagnóstico atendida com mecanismo investigativo deve ser DIRECT.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_13_unseen_tech_valid_response",
+      "description": "TC-13: Tecnologia inédita/abstrata operando sob mecanismo canônico válido deve ser DIRECT.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_14_colloquial_and_passive_voice",
+      "description": "TC-14: Linguagem coloquial e voz passiva expressando solução técnica correta deve ser DIRECT.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_15_long_operative_disjoint",
+      "description": "TC-15: Resposta operacional de mecânica automotiva para pergunta de computação distribuída deve ser OFF_TOPIC.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_16_short_precise_direct",
+      "description": "TC-16: Resposta curta e precisa de definição deve ser DIRECT.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_17_single_dense_proposition_multiple_demands",
+      "description": "TC-17: Uma única proposição densa satisfazendo legitimamente ambas as demandas deve ser DIRECT.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_18_circular_tautology",
+      "description": "TC-18: Tautologia circular reflexiva sem ganho informacional deve ser UNKNOWN.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_19_destructive_antithesis",
+      "description": "TC-19: Antítese destrutiva desativando proteções operacionais fundamentais deve ser OFF_TOPIC.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_tc_20_paraphrase_invariance",
+      "description": "TC-20: Variação sintática em voz passiva mantendo equivalência semântica estrita deve ser DIRECT.",
+      "status": "PASSED"
+    }
+  ]
+}

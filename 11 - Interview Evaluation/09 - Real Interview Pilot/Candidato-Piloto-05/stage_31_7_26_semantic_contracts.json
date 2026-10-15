@@ -1,0 +1,243 @@
+{
+  "stage": "31.7.26",
+  "contract_specification_title": "Contratos Semânticos Formais da Arquitetura do Ciclo 5 (TechLens)",
+  "version": "5.0.0-rca",
+  "contracts": {
+    "A_PRIMARY_DEMAND": {
+      "concept_name": "Demanda Primária",
+      "definition": "Representação estruturada e invariante do que a pergunta da entrevista efetivamente solicita em termos de conceito, mecanismo, protocolo, diagnóstico ou trade-off.",
+      "inputs": {
+        "raw_question_text": "string (texto bruto da pergunta)",
+        "question_intent": "QuestionIntent object (intenção discursiva central e entidades identificadas)"
+      },
+      "outputs": {
+        "demands": "List[PrimaryDemand] onde cada item possui demand_id, target_subject, aspect_goals, is_mandatory, technical_domain_cluster"
+      },
+      "invariants": [
+        "Toda pergunta válida possui no mínimo uma demanda primária obrigatória (is_mandatory=True)",
+        "Perguntas compostas geram demandas atômicas distintas com demand_id único",
+        "A demanda não deve incorporar terminologia acidental da formulação se esta não alterar o aspecto técnico solicitado"
+      ],
+      "preconditions": [
+        "raw_question_text não vazio e inteligível"
+      ],
+      "postconditions": [
+        "Identificação inequívoca do domínio do problema técnico solicitado (technical_domain_cluster)"
+      ],
+      "failure_conditions": [
+        "Pergunta ininteligível ou desprovida de escopo técnico resulta em QuestionIntent com confidence=0.0 e demanda UNKNOWN"
+      ],
+      "uncertainty_conditions": [
+        "Se os limites de uma pergunta composta forem ambíguos, as metas são marcadas com uncertainty_flag=True para exigir confirmação estrita no matcher"
+      ],
+      "responsibilities": "SemanticIntentAndDemandExtractor é o único componente autorizado a definir e emitir demandas primárias.",
+      "traceability_info": "demand_id, target_subject, aspect_goals, technical_domain_cluster, raw_text_span",
+      "component_relationships": "Fornece a especificação de requisitos para SemanticDomainDisjunctionEngine e DemandPropositionNexusBipartiteMatcher."
+    },
+    "B_RESPONSE_PROPOSITION": {
+      "concept_name": "Proposição de Resposta",
+      "definition": "Unidade proposicional atômica extraída da resposta do candidato, decomposta em seus papéis temáticos, predicados operacionais e modalidade discursiva.",
+      "inputs": {
+        "raw_response_text": "string (texto bruto da resposta)",
+        "context_question": "string (texto da pergunta para ancoragem de dêixis)"
+      },
+      "outputs": {
+        "propositions": "List[TechnicalProposition] com proposition_id, subject, action, polarity, is_operative, is_evasive, is_experience_declaration, discourse_genre, raw_text"
+      },
+      "invariants": [
+        "Nenhuma proposição pode ter is_operative=True se sua estrutura for puramente tautológica, evasiva ou de ignorância explícita",
+        "A segmentação preserva o valor de verdade e o escopo de negação da oração original",
+        "Frases de metadados institucionais ou categorias amplas de software são rotuladas com discourse_genre='THEMATIC_METADATA'"
+      ],
+      "preconditions": [
+        "raw_response_text processado pelo pipeline de normalização"
+      ],
+      "postconditions": [
+        "Classificação sintática e pragmática completa de cada proposição sem atribuir status de atendimento à pergunta"
+      ],
+      "failure_conditions": [
+        "Texto vazio ou ruído ininteligível resulta em proposição única com discourse_genre='UNINTELLIGIBLE' e is_operative=False"
+      ],
+      "uncertainty_conditions": [
+        "Se a estrutura sintática for ambígua quanto à ação principal, a proposição é sinalizada com is_ambiguous=True"
+      ],
+      "responsibilities": "PropositionDiscourseFilter é o responsável exclusivo pela extração, segmentação e marcação pragmático-discursiva das proposições.",
+      "traceability_info": "proposition_id, raw_text, subject, action, polarity, discourse_genre, operative_signals",
+      "component_relationships": "Alimenta o SemanticDomainDisjunctionEngine e o DemandPropositionNexusBipartiteMatcher com as proposições candidatas."
+    },
+    "C_DEMAND_PROPOSITION_RELATION": {
+      "concept_name": "Relação Demanda-Proposição (Nexus)",
+      "definition": "Avaliação formal do grau e modo pelo qual uma proposição específica atua sobre os requisitos e objetivos de uma dada demanda primária.",
+      "inputs": {
+        "demand": "PrimaryDemand",
+        "proposition": "TechnicalProposition",
+        "domain_compatibility": "DomainCompatibilityRecord (emitido pelo SemanticDomainDisjunctionEngine)"
+      },
+      "outputs": {
+        "nexus": "DemandPropositionNexus com demand_id, proposition_id, nexus_relation, causal_weight, rationale"
+      },
+      "invariants": [
+        "Se domain_compatibility.is_disjoint == True, nexus_relation DEVE SER obrigatoriamente 'DISJOINT_ONTOLOGY'",
+        "nexus_relation='FUNCTIONALLY_SOLVES' requer obrigatoriamente is_operative=True E domain_compatibility.is_disjoint=False E causalidade demonstrada",
+        "Proposições de metadados institucionais não podem receber 'FUNCTIONALLY_SOLVES' (devem receber 'THEMATIC_MENTION_ONLY')",
+        "Proposições de observabilidade auxiliar recebem 'AUXILIARY_OBSERVABILITY'"
+      ],
+      "preconditions": [
+        "Validação prévia de compatibilidade de domínio pelo SemanticDomainDisjunctionEngine"
+      ],
+      "postconditions": [
+        "Nexus estruturado e justificado para o par (demanda, proposição)"
+      ],
+      "failure_conditions": [
+        "Ausência de nexo semântico ou lexical sem disjunção radical resulta em 'INSUFFICIENT_EVIDENCE'"
+      ],
+      "uncertainty_conditions": [
+        "Quando houver indícios de mecanismo mas a conexão com o aspecto for incompleta, emite 'PARTIALLY_SOLVES' com confidence moderada"
+      ],
+      "responsibilities": "DemandPropositionNexusBipartiteMatcher é o componente soberano para a avaliação dos nexos funcionais locais.",
+      "traceability_info": "demand_id, proposition_id, nexus_relation, causal_weight, matching_rule_id, rationale",
+      "component_relationships": "Consome decisões do SemanticDomainDisjunctionEngine e fornece evidências estruturadas para o StrictOntologyRelevanceAggregator."
+    },
+    "D_SUFFICIENCY": {
+      "concept_name": "Suficiência Causal",
+      "definition": "Critério que estabelece se a ação técnica expressa na proposição descreve o mecanismo causal necessário para solucionar a meta da demanda, sem saltos lógicos indefensáveis.",
+      "inputs": {
+        "demand_aspect_goals": "List[string] (metas funcionais da demanda)",
+        "proposition_action_predicate": "string (predicado operacional demonstrado)",
+        "domain_cluster": "string"
+      },
+      "outputs": {
+        "is_sufficient": "boolean",
+        "sufficiency_degree": "enum (COMPLETE, PARTIAL, INSUFFICIENT, IRRELEVANT)",
+        "missing_aspects": "List[string]"
+      },
+      "invariants": [
+        "A mera existência de uma proposição operativa não implica suficiência",
+        "A suficiência é avaliada em relação aos aspect_goals da demanda específica, não à extensão do texto da resposta",
+        "Se aspectos obrigatórios estiverem ausentes da cadeia causal, is_sufficient é False e sufficiency_degree é PARTIAL ou INSUFFICIENT"
+      ],
+      "preconditions": [
+        "A proposição deve ser semanticamente compatível com o domínio da demanda"
+      ],
+      "postconditions": [
+        "Mapeamento explícito de quais aspect_goals foram cobertos e quais ficaram desprovidos de mecanismo"
+      ],
+      "failure_conditions": [
+        "Predicado relacional genérico (ex.: 'trabalha bem', 'é rápido') falha a verificação de suficiência causal (INSUFFICIENT)"
+      ],
+      "uncertainty_conditions": [
+        "Respostas conceituais sem detalhe de implementação em perguntas conceituais são suficientes; em perguntas de troubleshooting/algoritmo, são PARTIAL"
+      ],
+      "responsibilities": "DemandPropositionNexusBipartiteMatcher em conjunto com os analisadores de aspectos funcionais.",
+      "traceability_info": "covered_aspects, missing_aspects, causal_chain_validity",
+      "component_relationships": "Subdivide a atribuição de nexus_relation entre FUNCTIONALLY_SOLVES, PARTIALLY_SOLVES e INSUFFICIENT_EVIDENCE."
+    },
+    "E_SEMANTIC_COMPATIBILITY": {
+      "concept_name": "Compatibilidade Semântica de Domínio",
+      "definition": "Verificação de que a demanda e a proposição operam dentro do mesmo espaço conceitual ou técnico aplicável, permitindo formulações inéditas e entidades desconhecidas.",
+      "inputs": {
+        "demand_technical_domain": "string (ex.: distributed_systems, networking, persistence, concurrency)",
+        "proposition_content": "TechnicalProposition"
+      },
+      "outputs": {
+        "is_compatible": "boolean",
+        "compatibility_type": "enum (DIRECT_TECHNICAL, METADATA_CORRELATED, OPEN_DOMAIN_PLAUSIBLE, INCOMPATIBLE)",
+        "confidence": "float"
+      },
+      "invariants": [
+        "Entidades tecnológicas desconhecidas operando em ações de engenharia são classificadas como OPEN_DOMAIN_PLAUSIBLE (is_compatible=True)",
+        "Formulação coloquial ou voz passiva sem sobreposição lexical preserva is_compatible=True se a cadeia causal pertencer ao domínio técnico",
+        "A compatibilidade técnica é condição necessária para qualquer avaliação de suficiência"
+      ],
+      "preconditions": [
+        "Decomposição de entidades e papéis temáticos da pergunta e resposta concluída"
+      ],
+      "postconditions": [
+        "Garantia de que proposições disjuntas não avancem para o estágio de avaliação de suficiência causal"
+      ],
+      "failure_conditions": [
+        "Detecção de incompatibilidade categorial irresolúvel"
+      ],
+      "uncertainty_conditions": [
+        "Se o domínio da pergunta for híbrido (ex.: finanças com blockchain), o escopo aceita semas de ambos os domínios"
+      ],
+      "responsibilities": "SemanticDomainDisjunctionEngine.",
+      "traceability_info": "domain_source, target_domain, mapped_features, compatibility_type",
+      "component_relationships": "Atua como barreira de entrada e filtro ontológico antes do Bipartite Matcher."
+    },
+    "F_SEMANTIC_DISJUNCTION": {
+      "concept_name": "Disjunção Semântica Radical",
+      "definition": "Identificação de evidência positiva de que a proposição pertence a um domínio ontológico completamente alheio e disjunto do problema técnico demandado (ex.: botânica, culinária, mecânica de veículos, artesanato em pergunta de redes).",
+      "inputs": {
+        "demand": "PrimaryDemand",
+        "proposition": "TechnicalProposition"
+      },
+      "outputs": {
+        "is_radically_disjoint": "boolean",
+        "alien_domain_identified": "string (ex.: BOTANICAL, CULINARY, AUTOMOTIVE, GENERAL_EVERYDAY)",
+        "positive_disjunction_evidence": "List[string]"
+      },
+      "invariants": [
+        "A mera falta de tokens compartilhados NUNCA autoriza is_radically_disjoint=True",
+        "A disjunção exige evidência positiva de entidades e predicados do domínio alienígena que não possuem metáfora técnica funcional",
+        "Se is_radically_disjoint == True, a proposição é sumariamente impedida de satisfazer qualquer demanda técnica"
+      ],
+      "preconditions": [
+        "Análise de semas substantivos e verbais da proposição"
+      ],
+      "postconditions": [
+        "Emissão de laudo estruturado de disjunção ontológica com evidência positiva"
+      ],
+      "failure_conditions": [
+        "Dúvida sobre a disjunção mantém is_radically_disjoint=False e transfere a análise para suficiência causal e incerteza"
+      ],
+      "uncertainty_conditions": [
+        "Termos metafóricos comuns em TI (ex.: 'árvore', 'raiz', 'garfo/fork', 'cozinhar/bake imagem') não devem disparar disjunção disjunta sem contexto alienígena predominante"
+      ],
+      "responsibilities": "SemanticDomainDisjunctionEngine.",
+      "traceability_info": "disjoint_domain_label, positive_evidence_tokens, non_metaphor_validation",
+      "component_relationships": "Força a emissão imediata de nexus DISJOINT_ONTOLOGY no matcher e direciona o agregador para OFF_TOPIC."
+    },
+    "G_FINAL_AGGREGATION": {
+      "concept_name": "Agregação Final de Relevância",
+      "definition": "Função determinística e auditável que combina todos os registros de nexo [Demanda x Proposição] para emitir uma única classificação categorial do turno.",
+      "inputs": {
+        "demands": "List[PrimaryDemand]",
+        "propositions": "List[TechnicalProposition]",
+        "nexus_matrix": "Dict[demand_id, List[DemandPropositionNexus]]",
+        "overall_intent": "QuestionIntent"
+      },
+      "outputs": {
+        "final_classification": "enum (DIRECT, PARTIAL, SUPPORTING, RELATED, OFF_TOPIC, INSUFFICIENT, UNKNOWN)",
+        "confidence": "float",
+        "decision_rationale": "string",
+        "telemetry_trace": "dict"
+      },
+      "invariants": [
+        "DIRECT é estritamente proibido se existir qualquer demanda primária obrigatória sem nexo FUNCTIONALLY_SOLVES",
+        "PARTIAL é emitido se um subconjunto estrito não vazio das demandas obrigatórias possui FUNCTIONALLY_SOLVES, ou se a demanda possui cobertura funcional incompleta mas pertinente",
+        "SUPPORTING é emitido quando não há FUNCTIONALLY_SOLVES, mas há AUXILIARY_OBSERVABILITY",
+        "RELATED é emitido quando não há FUNCTIONALLY_SOLVES nem AUXILIARY_OBSERVABILITY, mas há THEMATIC_MENTION_ONLY",
+        "OFF_TOPIC é emitido se há DISJOINT_ONTOLOGY comprovada e nenhuma proposição compatível",
+        "INSUFFICIENT é emitido se a resposta tenta o domínio da pergunta mas todos os nexos são INSUFFICIENT_EVIDENCE ou evasivos",
+        "UNKNOWN é emitido se não há proposições válidas ou há declaração explícita de desconhecimento",
+        "A autoridade de classificação final reside exclusivamente neste componente"
+      ],
+      "preconditions": [
+        "Todos os nexos da matriz [Demanda x Proposição] foram computados de acordo com os Contratos C a F"
+      ],
+      "postconditions": [
+        "Geração de predição inequívoca acompanhada de trilha de auditoria completa"
+      ],
+      "failure_conditions": [
+        "Inconsistência lógica na matriz de nexos gera fallback para UNKNOWN com confidence=0.0 e alerta de auditoria"
+      ],
+      "uncertainty_conditions": [
+        "Se o escore de confiança médio dos nexos for inferior a 0.5, a classificação final é reduzida para a categoria de menor presunção (ex.: DIRECT -> PARTIAL, ou RELATED -> INSUFFICIENT)"
+      ],
+      "responsibilities": "StrictOntologyRelevanceAggregator é o único componente autorizado a emitir a classificação categorial final do turno.",
+      "traceability_info": "matrix_summary, mandatory_demands_satisfied, mandatory_demands_unmet, disjoint_flags_count, auxiliary_count, final_rule_applied",
+      "component_relationships": "Ponto culminante da arquitetura do runtime, produzindo a saída consumida pelos harnesses de avaliação e relatórios de entrevista."
+    }
+  }
+}

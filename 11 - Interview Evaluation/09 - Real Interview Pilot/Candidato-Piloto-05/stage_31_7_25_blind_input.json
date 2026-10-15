@@ -1,0 +1,1252 @@
+[
+  {
+    "id": "CASE_001",
+    "question_text": "Como o mecanismo de bloom filter acelera consultas em bancos NoSQL baseados em chave-valor?",
+    "response_text": "Ele calcula múltiplos hashes da chave consultada contra um vetor de bits; se qualquer bit for zero, o elemento certamente não existe no disco evitando I/O; se todos forem um, o elemento pode existir e o arquivo é lido para confirmação."
+  },
+  {
+    "id": "CASE_002",
+    "question_text": "Como o protocolo de fofoca SWIM detecta falhas de nós em redes de larga escala com baixo tráfego de rede?",
+    "response_text": "Ele combina probes diretos com probes indiretos: quando um ping para um nó alvo expira em timeout, o nó solicita a k membros aleatórios que façam ping indireto ao alvo antes de declará-lo em estado suspect com período de carência."
+  },
+  {
+    "id": "CASE_003",
+    "question_text": "Como o motor técnico da tecnologia 11 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 11 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_004",
+    "question_text": "Como o algoritmo Raft realiza a compactação de log (log compaction) sem interromper a consistência dos nós seguidores?",
+    "response_text": "O líder grava uma foto com o estado consolidado da aplicação até aquele momento e joga fora os logs velhos, mandando essa foto para os nós que ficaram para trás para atualizá-los."
+  },
+  {
+    "id": "CASE_005",
+    "question_text": "Como o protocolo HTTP/2 realiza a multiplexação de múltiplas requisições em uma única conexão TCP?",
+    "response_text": "Ele fragmenta as mensagens em frames binários identificados por um stream ID numérico e intercala esses frames no mesmo canal TCP, permitindo que cliente e servidor transmitam requisições e respostas paralelamente sem bloqueio de cabeçalho de linha na camada de aplicação."
+  },
+  {
+    "id": "CASE_006",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 22 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 22."
+  },
+  {
+    "id": "CASE_007",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 14 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 14."
+  },
+  {
+    "id": "CASE_008",
+    "question_text": "Como o padrão Idempotency Key implementado em gateways de pagamento evita débitos duplicados em quedas de rede?",
+    "response_text": "O cliente envia um token único no cabeçalho; o gateway tenta inserir essa chave com lock exclusivo no banco de dados, executando o pagamento se a chave for nova ou retornando a resposta em cache se a chave já tiver sido processada com sucesso."
+  },
+  {
+    "id": "CASE_009",
+    "question_text": "Como o mecanismo de heartbeats com leases evita que dois líderes coexistam em consenso distribuído?",
+    "response_text": "O líder obtém uma concessão temporária (lease) com prazo de validade determinado; enquanto renovar o lease via heartbeats periódicos com a maioria, pode atender escritas, e se perder conectividade seu lease expira antes que outro líder assuma."
+  },
+  {
+    "id": "CASE_010",
+    "question_text": "Como o motor técnico da tecnologia 18 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 18 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_011",
+    "question_text": "Como o componente de rede e mensageria 19 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 19 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_012",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 10 de microsserviços?",
+    "response_text": "Olha, precisamos analisar o manual do fabricante antes de qualquer coisa na arquitetura 10."
+  },
+  {
+    "id": "CASE_013",
+    "question_text": "Qual estratégia de particionamento é ideal para tabelas de eventos temporais?",
+    "response_text": "Pode ser que seja melhor fazer de um jeito ou talvez de outro dependendo de como as coisas se comportarem."
+  },
+  {
+    "id": "CASE_014",
+    "question_text": "Qual é o comportamento esperado do subsistema 7 sob condições extremas de concorrência?",
+    "response_text": "O comportamento varia conforme a situação de como a equipe resolver fazer diante do subsistema 7."
+  },
+  {
+    "id": "CASE_015",
+    "question_text": "Como o motor técnico da tecnologia 15 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 15 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_016",
+    "question_text": "Como o componente de rede e mensageria 15 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 15 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_017",
+    "question_text": "Como identificar contenção de threads em aplicações Java sob alta concorrência?",
+    "response_text": "Rodamos o async-profiler para ver onde as threads travam ou tiramos thread dump com jstack."
+  },
+  {
+    "id": "CASE_018",
+    "question_text": "Como o Redis Sentinel promove um nó replica a mestre durante um failover e como notifica clientes para reconexão?",
+    "response_text": "Os sentinelas confirmam a indisponibilidade do mestre por maioria (odown) e elegem a réplica com menor defasagem de replicação para ser promovida ao novo mestre."
+  },
+  {
+    "id": "CASE_019",
+    "question_text": "Como resolver e corrigir a anomalia de performance 14 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 14."
+  },
+  {
+    "id": "CASE_020",
+    "question_text": "Como o garbage collector da JVM detecta raízes de objetos alcançáveis?",
+    "response_text": "A plantação de tomates em estufas requer irrigação por gotejamento constante e controle rigoroso de luminosidade solar."
+  },
+  {
+    "id": "CASE_021",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 24 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 24."
+  },
+  {
+    "id": "CASE_022",
+    "question_text": "Como o algoritmo Raft realiza eleições de líder seguras?",
+    "response_text": "A troca de óleo do motor do carro deve ser realizada a cada dez mil quilômetros rodados usando lubrificante sintético."
+  },
+  {
+    "id": "CASE_023",
+    "question_text": "Como o algoritmo Token Bucket gerencia rajadas de tráfego (traffic bursts) em limitadores de taxa (rate limiters)?",
+    "response_text": "Um balde acumula tokens até uma capacidade máxima pré-definida em uma taxa constante de reposição; cada requisição consome um ou mais tokens, permitindo rajadas pontuais enquanto o balde contiver saldo e bloqueando requisições se o balde estiver vazio."
+  },
+  {
+    "id": "CASE_024",
+    "question_text": "Como o componente de rede e mensageria 8 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 8 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_025",
+    "question_text": "Qual é o comportamento esperado do subsistema 2 sob condições extremas de concorrência?",
+    "response_text": "O comportamento varia conforme a situação de como a equipe resolver fazer diante do subsistema 2."
+  },
+  {
+    "id": "CASE_026",
+    "question_text": "Qual é o comportamento esperado do subsistema 6 sob condições extremas de concorrência?",
+    "response_text": "O comportamento varia conforme a situação de como a equipe resolver fazer diante do subsistema 6."
+  },
+  {
+    "id": "CASE_027",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 9 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 9."
+  },
+  {
+    "id": "CASE_028",
+    "question_text": "Como o protocolo BGP troca tabelas de roteamento entre sistemas autônomos na Internet?",
+    "response_text": "Para fazer um bolo de chocolate você deve bater as claras em neve, misturar farinha e cacau e assar a 180 graus por quarenta minutos."
+  },
+  {
+    "id": "CASE_029",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 8 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 8."
+  },
+  {
+    "id": "CASE_030",
+    "question_text": "Como escalonar horizontalmente uma base de dados relacional que atingiu o limite de escrita?",
+    "response_text": "Isso aí depende de muitos fatores e variáveis que precisam ser estudados com calma."
+  },
+  {
+    "id": "CASE_031",
+    "question_text": "Como o protocolo Two-Phase Commit coordena a confirmação atômica e como trata a falha com queda do coordenador?",
+    "response_text": "Na primeira fase o coordenador solicita o voto de prepare a todos os participantes e, se todos responderem afirmativamente, envia a mensagem de commit para efetivar a transação em todos os nós."
+  },
+  {
+    "id": "CASE_032",
+    "question_text": "Como resolver e corrigir a anomalia de performance 5 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 5."
+  },
+  {
+    "id": "CASE_033",
+    "question_text": "Como o loop de Compare-And-Swap (CAS) implementa contadores concorrentes e como resolve a vulnerabilidade do problema ABA?",
+    "response_text": "Ele lê o valor atual da variável e executa o CAS em um loop while; caso outra thread tenha modificado a variável, o CAS falha e a thread repete a tentativa com o novo valor."
+  },
+  {
+    "id": "CASE_034",
+    "question_text": "Qual é o comportamento esperado do subsistema 1 sob condições extremas de concorrência?",
+    "response_text": "O comportamento varia conforme a situação de como a equipe resolver fazer diante do subsistema 1."
+  },
+  {
+    "id": "CASE_035",
+    "question_text": "Como o Redis lida com expiração de chaves usando remoção passiva e ativa?",
+    "response_text": "Na empresa antiga onde atuei por vários anos a gente usava bastante o Redis em máquinas da nuvem."
+  },
+  {
+    "id": "CASE_036",
+    "question_text": "Como resolver e corrigir a anomalia de performance 8 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 8."
+  },
+  {
+    "id": "CASE_037",
+    "question_text": "Como os relógios vetoriais (Vector Clocks) determinam se dois eventos em nós distribuídos são causalmente ordenados ou concorrentes?",
+    "response_text": "Cada nó mantém um vetor de contadores locais que é incrementado a cada evento e enviado nas mensagens; dois eventos A e B são concorrentes se nem todos os componentes do vetor de A forem menores ou iguais aos de B e vice-versa."
+  },
+  {
+    "id": "CASE_038",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 13 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 13."
+  },
+  {
+    "id": "CASE_039",
+    "question_text": "Como o componente de rede e mensageria 25 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 25 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_040",
+    "question_text": "Como o Google Spanner replica dados entre datacenters usando Paxos groups e como garante consistência externa com TrueTime?",
+    "response_text": "As tabelas do Spanner são divididas em splits e cada split é gerenciado por um Paxos group distribuído geograficamente que garante consenso na replicação das transações."
+  },
+  {
+    "id": "CASE_041",
+    "question_text": "Como escolher entre consistência forte e consistência eventual em uma nova arquitetura?",
+    "response_text": "Temos que consultar a documentação oficial dos fornecedores para entender o que eles recomendam."
+  },
+  {
+    "id": "CASE_042",
+    "question_text": "Como o protocolo QUIC elimina o problema de Head-of-Line Blocking do TCP?",
+    "response_text": "Por operar sobre UDP, o QUIC encapsula cada stream de dados em pacotes independentes; a perda de um pacote em um stream retarda apenas aquele stream específico, enquanto todos os outros streams continuam sendo processados sem interrupção."
+  },
+  {
+    "id": "CASE_043",
+    "question_text": "Como o Nginx gerencia processos assíncronos não bloqueantes com o modelo master-worker?",
+    "response_text": "O projeto do Nginx foi criado na Rússia pelo Igor Sysoev por volta de 2002 para lidar com acessos massivos no site da Rambler."
+  },
+  {
+    "id": "CASE_044",
+    "question_text": "Como o PostgreSQL lida com tuplas mortas e evita estouro de transações (wraparound) através do autovacuum?",
+    "response_text": "O autovacuum varre as páginas de tabela liberando ponteiros de tuplas marcadas como excluídas pelo MVCC e atualiza o relógio de transações congelando (freezing) transaction IDs antigos no cabeçalho das tuplas para evitar exaustão do contador de 32 bits."
+  },
+  {
+    "id": "CASE_045",
+    "question_text": "Como o componente de rede e mensageria 18 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 18 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_046",
+    "question_text": "Como evitar sobrecarga de requisições maliciosas em nossos serviços de borda?",
+    "response_text": "Nós eliminamos o rate limit e desligamos a proteção de firewall de borda da infraestrutura."
+  },
+  {
+    "id": "CASE_047",
+    "question_text": "Como o banco DynamoDB escala requisições com throughput provisionado?",
+    "response_text": "Minha equipe anterior utilizava DynamoDB da AWS para armazenar dados de clientes e tínhamos reuniões semanais para discutir tabelas."
+  },
+  {
+    "id": "CASE_048",
+    "question_text": "Como a técnica de fencing token mitiga o problema de split-brain em bloqueios distribuídos sujeitos a pausas de GC?",
+    "response_text": "O serviço de lock distribui um token inteiro estritamente monotonicamente crescente junto ao lock; o storage de destino valida o token em cada escrita e descarta requisições que possuam token inferior ao maior token já processado."
+  },
+  {
+    "id": "CASE_049",
+    "question_text": "Como o protocolo Raft conduz a eleição de um novo líder e como garante a replicação consistente dos logs?",
+    "response_text": "Quando o temporizador de eleição de um nó expira sem heartbeats, ele se torna candidato, incrementa seu termo e solicita votos para a maioria dos nós do cluster para assumir como líder."
+  },
+  {
+    "id": "CASE_050",
+    "question_text": "Qual é o comportamento esperado do subsistema 4 sob condições extremas de concorrência?",
+    "response_text": "O comportamento varia conforme a situação de como a equipe resolver fazer diante do subsistema 4."
+  },
+  {
+    "id": "CASE_051",
+    "question_text": "Como devemos tratar falhas intermitentes de conexão com o banco de dados?",
+    "response_text": "A abordagem pode variar conforme a situação de como a equipe resolver fazer na hora."
+  },
+  {
+    "id": "CASE_052",
+    "question_text": "Como o estado TIME_WAIT do protocolo TCP protege a integridade das conexões de rede subsequentes?",
+    "response_text": "O endpoint que inicia o fechamento permanece em TIME_WAIT pelo dobro do tempo máximo de vida do segmento (2MSL) para garantir que eventuais pacotes atrasados da conexão antiga expirem na rede e para permitir a retransmissão do ACK final se o FIN for reenviado."
+  },
+  {
+    "id": "CASE_053",
+    "question_text": "Como a estratégia Blue-Green Deployment garante zero-downtime durante a publicação de uma nova versão?",
+    "response_text": "O ambiente inativo (Green) recebe o deploy e os testes da nova versão enquanto o ambiente ativo (Blue) atende o tráfego; ao validar a integridade da versão Green, o roteador ou balanceador de carga comuta o tráfego instantaneamente para o ambiente Green."
+  },
+  {
+    "id": "CASE_054",
+    "question_text": "Como o componente de rede e mensageria 9 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 9 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_055",
+    "question_text": "Como o coletor de lixo G1 do Java realiza a coleta de objetos velhos sem realizar um Full GC?",
+    "response_text": "Ele particiona o heap em regiões de tamanho igual e realiza ciclos concorrentes de marcação para identificar as regiões mistas que contêm mais lixo, evacuando os objetos vivos dessas regiões selecionadas para regiões livres durante pausas curtas."
+  },
+  {
+    "id": "CASE_056",
+    "question_text": "Como o padrão Saga coordena múltiplos microsserviços em transações distribuídas e como executa a compensação de falhas?",
+    "response_text": "O orquestrador da Saga envia mensagens assíncronas para cada serviço envolvido executar sua respectiva etapa de negócio de forma sequencial até o fim do fluxo."
+  },
+  {
+    "id": "CASE_057",
+    "question_text": "Como a LSM-Tree gerencia escritas na MemTable e como realiza a compactação periódica de SSTables no disco?",
+    "response_text": "Todas as novas escritas são gravadas sequencialmente no log de transações WAL e armazenadas na MemTable ordenada em memória para garantir baixa latência."
+  },
+  {
+    "id": "CASE_058",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 2 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 2."
+  },
+  {
+    "id": "CASE_059",
+    "question_text": "Como o algoritmo de compressão de dados reduz o tamanho dos arquivos?",
+    "response_text": "Ele comprime os dados porque realiza uma compressão de forma que os arquivos fiquem comprimidos."
+  },
+  {
+    "id": "CASE_060",
+    "question_text": "Como o componente de rede e mensageria 23 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 23 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_061",
+    "question_text": "Como o motor de armazenamento LSM-Tree (Log-Structured Merge-Tree) gerencia escritas e leituras eficientemente?",
+    "response_text": "Escritas são gravadas sequencialmente em um log append-only (WAL) e inseridas em uma árvore em memória (MemTable); quando cheia, é despejada como SSTable imutável em disco, e leituras usam filtros de Bloom para evitar ler arquivos desnecessários."
+  },
+  {
+    "id": "CASE_062",
+    "question_text": "Como o componente de rede e mensageria 1 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 1 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_063",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 12 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 12."
+  },
+  {
+    "id": "CASE_064",
+    "question_text": "Como o Git resolve conflitos de merge através do algoritmo recursive ou ort?",
+    "response_text": "A Linux Foundation supervisiona a governança do Git como software livre amplamente disseminado nas empresas de tecnologia."
+  },
+  {
+    "id": "CASE_065",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 3 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 3."
+  },
+  {
+    "id": "CASE_066",
+    "question_text": "Como o componente de rede e mensageria 14 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 14 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_067",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 12 de microsserviços?",
+    "response_text": "Olha, vai variar de acordo com o caso concreto antes de qualquer coisa na arquitetura 12."
+  },
+  {
+    "id": "CASE_068",
+    "question_text": "Como o motor técnico da tecnologia 17 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 17 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_069",
+    "question_text": "Como resolver e corrigir a anomalia de performance 2 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 2."
+  },
+  {
+    "id": "CASE_070",
+    "question_text": "Como o buffer de gravação mitiga a latência de I/O em disco?",
+    "response_text": "O buffer bufferiza os dados porque faz a bufferização de maneira que a gravação fique bufferizada."
+  },
+  {
+    "id": "CASE_071",
+    "question_text": "Como resolver e corrigir a anomalia de performance 17 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 17."
+  },
+  {
+    "id": "CASE_072",
+    "question_text": "Como o componente de rede e mensageria 21 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 21 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_073",
+    "question_text": "Como o protocolo TLS 1.3 realiza a troca de chaves Diffie-Hellman?",
+    "response_text": "A seleção brasileira de futebol conquistou cinco campeonatos mundiais na história do esporte internacional."
+  },
+  {
+    "id": "CASE_074",
+    "question_text": "Como o Kubernetes Service do tipo ClusterIP realiza o balanceamento de carga para pods de backend?",
+    "response_text": "O kube-proxy programa regras de iptables ou ipvs nos nós do cluster que interceptam o tráfego direcionado ao IP virtual do Service e aplicam NAT de destino escolhendo aleatoriamente o IP de um dos pods listados nos Endpoints."
+  },
+  {
+    "id": "CASE_075",
+    "question_text": "Como o padrão Bulkhead isola recursos em arquiteturas de microsserviços?",
+    "response_text": "Ele aloca pools de threads ou conexões dedicados e limitados para cada serviço ou dependência externa crítica, impedindo que a saturação ou lentidão de um único serviço consumidor esgote todas as threads de atendimento do sistema."
+  },
+  {
+    "id": "CASE_076",
+    "question_text": "Como o mecanismo de backpressure em streams reativos previne que consumidores sejam sobrecarregados?",
+    "response_text": "O consumidor solicita explicitamente a quantidade de elementos que tem capacidade de processar (via request(n)); o produtor só envia novos itens conforme essas permissões concedidas, retendo a produção ou descartando itens sob estratégia controlada caso atinja o limite."
+  },
+  {
+    "id": "CASE_077",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 16 de microsserviços?",
+    "response_text": "Olha, tem que ver o que a liderança vai decidir contratar antes de qualquer coisa na arquitetura 16."
+  },
+  {
+    "id": "CASE_078",
+    "question_text": "Como o algoritmo de snapshot distribuído de Chandy-Lamport captura um estado global consistente sem pausar o sistema?",
+    "response_text": "O iniciador grava seu estado local e envia uma mensagem de marcador (marker) por todos os canais de saída; quando um processo recebe o marcador, grava seu estado e começa a gravar mensagens em trânsito no canal até receber o marcador daquele canal específico."
+  },
+  {
+    "id": "CASE_079",
+    "question_text": "Como a técnica de sharding horizontal por range particiona tabelas de banco de dados distribuídas?",
+    "response_text": "A tabela é particionada em shards com base em intervalos contíguos da chave de partição (ex: A-F, G-M, N-Z); um catálogo de roteamento direciona as queries para o shard correspondente ao intervalo consultado."
+  },
+  {
+    "id": "CASE_080",
+    "question_text": "Como o algoritmo Token Bucket gerencia rajadas de tráfego (traffic bursts) em limitadores de taxa (rate limiters)?",
+    "response_text": "Tokens são acumulados continuamente em um balde até sua capacidade máxima; as requisições têm seus tokens debitados a cada chegada, sendo o tráfego bloqueado quando nenhum token for encontrado no saldo."
+  },
+  {
+    "id": "CASE_081",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 6 de microsserviços?",
+    "response_text": "Olha, consultar a documentação oficial para ver antes de qualquer coisa na arquitetura 6."
+  },
+  {
+    "id": "CASE_082",
+    "question_text": "Como o lock de tabela trava o acesso concorrente?",
+    "response_text": "O lock trava o acesso porque mantém o travamento de forma que a tabela fique travada."
+  },
+  {
+    "id": "CASE_083",
+    "question_text": "Como o Envoy aplica rate limiting local via token bucket em nível de rota e como sincroniza limites globais com Redis?",
+    "response_text": "O Envoy avalia a rota configurada e consome tokens de um balde local na memória do processo, rejeitando requisições excedentes com resposta HTTP 429."
+  },
+  {
+    "id": "CASE_084",
+    "question_text": "Como verificar se uma fila do RabbitMQ está acumulando mensagens devido a consumidores lentos?",
+    "response_text": "Monitoramos no Grafana as mensagens pendentes de confirmação do RabbitMQ e a utilização dos consumidores."
+  },
+  {
+    "id": "CASE_085",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 9 de microsserviços?",
+    "response_text": "Olha, depende exclusivamente do orçamento disponível antes de qualquer coisa na arquitetura 9."
+  },
+  {
+    "id": "CASE_086",
+    "question_text": "Como o RocksDB implementa a compactação em níveis (Leveled Compaction) para mitigar a amplificação de leitura e espaço?",
+    "response_text": "Quando um nível Li excede seu limite de bytes, seleciona-se uma SSTable e realiza-se um merge-sort com as SSTables que sobrepõem intervalos de chave no nível Li+1, garantindo que em níveis superiores não existam chaves duplicadas no mesmo nível."
+  },
+  {
+    "id": "CASE_087",
+    "question_text": "Como resolver e corrigir a anomalia de performance 12 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 12."
+  },
+  {
+    "id": "CASE_088",
+    "question_text": "Qual é o comportamento esperado do subsistema 8 sob condições extremas de concorrência?",
+    "response_text": "O comportamento varia conforme a situação de como a equipe resolver fazer diante do subsistema 8."
+  },
+  {
+    "id": "CASE_089",
+    "question_text": "Como o mecanismo de deadlocks em bancos relacionais é detectado e resolvido pelo motor de banco de dados?",
+    "response_text": "O motor constrói um grafo de espera (wait-for graph) onde nós são transações e arestas são requisições de locks bloqueados; ao detectar um ciclo no grafo por busca em profundidade, seleciona a transação com menor custo de rollback e a aborta desfazendo seus locks."
+  },
+  {
+    "id": "CASE_090",
+    "question_text": "Como a ordenação de registros organiza os dados na memória?",
+    "response_text": "A ordenação ordena os registros porque mantém a ordem de modo que fiquem ordenados."
+  },
+  {
+    "id": "CASE_091",
+    "question_text": "Como o padrão Event Sourcing persiste o estado de uma entidade no banco de dados?",
+    "response_text": "Ele não armazena o snapshot atual da entidade, mas sim uma sequência imutável de eventos de domínio que representam todas as mutações sofridas; o estado atual é reconstituído aplicando-se esses eventos sequencialmente desde a criação."
+  },
+  {
+    "id": "CASE_092",
+    "question_text": "Como a técnica de fencing token mitiga o problema de split-brain em bloqueios distribuídos sujeitos a pausas de GC?",
+    "response_text": "O lock gera um número incremental e o storage rejeita qualquer gravação que chegue com número menor do que o último processado."
+  },
+  {
+    "id": "CASE_093",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 4 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 4."
+  },
+  {
+    "id": "CASE_094",
+    "question_text": "Como rastrear erros de sincronização e perda de pacotes em conexões TCP no Linux?",
+    "response_text": "Podemos verificar os contadores TCPRetrans e TCPSynRetrans no arquivo /proc/net/netstat e inspecionar a interface de rede com o comando tc -s qdisc."
+  },
+  {
+    "id": "CASE_095",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 2 de microsserviços?",
+    "response_text": "Olha, precisamos analisar o manual do fabricante antes de qualquer coisa na arquitetura 2."
+  },
+  {
+    "id": "CASE_096",
+    "question_text": "Qual é o comportamento esperado do subsistema 3 sob condições extremas de concorrência?",
+    "response_text": "O comportamento varia conforme a situação de como a equipe resolver fazer diante do subsistema 3."
+  },
+  {
+    "id": "CASE_097",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 15 de microsserviços?",
+    "response_text": "Olha, depende dos fatores e dos custos envolvidos antes de qualquer coisa na arquitetura 15."
+  },
+  {
+    "id": "CASE_098",
+    "question_text": "Como o epoll monitora eventos de leitura e qual é a diferença operacional entre os modos edge-triggered e level-triggered?",
+    "response_text": "O epoll associa descritores de arquivos na sua árvore interna e coloca descritores com dados prontos para leitura na lista de prontos retornada pelo epoll_wait."
+  },
+  {
+    "id": "CASE_099",
+    "question_text": "Como o proxy Envoy gerencia o circuit breaking em nível de conexão de rede?",
+    "response_text": "Ele mantém contadores atômicos para o número máximo de conexões simultâneas, requisições pendentes e retries ativos para cada cluster upstream; quando qualquer limite configurado é atingido, o Envoy rejeita novas requisições com código 503 localmente."
+  },
+  {
+    "id": "CASE_100",
+    "question_text": "Como o motor técnico da tecnologia 3 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 3 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_101",
+    "question_text": "Como o isolamento de transações impede leituras sujas?",
+    "response_text": "O isolamento isola as transações porque mantém um isolamento de forma que fiquem isoladas."
+  },
+  {
+    "id": "CASE_102",
+    "question_text": "Como o componente de rede e mensageria 6 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 6 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_103",
+    "question_text": "Como resolver e corrigir a anomalia de performance 10 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 10."
+  },
+  {
+    "id": "CASE_104",
+    "question_text": "Como verificar se uma fila do RabbitMQ está acumulando mensagens devido a consumidores lentos?",
+    "response_text": "Consultamos a API de métricas do RabbitMQ observando o indicador messages_unacknowledged e a taxa de consumo consumer_utilisation no dashboard do Grafana."
+  },
+  {
+    "id": "CASE_105",
+    "question_text": "Como o mecanismo de retry com Exponential Backoff e Jitter previne o problema do thundering herd em falhas de rede?",
+    "response_text": "A cada falha sucessiva o tempo de espera antes do retry dobra exponencialmente e soma-se uma variação aleatória (jitter), distribuindo as tentativas de reconexão ao longo do tempo e evitando picos de sobrecarga simultânea no servidor."
+  },
+  {
+    "id": "CASE_106",
+    "question_text": "Como o ClickHouse utiliza índices esparsos e como comprime colunas para otimizar queries analíticas?",
+    "response_text": "O ClickHouse divide os dados em grânulos de 8192 linhas e indexa apenas o primeiro valor de cada grânulo, permitindo saltar faixas de dados inteiras sem varredura completa."
+  },
+  {
+    "id": "CASE_107",
+    "question_text": "Como o algoritmo Leaky Bucket normaliza rajadas de requisições em sistemas de mensageria?",
+    "response_text": "Ele enfileira as requisições recebidas em uma fila FIFO com capacidade fixa e as descarrega para processamento a uma taxa estritamente constante; requisições que chegam com a fila cheia são descartadas ou rejeitadas."
+  },
+  {
+    "id": "CASE_108",
+    "question_text": "Como o componente de rede e mensageria 22 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 22 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_109",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 5 de microsserviços?",
+    "response_text": "Olha, depende da decisão que o time tomar na reunião antes de qualquer coisa na arquitetura 5."
+  },
+  {
+    "id": "CASE_110",
+    "question_text": "Como a estrutura de dados CRDT do tipo OR-Set (Observed-Remove Set) resolve conflitos concorrentes de adição e remoção?",
+    "response_text": "Cada operação de adição gera uma tag de identificador único (UUID); a remoção adiciona as tags observadas a um conjunto de exclusões (tombstone set), e a pertinência de um elemento é verdadeira se o conjunto de tags de adição subtraído das tags removidas não for vazio."
+  },
+  {
+    "id": "CASE_111",
+    "question_text": "Como o Redis lida com expiração de chaves usando remoção passiva e ativa?",
+    "response_text": "Eu trabalhei com Redis por mais de três anos em um projeto corporativo anterior e nós utilizávamos bastante em servidores da nuvem."
+  },
+  {
+    "id": "CASE_112",
+    "question_text": "Como diagnosticar gargalos de serialização e tempo de resposta em chamadas gRPC?",
+    "response_text": "Habilitamos o tracing distribuído via OpenTelemetry exportando spans para o Jaeger com atributos de rpc.method, rpc.duration e métricas de gRPC client/server."
+  },
+  {
+    "id": "CASE_113",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 25 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 25."
+  },
+  {
+    "id": "CASE_114",
+    "question_text": "Como identificar consultas lentas que não utilizam índices no PostgreSQL?",
+    "response_text": "Ativamos a extensão pg_stat_statements e configuramos log_min_duration_statement no postgresql.conf para registrar consultas demoradas no log do servidor."
+  },
+  {
+    "id": "CASE_115",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 1 de microsserviços?",
+    "response_text": "Olha, depende exclusivamente do orçamento disponível antes de qualquer coisa na arquitetura 1."
+  },
+  {
+    "id": "CASE_116",
+    "question_text": "Como o componente de rede e mensageria 26 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 26 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_117",
+    "question_text": "Como o Kafka garante que partições de um tópico mantenham a ordem das mensagens?",
+    "response_text": "Eu já configurei diversos brokers de Kafka quando atuava como arquiteto no setor financeiro e temos vasta experiência com esse ecossistema."
+  },
+  {
+    "id": "CASE_118",
+    "question_text": "Como identificar contenção de threads em aplicações Java sob alta concorrência?",
+    "response_text": "Utilizamos a ferramenta async-profiler para gerar flame graphs de bloqueio ou capturamos thread dumps periódicos via jstack analisando threads em estado BLOCKED no lock da JVM."
+  },
+  {
+    "id": "CASE_119",
+    "question_text": "Como o motor técnico da tecnologia 13 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 13 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_120",
+    "question_text": "Como a sincronização de threads evita condições de corrida?",
+    "response_text": "A sincronização sincroniza as threads porque executa uma sincronia de modo que fiquem sincronizadas."
+  },
+  {
+    "id": "CASE_121",
+    "question_text": "Como o componente de rede e mensageria 20 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 20 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_122",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 13 de microsserviços?",
+    "response_text": "Olha, depende da decisão que o time tomar na reunião antes de qualquer coisa na arquitetura 13."
+  },
+  {
+    "id": "CASE_123",
+    "question_text": "Como autenticar e autorizar requisições de forma segura em uma API pública?",
+    "response_text": "Nós retiramos todos os filtros de autenticação, dispensamos tokens JWT e deixamos os endpoints abertos sem restrição."
+  },
+  {
+    "id": "CASE_124",
+    "question_text": "Como diagnosticar problemas de latência em clusters Elasticsearch causados por garbage collection?",
+    "response_text": "Monitoramos as métricas de jvm.gc.collectors.young.collection_time_in_millis e old.collection_time_in_millis integradas com alertas do Datadog."
+  },
+  {
+    "id": "CASE_125",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 15 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 15."
+  },
+  {
+    "id": "CASE_126",
+    "question_text": "Como implementar particionamento de tabelas grandes no banco de dados?",
+    "response_text": "Depende muito de como a equipe e o comitê técnico decidirem estruturar as coisas."
+  },
+  {
+    "id": "CASE_127",
+    "question_text": "Como garantir que mensagens em uma fila assíncrona não sejam duplicadas?",
+    "response_text": "É uma fila de mensageria que fica processando mensagens lá no servidor."
+  },
+  {
+    "id": "CASE_128",
+    "question_text": "Como resolver e corrigir a anomalia de performance 11 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 11."
+  },
+  {
+    "id": "CASE_129",
+    "question_text": "Como o Nginx gerencia processos assíncronos não bloqueantes com o modelo master-worker?",
+    "response_text": "O Nginx começou a ser desenvolvido pelo programador russo Igor Sysoev no ano de 2002 na empresa Rambler para acelerar o tráfego do portal de notícias."
+  },
+  {
+    "id": "CASE_130",
+    "question_text": "Como resolver e corrigir a anomalia de performance 13 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 13."
+  },
+  {
+    "id": "CASE_131",
+    "question_text": "Como resolver e corrigir a anomalia de performance 9 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 9."
+  },
+  {
+    "id": "CASE_132",
+    "question_text": "Como o componente de rede e mensageria 5 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 5 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_133",
+    "question_text": "Como o algoritmo Raft realiza a compactação de log (log compaction) sem interromper a consistência dos nós seguidores?",
+    "response_text": "O nó líder gera um snapshot do estado da máquina de estados com o último índice e termo aplicados, descartando os logs anteriores no disco, e transmite esse snapshot para seguidores defasados via RPC InstallSnapshot quando o log deles estiver truncado."
+  },
+  {
+    "id": "CASE_134",
+    "question_text": "Como o componente de rede e mensageria 16 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 16 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_135",
+    "question_text": "Como garantir a integridade e evitar inconsistências em transações financeiras concorrentes?",
+    "response_text": "Pra deixar o banco voando baixo a gente arranca fora as travas de lock e desliga qualquer transação."
+  },
+  {
+    "id": "CASE_136",
+    "question_text": "Como a partição de tópicos distribui os dados no cluster?",
+    "response_text": "A partição particiona os dados porque faz um particionamento para que o tópico fique particionado."
+  },
+  {
+    "id": "CASE_137",
+    "question_text": "Como o Linux gerencia namespaces e cgroups para isolar containers?",
+    "response_text": "O Linux foi iniciado como um projeto pessoal por Linus Torvalds na Finlândia em 1991 como um sistema operacional livre baseado no Minix."
+  },
+  {
+    "id": "CASE_138",
+    "question_text": "Como o padrão Cache-Aside atende requisições de leitura em caso de cache miss e como mantém a consistência nas escritas?",
+    "response_text": "Quando ocorre um cache miss, a aplicação realiza a busca no banco de dados relacional, popula o cache com o valor recuperado e devolve os dados para o cliente."
+  },
+  {
+    "id": "CASE_139",
+    "question_text": "Como o Elasticsearch utiliza inverted index para busca full-text?",
+    "response_text": "Na minha squad nós adotamos o Elasticsearch integrado com Logstash e Kibana há dois anos e usamos no dia a dia da empresa."
+  },
+  {
+    "id": "CASE_140",
+    "question_text": "Como o autovacuum do PostgreSQL libera o espaço de tuplas mortas e como previne o estouro de transações (wraparound)?",
+    "response_text": "As tabelas são varridas pelo processo de autovacuum para identificar tuplas que foram deletadas no MVCC, liberando o espaço em disco para novas gravações."
+  },
+  {
+    "id": "CASE_141",
+    "question_text": "Como o motor técnico da tecnologia 6 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 6 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_142",
+    "question_text": "Como o motor técnico da tecnologia 7 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 7 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_143",
+    "question_text": "Como o Kafka detecta a entrada de novos nós no grupo de consumidores e como preserva os offsets das mensagens?",
+    "response_text": "O Group Coordinator detecta a adesão de novos consumidores através dos heartbeats e dispara o protocolo de rebalanceamento para redistribuir as partições do tópico."
+  },
+  {
+    "id": "CASE_144",
+    "question_text": "Como o motor técnico da tecnologia 9 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 9 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_145",
+    "question_text": "Como funciona o mecanismo de Copy-on-Write (CoW) durante a execução de um fork() no Linux?",
+    "response_text": "O Linux compartilha as páginas do pai e do filho como somente leitura; na hora que alguém vai mexer e alterar os dados, o kernel pega a falha de página e copia os bytes pra uma página nova física."
+  },
+  {
+    "id": "CASE_146",
+    "question_text": "Como o mecanismo de write-ahead log (WAL) garante a propriedade de durabilidade em bancos relacionais após uma queda de energia?",
+    "response_text": "Antes que qualquer página de dados alterada seja escrita na tabela física, as alterações correspondentes são descarregadas no log sequencial em disco com fsync síncrono; na recuperação pós-falha, o banco reexecuta o log de transações não descarregadas."
+  },
+  {
+    "id": "CASE_147",
+    "question_text": "Como o motor técnico da tecnologia 16 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 16 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_148",
+    "question_text": "Como mitigar e proteger microsserviços contra lentidão em cascata usando circuit breakers?",
+    "response_text": "Nós desligamos o timeout dos clientes HTTP e removemos completamente o circuit breaker da aplicação."
+  },
+  {
+    "id": "CASE_149",
+    "question_text": "Como o coletor ZGC identifica objetos vivos através de ponteiros coloridos e como executa a compactação concorrente?",
+    "response_text": "O coletor evacua os objetos vivos de regiões fragmentadas para novas regiões de memória simultaneamente com a execução dos threads da aplicação através de barreiras de carga."
+  },
+  {
+    "id": "CASE_150",
+    "question_text": "Como o componente de rede e mensageria 12 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 12 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_151",
+    "question_text": "Como o algoritmo Token Bucket permite absorver rajadas de tráfego e como gerencia a taxa contínua de reposição de tokens?",
+    "response_text": "O algoritmo permite rajadas de requisições porque mantém um saldo acumulado de tokens em um balde com capacidade pré-definida, consumindo um token por requisição."
+  },
+  {
+    "id": "CASE_152",
+    "question_text": "Como mitigar ataques de injeção de SQL em aplicações legadas?",
+    "response_text": "A equipe precisaria de algumas semanas de planejamento para poder opinar sobre isso."
+  },
+  {
+    "id": "CASE_153",
+    "question_text": "Como o motor técnico da tecnologia 4 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 4 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_154",
+    "question_text": "Como o motor técnico da tecnologia 19 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 19 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_155",
+    "question_text": "Como a compactação em MemTable do RocksDB funciona quando o tamanho configurado é excedido?",
+    "response_text": "A MemTable ativa é convertida para uma MemTable imutável e uma nova MemTable é criada para receber novas escritas; uma thread de flush em segundo plano serializa a MemTable imutável para uma nova SSTable no nível L0 do disco e descarta o WAL antigo."
+  },
+  {
+    "id": "CASE_156",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 8 de microsserviços?",
+    "response_text": "Olha, tem que ver o que a liderança vai decidir contratar antes de qualquer coisa na arquitetura 8."
+  },
+  {
+    "id": "CASE_157",
+    "question_text": "Como o mecanismo de WAL archiving do PostgreSQL permite a restauração Point-in-Time (PITR)?",
+    "response_text": "Arquivos de WAL preenchidos são copiados continuamente para um armazenamento seguro externo; na restauração, recupera-se um backup base físico e reaplicam-se os segmentos de WAL arquivados até o timestamp ou ID de transação exato desejado."
+  },
+  {
+    "id": "CASE_158",
+    "question_text": "Como o kernel do Linux utiliza o mecanismo de epoll para atender milhares de conexões de rede sem o gargalo O(N) do select?",
+    "response_text": "O epoll registra file descriptors na árvore rubro-negra do kernel e anexa callbacks de interrupção do subsistema de rede que enfileiram descritores prontos em uma lista duplamente encadeada, permitindo que a chamada epoll_wait retorne em tempo O(1) apenas os eventos ativos."
+  },
+  {
+    "id": "CASE_159",
+    "question_text": "Como resolver e corrigir a anomalia de performance 15 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 15."
+  },
+  {
+    "id": "CASE_160",
+    "question_text": "Como o motor técnico da tecnologia 10 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 10 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_161",
+    "question_text": "Como o componente de rede e mensageria 30 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 30 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_162",
+    "question_text": "Como o componente de rede e mensageria 2 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 2 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_163",
+    "question_text": "Como recuperar um cluster de banco de dados após uma falha catastrófica de hardware?",
+    "response_text": "Nesses casos complexos nós devemos contratar uma consultoria especializada em infraestrutura."
+  },
+  {
+    "id": "CASE_164",
+    "question_text": "Como o componente de rede e mensageria 3 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 3 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_165",
+    "question_text": "Como a disponibilidade do sistema garante que os serviços respondam?",
+    "response_text": "A disponibilidade mantém o sistema disponível porque assegura a disponibilidade para ficar disponível."
+  },
+  {
+    "id": "CASE_166",
+    "question_text": "Como o componente de rede e mensageria 28 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 28 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_167",
+    "question_text": "Como diagnosticar vazamentos de conexões no pool de banco de dados HikariCP?",
+    "response_text": "A gente coloca alertas no Prometheus pras métricas do HikariCP e liga o leakDetectionThreshold pra cuspir log de aviso quando uma conexão demorar pra voltar pro pool."
+  },
+  {
+    "id": "CASE_168",
+    "question_text": "Como o motor técnico da tecnologia 1 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 1 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_169",
+    "question_text": "Como a replicação de banco de dados mantém os nós sincronizados?",
+    "response_text": "Ele replica os dados porque executa a replicação de modo que os nós fiquem replicados."
+  },
+  {
+    "id": "CASE_170",
+    "question_text": "Como a chave de partição e o consistent hashing distribuem chaves em clusters Dynamo-style sem mover todos os dados na adição de nós?",
+    "response_text": "Chaves e nós são mapeados em um anel circular de hash de 0 a 2^N-1; um dado é atribuído ao primeiro nó cujo hash seja maior ou igual ao da chave, de forma que a entrada de um novo nó reatribui apenas uma fração 1/k das chaves pertencentes ao seu vizinho imediato."
+  },
+  {
+    "id": "CASE_171",
+    "question_text": "Como o gateway de pagamentos valida a unicidade da Idempotency Key e como reaproveita respostas de transações anteriores?",
+    "response_text": "O gateway tenta inserir o token único da requisição em uma tabela com restrição de chave única no banco de dados para garantir que apenas uma thread processe a operação."
+  },
+  {
+    "id": "CASE_172",
+    "question_text": "Como funciona o mecanismo de Copy-on-Write (CoW) durante a execução de um fork() no Linux?",
+    "response_text": "As páginas de memória do processo pai são compartilhadas com o processo filho marcadas como somente leitura na tabela de páginas; quando qualquer um dos processos tenta escrever, uma interrupção de page fault é disparada e o kernel aloca uma nova página física copiando os dados."
+  },
+  {
+    "id": "CASE_173",
+    "question_text": "Como o algoritmo de escalonamento work-stealing do runtime de Go gerencia a sobrecarga entre threads do SO?",
+    "response_text": "Cada processador lógico M possui uma fila local de goroutines executáveis; quando a fila local de uma thread fica vazia, ela rouba metade das goroutines do final da fila de outra thread aleatória, minimizando contenção de locks globais."
+  },
+  {
+    "id": "CASE_174",
+    "question_text": "Como o motor técnico da tecnologia 5 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 5 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_175",
+    "question_text": "Como o Git resolve conflitos de merge através do algoritmo recursive ou ort?",
+    "response_text": "O Git é um sistema de controle de versão mantido pela Linux Foundation e amplamente adotado por toda a comunidade corporativa de desenvolvimento open-source."
+  },
+  {
+    "id": "CASE_176",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 1 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 1."
+  },
+  {
+    "id": "CASE_177",
+    "question_text": "Como a instrução atômica Compare-And-Swap (CAS) evita contenção com locks em estruturas lock-free?",
+    "response_text": "A CPU compara o valor presente em um endereço de memória com o valor esperado pelo registrador; se forem iguais, atualiza para o novo valor em uma única operação indivisível de hardware, retornando falso caso outro thread tenha alterado o valor."
+  },
+  {
+    "id": "CASE_178",
+    "question_text": "Como o protocolo Gossip espalha informações de associação de nós em um cluster distribuído?",
+    "response_text": "Periodicamente, cada nó seleciona aleatoriamente um subconjunto de nós conhecidos e troca com eles sua tabela de membros e contadores de pulso cardíaco; informações de nós ativos ou caídos propagam-se exponencialmente para todo o cluster em tempo O(log N)."
+  },
+  {
+    "id": "CASE_179",
+    "question_text": "Como o componente de rede e mensageria 13 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 13 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_180",
+    "question_text": "Como funciona o isolamento Serializable em bancos relacionais através de Serializable Snapshot Isolation (SSI)?",
+    "response_text": "Ele rastreia dependências de leitura e escrita (rw-antidependencies) entre transações concorrentes através de siREAD locks na memória; se um ciclo de conflito for detectado no grafo de dependências, uma das transações é abortada com erro de serialização."
+  },
+  {
+    "id": "CASE_181",
+    "question_text": "Como o componente de rede e mensageria 7 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 7 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_182",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 21 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 21."
+  },
+  {
+    "id": "CASE_183",
+    "question_text": "Como o Cassandra gerencia deleções de dados distribuídos através de tombstones sem ressuscitar registros excluídos?",
+    "response_text": "A deleção grava um registro especial de tombstone com timestamp de expiração; durante o período de gc_grace_seconds, os nós sincronizam a deleção via read repair e compactação, descartando definitivamente os dados somente após todas as réplicas registrarem o túmulo."
+  },
+  {
+    "id": "CASE_184",
+    "question_text": "Como o padrão Saga coordena múltiplos microsserviços em transações distribuídas e como executa a compensação de falhas?",
+    "response_text": "Mensagens assíncronas são disparadas sequencialmente pelo orquestrador central para que cada microsserviço realize a sua tarefa de negócio correspondente."
+  },
+  {
+    "id": "CASE_185",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 14 de microsserviços?",
+    "response_text": "Olha, consultar a documentação oficial para ver antes de qualquer coisa na arquitetura 14."
+  },
+  {
+    "id": "CASE_186",
+    "question_text": "Como a compressão LZ4 atinge alta velocidade de descompressão em processamento de logs?",
+    "response_text": "Ela organiza o fluxo de dados em blocos de sequências de literais seguidos por pares de offset e comprimento (offset-length matches) que apontam para bytes já descomprimidos no buffer, permitindo cópias diretas de memória em blocos sem decodificação de entropia pesada."
+  },
+  {
+    "id": "CASE_187",
+    "question_text": "Como o padrão Saga em orquestração reverte transações distribuídas quando uma etapa falha?",
+    "response_text": "O orquestrador central mantém uma máquina de estados com o histórico de passos executados; ao receber a falha de um serviço, envia comandos de transação compensatória em ordem estritamente inversa aos serviços que já haviam completado suas etapas com sucesso."
+  },
+  {
+    "id": "CASE_188",
+    "question_text": "Como o protocolo TLS 1.3 reduz a latência de handshake em relação ao TLS 1.2?",
+    "response_text": "O cliente envia seus parâmetros de troca de chaves Diffie-Hellman logo na primeira mensagem ClientHello, permitindo que o servidor responda com seus parâmetros e complete a derivação de chaves em apenas 1 RTT, eliminando a rodada de negociação separada do TLS 1.2."
+  },
+  {
+    "id": "CASE_189",
+    "question_text": "Como o componente de rede e mensageria 29 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 29 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_190",
+    "question_text": "Como o índice do banco de dados otimiza a velocidade das buscas?",
+    "response_text": "O índice indexa os registros porque faz a indexação de forma que as buscas fiquem indexadas."
+  },
+  {
+    "id": "CASE_191",
+    "question_text": "Como o B-Tree gerencia inserções quando um nó folha atinge a capacidade máxima de chaves?",
+    "response_text": "O nó é dividido ao meio (page split), criando um novo nó irmão com a metade das chaves e promovendo a chave mediana para o nó pai para servir de separador na navegação da árvore."
+  },
+  {
+    "id": "CASE_192",
+    "question_text": "Como diagnosticar vazamentos de conexões no pool de banco de dados HikariCP?",
+    "response_text": "Podemos monitorar as métricas do HikariCP no Prometheus como hikaricp_connection_acquired_nanoseconds, hikaricp_pending_threads e ativar o leakDetectionThreshold com logs de aviso."
+  },
+  {
+    "id": "CASE_193",
+    "question_text": "Como o Cassandra sincroniza nós divergentes via read repair e como lida com exclusões através de tombstones?",
+    "response_text": "Durante consultas de leitura com quorum, o Cassandra compara os hashes dos dados retornados pelas réplicas e envia atualizações para os nós que possuíam versões com timestamp desatualizado."
+  },
+  {
+    "id": "CASE_194",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 20 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 20."
+  },
+  {
+    "id": "CASE_195",
+    "question_text": "Como o ClickHouse atinge alta taxa de agregação em consultas analíticas usando o motor MergeTree?",
+    "response_text": "Os dados são ordenados fisicamente pela chave primária em partes esparsas e armazenados em formato colunar comprimido com índices de blocos de grânulos, permitindo ler apenas as colunas requisitadas e saltar blocos inteiros."
+  },
+  {
+    "id": "CASE_196",
+    "question_text": "Qual é o comportamento esperado do subsistema 10 sob condições extremas de concorrência?",
+    "response_text": "O comportamento varia conforme a situação de como a equipe resolver fazer diante do subsistema 10."
+  },
+  {
+    "id": "CASE_197",
+    "question_text": "Como o protocolo MESI mantém a coerência de cache L1/L2 entre múltiplos núcleos de CPU?",
+    "response_text": "Cada linha de cache é marcada como Modified, Exclusive, Shared ou Invalid; escritas em linhas compartilhadas transmitem mensagens de invalidação pelo barramento snooping para que outros núcleos descartem suas cópias antes da escrita ser efetivada."
+  },
+  {
+    "id": "CASE_198",
+    "question_text": "Como o algoritmo de escalonamento work-stealing do runtime de Go gerencia a sobrecarga entre threads do SO?",
+    "response_text": "As threads mantêm filas locais de goroutines e roubam trabalho da fila de outra thread aleatória quando ficam ociosas."
+  },
+  {
+    "id": "CASE_199",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 23 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 23."
+  },
+  {
+    "id": "CASE_200",
+    "question_text": "Como o protocolo 2PC (Two-Phase Commit) garante atomicidade transacional e como ele se comporta quando um participante vota abort?",
+    "response_text": "O coordenador manda um prepare pra todo mundo ver se dá pra commitar; se geral concordar ele manda o doCommit, mas se alguém der pra trás ou travar ele manda abortar geral e desfaz tudo."
+  },
+  {
+    "id": "CASE_201",
+    "question_text": "Como o Circuit Breaker gerencia as transições entre os estados fechado, aberto e meio-aberto para mitigar falhas?",
+    "response_text": "O Circuit Breaker monitora a taxa de falhas no estado fechado e, se atingir o limiar de erros, comuta para o estado aberto rejeitando chamadas com exceção imediata para proteger o serviço."
+  },
+  {
+    "id": "CASE_202",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 11 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 11."
+  },
+  {
+    "id": "CASE_203",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 11 de microsserviços?",
+    "response_text": "Olha, existem muitas ferramentas prontas na nuvem antes de qualquer coisa na arquitetura 11."
+  },
+  {
+    "id": "CASE_204",
+    "question_text": "Como o protocolo 2PC (Two-Phase Commit) garante atomicidade transacional e como ele se comporta quando um participante vota abort?",
+    "response_text": "Na fase de prepare, o coordenador pergunta se todos podem commitar; se todos votam commit, ele grava commit no log e envia doCommit; se qualquer participante votar abort ou expirar timeout, o coordenador envia doAbort a todos os nós desfazendo as alterações locais."
+  },
+  {
+    "id": "CASE_205",
+    "question_text": "Como o mecanismo de MVCC lida com consultas concorrentes a uma linha que está sendo atualizada no PostgreSQL?",
+    "response_text": "A atualização cria uma nova versão da tupla com xmin igual ao ID da transação atual e preenche xmax na versão anterior; a consulta concorrente utiliza um snapshot que enxerga apenas versões cujo xmin já estava commitado antes do início da sua transação."
+  },
+  {
+    "id": "CASE_206",
+    "question_text": "Como o motor técnico da tecnologia 8 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 8 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_207",
+    "question_text": "Como resolver e corrigir a anomalia de performance 1 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 1."
+  },
+  {
+    "id": "CASE_208",
+    "question_text": "Como o componente de rede e mensageria 24 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 24 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_209",
+    "question_text": "Como o Outbox Pattern grava eventos de negócio no banco relacional e como garante a entrega das mensagens ao broker?",
+    "response_text": "A aplicação inclui o evento de integração em uma tabela outbox dentro da mesmíssima transação ACID que persiste a alteração da entidade de negócio."
+  },
+  {
+    "id": "CASE_210",
+    "question_text": "Como mitigar e proteger microsserviços contra lentidão em cascata usando circuit breakers?",
+    "response_text": "A gente desativa o circuit breaker de vez e tira fora os timeouts de chamada de rede."
+  },
+  {
+    "id": "CASE_211",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 7 de microsserviços?",
+    "response_text": "Olha, depende dos fatores e dos custos envolvidos antes de qualquer coisa na arquitetura 7."
+  },
+  {
+    "id": "CASE_212",
+    "question_text": "Como monitorar a compactação de dados e saturação de disco em instâncias do Cassandra?",
+    "response_text": "Acompanhamos a métrica nodetool compactionstats e observamos no Prometheus o volume de PendingCompactions e a taxa de I/O em disco via iostat."
+  },
+  {
+    "id": "CASE_213",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 3 de microsserviços?",
+    "response_text": "Olha, existem muitas ferramentas prontas na nuvem antes de qualquer coisa na arquitetura 3."
+  },
+  {
+    "id": "CASE_214",
+    "question_text": "Como o motor técnico da tecnologia 12 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 12 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_215",
+    "question_text": "Como garantir a integridade e evitar inconsistências em transações financeiras concorrentes?",
+    "response_text": "Para acelerar o sistema nós simplesmente removemos todas as transações ACID e desativamos os locks de banco de dados."
+  },
+  {
+    "id": "CASE_216",
+    "question_text": "Como o protocolo BGP troca tabelas de roteamento entre sistemas autônomos na Internet?",
+    "response_text": "Receita de bolo de chocolate tradicional: misture os ovos com farinha, acrescente chocolate em pó e asse em forno médio pré-aquecido."
+  },
+  {
+    "id": "CASE_217",
+    "question_text": "Como o SQLite implementa o modo Write-Ahead Logging para permitir concorrência de leitura e escrita?",
+    "response_text": "O SQLite foi criado pelo engenheiro Richard Hipp em 2000 enquanto ele trabalhava para a Marinha dos EUA em softwares para navios de guerra com arquitetura embarcada."
+  },
+  {
+    "id": "CASE_218",
+    "question_text": "Como o algoritmo de compactação Snappy equilibra taxa e velocidade de compressão?",
+    "response_text": "A pintura a óleo sobre tela exige a preparação prévia com gesso acrílico e secagem lenta por camadas sucessivas."
+  },
+  {
+    "id": "CASE_219",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 6 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 6."
+  },
+  {
+    "id": "CASE_220",
+    "question_text": "Como o componente de rede e mensageria 11 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 11 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_221",
+    "question_text": "Como resolver e corrigir a anomalia de performance 7 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 7."
+  },
+  {
+    "id": "CASE_222",
+    "question_text": "Como resolver o problema de latência e concorrência na arquitetura 4 de microsserviços?",
+    "response_text": "Olha, vai variar de acordo com o caso concreto antes de qualquer coisa na arquitetura 4."
+  },
+  {
+    "id": "CASE_223",
+    "question_text": "Como o componente de rede e mensageria 10 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 10 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_224",
+    "question_text": "Como o padrão Outbox Pattern garante a consistência atômica entre a gravação no banco de dados e a publicação de eventos no message broker?",
+    "response_text": "A aplicação grava o registro de negócio e o evento na mesma transação local do banco de dados relacional em uma tabela outbox; um processo assíncrono separado (polling ou CDC com Debezium) lê dessa tabela e publica no broker, marcando como publicado."
+  },
+  {
+    "id": "CASE_225",
+    "question_text": "Como o autovacuum do PostgreSQL libera o espaço de tuplas mortas e como previne o estouro de transações (wraparound)?",
+    "response_text": "O autovacuum varre as tabelas identificando registros excluídos ou obsoletos pelo controle de concorrência MVCC e marca o espaço dessas tuplas mortas como disponível para reutilização."
+  },
+  {
+    "id": "CASE_226",
+    "question_text": "Como o deploy Blue-Green prepara a nova versão no ambiente inativo e como executa a comutação de tráfego?",
+    "response_text": "A nova versão da aplicação é instalada no ambiente Green inativo onde são executados testes de fumaça e validações funcionais sem impactar os usuários reais."
+  },
+  {
+    "id": "CASE_227",
+    "question_text": "Como resolver e corrigir a anomalia de performance 3 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 3."
+  },
+  {
+    "id": "CASE_228",
+    "question_text": "Como resolver e corrigir a anomalia de performance 6 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 6."
+  },
+  {
+    "id": "CASE_229",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 5 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 5."
+  },
+  {
+    "id": "CASE_230",
+    "question_text": "Como reduzir a latência de consultas analíticas pesadas no data warehouse?",
+    "response_text": "Isso vai depender exclusivamente do orçamento que o cliente aprovar para o projeto."
+  },
+  {
+    "id": "CASE_231",
+    "question_text": "Como resolver e corrigir a anomalia de performance 4 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 4."
+  },
+  {
+    "id": "CASE_232",
+    "question_text": "Qual é o comportamento esperado do subsistema 9 sob condições extremas de concorrência?",
+    "response_text": "O comportamento varia conforme a situação de como a equipe resolver fazer diante do subsistema 9."
+  },
+  {
+    "id": "CASE_233",
+    "question_text": "Qual é o comportamento esperado do subsistema 5 sob condições extremas de concorrência?",
+    "response_text": "O comportamento varia conforme a situação de como a equipe resolver fazer diante do subsistema 5."
+  },
+  {
+    "id": "CASE_234",
+    "question_text": "Como o algoritmo Raft realiza eleições de líder seguras?",
+    "response_text": "Para manter o motor do veículo funcionando bem troque o óleo lubrificante sintético nos intervalos recomendados de dez mil km."
+  },
+  {
+    "id": "CASE_235",
+    "question_text": "Como o Circuit Breaker gerencia as transições entre os estados fechado, aberto e meio-aberto para mitigar falhas?",
+    "response_text": "O circuit breaker fica vigiando os erros no modo fechado e, se der ruim e estourar a taxa, ele abre e começa a barrar tudo na hora pra não derrubar a aplicação."
+  },
+  {
+    "id": "CASE_236",
+    "question_text": "Como o Kubernetes orquestra pods em diferentes zonas de disponibilidade?",
+    "response_text": "Na nossa empresa nós temos um cluster muito grande de Kubernetes em produção e a equipe de DevOps adora utilizar containers em nuvem."
+  },
+  {
+    "id": "CASE_237",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 7 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 7."
+  },
+  {
+    "id": "CASE_238",
+    "question_text": "Como o protocolo Two-Phase Commit coordena a confirmação atômica e como trata a falha com queda do coordenador?",
+    "response_text": "O coordenador pede voto de prepare e se todo mundo topar ele manda commitar."
+  },
+  {
+    "id": "CASE_239",
+    "question_text": "Como garantir a durabilidade e segurança dos dados gravados no banco relacional?",
+    "response_text": "A gente desativa o write-ahead log (WAL) e desliga a sincronização em disco com fsync para ficar mais rápido."
+  },
+  {
+    "id": "CASE_240",
+    "question_text": "Como o protocolo distribuído do sistema gerencia a etapa de coordenação primária no cenário 10 e como executa o procedimento de contingência e recuperação secundária?",
+    "response_text": "Ele realiza com sucesso a coordenação primária executando as validações iniciais e disparando mensagens para os participantes no cenário 10."
+  },
+  {
+    "id": "CASE_241",
+    "question_text": "Como o modelo relacional de bancos de dados garante integridade referencial através de chaves estrangeiras?",
+    "response_text": "O modelo relacional foi concebido originalmente pelo matemático Edgar F. Codd em 1970 em um artigo acadêmico inovador nos laboratórios de pesquisa da IBM."
+  },
+  {
+    "id": "CASE_242",
+    "question_text": "Como o motor técnico da tecnologia 14 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 14 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_243",
+    "question_text": "Como resolver e corrigir a anomalia de performance 16 em nosso cluster distribuído?",
+    "response_text": "Para diagnosticar e dar suporte, nós configuramos métricas no Prometheus, adicionamos alertas no Grafana e coletamos logs estruturados com OpenTelemetry no cenário 16."
+  },
+  {
+    "id": "CASE_244",
+    "question_text": "Como tratar problemas de concorrência em sistemas distribuídos de alta escala?",
+    "response_text": "Existem diversas ferramentas excelentes no mercado de software que resolvem essa parte."
+  },
+  {
+    "id": "CASE_245",
+    "question_text": "Como a técnica de cache-aside (lazy loading) lida com leituras e escritas de dados?",
+    "response_text": "Nas leituras, a aplicação consulta o cache e, em caso de miss, busca no banco gravando o resultado no cache; nas escritas, a aplicação atualiza o banco de dados diretamente e invalida ou deleta a entrada correspondente no cache."
+  },
+  {
+    "id": "CASE_246",
+    "question_text": "Como o componente de rede e mensageria 27 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 27 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_247",
+    "question_text": "Como o componente de rede e mensageria 4 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 4 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  },
+  {
+    "id": "CASE_248",
+    "question_text": "Como o padrão CQRS (Command Query Responsibility Segregation) organiza o acesso a dados em sistemas transacionais?",
+    "response_text": "Ele segrega a arquitetura em dois modelos de dados distintos: o modelo de comando, otimizado para operações de escrita e validação de regras de negócio, e o modelo de consulta, otimizado para leituras e alimentado assincronamente por eventos de domínio."
+  },
+  {
+    "id": "CASE_249",
+    "question_text": "Como o motor técnico da tecnologia 2 processa e resolve internamente o problema de partição distribuída?",
+    "response_text": "Essa tecnologia 2 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado."
+  },
+  {
+    "id": "CASE_250",
+    "question_text": "Como o componente de rede e mensageria 17 processa os pacotes de controle em tempo real?",
+    "response_text": "O cultivo de orquídeas e a jardinagem doméstica 17 exigem adubação foliar e poda cuidadosa durante as estações do ano."
+  }
+]

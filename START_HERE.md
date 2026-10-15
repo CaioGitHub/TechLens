@@ -153,10 +153,34 @@ BLIND_SEMANTIC_REVALIDATION_BLOCKED
 
 Stage 31.7.22
     ↓
-NEXT STAGE (Root Cause Analysis & Semantic Precision Remediation Architecture — Cycle 4)
+RCA_COMPLETE_ARCHITECTURE_PENDING_REVIEW
+
+Stage 31.7.23
+    ↓
+CORRECTION_PLAN_READY_FOR_CONTROLLED_IMPLEMENTATION
+
+Stage 31.7.24
+    ↓
+IMPLEMENTATION_COMPLETE_PENDING_INDEPENDENT_BLIND_VALIDATION
+
+Stage 31.7.25
+    ↓
+BLIND_SEMANTIC_REVALIDATION_BLOCKED
+
+Stage 31.7.26
+    ↓
+RCA_COMPLETE_ARCHITECTURE_APPROVED_FOR_IMPLEMENTATION
+
+Stage 31.7.27
+    ↓
+IMPLEMENTATION_COMPLETE_PENDING_INDEPENDENT_BLIND_VALIDATION
+
+Stage 31.7.28
+    ↓
+NEXT STAGE (Independent Blind Semantic Revalidation — Cycle 5)
 ```
 
-O Stage 31.7.21 concluiu a revalidação semântica cega e independente do runtime corrigido no Stage 31.7.20 (`reference_runtime/runtime.py`, SHA-256 congelado verificado: `75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC`). A validação foi conduzida sobre 250 casos de teste inéditos com zero sobreposição com benchmarks históricos, sem alterações de código no runtime e sem relaxamento de testes. A regressão canônica obteve 100% de conformidade (1.038 testes unitários e 15 testes do Reference Harness aprovados). Contudo, 6 dos 7 critérios quantitativos de aceite falharam: Concordância Exata de 68,00% (alvo $\ge 75\%$), Recall de DIRECT de 81,54% (alvo $\ge 85\%$), Precisão de DIRECT de 53,00% (alvo $\ge 70\%$), Falsos DIRECT entre divergências de 58,75% (alvo $\le 10\%$), Recall de PARTIAL de 37,78% (alvo $\ge 60\%$) e Invariância de Representação de 68,75% (alvo $\ge 80\%$). A salvaguarda de evitação e polaridade (Grupo I) obteve 92,86% de acurácia, confirmando o avanço na mitigação de antítese, mas a promoção indevida de respostas parciais (`PARTIAL` -> `DIRECT`: 25 casos) e afirmações históricas/declarações de experiência (`RELATED` -> `DIRECT`: 8 casos) revelou limites das regras heurísticas em orações simples multi-aspecto. Em respeito estrito às regras metodológicas, o gate emitido é `BLIND_SEMANTIC_REVALIDATION_BLOCKED`. A próxima etapa é o **Stage 31.7.22 — Root Cause Analysis & Semantic Precision Remediation Architecture (Cycle 4)**.
+O Stage 31.7.27 concluiu a implementação controlada dos 5 incrementos da arquitetura do Ciclo 5 em `reference_runtime/runtime.py`: `SemanticDomainDisjunctionEngine`, `DemandPropositionNexusBipartiteMatcher`, `PropositionDiscourseFilter`, `StrictOntologyRelevanceAggregator` e `OpenDomainPropositionEngine`. O hash criptográfico final do runtime é `3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`. Todos os 20 testes de contrato obrigatórios foram aprovados com 100% de sucesso (`tests/test_stage_31_7_27_contract_tests.py`). A suíte canônica de 1.047 testes passou integralmente com zero regressões (1.046 OK, 1 skipped, 0 falhas, 0 erros), assim como o Reference Harness do Stage 26 (15/15 OK). Na verificação puramente diagnóstica dos 250 casos históricos, a acurácia subiu de 60.80% para 89.20% (+71 casos) e os falsos DIRECTs despencaram de 70 para 6 (redução de 91.43%). O gate emitido é `IMPLEMENTATION_COMPLETE_PENDING_INDEPENDENT_BLIND_VALIDATION`. A próxima etapa autorizada é exclusivamente o **Stage 31.7.28 — Independent Blind Semantic Revalidation (Cycle 5)**.
 
 ## Regra fundamental
 

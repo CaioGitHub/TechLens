@@ -1,0 +1,406 @@
+{
+  "stage": "31.7.22",
+  "audit_target": "Stage 31.7.21 historical metrics and predictions",
+  "reconciliation_status": "100% REPRODUCIBLE (ZERO DISCREPANCIES IN NUMERATORS AND DENOMINATORS)",
+  "runtime_integrity": {
+    "runtime_path": "reference_runtime/runtime.py",
+    "expected_sha256": "75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC",
+    "verified_sha256": "75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC",
+    "checkpoint_path": "reference_runtime/runtime.py.stage_31_7_22_baseline",
+    "checkpoint_sha256": "75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC",
+    "runtime_is_frozen": true
+  },
+  "artifact_digests": {
+    "stage_31_7_21_ground_truth.json": "D594BB067FE0A031720F75B416AB636D57D280D7E00E279557D9C8D8C6D120F6",
+    "stage_31_7_21_blind_input.json": "E75D22F3BDB2A600C3628C1924997EC6D81B8143B9C7A01628E080A27313D010",
+    "stage_31_7_21_system_predictions.json": "577B308CA7FB3C827FF04776779E6E1C5916565982ED059B986E295B9958E168",
+    "stage_31_7_21_metrics_summary.json": "C52A332C8758DE999BD690C11BC50615B6F912C3FC24D1A8955ECB2556684C4B",
+    "stage_31_7_21_confusion_matrix.json": "03CD7D0215933398641798257BEEFB5C5EC0A83E58FEE4783AB3B79C1A9A5972",
+    "stage_31_7_21_divergence_analysis.json": "94AACB770A97F2840B56025478F770C3837F78AF94DE0965410262140870BB43",
+    "stage_31_7_21_independence_audit.json": "26AD25606AB3E9D8F8E3CB4EDF1F8E692F1318D2A3EEC6C3D50112B0B6CD1E55"
+  },
+  "metrics_audit_table": [
+    {
+      "metric_name": "Concordância Exata",
+      "reported_value": "170 / 250 (68.00%)",
+      "recalculated_value": "170 / 250 (68.00%)",
+      "discrepancy": false,
+      "target": ">= 75.0%",
+      "status": "FAIL"
+    },
+    {
+      "metric_name": "Recall de DIRECT",
+      "reported_value": "53 / 65 (81.54%)",
+      "recalculated_value": "53 / 65 (81.54%)",
+      "discrepancy": false,
+      "target": ">= 85.0%",
+      "status": "FAIL"
+    },
+    {
+      "metric_name": "Precisão de DIRECT",
+      "reported_value": "53 / 100 (53.00%)",
+      "recalculated_value": "53 / 100 (53.00%)",
+      "discrepancy": false,
+      "target": ">= 70.0%",
+      "status": "FAIL"
+    },
+    {
+      "metric_name": "Falsos DIRECT entre Divergências",
+      "reported_value": "47 / 80 (58.75%)",
+      "recalculated_value": "47 / 80 (58.75%)",
+      "discrepancy": false,
+      "target": "<= 10.0%",
+      "status": "FAIL"
+    },
+    {
+      "metric_name": "Recall de PARTIAL",
+      "reported_value": "17 / 45 (37.78%)",
+      "recalculated_value": "17 / 45 (37.78%)",
+      "discrepancy": false,
+      "target": ">= 60.0%",
+      "status": "FAIL"
+    },
+    {
+      "metric_name": "Invariância de Representação (Consistência + Correção)",
+      "reported_value": "11 / 16 (68.75%)",
+      "recalculated_value": "11 / 16 (68.75%)",
+      "discrepancy": false,
+      "target": ">= 80.0%",
+      "status": "FAIL"
+    },
+    {
+      "metric_name": "Invariância de Representação (Apenas Consistência de Saída)",
+      "reported_value": "N/A (implícito)",
+      "recalculated_value": "13 / 16 (81.25%)",
+      "discrepancy": false,
+      "target": "Informacional",
+      "status": "PASS (como consistência pura, mas FAIL em correção semântica)"
+    },
+    {
+      "metric_name": "Regressão Canônica (Unit Tests)",
+      "reported_value": "1038 executados, 1037 pass, 1 skip, 0 fail",
+      "recalculated_value": "1038 executados, 1037 pass, 1 skip, 0 fail",
+      "discrepancy": false,
+      "target": "Zero falhas inexplicadas",
+      "status": "PASS"
+    },
+    {
+      "metric_name": "Reference Harness (System End-to-End)",
+      "reported_value": "15 / 15 pass",
+      "recalculated_value": "15 / 15 pass",
+      "discrepancy": false,
+      "target": "Zero falhas inexplicadas",
+      "status": "PASS"
+    }
+  ],
+  "confusion_matrix_verification": {
+    "cm_matches_reported_exactly": true,
+    "recalculated_cm": {
+      "DIRECT": {
+        "DIRECT": 53,
+        "PARTIAL": 9,
+        "SUPPORTING": 0,
+        "RELATED": 0,
+        "OFF_TOPIC": 3,
+        "INSUFFICIENT": 0,
+        "UNKNOWN": 0
+      },
+      "PARTIAL": {
+        "DIRECT": 25,
+        "PARTIAL": 17,
+        "SUPPORTING": 1,
+        "RELATED": 0,
+        "OFF_TOPIC": 2,
+        "INSUFFICIENT": 0,
+        "UNKNOWN": 0
+      },
+      "SUPPORTING": {
+        "DIRECT": 3,
+        "PARTIAL": 0,
+        "SUPPORTING": 25,
+        "RELATED": 0,
+        "OFF_TOPIC": 0,
+        "INSUFFICIENT": 0,
+        "UNKNOWN": 0
+      },
+      "RELATED": {
+        "DIRECT": 8,
+        "PARTIAL": 0,
+        "SUPPORTING": 0,
+        "RELATED": 21,
+        "OFF_TOPIC": 3,
+        "INSUFFICIENT": 0,
+        "UNKNOWN": 0
+      },
+      "OFF_TOPIC": {
+        "DIRECT": 5,
+        "PARTIAL": 0,
+        "SUPPORTING": 0,
+        "RELATED": 0,
+        "OFF_TOPIC": 39,
+        "INSUFFICIENT": 0,
+        "UNKNOWN": 0
+      },
+      "INSUFFICIENT": {
+        "DIRECT": 0,
+        "PARTIAL": 0,
+        "SUPPORTING": 0,
+        "RELATED": 0,
+        "OFF_TOPIC": 3,
+        "INSUFFICIENT": 8,
+        "UNKNOWN": 11
+      },
+      "UNKNOWN": {
+        "DIRECT": 6,
+        "PARTIAL": 0,
+        "SUPPORTING": 0,
+        "RELATED": 0,
+        "OFF_TOPIC": 1,
+        "INSUFFICIENT": 0,
+        "UNKNOWN": 7
+      }
+    }
+  },
+  "invariance_pair_details": [
+    {
+      "pair_id": "Pair_01",
+      "case_1": {
+        "id": "J01_ebpf_xdp_formal",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "J02_ebpf_xdp_colloquial",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "predictions_equal": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "Pair_02",
+      "case_1": {
+        "id": "J03_ceph_crush_active",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "J04_ceph_crush_pronominal",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "predictions_equal": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "Pair_03",
+      "case_1": {
+        "id": "J05_cockroach_multiraft_detailed",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "J06_cockroach_multiraft_concise",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "predictions_equal": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "Pair_04",
+      "case_1": {
+        "id": "J07_sqlite_wal_formal",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "J08_sqlite_wal_colloquial",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "predictions_equal": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "Pair_05",
+      "case_1": {
+        "id": "J09_parquet_dict_active",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "J10_parquet_dict_passive",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "predictions_equal": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "Pair_06",
+      "case_1": {
+        "id": "J11_token_bucket_formal",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "J12_token_bucket_colloquial",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "predictions_equal": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "Pair_07",
+      "case_1": {
+        "id": "J13_fencing_token_detailed",
+        "ref": "DIRECT",
+        "pred": "PARTIAL"
+      },
+      "case_2": {
+        "id": "J14_fencing_token_concise",
+        "ref": "DIRECT",
+        "pred": "PARTIAL"
+      },
+      "predictions_equal": true,
+      "both_correct": false
+    },
+    {
+      "pair_id": "Pair_08",
+      "case_1": {
+        "id": "J15_outbox_active",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "J16_outbox_passive",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "predictions_equal": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "Pair_09",
+      "case_1": {
+        "id": "J17_kafka_zerocopy_formal",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "J18_kafka_zerocopy_colloquial",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "predictions_equal": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "Pair_10",
+      "case_1": {
+        "id": "J19_raft_election_detailed",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "J20_raft_election_concise",
+        "ref": "DIRECT",
+        "pred": "OFF_TOPIC"
+      },
+      "predictions_equal": false,
+      "both_correct": false
+    },
+    {
+      "pair_id": "Pair_11",
+      "case_1": {
+        "id": "J21_partial_retry_formal",
+        "ref": "PARTIAL",
+        "pred": "PARTIAL"
+      },
+      "case_2": {
+        "id": "J22_partial_retry_colloquial",
+        "ref": "PARTIAL",
+        "pred": "PARTIAL"
+      },
+      "predictions_equal": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "Pair_12",
+      "case_1": {
+        "id": "J23_partial_sharding_active",
+        "ref": "PARTIAL",
+        "pred": "PARTIAL"
+      },
+      "case_2": {
+        "id": "J24_partial_sharding_passive",
+        "ref": "PARTIAL",
+        "pred": "PARTIAL"
+      },
+      "predictions_equal": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "Pair_13",
+      "case_1": {
+        "id": "J25_partial_2pc_detailed",
+        "ref": "PARTIAL",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "J26_partial_2pc_concise",
+        "ref": "PARTIAL",
+        "pred": "DIRECT"
+      },
+      "predictions_equal": true,
+      "both_correct": false
+    },
+    {
+      "pair_id": "Pair_14",
+      "case_1": {
+        "id": "J27_antithesis_locks_formal",
+        "ref": "OFF_TOPIC",
+        "pred": "OFF_TOPIC"
+      },
+      "case_2": {
+        "id": "J28_antithesis_locks_colloquial",
+        "ref": "OFF_TOPIC",
+        "pred": "DIRECT"
+      },
+      "predictions_equal": false,
+      "both_correct": false
+    },
+    {
+      "pair_id": "Pair_15",
+      "case_1": {
+        "id": "J29_antithesis_acid_active",
+        "ref": "OFF_TOPIC",
+        "pred": "OFF_TOPIC"
+      },
+      "case_2": {
+        "id": "J30_antithesis_acid_passive",
+        "ref": "OFF_TOPIC",
+        "pred": "DIRECT"
+      },
+      "predictions_equal": false,
+      "both_correct": false
+    },
+    {
+      "pair_id": "Pair_16",
+      "case_1": {
+        "id": "J31_antithesis_timeouts_detailed",
+        "ref": "OFF_TOPIC",
+        "pred": "OFF_TOPIC"
+      },
+      "case_2": {
+        "id": "J32_antithesis_timeouts_concise",
+        "ref": "OFF_TOPIC",
+        "pred": "OFF_TOPIC"
+      },
+      "predictions_equal": true,
+      "both_correct": true
+    }
+  ]
+}

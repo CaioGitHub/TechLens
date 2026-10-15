@@ -1,0 +1,119 @@
+{
+  "stage": "31.7.25",
+  "evaluation_timestamp": "2026-10-14T20:52:00-03:00",
+  "runtime_sha256": "36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7",
+  "total_cases": 250,
+  "total_correct": 152,
+  "total_divergences": 98,
+  "thresholds": {
+    "exact_agreement": {
+      "threshold": 0.75,
+      "value": 0.608,
+      "pass": false
+    },
+    "recall_direct": {
+      "threshold": 0.85,
+      "value": 0.9091,
+      "pass": true
+    },
+    "precision_direct": {
+      "threshold": 0.7,
+      "value": 0.4167,
+      "pass": false
+    },
+    "false_direct_among_divergences": {
+      "threshold": 0.1,
+      "value": 0.7143,
+      "pass": false
+    },
+    "recall_partial": {
+      "threshold": 0.6,
+      "value": 0.9333,
+      "pass": true
+    },
+    "invariance_correct_rate": {
+      "threshold": 0.8,
+      "value": 0.4,
+      "pass": false
+    },
+    "canonical_regression": {
+      "total": 1047,
+      "passed": 1046,
+      "skipped": 1,
+      "failures": 0,
+      "errors": 0,
+      "status": "PASS"
+    },
+    "reference_harness": {
+      "total": 15,
+      "passed": 15,
+      "status": "PASS_WITH_WARNINGS"
+    }
+  },
+  "metrics_per_class": {
+    "DIRECT": {
+      "support": 55,
+      "true_positives": 50,
+      "false_positives": 70,
+      "false_negatives": 5,
+      "recall": 0.9091,
+      "precision": 0.4167,
+      "f1": 0.5714
+    },
+    "PARTIAL": {
+      "support": 45,
+      "true_positives": 42,
+      "false_positives": 2,
+      "false_negatives": 3,
+      "recall": 0.9333,
+      "precision": 0.9545,
+      "f1": 0.9438
+    },
+    "SUPPORTING": {
+      "support": 28,
+      "true_positives": 17,
+      "false_positives": 0,
+      "false_negatives": 11,
+      "recall": 0.6071,
+      "precision": 1.0,
+      "f1": 0.7556
+    },
+    "RELATED": {
+      "support": 32,
+      "true_positives": 6,
+      "false_positives": 3,
+      "false_negatives": 26,
+      "recall": 0.1875,
+      "precision": 0.6667,
+      "f1": 0.2927
+    },
+    "OFF_TOPIC": {
+      "support": 44,
+      "true_positives": 10,
+      "false_positives": 23,
+      "false_negatives": 34,
+      "recall": 0.2273,
+      "precision": 0.303,
+      "f1": 0.2597
+    },
+    "INSUFFICIENT": {
+      "support": 24,
+      "true_positives": 6,
+      "false_positives": 0,
+      "false_negatives": 18,
+      "recall": 0.25,
+      "precision": 1.0,
+      "f1": 0.4
+    },
+    "UNKNOWN": {
+      "support": 22,
+      "true_positives": 21,
+      "false_positives": 0,
+      "false_negatives": 1,
+      "recall": 0.9545,
+      "precision": 1.0,
+      "f1": 0.9767
+    }
+  },
+  "gate": "BLIND_SEMANTIC_REVALIDATION_BLOCKED"
+}

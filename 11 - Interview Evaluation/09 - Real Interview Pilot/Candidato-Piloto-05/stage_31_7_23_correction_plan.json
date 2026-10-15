@@ -1,0 +1,138 @@
+{
+  "stage": "31.7.23",
+  "title": "Controlled Correction Plan Specification (Cycle 4)",
+  "date": "2026-10-14",
+  "gate_decision": "CORRECTION_PLAN_READY_FOR_CONTROLLED_IMPLEMENTATION",
+  "baseline": {
+    "runtime_path": "reference_runtime/runtime.py",
+    "expected_sha256": "75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC",
+    "checkpoint_path": "reference_runtime/runtime.py.stage_31_7_23_baseline",
+    "checkpoint_sha256": "75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC",
+    "runtime_is_frozen": true
+  },
+  "root_causes_addressed": [
+    {
+      "id": "CR-01",
+      "name": "Compound Demands Sub-Decomposed in Single Clauses",
+      "affected_cases": 28,
+      "primary_component": "SemanticIntentAndDemandExtractor",
+      "failure_mechanism": "Questions with multiple interdependent operational aspects (states, multi-actions, error conditions) in single grammatical clauses collapsed into a single generic demand, allowing partial responses covering only one aspect to achieve FULL coverage and DIRECT."
+    },
+    {
+      "id": "CR-02",
+      "name": "Technical Verbs in Autobiographical and Historical Anecdotes",
+      "affected_cases": 8,
+      "primary_component": "PropositionDiscourseFilter",
+      "failure_mechanism": "Action verbs in historical trivia ('escrito por Igor Sysoev') or personal declarations ('já usei em produção') activated broad verb-stem matchers, promoting background context to an operative solution."
+    },
+    {
+      "id": "CR-03",
+      "name": "Circularity Bypassing Static Stem Lists via Morphological Inflexions",
+      "affected_cases": 6,
+      "primary_component": "MorphologicalCircularityAnalyzer",
+      "failure_mechanism": "Tautological circular reasoning used legitimate Portuguese morphological variations (noun-verb nominalization divergence, e.g. 'compressão' vs 'comprimindo') that bypassed static stem tuples."
+    },
+    {
+      "id": "CR-04",
+      "name": "Hardcoded Conflation between EVASIVE and UNKNOWN",
+      "affected_cases": 11,
+      "primary_component": "StrictOntologyRelevanceAggregator",
+      "failure_mechanism": "Hardcoded rule in evaluate_relevance routed prop.is_evasive to UNKNOWN instead of INSUFFICIENT, violating canonical rubrics where evasive answers lack evaluable evidence."
+    },
+    {
+      "id": "CR-05",
+      "name": "Thematic Proximity and Institutional Context Misclassified as Direct",
+      "affected_cases": 4,
+      "primary_component": "PropositionDiscourseFilter",
+      "failure_mechanism": "Unstemmed declaration/trivia markers failed to trigger on slight phrasing variations, allowing thematic adjacency without mechanism to be promoted to DIRECT."
+    },
+    {
+      "id": "CR-06",
+      "name": "Cross-Demand Satisfaction via Isolated Coincident Tokens",
+      "affected_cases": 6,
+      "primary_component": "DemandPropositionNexusBipartiteMatcher",
+      "failure_mechanism": "Multi-aspect demands were extracted, but the nexus checker matched isolated keywords in the response to multiple demands, allowing one response proposition to satisfy independent demands without 1-to-1 evidence."
+    },
+    {
+      "id": "CR-07",
+      "name": "Representation Invariance Asymmetry in Colloquial and Passive Antitheses",
+      "affected_cases": 5,
+      "primary_component": "PropositionDiscourseFilter",
+      "failure_mechanism": "Colloquial and passive voice formulations of destructive actions bypassed formal imperative regexes and activated operative verbs, causing asymmetric classification between equivalent formulations."
+    },
+    {
+      "id": "CR-08",
+      "name": "Polarity and Preventive Safeguard Scope",
+      "affected_cases": 12,
+      "primary_component": "PropositionDiscourseFilter",
+      "failure_mechanism": "Overpenalization of technical absence or disjunction boundaries without semantic fallback; preserved positive preventive safeguard behavior."
+    }
+  ],
+  "architecture_summary": {
+    "approved_option": "Option 2: Decomposed Propositional Graph with Explicit Semantic Contracts",
+    "components": [
+      {
+        "name": "SemanticIntentAndDemandExtractor",
+        "responsibility": "Extract intent, primary demands, required operational aspects, and dependency relations from questions without relying solely on explicit interrogative conjunctions."
+      },
+      {
+        "name": "PropositionDiscourseFilter",
+        "responsibility": "Classify discourse genre into 7 categories (OPERATIVE_SOLUTION, HISTORICAL_TRIVIA, PERSONAL_DECLARATION, MONITORING_TELEMETRY, DESTRUCTIVE_ANTITHESIS, EVASIVE_FILLER, IGNORANCE) before assessing technical operativity."
+      },
+      {
+        "name": "MorphologicalCircularityAnalyzer",
+        "responsibility": "Analyze morphological cognates and semantic informativeness graph, treating nominalizations and verbs as shared stems to detect circular tautologies regardless of inflection."
+      },
+      {
+        "name": "DemandPropositionNexusBipartiteMatcher",
+        "responsibility": "Perform bipartite 1-to-1 matching between demands and propositions, preventing a single proposition from satisfying distinct independent demands without explicit joint mechanism."
+      },
+      {
+        "name": "StrictOntologyRelevanceAggregator",
+        "responsibility": "Single source of truth for the 7 canonical classes, enforcing strict rules: EVASIVE -> INSUFFICIENT, tautology -> UNKNOWN, DIRECT -> 100% aspects solved."
+      }
+    ]
+  },
+  "implementation_increments": [
+    {
+      "increment": "A",
+      "target_component": "SemanticIntentAndDemandExtractor",
+      "focus": "Multi-aspect demand extraction, state machine detection, action/compensation coordination without explicit conjunctions.",
+      "addresses": ["CR-01", "CR-06"]
+    },
+    {
+      "increment": "B",
+      "target_component": "DemandPropositionNexusBipartiteMatcher",
+      "focus": "1-to-1 bipartite nexus matching, elimination of diffuse token cross-satisfaction, decoupling demands from propositions.",
+      "addresses": ["CR-01", "CR-06"]
+    },
+    {
+      "increment": "C",
+      "target_component": "PropositionDiscourseFilter & MorphologicalCircularityAnalyzer",
+      "focus": "Discourse genre classification (autobiographical, trivia, telemetry) and unified cognate-based circularity detection.",
+      "addresses": ["CR-02", "CR-03", "CR-05"]
+    },
+    {
+      "increment": "D",
+      "target_component": "Antithesis & Epistemic Polarity Filters",
+      "focus": "Robust antithesis detection across colloquial/passive forms, boundary correction routing EVASIVE to INSUFFICIENT.",
+      "addresses": ["CR-04", "CR-07", "CR-08"]
+    },
+    {
+      "increment": "E",
+      "target_component": "StrictOntologyRelevanceAggregator & End-to-End Integration",
+      "focus": "Single source of truth aggregation, audit trail generation, regression validation across 1038 unit tests and 15 harness tests.",
+      "addresses": ["CR-01", "CR-02", "CR-03", "CR-04", "CR-05", "CR-06", "CR-07", "CR-08"]
+    }
+  ],
+  "validation_criteria": {
+    "exact_agreement": ">= 75.0%",
+    "direct_recall": ">= 85.0%",
+    "direct_precision": ">= 70.0%",
+    "false_direct_among_divergences": "<= 10.0%",
+    "partial_recall": ">= 60.0%",
+    "representation_invariance_homologated": ">= 80.0%",
+    "canonical_regression_failures": 0
+  },
+  "reference_independence_status": "REFERENCE_INDEPENDENCE_UNRESOLVED"
+}

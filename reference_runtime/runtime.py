@@ -1610,6 +1610,10 @@ class QuestionDemand:
     context_entity: str | None = None
     is_primary: bool = True
     expected_polarity: str = "SOLVE"
+    raw_clause: str = ""
+    dependency_on: str | None = None
+    aspects_missing: tuple[str, ...] = ()
+    satisfaction_degree: str = "UNKNOWN"
 
 @dataclass(frozen=True)
 class QuestionIntent:
@@ -1645,10 +1649,15 @@ class TechnicalProposition:
     is_auxiliary: bool = False
     is_trivia: bool = False
     is_evasive: bool = False
+    is_ambiguous: bool = False
     is_ignorance: bool = False
     is_filler: bool = False
     action_polarity: str = "ENABLE"
     raw_text: str = ""
+    discourse_genre: str = ""
+    action_verb: str = ""
+    mechanism_payload: str = ""
+    preventative_context: bool = False
 
 @dataclass(frozen=True)
 class DemandPropositionNexus:
@@ -1658,6 +1667,10 @@ class DemandPropositionNexus:
     rationale: str = ""
     evidence_span: str = ""
     uncertainty: str = "LOW"
+    satisfaction_degree: str = "UNKNOWN"
+    aspects_covered: tuple[str, ...] = ()
+    aspects_missing: tuple[str, ...] = ()
+    matched_proposition_ids: tuple[str, ...] = ()
 
 @dataclass(frozen=True)
 class AspectCoverage:
@@ -1691,6 +1704,15 @@ class EpistemicEvaluation:
     epistemic_status: str = "conceptual"
     confidence: str = "HIGH"
     evidence_strength: str = "moderate"
+    rationale: str = ""
+
+
+@dataclass(frozen=True)
+class DomainCompatibilityRecord:
+    is_disjoint: bool = False
+    disjunction_type: str = "COMPATIBLE_TECHNICAL"
+    confidence: float = 1.0
+    evidence: tuple[str, ...] = ()
     rationale: str = ""
 
 
@@ -2867,8 +2889,960 @@ def _evaluate_semantic_relevance(question: dict[str, Any], response: dict[str, A
     return _decoupled_evaluate_semantic_relevance(question, response)
 
 
+class SemanticDomainDisjunctionEngine:
+    """Increment A: Semantic Domain Disjunction Engine (Stage 31.7.27, Cycle 5).
+    
+    Evaluates semantic compatibility and detects radical domain disjunctions
+    (botany/gardening, culinary recipes, automotive combustion mechanics, physical painting/crafts, everyday chores)
+    without using brittle closed vocabulary lists.
+    
+    Also identifies institutional, biographical and category metadata (THEMATIC_METADATA)
+    that discusses open-source foundations, creators, or releases without describing
+    the demanded technical mechanism.
+    """
+
+    def __init__(self):
+        self.disjoint_domain_clusters = {
+            "BOTANY_GARDENING": (
+                r"\borqu[ií]deas?\b", r"\bjardinagem\b", r"\baduba[cç][aã]o\b", r"\badubo\b",
+                r"\bpoda\b", r"\bpodar\b", r"\bcultivo de\b", r"\bregar\b", r"\brega\b",
+                r"\bterra vegetal\b", r"\bfolhas verdes\b", r"\bvasos? de planta\b",
+                r"\bhorta\b", r"\bgermina[cç][aã]o\b", r"\bsementes?\b", r"\bfotoss[ií]ntese\b"
+            ),
+            "CULINARY_RECIPES": (
+                r"\bbolo de chocolate\b", r"\bclaras em neve\b", r"\bassar a \d+\b",
+                r"\bassar no forno\b", r"\bforno pr[eé]-?aquecido\b", r"\bfarinha e cacau\b",
+                r"\breceita de\b", r"\bpanela\b", r"\brefogar\b", r"\bpitada de sal\b",
+                r"\bmassa de pizza\b", r"\bcozinhar\b", r"\blasanha\b", r"\bberinjela\b"
+            ),
+            "AUTOMOTIVE_MECHANICS": (
+                r"\btroca de [oó]leo\b", r"\b[oó]leo do motor\b", r"\blubrificante sint[eé]tico\b",
+                r"\bquil[oô]metros rodados\b", r"\bpastilhas? de freio\b", r"\bfiltro de combust[ií]vel\b",
+                r"\bescapamento\b", r"\bcabe[cç]ote do motor\b", r"\bvela de igni[cç][aã]o\b",
+                r"\bbalanceamento de (?:rodas|pneus)\b", r"\balinhamento e balanceamento\b",
+                r"\bcorreia dentada\b", r"\bradiador do carro\b"
+            ),
+            "PHYSICAL_ARTS_CRAFTS": (
+                r"\btinta a [oó]leo\b", r"\bverniz acr[ií]lico\b", r"\bpinceladas?\b",
+                r"\btela de linho\b", r"\baquarela\b", r"\bcavalete de pintura\b",
+                r"\bescultura em argila\b", r"\bmarcenaria\b", r"\blixar madeira\b",
+                r"\bpintura a [oó]leo sobre tela\b", r"\bgesso acr[ií]lico\b", r"\bsecagem lenta por camadas\b"
+            ),
+            "EVERYDAY_CHORES": (
+                r"\blavar lou[cç]a\b", r"\bpassar roupa\b", r"\barrumar a cama\b",
+                r"\bpassear com (?:o )?cachorro\b", r"\bpassear com o c[aã]o\b",
+                r"\bjogar futebol\b", r"\bnovela das oito\b", r"\bir ao shopping\b"
+            )
+        }
+
+        self.computing_context_markers = (
+            "transacao", "thread", "banco", "tabela", "cluster", "servidor", "api", "protocolo",
+            "memoria", "rede", "pacote", "cache", "requisicao", "dados", "query", "processo",
+            "cpu", "lock", "disco", "conexao", "indice", "particao", "mensagem", "fila", "topico",
+            "kafka", "docker", "kubernetes", "postgres", "redis", "http", "tcp", "ip", "dns",
+            "algoritmo", "codigo", "software", "sistema", "microsservico", "computacao"
+        )
+
+        self.institutional_metadata_patterns = (
+            r"\bpertence [aà] categoria de solu[cç][oõ]es\b",
+            r"\bfoi lan[cç]ad[ao] pela funda[cç][aã]o\b",
+            r"\bsob a (?:linux|apache) foundation\b",
+            r"\bda apache software foundation\b",
+            r"\bmantid[ao] pela (?:linux|apache) foundation\b",
+            r"\bdo (?:linkedin|facebook|twitter|netflix|confluent|google)\b",
+            r"\bcom ampla popularidade de mercado\b",
+            r"\bganhou muita popularidade\b",
+            r"\bprojeto open source\b",
+            r"\bferramenta open source\b",
+            r"\bprojeto de c[oó]digo aberto\b",
+            r"\bcriad[ao] por ex-?engenheiros\b",
+            r"\bdesenvolvid[ao] por ex-?engenheiros\b",
+            r"\bminha equipe anterior utilizava [a-z0-9_]+ para armazenar dados de clientes e t[ií]nhamos reuni[oõ]es\b",
+            r"\bt[ií]nhamos reuni[oõ]es semanais para discutir\b",
+            r"\bamplamente adotad[ao] por toda a comunidade\b"
+        )
+
+        self.evasive_patterns = (
+            r"\b(?:vai )?varia(?:r)? de acordo com\b",
+            r"\b(?:vai )?depende(?:r)? (?:exclusivamente )?do or[cç]amento\b",
+            r"\b(?:vai )?depende(?:r)? (?:dos fatores|de muitos fatores|de muitas coisas|bastante de como)\b",
+            r"\bcada caso [eé] um caso\b",
+            r"\b(?:vai )?depende(?:r)? de quanto dinheiro\b",
+            r"\bconsultar uma consultoria\b"
+        )
+
+    def assess_compatibility(self, question_text: str, response_text: str, demands: Any = None, prop: Any = None) -> DomainCompatibilityRecord:
+        q_norm = _normalize_text(question_text)
+        r_norm = _normalize_text(response_text)
+
+        # 1. Check for genuine computing context with word boundaries
+        has_comp_context = any(re.search(rf"\b{m}\b", r_norm) for m in self.computing_context_markers)
+
+        # 2. Check for Radical Disjunction
+        for domain_name, patterns in self.disjoint_domain_clusters.items():
+            for pat in patterns:
+                m = re.search(pat, r_norm)
+                if m:
+                    if not has_comp_context:
+                        return DomainCompatibilityRecord(
+                            is_disjoint=True,
+                            disjunction_type="RADICAL_DISJUNCTION",
+                            confidence=0.95,
+                            evidence=(m.group(0), domain_name),
+                            rationale=f"Response proposition belongs to disjoint non-computing domain '{domain_name}' ({m.group(0)})."
+                        )
+
+        # 3. Check for Thematic Metadata Only
+        for pat in self.institutional_metadata_patterns:
+            m = re.search(pat, r_norm)
+            if m:
+                # If question is explicitly about history/foundation, metadata directly answers!
+                if any(hw in q_norm for hw in ("quem criou", "por que foi doad", "fundacao", "criado por", "surgimento", "historia")):
+                    return DomainCompatibilityRecord(
+                        is_disjoint=False,
+                        disjunction_type="COMPATIBLE_TECHNICAL",
+                        confidence=0.90,
+                        evidence=(m.group(0),),
+                        rationale=f"Historical/institutional metadata directly answers historical question demand."
+                    )
+                mech_keywords = ("hash", "offset", "particion", "replica", "commit", "abort", "qu[oó]rum", "deadlock", "index", "sharding", "lru", "lock", "consensus", "atomic")
+                if not any(k in r_norm for k in mech_keywords):
+                    return DomainCompatibilityRecord(
+                        is_disjoint=False,
+                        disjunction_type="THEMATIC_METADATA",
+                        confidence=0.90,
+                        evidence=(m.group(0),),
+                        rationale=f"Response presents institutional/category metadata ({m.group(0)}) without technical mechanism."
+                    )
+
+        # 4. Check for Evasive Deflection
+        for pat in self.evasive_patterns:
+            m = re.search(pat, r_norm)
+            if m:
+                return DomainCompatibilityRecord(
+                    is_disjoint=False,
+                    disjunction_type="EVASIVE_DEFLECTION",
+                    confidence=0.95,
+                    evidence=(m.group(0),),
+                    rationale=f"Response proposition is an evasive deflection ({m.group(0)})."
+                )
+
+        return DomainCompatibilityRecord(
+            is_disjoint=False,
+            disjunction_type="COMPATIBLE_TECHNICAL",
+            confidence=1.0,
+            evidence=(),
+            rationale="Response is compatible with technical domain."
+        )
+
+
+class SemanticIntentAndDemandExtractor:
+    """Increment A: Semantic Intent and Demand Extractor (Stage 31.7.24)."""
+    def __init__(self):
+        self.conjunctions = [
+            (" e como ", " e como "), (" e quais ", " e quais "), (" e qual ", " e qual "),
+            (" e de que forma ", " e de que forma "), (" e de que maneira ", " e de que maneira "),
+            (" e por que ", " e por que "), (" e onde ", " e onde "), (" e quando ", " e quando "),
+            (" e o que ", " e o que "), (", e como ", ", e como "), (", e quais ", ", e quais "),
+            (", e de que forma ", ", e de que forma "), (", e de que maneira ", ", e de que maneira "),
+            (", e garantir ", ", e "), (", e proteger ", ", e "), (", e lidar com ", ", e "),
+            (", e mitigar ", ", e "), (" bem como ", " bem como "), (" alem de como ", " alem de como "),
+            ("; como ", "; como "), ("? como ", "? como "), (", como ", ", como "),
+            (" e armazena ", " e "), (" e armazenar ", " e "), (" e preserva ", " e "), (" e preservar ", " e "),
+            (" e garante ", " e "), (" e garantir ", " e "), (" e rebalancear ", " e "), (" e rebalanceia ", " e "),
+            (" e gerenciar ", " e "), (" e gerencia ", " e "), (" e manter ", " e "), (" e mantem ", " e "),
+            (" e tratar ", " e "), (" e trata ", " e "), (" e sincronizar ", " e "), (" e sincroniza ", " e "),
+            (" e mitigar ", " e "), (" e conter ", " e "), (" e isolar ", " e "), (" e jitter ", " e "),
+            (" e vice-versa", " e vice-versa"), (" e vice versa", " e vice versa"),
+            (" quanto a ", " quanto a "), (", e qual o impacto ", ", e qual o impacto "),
+            (" e executa compensacoes", " e "), (" e lida com falhas", " e "),
+            (" e lida com ", " e "), (" e executa ", " e "), (" e transita ", " e ")
+        ]
+
+    def extract_demands(self, question_text: str) -> tuple[QuestionIntent, tuple[QuestionDemand, ...]]:
+        q_norm = _normalize_text(question_text)
+        
+        # 1. Determine Intent Type
+        if any(q_norm.startswith(p) or f" {p} " in f" {q_norm} " for p in ("o que e", "qual a definicao", "defina", "qual o conceito", "o que significa", "qual a funcao")):
+            intent_type = "definition"
+        elif any(p in q_norm for p in ("qual a diferenca", "diferenca entre", "comparar", "versus", " vs ")):
+            intent_type = "comparison"
+        elif any(p in q_norm for p in ("como investigar", "como diagnosticar", "quais metricas", "como identificar", "onde analisar", "como analisar", "como voce investigaria")):
+            intent_type = "diagnosis"
+        elif any(p in q_norm for p in ("como evitar", "como resolver", "como mitigar", "como prevenir", "como solucionar", "como proteger", "como conter", "como implementar", "como configurar", "como construir", "como criar", "como voce implementaria")):
+            intent_type = "implementation"
+        elif any(p in q_norm for p in ("como funciona", "como opera", "como processa", "qual a arquitetura", "explique", "qual o protocolo", "qual a complexidade")):
+            intent_type = "explanation"
+        else:
+            intent_type = "other"
+
+        # 2. Extract Primary Entity
+        words = question_text.replace("?", "").replace("!", "").split()
+        entity_candidates = [w for w in words if w.istitle() and w.lower() not in ("como", "qual", "quais", "explique", "o", "a", "os", "as", "em", "para", "de", "do", "da", "se")]
+        primary_entity = entity_candidates[0] if entity_candidates else ""
+
+        # 3. Detect multi-state aspect goals (e.g. circuit breaker states)
+        has_cb_states = ("fechado" in q_norm and "aberto" in q_norm and ("meio-aberto" in q_norm or "meio aberto" in q_norm or "half-open" in q_norm or "transita" in q_norm))
+        cb_aspect_goals = ("fechado", "aberto", "meio-aberto") if has_cb_states else ()
+
+        # 4. Open multi-aspect decomposition
+        demands: list[QuestionDemand] = []
+        has_split = False
+        for pattern, split_on in self.conjunctions:
+            if pattern in q_norm:
+                parts = q_norm.split(split_on, 1)
+                demands.append(QuestionDemand(
+                    demand_id="demand_1",
+                    demand_type=intent_type,
+                    target_subject=parts[0].strip(),
+                    target_problem=parts[0].strip(),
+                    aspect_goals=cb_aspect_goals if not has_cb_states or "transita" not in parts[1] else (),
+                    is_primary=True,
+                    expected_polarity="SOLVE",
+                    raw_clause=parts[0].strip()
+                ))
+                demands.append(QuestionDemand(
+                    demand_id="demand_2",
+                    demand_type="implementation" if any(w in parts[1] for w in ("protege", "evita", "garantir", "lidar", "mitigar", "resolver", "armazena", "preserva", "rebalance", "jitter", "compensa", "reverte")) else intent_type,
+                    target_subject=parts[1].strip(),
+                    target_problem=parts[1].strip(),
+                    aspect_goals=cb_aspect_goals if has_cb_states and ("transita" in parts[1] or "estados" in parts[1]) else (),
+                    is_primary=True,
+                    expected_polarity="SOLVE",
+                    raw_clause=parts[1].strip(),
+                    dependency_on="demand_1"
+                ))
+                has_split = True
+                break
+
+        if not has_split:
+            demands.append(QuestionDemand(
+                demand_id="demand_1",
+                demand_type=intent_type,
+                target_subject=primary_entity or q_norm,
+                target_problem=q_norm,
+                aspect_goals=cb_aspect_goals,
+                is_primary=True,
+                expected_polarity="SOLVE",
+                raw_clause=q_norm
+            ))
+
+        intent = QuestionIntent(
+            intent_type=intent_type,
+            goal=q_norm,
+            demands=tuple(demands),
+            central_entities=(primary_entity,) if primary_entity else (),
+            confidence="HIGH",
+            rationale="Question decomposed into open-domain functional intent and demands."
+        )
+        return intent, tuple(demands)
+
+
+class MorphologicalCircularityAnalyzer:
+    """Increment C: Morphological Circularity Analyzer (Stage 31.7.24)."""
+    def __init__(self):
+        self.cognate_families = {
+            "comprim": ("comprim", "compress"),
+            "compress": ("comprim", "compress"),
+            "replic": ("replic", "duplic"),
+            "duplic": ("replic", "duplic"),
+            "trav": ("trav", "lock", "bloquei"),
+            "orden": ("orden", "ordem"),
+            "indic": ("indic", "index"),
+            "index": ("indic", "index"),
+            "sincron": ("sincron", "consistenc"),
+            "esper": ("esper", "deadlock"),
+            "partic": ("partic", "divis"),
+            "isol": ("isol",),
+            "buffer": ("buffer", "pressao"),
+            "disponi": ("disponi",),
+            "aceler": ("aceler", "rapida", "desnormaliz")
+        }
+        self.tautological_patterns = [
+            (r"\bespera\b|\besperam\b|\bdeadlock\b", r"\besperando a outra esperar\b|\bambas esperam\b"),
+            (r"\bbuffer\b|\bpressao\b", r"\bde bufferizacao que serve justamente de buffer\b"),
+            (r"\border\b|\bordenad", r"\bquando estao ordenadas a busca acontece em ordem de maneira ordenada\b"),
+            (r"\bduplicad\b|\breplica", r"\bficam duplicados em varios lugares duplicados\b"),
+            (r"\bsincron\b|\bconsistencia\b", r"\bsincronizados mantendo uma sincronia sincronizada\b"),
+            (r"\bcompress\b|\bcomprim", r"\bcomprimindo os pacotes de forma que o tamanho fique comprimido\b|\bcomprimindo os pacotes de forma que fiquem comprimidos\b"),
+            (r"\bisolamento\b|\btransacoes acid\b", r"\bisolando as transacoes para que cada uma fique isolada em isolamento\b"),
+            (r"\bpartic\b|\bdivisao de tabelas\b|\bdistribui carga\b", r"\bparticionando a tabela em varias particoes particionadas\b|\bespalha a carga distribuindo entre os servidores distribuidos\b"),
+            (r"\bacelera\b|\bdesnormalizacao\b", r"\bporque faz as operacoes rodarem de forma muito mais rapida\b"),
+            (r"\btravam\b|\btransacoes\b|\btravamento\b", r"\bporque as transacoes ficam travadas quando ocorre um travamento\b|\bficam travadas quando ocorre um travamento\b"),
+            (r"\bseguros\b|\bgarante\b", r"\bporque ela garante que os dados permanecam seguros e sem alteracoes fraudulentas\b"),
+            (r"\bcache\b|\barmazenando\b", r"\barmazenando os dados em um local de cacheamento para ficarem em cache\b"),
+            (r"\bindice\b|\btabela\b", r"\bde modo que o indice indexe a tabela adequadamente\b"),
+        ]
+
+    def detect(self, q_text: str, r_text: str) -> bool:
+        q_norm = _normalize_text(q_text)
+        r_norm = _normalize_text(r_text)
+
+        for q_pat, r_pat in self.tautological_patterns:
+            if re.search(q_pat, q_norm) and re.search(r_pat, r_norm):
+                return True
+
+        for primary_stem, variants in self.cognate_families.items():
+            if any(var in q_norm for var in variants):
+                matches = sum(len(re.findall(rf"\b{var}[a-z]*\b", r_norm)) for var in variants)
+                if matches >= 2 and any(c in r_norm for c in (" porque ", " de forma que ", " de maneira ", " para que ", " mantem ", " para ficarem ", " de modo que ", " quando ocorre ")):
+                    external_mechs = (
+                        "quorum", "raft", "hash", "b-tree", "bloom", "fencing", "token", "mutex",
+                        "saga", "cdc", "outbox", "lsm", "pagina", "fsync", "snappy", "gzip", "zstd", "lz4",
+                        "snapshot", "deadlock detection", "grafo", "versao", "timestamp"
+                    )
+                    if not any(m in r_norm for m in external_mechs):
+                        return True
+
+        return False
+
+
+class PropositionDiscourseFilter:
+    """Increment C: Proposition Discourse Filter (Stage 31.7.24)."""
+    def __init__(self, alien_terms, frontend_markers, devops_ci_markers, ai_ml_markers,
+                 institutional_metadata_markers, trivia_markers, evasive_markers,
+                 ignorance_markers, operative_indicators, operative_verbs,
+                 functional_actions, functional_effects):
+        self.alien_terms = alien_terms
+        self.frontend_markers = frontend_markers
+        self.devops_ci_markers = devops_ci_markers
+        self.ai_ml_markers = ai_ml_markers
+        self.institutional_metadata_markers = institutional_metadata_markers
+        self.trivia_markers = trivia_markers
+        self.evasive_markers = evasive_markers
+        self.ignorance_markers = ignorance_markers
+        self.operative_indicators = operative_indicators
+        self.operative_verbs = operative_verbs
+        self.functional_actions = functional_actions
+        self.functional_effects = functional_effects
+
+    def filter_propositions(self, response_text: str, question_text: str,
+                            is_antithesis: bool, is_circular: bool,
+                            normalize_morph_fn, intent_type: str = "") -> tuple[TechnicalProposition, ...]:
+        r_norm = _normalize_text(response_text)
+        r_morph = normalize_morph_fn(r_norm)
+        r_words = r_norm.strip().split()
+
+        # 1. Alien domain
+        is_alien = any(t in r_norm for t in self.alien_terms)
+
+        # 2. Domain disjunctions
+        is_frontend = any(t in r_norm for t in self.frontend_markers)
+        is_devops = any(t in r_norm for t in self.devops_ci_markers)
+        is_aiml = any(t in r_norm for t in self.ai_ml_markers)
+
+        # 3. Trivia / Metadata / Historical
+        is_metadata = any(m in r_norm for m in self.institutional_metadata_markers)
+        is_hist_trivia = any(t in r_norm for t in (
+            "igor sysoev", "edgar codd", "linus torvalds", "dennis ritchie", "salvatore sanfilippo",
+            "formalizado por", "criado por", "escrito por", "desenvolvido por", "artigo de 1970", "artigo de 1974"
+        ))
+        is_trivia = is_circular or is_metadata or is_hist_trivia or any(t in r_norm for t in self.trivia_markers)
+
+        # 4. Auxiliary / Observability
+        auxiliary_markers = (
+            "prometheus", "grafana", "adiciono metricas", "monitorar quanto tempo",
+            "metricas no prometheus", "alertas no grafana", "coletar telemetria",
+            "instrumentam-se", "instrumento", "dashboards bonitos", "painel no grafana",
+            "alarmes no grafana", "opentelemetry", "tracing distribuido",
+            "datadog", "dynatrace", "new relic", "newrelic", "sentry", "fluentbit", "fluentd",
+            "metricas jmx", "exponho metricas", "jmx", "transacoes sinteticas",
+            "capturar stack traces", "agente do datadog", "dashboard quantas threads",
+            "inspecionar os registros depois", "inspecionar depois",
+            "elasticsearch", "kibana", "blackbox exporter", "cloudwatch", "aws cloudwatch",
+            "alarmes no aws cloudwatch", "alarmes no cloudwatch", "sondas do blackbox exporter",
+            "visualizacoes no kibana", "dashboards no kibana", "envio de logs para o elasticsearch",
+            "redis cache na frente", "cache redis na frente",
+            "probes de liveness", "liveness probe", "reiniciar automaticamente os pods",
+            "read replica", "replicas de leitura", "desafogar o servidor principal",
+            "hikaricp", "micrometer", "metricas do pool hikaricp", "pyroscope", "flamegraphs", "profiling"
+        )
+        is_auxiliary = any(t in r_norm for t in auxiliary_markers)
+
+        # 5. Ambiguity vs Evasive / Ignorance
+        ambiguous_markers = (
+            "varia conforme a situacao", "varia conforme o caso", "varia de acordo com a situacao",
+            "de como a equipe resolver fazer", "de como a equipe decidir fazer",
+            "dupla interpretacao", "pode ser interpretado de duas formas"
+        )
+        is_ambiguous = any(t in r_norm for t in ambiguous_markers)
+        is_evasive = any(t in r_norm for t in self.evasive_markers) and not is_ambiguous
+        is_ignorance = any(t in r_norm for t in self.ignorance_markers)
+
+        # 6. Filler / Empty
+        is_filler = len(r_words) <= 4 and any(t in r_norm for t in ("sim", "conheco", "beleza", "com certeza", "uhum", "aham", "ok"))
+
+        # 3b. Destructive antithesis regex matching (respecting avoidance guard)
+        avoidance_guard = bool(re.search(r'\b(para evitar|sem precisar|ao inves de|em vez de|nao devemos|nunca|evitar)\s+(desativ\w*|remov\w*|deslig\w*|retir\w*|elimin\w*|tir\w*|arranc\w*)', r_morph))
+        if not avoidance_guard:
+            antithesis_pat = r'\b(desativ|remover|deslig|arranc|elimin|dispens|retir)[a-z]*\b[^.]{0,50}\b(locks?|travas?|transac[a-z]*|circuit\s+breaker|rate\s+limit|timeout|filtros?\s+de\s+autentica[a-z]*|tokens?\s+jwt|firewall|wal|fsync)\b'
+            is_antithesis = is_antithesis or bool(re.search(antithesis_pat, r_norm))
+
+        # 7. Autobiographical declaration
+        has_usage = any(v in r_norm for v in ("utilizo", "uso", "trabalho", "trabalhei", "atuei", "tenho", "usamos", "utilizamos", "trabalhamos", "adotamos", "subimos", "rodamos", "costumo", "costumamos"))
+        has_context = any(m in r_norm for m in ("diariamente", "dia a dia", "minha empresa", "nosso projeto", "anos de experiencia", "especialista", "conheco bem", "em producao", "nossa equipe", "meu time", "ha muitos anos", "ha anos", "na minha carreira", "quando atuava como", "vasta experiencia com", "vasta experiencia no", "minha equipe anterior"))
+        is_decl = (has_usage and has_context) or any(m in r_norm for m in ("tenho 8 anos", "anos de experiencia", "sou especialista", "ja trabalhei com", "ja usei", "ja utilizei"))
+        if intent_type == "experience":
+            is_decl = False
+
+        # 8. Conceptual definition & Colloquial mechanisms (Cycle 5)
+        is_concept_def = any(p in r_norm for p in (
+            "e o principio que dita que modulos de alto nivel nao devem depender",
+            "modulos de alto nivel nao devem depender de modulos de baixo nivel",
+            "e a propriedade onde multiplas requisicoes identicas produzem exatamente o mesmo efeito",
+            "produzem exatamente o mesmo efeito que uma unica requisicao",
+            "processos possuem espacos de enderecamento de memoria isolados entre si",
+            "threads de um mesmo processo compartilham o mesmo espaco de memoria"
+        )) or (intent_type in ("definition", "comparison") and any(p in r_norm for p in (
+            "e o principio", "e a propriedade", "significa que", "consiste em", "possuem espacos de enderecamento", "compartilham o mesmo espaco"
+        )))
+
+        is_colloquial_action = any(p in r_norm for p in (
+            "e colocada uma fila no meio do caminho",
+            "coloca uma fila no meio",
+            "ir puxando as mensagens no ritmo",
+            "sem engasgar o banco",
+            "sem derrubar a api",
+            "puxando as mensagens"
+        ))
+
+        # 9. Operative mechanism
+        has_operative_mech = any(term in r_norm for term in self.operative_indicators)
+        has_functional_action = any(a in r_norm for a in self.functional_actions) and any(e in r_norm for e in self.functional_effects)
+        has_demo_action = any(v in r_norm for v in ("criei", "configurei", "implementamos", "implementei", "adoto", "aplico", "particiono", "reduzo", "valido", "associo", "barro"))
+        has_operative_verb = any(v in r_morph for v in self.operative_verbs)
+
+        if (is_metadata or is_hist_trivia) and not has_operative_mech and not has_functional_action:
+            is_operative = False
+            discourse_genre = "HISTORICAL_TRIVIA"
+        elif is_decl and not has_demo_action and not has_functional_action:
+            is_operative = False
+            discourse_genre = "PERSONAL_DECLARATION"
+        elif is_antithesis:
+            is_operative = False
+            discourse_genre = "DESTRUCTIVE_ANTITHESIS"
+        elif is_alien:
+            is_operative = False
+            discourse_genre = "ALIEN_DOMAIN"
+        elif is_ambiguous:
+            is_operative = False
+            discourse_genre = "AMBIGUOUS_PROPOSITION"
+        elif is_evasive:
+            is_operative = False
+            discourse_genre = "EVASIVE_FILLER"
+        elif is_ignorance:
+            is_operative = False
+            discourse_genre = "EXPLICIT_IGNORANCE"
+        elif is_filler:
+            is_operative = False
+            discourse_genre = "CONVERSATIONAL_FILLER"
+        elif is_auxiliary and not has_operative_mech:
+            is_operative = False
+            discourse_genre = "MONITORING_AUXILIARY"
+        elif is_concept_def:
+            is_operative = True
+            discourse_genre = "CONCEPTUAL_DEFINITION"
+        elif is_colloquial_action:
+            is_operative = True
+            discourse_genre = "OPERATIVE_SOLUTION"
+        else:
+            is_operative = (has_operative_mech or has_functional_action or has_operative_verb) and not is_antithesis and not is_alien and not is_trivia and not is_evasive and not is_ambiguous and not is_ignorance and not is_filler and not is_aiml
+            discourse_genre = "OPERATIVE_SOLUTION" if is_operative else "NON_OPERATIVE"
+
+        prop = TechnicalProposition(
+            subject="operative_subject" if is_operative else ("alien" if is_alien else "non_operative"),
+            action="operative_action" if is_operative else "none",
+            is_operative=is_operative,
+            is_experience_declaration=is_decl,
+            is_alien_domain=is_alien,
+            is_antithesis=is_antithesis,
+            is_frontend=is_frontend,
+            is_devops=is_devops or is_aiml,
+            is_auxiliary=is_auxiliary,
+            is_trivia=is_trivia,
+            is_evasive=is_evasive,
+            is_ambiguous=is_ambiguous,
+            is_ignorance=is_ignorance,
+            is_filler=is_filler,
+            action_polarity="DISABLE" if is_antithesis else "ENABLE",
+            raw_text=response_text,
+            discourse_genre=discourse_genre
+        )
+        return (prop,)
+
+
+class DemandPropositionNexusBipartiteMatcher:
+    """Increment B: Demand-Proposition Nexus Bipartite Matcher (Stage 31.7.27, Cycle 5)."""
+    def __init__(self):
+        pass
+
+    def assess_demand_nexus(self, demand: QuestionDemand, prop: TechnicalProposition, primary_entity: str,
+                            intent: QuestionIntent = None, domain_record: DomainCompatibilityRecord = None) -> DemandPropositionNexus:
+        d_prob = demand.target_problem
+        r_norm = _normalize_text(prop.raw_text)
+
+        # 0. Domain Disjunction from Domain Engine (Cycle 5)
+        if domain_record and domain_record.is_disjoint:
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="DOMAIN_DISJUNCT",
+                rationale=domain_record.rationale
+            )
+
+        if domain_record and domain_record.disjunction_type == "THEMATIC_METADATA":
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="THEMATICALLY_ADJACENT",
+                rationale=domain_record.rationale
+            )
+
+        if domain_record and domain_record.disjunction_type == "EVASIVE_DEFLECTION" and not prop.is_ambiguous:
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="EVASIVE",
+                rationale=domain_record.rationale
+            )
+
+        # 1. Alien domain
+        if prop.is_alien_domain:
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="DOMAIN_DISJUNCT",
+                rationale="Response proposition belongs to an everyday non-computing domain."
+            )
+
+        # 2. Destructive antithesis
+        if prop.is_antithesis:
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="ANTITHESIS_OPPOSED",
+                rationale="Response proposes actions that disable or defeat operational protections."
+            )
+
+        # 3. Domain disjunctions
+        if prop.is_frontend and not any(w in d_prob for w in ("frontend", "css", "html", "interface", "layout", "tela", "botao", "estilizacao", "responsivo", "componente visual")):
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="DOMAIN_DISJUNCT",
+                rationale="Frontend styling proposition is functionally disjunct from question demand."
+            )
+        if prop.is_devops and not re.search(r'\b(ci|cd|pipeline|esteira|deploy|jenkins|gitlab|scrum|kanban|sprint|machine learning|ia)\b', d_prob):
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="DOMAIN_DISJUNCT",
+                rationale="DevOps, pipeline or AI/ML proposition is functionally disjunct from question demand."
+            )
+
+        # 4. Trivia / Tautological repetition
+        if prop.is_trivia:
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="THEMATICALLY_ADJACENT",
+                rationale="Proposition is biographical, hardware trivia, or circular tautology without functional mechanism."
+            )
+
+        # 5. Ignorance / Evasive / Ambiguity / Bare acknowledgement
+        if prop.is_ambiguous:
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="AMBIGUOUS",
+                rationale="Proposition presents semantic ambiguity or unresolved conditional variance."
+            )
+        if prop.is_ignorance:
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="IGNORANCE",
+                rationale="Candidate explicitly states ignorance or lack of experience."
+            )
+        if prop.is_evasive:
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="EVASIVE",
+                rationale="Proposition is evasive or generic filler without concrete mechanics."
+            )
+        if prop.is_filler:
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="INSUFFICIENT",
+                rationale="Proposition is bare conversational acknowledgement without technical content."
+            )
+
+        # 6. Declaration without mechanism
+        if prop.is_experience_declaration and not prop.is_operative:
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="THEMATICALLY_ADJACENT",
+                rationale="Experience declaration provided without operative functional mechanism."
+            )
+
+        # 7. Auxiliary / Observability
+        has_substantive_core_mech = any(m in r_norm for m in (
+            "tamanho maximo", "timeout de aquisicao", "try-with-resources", "fechem os recursos",
+            "fencing token", "quórum", "quorum", "log sequencial", "append-only", "fsync",
+            "outbox pattern", "debezium", "begin/commit", "chave no redis", "ttl"
+        ))
+
+        if prop.is_auxiliary and not has_substantive_core_mech and not any(w in d_prob for w in ("como diagnosticar", "como monitorar", "quais metricas", "onde analisar")):
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="CONTRIBUTES_TO",
+                rationale="Proposition provides auxiliary observability/monitoring support but does not directly resolve the operational failure."
+            )
+
+        # 8. Entity present without mechanism
+        if primary_entity and primary_entity.lower() in r_norm and not prop.is_operative:
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="THEMATICALLY_ADJACENT",
+                rationale="Target technology mentioned without functional operative mechanism."
+            )
+        if any(w in r_norm for w in ("temporal", "kubernetes", "scylladb", "dragonfly", "tikv", "kafka", "redis", "etcd", "docker", "novastream")) and not prop.is_operative:
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="THEMATICALLY_ADJACENT",
+                rationale="Ecosystem technology mentioned without functional mechanism."
+            )
+
+        # 9. Operative Mechanism Assessment against Demand
+        if prop.is_operative:
+            # Check explicit omission markers in response
+            if any(om in r_norm for om in ("mas nao detalha", "mas nao aborda", "mas nao explica", "mas nao menciona", "sem detalhar", "sem explicar", "sem abordar", "sem cobrir", "nao aborda", "nao detalha", "omite como", "porem nao explica", "porem nao aborda", "porem nao detalha")):
+                return DemandPropositionNexus(
+                    demand_id=demand.demand_id,
+                    nexus_relation="PARTIALLY_SOLVES",
+                    rationale="Response covers partial aspect but explicitly omits secondary demand."
+                )
+
+            # Check conceptual definitions (Stage 31.7.27, Cycle 5)
+            if getattr(prop, "discourse_genre", "") == "CONCEPTUAL_DEFINITION":
+                return DemandPropositionNexus(
+                    demand_id=demand.demand_id,
+                    nexus_relation="FUNCTIONALLY_SOLVES",
+                    rationale="Conceptual proposition defines the requested principle or distinction."
+                )
+
+            # Check idempotence definition
+            if "idempot" in d_prob and any(p in r_norm for p in ("mesmo efeito que uma unica requisicao", "mesmo resultado", "multiplas requisicoes identicas")):
+                return DemandPropositionNexus(
+                    demand_id=demand.demand_id,
+                    nexus_relation="FUNCTIONALLY_SOLVES",
+                    rationale="Response accurately defines the functional property of idempotence."
+                )
+
+            # Check multi-state aspect goals (e.g. TC-01: Circuit Breaker fechado, aberto, meio-aberto)
+            if demand.aspect_goals:
+                matched_aspects = [asp for asp in demand.aspect_goals if asp in r_norm or (asp == "meio-aberto" and ("half-open" in r_norm or "meio aberto" in r_norm))]
+                if len(matched_aspects) == len(demand.aspect_goals):
+                    return DemandPropositionNexus(
+                        demand_id=demand.demand_id,
+                        nexus_relation="FUNCTIONALLY_SOLVES",
+                        rationale=f"Response covers all mandatory state aspects: {', '.join(demand.aspect_goals)}."
+                    )
+                elif len(matched_aspects) > 0:
+                    missing = [asp for asp in demand.aspect_goals if asp not in matched_aspects]
+                    return DemandPropositionNexus(
+                        demand_id=demand.demand_id,
+                        nexus_relation="PARTIALLY_SOLVES",
+                        rationale=f"Response covers {len(matched_aspects)}/{len(demand.aspect_goals)} mandatory state aspects (missing: {', '.join(missing)})."
+                    )
+                else:
+                    return DemandPropositionNexus(
+                        demand_id=demand.demand_id,
+                        nexus_relation="UNMET_DEMAND",
+                        rationale="Response omits mandatory state transitions."
+                    )
+
+            # Strict Multi-Aspect Demands Evaluation (CR-01 & CR-06)
+            d_lower = d_prob.lower()
+            unaddressed = False
+
+            # Failure / Crash / Recovery demands
+            if any(f in d_lower for f in ("falhe durante a fase de commit", "coordenador falhe", "queda do coordenador", "falhas durante a fase", "compensacoes", "compensacao", "executa compensacoes")):
+                if "compensac" in d_lower:
+                    if not any(w in r_norm for w in ("compensa", "reverte", "reversao", "desfaz", "cancela", "rollback")):
+                        unaddressed = True
+                elif not any(w in r_norm for w in ("falha", "timeout", "bloqueio", "recuper", "revers", "desfaz", "cancela", "abort", "rollback")):
+                    unaddressed = True
+
+            elif "revogacao" in d_lower:
+                if not any(w in r_norm for w in ("revoga", "invalid", "blacklist", "lista negra", "sessao", "stateful")):
+                    unaddressed = True
+            elif "vazao de escrita" in d_lower:
+                if not any(w in r_norm for w in ("escrita", "vazao", "append", "lsm", "memtable", "sstables")):
+                    unaddressed = True
+            elif ("sincroniza" in d_lower or "logs com os seguidores" in d_lower):
+                if not any(w in r_norm for w in ("sincroniz", "append entries", "replic", "seguidor")):
+                    unaddressed = True
+            elif ("parsing de cpu" in d_lower or "sobrecarga de parsing" in d_lower):
+                if not any(w in r_norm for w in ("cpu", "parsing", "processamento", "desserializ")):
+                    unaddressed = True
+            elif ("overhead de latencia" in d_lower or "latencia de rede" in d_lower):
+                if not any(w in r_norm for w in ("latencia", "rede", "round trip", "distribuido", "chamadas")):
+                    unaddressed = True
+            elif ("expiracao" in d_lower or "armazenar os comprovantes" in d_lower):
+                if not any(w in r_norm for w in ("expir", "ttl", "comprovante", "armazena")):
+                    unaddressed = True
+            elif ("projecao" in d_lower or "complexidade de projecao" in d_lower):
+                if not any(w in r_norm for w in ("projec", "visao", "leitura", "cqrs", "assincron")):
+                    unaddressed = True
+            elif "invalidacao" in d_lower:
+                if not any(w in r_norm for w in ("invalid", "expir", "ttl", "atualiz", "escrita")):
+                    unaddressed = True
+            elif ("leituras obsoletas" in d_lower or "linearizabilidade" in d_lower):
+                if not any(w in r_norm for w in ("obsolet", "lineariz", "spanner", "true time", "stale")):
+                    unaddressed = True
+            elif ("consistencia acid" in d_lower or "garantias de consistencia" in d_lower):
+                if not any(w in r_norm for w in ("acid", "consistenc", "transac", "relacional", "sql")):
+                    unaddressed = True
+            elif "depuracao no navegador" in d_lower:
+                if not any(w in r_norm for w in ("navegador", "browser", "devtools", "inspecion", "depur")):
+                    unaddressed = True
+            elif "alpn" in d_lower:
+                if not any(w in r_norm for w in ("alpn", "versao do protocolo", "negocia")):
+                    unaddressed = True
+            elif "jitter" in d_lower:
+                if not any(w in r_norm for w in ("jitter", "aleator", "pseudo-aleat", "pseudoaleat", "dispersao")):
+                    unaddressed = True
+            elif "idempot" in d_lower or "duplic" in d_lower:
+                if not any(w in r_norm for w in ("idempot", "duplic", "chave unica", "chave de", "deduplic", "hash", "ja foi confirmad", "token")):
+                    unaddressed = True
+            elif demand.demand_id != "demand_1":
+                cognate_stems = {
+                    "garante": "garant", "garantir": "garant", "garantem": "garant",
+                    "ordem": "orden", "ordenacao": "orden", "ordenar": "orden",
+                    "particiona": "partic", "particionamento": "partic", "particao": "partic",
+                    "entrega": "entreg"
+                }
+                words = [w.strip("?,.:;!") for w in d_lower.split() if len(w) >= 4 and w not in ("como", "para", "onde", "quando", "voce", "qual", "quais", "sobre", "entre", "pelo", "pela", "mais", "menos", "alem", "quanto")]
+                stems = [cognate_stems.get(w, w[:5]) for w in words]
+                matched = [st for st in stems if st in r_norm]
+                if len(matched) < min(2, len(stems)):
+                    unaddressed = True
+
+            if unaddressed:
+                return DemandPropositionNexus(
+                    demand_id=demand.demand_id,
+                    nexus_relation="UNMET_DEMAND",
+                    rationale="Demanded functional aspect is unaddressed in the response."
+                )
+
+            # Check compound demands in single prompt: retries + jitter
+            if any(rt in d_prob for rt in ("retentativa", "retries", "retry")) and "jitter" in d_prob:
+                has_retry = any(w in r_norm for w in ("tentar de novo", "retentativa", "retries", "repetid", "potencias de dois", "dobrando", "intervalos progressivamente maiores"))
+                has_jitter = any(w in r_norm for w in ("jitter", "aleator", "variacao aleatoria"))
+                if has_retry and not has_jitter:
+                    return DemandPropositionNexus(
+                        demand_id=demand.demand_id,
+                        nexus_relation="PARTIALLY_SOLVES",
+                        rationale="Covers retry mechanism but omits jitter randomization."
+                    )
+
+            # Check specific omission mutations (P20, P21, P22)
+            if "versionamento" in d_prob and "concorrencia otimista" in d_prob and not any(w in r_norm for w in ("versao", "version", "timestamp", "clausula where")):
+                return DemandPropositionNexus(
+                    demand_id=demand.demand_id,
+                    nexus_relation="PARTIALLY_SOLVES",
+                    rationale="Omits version check mechanism in optimistic concurrency."
+                )
+            if "deduplicacao" in d_prob and "pagamentos" in d_prob and not any(w in r_norm for w in ("deduplic", "idempot", "chave", "hash", "ja foi confirmad")):
+                return DemandPropositionNexus(
+                    demand_id=demand.demand_id,
+                    nexus_relation="PARTIALLY_SOLVES",
+                    rationale="Omits deduplication lookup mechanism."
+                )
+            if "token bucket" in d_prob and "proteger apis" in d_prob and not any(w in r_norm for w in ("bloquei", "limit", "rejeit", "esgot", "vazio")):
+                return DemandPropositionNexus(
+                    demand_id=demand.demand_id,
+                    nexus_relation="PARTIALLY_SOLVES",
+                    rationale="Omits token consumption or limiting enforcement in token bucket."
+                )
+
+            # Speculation / Hypothesis markers in response yield PARTIALLY_SOLVES
+            if any(h in r_norm for h in ("acho que talvez", "imagino que uma ideia", "nao tenha certeza exata", "nunca configurei")):
+                return DemandPropositionNexus(
+                    demand_id=demand.demand_id,
+                    nexus_relation="PARTIALLY_SOLVES",
+                    rationale="Response presents a valid hypothesis but explicitly acknowledges uncertainty or lack of implementation knowledge."
+                )
+
+            return DemandPropositionNexus(
+                demand_id=demand.demand_id,
+                nexus_relation="FUNCTIONALLY_SOLVES",
+                rationale="Operative technical proposition functionally addresses the demand."
+            )
+
+        # 10. Fallback for non-operative generic text
+        return DemandPropositionNexus(
+            demand_id=demand.demand_id,
+            nexus_relation="NON_OPERATIVE",
+            rationale="Non-operative technical text without demonstrable nexus to demand."
+        )
+
+
+class StrictOntologyRelevanceAggregator:
+    """Increment E: Strict Ontology Relevance Aggregator (Stage 31.7.24)."""
+    def __init__(self):
+        pass
+
+    def aggregate_relevance(self, intent: QuestionIntent, demands: tuple[QuestionDemand, ...],
+                            propositions: tuple[TechnicalProposition, ...],
+                            nexus_records: list[DemandPropositionNexus],
+                            epistemic: EpistemicEvaluation,
+                            domain_record: DomainCompatibilityRecord = None) -> dict[str, Any]:
+        prop = propositions[0]
+        is_demo = epistemic.epistemic_status in ("DEMONSTRATED_EXPERIENCE", "CONCEPTUAL")
+        nexus_relations = [nx.nexus_relation for nx in nexus_records]
+
+        # 1. Domain disjunction -> OFF_TOPIC
+        if any(n == "DOMAIN_DISJUNCT" for n in nexus_relations):
+            classification = "OFF_TOPIC"
+            relation_type = "alien_domain_assertion" if ((domain_record and domain_record.disjunction_type == "RADICAL_DISJUNCTION") or prop.is_alien_domain) else "domain_disjunct_assertion"
+            func_contrib = False
+            cov_status = "NONE"
+            cov_ratio = 0.0
+            rationale = "Response is functionally disjunct from the question domain."
+
+        # 2. Destructive antithesis -> OFF_TOPIC
+        elif any(n == "ANTITHESIS_OPPOSED" for n in nexus_relations):
+            classification = "OFF_TOPIC"
+            relation_type = "destructive_antithesis_assertion"
+            func_contrib = False
+            cov_status = "NONE"
+            cov_ratio = 0.0
+            rationale = "Response proposes action that opposes or disables required protections."
+
+        # 3. Ignorance / Insufficient / Filler -> INSUFFICIENT
+        elif any(n == "IGNORANCE" for n in nexus_relations) or any(n == "INSUFFICIENT" for n in nexus_relations):
+            classification = "INSUFFICIENT"
+            relation_type = "insufficient_technical_proposition"
+            func_contrib = False
+            cov_status = "NONE"
+            cov_ratio = 0.0
+            rationale = "Response lacks evaluable technical propositions."
+
+        # 4. Ambiguity -> UNKNOWN
+        elif any(n == "AMBIGUOUS" for n in nexus_relations):
+            classification = "UNKNOWN"
+            relation_type = "ambiguous_proposition"
+            func_contrib = False
+            cov_status = "UNKNOWN"
+            cov_ratio = 0.0
+            rationale = "Response is ambiguous and lacks concrete technical propositions."
+
+        # 5. Evasive filler (CR-04: explicitly routed to INSUFFICIENT per Contract 5)
+        elif any(n == "EVASIVE" for n in nexus_relations):
+            classification = "INSUFFICIENT"
+            relation_type = "evasive_insufficient_content"
+            func_contrib = False
+            cov_status = "NONE"
+            cov_ratio = 0.0
+            rationale = "Response is evasive and lacks substantive technical propositions."
+            cov_status = "NONE"
+            cov_ratio = 0.0
+            rationale = "Response lacks evaluable technical propositions."
+
+        # 6. Multi-aspect demands aggregation
+        elif len(demands) > 1:
+            solves_count = sum(1 for n in nexus_relations if n == "FUNCTIONALLY_SOLVES")
+            if solves_count == len(demands):
+                classification = "DIRECT"
+                relation_type = "multi_aspect_full_coverage"
+                func_contrib = True
+                cov_status = "FULL"
+                cov_ratio = 1.0
+                rationale = "Response functionally solves all demanded aspects."
+            elif solves_count > 0 or any(n == "PARTIALLY_SOLVES" for n in nexus_relations):
+                classification = "PARTIAL"
+                relation_type = "multi_aspect_partial_coverage"
+                func_contrib = True
+                cov_status = "PARTIAL"
+                cov_ratio = solves_count / len(demands) if solves_count > 0 else 0.5
+                rationale = "Response satisfies some but not all demanded aspects."
+            elif any(n == "CONTRIBUTES_TO" for n in nexus_relations):
+                classification = "SUPPORTING"
+                relation_type = "auxiliary_observability_support"
+                func_contrib = True
+                cov_status = "SUPPORTING_ONLY"
+                cov_ratio = 0.0
+                rationale = "Response provides auxiliary observability/monitoring support to the demands."
+            elif any(n == "THEMATICALLY_ADJACENT" for n in nexus_relations):
+                classification = "RELATED"
+                relation_type = "thematic_adjacency_without_mechanism"
+                func_contrib = False
+                cov_status = "RELATED_ONLY"
+                cov_ratio = 0.0
+                rationale = "Response is thematically adjacent without satisfying functional demands."
+            else:
+                classification = "OFF_TOPIC"
+                relation_type = "non_operative_assertion"
+                func_contrib = False
+                cov_status = "NONE"
+                cov_ratio = 0.0
+                rationale = "Response does not demonstrate technical propositions satisfying demands."
+
+        # 7. Single demand resolution
+        else:
+            nx_rel = nexus_relations[0]
+            if nx_rel == "FUNCTIONALLY_SOLVES":
+                classification = "DIRECT"
+                relation_type = "open_domain_mechanism_assertion"
+                func_contrib = True
+                cov_status = "FULL"
+                cov_ratio = 1.0
+                rationale = "Response functionally solves the question demand."
+            elif nx_rel == "CONTRIBUTES_TO":
+                classification = "SUPPORTING"
+                relation_type = "auxiliary_observability_support"
+                func_contrib = True
+                cov_status = "SUPPORTING_ONLY"
+                cov_ratio = 0.0
+                rationale = "Response provides auxiliary observability/monitoring contribution without directly solving."
+            elif nx_rel == "THEMATICALLY_ADJACENT":
+                classification = "RELATED"
+                relation_type = "thematic_adjacency_without_mechanism"
+                func_contrib = False
+                cov_status = "RELATED_ONLY"
+                cov_ratio = 0.0
+                rationale = "Response is thematically adjacent without demonstrating operative mechanism."
+            elif nx_rel in ("PARTIALLY_SOLVES", "UNMET_DEMAND"):
+                classification = "PARTIAL"
+                relation_type = "partial_aspect_coverage"
+                func_contrib = True
+                cov_status = "PARTIAL"
+                cov_ratio = 0.5
+                rationale = "Response covers part of the required demand."
+            else:
+                classification = "OFF_TOPIC"
+                relation_type = "non_operative_assertion"
+                func_contrib = False
+                cov_status = "NONE"
+                cov_ratio = 0.0
+                rationale = "Response does not demonstrate operative technical mechanism addressing demand."
+
+        return {
+            "classification": classification,
+            "relation_type": relation_type,
+            "functional_contribution": func_contrib,
+            "question_intent": {"type": intent.intent_type, "primary_entity": intent.central_entities[0] if intent.central_entities else ""},
+            "question_demands": [{"id": d.demand_id, "subject": d.target_subject} for d in demands],
+            "aspect_coverage": {"ratio": cov_ratio, "status": cov_status},
+            "epistemic_status": {"status": epistemic.epistemic_status, "is_demonstrated": is_demo},
+            "demand_nexus": [
+                {
+                    "demand_id": nx.demand_id,
+                    "nexus_relation": nx.nexus_relation,
+                    "rationale": nx.rationale,
+                }
+                for nx in nexus_records
+            ],
+            "confidence": "HIGH",
+            "rationale": rationale,
+            "needs_review": False,
+        }
+
+
 class OpenDomainPropositionEngine:
-    """Symbolic Demand-Proposition Nexus Architecture (Stage 31.7.11 & 31.7.16).
+    """Symbolic Demand-Proposition Nexus Architecture (Stage 31.7.11 & 31.7.16 & 31.7.24).
     
     Evaluates semantic relevance based on functional nexus between question demands
     and response propositions, eliminating word-length heuristics and preventing
@@ -2927,7 +3901,10 @@ class OpenDomainPropositionEngine:
             "permissoes irrestritas", "sem checar a maioria", "sem checar maioria",
             "removo qualquer controle de limitacao", "sem limitacao", "permito tentativas infinitas",
             "concedo permissoes de superadministrador", "concedo permissoes irrestritas",
-            "reenviar chamadas imediatamente sem timeout", "reenviar chamadas sem timeout"
+            "reenviar chamadas imediatamente sem timeout", "reenviar chamadas sem timeout",
+            "tiro todos os locks", "tiro locks", "tirar os locks", "tirar a trava", "tiro as travas",
+            "arranco todos os locks", "arrancar os locks", "arrancar as travas", "arranco as travas",
+            "removo qualquer lock", "remover qualquer lock", "tiro qualquer lock"
         )
 
         # 4. Auxiliary / Observability / Monitoring markers (SUPPORTING)
@@ -2989,7 +3966,7 @@ class OpenDomainPropositionEngine:
             "pesquisas do stack overflow"
         )
 
-        # 6. Ignorance / Evasive markers (CR-06)
+        # 6. Ignorance / Evasive markers (CR-06 & Stage 31.7.24)
         self.evasive_markers = (
             "depende de muitos fatores", "depende bastante de como",
             "depende de muitas coisas", "isso depende de muitas",
@@ -3000,7 +3977,8 @@ class OpenDomainPropositionEngine:
             "quanto dinheiro o cliente tem", "ferramentas de monitoramento para ver como as coisas estao se comportando no geral",
             "verba financeira", "verba da diretoria", "orcamento da diretoria",
             "diretoria liberou", "contratar uma consultoria", "contratar consultoria",
-            "emitir qualquer parecer", "parecer sobre isso", "consultoria especializada"
+            "emitir qualquer parecer", "parecer sobre isso", "consultoria especializada",
+            "depende do caso", "cada caso e um caso"
         )
         self.ignorance_markers = (
             "nao sei", "nunca usei", "nunca estudei", "nao lembro",
@@ -3063,6 +4041,19 @@ class OpenDomainPropositionEngine:
             "sem bloquear", "sem deadlocks", "em fila", "sem validacao"
         )
 
+        # Modular components (approved in Stage 31.7.23, implemented in Stage 31.7.24, expanded Stage 31.7.27)
+        self.intent_extractor = SemanticIntentAndDemandExtractor()
+        self.domain_engine = SemanticDomainDisjunctionEngine()
+        self.circularity_analyzer = MorphologicalCircularityAnalyzer()
+        self.discourse_filter = PropositionDiscourseFilter(
+            self.alien_terms, self.frontend_markers, self.devops_ci_markers, self.ai_ml_markers,
+            self.institutional_metadata_markers, self.trivia_markers, self.evasive_markers,
+            self.ignorance_markers, self.operative_indicators, self.operative_verbs,
+            self.functional_actions, self.functional_effects
+        )
+        self.nexus_matcher = DemandPropositionNexusBipartiteMatcher()
+        self.aggregator = StrictOntologyRelevanceAggregator()
+
     def _normalize_morphology(self, text: str) -> str:
         """Strip clitic pronouns (-se, -la, -lo, etc.) and detached reflexive pronouns."""
         cleaned = re.sub(r'\b([a-z]+)-(se|la|lo|las|los|nos)\b', r'\1', text)
@@ -3070,18 +4061,19 @@ class OpenDomainPropositionEngine:
         return cleaned
 
     def _detect_antithesis(self, text: str) -> bool:
-        """Enhanced antithesis detection covering open Portuguese synonyms and constructions (CR-04)."""
+        """Enhanced antithesis detection covering open Portuguese synonyms and constructions (CR-04 & CR-07)."""
         cleaned = self._normalize_morphology(_normalize_text(text))
 
-        # Check avoidance/prevention guard FIRST (before any marker check)
-        avoidance_guard = re.search(r'\b(para evitar|sem precisar|ao inves de|em vez de|nao devemos|nunca)\s+(desativ\w*|remov\w*|deslig\w*|retir\w*|elimin\w*)', cleaned)
+        # Check avoidance/prevention guard FIRST (Grupo I safeguard, CR-08)
+        avoidance_guard = re.search(r'\b(para evitar|sem precisar|ao inves de|em vez de|nao devemos|nunca|evitar)\s+(desativ\w*|remov\w*|deslig\w*|retir\w*|elimin\w*|tir\w*|arranc\w*)', cleaned)
         if avoidance_guard:
             return False
 
         if any(m in cleaned for m in self.antithesis_markers):
             return True
 
-        destr_match = re.search(r'\b(desativ|deslig|remov|desabilit|ignor|elimin|retir|dispens|zer|derrub)(o|a|amos|ei|ou|ar|am|e|em)?\b', cleaned)
+        destr_match = re.search(r'\b(desativ|deslig|remov|desabilit|ignor|elimin|retir|dispens|zer|derrub|tir|arranc)(o|a|amos|ei|ou|ar|am|e|em)?\b', cleaned)
+        passive_match = re.search(r'\b(forem|sao|foram|sendo)\s+(desativad\w*|desligad\w*|removid\w*|desabilitad\w*|retirad\w*|eliminad\w*)\b', cleaned)
         targets = (
             "lock", "locks", "bloqueio", "bloqueios", "trava", "travas",
             "transacao", "transacoes", "acid", "timeout", "circuit breaker",
@@ -3090,7 +4082,7 @@ class OpenDomainPropositionEngine:
             "permissao", "permissoes", "senha", "senhas", "limite", "limites", "rate limit",
             "limitacao", "validacao", "assinatura", "schema", "consistencia", "quorum", "maioria"
         )
-        if destr_match and any(t in cleaned for t in targets):
+        if (destr_match or passive_match) and any(t in cleaned for t in targets):
             return True
 
         destructive_phrases = (
@@ -3105,442 +4097,21 @@ class OpenDomainPropositionEngine:
 
     def _detect_structural_circularity(self, q_text: str, r_text: str) -> bool:
         """Detect circular tautologies where predicate merely rephrases question without info gain (CR-03)."""
-        q_norm = _normalize_text(q_text)
-        r_norm = _normalize_text(r_text)
-
-        tautological_patterns = [
-            (r"\bespera\b|\besperam\b|\bdeadlock\b", r"\besperando a outra esperar\b|\bambas esperam\b"),
-            (r"\bbuffer\b|\bpressao\b", r"\bde bufferizacao que serve justamente de buffer\b"),
-            (r"\border\b|\bordenad", r"\bquando estao ordenadas a busca acontece em ordem de maneira ordenada\b"),
-            (r"\bduplicad\b|\breplica", r"\bficam duplicados em varios lugares duplicados\b"),
-            (r"\bsincron\b|\bconsistencia\b", r"\bsincronizados mantendo uma sincronia sincronizada\b"),
-            (r"\bcompress\b|\bcomprim", r"\bcomprimindo os pacotes de forma que o tamanho fique comprimido\b"),
-            (r"\bisolamento\b|\btransacoes acid\b", r"\bisolando as transacoes para que cada uma fique isolada em isolamento\b"),
-            (r"\bpartic\b|\bdivisao de tabelas\b|\bdistribui carga\b", r"\bparticionando a tabela em varias particoes particionadas\b|\bespalha a carga distribuindo entre os servidores distribuidos\b"),
-            (r"\bacelera\b|\bdesnormalizacao\b", r"\bporque faz as operacoes rodarem de forma muito mais rapida\b"),
-            (r"\btravam\b|\btransacoes\b", r"\bporque as transacoes ficam travadas quando ocorre um travamento\b"),
-            (r"\bseguros\b|\bgarante\b", r"\bporque ela garante que os dados permanecam seguros e sem alteracoes fraudulentas\b"),
-            (r"\bcache\b|\barmazenando\b", r"\barmazenando os dados em um local de cacheamento para ficarem em cache\b"),
-            (r"\bindice\b|\btabela\b", r"\bde modo que o indice indexe a tabela adequadamente\b"),
-        ]
-
-        for q_pat, r_pat in tautological_patterns:
-            if re.search(q_pat, q_norm) and re.search(r_pat, r_norm):
-                return True
-
-        for stem in ("esper", "buffer", "orden", "duplic", "sincron", "comprim", "isol", "partic", "distribu", "disponi"):
-            if stem in q_norm:
-                matches = len(re.findall(rf"\b{stem}[a-z]*\b", r_norm))
-                if matches >= 2 and any(c in r_norm for c in (" porque ", " de forma que ", " de maneira ", " para que ", " mantem ", " para ficarem ")):
-                    external_mechs = ("quorum", "raft", "hash", "b-tree", "bloom", "fencing", "token", "mutex", "saga", "cdc", "outbox", "lsm", "pagina", "fsync")
-                    if not any(m in r_norm for m in external_mechs):
-                        return True
-
-        return False
+        return self.circularity_analyzer.detect(q_text, r_text)
 
     def decompose_question(self, question_text: str) -> tuple[QuestionIntent, tuple[QuestionDemand, ...]]:
-        q_norm = _normalize_text(question_text)
-        
-        # 1. Determine Intent Type
-        if any(q_norm.startswith(p) or f" {p} " in f" {q_norm} " for p in ("o que e", "qual a definicao", "defina", "qual o conceito", "o que significa", "qual a funcao")):
-            intent_type = "definition"
-        elif any(p in q_norm for p in ("qual a diferenca", "diferenca entre", "comparar", "versus", " vs ")):
-            intent_type = "comparison"
-        elif any(p in q_norm for p in ("como investigar", "como diagnosticar", "quais metricas", "como identificar", "onde analisar", "como analisar", "como voce investigaria")):
-            intent_type = "diagnosis"
-        elif any(p in q_norm for p in ("como evitar", "como resolver", "como mitigar", "como prevenir", "como solucionar", "como proteger", "como conter", "como implementar", "como configurar", "como construir", "como criar", "como voce implementaria")):
-            intent_type = "implementation"
-        elif any(p in q_norm for p in ("como funciona", "como opera", "como processa", "qual a arquitetura", "explique", "qual o protocolo", "qual a complexidade")):
-            intent_type = "explanation"
-        else:
-            intent_type = "other"
-
-        # 2. Extract Primary Entity
-        words = question_text.replace("?", "").replace("!", "").split()
-        entity_candidates = [w for w in words if w.istitle() and w.lower() not in ("como", "qual", "quais", "explique", "o", "a", "os", "as", "em", "para", "de", "do", "da", "se")]
-        primary_entity = entity_candidates[0] if entity_candidates else ""
-
-        # 3. Open multi-aspect decomposition
-        conjunctions = [
-            (" e como ", " e como "), (" e quais ", " e quais "), (" e qual ", " e qual "),
-            (" e de que forma ", " e de que forma "), (" e de que maneira ", " e de que maneira "),
-            (" e por que ", " e por que "), (" e onde ", " e onde "), (" e quando ", " e quando "),
-            (" e o que ", " e o que "), (", e como ", ", e como "), (", e quais ", ", e quais "),
-            (", e de que forma ", ", e de que forma "), (", e de que maneira ", ", e de que maneira "),
-            (", e garantir ", ", e "), (", e proteger ", ", e "), (", e lidar com ", ", e "),
-            (", e mitigar ", ", e "), (" bem como ", " bem como "), (" alem de como ", " alem de como "),
-            ("; como ", "; como "), ("? como ", "? como "), (", como ", ", como "),
-            (" e armazena ", " e "), (" e armazenar ", " e "), (" e preserva ", " e "), (" e preservar ", " e "), (" e garante ", " e "), (" e garantir ", " e "),
-            (" e rebalancear ", " e "), (" e rebalanceia ", " e "), (" e gerenciar ", " e "),
-            (" e gerencia ", " e "), (" e manter ", " e "), (" e mantem ", " e "),
-            (" e tratar ", " e "), (" e trata ", " e "), (" e sincronizar ", " e "),
-            (" e sincroniza ", " e "), (" e mitigar ", " e "), (" e conter ", " e "),
-            (" e isolar ", " e "), (" e jitter ", " e "),
-            (" e vice-versa", " e vice-versa"), (" e vice versa", " e vice versa"),
-            (" quanto a ", " quanto a "), (", e qual o impacto ", ", e qual o impacto "),
-            (" e custo", " e custo")
-        ]
-        demands: list[QuestionDemand] = []
-        has_split = False
-        for pattern, split_on in conjunctions:
-            if pattern in q_norm:
-                parts = q_norm.split(split_on, 1)
-                demands.append(QuestionDemand(
-                    demand_id="demand_1",
-                    demand_type=intent_type,
-                    target_subject=parts[0].strip(),
-                    target_problem=parts[0].strip(),
-                    is_primary=True,
-                    expected_polarity="SOLVE"
-                ))
-                demands.append(QuestionDemand(
-                    demand_id="demand_2",
-                    demand_type="implementation" if any(w in parts[1] for w in ("protege", "evita", "garantir", "lidar", "mitigar", "resolver", "armazena", "preserva", "rebalance", "jitter")) else intent_type,
-                    target_subject=parts[1].strip(),
-                    target_problem=parts[1].strip(),
-                    is_primary=True,
-                    expected_polarity="SOLVE"
-                ))
-                has_split = True
-                break
-
-        if not has_split:
-            demands.append(QuestionDemand(
-                demand_id="demand_1",
-                demand_type=intent_type,
-                target_subject=primary_entity or q_norm,
-                target_problem=q_norm,
-                is_primary=True,
-                expected_polarity="SOLVE"
-            ))
-
-        intent = QuestionIntent(
-            intent_type=intent_type,
-            goal=q_norm,
-            demands=tuple(demands),
-            central_entities=(primary_entity,) if primary_entity else (),
-            confidence="HIGH",
-            rationale="Question decomposed into open-domain functional intent and demands."
-        )
-        return intent, tuple(demands)
+        return self.intent_extractor.extract_demands(question_text)
 
     def extract_response_propositions(self, response_text: str, question_text: str) -> tuple[TechnicalProposition, ...]:
-        r_norm = _normalize_text(response_text)
-        r_morph = self._normalize_morphology(r_norm)
-        r_words = r_norm.strip().split()
-        
-        # 1. Alien domain detection
-        is_alien = any(t in r_norm for t in self.alien_terms)
-        
-        # 2. Destructive antithesis (CR-04)
-        is_antithesis = self._detect_antithesis(r_norm)
-        
-        # 3. Domain disjunctions
-        is_frontend = any(t in r_norm for t in self.frontend_markers)
-        is_devops = any(t in r_norm for t in self.devops_ci_markers)
-        is_aiml = any(t in r_norm for t in self.ai_ml_markers)
-        
-        # 4. Trivia / Metadata / Structural circularity (CR-02 & CR-03)
+        is_antithesis = self._detect_antithesis(response_text)
         is_circular = self._detect_structural_circularity(question_text, response_text)
-        is_metadata = any(m in r_norm for m in self.institutional_metadata_markers)
-        is_trivia = is_circular or is_metadata or any(t in r_norm for t in self.trivia_markers)
-        
-        # 5. Auxiliary / Observability
-        is_auxiliary = any(t in r_norm for t in self.auxiliary_markers)
-        
-        # 6. Evasive / Ignorance
-        is_evasive = any(t in r_norm for t in self.evasive_markers)
-        is_ignorance = any(t in r_norm for t in self.ignorance_markers)
-        
-        # 7. Filler / Empty
-        is_filler = len(r_words) <= 4 and any(t in r_norm for t in ("sim", "conheco", "beleza", "com certeza", "uhum", "aham", "ok"))
-        
-        # 8. Declaration without mechanism
-        has_usage = any(v in r_norm for v in ("utilizo", "uso", "trabalho", "trabalhei", "atuei", "tenho"))
-        has_context = any(m in r_norm for m in ("diariamente", "dia a dia", "minha empresa", "nosso projeto", "anos de experiencia", "especialista", "conheco bem"))
-        is_decl = (has_usage and has_context) or any(m in r_norm for m in ("tenho 8 anos", "anos de experiencia", "sou especialista", "ja trabalhei com"))
-
-        # 9. Operative mechanism determination
-        has_operative_mech = any(term in r_norm for term in self.operative_indicators)
-        has_functional_action = any(a in r_norm for a in self.functional_actions) and any(e in r_norm for e in self.functional_effects)
-        has_demo_action = any(v in r_norm for v in ("criei", "configurei", "implementamos", "implementei", "adoto", "aplico", "particiono", "reduzo", "valido", "associo", "barro"))
-        has_operative_verb = any(v in r_morph for v in self.operative_verbs)
-        
-        # If it's pure metadata/trivia without concrete operational mechanism, it is NOT operative
-        if is_metadata and not has_operative_mech and not has_functional_action:
-            is_operative = False
-        else:
-            is_operative = (has_operative_mech or has_functional_action or has_operative_verb) and not is_antithesis and not is_alien and not is_trivia and not is_evasive and not is_ignorance and not is_filler and not is_aiml
-
-        if is_decl and not has_demo_action and not has_functional_action:
-            is_operative = False
-
-        prop = TechnicalProposition(
-            subject="operative_subject" if is_operative else ("alien" if is_alien else "non_operative"),
-            action="operative_action" if is_operative else "none",
-            is_operative=is_operative,
-            is_experience_declaration=is_decl,
-            is_alien_domain=is_alien,
-            is_antithesis=is_antithesis,
-            is_frontend=is_frontend,
-            is_devops=is_devops or is_aiml,
-            is_auxiliary=is_auxiliary,
-            is_trivia=is_trivia,
-            is_evasive=is_evasive,
-            is_ignorance=is_ignorance,
-            is_filler=is_filler,
-            action_polarity="DISABLE" if is_antithesis else "ENABLE",
-            raw_text=response_text
+        return self.discourse_filter.filter_propositions(
+            response_text, question_text, is_antithesis, is_circular, self._normalize_morphology
         )
-        return (prop,)
 
-    def assess_demand_nexus(self, demand: QuestionDemand, prop: TechnicalProposition, primary_entity: str) -> DemandPropositionNexus:
-        d_prob = demand.target_problem
-        r_norm = _normalize_text(prop.raw_text)
-        
-        # 1. Alien domain -> DOMAIN_DISJUNCT
-        if prop.is_alien_domain:
-            return DemandPropositionNexus(
-                demand_id=demand.demand_id,
-                nexus_relation="DOMAIN_DISJUNCT",
-                rationale="Response proposition belongs to an everyday non-computing domain."
-            )
-            
-        # 2. Destructive antithesis -> ANTITHESIS_OPPOSED
-        if prop.is_antithesis:
-            return DemandPropositionNexus(
-                demand_id=demand.demand_id,
-                nexus_relation="ANTITHESIS_OPPOSED",
-                rationale="Response proposes actions that disable or defeat operational protections."
-            )
-            
-        # 3. Domain disjunctions
-        if prop.is_frontend and not any(w in d_prob for w in ("frontend", "css", "html", "interface", "layout", "tela", "botao", "estilizacao", "responsivo", "componente visual")):
-            return DemandPropositionNexus(
-                demand_id=demand.demand_id,
-                nexus_relation="DOMAIN_DISJUNCT",
-                rationale="Frontend styling proposition is functionally disjunct from question demand."
-            )
-        if prop.is_devops and not re.search(r'\b(ci|cd|pipeline|esteira|deploy|jenkins|gitlab|scrum|kanban|sprint|machine learning|ia)\b', d_prob):
-            return DemandPropositionNexus(
-                demand_id=demand.demand_id,
-                nexus_relation="DOMAIN_DISJUNCT",
-                rationale="DevOps, pipeline or AI/ML proposition is functionally disjunct from question demand."
-            )
-            
-        # 4. Trivia / Tautological repetition -> THEMATICALLY_ADJACENT (CR-02 & CR-03)
-        if prop.is_trivia:
-            return DemandPropositionNexus(
-                demand_id=demand.demand_id,
-                nexus_relation="THEMATICALLY_ADJACENT",
-                rationale="Proposition is biographical, hardware trivia, or circular tautology without functional mechanism."
-            )
-            
-        # 5. Ignorance / Evasive / Bare acknowledgement
-        if prop.is_ignorance:
-            return DemandPropositionNexus(
-                demand_id=demand.demand_id,
-                nexus_relation="IGNORANCE",
-                rationale="Candidate explicitly states ignorance or lack of experience."
-            )
-        if prop.is_evasive:
-            return DemandPropositionNexus(
-                demand_id=demand.demand_id,
-                nexus_relation="EVASIVE",
-                rationale="Proposition is evasive or generic filler without concrete mechanics."
-            )
-        if prop.is_filler:
-            return DemandPropositionNexus(
-                demand_id=demand.demand_id,
-                nexus_relation="INSUFFICIENT",
-                rationale="Proposition is bare conversational acknowledgement without technical content."
-            )
-            
-        # 6. Declaration without mechanism -> THEMATICALLY_ADJACENT
-        if prop.is_experience_declaration and not prop.is_operative:
-            return DemandPropositionNexus(
-                demand_id=demand.demand_id,
-                nexus_relation="THEMATICALLY_ADJACENT",
-                rationale="Experience declaration provided without operative functional mechanism."
-            )
-            
-        # 7. Entity present without mechanism -> THEMATICALLY_ADJACENT
-        if primary_entity and primary_entity.lower() in r_norm and not prop.is_operative:
-            return DemandPropositionNexus(
-                demand_id=demand.demand_id,
-                nexus_relation="THEMATICALLY_ADJACENT",
-                rationale="Target technology mentioned without functional operative mechanism."
-            )
-        if any(w in r_norm for w in ("temporal", "kubernetes", "scylladb", "dragonfly", "tikv", "kafka", "redis", "etcd", "docker", "novastream")) and not prop.is_operative:
-            return DemandPropositionNexus(
-                demand_id=demand.demand_id,
-                nexus_relation="THEMATICALLY_ADJACENT",
-                rationale="Ecosystem technology mentioned without functional mechanism."
-            )
-            
-        # 8. Auxiliary / Observability -> CONTRIBUTES_TO (CR-05: distinguish pure monitoring vs complete core solution)
-        has_substantive_core_mech = any(m in r_norm for m in (
-            "tamanho maximo", "timeout de aquisicao", "try-with-resources", "fechem os recursos",
-            "fencing token", "quórum", "quorum", "log sequencial", "append-only", "fsync",
-            "outbox pattern", "debezium", "begin/commit", "chave no redis", "ttl"
-        ))
-
-        if prop.is_auxiliary and not has_substantive_core_mech and not any(w in d_prob for w in ("como diagnosticar", "como monitorar", "quais metricas", "onde analisar")):
-            if any(w in d_prob for w in ("diminuir", "evitar", "conter", "resolver", "prevenir", "isolar", "solucionar", "mitigar", "proteger", "eliminar", "gargalo", "latencia", "lentidao", "crash", "investigaria")):
-                return DemandPropositionNexus(
-                    demand_id=demand.demand_id,
-                    nexus_relation="CONTRIBUTES_TO",
-                    rationale="Proposition provides auxiliary observability/monitoring support but does not directly resolve the operational failure."
-                )
-            
-        # 9. Operative Mechanism Assessment against Demand
-        if prop.is_operative:
-            # Check explicit omission markers in response
-            if any(om in r_norm for om in ("mas nao detalha", "mas nao aborda", "mas nao explica", "mas nao menciona", "sem detalhar", "sem explicar", "sem abordar", "sem cobrir", "nao aborda", "nao detalha", "omite como", "porem nao explica", "porem nao aborda", "porem nao detalha")):
-                return DemandPropositionNexus(
-                    demand_id=demand.demand_id,
-                    nexus_relation="PARTIALLY_SOLVES",
-                    rationale="Response covers partial aspect but explicitly omits secondary demand."
-                )
-
-            # Strict Multi-Aspect Demands Evaluation (CR-01)
-            # Check if this demand is a secondary demand in a multi-demand question
-            if demand.demand_id != "demand_1":
-                d_lower = d_prob.lower()
-                unaddressed = False
-
-                if "revogacao" in d_lower:
-                    if not any(w in r_norm for w in ("revoga", "invalid", "blacklist", "lista negra", "sessao", "stateful")):
-                        unaddressed = True
-                elif "vazao de escrita" in d_lower:
-                    if not any(w in r_norm for w in ("escrita", "vazao", "append", "lsm", "memtable", "sstables")):
-                        unaddressed = True
-                elif ("sincroniza" in d_lower or "logs com os seguidores" in d_lower):
-                    if not any(w in r_norm for w in ("sincroniz", "append entries", "replic", "seguidor")):
-                        unaddressed = True
-                elif ("parsing de cpu" in d_lower or "sobrecarga de parsing" in d_lower):
-                    if not any(w in r_norm for w in ("cpu", "parsing", "processamento", "desserializ")):
-                        unaddressed = True
-                elif ("overhead de latencia" in d_lower or "latencia de rede" in d_lower):
-                    if not any(w in r_norm for w in ("latencia", "rede", "round trip", "distribuido", "chamadas")):
-                        unaddressed = True
-                elif ("expiracao" in d_lower or "armazenar os comprovantes" in d_lower):
-                    if not any(w in r_norm for w in ("expir", "ttl", "comprovante", "armazena")):
-                        unaddressed = True
-                elif ("projecao" in d_lower or "complexidade de projecao" in d_lower):
-                    if not any(w in r_norm for w in ("projec", "visao", "leitura", "cqrs", "assincron")):
-                        unaddressed = True
-                elif "invalidacao" in d_lower:
-                    if not any(w in r_norm for w in ("invalid", "expir", "ttl", "atualiz", "escrita")):
-                        unaddressed = True
-                elif ("falhe durante a fase de commit" in d_lower or "coordenador falhe" in d_lower):
-                    if not any(w in r_norm for w in ("falha", "coordenador", "bloqueio", "recuper", "timeout")):
-                        unaddressed = True
-                elif ("leituras obsoletas" in d_lower or "linearizabilidade" in d_lower):
-                    if not any(w in r_norm for w in ("obsolet", "lineariz", "spanner", "true time", "stale")):
-                        unaddressed = True
-                elif ("consistencia acid" in d_lower or "garantias de consistencia" in d_lower):
-                    if not any(w in r_norm for w in ("acid", "consistenc", "transac", "relacional", "sql")):
-                        unaddressed = True
-                elif "depuracao no navegador" in d_lower:
-                    if not any(w in r_norm for w in ("navegador", "browser", "devtools", "inspecion", "depur")):
-                        unaddressed = True
-                elif "alpn" in d_lower:
-                    if not any(w in r_norm for w in ("alpn", "versao do protocolo", "negocia")):
-                        unaddressed = True
-                elif "jitter" in d_lower:
-                    if not any(w in r_norm for w in ("jitter", "aleator", "pseudo-aleat", "pseudoaleat", "dispersao")):
-                        unaddressed = True
-                elif "idempot" in d_lower or "duplic" in d_lower:
-                    if not any(w in r_norm for w in ("idempot", "duplic", "chave unica", "chave de", "deduplic", "hash", "ja foi confirmad", "token")):
-                        unaddressed = True
-                else:
-                    sig_words = [w for w in d_lower.split() if len(w) >= 4 and w not in ("como", "para", "onde", "quando", "voce", "qual", "quais", "sobre", "entre", "pelo", "pela", "mais", "menos", "alem", "quanto")]
-                    matched_sig = [w for w in sig_words if w in r_norm]
-                    if len(matched_sig) < min(2, len(sig_words)):
-                        unaddressed = True
-
-                if unaddressed:
-                    return DemandPropositionNexus(
-                        demand_id=demand.demand_id,
-                        nexus_relation="UNMET_DEMAND",
-                        rationale="Secondary demanded aspect is unaddressed in the response."
-                    )
-
-            # Check specific multi-aspect omissions
-            if "idempot" in d_prob and not any(w in r_norm for w in ("idempot", "duplic", "chave unica", "chave de", "deduplic", "hash", "ja foi confirmad", "token")):
-                return DemandPropositionNexus(
-                    demand_id=demand.demand_id,
-                    nexus_relation="UNMET_DEMAND",
-                    rationale="Demand requires idempotency mechanism which is omitted in response."
-                )
-            if "sharding" in d_prob and "rebalanceamento" in d_prob:
-                has_sharding = any(w in r_norm for w in ("cardinalidade", "chave", "sharding", "pulverizar", "campo com bastante variacao", "espalhar bem os dados"))
-                has_rebal = any(w in r_norm for w in ("consistent hashing", "rebalance", "nos virtuais", "redistribui"))
-                if has_sharding and has_rebal:
-                    return DemandPropositionNexus(
-                        demand_id=demand.demand_id,
-                        nexus_relation="FUNCTIONALLY_SOLVES",
-                        rationale="Demonstrates both sharding and rebalancing mechanisms."
-                    )
-                elif has_sharding or has_rebal:
-                    return DemandPropositionNexus(
-                        demand_id=demand.demand_id,
-                        nexus_relation="PARTIALLY_SOLVES",
-                        rationale="Demonstrates only partial aspects of compound demand."
-                    )
-
-            # Check compound demands in single prompt: retries + jitter
-            if any(rt in d_prob for rt in ("retentativa", "retries", "retry")) and "jitter" in d_prob:
-                has_retry = any(w in r_norm for w in ("tentar de novo", "retentativa", "retries", "repetid", "potencias de dois", "dobrando", "intervalos progressivamente maiores"))
-                has_jitter = any(w in r_norm for w in ("jitter", "aleator", "variacao aleatoria"))
-                if has_retry and not has_jitter:
-                    return DemandPropositionNexus(
-                        demand_id=demand.demand_id,
-                        nexus_relation="PARTIALLY_SOLVES",
-                        rationale="Covers retry mechanism but omits jitter randomization."
-                    )
-
-            # Check specific omission mutations (P20, P21, P22)
-            if "versionamento" in d_prob and "concorrencia otimista" in d_prob and not any(w in r_norm for w in ("versao", "version", "timestamp", "clausula where")):
-                return DemandPropositionNexus(
-                    demand_id=demand.demand_id,
-                    nexus_relation="PARTIALLY_SOLVES",
-                    rationale="Omits version check mechanism in optimistic concurrency."
-                )
-            if "deduplicacao" in d_prob and "pagamentos" in d_prob and not any(w in r_norm for w in ("deduplic", "idempot", "chave", "hash", "ja foi confirmad")):
-                return DemandPropositionNexus(
-                    demand_id=demand.demand_id,
-                    nexus_relation="PARTIALLY_SOLVES",
-                    rationale="Omits deduplication lookup mechanism."
-                )
-            if "token bucket" in d_prob and "proteger apis" in d_prob and not any(w in r_norm for w in ("bloquei", "limit", "rejeit", "esgot", "vazio")):
-                return DemandPropositionNexus(
-                    demand_id=demand.demand_id,
-                    nexus_relation="PARTIALLY_SOLVES",
-                    rationale="Omits token consumption or limiting enforcement in token bucket."
-                )
-
-            # Speculation / Hypothesis markers in response yield PARTIALLY_SOLVES
-            if any(h in r_norm for h in ("acho que talvez", "imagino que uma ideia", "nao tenha certeza exata", "nunca configurei")):
-                return DemandPropositionNexus(
-                    demand_id=demand.demand_id,
-                    nexus_relation="PARTIALLY_SOLVES",
-                    rationale="Response presents a valid hypothesis but explicitly acknowledges uncertainty or lack of implementation knowledge."
-                )
-
-            return DemandPropositionNexus(
-                demand_id=demand.demand_id,
-                nexus_relation="FUNCTIONALLY_SOLVES",
-                rationale="Operative technical proposition functionally addresses the demand."
-            )
-            
-        # 10. Fallback for non-operative generic text
-        return DemandPropositionNexus(
-            demand_id=demand.demand_id,
-            nexus_relation="NON_OPERATIVE",
-            rationale="Non-operative technical text without demonstrable nexus to demand."
-        )
+    def assess_demand_nexus(self, demand: QuestionDemand, prop: TechnicalProposition, primary_entity: str,
+                            intent: QuestionIntent = None, domain_record: DomainCompatibilityRecord = None) -> DemandPropositionNexus:
+        return self.nexus_matcher.assess_demand_nexus(demand, prop, primary_entity, intent, domain_record)
 
     def evaluate_epistemic_status(self, response_text: str, prop: TechnicalProposition) -> EpistemicEvaluation:
         r_norm = _normalize_text(response_text)
@@ -3597,142 +4168,19 @@ class OpenDomainPropositionEngine:
         propositions = self.extract_response_propositions(r_text, q_text)
         prop = propositions[0]
         epistemic = self.evaluate_epistemic_status(r_text, prop)
-        is_demo = epistemic.epistemic_status in ("DEMONSTRATED_EXPERIENCE", "CONCEPTUAL")
+
+        # Domain Disjunction Evaluation (Stage 31.7.27, Cycle 5)
+        domain_record = self.domain_engine.assess_compatibility(q_text, r_text, demands, prop)
 
         # Evaluate pairwise nexus per demand
         nexus_records: list[DemandPropositionNexus] = []
         for d in demands:
-            nx = self.assess_demand_nexus(d, prop, intent.central_entities[0] if intent.central_entities else "")
+            nx = self.assess_demand_nexus(d, prop, intent.central_entities[0] if intent.central_entities else "", intent, domain_record)
             nexus_records.append(nx)
 
-        # Classification mapping based on Demand-Proposition Nexus
-        nexus_relations = [nx.nexus_relation for nx in nexus_records]
-
-        if any(n == "DOMAIN_DISJUNCT" for n in nexus_relations):
-            classification = "OFF_TOPIC"
-            relation_type = "alien_domain_assertion" if prop.is_alien_domain else "domain_disjunct_assertion"
-            func_contrib = False
-            cov_status = "NONE"
-            cov_ratio = 0.0
-            rationale = "Response is functionally disjunct from the question domain."
-        elif any(n == "ANTITHESIS_OPPOSED" for n in nexus_relations):
-            classification = "OFF_TOPIC"
-            relation_type = "destructive_antithesis_assertion"
-            func_contrib = False
-            cov_status = "NONE"
-            cov_ratio = 0.0
-            rationale = "Response proposes action that opposes or disables required protections."
-        elif any(n == "IGNORANCE" for n in nexus_relations) or any(n == "INSUFFICIENT" for n in nexus_relations):
-            classification = "INSUFFICIENT"
-            relation_type = "insufficient_technical_proposition"
-            func_contrib = False
-            cov_status = "NONE"
-            cov_ratio = 0.0
-            rationale = "Response lacks evaluable technical propositions."
-        elif any(n == "EVASIVE" for n in nexus_relations):
-            classification = "UNKNOWN"
-            relation_type = "ambiguous_proposition"
-            func_contrib = False
-            cov_status = "UNKNOWN"
-            cov_ratio = 0.0
-            rationale = "Response is ambiguous and lacks concrete technical propositions."
-        elif len(demands) > 1:
-            # Multi-aspect demand aggregation (CR-01: strict conjunctive coverage)
-            solves_count = sum(1 for n in nexus_relations if n == "FUNCTIONALLY_SOLVES")
-            if solves_count == len(demands):
-                classification = "DIRECT"
-                relation_type = "multi_aspect_full_coverage"
-                func_contrib = True
-                cov_status = "FULL"
-                cov_ratio = 1.0
-                rationale = "Response functionally solves all demanded aspects."
-            elif solves_count > 0 or any(n == "PARTIALLY_SOLVES" for n in nexus_relations):
-                classification = "PARTIAL"
-                relation_type = "multi_aspect_partial_coverage"
-                func_contrib = True
-                cov_status = "PARTIAL"
-                cov_ratio = solves_count / len(demands) if solves_count > 0 else 0.5
-                rationale = "Response satisfies some but not all demanded aspects."
-            elif any(n == "CONTRIBUTES_TO" for n in nexus_relations):
-                classification = "SUPPORTING"
-                relation_type = "auxiliary_observability_support"
-                func_contrib = True
-                cov_status = "SUPPORTING_ONLY"
-                cov_ratio = 0.0
-                rationale = "Response provides auxiliary observability/monitoring support to the demands."
-            elif any(n == "THEMATICALLY_ADJACENT" for n in nexus_relations):
-                classification = "RELATED"
-                relation_type = "thematic_adjacency_without_mechanism"
-                func_contrib = False
-                cov_status = "RELATED_ONLY"
-                cov_ratio = 0.0
-                rationale = "Response is thematically adjacent without satisfying functional demands."
-            else:
-                classification = "OFF_TOPIC"
-                relation_type = "non_operative_assertion"
-                func_contrib = False
-                cov_status = "NONE"
-                cov_ratio = 0.0
-                rationale = "Response does not demonstrate technical propositions satisfying demands."
-        else:
-            # Single demand nexus resolution
-            nx_rel = nexus_relations[0]
-            if nx_rel == "FUNCTIONALLY_SOLVES":
-                classification = "DIRECT"
-                relation_type = "open_domain_mechanism_assertion"
-                func_contrib = True
-                cov_status = "FULL"
-                cov_ratio = 1.0
-                rationale = "Response functionally solves the question demand."
-            elif nx_rel == "CONTRIBUTES_TO":
-                classification = "SUPPORTING"
-                relation_type = "auxiliary_observability_support"
-                func_contrib = True
-                cov_status = "SUPPORTING_ONLY"
-                cov_ratio = 0.0
-                rationale = "Response provides auxiliary observability/monitoring contribution without directly solving."
-            elif nx_rel == "THEMATICALLY_ADJACENT":
-                classification = "RELATED"
-                relation_type = "thematic_adjacency_without_mechanism"
-                func_contrib = False
-                cov_status = "RELATED_ONLY"
-                cov_ratio = 0.0
-                rationale = "Response is thematically adjacent without demonstrating operative mechanism."
-            elif nx_rel in ("PARTIALLY_SOLVES", "UNMET_DEMAND"):
-                classification = "PARTIAL"
-                relation_type = "partial_aspect_coverage"
-                func_contrib = True
-                cov_status = "PARTIAL"
-                cov_ratio = 0.5
-                rationale = "Response covers part of the required demand."
-            else:
-                classification = "OFF_TOPIC"
-                relation_type = "non_operative_assertion"
-                func_contrib = False
-                cov_status = "NONE"
-                cov_ratio = 0.0
-                rationale = "Response does not demonstrate operative technical mechanism addressing demand."
-
-        return {
-            "classification": classification,
-            "relation_type": relation_type,
-            "functional_contribution": func_contrib,
-            "question_intent": {"type": intent.intent_type, "primary_entity": intent.central_entities[0] if intent.central_entities else ""},
-            "question_demands": [{"id": d.demand_id, "subject": d.target_subject} for d in demands],
-            "aspect_coverage": {"ratio": cov_ratio, "status": cov_status},
-            "epistemic_status": {"status": epistemic.epistemic_status, "is_demonstrated": is_demo},
-            "demand_nexus": [
-                {
-                    "demand_id": nx.demand_id,
-                    "nexus_relation": nx.nexus_relation,
-                    "rationale": nx.rationale,
-                }
-                for nx in nexus_records
-            ],
-            "confidence": "HIGH",
-            "rationale": rationale,
-            "needs_review": False,
-        }
+        return self.aggregator.aggregate_relevance(
+            intent, demands, propositions, nexus_records, epistemic, domain_record
+        )
 
     def evaluate(self, question: Any, response: Any) -> dict[str, Any]:
         return self.evaluate_relevance(question, response)

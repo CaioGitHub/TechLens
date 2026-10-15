@@ -1,0 +1,54 @@
+{
+  "canonical_unit_regression": {
+    "command": "py -m unittest discover tests",
+    "total_tests": 1047,
+    "passed": 1046,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0,
+    "execution_time_seconds": 45.3,
+    "status": "PASS",
+    "skipped_tests": [
+      "tests.test_stage_31_7_3_blind_revalidation (historical placeholder)"
+    ],
+    "semantic_suites": {
+      "test_stage_31_7_8_open_domain_proposition_engine": {
+        "total": 16,
+        "passed": 16,
+        "status": "PASS"
+      },
+      "test_stage_31_7_11_demand_proposition_nexus": {
+        "total": 10,
+        "passed": 10,
+        "status": "PASS"
+      },
+      "test_stage_31_7_16_controlled_implementation": {
+        "total": 9,
+        "passed": 9,
+        "status": "PASS"
+      },
+      "test_stage_31_7_20_controlled_remediation": {
+        "total": 14,
+        "passed": 14,
+        "status": "PASS"
+      },
+      "test_stage_31_7_24_contract_tests": {
+        "total": 9,
+        "passed": 9,
+        "status": "PASS"
+      }
+    }
+  },
+  "reference_harness_regression": {
+    "command": "py -m unittest tests.test_stage_26_reference_harness",
+    "total_tests": 15,
+    "passed": 15,
+    "failures": 0,
+    "errors": 0,
+    "execution_time_seconds": 30.9,
+    "status": "PASS_WITH_WARNINGS",
+    "warnings_count": 1,
+    "notes": "Deterministic baseline runtime behavior preserved across all 15 stages."
+  },
+  "overall_status": "PASS_WITH_ZERO_REGRESSIONS"
+}

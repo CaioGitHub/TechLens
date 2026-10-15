@@ -1,0 +1,3289 @@
+{
+  "stage": "31.7.26",
+  "title": "Auditoria Estruturada Individual dos 70 Casos Falsos DIRECT do Stage 31.7.25",
+  "total_audited_cases": 70,
+  "breakdown_by_ref_class": {
+    "OFF_TOPIC": 34,
+    "RELATED": 22,
+    "SUPPORTING": 7,
+    "INSUFFICIENT": 7
+  },
+  "cases": [
+    {
+      "case_id": "CASE_003",
+      "question_text": "Como o motor técnico da tecnologia 11 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 11 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 11 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 11 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_010",
+      "question_text": "Como o motor técnico da tecnologia 18 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 18 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 18 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 18 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_011",
+      "question_text": "Como o componente de rede e mensageria 19 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 19 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 19 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 19 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_015",
+      "question_text": "Como o motor técnico da tecnologia 15 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 15 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 15 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 15 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_016",
+      "question_text": "Como o componente de rede e mensageria 15 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 15 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 15 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 15 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_022",
+      "question_text": "Como o algoritmo Raft realiza eleições de líder seguras?",
+      "response_text": "A troca de óleo do motor do carro deve ser realizada a cada dez mil quilômetros rodados usando lubrificante sintético.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "Raft",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "A troca de óleo do motor do carro deve ser realizada a cada dez mil quilômetros rodados usando lubrificante sintético.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_024",
+      "question_text": "Como o componente de rede e mensageria 8 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 8 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 8 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 8 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_028",
+      "question_text": "Como o protocolo BGP troca tabelas de roteamento entre sistemas autônomos na Internet?",
+      "response_text": "Para fazer um bolo de chocolate você deve bater as claras em neve, misturar farinha e cacau e assar a 180 graus por quarenta minutos.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "Internet",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Para fazer um bolo de chocolate você deve bater as claras em neve, misturar farinha e cacau e assar a 180 graus por quarenta minutos.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=25 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 25 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_039",
+      "question_text": "Como o componente de rede e mensageria 25 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 25 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 25 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 25 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_045",
+      "question_text": "Como o componente de rede e mensageria 18 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 18 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 18 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 18 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_047",
+      "question_text": "Como o banco DynamoDB escala requisições com throughput provisionado?",
+      "response_text": "Minha equipe anterior utilizava DynamoDB da AWS para armazenar dados de clientes e tínhamos reuniões semanais para discutir tabelas.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o banco dynamodb escala requisicoes com throughput provisionado?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Minha equipe anterior utilizava DynamoDB da AWS para armazenar dados de clientes e tínhamos reuniões semanais para discutir tabelas.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_054",
+      "question_text": "Como o componente de rede e mensageria 9 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 9 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 9 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 9 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_060",
+      "question_text": "Como o componente de rede e mensageria 23 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 23 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 23 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 23 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_062",
+      "question_text": "Como o componente de rede e mensageria 1 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 1 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 1 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 1 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_066",
+      "question_text": "Como o componente de rede e mensageria 14 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 14 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 14 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 14 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_067",
+      "question_text": "Como resolver o problema de latência e concorrência na arquitetura 12 de microsserviços?",
+      "response_text": "Olha, vai variar de acordo com o caso concreto antes de qualquer coisa na arquitetura 12.",
+      "human_classification": "INSUFFICIENT",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como resolver o problema de latencia e concorrencia na arquitetura 12 de microsservicos?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Olha, vai variar de acordo com o caso concreto antes de qualquer coisa na arquitetura 12.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> evasive_markers_unmatched -> prop.is_evasive=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Evasive response with subordinate clause (e.g. 'vai variar de acordo com o caso concreto') failed exact evasion regex and contained verb ('variar')",
+      "apparent_positive_evidence": "Grammatical complexity and verb presence interpreted as technical content",
+      "missing_or_contradictory_evidence": "Any concrete technical knowledge or mechanism",
+      "primary_root_cause": "EVASIVE_DEFLECTION_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_VERB_HEURISTIC_OVERRIDE"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_068",
+      "question_text": "Como o motor técnico da tecnologia 17 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 17 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 17 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 17 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_072",
+      "question_text": "Como o componente de rede e mensageria 21 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 21 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 21 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 21 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_085",
+      "question_text": "Como resolver o problema de latência e concorrência na arquitetura 9 de microsserviços?",
+      "response_text": "Olha, depende exclusivamente do orçamento disponível antes de qualquer coisa na arquitetura 9.",
+      "human_classification": "INSUFFICIENT",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como resolver o problema de latencia e concorrencia na arquitetura 9 de microsservicos?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Olha, depende exclusivamente do orçamento disponível antes de qualquer coisa na arquitetura 9.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> evasive_markers_unmatched -> prop.is_evasive=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Evasive response with subordinate clause (e.g. 'vai variar de acordo com o caso concreto') failed exact evasion regex and contained verb ('variar')",
+      "apparent_positive_evidence": "Grammatical complexity and verb presence interpreted as technical content",
+      "missing_or_contradictory_evidence": "Any concrete technical knowledge or mechanism",
+      "primary_root_cause": "EVASIVE_DEFLECTION_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_VERB_HEURISTIC_OVERRIDE"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_097",
+      "question_text": "Como resolver o problema de latência e concorrência na arquitetura 15 de microsserviços?",
+      "response_text": "Olha, depende dos fatores e dos custos envolvidos antes de qualquer coisa na arquitetura 15.",
+      "human_classification": "INSUFFICIENT",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como resolver o problema de latencia e concorrencia na arquitetura 15 de microsservicos?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Olha, depende dos fatores e dos custos envolvidos antes de qualquer coisa na arquitetura 15.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> evasive_markers_unmatched -> prop.is_evasive=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Evasive response with subordinate clause (e.g. 'vai variar de acordo com o caso concreto') failed exact evasion regex and contained verb ('variar')",
+      "apparent_positive_evidence": "Grammatical complexity and verb presence interpreted as technical content",
+      "missing_or_contradictory_evidence": "Any concrete technical knowledge or mechanism",
+      "primary_root_cause": "EVASIVE_DEFLECTION_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_VERB_HEURISTIC_OVERRIDE"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_100",
+      "question_text": "Como o motor técnico da tecnologia 3 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 3 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 3 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 3 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_102",
+      "question_text": "Como o componente de rede e mensageria 6 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 6 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 6 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 6 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_104",
+      "question_text": "Como verificar se uma fila do RabbitMQ está acumulando mensagens devido a consumidores lentos?",
+      "response_text": "Consultamos a API de métricas do RabbitMQ observando o indicador messages_unacknowledged e a taxa de consumo consumer_utilisation no dashboard do Grafana.",
+      "human_classification": "SUPPORTING",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como verificar se uma fila do rabbitmq esta acumulando mensagens devido a consumidores lentos?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Consultamos a API de métricas do RabbitMQ observando o indicador messages_unacknowledged e a taxa de consumo consumer_utilisation no dashboard do Grafana.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": true
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> is_auxiliary=True -> assess_demand_nexus.problem_stems_unmatched -> line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Observability / telemetry proposal did not match exact problem keywords in line 3274 or was phrased as active monitoring action",
+      "apparent_positive_evidence": "Active monitoring verb ('monitoramos', 'verificamos') interpreted as primary mechanism",
+      "missing_or_contradictory_evidence": "Implementation of core technical mechanism directly resolving the problem",
+      "primary_root_cause": "AUXILIARY_OBSERVABILITY_STEM_MISALIGNMENT",
+      "contributing_root_causes": [
+        "INSTRUMENTAL_TELEMETRY_MISCLASSIFIED_AS_MECHANISM"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_108",
+      "question_text": "Como o componente de rede e mensageria 22 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 22 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 22 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 22 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_112",
+      "question_text": "Como diagnosticar gargalos de serialização e tempo de resposta em chamadas gRPC?",
+      "response_text": "Habilitamos o tracing distribuído via OpenTelemetry exportando spans para o Jaeger com atributos de rpc.method, rpc.duration e métricas de gRPC client/server.",
+      "human_classification": "SUPPORTING",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como diagnosticar gargalos de serializacao e tempo de resposta em chamadas grpc?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Habilitamos o tracing distribuído via OpenTelemetry exportando spans para o Jaeger com atributos de rpc.method, rpc.duration e métricas de gRPC client/server.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": true
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> is_auxiliary=True -> assess_demand_nexus.problem_stems_unmatched -> line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Observability / telemetry proposal did not match exact problem keywords in line 3274 or was phrased as active monitoring action",
+      "apparent_positive_evidence": "Active monitoring verb ('monitoramos', 'verificamos') interpreted as primary mechanism",
+      "missing_or_contradictory_evidence": "Implementation of core technical mechanism directly resolving the problem",
+      "primary_root_cause": "AUXILIARY_OBSERVABILITY_STEM_MISALIGNMENT",
+      "contributing_root_causes": [
+        "INSTRUMENTAL_TELEMETRY_MISCLASSIFIED_AS_MECHANISM"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_114",
+      "question_text": "Como identificar consultas lentas que não utilizam índices no PostgreSQL?",
+      "response_text": "Ativamos a extensão pg_stat_statements e configuramos log_min_duration_statement no postgresql.conf para registrar consultas demoradas no log do servidor.",
+      "human_classification": "SUPPORTING",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como identificar consultas lentas que nao utilizam indices no postgresql?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Ativamos a extensão pg_stat_statements e configuramos log_min_duration_statement no postgresql.conf para registrar consultas demoradas no log do servidor.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> is_auxiliary=True -> assess_demand_nexus.problem_stems_unmatched -> line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Observability / telemetry proposal did not match exact problem keywords in line 3274 or was phrased as active monitoring action",
+      "apparent_positive_evidence": "Active monitoring verb ('monitoramos', 'verificamos') interpreted as primary mechanism",
+      "missing_or_contradictory_evidence": "Implementation of core technical mechanism directly resolving the problem",
+      "primary_root_cause": "AUXILIARY_OBSERVABILITY_STEM_MISALIGNMENT",
+      "contributing_root_causes": [
+        "INSTRUMENTAL_TELEMETRY_MISCLASSIFIED_AS_MECHANISM"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_115",
+      "question_text": "Como resolver o problema de latência e concorrência na arquitetura 1 de microsserviços?",
+      "response_text": "Olha, depende exclusivamente do orçamento disponível antes de qualquer coisa na arquitetura 1.",
+      "human_classification": "INSUFFICIENT",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como resolver o problema de latencia e concorrencia na arquitetura 1 de microsservicos?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Olha, depende exclusivamente do orçamento disponível antes de qualquer coisa na arquitetura 1.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> evasive_markers_unmatched -> prop.is_evasive=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Evasive response with subordinate clause (e.g. 'vai variar de acordo com o caso concreto') failed exact evasion regex and contained verb ('variar')",
+      "apparent_positive_evidence": "Grammatical complexity and verb presence interpreted as technical content",
+      "missing_or_contradictory_evidence": "Any concrete technical knowledge or mechanism",
+      "primary_root_cause": "EVASIVE_DEFLECTION_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_VERB_HEURISTIC_OVERRIDE"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_116",
+      "question_text": "Como o componente de rede e mensageria 26 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 26 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 26 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 26 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_117",
+      "question_text": "Como o Kafka garante que partições de um tópico mantenham a ordem das mensagens?",
+      "response_text": "Eu já configurei diversos brokers de Kafka quando atuava como arquiteto no setor financeiro e temos vasta experiência com esse ecossistema.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "Kafka",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Eu já configurei diversos brokers de Kafka quando atuava como arquiteto no setor financeiro e temos vasta experiência com esse ecossistema.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_118",
+      "question_text": "Como identificar contenção de threads em aplicações Java sob alta concorrência?",
+      "response_text": "Utilizamos a ferramenta async-profiler para gerar flame graphs de bloqueio ou capturamos thread dumps periódicos via jstack analisando threads em estado BLOCKED no lock da JVM.",
+      "human_classification": "SUPPORTING",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "Java",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Utilizamos a ferramenta async-profiler para gerar flame graphs de bloqueio ou capturamos thread dumps periódicos via jstack analisando threads em estado BLOCKED no lock da JVM.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> is_auxiliary=True -> assess_demand_nexus.problem_stems_unmatched -> line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Observability / telemetry proposal did not match exact problem keywords in line 3274 or was phrased as active monitoring action",
+      "apparent_positive_evidence": "Active monitoring verb ('monitoramos', 'verificamos') interpreted as primary mechanism",
+      "missing_or_contradictory_evidence": "Implementation of core technical mechanism directly resolving the problem",
+      "primary_root_cause": "AUXILIARY_OBSERVABILITY_STEM_MISALIGNMENT",
+      "contributing_root_causes": [
+        "INSTRUMENTAL_TELEMETRY_MISCLASSIFIED_AS_MECHANISM"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_119",
+      "question_text": "Como o motor técnico da tecnologia 13 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 13 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 13 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 13 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_121",
+      "question_text": "Como o componente de rede e mensageria 20 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 20 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 20 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 20 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_124",
+      "question_text": "Como diagnosticar problemas de latência em clusters Elasticsearch causados por garbage collection?",
+      "response_text": "Monitoramos as métricas de jvm.gc.collectors.young.collection_time_in_millis e old.collection_time_in_millis integradas com alertas do Datadog.",
+      "human_classification": "SUPPORTING",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "Elasticsearch",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Monitoramos as métricas de jvm.gc.collectors.young.collection_time_in_millis e old.collection_time_in_millis integradas com alertas do Datadog.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": true
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> is_auxiliary=True -> assess_demand_nexus.problem_stems_unmatched -> line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Observability / telemetry proposal did not match exact problem keywords in line 3274 or was phrased as active monitoring action",
+      "apparent_positive_evidence": "Active monitoring verb ('monitoramos', 'verificamos') interpreted as primary mechanism",
+      "missing_or_contradictory_evidence": "Implementation of core technical mechanism directly resolving the problem",
+      "primary_root_cause": "AUXILIARY_OBSERVABILITY_STEM_MISALIGNMENT",
+      "contributing_root_causes": [
+        "INSTRUMENTAL_TELEMETRY_MISCLASSIFIED_AS_MECHANISM"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_132",
+      "question_text": "Como o componente de rede e mensageria 5 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 5 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 5 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 5 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_134",
+      "question_text": "Como o componente de rede e mensageria 16 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 16 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 16 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 16 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_141",
+      "question_text": "Como o motor técnico da tecnologia 6 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 6 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 6 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 6 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_142",
+      "question_text": "Como o motor técnico da tecnologia 7 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 7 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 7 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 7 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_144",
+      "question_text": "Como o motor técnico da tecnologia 9 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 9 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 9 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 9 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_147",
+      "question_text": "Como o motor técnico da tecnologia 16 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 16 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 16 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 16 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_150",
+      "question_text": "Como o componente de rede e mensageria 12 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 12 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 12 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 12 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_153",
+      "question_text": "Como o motor técnico da tecnologia 4 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 4 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 4 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 4 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_154",
+      "question_text": "Como o motor técnico da tecnologia 19 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 19 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 19 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 19 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_160",
+      "question_text": "Como o motor técnico da tecnologia 10 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 10 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 10 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 10 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_161",
+      "question_text": "Como o componente de rede e mensageria 30 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 30 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 30 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 30 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_162",
+      "question_text": "Como o componente de rede e mensageria 2 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 2 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 2 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 2 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_164",
+      "question_text": "Como o componente de rede e mensageria 3 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 3 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 3 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 3 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_166",
+      "question_text": "Como o componente de rede e mensageria 28 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 28 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 28 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 28 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_167",
+      "question_text": "Como diagnosticar vazamentos de conexões no pool de banco de dados HikariCP?",
+      "response_text": "A gente coloca alertas no Prometheus pras métricas do HikariCP e liga o leakDetectionThreshold pra cuspir log de aviso quando uma conexão demorar pra voltar pro pool.",
+      "human_classification": "SUPPORTING",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como diagnosticar vazamentos de conexoes no pool de banco de dados hikaricp?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "A gente coloca alertas no Prometheus pras métricas do HikariCP e liga o leakDetectionThreshold pra cuspir log de aviso quando uma conexão demorar pra voltar pro pool.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": true
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> is_auxiliary=True -> assess_demand_nexus.problem_stems_unmatched -> line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Observability / telemetry proposal did not match exact problem keywords in line 3274 or was phrased as active monitoring action",
+      "apparent_positive_evidence": "Active monitoring verb ('monitoramos', 'verificamos') interpreted as primary mechanism",
+      "missing_or_contradictory_evidence": "Implementation of core technical mechanism directly resolving the problem",
+      "primary_root_cause": "AUXILIARY_OBSERVABILITY_STEM_MISALIGNMENT",
+      "contributing_root_causes": [
+        "INSTRUMENTAL_TELEMETRY_MISCLASSIFIED_AS_MECHANISM"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_168",
+      "question_text": "Como o motor técnico da tecnologia 1 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 1 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 1 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 1 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_174",
+      "question_text": "Como o motor técnico da tecnologia 5 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 5 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 5 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 5 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_175",
+      "question_text": "Como o Git resolve conflitos de merge através do algoritmo recursive ou ort?",
+      "response_text": "O Git é um sistema de controle de versão mantido pela Linux Foundation e amplamente adotado por toda a comunidade corporativa de desenvolvimento open-source.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "Git",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O Git é um sistema de controle de versão mantido pela Linux Foundation e amplamente adotado por toda a comunidade corporativa de desenvolvimento open-source.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_179",
+      "question_text": "Como o componente de rede e mensageria 13 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 13 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 13 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 13 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_181",
+      "question_text": "Como o componente de rede e mensageria 7 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 7 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 7 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 7 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_189",
+      "question_text": "Como o componente de rede e mensageria 29 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 29 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 29 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 29 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_192",
+      "question_text": "Como diagnosticar vazamentos de conexões no pool de banco de dados HikariCP?",
+      "response_text": "Podemos monitorar as métricas do HikariCP no Prometheus como hikaricp_connection_acquired_nanoseconds, hikaricp_pending_threads e ativar o leakDetectionThreshold com logs de aviso.",
+      "human_classification": "SUPPORTING",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como diagnosticar vazamentos de conexoes no pool de banco de dados hikaricp?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Podemos monitorar as métricas do HikariCP no Prometheus como hikaricp_connection_acquired_nanoseconds, hikaricp_pending_threads e ativar o leakDetectionThreshold com logs de aviso.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": true
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> is_auxiliary=True -> assess_demand_nexus.problem_stems_unmatched -> line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Observability / telemetry proposal did not match exact problem keywords in line 3274 or was phrased as active monitoring action",
+      "apparent_positive_evidence": "Active monitoring verb ('monitoramos', 'verificamos') interpreted as primary mechanism",
+      "missing_or_contradictory_evidence": "Implementation of core technical mechanism directly resolving the problem",
+      "primary_root_cause": "AUXILIARY_OBSERVABILITY_STEM_MISALIGNMENT",
+      "contributing_root_causes": [
+        "INSTRUMENTAL_TELEMETRY_MISCLASSIFIED_AS_MECHANISM"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_206",
+      "question_text": "Como o motor técnico da tecnologia 8 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 8 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 8 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 8 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_208",
+      "question_text": "Como o componente de rede e mensageria 24 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 24 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 24 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 24 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_211",
+      "question_text": "Como resolver o problema de latência e concorrência na arquitetura 7 de microsserviços?",
+      "response_text": "Olha, depende dos fatores e dos custos envolvidos antes de qualquer coisa na arquitetura 7.",
+      "human_classification": "INSUFFICIENT",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como resolver o problema de latencia e concorrencia na arquitetura 7 de microsservicos?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Olha, depende dos fatores e dos custos envolvidos antes de qualquer coisa na arquitetura 7.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> evasive_markers_unmatched -> prop.is_evasive=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Evasive response with subordinate clause (e.g. 'vai variar de acordo com o caso concreto') failed exact evasion regex and contained verb ('variar')",
+      "apparent_positive_evidence": "Grammatical complexity and verb presence interpreted as technical content",
+      "missing_or_contradictory_evidence": "Any concrete technical knowledge or mechanism",
+      "primary_root_cause": "EVASIVE_DEFLECTION_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_VERB_HEURISTIC_OVERRIDE"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_214",
+      "question_text": "Como o motor técnico da tecnologia 12 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 12 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 12 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 12 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_218",
+      "question_text": "Como o algoritmo de compactação Snappy equilibra taxa e velocidade de compressão?",
+      "response_text": "A pintura a óleo sobre tela exige a preparação prévia com gesso acrílico e secagem lenta por camadas sucessivas.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "Snappy",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "A pintura a óleo sobre tela exige a preparação prévia com gesso acrílico e secagem lenta por camadas sucessivas.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=19 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 19 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_220",
+      "question_text": "Como o componente de rede e mensageria 11 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 11 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 11 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 11 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_222",
+      "question_text": "Como resolver o problema de latência e concorrência na arquitetura 4 de microsserviços?",
+      "response_text": "Olha, vai variar de acordo com o caso concreto antes de qualquer coisa na arquitetura 4.",
+      "human_classification": "INSUFFICIENT",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como resolver o problema de latencia e concorrencia na arquitetura 4 de microsservicos?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Olha, vai variar de acordo com o caso concreto antes de qualquer coisa na arquitetura 4.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> evasive_markers_unmatched -> prop.is_evasive=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Evasive response with subordinate clause (e.g. 'vai variar de acordo com o caso concreto') failed exact evasion regex and contained verb ('variar')",
+      "apparent_positive_evidence": "Grammatical complexity and verb presence interpreted as technical content",
+      "missing_or_contradictory_evidence": "Any concrete technical knowledge or mechanism",
+      "primary_root_cause": "EVASIVE_DEFLECTION_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_VERB_HEURISTIC_OVERRIDE"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_223",
+      "question_text": "Como o componente de rede e mensageria 10 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 10 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 10 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 10 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_230",
+      "question_text": "Como reduzir a latência de consultas analíticas pesadas no data warehouse?",
+      "response_text": "Isso vai depender exclusivamente do orçamento que o cliente aprovar para o projeto.",
+      "human_classification": "INSUFFICIENT",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como reduzir a latencia de consultas analiticas pesadas no data warehouse?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Isso vai depender exclusivamente do orçamento que o cliente aprovar para o projeto.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> evasive_markers_unmatched -> prop.is_evasive=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Evasive response with subordinate clause (e.g. 'vai variar de acordo com o caso concreto') failed exact evasion regex and contained verb ('variar')",
+      "apparent_positive_evidence": "Grammatical complexity and verb presence interpreted as technical content",
+      "missing_or_contradictory_evidence": "Any concrete technical knowledge or mechanism",
+      "primary_root_cause": "EVASIVE_DEFLECTION_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_VERB_HEURISTIC_OVERRIDE"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_239",
+      "question_text": "Como garantir a durabilidade e segurança dos dados gravados no banco relacional?",
+      "response_text": "A gente desativa o write-ahead log (WAL) e desliga a sincronização em disco com fsync para ficar mais rápido.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como garantir a durabilidade e seguranca dos dados gravados no banco relacional?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "A gente desativa o write-ahead log (WAL) e desliga a sincronização em disco com fsync para ficar mais rápido.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=19 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 19 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_242",
+      "question_text": "Como o motor técnico da tecnologia 14 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 14 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 14 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 14 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_246",
+      "question_text": "Como o componente de rede e mensageria 27 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 27 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 27 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 27 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_247",
+      "question_text": "Como o componente de rede e mensageria 4 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 4 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 4 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 4 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_249",
+      "question_text": "Como o motor técnico da tecnologia 2 processa e resolve internamente o problema de partição distribuída?",
+      "response_text": "Essa tecnologia 2 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+      "human_classification": "RELATED",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o motor tecnico da tecnologia 2 processa e resolve internamente o problema de particao distribuida?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "Essa tecnologia 2 pertence à categoria de soluções modernas de computação e foi lançada pela fundação de software livre com ampla popularidade de mercado.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> institutional_metadata_unmatched -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> DIRECT",
+      "responsible_component": "PropositionDiscourseFilter / DemandPropositionNexusBipartiteMatcher",
+      "condition_permitting_direct": "Sentence describing open-source foundation, software category or creator failed regex match for institutional_metadata_markers and contained a transitive verb ('pertence', 'foi lancada')",
+      "apparent_positive_evidence": "Transitive verb and technological category mention",
+      "missing_or_contradictory_evidence": "Demonstrated technical mechanism solving the demanded partitioning/processing problem",
+      "primary_root_cause": "INSTITUTIONAL_METADATA_REGEX_LEAKAGE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "UNANCHORED_FUNCTIONAL_ASSERTION"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    },
+    {
+      "case_id": "CASE_250",
+      "question_text": "Como o componente de rede e mensageria 17 processa os pacotes de controle em tempo real?",
+      "response_text": "O cultivo de orquídeas e a jardinagem doméstica 17 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+      "human_classification": "OFF_TOPIC",
+      "predicted_classification": "DIRECT",
+      "predicted_relation_type": "open_domain_mechanism_assertion",
+      "predicted_rationale": "Response functionally solves the question demand.",
+      "identified_demands": [
+        {
+          "id": "demand_1",
+          "subject": "como o componente de rede e mensageria 17 processa os pacotes de controle em tempo real?",
+          "aspect_goals": []
+        }
+      ],
+      "extracted_propositions": [
+        {
+          "raw_text": "O cultivo de orquídeas e a jardinagem doméstica 17 exigem adubação foliar e poda cuidadosa durante as estações do ano.",
+          "subject": "operative_subject",
+          "action": "operative_action",
+          "is_operative": true,
+          "discourse_genre": "OPERATIVE_SOLUTION",
+          "is_alien_domain": false,
+          "is_evasive": false,
+          "is_auxiliary": false
+        }
+      ],
+      "nexus_records": [
+        {
+          "demand_id": "demand_1",
+          "nexus_relation": "FUNCTIONALLY_SOLVES",
+          "rationale": "Operative technical proposition functionally addresses the demand."
+        }
+      ],
+      "decision_path": "extract_propositions -> prop.is_alien_domain=False -> prop.is_operative=True -> assess_demand_nexus.line_3434_fallback -> FUNCTIONALLY_SOLVES -> aggregate_relevance.single_demand -> DIRECT",
+      "responsible_component": "DemandPropositionNexusBipartiteMatcher / PropositionDiscourseFilter",
+      "condition_permitting_direct": "prop.is_operative is True (length=20 words, verb detected); alien domain (botanics, cooking, cars) not found in hardcoded alien_terms tuple",
+      "apparent_positive_evidence": "Syntactically well-formed action verb phrase with length 20 words",
+      "missing_or_contradictory_evidence": "Contextual or semantic domain anchoring with question domain (computing/networks)",
+      "primary_root_cause": "SEMANTIC_DOMAIN_DISJUNCTION_ABSENCE",
+      "contributing_root_causes": [
+        "OPERATIVE_FALLBACK_PERMISSIVENESS",
+        "HARDCODED_ALIEN_TERMS_CATALOG"
+      ],
+      "analysis_confidence": "VERY_HIGH",
+      "refutation_evidence": "Se uma ancoragem semantica ou filtro discursivo fosse aplicado, a proposicao seria rejeitada antes do matcher conceder FUNCTIONALLY_SOLVES."
+    }
+  ]
+}

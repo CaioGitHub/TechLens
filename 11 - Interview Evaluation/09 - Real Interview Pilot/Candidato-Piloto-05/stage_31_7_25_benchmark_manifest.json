@@ -1,0 +1,33 @@
+{
+  "stage": "31.7.25",
+  "title": "Stage 31.7.25 Independent Blind Benchmark Manifest",
+  "timestamp": "2026-10-14T20:50:00-03:00",
+  "total_cases": 250,
+  "blind_input_file": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05/stage_31_7_25_blind_input.json",
+  "blind_input_sha256": "8FAC4CAE5F7D7B6DB611B72DC48C5D03654AAB70002828BBFF9832D153855847",
+  "ground_truth_file": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05/stage_31_7_25_ground_truth.json",
+  "ground_truth_sha256": "5285F745C26AB1E641EFBC013ACB4C59AA166BF0C757467EC2764879A6E72C0F",
+  "class_distribution": {
+    "DIRECT": 55,
+    "RELATED": 32,
+    "PARTIAL": 45,
+    "OFF_TOPIC": 44,
+    "INSUFFICIENT": 24,
+    "UNKNOWN": 22,
+    "SUPPORTING": 28
+  },
+  "invariance_pairs_count": 20,
+  "invariance_cases_count": 40,
+  "overlap_verification": {
+    "historical_questions_checked": 599,
+    "historical_responses_checked": 686,
+    "exact_duplicates": 0,
+    "status": "ZERO_OVERLAP_CONFIRMED"
+  },
+  "blinding_protocol": {
+    "neutral_case_ids": true,
+    "blind_input_isolated": true,
+    "classes_shuffled": true,
+    "seed": 20261014
+  }
+}

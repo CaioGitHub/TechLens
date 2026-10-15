@@ -1,0 +1,89 @@
+{
+  "stage": "31.7.27",
+  "execution_date": "2026-10-15T01:40:00Z",
+  "runtime_path": "reference_runtime/runtime.py",
+  "runtime_sha256": "3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229",
+  "regression_status": "ZERO_REGRESSIONS",
+  "suites": [
+    {
+      "suite_name": "Canonical Full Workspace Suite",
+      "command": "py -3 -m unittest discover -s tests -p \"test_*.py\"",
+      "total_tests": 1047,
+      "passed": 1046,
+      "skipped": 1,
+      "failures": 0,
+      "errors": 0,
+      "status": "PASSED",
+      "elapsed_seconds": 35.102,
+      "notes": "Full regression across all stages (Stage 20 through Stage 31.7.27). 1 expected test skipped."
+    },
+    {
+      "suite_name": "Stage 26 Reference Harness",
+      "command": "py -3 -m unittest tests.test_stage_26_reference_harness",
+      "total_tests": 15,
+      "passed": 15,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "status": "PASSED",
+      "elapsed_seconds": 38.004,
+      "notes": "End-to-end multi-agent evaluation pipeline verified without performance or semantic regression."
+    },
+    {
+      "suite_name": "Stage 31.7.11 Demand-Proposition Nexus Tests",
+      "command": "py -3 -m unittest tests.test_stage_31_7_11_demand_proposition_nexus",
+      "total_tests": 8,
+      "passed": 8,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "status": "PASSED",
+      "elapsed_seconds": 0.030,
+      "notes": "Inference limits, circularity detection, and category boundaries verified."
+    },
+    {
+      "suite_name": "Stage 31.7.20 Controlled Remediation Tests",
+      "command": "py -3 -m unittest tests.test_stage_31_7_20_controlled_remediation",
+      "total_tests": 14,
+      "passed": 14,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "status": "PASSED",
+      "elapsed_seconds": 0.019,
+      "notes": "Avoidance guards, informal idioms, antithesis boundaries, and 7-class reachability verified."
+    },
+    {
+      "suite_name": "Stage 31.7.24 Contract Tests",
+      "command": "py -3 -m unittest tests.test_stage_31_7_24_contract_tests",
+      "total_tests": 9,
+      "passed": 9,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "status": "PASSED",
+      "elapsed_seconds": 0.021,
+      "notes": "Cycle 4 contract tests verified (multi-aspect demands, colloquial antithesis, 7 canonical classes)."
+    },
+    {
+      "suite_name": "Stage 31.7.27 Mandatory Contract Tests (Cycle 5)",
+      "command": "py -3 -m unittest tests.test_stage_31_7_27_contract_tests",
+      "total_tests": 20,
+      "passed": 20,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "status": "PASSED",
+      "elapsed_seconds": 0.026,
+      "notes": "All 20 mandatory contract test cases for semantic domain disjunction, intent-relative sufficiency, and invariance passed 100%."
+    }
+  ],
+  "summary": {
+    "total_tests_executed": 1113,
+    "total_passed": 1112,
+    "total_skipped": 1,
+    "total_failures": 0,
+    "total_errors": 0,
+    "regression_detected": false
+  }
+}

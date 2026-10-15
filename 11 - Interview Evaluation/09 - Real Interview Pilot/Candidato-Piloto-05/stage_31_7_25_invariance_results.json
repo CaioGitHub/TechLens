@@ -1,0 +1,335 @@
+{
+  "summary": {
+    "total_pairs": 20,
+    "consistent_pairs": 10,
+    "joint_correct_pairs": 8,
+    "invariance_correct_pairs": 8,
+    "consistency_rate": 0.5,
+    "joint_correct_rate": 0.4,
+    "invariance_correct_rate": 0.4,
+    "threshold": 0.8,
+    "status": "FAIL"
+  },
+  "pairs": [
+    {
+      "pair_id": "PAIR_01",
+      "case_1": {
+        "id": "CASE_145",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "CASE_172",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "is_consistent": true,
+      "is_joint_correct": true,
+      "is_invariance_correct": true
+    },
+    {
+      "pair_id": "PAIR_02",
+      "case_1": {
+        "id": "CASE_173",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "CASE_198",
+        "ref": "DIRECT",
+        "pred": "RELATED"
+      },
+      "is_consistent": false,
+      "is_joint_correct": false,
+      "is_invariance_correct": false
+    },
+    {
+      "pair_id": "PAIR_03",
+      "case_1": {
+        "id": "CASE_023",
+        "ref": "DIRECT",
+        "pred": "RELATED"
+      },
+      "case_2": {
+        "id": "CASE_080",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "is_consistent": false,
+      "is_joint_correct": false,
+      "is_invariance_correct": false
+    },
+    {
+      "pair_id": "PAIR_04",
+      "case_1": {
+        "id": "CASE_004",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "CASE_133",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "is_consistent": true,
+      "is_joint_correct": true,
+      "is_invariance_correct": true
+    },
+    {
+      "pair_id": "PAIR_05",
+      "case_1": {
+        "id": "CASE_200",
+        "ref": "DIRECT",
+        "pred": "PARTIAL"
+      },
+      "case_2": {
+        "id": "CASE_204",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "is_consistent": false,
+      "is_joint_correct": false,
+      "is_invariance_correct": false
+    },
+    {
+      "pair_id": "PAIR_06",
+      "case_1": {
+        "id": "CASE_048",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "CASE_092",
+        "ref": "DIRECT",
+        "pred": "DIRECT"
+      },
+      "is_consistent": true,
+      "is_joint_correct": true,
+      "is_invariance_correct": true
+    },
+    {
+      "pair_id": "PAIR_07",
+      "case_1": {
+        "id": "CASE_201",
+        "ref": "PARTIAL",
+        "pred": "PARTIAL"
+      },
+      "case_2": {
+        "id": "CASE_235",
+        "ref": "PARTIAL",
+        "pred": "OFF_TOPIC"
+      },
+      "is_consistent": false,
+      "is_joint_correct": false,
+      "is_invariance_correct": false
+    },
+    {
+      "pair_id": "PAIR_08",
+      "case_1": {
+        "id": "CASE_031",
+        "ref": "PARTIAL",
+        "pred": "PARTIAL"
+      },
+      "case_2": {
+        "id": "CASE_238",
+        "ref": "PARTIAL",
+        "pred": "PARTIAL"
+      },
+      "is_consistent": true,
+      "is_joint_correct": true,
+      "is_invariance_correct": true
+    },
+    {
+      "pair_id": "PAIR_09",
+      "case_1": {
+        "id": "CASE_056",
+        "ref": "PARTIAL",
+        "pred": "PARTIAL"
+      },
+      "case_2": {
+        "id": "CASE_184",
+        "ref": "PARTIAL",
+        "pred": "OFF_TOPIC"
+      },
+      "is_consistent": false,
+      "is_joint_correct": false,
+      "is_invariance_correct": false
+    },
+    {
+      "pair_id": "PAIR_10",
+      "case_1": {
+        "id": "CASE_140",
+        "ref": "PARTIAL",
+        "pred": "PARTIAL"
+      },
+      "case_2": {
+        "id": "CASE_225",
+        "ref": "PARTIAL",
+        "pred": "PARTIAL"
+      },
+      "is_consistent": true,
+      "is_joint_correct": true,
+      "is_invariance_correct": true
+    },
+    {
+      "pair_id": "PAIR_11",
+      "case_1": {
+        "id": "CASE_167",
+        "ref": "SUPPORTING",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "CASE_192",
+        "ref": "SUPPORTING",
+        "pred": "DIRECT"
+      },
+      "is_consistent": true,
+      "is_joint_correct": false,
+      "is_invariance_correct": false
+    },
+    {
+      "pair_id": "PAIR_12",
+      "case_1": {
+        "id": "CASE_017",
+        "ref": "SUPPORTING",
+        "pred": "OFF_TOPIC"
+      },
+      "case_2": {
+        "id": "CASE_118",
+        "ref": "SUPPORTING",
+        "pred": "DIRECT"
+      },
+      "is_consistent": false,
+      "is_joint_correct": false,
+      "is_invariance_correct": false
+    },
+    {
+      "pair_id": "PAIR_13",
+      "case_1": {
+        "id": "CASE_084",
+        "ref": "SUPPORTING",
+        "pred": "OFF_TOPIC"
+      },
+      "case_2": {
+        "id": "CASE_104",
+        "ref": "SUPPORTING",
+        "pred": "DIRECT"
+      },
+      "is_consistent": false,
+      "is_joint_correct": false,
+      "is_invariance_correct": false
+    },
+    {
+      "pair_id": "PAIR_14",
+      "case_1": {
+        "id": "CASE_043",
+        "ref": "RELATED",
+        "pred": "RELATED"
+      },
+      "case_2": {
+        "id": "CASE_129",
+        "ref": "RELATED",
+        "pred": "RELATED"
+      },
+      "is_consistent": true,
+      "is_joint_correct": true,
+      "is_invariance_correct": true
+    },
+    {
+      "pair_id": "PAIR_15",
+      "case_1": {
+        "id": "CASE_035",
+        "ref": "RELATED",
+        "pred": "OFF_TOPIC"
+      },
+      "case_2": {
+        "id": "CASE_111",
+        "ref": "RELATED",
+        "pred": "OFF_TOPIC"
+      },
+      "is_consistent": true,
+      "is_joint_correct": false,
+      "is_invariance_correct": false
+    },
+    {
+      "pair_id": "PAIR_16",
+      "case_1": {
+        "id": "CASE_064",
+        "ref": "RELATED",
+        "pred": "RELATED"
+      },
+      "case_2": {
+        "id": "CASE_175",
+        "ref": "RELATED",
+        "pred": "DIRECT"
+      },
+      "is_consistent": false,
+      "is_joint_correct": false,
+      "is_invariance_correct": false
+    },
+    {
+      "pair_id": "PAIR_17",
+      "case_1": {
+        "id": "CASE_135",
+        "ref": "OFF_TOPIC",
+        "pred": "OFF_TOPIC"
+      },
+      "case_2": {
+        "id": "CASE_215",
+        "ref": "OFF_TOPIC",
+        "pred": "OFF_TOPIC"
+      },
+      "is_consistent": true,
+      "is_joint_correct": true,
+      "is_invariance_correct": true
+    },
+    {
+      "pair_id": "PAIR_18",
+      "case_1": {
+        "id": "CASE_148",
+        "ref": "OFF_TOPIC",
+        "pred": "OFF_TOPIC"
+      },
+      "case_2": {
+        "id": "CASE_210",
+        "ref": "OFF_TOPIC",
+        "pred": "OFF_TOPIC"
+      },
+      "is_consistent": true,
+      "is_joint_correct": true,
+      "is_invariance_correct": true
+    },
+    {
+      "pair_id": "PAIR_19",
+      "case_1": {
+        "id": "CASE_028",
+        "ref": "OFF_TOPIC",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "CASE_216",
+        "ref": "OFF_TOPIC",
+        "pred": "OFF_TOPIC"
+      },
+      "is_consistent": false,
+      "is_joint_correct": false,
+      "is_invariance_correct": false
+    },
+    {
+      "pair_id": "PAIR_20",
+      "case_1": {
+        "id": "CASE_022",
+        "ref": "OFF_TOPIC",
+        "pred": "DIRECT"
+      },
+      "case_2": {
+        "id": "CASE_234",
+        "ref": "OFF_TOPIC",
+        "pred": "OFF_TOPIC"
+      },
+      "is_consistent": false,
+      "is_joint_correct": false,
+      "is_invariance_correct": false
+    }
+  ]
+}
