@@ -1,0 +1,1760 @@
+{
+  "stage": "31.7.28",
+  "evaluation_mode": "BLIND_INDEPENDENT_EXECUTION",
+  "runtime_sha256": "6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28",
+  "total_cases": 250,
+  "elapsed_seconds": 0.2661,
+  "timestamp_utc": "2026-10-19T14:58:53Z",
+  "predictions": [
+    {
+      "id": "VAL-31-7-28-001",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-002",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-003",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without demonstrating operative mechanism."
+    },
+    {
+      "id": "VAL-31-7-28-004",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-005",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-006",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-007",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-008",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-009",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-010",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-011",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-012",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-013",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-014",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-015",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "partial_aspect_coverage",
+      "rationale": "Response covers part of the required demand."
+    },
+    {
+      "id": "VAL-31-7-28-016",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-017",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-018",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-019",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-020",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-021",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-022",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-023",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without demonstrating operative mechanism."
+    },
+    {
+      "id": "VAL-31-7-28-024",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-025",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-026",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-027",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-028",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without demonstrating operative mechanism."
+    },
+    {
+      "id": "VAL-31-7-28-029",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-030",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-031",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "destructive_antithesis_assertion",
+      "rationale": "Response proposes action that opposes or disables required protections."
+    },
+    {
+      "id": "VAL-31-7-28-032",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-033",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-034",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-035",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-036",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-037",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-038",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-039",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-040",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-041",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-042",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-043",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-044",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-045",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-046",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-047",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-048",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-049",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-050",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-051",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-052",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-053",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-054",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-055",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-056",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-057",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-058",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_full_coverage",
+      "rationale": "Response functionally solves all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-059",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-060",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-061",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-062",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without satisfying functional demands."
+    },
+    {
+      "id": "VAL-31-7-28-063",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "domain_disjunct_assertion",
+      "rationale": "Response is functionally disjunct from the question domain."
+    },
+    {
+      "id": "VAL-31-7-28-064",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring support to the demands."
+    },
+    {
+      "id": "VAL-31-7-28-065",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-066",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate technical propositions satisfying demands."
+    },
+    {
+      "id": "VAL-31-7-28-067",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without satisfying functional demands."
+    },
+    {
+      "id": "VAL-31-7-28-068",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-069",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-070",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-071",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate technical propositions satisfying demands."
+    },
+    {
+      "id": "VAL-31-7-28-072",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-073",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-074",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-075",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-076",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-077",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-078",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-079",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-080",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-081",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-082",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-083",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-084",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-085",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-086",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-087",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-088",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-089",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-090",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-091",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-092",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-093",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-094",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-095",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-096",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-097",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-098",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-099",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-100",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-101",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-102",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-103",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-104",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-105",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-106",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-107",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-108",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-109",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-110",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-111",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-112",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-113",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-114",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-115",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-116",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-117",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-118",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-119",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-120",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-121",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-122",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-123",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-124",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-125",
+      "predicted_relevance": "SUPPORTING",
+      "functional_contribution": true,
+      "relation_type": "auxiliary_observability_support",
+      "rationale": "Response provides auxiliary observability/monitoring contribution without directly solving."
+    },
+    {
+      "id": "VAL-31-7-28-126",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-127",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-128",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without demonstrating operative mechanism."
+    },
+    {
+      "id": "VAL-31-7-28-129",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without demonstrating operative mechanism."
+    },
+    {
+      "id": "VAL-31-7-28-130",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without demonstrating operative mechanism."
+    },
+    {
+      "id": "VAL-31-7-28-131",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without demonstrating operative mechanism."
+    },
+    {
+      "id": "VAL-31-7-28-132",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-133",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-134",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without demonstrating operative mechanism."
+    },
+    {
+      "id": "VAL-31-7-28-135",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-136",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without demonstrating operative mechanism."
+    },
+    {
+      "id": "VAL-31-7-28-137",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-138",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without demonstrating operative mechanism."
+    },
+    {
+      "id": "VAL-31-7-28-139",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without demonstrating operative mechanism."
+    },
+    {
+      "id": "VAL-31-7-28-140",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-141",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-142",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-143",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-144",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-145",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-146",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-147",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-148",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-149",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-150",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-151",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-152",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-153",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-154",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-155",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-156",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-157",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-158",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-159",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-160",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-161",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "alien_domain_assertion",
+      "rationale": "Response is functionally disjunct from the question domain."
+    },
+    {
+      "id": "VAL-31-7-28-162",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-163",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "alien_domain_assertion",
+      "rationale": "Response is functionally disjunct from the question domain."
+    },
+    {
+      "id": "VAL-31-7-28-164",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "alien_domain_assertion",
+      "rationale": "Response is functionally disjunct from the question domain."
+    },
+    {
+      "id": "VAL-31-7-28-165",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "destructive_antithesis_assertion",
+      "rationale": "Response proposes action that opposes or disables required protections."
+    },
+    {
+      "id": "VAL-31-7-28-166",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "destructive_antithesis_assertion",
+      "rationale": "Response proposes action that opposes or disables required protections."
+    },
+    {
+      "id": "VAL-31-7-28-167",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "alien_domain_assertion",
+      "rationale": "Response is functionally disjunct from the question domain."
+    },
+    {
+      "id": "VAL-31-7-28-168",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "alien_domain_assertion",
+      "rationale": "Response is functionally disjunct from the question domain."
+    },
+    {
+      "id": "VAL-31-7-28-169",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-170",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "alien_domain_assertion",
+      "rationale": "Response is functionally disjunct from the question domain."
+    },
+    {
+      "id": "VAL-31-7-28-171",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-172",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "alien_domain_assertion",
+      "rationale": "Response is functionally disjunct from the question domain."
+    },
+    {
+      "id": "VAL-31-7-28-173",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-174",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-175",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-176",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-177",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-178",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-179",
+      "predicted_relevance": "PARTIAL",
+      "functional_contribution": true,
+      "relation_type": "multi_aspect_partial_coverage",
+      "rationale": "Response satisfies some but not all demanded aspects."
+    },
+    {
+      "id": "VAL-31-7-28-180",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "destructive_antithesis_assertion",
+      "rationale": "Response proposes action that opposes or disables required protections."
+    },
+    {
+      "id": "VAL-31-7-28-181",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "destructive_antithesis_assertion",
+      "rationale": "Response proposes action that opposes or disables required protections."
+    },
+    {
+      "id": "VAL-31-7-28-182",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "destructive_antithesis_assertion",
+      "rationale": "Response proposes action that opposes or disables required protections."
+    },
+    {
+      "id": "VAL-31-7-28-183",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-184",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-185",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-186",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-187",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-188",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-189",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-190",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-191",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-192",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-193",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-194",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-195",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-196",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-197",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-198",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-199",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-200",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-201",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-202",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-203",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-204",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-205",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-206",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "evasive_insufficient_content",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-207",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-208",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "evasive_insufficient_content",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-209",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-210",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-211",
+      "predicted_relevance": "RELATED",
+      "functional_contribution": false,
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "rationale": "Response is thematically adjacent without demonstrating operative mechanism."
+    },
+    {
+      "id": "VAL-31-7-28-212",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-213",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-214",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-215",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-216",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-217",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-218",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-219",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-220",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-221",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-222",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-223",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-224",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-225",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-226",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-227",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-228",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-229",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-230",
+      "predicted_relevance": "INSUFFICIENT",
+      "functional_contribution": false,
+      "relation_type": "insufficient_technical_proposition",
+      "rationale": "Response lacks evaluable technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-231",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "circular_reasoning_tautology",
+      "rationale": "Response is a circular tautology without informational gain."
+    },
+    {
+      "id": "VAL-31-7-28-232",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "circular_reasoning_tautology",
+      "rationale": "Response is a circular tautology without informational gain."
+    },
+    {
+      "id": "VAL-31-7-28-233",
+      "predicted_relevance": "DIRECT",
+      "functional_contribution": true,
+      "relation_type": "open_domain_mechanism_assertion",
+      "rationale": "Response functionally solves the question demand."
+    },
+    {
+      "id": "VAL-31-7-28-234",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "circular_reasoning_tautology",
+      "rationale": "Response is a circular tautology without informational gain."
+    },
+    {
+      "id": "VAL-31-7-28-235",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "circular_reasoning_tautology",
+      "rationale": "Response is a circular tautology without informational gain."
+    },
+    {
+      "id": "VAL-31-7-28-236",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "circular_reasoning_tautology",
+      "rationale": "Response is a circular tautology without informational gain."
+    },
+    {
+      "id": "VAL-31-7-28-237",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "ambiguous_proposition",
+      "rationale": "Response is ambiguous and lacks concrete technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-238",
+      "predicted_relevance": "OFF_TOPIC",
+      "functional_contribution": false,
+      "relation_type": "non_operative_assertion",
+      "rationale": "Response does not demonstrate operative technical mechanism addressing demand."
+    },
+    {
+      "id": "VAL-31-7-28-239",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "ambiguous_proposition",
+      "rationale": "Response is ambiguous and lacks concrete technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-240",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "ambiguous_proposition",
+      "rationale": "Response is ambiguous and lacks concrete technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-241",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "ambiguous_proposition",
+      "rationale": "Response is ambiguous and lacks concrete technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-242",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "ambiguous_proposition",
+      "rationale": "Response is ambiguous and lacks concrete technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-243",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "ambiguous_proposition",
+      "rationale": "Response is ambiguous and lacks concrete technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-244",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "ambiguous_proposition",
+      "rationale": "Response is ambiguous and lacks concrete technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-245",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "ambiguous_proposition",
+      "rationale": "Response is ambiguous and lacks concrete technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-246",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "ambiguous_proposition",
+      "rationale": "Response is ambiguous and lacks concrete technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-247",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "ambiguous_proposition",
+      "rationale": "Response is ambiguous and lacks concrete technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-248",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "ambiguous_proposition",
+      "rationale": "Response is ambiguous and lacks concrete technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-249",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "ambiguous_proposition",
+      "rationale": "Response is ambiguous and lacks concrete technical propositions."
+    },
+    {
+      "id": "VAL-31-7-28-250",
+      "predicted_relevance": "UNKNOWN",
+      "functional_contribution": false,
+      "relation_type": "ambiguous_proposition",
+      "rationale": "Response is ambiguous and lacks concrete technical propositions."
+    }
+  ]
+}

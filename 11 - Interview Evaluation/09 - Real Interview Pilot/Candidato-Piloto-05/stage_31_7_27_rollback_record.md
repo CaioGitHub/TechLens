@@ -34,7 +34,8 @@ Durante a implementação do Stage 31.7.27, os seguintes snapshots intermediári
 | **CP-B** | `reference_runtime/runtime.py.stage_31_7_27_inc_b` | Incremento B (Demand-Proposition Nexus Matcher) | **HOMOLOGADO** |
 | **CP-C** | `reference_runtime/runtime.py.stage_31_7_27_inc_c` | Incremento C (Cobertura e Suficiência Relativa à Intenção) | **HOMOLOGADO** |
 | **CP-D** | `reference_runtime/runtime.py.stage_31_7_27_inc_d` | Incremento D (StrictOntologyRelevanceAggregator) | **HOMOLOGADO** |
-| **CP-E (Final)** | `reference_runtime/runtime.py.stage_31_7_27_final` | Incremento E (Rastreabilidade e Integração Completa) | **HOMOLOGADO** (`3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`) |
+| **CP-E (Pre-Regr)** | `reference_runtime/runtime.py.stage_31_7_27_pre_regression_fix` | Incremento E Pré-Ajustes Canônicos | **HISTÓRICO** (`3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`) |
+| **CP-F (Final)** | `reference_runtime/runtime.py.stage_31_7_27_final` | Homologação com 0 Regressões Canônicas | **HOMOLOGADO** (`6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28`) |
 
 ---
 

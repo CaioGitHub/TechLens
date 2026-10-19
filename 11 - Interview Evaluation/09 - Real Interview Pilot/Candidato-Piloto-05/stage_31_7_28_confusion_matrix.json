@@ -1,0 +1,94 @@
+{
+  "classes": [
+    "DIRECT",
+    "PARTIAL",
+    "SUPPORTING",
+    "RELATED",
+    "OFF_TOPIC",
+    "INSUFFICIENT",
+    "UNKNOWN"
+  ],
+  "matrix": {
+    "DIRECT": {
+      "DIRECT": 38,
+      "RELATED": 3,
+      "OFF_TOPIC": 3,
+      "PARTIAL": 3,
+      "SUPPORTING": 3,
+      "INSUFFICIENT": 0,
+      "UNKNOWN": 0
+    },
+    "PARTIAL": {
+      "PARTIAL": 38,
+      "DIRECT": 1,
+      "RELATED": 2,
+      "OFF_TOPIC": 3,
+      "SUPPORTING": 1,
+      "INSUFFICIENT": 0,
+      "UNKNOWN": 0
+    },
+    "SUPPORTING": {
+      "SUPPORTING": 29,
+      "OFF_TOPIC": 1,
+      "DIRECT": 0,
+      "PARTIAL": 0,
+      "RELATED": 0,
+      "INSUFFICIENT": 0,
+      "UNKNOWN": 0
+    },
+    "RELATED": {
+      "DIRECT": 5,
+      "RELATED": 8,
+      "OFF_TOPIC": 22,
+      "PARTIAL": 0,
+      "SUPPORTING": 0,
+      "INSUFFICIENT": 0,
+      "UNKNOWN": 0
+    },
+    "OFF_TOPIC": {
+      "OFF_TOPIC": 18,
+      "DIRECT": 26,
+      "PARTIAL": 1,
+      "SUPPORTING": 0,
+      "RELATED": 0,
+      "INSUFFICIENT": 0,
+      "UNKNOWN": 0
+    },
+    "INSUFFICIENT": {
+      "INSUFFICIENT": 19,
+      "DIRECT": 1,
+      "OFF_TOPIC": 4,
+      "RELATED": 1,
+      "PARTIAL": 0,
+      "SUPPORTING": 0,
+      "UNKNOWN": 0
+    },
+    "UNKNOWN": {
+      "UNKNOWN": 18,
+      "DIRECT": 1,
+      "OFF_TOPIC": 1,
+      "PARTIAL": 0,
+      "SUPPORTING": 0,
+      "RELATED": 0,
+      "INSUFFICIENT": 0
+    }
+  },
+  "support": {
+    "DIRECT": 50,
+    "PARTIAL": 45,
+    "SUPPORTING": 30,
+    "RELATED": 35,
+    "OFF_TOPIC": 45,
+    "INSUFFICIENT": 25,
+    "UNKNOWN": 20
+  },
+  "predicted_counts": {
+    "DIRECT": 72,
+    "PARTIAL": 42,
+    "SUPPORTING": 33,
+    "RELATED": 14,
+    "OFF_TOPIC": 52,
+    "INSUFFICIENT": 19,
+    "UNKNOWN": 18
+  }
+}

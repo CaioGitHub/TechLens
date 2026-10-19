@@ -1,0 +1,209 @@
+{
+  "total_pairs": 20,
+  "consistent_pairs": 16,
+  "consistency_rate": 0.8,
+  "both_correct_pairs": 13,
+  "correctness_rate": 0.65,
+  "pairs": [
+    {
+      "pair_id": "PAIR_01",
+      "reference_class": "DIRECT",
+      "case_a_id": "VAL-31-7-28-001",
+      "case_a_pred": "DIRECT",
+      "case_b_id": "VAL-31-7-28-002",
+      "case_b_pred": "DIRECT",
+      "consistent": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "PAIR_02",
+      "reference_class": "DIRECT",
+      "case_a_id": "VAL-31-7-28-003",
+      "case_a_pred": "RELATED",
+      "case_b_id": "VAL-31-7-28-004",
+      "case_b_pred": "DIRECT",
+      "consistent": false,
+      "both_correct": false
+    },
+    {
+      "pair_id": "PAIR_03",
+      "reference_class": "DIRECT",
+      "case_a_id": "VAL-31-7-28-005",
+      "case_a_pred": "OFF_TOPIC",
+      "case_b_id": "VAL-31-7-28-006",
+      "case_b_pred": "DIRECT",
+      "consistent": false,
+      "both_correct": false
+    },
+    {
+      "pair_id": "PAIR_04",
+      "reference_class": "DIRECT",
+      "case_a_id": "VAL-31-7-28-007",
+      "case_a_pred": "PARTIAL",
+      "case_b_id": "VAL-31-7-28-008",
+      "case_b_pred": "PARTIAL",
+      "consistent": true,
+      "both_correct": false
+    },
+    {
+      "pair_id": "PAIR_05",
+      "reference_class": "DIRECT",
+      "case_a_id": "VAL-31-7-28-009",
+      "case_a_pred": "SUPPORTING",
+      "case_b_id": "VAL-31-7-28-010",
+      "case_b_pred": "SUPPORTING",
+      "consistent": true,
+      "both_correct": false
+    },
+    {
+      "pair_id": "PAIR_06",
+      "reference_class": "DIRECT",
+      "case_a_id": "VAL-31-7-28-011",
+      "case_a_pred": "DIRECT",
+      "case_b_id": "VAL-31-7-28-012",
+      "case_b_pred": "DIRECT",
+      "consistent": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "PAIR_07",
+      "reference_class": "DIRECT",
+      "case_a_id": "VAL-31-7-28-013",
+      "case_a_pred": "DIRECT",
+      "case_b_id": "VAL-31-7-28-014",
+      "case_b_pred": "DIRECT",
+      "consistent": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "PAIR_08",
+      "reference_class": "DIRECT",
+      "case_a_id": "VAL-31-7-28-015",
+      "case_a_pred": "PARTIAL",
+      "case_b_id": "VAL-31-7-28-016",
+      "case_b_pred": "DIRECT",
+      "consistent": false,
+      "both_correct": false
+    },
+    {
+      "pair_id": "PAIR_09",
+      "reference_class": "DIRECT",
+      "case_a_id": "VAL-31-7-28-017",
+      "case_a_pred": "DIRECT",
+      "case_b_id": "VAL-31-7-28-018",
+      "case_b_pred": "DIRECT",
+      "consistent": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "PAIR_10",
+      "reference_class": "DIRECT",
+      "case_a_id": "VAL-31-7-28-019",
+      "case_a_pred": "DIRECT",
+      "case_b_id": "VAL-31-7-28-020",
+      "case_b_pred": "DIRECT",
+      "consistent": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "PAIR_11",
+      "reference_class": "PARTIAL",
+      "case_a_id": "VAL-31-7-28-051",
+      "case_a_pred": "PARTIAL",
+      "case_b_id": "VAL-31-7-28-052",
+      "case_b_pred": "PARTIAL",
+      "consistent": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "PAIR_12",
+      "reference_class": "PARTIAL",
+      "case_a_id": "VAL-31-7-28-053",
+      "case_a_pred": "PARTIAL",
+      "case_b_id": "VAL-31-7-28-054",
+      "case_b_pred": "PARTIAL",
+      "consistent": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "PAIR_13",
+      "reference_class": "SUPPORTING",
+      "case_a_id": "VAL-31-7-28-096",
+      "case_a_pred": "SUPPORTING",
+      "case_b_id": "VAL-31-7-28-097",
+      "case_b_pred": "SUPPORTING",
+      "consistent": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "PAIR_14",
+      "reference_class": "RELATED",
+      "case_a_id": "VAL-31-7-28-126",
+      "case_a_pred": "DIRECT",
+      "case_b_id": "VAL-31-7-28-127",
+      "case_b_pred": "DIRECT",
+      "consistent": true,
+      "both_correct": false
+    },
+    {
+      "pair_id": "PAIR_15",
+      "reference_class": "RELATED",
+      "case_a_id": "VAL-31-7-28-128",
+      "case_a_pred": "RELATED",
+      "case_b_id": "VAL-31-7-28-129",
+      "case_b_pred": "RELATED",
+      "consistent": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "PAIR_16",
+      "reference_class": "OFF_TOPIC",
+      "case_a_id": "VAL-31-7-28-161",
+      "case_a_pred": "OFF_TOPIC",
+      "case_b_id": "VAL-31-7-28-162",
+      "case_b_pred": "OFF_TOPIC",
+      "consistent": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "PAIR_17",
+      "reference_class": "OFF_TOPIC",
+      "case_a_id": "VAL-31-7-28-163",
+      "case_a_pred": "OFF_TOPIC",
+      "case_b_id": "VAL-31-7-28-164",
+      "case_b_pred": "OFF_TOPIC",
+      "consistent": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "PAIR_18",
+      "reference_class": "OFF_TOPIC",
+      "case_a_id": "VAL-31-7-28-165",
+      "case_a_pred": "OFF_TOPIC",
+      "case_b_id": "VAL-31-7-28-166",
+      "case_b_pred": "OFF_TOPIC",
+      "consistent": true,
+      "both_correct": true
+    },
+    {
+      "pair_id": "PAIR_19",
+      "reference_class": "INSUFFICIENT",
+      "case_a_id": "VAL-31-7-28-206",
+      "case_a_pred": "INSUFFICIENT",
+      "case_b_id": "VAL-31-7-28-207",
+      "case_b_pred": "DIRECT",
+      "consistent": false,
+      "both_correct": false
+    },
+    {
+      "pair_id": "PAIR_20",
+      "reference_class": "UNKNOWN",
+      "case_a_id": "VAL-31-7-28-231",
+      "case_a_pred": "UNKNOWN",
+      "case_b_id": "VAL-31-7-28-232",
+      "case_b_pred": "UNKNOWN",
+      "consistent": true,
+      "both_correct": true
+    }
+  ]
+}

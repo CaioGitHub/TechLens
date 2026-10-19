@@ -1,0 +1,44 @@
+{
+  "stage": "31.7.28",
+  "execution_date_utc": "2026-10-19T15:03:00Z",
+  "runtime_path": "reference_runtime/runtime.py",
+  "runtime_sha256": "6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28",
+  "regression_status": "ZERO_REGRESSIONS",
+  "suites": [
+    {
+      "suite_name": "Full Workspace Canonical Test Suite",
+      "command": "py -3 -m unittest discover -s tests -p \"test_*.py\"",
+      "total_tests": 1067,
+      "passed": 1066,
+      "skipped": 1,
+      "failures": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "elapsed_seconds": 46.392,
+      "status": "PASSED",
+      "notes": "Full regression across all stages including Stage 31.7.27 contract tests. Zero failures, zero errors, 1 expected test skipped."
+    },
+    {
+      "suite_name": "Stage 26 Reference Harness",
+      "command": "py -3 -m unittest tests.test_stage_26_reference_harness",
+      "total_tests": 15,
+      "passed": 15,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "elapsed_seconds": 34.687,
+      "status": "PASSED",
+      "notes": "Full multi-agent end-to-end evaluation harness verified without performance or semantic regressions."
+    }
+  ],
+  "summary": {
+    "total_tests_executed": 1082,
+    "total_passed": 1081,
+    "total_skipped": 1,
+    "total_failures": 0,
+    "total_errors": 0,
+    "unexplained_regressions": 0,
+    "regression_detected": false
+  }
+}

@@ -5,11 +5,12 @@
 - **Arquivo Modificado:** `reference_runtime/runtime.py`
 - **Baseline de Entrada (Stage 31.7.26 Baseline):**
   - SHA-256: `36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7`
-- **Snapshot Pós-Remediação (Stage 31.7.27 Final):**
-  - SHA-256: `3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`
-- **Snapshot de Segurança Criado:**
-  - `reference_runtime/runtime.py.stage_31_7_26_baseline`
-  - `reference_runtime/runtime.py.stage_31_7_27_final`
+- **Snapshot Pós-Remediação Homologado com 0 Regressões (Stage 31.7.27 Final):**
+  - SHA-256: `6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28`
+- **Snapshots de Segurança Persistidos:**
+  - `reference_runtime/runtime.py.stage_31_7_26_baseline` (SHA-256: `36344F3E...`)
+  - `reference_runtime/runtime.py.stage_31_7_27_pre_regression_fix` (SHA-256: `3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`)
+  - `reference_runtime/runtime.py.stage_31_7_27_final` (SHA-256: `6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28`)
 - **Estatísticas Git Diff:**
   - 1 arquivo alterado, 986 adições (+), 538 deleções (-)
 

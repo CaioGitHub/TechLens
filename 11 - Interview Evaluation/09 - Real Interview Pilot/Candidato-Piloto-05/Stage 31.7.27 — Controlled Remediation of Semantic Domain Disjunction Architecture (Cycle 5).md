@@ -22,12 +22,13 @@ O presente estágio executou a implementação controlada da arquitetura de disj
 - **Arquivo Canônico Remediado:** `reference_runtime/runtime.py`
 - **SHA-256 Baseline de Entrada (Stage 31.7.26 Baseline):**
   $$\textbf{36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7}$$
-- **SHA-256 Homologado de Saída (Stage 31.7.27 Final):**
-  $$\textbf{3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229}$$
+- **SHA-256 Homologado de Saída (Stage 31.7.27 Final com 0 Regressões):**
+  $$\textbf{6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28}$$
 - **Snapshots de Backup Persistidos:**
-  - `reference_runtime/runtime.py.stage_31_7_26_baseline`
+  - `reference_runtime/runtime.py.stage_31_7_26_baseline` (SHA-256: `36344F3E...`)
   - `reference_runtime/runtime.py.stage_31_7_27_inc_a`
-  - `reference_runtime/runtime.py.stage_31_7_27_final`
+  - `reference_runtime/runtime.py.stage_31_7_27_pre_regression_fix` (SHA-256: `3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`)
+  - `reference_runtime/runtime.py.stage_31_7_27_final` (SHA-256: `6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28`)
 - **Estatísticas de Alteração Git:**
   - 1 arquivo modificado, 986 adições (+), 538 deleções (-)
 
@@ -142,6 +143,6 @@ $$\textbf{Gate: IMPLEMENTATION\_COMPLETE\_PENDING\_INDEPENDENT\_BLIND\_VALIDATIO
 
 ### Próximo Estágio Autorizado
 - **Stage 31.7.28 — Independent Blind Semantic Revalidation (Cycle 5):**
-  - Execução de validação semântica cega sob runtime congelado (`3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`).
+  - Execução de validação semântica cega sob runtime congelado (`6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28`).
   - Geração de dataset balanceado de teste cego cobrindo as 7 classes canônicas e invariantes semânticos.
   - Verificação de recall $\ge 90\%$ e precisão $\ge 85\%$ em todas as classes principais.

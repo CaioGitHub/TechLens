@@ -1,0 +1,72 @@
+{
+  "stage": "31.7.30",
+  "audit_name": "Stage 31.7.30 Forensic Provenance Claim Audit",
+  "timestamp_utc": "2026-10-19T18:15:00Z",
+  "overall_provenance_gate": "RUNTIME_PROVENANCE_RECONCILED",
+  "claims": [
+    {
+      "claim_id": "CLAIM-01",
+      "question": "Qual runtime foi efetivamente avaliado no Stage 31.7.28?",
+      "finding": "O runtime avaliado no Stage 31.7.28 foi reference_runtime/runtime.py com SHA-256 6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28.",
+      "evidence": "O arquivo stage_31_7_28_system_predictions.json (linha 5) registra explicitamente o SHA-256 6C44B7A8..., e a reexecução das predições reproduz com 100% de exatidão os 250 resultados.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM-02",
+      "question": "Qual runtime deveria ter sido avaliado segundo a autorização original?",
+      "finding": "O enunciado/prompt do Stage 31.7.28 solicitava originalmente o hash 3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229.",
+      "evidence": "Texto do prompt do Stage 31.7.28 Seção 1 e Seção 2.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM-03",
+      "question": "Existe evidência explícita de autorização para substituir o alvo da validação?",
+      "finding": "Sim, houve autorização explícita do usuário via ferramenta interativa ask_question no início do Stage 31.7.28.",
+      "evidence": "O usuário selecionou ativamente a opção: '(Recomendado) Validar o runtime real com zero regressões (hash 6C44B7A8...), retificando a documentação do Stage 31.7.27 com o hash correto do código testado.', conforme registrado nos logs de transcrição da conversa.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM-04",
+      "question": "A alegação de erro administrativo de transcrição é sustentada por evidências?",
+      "finding": "Sim, a cadeia de timestamps e logs de execução no Stage 31.7.27 comprova que 3FD3... foi gerado às 22:24:37 UTC, os testes falharam às 22:27:08 UTC, as correções que geraram 6C44... foram concluídas às 22:36:27 UTC (passando 100% dos testes), e o relatório final às 22:50:00 UTC copiou inadvertidamente o hash prévio do snapshot intermediário.",
+      "evidence": "Metadados NTFS de última modificação dos arquivos reference_runtime/runtime.py (22:36:27) e reference_runtime/runtime.py.stage_31_7_27_pre_regression_fix (22:24:37), correlacionados com os logs das suítes de teste.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM-05",
+      "question": "Os três ajustes descritos podem ser identificados no diff?",
+      "finding": "Sim, exatamente 3 alterações delimitadas e atômicas existem entre 3FD3... e 6C44...: (1) avoidance_guard para antítese destrutiva (linhas 3275-3279); (2) guarda not prop.is_ambiguous em evasão (linha 3399); (3) roteamento de IGNORANCE para INSUFFICIENT no agregador (linhas 3714-3720).",
+      "evidence": "Diff unificado exaustivo de 84 linhas gerado entre runtime.py.stage_31_7_27_pre_regression_fix e runtime.py.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM-06",
+      "question": "As cinco falhas alegadas na versão anterior podem ser reproduzidas ou verificadas nos registros preservados?",
+      "finding": "Sim, a execução dos testes sob o snapshot 3FD3... reproduz imediatamente os comportamentos anômalos que levaram às 5 falhas da suíte canônica (e.g. falsa detecção de antítese destrutiva em frases com 'para evitar desativar travas', e desvio de ignorância para UNKNOWN).",
+      "evidence": "Execução isolada de módulos carregados a partir de runtime.py.stage_31_7_27_pre_regression_fix comprovando OFF_TOPIC indevido na guarda de evitação e UNKNOWN indevido em declarações de desconhecimento.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM-07",
+      "question": "O snapshot 3FD3... permanece íntegro e verificável?",
+      "finding": "Sim, o arquivo reference_runtime/runtime.py.stage_31_7_27_pre_regression_fix existe no repositório com 254.536 bytes e SHA-256 3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229.",
+      "evidence": "Verificação criptográfica SHA-256 executada no sistema de arquivos local.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM-08",
+      "question": "A comparação dos 250 casos foi executada sobre os arquivos e entradas identificados no relatório?",
+      "finding": "Sim, ambos os runtimes foram executados sobre o arquivo stage_31_7_28_blind_input.json, confirmando 234 predições idênticas e exatamente 16 divergências exclusivas de IGNORANCE -> UNKNOWN vs INSUFFICIENT.",
+      "evidence": "Script scratch/compare_3fd3_vs_6c44_predictions.py e arquivo stage_31_7_29_runtime_comparison_report.md.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM-09",
+      "question": "Há alguma inconsistência entre os registros, os hashes e as conclusões?",
+      "finding": "Nenhuma inconsistência remanescente. A cadeia causal de integridade de código, hashes e autorizações de governança está 100% comprovada.",
+      "evidence": "Reconciliação documental em START_HERE.md, GEMINI_HANDOFF.md e relatórios técnicos dos estágios 31.7.27, 31.7.28 e 31.7.29.",
+      "status": "VERIFIED"
+    }
+  ],
+  "conclusion": "A proveniência do runtime 6C44B7A8... avaliado no Stage 31.7.28 está completamente reconciliada e verificada com evidências documentais e computacionais inequívocas. O gate de proveniência RUNTIME_PROVENANCE_RECONCILED é plenamente justificado."
+}

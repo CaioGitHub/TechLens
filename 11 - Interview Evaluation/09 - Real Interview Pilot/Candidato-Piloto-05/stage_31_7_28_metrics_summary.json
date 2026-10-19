@@ -1,0 +1,298 @@
+{
+  "stage": "31.7.28",
+  "evaluation_mode": "INDEPENDENT_BLIND_VALIDATION",
+  "runtime_evaluated": "reference_runtime/runtime.py",
+  "runtime_sha256": "6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28",
+  "total_cases": 250,
+  "correct_cases": 168,
+  "divergent_cases": 82,
+  "global_exact_accuracy": 0.672,
+  "false_direct_count": 34,
+  "false_direct_rate_among_divergences": 0.4146,
+  "criteria_evaluation": {
+    "global_exact_accuracy": {
+      "target": ">= 0.7500 (75.0%)",
+      "achieved": 0.672,
+      "status": "BLOCKED"
+    },
+    "recall_direct": {
+      "target": ">= 0.8500 (85.0%)",
+      "achieved": 0.76,
+      "status": "BLOCKED"
+    },
+    "precision_direct": {
+      "target": ">= 0.7000 (70.0%)",
+      "achieved": 0.5278,
+      "status": "BLOCKED"
+    },
+    "false_direct_divergence_rate": {
+      "target": "<= 0.1000 (10.0%)",
+      "achieved": 0.4146,
+      "status": "BLOCKED"
+    },
+    "recall_partial": {
+      "target": ">= 0.6000 (60.0%)",
+      "achieved": 0.8444,
+      "status": "PASSED"
+    },
+    "invariance_paired_correctness": {
+      "target": ">= 0.8000 (80.0%)",
+      "achieved": 0.65,
+      "status": "BLOCKED"
+    }
+  },
+  "gate_decision": "BLIND_SEMANTIC_REVALIDATION_BLOCKED",
+  "provenance_limitation": "REFERENCE_INDEPENDENCE_UNRESOLVED",
+  "class_metrics": {
+    "DIRECT": {
+      "true_positives": 38,
+      "false_positives": 34,
+      "false_negatives": 12,
+      "support": 50,
+      "predicted_count": 72,
+      "precision": 0.5278,
+      "recall": 0.76,
+      "f1": 0.623
+    },
+    "PARTIAL": {
+      "true_positives": 38,
+      "false_positives": 4,
+      "false_negatives": 7,
+      "support": 45,
+      "predicted_count": 42,
+      "precision": 0.9048,
+      "recall": 0.8444,
+      "f1": 0.8736
+    },
+    "SUPPORTING": {
+      "true_positives": 29,
+      "false_positives": 4,
+      "false_negatives": 1,
+      "support": 30,
+      "predicted_count": 33,
+      "precision": 0.8788,
+      "recall": 0.9667,
+      "f1": 0.9206
+    },
+    "RELATED": {
+      "true_positives": 8,
+      "false_positives": 6,
+      "false_negatives": 27,
+      "support": 35,
+      "predicted_count": 14,
+      "precision": 0.5714,
+      "recall": 0.2286,
+      "f1": 0.3265
+    },
+    "OFF_TOPIC": {
+      "true_positives": 18,
+      "false_positives": 34,
+      "false_negatives": 27,
+      "support": 45,
+      "predicted_count": 52,
+      "precision": 0.3462,
+      "recall": 0.4,
+      "f1": 0.3711
+    },
+    "INSUFFICIENT": {
+      "true_positives": 19,
+      "false_positives": 0,
+      "false_negatives": 6,
+      "support": 25,
+      "predicted_count": 19,
+      "precision": 1.0,
+      "recall": 0.76,
+      "f1": 0.8636
+    },
+    "UNKNOWN": {
+      "true_positives": 18,
+      "false_positives": 0,
+      "false_negatives": 2,
+      "support": 20,
+      "predicted_count": 18,
+      "precision": 1.0,
+      "recall": 0.9,
+      "f1": 0.9474
+    }
+  },
+  "invariance_metrics": {
+    "total_pairs": 20,
+    "consistent_pairs": 16,
+    "pair_consistency_rate": 0.8,
+    "both_correct_pairs": 13,
+    "pair_correctness_rate": 0.65
+  },
+  "group_breakdown": {
+    "A_direct": {
+      "total": 50,
+      "correct": 38,
+      "accuracy": 0.76
+    },
+    "B_partial": {
+      "total": 45,
+      "correct": 38,
+      "accuracy": 0.8444
+    },
+    "C_supporting": {
+      "total": 30,
+      "correct": 29,
+      "accuracy": 0.9667
+    },
+    "D_related": {
+      "total": 35,
+      "correct": 8,
+      "accuracy": 0.2286
+    },
+    "E_off_topic": {
+      "total": 45,
+      "correct": 18,
+      "accuracy": 0.4
+    },
+    "F_insufficient": {
+      "total": 25,
+      "correct": 19,
+      "accuracy": 0.76
+    },
+    "G_unknown": {
+      "total": 20,
+      "correct": 18,
+      "accuracy": 0.9
+    }
+  },
+  "family_breakdown": {
+    "22_invariance_pair": {
+      "total": 20,
+      "correct": 13,
+      "accuracy": 0.65
+    },
+    "01_direct_functional": {
+      "total": 30,
+      "correct": 25,
+      "accuracy": 0.8333
+    },
+    "05_compound_partial": {
+      "total": 45,
+      "correct": 38,
+      "accuracy": 0.8444
+    },
+    "04_auxiliary_observability": {
+      "total": 30,
+      "correct": 29,
+      "accuracy": 0.9667
+    },
+    "03_thematic_metadata": {
+      "total": 35,
+      "correct": 8,
+      "accuracy": 0.2286
+    },
+    "02_disjoint_or_antithesis": {
+      "total": 45,
+      "correct": 18,
+      "accuracy": 0.4
+    },
+    "07_evasive_or_insufficient": {
+      "total": 25,
+      "correct": 19,
+      "accuracy": 0.76
+    },
+    "08_tautology_or_ambiguity": {
+      "total": 20,
+      "correct": 18,
+      "accuracy": 0.9
+    }
+  },
+  "question_type_breakdown": {
+    "explanation": {
+      "total": 153,
+      "correct": 83,
+      "accuracy": 0.5425
+    },
+    "implementation": {
+      "total": 6,
+      "correct": 5,
+      "accuracy": 0.8333
+    },
+    "architecture": {
+      "total": 3,
+      "correct": 2,
+      "accuracy": 0.6667
+    },
+    "definition": {
+      "total": 4,
+      "correct": 3,
+      "accuracy": 0.75
+    },
+    "historical": {
+      "total": 3,
+      "correct": 2,
+      "accuracy": 0.6667
+    },
+    "comparison": {
+      "total": 4,
+      "correct": 4,
+      "accuracy": 1.0
+    },
+    "diagnosis": {
+      "total": 2,
+      "correct": 2,
+      "accuracy": 1.0
+    },
+    "compound": {
+      "total": 45,
+      "correct": 38,
+      "accuracy": 0.8444
+    },
+    "troubleshooting": {
+      "total": 30,
+      "correct": 29,
+      "accuracy": 0.9667
+    }
+  },
+  "linguistic_form_breakdown": {
+    "invariance_pair": {
+      "total": 20,
+      "correct": 13,
+      "accuracy": 0.65
+    },
+    "formal_technical": {
+      "total": 26,
+      "correct": 22,
+      "accuracy": 0.8462
+    },
+    "concise_conceptual": {
+      "total": 4,
+      "correct": 3,
+      "accuracy": 0.75
+    },
+    "partial_aspect": {
+      "total": 45,
+      "correct": 38,
+      "accuracy": 0.8444
+    },
+    "observability_telemetry": {
+      "total": 30,
+      "correct": 29,
+      "accuracy": 0.9667
+    },
+    "institutional_metadata": {
+      "total": 35,
+      "correct": 8,
+      "accuracy": 0.2286
+    },
+    "alien_domain_or_antithesis": {
+      "total": 45,
+      "correct": 18,
+      "accuracy": 0.4
+    },
+    "evasive_deflection_or_ignorance": {
+      "total": 25,
+      "correct": 19,
+      "accuracy": 0.76
+    },
+    "tautology_circular_or_ambiguous": {
+      "total": 20,
+      "correct": 18,
+      "accuracy": 0.9
+    }
+  }
+}

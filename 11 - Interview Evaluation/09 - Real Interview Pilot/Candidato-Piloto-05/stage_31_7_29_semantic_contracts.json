@@ -1,0 +1,428 @@
+{
+  "stage": "31.7.29",
+  "contract_specification_name": "Stage 31.7.29 Cycle 6 Semantic Contracts Specification",
+  "total_contracts": 22,
+  "contracts": [
+    {
+      "id": "SC-01",
+      "scenario": "Direct without lexical overlap",
+      "question": "Como assegurar que transacoes concorrentes no mesmo saldo nao resultem em perdas de atualizacao?",
+      "response": "Executa-se a verificacao de versao no commit abortando a operacao em caso de divergencia com a versao lida.",
+      "intent": "implementation",
+      "primary_demands": [
+        "controle de concorrencia otimista",
+        "prevencao de lost updates"
+      ],
+      "expected_propositions": [
+        "verificacao de versao no commit",
+        "abortar em divergencia"
+      ],
+      "semantic_relation": "FUNCTIONALLY_SOLVES",
+      "reference_class": "DIRECT",
+      "justifying_evidence": "Descreve o mecanismo causal exato de controle otimista sem repetir o lexico da pergunta.",
+      "main_error_risk": "Falso OFF_TOPIC por baixa sobreposicao lexical com a pergunta.",
+      "expected_behavior_under_uncertainty": "Aceitar operatividade sobre entidade de versao e commit como resolutiva."
+    },
+    {
+      "id": "SC-02",
+      "scenario": "Genuinely disjoint alien domain not previously enumerated",
+      "question": "Como configurar o balanceamento dinamico de carga no subsistema de mensageria?",
+      "response": "A confeccao de vasos de argila tradicional requer amassamento da pasta mineral na roda de oleiro com queima em forno a lenha.",
+      "intent": "implementation",
+      "primary_demands": [
+        "balanceamento de carga",
+        "mensageria"
+      ],
+      "expected_propositions": [
+        "vasos de argila",
+        "amassamento na roda de oleiro"
+      ],
+      "semantic_relation": "DOMAIN_DISJUNCT",
+      "reference_class": "OFF_TOPIC",
+      "justifying_evidence": "Entidades nucleares pertencentes a artesanato mineral sem sobreposicao com computacao.",
+      "main_error_risk": "Falso DIRECT por operatividade gramatical de verbos transitivos (requer, amassa).",
+      "expected_behavior_under_uncertainty": "Veto de disjuncao ontologica sobre entidades alienigenas."
+    },
+    {
+      "id": "SC-03",
+      "scenario": "Historical or institutional metadata",
+      "question": "Como o PostgreSQL implementa o controle de concorrencia multiversao (MVCC)?",
+      "response": "O PostgreSQL teve origem no projeto POSTGRES liderado por Michael Stonebraker na Universidade de Berkeley e e amplamente elogiado pela sua conformidade com padroes SQL.",
+      "intent": "explanation",
+      "primary_demands": [
+        "implementacao de MVCC no PostgreSQL"
+      ],
+      "expected_propositions": [
+        "origem no projeto POSTGRES",
+        "liderado por Stonebraker em Berkeley"
+      ],
+      "semantic_relation": "THEMATICALLY_ADJACENT",
+      "reference_class": "RELATED",
+      "justifying_evidence": "Compartilha a entidade PostgreSQL mas nao descreve o mecanismo de MVCC.",
+      "main_error_risk": "Falso OFF_TOPIC por ausencia de mecanismo operacional de codigo.",
+      "expected_behavior_under_uncertainty": "Roteamento para RELATED por afinidade de entidade comprovada."
+    },
+    {
+      "id": "SC-04",
+      "scenario": "Related context without answering mechanism",
+      "question": "Como configurar particionamento por hash no Apache Kafka?",
+      "response": "O Kafka e amplamente utilizado em arquiteturas de microsservicos orientadas a eventos e revolucionou o ecossistema corporativo moderno.",
+      "intent": "implementation",
+      "primary_demands": [
+        "configuracao de particionamento por hash no Kafka"
+      ],
+      "expected_propositions": [
+        "adocao em microsservicos",
+        "revolucao corporativa"
+      ],
+      "semantic_relation": "THEMATICALLY_ADJACENT",
+      "reference_class": "RELATED",
+      "justifying_evidence": "Discurso tematico sobre a tecnologia sem atendimento operacional.",
+      "main_error_risk": "Falso DIRECT por confianca retorica ou falso OFF_TOPIC por falta de acao.",
+      "expected_behavior_under_uncertainty": "Roteamento para RELATED."
+    },
+    {
+      "id": "SC-05",
+      "scenario": "Auxiliary observability contribution",
+      "question": "Como resolver contencao de locks em transacoes de banco de dados?",
+      "response": "Exportamos metricas do banco com Prometheus e montamos paineis no Grafana com alertas de tempo de lock no Slack.",
+      "intent": "troubleshooting",
+      "primary_demands": [
+        "resolucao de contencao de locks"
+      ],
+      "expected_propositions": [
+        "metricas no Prometheus",
+        "dashboard no Grafana",
+        "alerta no Slack"
+      ],
+      "semantic_relation": "CONTRIBUTES_TO",
+      "reference_class": "SUPPORTING",
+      "justifying_evidence": "Instrumentacao e telemetria uteis para observar o problema sem resolver o lock.",
+      "main_error_risk": "Falso DIRECT por citar ferramentas de infraestrutura robustas.",
+      "expected_behavior_under_uncertainty": "Ancorar em SUPPORTING por ser suporte auxiliar."
+    },
+    {
+      "id": "SC-06",
+      "scenario": "Partially correct answer on multi-aspect question",
+      "question": "Como o Kafka realiza o particionamento de mensagens e como ocorre o rebalanceamento de consumidores?",
+      "response": "O Kafka particiona mensagens aplicando funcao de hash na chave para direcionar a uma particao especifica.",
+      "intent": "compound",
+      "primary_demands": [
+        "particionamento por chave",
+        "rebalanceamento de consumidores"
+      ],
+      "expected_propositions": [
+        "hash na chave para particao de destino"
+      ],
+      "semantic_relation": "PARTIALLY_SOLVES",
+      "reference_class": "PARTIAL",
+      "justifying_evidence": "Resolve plenamente a primeira demanda mas omite por completo a segunda.",
+      "main_error_risk": "Falso DIRECT por excelencia na primeira parte.",
+      "expected_behavior_under_uncertainty": "Exigir cobertura de ambas as demandas obrigatorias."
+    },
+    {
+      "id": "SC-07",
+      "scenario": "Compound question with complete fulfillment",
+      "question": "Como o Kafka particiona mensagens e garante a ordenacao na entrega?",
+      "response": "O hash da chave define a particao de destino e o offset sequencial crescente assegura a ordem estrita aos consumidores.",
+      "intent": "compound",
+      "primary_demands": [
+        "particionamento",
+        "garantia de ordem"
+      ],
+      "expected_propositions": [
+        "hash da chave direciona particao",
+        "offset sequencial assegura ordem"
+      ],
+      "semantic_relation": "FUNCTIONALLY_SOLVES",
+      "reference_class": "DIRECT",
+      "justifying_evidence": "Proposicao densa que satisfaz simultaneamente ambas as demandas.",
+      "main_error_risk": "Falso PARTIAL por decomposicao excessivamente rigida.",
+      "expected_behavior_under_uncertainty": "Reconhecer nexo multiplo em oracao densa unificada."
+    },
+    {
+      "id": "SC-08",
+      "scenario": "Compound question with partial explicit omission",
+      "question": "Explique o funcionamento do Circuit Breaker e como configurar exponential backoff com jitter nos retries.",
+      "response": "O circuit breaker abre quando a taxa de falhas ultrapassa o limite barrando chamadas; sobre retries e jitter nao sei responder.",
+      "intent": "compound",
+      "primary_demands": [
+        "circuit breaker",
+        "retries com backoff e jitter"
+      ],
+      "expected_propositions": [
+        "circuit breaker transita para aberto",
+        "ignorancia declarada na segunda parte"
+      ],
+      "semantic_relation": "PARTIALLY_SOLVES",
+      "reference_class": "PARTIAL",
+      "justifying_evidence": "Atende a primeira demanda com omissao confirmada da segunda.",
+      "main_error_risk": "Falso INSUFFICIENT pelo 'nao sei' ou falso DIRECT pelo circuit breaker.",
+      "expected_behavior_under_uncertainty": "Classificar como PARTIAL por merito da primeira demanda."
+    },
+    {
+      "id": "SC-09",
+      "scenario": "Conceptual definition without causal code requirement",
+      "question": "O que significa a propriedade de idempotencia em servicos web REST?",
+      "response": "E a garantia de que multiplas execucoes consecutivas e identicas de uma requisicao produzem exatamente o mesmo estado final no servidor.",
+      "intent": "definition",
+      "primary_demands": [
+        "definicao formal de idempotencia"
+      ],
+      "expected_propositions": [
+        "multiplas chamadas produzem o mesmo estado final"
+      ],
+      "semantic_relation": "FUNCTIONALLY_SOLVES",
+      "reference_class": "DIRECT",
+      "justifying_evidence": "Definicao rigorosa e precisa suficiente para a intencao conceitual.",
+      "main_error_risk": "Falso INSUFFICIENT por falta de linhas de codigo ou headers HTTP.",
+      "expected_behavior_under_uncertainty": "Classificar como DIRECT por suficiencia conceitual plena."
+    },
+    {
+      "id": "SC-10",
+      "scenario": "Historical question with origin context",
+      "question": "Por que o ecossistema Linux adotou um kernel monolitico em vez de um microkernel?",
+      "response": "Porque na epoca da sua criacao o kernel monolitico oferecia melhor desempenho em chamadas de sistema eliminando o overhead de IPC de microkernels.",
+      "intent": "historical",
+      "primary_demands": [
+        "razao historica da escolha do kernel monolitico no Linux"
+      ],
+      "expected_propositions": [
+        "melhor desempenho em syscalls",
+        "eliminacao de overhead de IPC"
+      ],
+      "semantic_relation": "FUNCTIONALLY_SOLVES",
+      "reference_class": "DIRECT",
+      "justifying_evidence": "Responde com precisao a razao tecnica e historica indagada.",
+      "main_error_risk": "Falso RELATED por tratar de historia em vez de configuracao.",
+      "expected_behavior_under_uncertainty": "Classificar como DIRECT respeitando a intencao historica."
+    },
+    {
+      "id": "SC-11",
+      "scenario": "Comparative question with structured axes",
+      "question": "Qual a diferenca fundamental entre processos e threads no gerenciamento de memoria pelo SO?",
+      "response": "Processos possuem espacos virtuais de memoria isolados entre si enquanto threads de um mesmo processo compartilham o mesmo espaco de enderecamento.",
+      "intent": "comparison",
+      "primary_demands": [
+        "diferenca de gerenciamento de memoria entre processos e threads"
+      ],
+      "expected_propositions": [
+        "processos isolam memoria",
+        "threads compartilham espaco virtual"
+      ],
+      "semantic_relation": "FUNCTIONALLY_SOLVES",
+      "reference_class": "DIRECT",
+      "justifying_evidence": "Atende com rigor os eixos de comparacao de isolamento e compartilhamento.",
+      "main_error_risk": "Falso PARTIAL por exigir codigo em C de fork ou pthread.",
+      "expected_behavior_under_uncertainty": "Classificar como DIRECT por suficiencia comparativa."
+    },
+    {
+      "id": "SC-12",
+      "scenario": "Diagnostic investigation scenario",
+      "question": "Como diagnosticar vazamentos de conexoes no pool HikariCP?",
+      "response": "Habilitamos o leakDetectionThreshold para capturar stack traces de conexoes presas e analisamos thread dumps da JVM.",
+      "intent": "diagnosis",
+      "primary_demands": [
+        "diagnostico de vazamento de conexao no HikariCP"
+      ],
+      "expected_propositions": [
+        "leakDetectionThreshold ativo",
+        "analise de stack trace e thread dump"
+      ],
+      "semantic_relation": "FUNCTIONALLY_SOLVES",
+      "reference_class": "DIRECT",
+      "justifying_evidence": "Apresenta o procedimento investigativo concreto adequado ao cenario.",
+      "main_error_risk": "Falso SUPPORTING por citar logs.",
+      "expected_behavior_under_uncertainty": "Classificar como DIRECT por resolver o diagnostico pedido."
+    },
+    {
+      "id": "SC-13",
+      "scenario": "Implementation question with concrete mechanics",
+      "question": "Como implementar rate limiting por janela deslizante no Redis?",
+      "response": "Gravamos timestamps em uma Sorted Set usando o tempo como score e removemos entradas fora da janela com ZREMRANGEBYSCORE contando o restante com ZCARD.",
+      "intent": "implementation",
+      "primary_demands": [
+        "implementacao de rate limiting sliding window no Redis"
+      ],
+      "expected_propositions": [
+        "Sorted Set com score de timestamp",
+        "remocao com ZREMRANGEBYSCORE",
+        "verificacao com ZCARD"
+      ],
+      "semantic_relation": "FUNCTIONALLY_SOLVES",
+      "reference_class": "DIRECT",
+      "justifying_evidence": "Descreve o algoritmo e comandos concretos do Redis.",
+      "main_error_risk": "Falso PARTIAL por sintaxe de parametros.",
+      "expected_behavior_under_uncertainty": "Classificar como DIRECT por atendimento funcional pleno."
+    },
+    {
+      "id": "SC-14",
+      "scenario": "Evasive business and consulting deflection",
+      "question": "Como resolver problemas de concorrencia na atualizacao simultanea de saldos?",
+      "response": "Isso depende puramente do orcamento aprovado pela diretoria e de reunioes estrategicas com stakeholders corporativos.",
+      "intent": "implementation",
+      "primary_demands": [
+        "prevencao de concorrencia em saldos"
+      ],
+      "expected_propositions": [
+        "deflexao orcamentaria e corporativa"
+      ],
+      "semantic_relation": "EVASIVE",
+      "reference_class": "INSUFFICIENT",
+      "justifying_evidence": "Evasao discursiva sem nenhuma proposicao tecnica avaliavel.",
+      "main_error_risk": "Falso RELATED por usar palavras corporativas normais.",
+      "expected_behavior_under_uncertainty": "Roteamento para INSUFFICIENT."
+    },
+    {
+      "id": "SC-15",
+      "scenario": "Genuine semantic indeterminacy and ambiguity",
+      "question": "Qual a melhor abordagem de particionamento para tabelas de series temporais sob carga?",
+      "response": "A conduta pode variar conforme a situacao de como a equipe resolver fazer na hora dependendo de fatores imprevistos.",
+      "intent": "architecture",
+      "primary_demands": [
+        "estrategia de particionamento para series temporais"
+      ],
+      "expected_propositions": [
+        "indeterminacao aberta sem parametros"
+      ],
+      "semantic_relation": "AMBIGUOUS",
+      "reference_class": "UNKNOWN",
+      "justifying_evidence": "Enunciado intrinsecamente indeterminado sem valor informativo.",
+      "main_error_risk": "Falso INSUFFICIENT ou falso RELATED.",
+      "expected_behavior_under_uncertainty": "Roteamento para UNKNOWN preservando a incerteza."
+    },
+    {
+      "id": "SC-16",
+      "scenario": "Colloquial engineering language and passive voice",
+      "question": "Como evitar que uma aplicacao caia quando uma API externa fica instavel?",
+      "response": "E colocado um circuit breaker no meio do fluxo pra cortar a comunicacao se der muitas falhas e responder com fallback sem prender requisicoes.",
+      "intent": "architecture",
+      "primary_demands": [
+        "resiliencia contra falhas externas"
+      ],
+      "expected_propositions": [
+        "circuit breaker corta comunicacao",
+        "fallback sem prender requisicoes"
+      ],
+      "semantic_relation": "FUNCTIONALLY_SOLVES",
+      "reference_class": "DIRECT",
+      "justifying_evidence": "Equivalencia semantica exata da solucao tecnica em redacao coloquial e passiva.",
+      "main_error_risk": "Falso INSUFFICIENT pelo tom informal da linguagem.",
+      "expected_behavior_under_uncertainty": "Classificar como DIRECT por invariancia de representacao."
+    },
+    {
+      "id": "SC-17",
+      "scenario": "Short concise technical definition",
+      "question": "O que e um deadlock em sistemas concorrentes?",
+      "response": "E a situacao onde dois ou mais processos ficam bloqueados indefinidamente porque cada um retem um recurso que o outro necessita.",
+      "intent": "definition",
+      "primary_demands": [
+        "definicao de deadlock"
+      ],
+      "expected_propositions": [
+        "processos bloqueados mutuamente por retencao de recursos"
+      ],
+      "semantic_relation": "FUNCTIONALLY_SOLVES",
+      "reference_class": "DIRECT",
+      "justifying_evidence": "Definicao concisa e exata do fenomeno de deadlock.",
+      "main_error_risk": "Falso INSUFFICIENT por resposta curta.",
+      "expected_behavior_under_uncertainty": "Classificar como DIRECT com alta confianca."
+    },
+    {
+      "id": "SC-18",
+      "scenario": "Long answer with irrelevant rambling padding",
+      "question": "Como configurar autenticacao mTLS no gateway?",
+      "response": "Quando eu comecei na area em 2015 a gente trabalhava com infraestrutura on-premise e sempre conversavamos sobre inovacao, mas especificamente sobre mTLS eu nao sei como configurar.",
+      "intent": "implementation",
+      "primary_demands": [
+        "configuracao de mTLS no gateway"
+      ],
+      "expected_propositions": [
+        "rambling autobiografico",
+        "declaracao explicita de desconhecimento"
+      ],
+      "semantic_relation": "IGNORANCE",
+      "reference_class": "INSUFFICIENT",
+      "justifying_evidence": "Prolixidade vazia culminando em desconhecimento da demanda.",
+      "main_error_risk": "Falso DIRECT pelo tamanho da resposta.",
+      "expected_behavior_under_uncertainty": "Roteamento para INSUFFICIENT desconsiderando o padding."
+    },
+    {
+      "id": "SC-19",
+      "scenario": "Destructive antithesis without avoidance guard",
+      "question": "Como garantir a integridade dos dados durante gravacoes concorrentes em tabelas criticas?",
+      "response": "A gente desativa os locks de tabela, desliga as transacoes acid e remove as travas para acelerar as gravacoes.",
+      "intent": "implementation",
+      "primary_demands": [
+        "garantia de integridade de dados"
+      ],
+      "expected_propositions": [
+        "desativar locks",
+        "desligar transacoes ACID",
+        "remover travas"
+      ],
+      "semantic_relation": "ANTITHESIS_OPPOSED",
+      "reference_class": "OFF_TOPIC",
+      "justifying_evidence": "Proposicao de acoes que violam e eliminam garantias fundamentais de concorrencia.",
+      "main_error_risk": "Falso DIRECT por ter verbos transitivos e termos de banco.",
+      "expected_behavior_under_uncertainty": "Veto sumario para OFF_TOPIC por antitese destrutiva."
+    },
+    {
+      "id": "SC-20",
+      "scenario": "Avoidance guard on destructive keywords",
+      "question": "Como garantir a integridade dos dados durante gravacoes concorrentes em tabelas criticas?",
+      "response": "Aplicamos isolamento serializavel para evitar desativar locks ou dispensar transacoes que causariam corrupcao.",
+      "intent": "implementation",
+      "primary_demands": [
+        "garantia de integridade de dados"
+      ],
+      "expected_propositions": [
+        "isolamento serializavel",
+        "prevencao de corrupcao"
+      ],
+      "semantic_relation": "FUNCTIONALLY_SOLVES",
+      "reference_class": "DIRECT",
+      "justifying_evidence": "Menciona termos destrutivos sob guarda explicita de evitacao ('para evitar desativar').",
+      "main_error_risk": "Falso OFF_TOPIC por disparo cego de regex de antitese.",
+      "expected_behavior_under_uncertainty": "Classificar como DIRECT respeitando a guarda de evitacao."
+    },
+    {
+      "id": "SC-21",
+      "scenario": "Unseen fictional technology with sound distributed mechanism",
+      "question": "Como o banco de dados distribuido ChronoStore resolve conflitos de particionamento?",
+      "response": "O ChronoStore utiliza carimbos de relogios vetoriais para detectar divergencias concorrentes aplicando resolucao deterministica por maior timestamp.",
+      "intent": "architecture",
+      "primary_demands": [
+        "resolucao de conflitos de particionamento no ChronoStore"
+      ],
+      "expected_propositions": [
+        "relogios vetoriais",
+        "resolucao deterministica por timestamp"
+      ],
+      "semantic_relation": "FUNCTIONALLY_SOLVES",
+      "reference_class": "DIRECT",
+      "justifying_evidence": "Tecnologia inedita descrita sob principio cientifico solido de relogios vetoriais.",
+      "main_error_risk": "Falso OFF_TOPIC por tecnologia desconhecida.",
+      "expected_behavior_under_uncertainty": "Classificar como DIRECT com base na validade do mecanismo."
+    },
+    {
+      "id": "SC-22",
+      "scenario": "Paired invariance parity across syntactic variations",
+      "question": "Como o algoritmo Consistent Hashing distribui chaves em um cluster de cache?",
+      "response": "As chaves e os nos sao mapeados ao longo de um anel circular no espaco de hash, sendo cada item atribuido ao nó sucessor mais proximo.",
+      "intent": "explanation",
+      "primary_demands": [
+        "distribuicao de chaves no consistent hashing"
+      ],
+      "expected_propositions": [
+        "mapeamento em anel circular",
+        "atribuicao ao sucessor mais proximo"
+      ],
+      "semantic_relation": "FUNCTIONALLY_SOLVES",
+      "reference_class": "DIRECT",
+      "justifying_evidence": "Paráfrase em voz passiva rigorosamente equivalente a formulacao em voz ativa.",
+      "main_error_risk": "Divergencia de classificacao entre formulacao ativa e passiva.",
+      "expected_behavior_under_uncertainty": "Garantir classificacao identica em ambas as variantes."
+    }
+  ]
+}

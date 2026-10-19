@@ -1,0 +1,25 @@
+{
+  "stage": "31.7.28",
+  "timestamp_created_utc": "2026-10-19T14:50:00Z",
+  "benchmark_name": "Stage 31.7.28 Independent Blind Validation Benchmark (Cycle 5)",
+  "runtime_evaluated_path": "reference_runtime/runtime.py",
+  "runtime_sha256": "6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28",
+  "total_cases": 250,
+  "class_distribution": {
+    "DIRECT": 50,
+    "PARTIAL": 45,
+    "SUPPORTING": 30,
+    "RELATED": 35,
+    "OFF_TOPIC": 45,
+    "INSUFFICIENT": 25,
+    "UNKNOWN": 20
+  },
+  "semantic_families_count": 22,
+  "invariance_pairs_count": 20,
+  "invariance_cases_count": 40,
+  "provenance_status": "REFERENCE_INDEPENDENCE_UNRESOLVED",
+  "ground_truth_file": "stage_31_7_28_ground_truth.json",
+  "ground_truth_sha256": "C8C2822F18D1F5806A3EBF9FE18724F2972AA2C73799AD25A7072CD8C55DB5AF",
+  "blind_input_file": "stage_31_7_28_blind_input.json",
+  "blind_input_sha256": "036EE47E7B9A4BBFE91B5C0A2AF61CCC0A73CCCE899C767A3D5AA574D5724954"
+}

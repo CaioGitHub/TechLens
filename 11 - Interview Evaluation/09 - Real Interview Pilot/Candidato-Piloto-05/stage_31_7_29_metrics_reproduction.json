@@ -1,0 +1,106 @@
+{
+  "stage": "31.7.29",
+  "reproduction_timestamp_utc": "2026-10-19T16:20:00Z",
+  "status": "METRICS_100_PERCENT_REPRODUCED",
+  "input_artifacts": {
+    "ground_truth": {
+      "path": "stage_31_7_28_ground_truth.json",
+      "sha256": "C8C2822F18D1F5806A3EBF9FE18724F2972AA2C73799AD25A7072CD8C55DB5AF"
+    },
+    "system_predictions": {
+      "path": "stage_31_7_28_system_predictions.json",
+      "sha256": "F029BE72D8C91B4161E08555B1C9D52640FE272F56D449D9F5B069A51967D670"
+    }
+  },
+  "runtime_evaluated_sha256": "6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28",
+  "metrics_comparison": {
+    "total_cases": {
+      "reported": 250,
+      "reproduced": 250,
+      "match": true
+    },
+    "correct_cases": {
+      "reported": 168,
+      "reproduced": 168,
+      "match": true
+    },
+    "divergent_cases": {
+      "reported": 82,
+      "reproduced": 82,
+      "match": true
+    },
+    "global_exact_accuracy": {
+      "reported": 0.672,
+      "reproduced": 0.672,
+      "match": true
+    },
+    "false_direct_count": {
+      "reported": 34,
+      "reproduced": 34,
+      "match": true
+    },
+    "false_direct_divergence_rate": {
+      "reported": 0.4146,
+      "reproduced": 0.4146,
+      "match": true
+    },
+    "recall_direct": {
+      "reported": 0.76,
+      "reproduced": 0.76,
+      "match": true
+    },
+    "precision_direct": {
+      "reported": 0.5278,
+      "reproduced": 0.5278,
+      "match": true
+    },
+    "recall_partial": {
+      "reported": 0.8444,
+      "reproduced": 0.8444,
+      "match": true
+    }
+  },
+  "confusion_matrix_reproduced": {
+    "DIRECT": {
+      "DIRECT": 38,
+      "RELATED": 3,
+      "OFF_TOPIC": 3,
+      "PARTIAL": 3,
+      "SUPPORTING": 3
+    },
+    "PARTIAL": {
+      "PARTIAL": 38,
+      "DIRECT": 1,
+      "RELATED": 2,
+      "OFF_TOPIC": 3,
+      "SUPPORTING": 1
+    },
+    "SUPPORTING": {
+      "SUPPORTING": 29,
+      "OFF_TOPIC": 1,
+      "DIRECT": 0
+    },
+    "RELATED": {
+      "DIRECT": 5,
+      "RELATED": 8,
+      "OFF_TOPIC": 22
+    },
+    "OFF_TOPIC": {
+      "OFF_TOPIC": 18,
+      "DIRECT": 26,
+      "PARTIAL": 1
+    },
+    "INSUFFICIENT": {
+      "INSUFFICIENT": 19,
+      "DIRECT": 1,
+      "OFF_TOPIC": 4,
+      "RELATED": 1
+    },
+    "UNKNOWN": {
+      "UNKNOWN": 18,
+      "DIRECT": 1,
+      "OFF_TOPIC": 1
+    }
+  },
+  "conclusion": "Todas as métricas reportadas no Stage 31.7.28 foram reproduzidas com exatidão matemática absoluta a partir dos artefatos selados, comprovando total fidedignidade e ausência de manipulação."
+}

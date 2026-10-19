@@ -1,0 +1,107 @@
+{
+  "stage": "31.7.29",
+  "audit_timestamp_utc": "2026-10-19T16:15:00Z",
+  "inventory_type": "FORENSIC_RUNTIME_HASH_INVENTORY",
+  "provenance_status": "RUNTIME_PROVENANCE_RECONCILED",
+  "runtimes": [
+    {
+      "file_name": "runtime.py",
+      "path": "reference_runtime/runtime.py",
+      "size_bytes": 254619,
+      "sha256": "6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28",
+      "last_write_time_utc": "2026-10-14T22:36:27Z",
+      "role": "ACTIVE_CANONICAL_RUNTIME",
+      "description": "Runtime canônico congelado pós-correções de salvaguarda de regressão do Stage 31.7.27. Validado cegamente no Stage 31.7.28."
+    },
+    {
+      "file_name": "runtime.py.stage_31_7_29_forensic_entry",
+      "path": "reference_runtime/runtime.py.stage_31_7_29_forensic_entry",
+      "size_bytes": 254619,
+      "sha256": "6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28",
+      "last_write_time_utc": "2026-10-19T16:16:04Z",
+      "role": "STAGE_31_7_29_FORENSIC_ENTRY_SNAPSHOT",
+      "description": "Cópia forense de preservação criada no início do Stage 31.7.29 para garantir imutabilidade absoluta."
+    },
+    {
+      "file_name": "runtime.py.stage_31_7_27_final",
+      "path": "reference_runtime/runtime.py.stage_31_7_27_final",
+      "size_bytes": 254619,
+      "sha256": "6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28",
+      "last_write_time_utc": "2026-10-14T22:36:27Z",
+      "role": "STAGE_31_7_27_HOMOLOGATED_SNAPSHOT",
+      "description": "Snapshot final homologado do Stage 31.7.27 alinhado com o runtime testado com zero regressões."
+    },
+    {
+      "file_name": "runtime.py.stage_31_7_27_pre_regression_fix",
+      "path": "reference_runtime/runtime.py.stage_31_7_27_pre_regression_fix",
+      "size_bytes": 254536,
+      "sha256": "3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229",
+      "last_write_time_utc": "2026-10-14T22:24:37Z",
+      "role": "STAGE_31_7_27_PRE_REGRESSION_FIX_SNAPSHOT",
+      "description": "Snapshot intermediário anterior às 3 correções de regressão canônica. Hash registrado erroneamente no relatório do Stage 31.7.27."
+    },
+    {
+      "file_name": "runtime.py.stage_31_7_27_inc_a",
+      "path": "reference_runtime/runtime.py.stage_31_7_27_inc_a",
+      "size_bytes": 249495,
+      "sha256": "22EBFFB7137BA786AA4C14D84298BA1C9BD84D076E2F78B767065998BAC77ABC",
+      "last_write_time_utc": "2026-10-14T22:03:26Z",
+      "role": "STAGE_31_7_27_INCREMENT_A_SNAPSHOT",
+      "description": "Snapshot do Incremento A (SemanticDomainDisjunctionEngine inicial) do Stage 31.7.27."
+    },
+    {
+      "file_name": "runtime.py.stage_31_7_26_baseline",
+      "path": "reference_runtime/runtime.py.stage_31_7_26_baseline",
+      "size_bytes": 241085,
+      "sha256": "36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7",
+      "last_write_time_utc": "2026-10-14T20:19:20Z",
+      "role": "STAGE_31_7_26_BASELINE_SNAPSHOT",
+      "description": "Baseline de entrada do Ciclo 5 (proveniente do encerramento do Ciclo 4)."
+    },
+    {
+      "file_name": "runtime.py.stage_31_7_24_pre_implementation",
+      "path": "reference_runtime/runtime.py.stage_31_7_24_pre_implementation",
+      "size_bytes": 230363,
+      "sha256": "75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC",
+      "last_write_time_utc": "2026-10-14T20:16:25Z",
+      "role": "HISTORICAL_STAGE_SNAPSHOT",
+      "description": "Snapshot pré-implementação do Stage 31.7.24."
+    },
+    {
+      "file_name": "runtime.py.stage_31_7_23_baseline",
+      "path": "reference_runtime/runtime.py.stage_31_7_23_baseline",
+      "size_bytes": 230363,
+      "sha256": "75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC",
+      "last_write_time_utc": "2026-10-14T19:47:49Z",
+      "role": "HISTORICAL_STAGE_SNAPSHOT",
+      "description": "Baseline do Stage 31.7.23."
+    },
+    {
+      "file_name": "runtime.py.stage_31_7_22_baseline",
+      "path": "reference_runtime/runtime.py.stage_31_7_22_baseline",
+      "size_bytes": 230363,
+      "sha256": "75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC",
+      "last_write_time_utc": "2026-10-14T19:30:07Z",
+      "role": "HISTORICAL_STAGE_SNAPSHOT",
+      "description": "Baseline do Stage 31.7.22."
+    },
+    {
+      "file_name": "runtime.py.stage_31_7_21_frozen",
+      "path": "reference_runtime/runtime.py.stage_31_7_21_frozen",
+      "size_bytes": 230363,
+      "sha256": "75C6841D14691D9AFC6FF628CA27F67F8201308EB48D6A46A35E41DEA997A6EC",
+      "last_write_time_utc": "2026-10-13T00:23:20Z",
+      "role": "HISTORICAL_STAGE_SNAPSHOT",
+      "description": "Snapshot congelado do Stage 31.7.21."
+    },
+    {
+      "file_name": "runtime.py.stage_31_7_19_baseline",
+      "path": "reference_runtime/runtime.py.stage_31_7_19_baseline",
+      "size_bytes": 216562,
+      "sha256": "AF3C1A14A435074C703A370591DFE8F91862789D9C536121EB3370F06CFF0CCB",
+      "last_write_time_utc": "2026-10-11T00:32:08Z",
+      "role": "HISTORICAL_STAGE_SNAPSHOT",
+      "description": "Baseline histórico do Stage 31.7.19."
+    }
+  ]
+}

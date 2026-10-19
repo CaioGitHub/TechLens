@@ -1,0 +1,70 @@
+{
+  "stage": "31.7.30",
+  "audit_name": "Stage 31.7.30 Entity Anchor Adversarial Review & Counterexamples",
+  "evaluated_rule": "Se a resposta compartilhar uma entidade com a pergunta (E_R ∩ E_Q != ∅), OFF_TOPIC deve ser sumariamente proibido.",
+  "rule_verdict": "RULE_DEFICIENT_REQUIRES_REFINEMENT",
+  "critique": "A regra proposta no Stage 31.7.29 é excessivamente forte e confunde presença lexical de entidade com pertinência semântica contextual. O compartilhamento de um token de entidade estabelece presunção de conexão temática, mas não pode atuar como veto absoluto a OFF_TOPIC nem desconsiderar respostas corretas desprovidas de sobreposição literal.",
+  "scenarios": [
+    {
+      "scenario_id": "SCENARIO-A",
+      "name": "Entidade compartilhada com resposta puramente histórica/biográfica",
+      "question": "Como o PostgreSQL implementa o controle de concorrencia multiversao (MVCC)?",
+      "response": "O PostgreSQL teve origem no projeto POSTGRES, liderado por Michael Stonebraker na Universidade de Berkeley.",
+      "shared_entities": ["PostgreSQL"],
+      "analysis": "A resposta compartilha a entidade da pergunta, mas discute sua origem acadêmica sem elucidar o mecanismo de MVCC. Aqui, proibir OFF_TOPIC e classificar como RELATED é semanticamente correto. Contudo, a presença da entidade não garante suficiência para DIRECT.",
+      "target_class": "RELATED",
+      "verdict_under_proposed_rule": "CORRECT_FOR_THIS_CASE"
+    },
+    {
+      "scenario_id": "SCENARIO-B",
+      "name": "Entidade compartilhada com resposta de elogio trivial / filler",
+      "question": "Como o PostgreSQL implementa MVCC?",
+      "response": "O PostgreSQL e muito popular entre desenvolvedores que preferem ferramentas de codigo aberto.",
+      "shared_entities": ["PostgreSQL"],
+      "analysis": "A resposta cita 'PostgreSQL', mas limita-se a um chavão de opinião/popularidade sem valor informacional. A regra do Stage 31.7.29 vetaria OFF_TOPIC, mas a resposta não é nem mesmo RELATED com substância técnica; é essencialmente INSUFFICIENT (buzzword/filler). Proibir OFF_TOPIC sem verificar a suficiência pode levar a falsos RELATED ou falsos DIRECT.",
+      "target_class": "INSUFFICIENT",
+      "verdict_under_proposed_rule": "AMBIGUOUS_RISK_OF_FALSE_RELATED"
+    },
+    {
+      "scenario_id": "SCENARIO-C",
+      "name": "Resposta correta sem repetição literal da entidade da pergunta",
+      "question": "Como um indice B-tree acelera uma consulta?",
+      "response": "A estrutura mantem as chaves ordenadas em uma arvore balanceada, permitindo restringir a busca a uma regiao da estrutura em vez de examinar todos os registros.",
+      "shared_entities": [],
+      "analysis": "A resposta explica com exatidão matemática o funcionamento do índice B-tree, mas utiliza hiperônimos e paráfrases ('estrutura', 'arvore balanceada', 'chaves ordenadas'), sem repetir os tokens literais 'indice' ou 'B-tree'. Uma regra baseada em intersecção estrita de entidades (E_R ∩ E_Q != ∅) falharia em encontrar correspondência, correndo o risco de marcar como disjunta uma resposta que é 100% DIRECT.",
+      "target_class": "DIRECT",
+      "verdict_under_proposed_rule": "CRITICAL_DEFECT_RISK_OF_FALSE_OFF_TOPIC"
+    },
+    {
+      "scenario_id": "SCENARIO-D",
+      "name": "Relação indireta válida em diagnóstico metodológico",
+      "question": "Como investigar aumento de latencia em uma API?",
+      "response": "Compararia a distribuicao de latencia por endpoint, correlacionaria os horarios com traces e verificaria se o tempo adicional ocorre na aplicacao, no banco ou em uma dependencia externa.",
+      "shared_entities": ["latencia"],
+      "analysis": "A resposta não cita nomes de ferramentas específicas da pergunta (como API gateway ou framework), mas apresenta o fluxo investigativo analítico de decomposição de latência e tracing distribuído. O nexo reside na cadeia de raciocínio de observabilidade, e não no compartilhamento de substantivos estáticos.",
+      "target_class": "DIRECT",
+      "verdict_under_proposed_rule": "PARTIALLY_ADEQUATE"
+    },
+    {
+      "scenario_id": "SCENARIO-E",
+      "name": "Mesmo termo lexical em sentidos completamente diferentes (Homonímia / Polissemia / Divagação)",
+      "question": "Como funciona a injecao de dependencias no Spring?",
+      "response": "A injecao de dependencias e um conceito importante em aplicacoes modernas, assim como a dependencia economica de um pais em relacao as importacoes.",
+      "shared_entities": ["injecao de dependencias", "dependencias"],
+      "analysis": "O candidato repete o termo técnico 'injeção de dependências', mas imediatamente desvia o discurso para relações de dependência geopolítica e comércio exterior. Sob a regra de veto absoluto a OFF_TOPIC por compartilhamento de entidade, essa divagação alienígena seria blindada contra OFF_TOPIC. Isso prova que a presença literal de uma entidade não anula a disjunção semântica do predicado.",
+      "target_class": "OFF_TOPIC",
+      "verdict_under_proposed_rule": "CRITICAL_DEFECT_FALSE_RELATED_OR_DIRECT"
+    },
+    {
+      "scenario_id": "SCENARIO-F",
+      "name": "Pergunta comparativa com atendimento simétrico dos dois polos",
+      "question": "Quais sao as diferencas entre filas e topicos em sistemas de mensageria?",
+      "response": "Uma fila normalmente distribui mensagens entre consumidores concorrentes, enquanto um topico permite que diferentes assinantes recebam copias logicas das mensagens publicadas.",
+      "shared_entities": ["fila", "topico", "mensagens"],
+      "analysis": "A resposta cobre simetricamente ambas as entidades e contrasta os padrões de consumo (ponto-a-ponto concorrente vs publicação/assinatura pub-sub). O mérito não é meramente citar 'fila' e 'tópico', mas estabelecer a relação funcional de contraste entre suas entidades.",
+      "target_class": "DIRECT",
+      "verdict_under_proposed_rule": "CORRECT_FOR_THIS_CASE"
+    }
+  ],
+  "architectural_recommendation": "Substituir a regra simplista de veto lexical absoluto por uma 'Vinculação Temática Estruturada': (1) O compartilhamento de entidade estabelece presunção refutável de conexão temática; (2) A presunção é refutada se os predicados da oração atuarem sobre domínios disjuntos (homonímia ou divagação); (3) A ausência de sobreposição de entidade não pode gerar disjunção se houver equivalência funcional de conceitos ou hiperônimos técnicos."
+}

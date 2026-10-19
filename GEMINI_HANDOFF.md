@@ -2896,11 +2896,12 @@ PRED TOTAL              84          16          25          11          51      
   - `Stage 31.7.27 — Controlled Remediation of Semantic Domain Disjunction Architecture (Cycle 5).md`
 - **Hashes Criptográficos do Runtime (`reference_runtime/runtime.py`):**
   - SHA-256 Inicial (Baseline): `36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7`
-  - SHA-256 Final (Remediado): `3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`
+  - SHA-256 Final Homologado com 0 Regressões: `6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28`
 - **Snapshots de Segurança Persistidos:**
-  - `reference_runtime/runtime.py.stage_31_7_26_baseline`
+  - `reference_runtime/runtime.py.stage_31_7_26_baseline` (SHA-256: `36344F3E...`)
   - `reference_runtime/runtime.py.stage_31_7_27_inc_a`
-  - `reference_runtime/runtime.py.stage_31_7_27_final`
+  - `reference_runtime/runtime.py.stage_31_7_27_pre_regression_fix` (SHA-256: `3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`)
+  - `reference_runtime/runtime.py.stage_31_7_27_final` (SHA-256: `6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28`)
 - **Status Metodológico:** `REFERENCE_INDEPENDENCE_UNRESOLVED` (mantido estritamente; o benchmark histórico de 250 casos é considerado diagnóstico e não serve como validação cega).
 
 ### 1. Síntese das Modificações Arquiteturais Implementadas:
@@ -2934,8 +2935,161 @@ PRED TOTAL              84          16          25          11          51      
   - Recall de UNKNOWN: **95.45%** (21/22, com 0 falsos DIRECTs).
 
 ### 3. Próxima Etapa Autorizada:
-- **Stage 31.7.28 — Independent Blind Semantic Revalidation (Cycle 5)**
-- Executar validação semântica cega independente com o runtime rigorosamente congelado (`3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`) sobre novo dataset balanceado de teste cego, verificando os limiares canônicos de aceitação para homologação definitiva.
+- **Stage 31.7.28 — Independent Blind Semantic Revalidation (Cycle 5)** (CONCLUÍDO)
+- Executar validação semântica cega independente com o runtime rigorosamente congelado (`6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28`) sobre novo dataset balanceado de teste cego, verificando os limiares canônicos de aceitação para homologação definitiva.
+
+---
+
+# 79. REGISTRO DE TRANSIÇÃO — STAGE 31.7.28 (REVALIDAÇÃO SEMÂNTICA CEGA E INDEPENDENTE — CICLO 5)
+
+- **Stage Concluído:** Stage 31.7.28 — Independent Blind Semantic Revalidation (Cycle 5)
+- **Gate Emitido:** `GATE: BLIND_SEMANTIC_REVALIDATION_BLOCKED`
+- **Artefatos Gerados:**
+  - `stage_31_7_28_validation_plan.md`
+  - `stage_31_7_28_benchmark_manifest.json`
+  - `stage_31_7_28_blind_input.json` (SHA-256: `036EE47E7B9A4BBFE91B5C0A2AF61CCC0A73CCCE899C767A3D5AA574D5724954`)
+  - `stage_31_7_28_ground_truth.json` (SHA-256: `C8C2822F18D1F5806A3EBF9FE18724F2972AA2C73799AD25A7072CD8C55DB5AF`)
+  - `stage_31_7_28_system_predictions.json` (SHA-256: `F029BE72D8C91B4161E08555B1C9D52640FE272F56D449D9F5B069A51967D670`)
+  - `stage_31_7_28_metrics_summary.json`
+  - `stage_31_7_28_confusion_matrix.json`
+  - `stage_31_7_28_invariance_results.json`
+  - `stage_31_7_28_divergence_analysis.json`
+  - `stage_31_7_28_regression_results.json`
+  - `stage_31_7_28_provenance_audit.md`
+  - `Stage 31.7.28 — Independent Blind Semantic Revalidation (Cycle 5).md`
+- **Status do Runtime (`reference_runtime/runtime.py`):**
+  - SHA-256 Inicial e Final: `6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28` (100% íntegro, congelado e inviolado).
+- **Status Metodológico:** `REFERENCE_INDEPENDENCE_UNRESOLVED` (mantido estritamente; o benchmark foi adjudicado pela equipe interna sem painel duplo-cego externo).
+
+### 1. Resultados Quantitativos da Validação Cega (250 Casos Inéditos):
+- **Acurácia Global Exata:** **67.20% (168/250)** vs. limiar $\ge 75.00\%$ $\to$ **REPROVADO**.
+- **Recall de `DIRECT`:** **76.00% (38/50)** vs. limiar $\ge 85.00\%$ $\to$ **REPROVADO**.
+- **Precisão de `DIRECT`:** **52.78% (38/72)** vs. limiar $\ge 70.00\%$ $\to$ **REPROVADO**.
+- **Falsos DIRECT entre Divergências:** **41.46% (34/82)** vs. limiar $\le 10.00\%$ $\to$ **REPROVADO**.
+- **Recall de `PARTIAL`:** **84.44% (38/45)** vs. limiar $\ge 60.00\%$ $\to$ **APROVADO**.
+- **Recall de `SUPPORTING`:** **96.67% (29/30)**.
+- **Recall de `UNKNOWN`:** **90.00% (18/20)**.
+- **Recall de `INSUFFICIENT`:** **76.00% (19/25)**.
+- **Invariância Pareada Simultaneamente Correta:** **65.00% (13/20 pares)** vs. limiar $\ge 80.00\%$ $\to$ **REPROVADO**.
+- **Regressão Canônica:** 1.067 testes executados com 1.066 aprovações e 1 teste ignorado (`OK (skipped=1)`) em 46.392s, Reference Harness 15/15 OK em 34.687s $\to$ **APROVADO (ZERO REGRESSÕES)**.
+
+### 2. Matriz de Confusão Completa (7x7):
+```text
+Ref \ Pred    DIRECT  PARTIAL  SUPPORTING  RELATED  OFF_TOPIC  INSUFFICIENT  UNKNOWN  TOTAL
+DIRECT            38        3           3        3          3             0        0     50
+PARTIAL            1       38           1        2          3             0        0     45
+SUPPORTING         0        0          29        0          1             0        0     30
+RELATED            5        0           0        8         22             0        0     35
+OFF_TOPIC         26        1           0        0         18             0        0     45
+INSUFFICIENT       1        0           0        1          4            19        0     25
+UNKNOWN            1        0           0        0          1             0       18     20
+-----------------------------------------------------------------------------------------
+Pred Total        72       42          33       14         52            19       18    250
+```
+
+### 3. Diagnóstico Qualitativo e Causas-Raiz Identificadas:
+1. **Dependência de Expressões Literais no `SemanticDomainDisjunctionEngine` (26 falsos DIRECTs de `OFF_TOPIC`):**
+   - Respostas de cerâmica/artesanato em argila, construção civil (cimento, betoneira) e agricultura de outras plantas não coincidiram com as regexes fechadas dos 5 clusters do motor de disjunção.
+   - Como consequência, não foram vetadas por disjunção ontológica.
+   - A presença de verbos transitivos ativos ("requer", "exige") gerou `is_operative = True` no `PropositionDiscourseFilter`, e o fallback de domínio aberto promoveu indevidamente para `DIRECT`.
+2. **Rebaixamento Indevido de Metadados Legítimos (22 casos de `RELATED → OFF_TOPIC`):**
+   - Respostas com descrições históricas, de fundações (Apache, Linux, CNCF) ou origem acadêmica foram marcadas como `non_operative_assertion`, sendo roteadas pelo agregador diretamente para `OFF_TOPIC` em vez de `RELATED`, derrubando o recall de `RELATED` para 22.86%.
+
+### 4. Próxima Etapa Autorizada:
+- **Stage 31.7.29 — Root Cause Analysis & Domain Disjunction Generalization Architecture (Cycle 6)** (CONCLUÍDO)
+- Investigar estruturalmente a falha de generalização do `SemanticDomainDisjunctionEngine` e o rebaixamento de `RELATED`, mantendo o runtime absolutamente congelado e projetando uma arquitetura invariante à extensão de vocabulário para o Ciclo 6.
+
+---
+
+# 80. REGISTRO DE TRANSIÇÃO — STAGE 31.7.29 (FORENSIC ROOT CAUSE ANALYSIS & DOMAIN DISJUNCTION GENERALIZATION — CICLO 6)
+
+- **Stage Concluído:** Stage 31.7.29 — Forensic Root Cause Analysis & Domain Disjunction Generalization Architecture (Cycle 6)
+- **Gates Emitidos:**
+  - **Gate de Proveniência:** `GATE: RUNTIME_PROVENANCE_RECONCILED`
+  - **Gate de RCA e Arquitetura:** `GATE: RCA_COMPLETE_ARCHITECTURE_PENDING_REVIEW`
+- **Artefatos Gerados:**
+  - `stage_31_7_29_runtime_provenance_audit.md`
+  - `stage_31_7_29_runtime_hash_inventory.json`
+  - `stage_31_7_29_runtime_comparison_report.md`
+  - `stage_31_7_29_metrics_reproduction.json`
+  - `stage_31_7_29_root_cause_analysis.md`
+  - `stage_31_7_29_false_direct_case_audit.json`
+  - `stage_31_7_29_related_off_topic_audit.json`
+  - `stage_31_7_29_seven_class_contract_audit.md`
+  - `stage_31_7_29_domain_disjunction_generalization_architecture.md`
+  - `stage_31_7_29_semantic_contracts.json`
+  - `stage_31_7_29_regression_risk_matrix.md`
+  - `stage_31_7_29_future_validation_plan.md`
+  - `Stage 31.7.29 — Forensic Root Cause Analysis & Domain Disjunction Generalization Architecture (Cycle 6).md`
+- **Status do Runtime (`reference_runtime/runtime.py`):**
+  - SHA-256 Inicial e Final: `6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28` (100% íntegro, congelado e inviolado).
+  - Snapshot de segurança preservado: `reference_runtime/runtime.py.stage_31_7_29_forensic_entry` (SHA-256 idêntico).
+- **Status Metodológico:** `REFERENCE_INDEPENDENCE_UNRESOLVED` (mantido estritamente).
+
+### 1. Reconciliação Forense dos Runtimes:
+1. **Reconstituição Conclusiva:** O hash `3FD3F80D...` correspondeu ao snapshot intermediário gerado às 22:24:37 UTC no Stage 31.7.27, o qual apresentou 5 falhas na suíte canônica de testes (`test_avoidance_guard_does_not_trigger_antithesis`, `test_category_h_inference_limits_unknown_insufficient`, `test_all_seven_classes_reachable`). O hash `6C44B7A8...` correspondeu ao runtime resultante de 3 correções de salvaguarda pontuais às 22:36:27 UTC que atingiram zero regressões (1.046 testes OK, Reference Harness 15/15 OK). O registro de `3FD3F80D...` decorreu de erro administrativo de transcrição documental ao compilar os relatórios finais.
+2. **Execução Comparativa:** Os 26 falsos DIRECTs e os 22 falsos OFF_TOPICs são rigorosamente idênticos em ambos os runtimes. As salvaguardas não introduziram nenhuma anomalia semântica. O runtime `6C44B7A8...` foi formalmente aprovado pelo usuário no início do Stage 31.7.28 e validado cegamente.
+
+### 2. Causas-Raiz Confirmadas no RCA:
+1. **Falsos DIRECTs (26 casos):** Falha do motor de disjunção baseado em regexes fechadas ao confrontar vocabulário inédito (artesanato em argila, construção civil, novas plantas). O filtro discursivo confundiu verbos transitivos ativos de processo ("requer", "exige") com pertinência técnica, ativando `is_operative = True` e caindo no fallback funcional do casador de nexo.
+2. **Rebaixamento de Metadados (22 casos):** Respostas históricas e de fundações de software (PostgreSQL, Linux, Docker) foram marcadas como `is_operative = False`. O padrão de metadados institucionais falhou por engessamento de regex. O matcher emitiu `NON_OPERATIVE`, e o agregador continha um sumidouro incondicional `else:` que descarregava em `OFF_TOPIC`, violando a ontologia de `RELATED`.
+
+### 3. Nova Arquitetura do Ciclo 6 (Aprovada para Revisão):
+- **Vinculação de Entidades Nucleares e Afinidade Tópica Aberta:** Se a resposta compartilha a entidade da pergunta ($E_R \cap E_Q \neq \emptyset$), ela é tematicamente ancorada, vetando sumariamente qualquer rebaixamento para `OFF_TOPIC`.
+- **Disjunção Aberta:** Detecção de alienação ontológica por presença de substantivos concretos de outros universos sem ligação com a tecnologia indagada, sem necessidade de catalogação exaustiva de profissões.
+- **Roteamento Explícito para `RELATED`:** Proposições não operativas que compartilham a entidade são fixadas deterministicamente em `RELATED`.
+
+### 4. Próxima Etapa Autorizada:
+- **Stage 31.7.30 — Adversarial Architecture Review & Semantic Contract Stress Test (Cycle 6)** (CONCLUÍDO)
+
+---
+
+# 81. REGISTRO DE TRANSIÇÃO — STAGE 31.7.30 (ADVERSARIAL ARCHITECTURE REVIEW & SEMANTIC CONTRACT STRESS TEST — CICLO 6)
+
+- **Stage Concluído:** Stage 31.7.30 — Adversarial Architecture Review & Semantic Contract Stress Test (Cycle 6)
+- **Gates Emitidos:**
+  - **Gate de Proveniência:** `GATE: RUNTIME_PROVENANCE_RECONCILED`
+  - **Decisão Arquitetural:** `GATE: ARCHITECTURE_REQUIRES_REVISION`
+- **Artefatos Gerados:**
+  - `stage_31_7_30_runtime_integrity_check.md`
+  - `stage_31_7_30_provenance_claim_audit.json`
+  - `stage_31_7_30_entity_anchor_counterexamples.json`
+  - `stage_31_7_30_domain_disjunction_stress_cases.json`
+  - `stage_31_7_30_seven_class_contract_review.md`
+  - `stage_31_7_30_demand_sufficiency_review.md`
+  - `stage_31_7_30_invariance_contract_review.md`
+  - `stage_31_7_30_contract_coverage_matrix.json` (28 contratos: 22 herdados + 6 novos adversariais)
+  - `stage_31_7_30_architecture_risk_register.md`
+  - `stage_31_7_30_architecture_decision.md`
+  - `Stage 31.7.30 — Adversarial Architecture Review & Semantic Contract Stress Test (Cycle 6).md`
+- **Status do Runtime (`reference_runtime/runtime.py`):**
+  - SHA-256 Inicial e Final: `6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28` (100% íntegro, congelado e inviolado).
+  - Snapshot de segurança preservado: `reference_runtime/runtime.py.stage_31_7_30_freeze` (SHA-256 idêntico).
+- **Status Metodológico:** `REFERENCE_INDEPENDENCE_UNRESOLVED` (mantido estritamente).
+
+### 1. Auditoria Forense de Proveniência (`RUNTIME_PROVENANCE_RECONCILED`):
+Todas as 9 alegações foram auditadas e classificadas como `VERIFIED`. O runtime `6C44B7A8...` foi o código efetivamente avaliado no Stage 31.7.28 com autorização explícita do usuário. A reprodução das 5 falhas no snapshot `3FD3...` e a equivalência das divergências nos 250 casos comprovam que a divergência documental não teve qualquer efeito nas causas semânticas do Ciclo 5.
+
+### 2. Revisão Adversarial da Regra de Entidades (`ARCHITECTURE_REQUIRES_REVISION`):
+A regra simplista de veto absoluto de `OFF_TOPIC` por presença de entidade proposta no Stage 31.7.29 foi formalmente refutada:
+1. **Contraexemplo E (Homonímia / Divagação):** O candidato cita "injeção de dependências" e desvia para dependência de importações de petróleo. Um veto absoluto blindaria essa divagação contra `OFF_TOPIC`.
+2. **Contraexemplo C (Hiperônimos sem Nome Literal):** Respostas perfeitas que explicam B-tree como "árvore balanceada de chaves" sem citar "B-tree" sofreriam risco de falso `OFF_TOPIC` sob a exigência estrita de intersecção lexical.
+3. **Contraexemplo B (Elogios Triviais):** "PostgreSQL é popular" deve ser `INSUFFICIENT` e não `RELATED`.
+4. **Casos STRESS-06 e STRESS-07:** Analogias pedagógicas (disjuntor elétrico para circuit breaker) e preâmbulos conversacionais (trânsito antes de Paxos) exigem regras específicas de isenção de analogia e segmentação oracional.
+
+### 3. Prescrições Mandatórias para o Ciclo 6:
+1. Substituir o veto absoluto por **Presunção Refutável de Conexão Temática** (derrubada se os predicados atuarem sobre domínios disjuntos).
+2. Incorporar reconhecimento de **Equivalência Conceitual e Hiperônimos Técnicos**.
+3. Criar regra de **Isenção para Analogias Pedagógicas**.
+4. Implementar **Segmentação Oracional de Preâmbulos Ruidosos**.
+5. Calibrar filtro de substância de metadados para rebaixar elogios vazios a `INSUFFICIENT`.
+
+### 4. Próxima Etapa Autorizada:
+- **Stage 31.7.31 — Architectural Remediation & Refined Specification (Cycle 6)**:
+  Refatorar e re-especificar formalmente a arquitetura do Ciclo 6 incorporando as 5 prescrições mandatórias e os contratos SC-23 a SC-28, mantendo o runtime absolutamente congelado.
+
+
+
 
 
 

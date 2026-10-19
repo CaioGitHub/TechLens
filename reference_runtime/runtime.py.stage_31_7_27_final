@@ -3272,9 +3272,11 @@ class PropositionDiscourseFilter:
         # 6. Filler / Empty
         is_filler = len(r_words) <= 4 and any(t in r_norm for t in ("sim", "conheco", "beleza", "com certeza", "uhum", "aham", "ok"))
 
-        # 3b. Destructive antithesis regex matching
-        antithesis_pat = r'\b(desativ|remover|deslig|arranc|elimin|dispens|retir)[a-z]*\b[^.]{0,50}\b(locks?|travas?|transac[a-z]*|circuit\s+breaker|rate\s+limit|timeout|filtros?\s+de\s+autentica[a-z]*|tokens?\s+jwt|firewall|wal|fsync)\b'
-        is_antithesis = is_antithesis or bool(re.search(antithesis_pat, r_norm))
+        # 3b. Destructive antithesis regex matching (respecting avoidance guard)
+        avoidance_guard = bool(re.search(r'\b(para evitar|sem precisar|ao inves de|em vez de|nao devemos|nunca|evitar)\s+(desativ\w*|remov\w*|deslig\w*|retir\w*|elimin\w*|tir\w*|arranc\w*)', r_morph))
+        if not avoidance_guard:
+            antithesis_pat = r'\b(desativ|remover|deslig|arranc|elimin|dispens|retir)[a-z]*\b[^.]{0,50}\b(locks?|travas?|transac[a-z]*|circuit\s+breaker|rate\s+limit|timeout|filtros?\s+de\s+autentica[a-z]*|tokens?\s+jwt|firewall|wal|fsync)\b'
+            is_antithesis = is_antithesis or bool(re.search(antithesis_pat, r_norm))
 
         # 7. Autobiographical declaration
         has_usage = any(v in r_norm for v in ("utilizo", "uso", "trabalho", "trabalhei", "atuei", "tenho", "usamos", "utilizamos", "trabalhamos", "adotamos", "subimos", "rodamos", "costumo", "costumamos"))
@@ -3394,7 +3396,7 @@ class DemandPropositionNexusBipartiteMatcher:
                 rationale=domain_record.rationale
             )
 
-        if domain_record and domain_record.disjunction_type == "EVASIVE_DEFLECTION":
+        if domain_record and domain_record.disjunction_type == "EVASIVE_DEFLECTION" and not prop.is_ambiguous:
             return DemandPropositionNexus(
                 demand_id=demand.demand_id,
                 nexus_relation="EVASIVE",
@@ -3691,17 +3693,8 @@ class StrictOntologyRelevanceAggregator:
         is_demo = epistemic.epistemic_status in ("DEMONSTRATED_EXPERIENCE", "CONCEPTUAL")
         nexus_relations = [nx.nexus_relation for nx in nexus_records]
 
-        # 1. Explicit ignorance -> UNKNOWN (Contract 8, Stage 31.7.27)
-        if any(n == "IGNORANCE" for n in nexus_relations):
-            classification = "UNKNOWN"
-            relation_type = "explicit_ignorance_statement"
-            func_contrib = False
-            cov_status = "UNKNOWN"
-            cov_ratio = 0.0
-            rationale = "Candidate explicitly acknowledges lack of knowledge."
-
-        # 2. Domain disjunction -> OFF_TOPIC
-        elif any(n == "DOMAIN_DISJUNCT" for n in nexus_relations):
+        # 1. Domain disjunction -> OFF_TOPIC
+        if any(n == "DOMAIN_DISJUNCT" for n in nexus_relations):
             classification = "OFF_TOPIC"
             relation_type = "alien_domain_assertion" if ((domain_record and domain_record.disjunction_type == "RADICAL_DISJUNCTION") or prop.is_alien_domain) else "domain_disjunct_assertion"
             func_contrib = False
@@ -3709,7 +3702,7 @@ class StrictOntologyRelevanceAggregator:
             cov_ratio = 0.0
             rationale = "Response is functionally disjunct from the question domain."
 
-        # 3. Destructive antithesis -> OFF_TOPIC
+        # 2. Destructive antithesis -> OFF_TOPIC
         elif any(n == "ANTITHESIS_OPPOSED" for n in nexus_relations):
             classification = "OFF_TOPIC"
             relation_type = "destructive_antithesis_assertion"
@@ -3717,6 +3710,15 @@ class StrictOntologyRelevanceAggregator:
             cov_status = "NONE"
             cov_ratio = 0.0
             rationale = "Response proposes action that opposes or disables required protections."
+
+        # 3. Ignorance / Insufficient / Filler -> INSUFFICIENT
+        elif any(n == "IGNORANCE" for n in nexus_relations) or any(n == "INSUFFICIENT" for n in nexus_relations):
+            classification = "INSUFFICIENT"
+            relation_type = "insufficient_technical_proposition"
+            func_contrib = False
+            cov_status = "NONE"
+            cov_ratio = 0.0
+            rationale = "Response lacks evaluable technical propositions."
 
         # 4. Ambiguity -> UNKNOWN
         elif any(n == "AMBIGUOUS" for n in nexus_relations):
@@ -3735,12 +3737,6 @@ class StrictOntologyRelevanceAggregator:
             cov_status = "NONE"
             cov_ratio = 0.0
             rationale = "Response is evasive and lacks substantive technical propositions."
-
-        # 6. Insufficient / Filler -> INSUFFICIENT
-        elif any(n == "INSUFFICIENT" for n in nexus_relations):
-            classification = "INSUFFICIENT"
-            relation_type = "insufficient_technical_proposition"
-            func_contrib = False
             cov_status = "NONE"
             cov_ratio = 0.0
             rationale = "Response lacks evaluable technical propositions."

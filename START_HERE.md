@@ -177,10 +177,28 @@ IMPLEMENTATION_COMPLETE_PENDING_INDEPENDENT_BLIND_VALIDATION
 
 Stage 31.7.28
     ↓
-NEXT STAGE (Independent Blind Semantic Revalidation — Cycle 5)
+BLIND_SEMANTIC_REVALIDATION_BLOCKED
+
+Stage 31.7.29
+    ↓
+RUNTIME_PROVENANCE_RECONCILED
+RCA_COMPLETE_ARCHITECTURE_PENDING_REVIEW
+
+Stage 31.7.30
+    ↓
+RUNTIME_PROVENANCE_RECONCILED
+ARCHITECTURE_REQUIRES_REVISION
+
+Stage 31.7.31
+    ↓
+NEXT STAGE (Architectural Remediation & Refined Specification — Cycle 6)
 ```
 
-O Stage 31.7.27 concluiu a implementação controlada dos 5 incrementos da arquitetura do Ciclo 5 em `reference_runtime/runtime.py`: `SemanticDomainDisjunctionEngine`, `DemandPropositionNexusBipartiteMatcher`, `PropositionDiscourseFilter`, `StrictOntologyRelevanceAggregator` e `OpenDomainPropositionEngine`. O hash criptográfico final do runtime é `3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`. Todos os 20 testes de contrato obrigatórios foram aprovados com 100% de sucesso (`tests/test_stage_31_7_27_contract_tests.py`). A suíte canônica de 1.047 testes passou integralmente com zero regressões (1.046 OK, 1 skipped, 0 falhas, 0 erros), assim como o Reference Harness do Stage 26 (15/15 OK). Na verificação puramente diagnóstica dos 250 casos históricos, a acurácia subiu de 60.80% para 89.20% (+71 casos) e os falsos DIRECTs despencaram de 70 para 6 (redução de 91.43%). O gate emitido é `IMPLEMENTATION_COMPLETE_PENDING_INDEPENDENT_BLIND_VALIDATION`. A próxima etapa autorizada é exclusivamente o **Stage 31.7.28 — Independent Blind Semantic Revalidation (Cycle 5)**.
+O Stage 31.7.30 concluiu a revisão adversarial e os testes de estresse contratual da arquitetura do Ciclo 6:
+1. **Proveniência do Runtime Confirmada (`RUNTIME_PROVENANCE_RECONCILED`):** Todas as 9 alegações sobre o runtime `6C44B7A8...` foram 100% verificadas (`VERIFIED`), comprovando que ele é a versão legítima homologada com 0 regressões e autorizada pelo usuário.
+2. **Revisão Adversarial da Regra de Entidades (`ARCHITECTURE_REQUIRES_REVISION`):** A regra de "veto absoluto" de `OFF_TOPIC` por compartilhamento de entidade foi refutada pelo Cenário E (homonímia/divagação geopolítica) e pelo Cenário C (respostas corretas sem menção literal da entidade, gerando risco de falso `OFF_TOPIC`).
+3. **Prescrições Mandatórias para o Ciclo 6:** (1) Substituir o veto absoluto por presunção refutável de pertinência temática derrubada por predicados alienígenas; (2) Reconhecer equivalências conceituais e hiperônimos técnicos; (3) Instituir regra de isenção para analogias pedagógicas (e.g. disjuntor elétrico para circuit breaker); (4) Aplicar segmentação oracional para isolar preâmbulos conversacionais de ruído; (5) Filtrar elogios superficiais como `INSUFFICIENT`. O runtime permaneceu 100% congelado no hash `6C44B7A8...`.
+4. **Próximo Passo:** **Stage 31.7.31 — Architectural Remediation & Refined Specification (Cycle 6)** para incorporar as prescrições mandatórias antes de qualquer autorização de implementação.
 
 ## Regra fundamental
 

@@ -1,0 +1,124 @@
+import json
+from pathlib import Path
+
+pilot_dir = Path("11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05")
+
+cases = [
+    {
+        "case_id": "STRESS-01",
+        "category": "Artesanato / Ofício Tradicional Alienígena",
+        "question": "Como configurar o particionamento de tabelas no PostgreSQL?",
+        "response": "Para produzir cerâmica vitrificada aplicamos esmalte mineral sobre a argila cozida e queimamos em forno a mil graus.",
+        "alien_vocabulary_present": ["ceramica", "esmalte mineral", "argila", "forno"],
+        "semantic_relation_to_demand": "Totalmente disjunto (nenhum ponto de contato conceitual ou sistêmico).",
+        "discursive_function": "Operação processual em domínio não-computacional.",
+        "contribution_to_demand": "Nula.",
+        "target_class": "OFF_TOPIC",
+        "architectural_trap": "Tratar verbos ativos transitivos ('aplicamos', 'queimamos') como evidência de resposta técnica operativa (Falso DIRECT).",
+        "handling_requirement": "Identificar ausência de entidade de software e predominância de entidades físicas minerais, classificando como OFF_TOPIC sem depender de lista prévia de artesanato."
+    },
+    {
+        "case_id": "STRESS-02",
+        "category": "Agricultura / Agronomia Alienígena",
+        "question": "Como o Garbage Collector identifica objetos nao alcancaveis na memória heap?",
+        "response": "A poda de inverno nas videiras deve ser feita cortando os ramos secos com tesoura esterilizada para estimular a brotacao primaveril.",
+        "alien_vocabulary_present": ["poda", "videiras", "ramos secos", "tesoura", "brotacao primaveril"],
+        "semantic_relation_to_demand": "Totalmente disjunto.",
+        "discursive_function": "Instrução técnica agronômica.",
+        "contribution_to_demand": "Nula.",
+        "target_class": "OFF_TOPIC",
+        "architectural_trap": "Se o motor possuir apenas regex de 'orquídeas' ou 'adubo', a viticultura passa desapercebida e o verbo 'deve ser feita cortando' gera falso DIRECT.",
+        "handling_requirement": "Veto por ausência de conceitos de tempo de execução, memória ou ponteiros, e presença de entidades botânicas autônomas."
+    },
+    {
+        "case_id": "STRESS-03",
+        "category": "Literatura e Crítica Teatral Alienígena",
+        "question": "Como o mecanismo de Write-Ahead Logging (WAL) garante a durabilidade de transações?",
+        "response": "O soneto camoniano estrutura-se em decassilabos heroicos com esquema rimico fixo refletindo o descompasso entre o amor ideal e a experiencia mundana.",
+        "alien_vocabulary_present": ["soneto", "decassilabos", "esquema rimico", "Camões"],
+        "semantic_relation_to_demand": "Totalmente disjunto.",
+        "discursive_function": "Análise literária formal.",
+        "contribution_to_demand": "Nula.",
+        "target_class": "OFF_TOPIC",
+        "architectural_trap": "Ausência de palavras ofensivas ou termos vulgares; discurso culto e formal com sintaxe impecável.",
+        "handling_requirement": "Reconhecimento de domínio humanístico/estético desprovido de qualquer relação com sistemas transacionais."
+    },
+    {
+        "case_id": "STRESS-04",
+        "category": "Domínio Novo Inédito: Medicina Cirúrgica / Hemodinâmica",
+        "question": "Como investigar alto consumo de CPU provocado por threads bloqueadas?",
+        "response": "O cirurgiao realiza uma arteriotomia longitudinal com pinçamento proximal e distal dos vasos para instalacao do enxerto venoso de safena.",
+        "alien_vocabulary_present": ["arteriotomia", "pincamento", "enxerto venoso", "safena"],
+        "semantic_relation_to_demand": "Totalmente disjunto (medicina cirúrgica cardiovascular).",
+        "discursive_function": "Procedimento cirúrgico de revascularização.",
+        "contribution_to_demand": "Nula.",
+        "target_class": "OFF_TOPIC",
+        "architectural_trap": "Domínio hospitalar não previsto nos 5 clusters de regex do Ciclo 5; presença de verbos operacionais ('realiza', 'instala') geraria falso DIRECT.",
+        "handling_requirement": "Detecção aberta de que os argumentos de ação pertencem à anatomia humana e não a processos computacionais."
+    },
+    {
+        "case_id": "STRESS-05",
+        "category": "Pré-requisito Legítimo de Infraestrutura da Solução",
+        "question": "Como configurar replicacao de leitura no PostgreSQL?",
+        "response": "Antes de ativar o streaming replication, e mandatorio liberar a porta 5432 no security group da nuvem e configurar a permissao de replication no pg_hba.conf.",
+        "alien_vocabulary_present": ["security group", "porta 5432", "pg_hba.conf"],
+        "semantic_relation_to_demand": "Pré-requisito técnico diretamente acoplado à execução da tarefa.",
+        "discursive_function": "Condição necessária preparatória.",
+        "contribution_to_demand": "Contribuição parcial/suporte instrumental essencial à replicação.",
+        "target_class": "SUPPORTING",
+        "architectural_trap": "Confundir pré-requisito de rede/permissão com 'fora do assunto' por não detalhar o arquivo postgresql.conf principal.",
+        "handling_requirement": "Reconhecer que pg_hba.conf e conectividade de banco são entidades pertencentes ao ecossistema do PostgreSQL, conferindo suporte válido."
+    },
+    {
+        "case_id": "STRESS-06",
+        "category": "Analogia Explicativa de Outro Domínio (Uso Pedagógico Válido)",
+        "question": "Como o padrao Circuit Breaker protege uma arquitetura de microsservicos?",
+        "response": "Ele funciona exatamente como o disjuntor eletrico de uma casa: quando ocorre uma sobrecarga na rede eletrica a chave desarma para nao queimar a fiacao, e no software ele abre o circuito para nao sobrecarregar servicos instaveis.",
+        "alien_vocabulary_present": ["disjuntor eletrico", "casa", "rede eletrica", "fiacao"],
+        "semantic_relation_to_demand": "Relação explicativa direta utilizando metáfora analógica para fundamentar o mecanismo computacional.",
+        "discursive_function": "Explicação analógica seguida da transposição direta para o software.",
+        "contribution_to_demand": "Resolução plena da intenção da pergunta.",
+        "target_class": "DIRECT",
+        "architectural_trap": "Detecção cega dos tokens 'disjuntor elétrico' e 'casa' como domínio disjunto, descartando a resposta para OFF_TOPIC.",
+        "handling_requirement": "Identificar que a oração analógica ('funciona como...') atua como modificador discursivo subordinado, e a proposição principal ('ele abre o circuito para não sobrecarregar serviços instáveis') cumpre a demanda computacional."
+    },
+    {
+        "case_id": "STRESS-07",
+        "category": "Rambling / Preâmbulo Conversacional Irrelevante seguido de Resposta Perfeita",
+        "question": "Como o algoritmo Paxos atinge consenso em sistemas distribuidos?",
+        "response": "Hoje o transito na avenida estava completamente parado e tomei um cafe antes da entrevista. Sobre o Paxos, ele atinge consenso em duas fases: a fase de prepare onde o proposer obtem quorum de promises, e a fase de accept onde o valor e aceito pela maioria dos nós.",
+        "alien_vocabulary_present": ["transito", "avenida", "cafe", "entrevista"],
+        "semantic_relation_to_demand": "A primeira oração é ruído irrelevante, mas a segunda oração atende com precisão matemática à pergunta.",
+        "discursive_function": "Conversa informal seguida de proposição técnica direta.",
+        "contribution_to_demand": "Resolução plena da demanda principal.",
+        "target_class": "DIRECT",
+        "architectural_trap": "Classificar como OFF_TOPIC ou INSUFFICIENT devido à presença de 'trânsito' e 'café' no início do texto.",
+        "handling_requirement": "Segmentação oracional que isola o ruído conversacional e avalia a proposição técnica substantiva de forma independente."
+    },
+    {
+        "case_id": "STRESS-08",
+        "category": "Tecnologia Desconhecida / Fictícia com Mecanismo Técnico Válido",
+        "question": "Como o motor de armazenamento VulcanDB resolve conflitos de concorrencia?",
+        "response": "O VulcanDB utiliza carimbos de relogios vetoriais associados a cada registro para identificar atualizacoes concorrentes e desempatar via comparacao deterministica de sequencia.",
+        "alien_vocabulary_present": ["VulcanDB"],
+        "semantic_relation_to_demand": "Atendimento direto da mecânica de concorrência com conceitos válidos de sistemas distribuídos (relógios vetoriais).",
+        "discursive_function": "Explicação causal de mecanismo operacional.",
+        "contribution_to_demand": "Resolução plena.",
+        "target_class": "DIRECT",
+        "architectural_trap": "Classificar como OFF_TOPIC ou UNKNOWN porque 'VulcanDB' não existe na base de conhecimento estática.",
+        "handling_requirement": "Avaliar a pertinência dos conceitos técnicos universais (relógios vetoriais, desempate determinístico) independentemente do nome proprietário ou fictício da ferramenta."
+    }
+]
+
+output = {
+    "stage": "31.7.30",
+    "audit_name": "Stage 31.7.30 Domain Disjunction Stress Cases & Boundary Review",
+    "total_stress_cases": len(cases),
+    "cases": cases,
+    "architectural_synthesis": "O teste de estresse confirma que a disjunção de domínio NÃO pode ser avaliada nem por presença de palavras desconhecidas (caso STRESS-06 de analogia e STRESS-07 de ruído inicial) nem por ausência de substantivos (caso STRESS-08 de tecnologia fictícia). A disjunção radical deve ser restrita a orações cujos predicados nucleares operam exclusivamente sobre entidades físicas/humanísticas sem nexo causal computacional."
+}
+
+with open(pilot_dir / "stage_31_7_30_domain_disjunction_stress_cases.json", "w", encoding="utf-8") as f:
+    json.dump(output, f, indent=2, ensure_ascii=False)
+
+print(f"Generated stage_31_7_30_domain_disjunction_stress_cases.json with {len(cases)} cases.")
