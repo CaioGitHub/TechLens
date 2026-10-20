@@ -1,0 +1,605 @@
+{
+  "stage": "31.7.31",
+  "title": "Stage 31.7.31 Formal Contract and Counterexample Matrix",
+  "total_historical_contracts_preserved": 28,
+  "total_stage_31_7_31_new_contracts": 7,
+  "total_contracts": 35,
+  "contracts": [
+    {
+      "contract_id": "SC-01",
+      "scenario": "Direct without lexical overlap",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "RELATED",
+        "PARTIAL"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Direct without lexical overlap.",
+      "negative_case": "Resposta que falha em cumprir Direct without lexical overlap desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Descreve o mecanismo causal exato de controle otimista sem repetir o lexico da pergunta.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como DIRECT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-02",
+      "scenario": "Genuinely disjoint alien domain not previously enumerated",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "OFF_TOPIC",
+      "competing_classes": [
+        "INSUFFICIENT",
+        "UNKNOWN"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Genuinely disjoint alien domain not previously enumerated.",
+      "negative_case": "Resposta que falha em cumprir Genuinely disjoint alien domain not previously enumerated desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Entidades nucleares pertencentes a artesanato mineral sem sobreposicao com computacao.",
+      "generalization_risk": "MODERATE: O cenário usa artesanato/antítese. Risco de codificação de regras ad-hoc se o desenvolvedor apenas adicionar esses termos a regexes em vez de generalizar a análise de predicados.",
+      "acceptance_criterion": "O motor deve classificar estritamente como OFF_TOPIC com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-03",
+      "scenario": "Historical or institutional metadata",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "RELATED",
+      "competing_classes": [
+        "OFF_TOPIC",
+        "DIRECT"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Historical or institutional metadata.",
+      "negative_case": "Resposta que falha em cumprir Historical or institutional metadata desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Compartilha a entidade PostgreSQL mas nao descreve o mecanismo de MVCC.",
+      "generalization_risk": "LOW_TO_MODERATE: Testa metadados históricos. Risco de fixar apenas a palavra 'Berkeley' ou 'origem'.",
+      "acceptance_criterion": "O motor deve classificar estritamente como RELATED com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-04",
+      "scenario": "Related context without answering mechanism",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "RELATED",
+      "competing_classes": [
+        "OFF_TOPIC",
+        "DIRECT"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Related context without answering mechanism.",
+      "negative_case": "Resposta que falha em cumprir Related context without answering mechanism desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Discurso tematico sobre a tecnologia sem atendimento operacional.",
+      "generalization_risk": "LOW_TO_MODERATE: Testa metadados históricos. Risco de fixar apenas a palavra 'Berkeley' ou 'origem'.",
+      "acceptance_criterion": "O motor deve classificar estritamente como RELATED com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-05",
+      "scenario": "Auxiliary observability contribution",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "SUPPORTING",
+      "competing_classes": [
+        "INSUFFICIENT",
+        "UNKNOWN"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Auxiliary observability contribution.",
+      "negative_case": "Resposta que falha em cumprir Auxiliary observability contribution desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Instrumentacao e telemetria uteis para observar o problema sem resolver o lock.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como SUPPORTING com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-06",
+      "scenario": "Partially correct answer on multi-aspect question",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "PARTIAL",
+      "competing_classes": [
+        "INSUFFICIENT",
+        "UNKNOWN"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Partially correct answer on multi-aspect question.",
+      "negative_case": "Resposta que falha em cumprir Partially correct answer on multi-aspect question desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Resolve plenamente a primeira demanda mas omite por completo a segunda.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como PARTIAL com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-07",
+      "scenario": "Compound question with complete fulfillment",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "RELATED",
+        "PARTIAL"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Compound question with complete fulfillment.",
+      "negative_case": "Resposta que falha em cumprir Compound question with complete fulfillment desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Proposicao densa que satisfaz simultaneamente ambas as demandas.",
+      "generalization_risk": "LOW: Testa decomposição composta clássica de Kafka/Circuit Breaker.",
+      "acceptance_criterion": "O motor deve classificar estritamente como DIRECT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-08",
+      "scenario": "Compound question with partial explicit omission",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "PARTIAL",
+      "competing_classes": [
+        "INSUFFICIENT",
+        "UNKNOWN"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Compound question with partial explicit omission.",
+      "negative_case": "Resposta que falha em cumprir Compound question with partial explicit omission desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Atende a primeira demanda com omissao confirmada da segunda.",
+      "generalization_risk": "LOW: Testa decomposição composta clássica de Kafka/Circuit Breaker.",
+      "acceptance_criterion": "O motor deve classificar estritamente como PARTIAL com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-09",
+      "scenario": "Conceptual definition without causal code requirement",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "RELATED",
+        "PARTIAL"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Conceptual definition without causal code requirement.",
+      "negative_case": "Resposta que falha em cumprir Conceptual definition without causal code requirement desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Definicao rigorosa e precisa suficiente para a intencao conceitual.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como DIRECT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-10",
+      "scenario": "Historical question with origin context",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "RELATED",
+        "PARTIAL"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Historical question with origin context.",
+      "negative_case": "Resposta que falha em cumprir Historical question with origin context desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Responde com precisao a razao tecnica e historica indagada.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como DIRECT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-11",
+      "scenario": "Comparative question with structured axes",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "RELATED",
+        "PARTIAL"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Comparative question with structured axes.",
+      "negative_case": "Resposta que falha em cumprir Comparative question with structured axes desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Atende com rigor os eixos de comparacao de isolamento e compartilhamento.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como DIRECT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-12",
+      "scenario": "Diagnostic investigation scenario",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "RELATED",
+        "PARTIAL"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Diagnostic investigation scenario.",
+      "negative_case": "Resposta que falha em cumprir Diagnostic investigation scenario desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Apresenta o procedimento investigativo concreto adequado ao cenario.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como DIRECT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-13",
+      "scenario": "Implementation question with concrete mechanics",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "RELATED",
+        "PARTIAL"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Implementation question with concrete mechanics.",
+      "negative_case": "Resposta que falha em cumprir Implementation question with concrete mechanics desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Descreve o algoritmo e comandos concretos do Redis.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como DIRECT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-14",
+      "scenario": "Evasive business and consulting deflection",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "INSUFFICIENT",
+      "competing_classes": [
+        "INSUFFICIENT",
+        "UNKNOWN"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Evasive business and consulting deflection.",
+      "negative_case": "Resposta que falha em cumprir Evasive business and consulting deflection desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Evasao discursiva sem nenhuma proposicao tecnica avaliavel.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como INSUFFICIENT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-15",
+      "scenario": "Genuine semantic indeterminacy and ambiguity",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "UNKNOWN",
+      "competing_classes": [
+        "INSUFFICIENT",
+        "UNKNOWN"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Genuine semantic indeterminacy and ambiguity.",
+      "negative_case": "Resposta que falha em cumprir Genuine semantic indeterminacy and ambiguity desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Enunciado intrinsecamente indeterminado sem valor informativo.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como UNKNOWN com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-16",
+      "scenario": "Colloquial engineering language and passive voice",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "RELATED",
+        "PARTIAL"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Colloquial engineering language and passive voice.",
+      "negative_case": "Resposta que falha em cumprir Colloquial engineering language and passive voice desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Equivalencia semantica exata da solucao tecnica em redacao coloquial e passiva.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como DIRECT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-17",
+      "scenario": "Short concise technical definition",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "RELATED",
+        "PARTIAL"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Short concise technical definition.",
+      "negative_case": "Resposta que falha em cumprir Short concise technical definition desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Definicao concisa e exata do fenomeno de deadlock.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como DIRECT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-18",
+      "scenario": "Long answer with irrelevant rambling padding",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "INSUFFICIENT",
+      "competing_classes": [
+        "INSUFFICIENT",
+        "UNKNOWN"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Long answer with irrelevant rambling padding.",
+      "negative_case": "Resposta que falha em cumprir Long answer with irrelevant rambling padding desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Prolixidade vazia culminando em desconhecimento da demanda.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como INSUFFICIENT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-19",
+      "scenario": "Destructive antithesis without avoidance guard",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "OFF_TOPIC",
+      "competing_classes": [
+        "INSUFFICIENT",
+        "UNKNOWN"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Destructive antithesis without avoidance guard.",
+      "negative_case": "Resposta que falha em cumprir Destructive antithesis without avoidance guard desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Proposicao de acoes que violam e eliminam garantias fundamentais de concorrencia.",
+      "generalization_risk": "MODERATE: O cenário usa artesanato/antítese. Risco de codificação de regras ad-hoc se o desenvolvedor apenas adicionar esses termos a regexes em vez de generalizar a análise de predicados.",
+      "acceptance_criterion": "O motor deve classificar estritamente como OFF_TOPIC com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-20",
+      "scenario": "Avoidance guard on destructive keywords",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "RELATED",
+        "PARTIAL"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Avoidance guard on destructive keywords.",
+      "negative_case": "Resposta que falha em cumprir Avoidance guard on destructive keywords desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Menciona termos destrutivos sob guarda explicita de evitacao ('para evitar desativar').",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como DIRECT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-21",
+      "scenario": "Unseen fictional technology with sound distributed mechanism",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "RELATED",
+        "PARTIAL"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Unseen fictional technology with sound distributed mechanism.",
+      "negative_case": "Resposta que falha em cumprir Unseen fictional technology with sound distributed mechanism desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Tecnologia inedita descrita sob principio cientifico solido de relogios vetoriais.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como DIRECT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-22",
+      "scenario": "Paired invariance parity across syntactic variations",
+      "architectural_rule": "Cycle 6 Entity-Domain Binding & Nexus Bipartite Matching",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "RELATED",
+        "PARTIAL"
+      ],
+      "positive_case": "Resposta que demonstra adequadamente o cenário de Paired invariance parity across syntactic variations.",
+      "negative_case": "Resposta que falha em cumprir Paired invariance parity across syntactic variations desrespeitando o nexo exigido.",
+      "counterexample": "Expressão que use termos deste cenário de forma descontextualizada ou errônea.",
+      "required_evidence": "Paráfrase em voz passiva rigorosamente equivalente a formulacao em voz ativa.",
+      "generalization_risk": "LOW: Representa propriedades ontológicas gerais da engenharia de software.",
+      "acceptance_criterion": "O motor deve classificar estritamente como DIRECT com base em evidências proposicionais.",
+      "unresolved_issue": "Sensibilidade a variações dialetais extremas e prosódia conversacional."
+    },
+    {
+      "contract_id": "SC-23-REV",
+      "scenario": "Metaphorical / Pedagogical Analogy from Another Domain",
+      "architectural_rule": "Clausal Dependency Disjunction Exemption for Metaphorical Explanations",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "OFF_TOPIC",
+        "RELATED"
+      ],
+      "positive_case": "Resposta cumprindo o teste de estresse de Metaphorical / Pedagogical Analogy from Another Domain.",
+      "negative_case": "Resposta falhando no teste de Metaphorical / Pedagogical Analogy from Another Domain.",
+      "counterexample": "Contraexemplo que viole o princípio de Metaphorical / Pedagogical Analogy from Another Domain.",
+      "required_evidence": "Validar se analogias que comparam conceitos técnicos a objetos do mundo real (disjuntor elétrico residencial) preservam a classificação DIRECT pela oração principal de software.",
+      "generalization_risk": "Alto se o motor punir qualquer substantivo físico residencial.",
+      "acceptance_criterion": "O motor deve classificar como DIRECT sem desvios por palavras-chave.",
+      "unresolved_issue": "Interpretação de intenção subjacente quando o candidato usa ironia ou sarcasmo."
+    },
+    {
+      "contract_id": "SC-24-REV",
+      "scenario": "Conversational Chitchat Preamble followed by Complete Direct Mechanism",
+      "architectural_rule": "Discourse Segment Isolation & Substantive Proposition Extraction",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "OFF_TOPIC",
+        "RELATED"
+      ],
+      "positive_case": "Resposta cumprindo o teste de estresse de Conversational Chitchat Preamble followed by Complete Direct Mechanism.",
+      "negative_case": "Resposta falhando no teste de Conversational Chitchat Preamble followed by Complete Direct Mechanism.",
+      "counterexample": "Contraexemplo que viole o princípio de Conversational Chitchat Preamble followed by Complete Direct Mechanism.",
+      "required_evidence": "Garantir que desabafos sobre trânsito ou café antes de responder ao algoritmo Paxos não rebaixem a resposta para OFF_TOPIC.",
+      "generalization_risk": "Médio se o pré-processador não separar orações independentes.",
+      "acceptance_criterion": "O motor deve classificar como DIRECT sem desvios por palavras-chave.",
+      "unresolved_issue": "Interpretação de intenção subjacente quando o candidato usa ironia ou sarcasmo."
+    },
+    {
+      "contract_id": "SC-25-REV",
+      "scenario": "Legitimate Infrastructure Prerequisite as Response",
+      "architectural_rule": "Prerequisite Technical Anchoring to Target Infrastructure",
+      "expected_class": "SUPPORTING",
+      "competing_classes": [
+        "OFF_TOPIC",
+        "RELATED"
+      ],
+      "positive_case": "Resposta cumprindo o teste de estresse de Legitimate Infrastructure Prerequisite as Response.",
+      "negative_case": "Resposta falhando no teste de Legitimate Infrastructure Prerequisite as Response.",
+      "counterexample": "Contraexemplo que viole o princípio de Legitimate Infrastructure Prerequisite as Response.",
+      "required_evidence": "Reconhecer que liberar portas de rede no security group e pg_hba.conf é suporte instrumental válido para replicação de banco de dados.",
+      "generalization_risk": "Baixo.",
+      "acceptance_criterion": "O motor deve classificar como SUPPORTING sem desvios por palavras-chave.",
+      "unresolved_issue": "Interpretação de intenção subjacente quando o candidato usa ironia ou sarcasmo."
+    },
+    {
+      "contract_id": "SC-26-REV",
+      "scenario": "Lexical Homonymy with Non-Computing Metaphor (Shared Word, Alien Predicate)",
+      "architectural_rule": "Rebuttal of Shared Entity Presumption via Alien Predicate Verification",
+      "expected_class": "OFF_TOPIC",
+      "competing_classes": [
+        "DIRECT",
+        "RELATED"
+      ],
+      "positive_case": "Resposta cumprindo o teste de estresse de Lexical Homonymy with Non-Computing Metaphor (Shared Word, Alien Predicate).",
+      "negative_case": "Resposta falhando no teste de Lexical Homonymy with Non-Computing Metaphor (Shared Word, Alien Predicate).",
+      "counterexample": "Contraexemplo que viole o princípio de Lexical Homonymy with Non-Computing Metaphor (Shared Word, Alien Predicate).",
+      "required_evidence": "Demonstrar que usar a palavra 'dependência' para divagar sobre importações e geopolítica deve ser classificado como OFF_TOPIC a despeito do match de palavra.",
+      "generalization_risk": "Crítico se o sistema adotar veto absoluto cego de OFF_TOPIC.",
+      "acceptance_criterion": "O motor deve classificar como OFF_TOPIC sem desvios por palavras-chave.",
+      "unresolved_issue": "Interpretação de intenção subjacente quando o candidato usa ironia ou sarcasmo."
+    },
+    {
+      "contract_id": "SC-27-REV",
+      "scenario": "Pure Praise / Buzzword Triviality Citing Target Entity",
+      "architectural_rule": "Distinction between Thematic Substantive Metadata and Conversational Filler",
+      "expected_class": "INSUFFICIENT",
+      "competing_classes": [
+        "DIRECT",
+        "RELATED"
+      ],
+      "positive_case": "Resposta cumprindo o teste de estresse de Pure Praise / Buzzword Triviality Citing Target Entity.",
+      "negative_case": "Resposta falhando no teste de Pure Praise / Buzzword Triviality Citing Target Entity.",
+      "counterexample": "Contraexemplo que viole o princípio de Pure Praise / Buzzword Triviality Citing Target Entity.",
+      "required_evidence": "Confirmar que dizer apenas 'O PostgreSQL é ótimo e muito popular' é INSUFFICIENT e não RELATED.",
+      "generalization_risk": "Médio se qualquer frase com a entidade for forçada para RELATED.",
+      "acceptance_criterion": "O motor deve classificar como INSUFFICIENT sem desvios por palavras-chave.",
+      "unresolved_issue": "Interpretação de intenção subjacente quando o candidato usa ironia ou sarcasmo."
+    },
+    {
+      "contract_id": "SC-28-REV",
+      "scenario": "Fictional Technology with Rigorous Distributed Computing Mechanics",
+      "architectural_rule": "Open Domain Conceptual Soundness without Closed Software Inventories",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "OFF_TOPIC",
+        "RELATED"
+      ],
+      "positive_case": "Resposta cumprindo o teste de estresse de Fictional Technology with Rigorous Distributed Computing Mechanics.",
+      "negative_case": "Resposta falhando no teste de Fictional Technology with Rigorous Distributed Computing Mechanics.",
+      "counterexample": "Contraexemplo que viole o princípio de Fictional Technology with Rigorous Distributed Computing Mechanics.",
+      "required_evidence": "Provar que uma ferramenta inédita (VulcanDB) respondida com relógios vetoriais é DIRECT sem necessidade de catálogo.",
+      "generalization_risk": "Baixo.",
+      "acceptance_criterion": "O motor deve classificar como DIRECT sem desvios por palavras-chave.",
+      "unresolved_issue": "Interpretação de intenção subjacente quando o candidato usa ironia ou sarcasmo."
+    },
+    {
+      "contract_id": "SC-29",
+      "scenario": "Rebuttal of Entity Presumption via Alien Geopolitical Predicate (Homonymy)",
+      "architectural_rule": "Thematic Affinity Rebuttal Rule",
+      "expected_class": "OFF_TOPIC",
+      "competing_classes": [
+        "RELATED",
+        "DIRECT"
+      ],
+      "positive_case": "Citar 'dependência' para falar sobre dependência de petróleo e importações em pergunta sobre injeção de dependências no Spring.",
+      "negative_case": "Citar dependência de bibliotecas no pom.xml (pertinente a software).",
+      "counterexample": "Argumentar que 'petróleo' poderia ser uma metáfora para recursos de nuvem (refutado por ausência de grounding).",
+      "required_evidence": "Identificação de que os predicados verbais e complementos atuam sobre comércio internacional.",
+      "generalization_risk": "Falso positivo se o candidato usar termos econômicos em perguntas sobre FinOps ou cloud billing.",
+      "acceptance_criterion": "Classificação determinística como OFF_TOPIC derrubando a presunção lexical.",
+      "unresolved_issue": "Desambiguação automática entre metáfora legítima de negócios e divagação total."
+    },
+    {
+      "contract_id": "SC-30",
+      "scenario": "Correct Functional Description of Data Structure without Name Repetition",
+      "architectural_rule": "Functional Equivalence & Hypernym Invariance",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "OFF_TOPIC",
+        "INSUFFICIENT"
+      ],
+      "positive_case": "Explicar 'árvore balanceada de chaves hierárquicas com busca logarítmica' para acelerar consulta em banco sem dizer 'B-tree'.",
+      "negative_case": "Dizer apenas 'o banco organiza os dados de forma rápida' (vago).",
+      "counterexample": "Descrever árvore binária simples não balanceada (conceitualmente falho para índices de banco).",
+      "required_evidence": "Reconhecimento das propriedades invariantes de árvore balanceada e navegação logarítmica.",
+      "generalization_risk": "Reconhecer descrições excessivamente genéricas como se fossem a estrutura exata.",
+      "acceptance_criterion": "Classificação como DIRECT independente da ausência do token literal B-tree.",
+      "unresolved_issue": "Determinação do limiar de propriedades necessárias para caracterizar uma estrutura específica."
+    },
+    {
+      "contract_id": "SC-31",
+      "scenario": "Ungrounded Educational Analogy without Software Transposition",
+      "architectural_rule": "Pedagogical Analogy Grounding Verification",
+      "expected_class": "INSUFFICIENT",
+      "competing_classes": [
+        "DIRECT",
+        "OFF_TOPIC"
+      ],
+      "positive_case": "Descrever detalhadamente o disjuntor elétrico residencial que desarma a chave e parar sem explicar microsserviços.",
+      "negative_case": "Explicar o disjuntor e em seguida mapear a interrupção de chamadas HTTP com fallback.",
+      "counterexample": "Candidato que assume que o ouvinte já sabe o resto e diz apenas 'é igual na computação'.",
+      "required_evidence": "Ausência de aterrissagem proposicional no domínio-alvo de software ($D_T$).",
+      "generalization_risk": "Punir analogias completas se a aterrissagem for curta.",
+      "acceptance_criterion": "Classificação como INSUFFICIENT vetando categoricamente DIRECT.",
+      "unresolved_issue": "Distinção entre aterrissagem elíptica válida e falta total de explicação computacional."
+    },
+    {
+      "contract_id": "SC-32",
+      "scenario": "Explicit Self-Correction Overriding Initial Incorrect Hypothesis",
+      "architectural_rule": "Discourse Self-Correction Resolution",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "UNKNOWN",
+        "PARTIAL",
+        "OFF_TOPIC"
+      ],
+      "positive_case": "'Inicialmente achei que usaria índice, mas analisando o plano de execução vi que realizou varredura sequencial.'",
+      "negative_case": "'Achei que usaria índice e com certeza usou índice.' (sem correção).",
+      "counterexample": "Correção aparente que na verdade expressa dúvida irresolúvel ('não sei se é índice ou seq scan').",
+      "required_evidence": "Presença do marcador de retratação ('mas analisando... percebi/vi') associado a evidência empírica.",
+      "generalization_risk": "Assumir que toda frase que vem depois de 'mas' é uma correção de autoridade.",
+      "acceptance_criterion": "A proposição retificada é neutralizada e a proposição corretiva define a classificação.",
+      "unresolved_issue": "Candidatos que se corrigem três vezes consecutivas gerando confusão proposicional."
+    },
+    {
+      "contract_id": "SC-33",
+      "scenario": "Direct Internal Contradiction Destroying Conceptual Truth Value",
+      "architectural_rule": "Internal Semantic Contradiction Invalidation",
+      "expected_class": "INSUFFICIENT",
+      "competing_classes": [
+        "DIRECT",
+        "OFF_TOPIC"
+      ],
+      "positive_case": "'Serializável busca garantir execução equivalente à serial. Na verdade não oferece nenhuma garantia.'",
+      "negative_case": "'Serializável oferece garantia de serialização, embora com custo de aborts em conflito.' (trade-off legítimo).",
+      "counterexample": "Paradoxos clássicos de concorrência que parecem contradição mas são propriedades reais do sistema.",
+      "required_evidence": "Detecção de operadores de negação mútua operando sobre as mesmas premissas nucleares.",
+      "generalization_risk": "Confundir ponderação madura de limitações de engenharia com contradição destrutiva.",
+      "acceptance_criterion": "A resposta não pode ser aceita como DIRECT pela primeira frase se a segunda frase anular a verdade.",
+      "unresolved_issue": "Calibração de sensibilidade para não punir concessões e ressalvas técnicas legítimas."
+    },
+    {
+      "contract_id": "SC-34",
+      "scenario": "Distributed Multi-Sentence Composition (Definition + Mechanism + Trade-off)",
+      "architectural_rule": "Cumulative Cross-Sentence Semantic Synthesis",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "PARTIAL"
+      ],
+      "positive_case": "Frase 1 define idempotência formalmente; Frase 2 explica token único de transação em header; Frase 3 discute retenção no Redis.",
+      "negative_case": "Três frases desconexas que não se integram logicamente.",
+      "counterexample": "Três frases que definem três ferramentas diferentes sem responder à pergunta.",
+      "required_evidence": "Integração cumulativa onde a soma das proposições cobre 100% dos requisitos epistemológicos da pergunta.",
+      "generalization_risk": "Fracionamento indevido por analisadores sintáticos que avaliam sentença por sentença.",
+      "acceptance_criterion": "Classificação DIRECT consolidada no nível do agregado discursivo.",
+      "unresolved_issue": "Anáforas pronominais complexas entre parágrafos distantes."
+    },
+    {
+      "contract_id": "SC-35",
+      "scenario": "Technical Term Attributed Incompatible / Conflicting Property",
+      "architectural_rule": "Conceptual Property Invariance Checking",
+      "expected_class": "OFF_TOPIC",
+      "competing_classes": [
+        "DIRECT",
+        "INSUFFICIENT"
+      ],
+      "positive_case": "Definir 'fila assíncrona' dizendo que ela bloqueia e trava a thread consumidora até a resposta síncrona.",
+      "negative_case": "Explicar fila assíncrona com confirmação síncrona de recebimento no broker (ack síncrono é válido).",
+      "counterexample": "Candidato que usa a palavra errada por lapso de linguagem mas descreve a coisa certa no exemplo.",
+      "required_evidence": "Choque direto entre a propriedade invariante do conceito e a descrição operacional incompatível.",
+      "generalization_risk": "Punir imprecisões menores de vocabulário como se fossem incompatibilidades estruturais.",
+      "acceptance_criterion": "Veto de DIRECT e encaminhamento para OFF_TOPIC ou INSUFFICIENT.",
+      "unresolved_issue": "Distinção entre lapso de fala ('slip of the tongue') e incompreensão ontológica real."
+    }
+  ],
+  "audit_declaration": "Todos os 28 contratos históricos de estágios anteriores foram integralmente preservados com seus IDs e semântica originais. Foram adicionados 7 novos contratos adversariais (SC-29 a SC-35) para cobrir formalmente as regras de refutação temática, analogia ungrounded, autocorreção, contradição e equivalência funcional."
+}

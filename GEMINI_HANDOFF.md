@@ -3085,8 +3085,155 @@ A regra simplista de veto absoluto de `OFF_TOPIC` por presença de entidade prop
 5. Calibrar filtro de substância de metadados para rebaixar elogios vazios a `INSUFFICIENT`.
 
 ### 4. Próxima Etapa Autorizada:
-- **Stage 31.7.31 — Architectural Remediation & Refined Specification (Cycle 6)**:
-  Refatorar e re-especificar formalmente a arquitetura do Ciclo 6 incorporando as 5 prescrições mandatórias e os contratos SC-23 a SC-28, mantendo o runtime absolutamente congelado.
+- **Stage 31.7.31 — Architectural Remediation & Refined Specification (Cycle 6)** (CONCLUÍDO)
+
+---
+
+# 82. REGISTRO DE TRANSIÇÃO — STAGE 31.7.31 (ARCHITECTURAL REMEDIATION & REFINED SEMANTIC SPECIFICATION — CICLO 6)
+
+- **Stage Concluído:** Stage 31.7.31 — Architectural Remediation & Refined Semantic Specification (Cycle 6)
+- **Gates Emitidos:**
+  - **Decisão Arquitetural:** `GATE: REFINED_ARCHITECTURE_READY_FOR_INDEPENDENT_REVIEW`
+  - **Gate de Proveniência:** `GATE: RUNTIME_PROVENANCE_RECONCILED`
+- **Artefatos Gerados (13 arquivos):**
+  - `stage_31_7_31_refined_architecture.md`
+  - `stage_31_7_31_thematic_connection_contract.md`
+  - `stage_31_7_31_conceptual_equivalence_contract.md`
+  - `stage_31_7_31_analogy_handling_contract.md`
+  - `stage_31_7_31_proposition_composition_contract.md`
+  - `stage_31_7_31_content_substance_contract.md`
+  - `stage_31_7_31_demand_sufficiency_contract.md`
+  - `stage_31_7_31_seven_class_decision_contract.md`
+  - `stage_31_7_31_evidence_traceability_schema.json`
+  - `stage_31_7_31_contract_counterexample_matrix.json` (35 contratos formais: 28 históricos + 7 novos)
+  - `stage_31_7_31_architecture_risk_register.md` (18 riscos arquiteturais mapeados)
+  - `stage_31_7_31_open_questions.md`
+  - `Stage 31.7.31 — Architectural Remediation & Refined Semantic Specification (Cycle 6).md`
+- **Status do Runtime (`reference_runtime/runtime.py`):**
+  - SHA-256 Inicial e Final: `6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28` (100% íntegro, congelado e inviolado).
+  - Snapshots de segurança preservados: `reference_runtime/runtime.py.stage_31_7_31_freeze` e `runtime.py.stage_31_7_30_freeze`.
+- **Status Metodológico:** `REFERENCE_INDEPENDENCE_UNRESOLVED` (mantido estritamente).
+
+### 1. Cinco Avanços Conceituais Formalizados:
+1. **Conexão Temática Refutável:** A presunção preliminar de pertinência por entidade compartilhada é submetida a teste de predicado, sendo formalmente refutada quando a oração atua sobre domínios disjuntos (Caso C: homonímia/petróleo em Spring DI $\to$ `OFF_TOPIC`).
+2. **Equivalência Conceitual e Hiperônimos Abertos:** Reconhecimento de respostas tecnicamente corretas formuladas por hiperônimos ou descrições funcionais puras sem o token formal da pergunta (Caso D: árvore balanceada para B-tree $\to$ `DIRECT`).
+3. **Bipolaridade de Analogias com Aterrissagem Obrigatória:** Desacoplamento entre domínio-veículo ($D_V$) e domínio-alvo ($D_T$). Analogias com aterrissagem no software geram `DIRECT`; analogias desprovidas de transposição computacional geram `INSUFFICIENT`.
+4. **Segmentação Proposicional e Composição de Contexto:** Isolamento de preâmbulos fáticos de ruído (trânsito antes de Paxos $\to$ `DIRECT`), preservação de escopos de negação e condicionais, e detecção de contradições internas destrutivas e autocorreções explícitas.
+5. **Roteamento Ontológico Explícito e Fim do Sumidouro de `OFF_TOPIC`:** Proposições temáticas sem mecanismo operacional (história, origem, licença) são encaminhadas deterministicamente para `RELATED`. Elogios vazios sem fatos vão para `INSUFFICIENT`.
+
+### 2. Próxima Etapa Autorizada:
+- **Stage 31.7.32 — Independent Adversarial Architecture Review (Cycle 6)** (CONCLUÍDO)
+
+---
+
+# 83. REGISTRO DE TRANSIÇÃO — STAGE 31.7.32 (INDEPENDENT ADVERSARIAL ARCHITECTURE REVIEW — CICLO 6)
+
+- **Stage Concluído:** Stage 31.7.32 — Independent Adversarial Architecture Review (Cycle 6)
+- **Gates Emitidos:**
+  - **Decisão Arquitetural:** `GATE: ARCHITECTURE_APPROVED_FOR_IMPLEMENTATION_PLANNING`
+  - **Gate de Proveniência:** `GATE: RUNTIME_PROVENANCE_RECONCILED`
+- **Artefatos Gerados (9 arquivos):**
+  - `stage_31_7_32_independent_architecture_review.md` (Relatório principal e respostas aos 13 quesitos)
+  - `stage_31_7_32_contract_audit.json` (Auditoria dos 35 contratos: 21 aprovados, 14 com ressalva, 0 rejeitados)
+  - `stage_31_7_32_seven_class_boundary_matrix.md` (Matriz das 21 fronteiras binárias entre as 7 classes)
+  - `stage_31_7_32_adversarial_counterexamples.json` (15 cenários adversariais de estresse)
+  - `stage_31_7_32_pipeline_contract_audit.md` (Auditoria dos 7 estágios sequenciais)
+  - `stage_31_7_32_traceability_schema_audit.md` (Validação estrutural do schema JSON Draft-07)
+  - `stage_31_7_32_architecture_findings.json` (Catálogo de achados: 0 BLOCKER, 0 CRITICAL, 2 MAJOR, 4 MODERATE, 1 MINOR)
+  - `stage_31_7_32_gate_decision.md` (Decisão formal de gates e pendências para implementação)
+  - `Stage 31.7.32 — Independent Adversarial Architecture Review (Cycle 6).md` (Relatório executivo)
+- **Status do Runtime (`reference_runtime/runtime.py`):**
+  - SHA-256 Inicial e Final: `6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28` (100% íntegro, congelado e inviolado).
+  - Snapshot de segurança preservado: `reference_runtime/runtime.py.stage_31_7_32_freeze`.
+- **Status Metodológico:** `REFERENCE_INDEPENDENCE_UNRESOLVED` (mantido estritamente).
+
+### 1. Síntese dos Achados e Aprovação Arquitetural:
+1. **Inexistência de Impedimentos Críticos:** A especificação eliminou o veto simplista de `OFF_TOPIC`, removeu o sumidouro incondicional `else: OFF_TOPIC`, estruturou analogias ancoradas e preâmbulos fáticos, e definiu critérios nítidos para as 21 fronteiras das 7 classes.
+2. **Diretrizes Mandatórias para a Implementação (Stage 31.7.33):**
+   - Delimitar formalmente que a refutação de predicados deve operar sobre análise sintática de papéis semânticos (SRL) ou substantivos nucleares concretos do mundo físico, evitando listas fechadas de palavras proibidas (`FINDING-01`);
+   - Focar a equivalência funcional nos invariantes essenciais de ciência da computação (árvores, locks, consenso, hashing) e tratar termos fora do escopo com incerteza calibrada (`UNKNOWN`) (`FINDING-02`);
+   - Validar aterrissagem de analogias pela presença de entidades/predicados computacionais no agregado oracional, e não por fórmulas literais fixas (`FINDING-03`);
+   - Implementar status `EQUIVALENCE_PENDING` no Estágio 3 para não descartar respostas formuladas por hiperônimos antes da análise do Estágio 4 (`FINDING-04`);
+   - Reconciliar aparentes contradições verificando condições de escopo arquiteturais distintas (`FINDING-05`).
+
+### 2. Próxima Etapa Autorizada:
+- **Stage 31.7.33 — Controlled Implementation Planning (Cycle 6)** (CONCLUÍDO)
+
+---
+
+# 84. REGISTRO DE TRANSIÇÃO — STAGE 31.7.33 (CONTROLLED IMPLEMENTATION PLANNING — CICLO 6)
+
+- **Stage Concluído:** Stage 31.7.33 — Controlled Implementation Planning (Cycle 6)
+- **Gates Emitidos:**
+  - **Decisão de Planejamento:** `GATE: IMPLEMENTATION_PLAN_READY_FOR_GOVERNANCE_APPROVAL`
+  - **Gate de Proveniência:** `GATE: RUNTIME_PROVENANCE_RECONCILED`
+- **Artefatos Gerados (11 arquivos):**
+  - `stage_31_7_33_implementation_roadmap.md` (Roadmap dos 6 incrementos com tabela obrigatória)
+  - `stage_31_7_33_increment_contracts.json` (Especificação contratual dos incrementos INC-0 a INC-5)
+  - `stage_31_7_33_contract_to_component_traceability.json` (Mapeamento dos 35 contratos para componentes e testes)
+  - `stage_31_7_33_test_strategy.md` (Estratégia de testes em 9 camadas concêntricas)
+  - `stage_31_7_33_regression_baseline.md` (Baseline histórico do Stage 31.7.28 e métricas diagnósticas)
+  - `stage_31_7_33_rollback_and_freeze_protocol.md` (Protocolo de snapshots e triggers de aborto)
+  - `stage_31_7_33_architecture_findings_disposition.json` (Tratamento dos 7 achados do Stage 31.7.32)
+  - `stage_31_7_33_implementation_risk_register.md` (Matriz exaustiva de riscos e mitigações)
+  - `stage_31_7_33_open_dependencies.md` (Registro de capacidades não demonstradas e limitações)
+  - `stage_31_7_33_gate_decision.md` (Decisão formal de gates e pendências para governança)
+  - `Stage 31.7.33 — Controlled Implementation Planning (Cycle 6).md` (Relatório executivo formal)
+- **Status do Runtime (`reference_runtime/runtime.py`):**
+  - SHA-256 Inicial e Final: `6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28` (100% íntegro, congelado e inviolado).
+  - Snapshot de segurança preservado: `reference_runtime/runtime.py.stage_31_7_33_freeze`.
+- **Status Metodológico:** `REFERENCE_INDEPENDENCE_UNRESOLVED` (mantido estritamente).
+
+### 1. Síntese do Planejamento Aprovado:
+1. **Tratamento dos Achados:** Todos os 7 achados foram endereçados sem recorrer a listas de palavras proibidas ou regras por caso. Predicados alienígenas foram vinculados a SRL e categorias físicas no INC-3, equivalência funcional aos invariantes canônicos de CS no INC-4 e contradições aparentes aos escopos condicionais no INC-2.
+2. **Modularização em 6 Incrementos:** INC-0 (Fundação e Rastreabilidade), INC-1 (Perfil e Intenção), INC-2 (Segmentação e Preâmbulos), INC-3 (Afinidade Temática Refutável), INC-4 (Equivalência e Analogias Ancoradas) e INC-5 (Agregação 7 Classes).
+3. **Salvaguardas de Rollback:** Snapshots dedicados para cada incremento (`runtime.py.stage_31_7_34_inc_*`), triggers de aborto por quebra de regressão canônica (1.047 testes) ou violação contratual, e restauração automática sem perda de evidências históricas.
+
+### 2. Próxima Etapa Autorizada:
+- **Stage 31.7.34 — Controlled Implementation of Foundation and Traceability Layer (Increment 0)** (CONCLUÍDO)
+
+---
+
+# 85. REGISTRO DE TRANSIÇÃO — STAGE 31.7.34 (CONTROLLED IMPLEMENTATION OF FOUNDATION AND TRACEABILITY LAYER — INCREMENT 0)
+
+- **Stage Concluído:** Stage 31.7.34 — Controlled Implementation of Foundation and Traceability Layer (Increment 0)
+- **Gates Emitidos:**
+  - **Decisão de Implementação:** `GATE: INC0_FOUNDATION_IMPLEMENTED_AND_VERIFIED`
+  - **Gate de Proveniência:** `GATE: RUNTIME_PROVENANCE_RECONCILED`
+- **Artefatos Gerados (8 arquivos):**
+  - `stage_31_7_34_inc0_implementation_plan.md` (Plano de implementação, limites e mapeamento contratual)
+  - `stage_31_7_34_evidence_traceability_schema.json` (Schema Draft-07 atualizado com resolução do FINDING-06)
+  - `stage_31_7_34_inc0_contracts.py` e `tests/test_stage_31_7_34_inc0_contracts.py` (Suíte de 17 testes contratuais e unitários)
+  - `stage_31_7_34_test_results.json` (Resultados estruturados dos 17 testes do INC-0: 100% PASS)
+  - `stage_31_7_34_regression_results.json` (Regressão canônica global: 1.084 testes OK; Reference Harness: 15/15 OK)
+  - `stage_31_7_34_runtime_diff.md` (Diff documentado do runtime em relação à baseline)
+  - `stage_31_7_34_rollback_record.md` (Protocolo, comandos exatos e critérios de reversão)
+  - `Stage 31.7.34 — Controlled Implementation of Foundation and Traceability Layer (Increment 0).md` (Relatório formal executivo)
+- **Status do Runtime (`reference_runtime/runtime.py`):**
+  - SHA-256 Inicial (Baseline): `6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28`
+  - SHA-256 Final (Pós-INC-0): `E047BA643A6E98975E42336C58339A12AB4D33D48082ED808FF26248478AB1B8`
+  - Snapshot de segurança preservado: `reference_runtime/runtime.py.stage_31_7_34_baseline` (`6C44B7A8...`)
+  - Snapshot do incremento: `reference_runtime/runtime.py.stage_31_7_34_inc0` (`E047BA64...`)
+- **Status Metodológico:** `REFERENCE_INDEPENDENCE_UNRESOLVED` (mantido estritamente).
+
+### 1. Síntese do Incremento Implementado:
+1. **Fundação Estrutural e Tipagem Forte:** Foram introduzidas no runtime (`reference_runtime/runtime.py`) as dataclasses tipadas e serializáveis (`DemandSpecification`, `QuestionProfile`, `DiscourseProposition`, `DiscourseProfile`, `ThematicAffinityEvaluation`, `EquivalenceEvaluation`, `AnalogyEvaluation`, `DemandNexusEvaluation`, `CoverageEvaluation`, `EpistemicUncertaintyRecord`, `FinalDecisionRecord` e `EvidenceTraceabilityRecord`), estabelecendo o contrato de dados formal para todos os próximos incrementos (INC-1 a INC-5).
+2. **Resolução Formal do FINDING-06:** O campo opcional `applied_contract_ids` foi adicionado à entidade `FinalDecisionRecord` e ao schema JSON Draft-07 de rastreabilidade causal (`stage_31_7_34_evidence_traceability_schema.json`), com semântica de lista de strings de identificadores de contratos semânticos aplicados, garantindo rastreabilidade semântica e 100% de retrocompatibilidade com esquemas prévios.
+3. **Validador Determinístico de Schema:** Implementada a função `validate_evidence_traceability_record(data) -> tuple[bool, list[str]]`, validando tipos estritos, propriedades obrigatórias, enums restritos, limites numéricos de cobertura e padrões regex para hash de 64 caracteres e datas ISO 8601.
+4. **Verificação Exaustiva em Três Níveis:**
+   - **Testes Contratuais do INC-0 (`test_stage_31_7_34_inc0_contracts.py`):** 17 testes executados, 17 aprovados (**100% PASS** em 0,010 s).
+   - **Suíte Canônica Global:** 1.084 testes executados, 1.083 aprovados, 0 falhas, 0 erros, 1 pulado (**100% OK, ZERO REGRESSÕES** em 36,26 s).
+   - **Reference Harness:** 15 testes executados, 15 aprovados (**100% OK, ZERO REGRESSÕES** em 24,32 s).
+5. **Invariância Semântica e Isolamento:** Nenhuma linha de lógica classificatória prévia foi alterada. O runtime preservou integralmente o comportamento semântico anterior enquanto disponibilizou a nova infraestrutura de dados para o INC-1.
+
+### 2. Próxima Etapa Autorizada:
+- **Stage 31.7.35 — Controlled Implementation of Question Profile and Proposition Engine (Increment 1)**:
+  - Implementação de `SemanticQuestionProfiler` (Camada 1: extração formal de `QuestionProfile` e demandas).
+  - Implementação de `PropositionDiscourseFilter` e isolamento de preâmbulos fáticos (Camada 2: extração de `DiscourseProfile`).
+
+
+
+
 
 
 

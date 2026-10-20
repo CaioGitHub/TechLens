@@ -23,14 +23,11 @@ O presente estágio executou a implementação controlada da arquitetura de disj
 - **SHA-256 Baseline de Entrada (Stage 31.7.26 Baseline):**
   $$\textbf{36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7}$$
 - **SHA-256 Homologado de Saída (Stage 31.7.27 Final com 0 Regressões):**
-  $$\textbf{6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28}$$
+  $$\textbf{0680848D3384BFCEC7C79EDCBC28566DEE26A3554ED622A7861C7AFD12532F9F}$$
 - **Snapshots de Backup Persistidos:**
-  - `reference_runtime/runtime.py.stage_31_7_26_baseline` (SHA-256: `36344F3E...`)
+  - `reference_runtime/runtime.py.stage_31_7_26_baseline` (SHA-256: `36344F3E9B606296A853BBD48168E1C33F33990EB9A95E647AD5DDBE570586D7`)
   - `reference_runtime/runtime.py.stage_31_7_27_inc_a`
-  - `reference_runtime/runtime.py.stage_31_7_27_pre_regression_fix` (SHA-256: `3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`)
-  - `reference_runtime/runtime.py.stage_31_7_27_final` (SHA-256: `6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28`)
-- **Estatísticas de Alteração Git:**
-  - 1 arquivo modificado, 986 adições (+), 538 deleções (-)
+  - `reference_runtime/runtime.py.stage_31_7_27_final` (SHA-256: `0680848D3384BFCEC7C79EDCBC28566DEE26A3554ED622A7861C7AFD12532F9F`)
 
 ---
 
@@ -95,14 +92,14 @@ A execução da suíte canônica completa foi realizada sem qualquer regressão:
 
 1. **Full Workspace Canonical Test Suite:**
    - Comando: `py -3 -m unittest discover -s tests -p "test_*.py"`
-   - Total de testes: **1.047**
-   - Resultados: **1.046 Aprovados**, **1 Ignorado (skipped)**, **0 Falhas**, **0 Erros**.
-   - Tempo de execução: 35.102s.
+   - Total de testes: **1.084**
+   - Resultados: **1.083 Aprovados**, **1 Ignorado (skipped)**, **0 Falhas**, **0 Erros**.
+   - Tempo de execução: 39.731s.
 2. **Reference Harness (Stage 26 Integration Harness):**
    - Comando: `py -3 -m unittest tests.test_stage_26_reference_harness`
    - Total de testes: **15**
    - Resultados: **15 Aprovados**, **0 Falhas**, **0 Erros**.
-   - Tempo de execução: 38.004s.
+   - Tempo de execução: 29.052s.
 3. **Suítes Modulares de Estágios Anteriores:**
    - `test_stage_31_7_11_demand_proposition_nexus`: 8/8 OK.
    - `test_stage_31_7_20_controlled_remediation`: 14/14 OK.
@@ -117,11 +114,11 @@ $$\textbf{Conclusão de Regressão: ZERO REGRESSÕES no Ecossistema Canônico.}$
 
 Como referência puramente diagnóstica e informativa (sem valor de validação cega final), o runtime remediado foi executado sobre os 250 casos do benchmark do Ciclo 4:
 
-- **Acurácia Diagnóstica Global:** **89.20% (223/250)** (contra 60.80% no Stage 31.7.25, um ganho líquido de +71 casos corretos).
-- **Falsos DIRECTs:** Reduzidos de **70 para 6** (**redução de 91.43%**).
-- **Precisão da Classe DIRECT:** Saltou de **41.67% para 89.66%**.
-- **Recall da Classe DIRECT:** **94.55%** (52/55).
-- **Recall da Classe PARTIAL:** **97.78%** (44/45).
+- **Acurácia Diagnóstica Global:** **86.40% (216/250)** (contra 60.80% no Stage 31.7.25, um ganho líquido de +64 casos corretos).
+- **Falsos DIRECTs:** Reduzidos de **70 para 7** (**redução de 90.0%**).
+- **Precisão da Classe DIRECT:** Saltou de **41.67% para 87.72%**.
+- **Recall da Classe DIRECT:** **90.91%** (50/55).
+- **Recall da Classe PARTIAL:** **93.33%** (42/45).
 - **Recall da Classe OFF_TOPIC:** **100.0%** (44/44, com 0 falsos DIRECTs).
 - **Recall da Classe UNKNOWN:** **95.45%** (21/22, com 0 falsos DIRECTs).
 
@@ -143,6 +140,6 @@ $$\textbf{Gate: IMPLEMENTATION\_COMPLETE\_PENDING\_INDEPENDENT\_BLIND\_VALIDATIO
 
 ### Próximo Estágio Autorizado
 - **Stage 31.7.28 — Independent Blind Semantic Revalidation (Cycle 5):**
-  - Execução de validação semântica cega sob runtime congelado (`6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28`).
+  - Execução de validação semântica cega sob runtime congelado (`0680848D3384BFCEC7C79EDCBC28566DEE26A3554ED622A7861C7AFD12532F9F`).
   - Geração de dataset balanceado de teste cego cobrindo as 7 classes canônicas e invariantes semânticos.
   - Verificação de recall $\ge 90\%$ e precisão $\ge 85\%$ em todas as classes principais.

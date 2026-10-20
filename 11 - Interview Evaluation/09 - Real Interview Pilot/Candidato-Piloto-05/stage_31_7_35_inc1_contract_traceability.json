@@ -1,0 +1,128 @@
+{
+  "stage": "31.7.35",
+  "increment": "INC-1",
+  "title": "Stage 31.7.35 INC-1 Contract to Component Traceability",
+  "total_contracts": 12,
+  "contracts": [
+    {
+      "contract_id": "SC-01",
+      "name": "Identificação de Modo de Intenção Epistemológica",
+      "component": "SemanticQuestionProfiler",
+      "method": "profile_question",
+      "inputs": ["raw_question: str"],
+      "outputs": ["QuestionProfile.intent_mode: str"],
+      "formal_behavior": "Classifica a pergunta em um dos 11 modos de intenção epistemológica canônicos (DEFINITION, COMPARISON, DIAGNOSIS, MECHANISM, etc.)",
+      "test_case_id": "TC-INC1-01"
+    },
+    {
+      "contract_id": "SC-02",
+      "name": "Decomposição Aberta de Demandas com Obrigatoriedade",
+      "component": "SemanticQuestionProfiler",
+      "method": "profile_question",
+      "inputs": ["raw_question: str"],
+      "outputs": ["QuestionProfile.primary_demand", "QuestionProfile.secondary_demands"],
+      "formal_behavior": "Decompõe perguntas com conjunções aditivas em demanda primária e demandas secundárias com flag is_mandatory preservada",
+      "test_case_id": "TC-INC1-02"
+    },
+    {
+      "contract_id": "SC-05",
+      "name": "Suporte a Perguntas Comparativas (A vs B)",
+      "component": "SemanticQuestionProfiler",
+      "method": "profile_question",
+      "inputs": ["raw_question: str"],
+      "outputs": ["QuestionProfile.target_entities: list[str]", "QuestionProfile.intent_mode: str"],
+      "formal_behavior": "Identifica a intenção COMPARISON e extrai as duas entidades em contraste (ex: Processo vs Thread)",
+      "test_case_id": "TC-INC1-03"
+    },
+    {
+      "contract_id": "SC-06",
+      "name": "Extração de Qualificadores de Restrição e Contexto",
+      "component": "SemanticQuestionProfiler",
+      "method": "profile_question",
+      "inputs": ["raw_question: str"],
+      "outputs": ["QuestionProfile.context_qualifiers: list[str]"],
+      "formal_behavior": "Identifica restrições operacionais como ordem de entrega, concorrência, consistência e ambiente de produção",
+      "test_case_id": "TC-INC1-04"
+    },
+    {
+      "contract_id": "SC-17",
+      "name": "Isolamento de Preâmbulos Fáticos Conversacionais",
+      "component": "DiscoursePropositionEngine",
+      "method": "extract_discourse_profile",
+      "inputs": ["raw_response: str"],
+      "outputs": ["DiscourseProfile.isolated_preambles: list[str]"],
+      "formal_behavior": "Isola anedotas fáticas e saudações irrelevantes no campo isolated_preambles, impedindo que poluam o núcleo proposicional técnico",
+      "test_case_id": "TC-INC1-05"
+    },
+    {
+      "contract_id": "SC-18",
+      "name": "Preservação de Operadores e Escopo de Negação",
+      "component": "DiscoursePropositionEngine",
+      "method": "extract_discourse_profile",
+      "inputs": ["raw_response: str"],
+      "outputs": ["DiscourseProposition.is_negated: bool", "DiscourseProposition.negation_scope: str"],
+      "formal_behavior": "Detecta negações explícitas e extrai a oração sob escopo de negação sem inverter o sentido da afirmação",
+      "test_case_id": "TC-INC1-06"
+    },
+    {
+      "contract_id": "SC-20",
+      "name": "Preservação de Operadores e Premissas Condicionais",
+      "component": "DiscoursePropositionEngine",
+      "method": "extract_discourse_profile",
+      "inputs": ["raw_response: str"],
+      "outputs": ["DiscourseProposition.is_conditional: bool", "DiscourseProposition.condition_premise: str"],
+      "formal_behavior": "Detecta operadores condicionais (se, caso, desde que) e preserva a premissa condicional limitadora",
+      "test_case_id": "TC-INC1-07"
+    },
+    {
+      "contract_id": "SC-21",
+      "name": "Resolução de Autocorreção e Retratação Explícita",
+      "component": "DiscoursePropositionEngine",
+      "method": "extract_discourse_profile",
+      "inputs": ["raw_response: str"],
+      "outputs": ["DiscourseProposition.discourse_role: str"],
+      "formal_behavior": "Ao identificar autocorreção ('na verdade não', 'quis dizer'), marca a asserção anterior como RETRACTED_ASSERTION",
+      "test_case_id": "TC-INC1-08"
+    },
+    {
+      "contract_id": "ADV-05",
+      "name": "Invariância Estrutural a Preâmbulos Conversacionais Longos",
+      "component": "DiscoursePropositionEngine",
+      "method": "extract_discourse_profile",
+      "inputs": ["raw_response: str"],
+      "outputs": ["DiscourseProfile.propositions: list[DiscourseProposition]"],
+      "formal_behavior": "Garante que a presença de preâmbulo conversacional longo produza exatamente a mesma proposição técnica que a resposta sem o preâmbulo",
+      "test_case_id": "TC-INC1-09"
+    },
+    {
+      "contract_id": "ADV-06",
+      "name": "Perguntas Compostas com Múltiplas Demandas Conjuntas",
+      "component": "SemanticQuestionProfiler",
+      "method": "profile_question",
+      "inputs": ["raw_question: str"],
+      "outputs": ["QuestionProfile.primary_demand", "QuestionProfile.secondary_demands"],
+      "formal_behavior": "Exige decomposição das duas partes conjuntas como demandas com is_mandatory=True",
+      "test_case_id": "TC-INC1-10"
+    },
+    {
+      "contract_id": "ADV-11",
+      "name": "Preservação de Negação Preventiva",
+      "component": "DiscoursePropositionEngine",
+      "method": "extract_discourse_profile",
+      "inputs": ["raw_response: str"],
+      "outputs": ["DiscourseProposition.is_negated: bool", "DiscourseProposition.negation_scope: str"],
+      "formal_behavior": "Registra corretamente a negação como preventiva ('não usamos lock pessimista para evitar deadlock')",
+      "test_case_id": "TC-INC1-11"
+    },
+    {
+      "contract_id": "ADV-12",
+      "name": "Condicionais sob Escopos Distintos",
+      "component": "DiscoursePropositionEngine",
+      "method": "extract_discourse_profile",
+      "inputs": ["raw_response: str"],
+      "outputs": ["DiscourseProposition.is_conditional: bool", "DiscourseProposition.condition_premise: str"],
+      "formal_behavior": "Preserva premissas condicionais distintas para afirmações diferentes, impedindo falso choque de contradição",
+      "test_case_id": "TC-INC1-12"
+    }
+  ]
+}

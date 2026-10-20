@@ -1,0 +1,357 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Stage31_7_31_EvidenceTraceabilityRecord",
+  "description": "Esquema formal do registro auditável de evidências semânticas e rastreabilidade decisória do Ciclo 6.",
+  "type": "object",
+  "required": [
+    "evaluation_id",
+    "timestamp_utc",
+    "runtime_version_hash",
+    "question_profile",
+    "discourse_profile",
+    "thematic_affinity_evaluation",
+    "demand_nexus_evaluations",
+    "coverage_evaluation",
+    "epistemic_uncertainty",
+    "final_decision"
+  ],
+  "properties": {
+    "evaluation_id": {
+      "type": "string",
+      "description": "Identificador único da avaliação (ex: EVAL-20261019-001)"
+    },
+    "timestamp_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "runtime_version_hash": {
+      "type": "string",
+      "pattern": "^[A-F0-9]{64}$"
+    },
+    "question_profile": {
+      "type": "object",
+      "required": [
+        "raw_question",
+        "intent_mode",
+        "primary_demand",
+        "target_entities"
+      ],
+      "properties": {
+        "raw_question": {
+          "type": "string"
+        },
+        "intent_mode": {
+          "type": "string",
+          "enum": [
+            "DEFINITION",
+            "CONCEPTUAL_EXPLANATION",
+            "MECHANISM",
+            "COMPARISON",
+            "HISTORICAL",
+            "CAUSALITY",
+            "DIAGNOSIS",
+            "IMPLEMENTATION",
+            "PROBLEM_SOLUTION",
+            "DECISION_JUSTIFICATION",
+            "TRADE_OFF_ANALYSIS"
+          ]
+        },
+        "primary_demand": {
+          "type": "object",
+          "required": [
+            "demand_id",
+            "description",
+            "is_mandatory"
+          ],
+          "properties": {
+            "demand_id": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "is_mandatory": {
+              "type": "boolean"
+            }
+          }
+        },
+        "secondary_demands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "demand_id",
+              "description",
+              "is_mandatory"
+            ],
+            "properties": {
+              "demand_id": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "is_mandatory": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "target_entities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "context_qualifiers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "discourse_profile": {
+      "type": "object",
+      "required": [
+        "raw_response",
+        "propositions",
+        "isolated_preambles"
+      ],
+      "properties": {
+        "raw_response": {
+          "type": "string"
+        },
+        "isolated_preambles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "propositions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "prop_id",
+              "text",
+              "discourse_role",
+              "is_negated",
+              "is_conditional"
+            ],
+            "properties": {
+              "prop_id": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              },
+              "discourse_role": {
+                "type": "string",
+                "enum": [
+                  "TECHNICAL_CORE",
+                  "CONVERSATIONAL_PREAMBLE",
+                  "ANALOGY_VEHICLE",
+                  "ANALOGY_GROUNDING",
+                  "HISTORICAL_METADATA",
+                  "OBSERVABILITY_SUPPORT",
+                  "EMPTY_FILLER",
+                  "IGNORANCE_DECLARATION",
+                  "RETRACTED_ASSERTION"
+                ]
+              },
+              "is_negated": {
+                "type": "boolean"
+              },
+              "negation_scope": {
+                "type": "string"
+              },
+              "is_conditional": {
+                "type": "boolean"
+              },
+              "condition_premise": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "thematic_affinity_evaluation": {
+      "type": "object",
+      "required": [
+        "entity_overlap_tokens",
+        "thematic_presumption_status",
+        "rebuttal_detected",
+        "disjoint_alien_domain_detected"
+      ],
+      "properties": {
+        "entity_overlap_tokens": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "thematic_presumption_status": {
+          "type": "string",
+          "enum": [
+            "CONFIRMED",
+            "REBUTTED",
+            "NOT_ESTABLISHED",
+            "EQUIVALENCE_ESTABLISHED"
+          ]
+        },
+        "rebuttal_detected": {
+          "type": "boolean"
+        },
+        "rebuttal_reason": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "ALIEN_PREDICATE_HOMONYMY",
+            "METAPHORICAL_DETOUR",
+            "DESTRUCTIVE_ANTITHESIS"
+          ]
+        },
+        "disjoint_alien_domain_detected": {
+          "type": "boolean"
+        },
+        "alien_domain_category": {
+          "type": "string"
+        }
+      }
+    },
+    "demand_nexus_evaluations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "demand_id",
+          "best_matching_prop_id",
+          "nexus_relation",
+          "semantic_rationale"
+        ],
+        "properties": {
+          "demand_id": {
+            "type": "string"
+          },
+          "best_matching_prop_id": {
+            "type": "string"
+          },
+          "nexus_relation": {
+            "type": "string",
+            "enum": [
+              "FUNCTIONALLY_SOLVES",
+              "PARTIALLY_SOLVES",
+              "CONTRIBUTES_TO",
+              "THEMATICALLY_ADJACENT",
+              "NON_OPERATIVE",
+              "EVASIVE",
+              "IGNORANCE",
+              "DOMAIN_DISJUNCT",
+              "UNRESOLVED_AMBIGUITY"
+            ]
+          },
+          "semantic_rationale": {
+            "type": "string"
+          },
+          "contradiction_detected": {
+            "type": "boolean"
+          },
+          "contradiction_details": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "coverage_evaluation": {
+      "type": "object",
+      "required": [
+        "coverage_ratio",
+        "mandatory_demands_count",
+        "fulfilled_mandatory_demands_count"
+      ],
+      "properties": {
+        "coverage_ratio": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "mandatory_demands_count": {
+          "type": "integer"
+        },
+        "fulfilled_mandatory_demands_count": {
+          "type": "integer"
+        },
+        "unaddressed_demands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "epistemic_uncertainty": {
+      "type": "object",
+      "required": [
+        "confidence_level",
+        "unresolved_ambiguities_present",
+        "epistemic_limitations"
+      ],
+      "properties": {
+        "confidence_level": {
+          "type": "string",
+          "enum": [
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ]
+        },
+        "unresolved_ambiguities_present": {
+          "type": "boolean"
+        },
+        "epistemic_limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "final_decision": {
+      "type": "object",
+      "required": [
+        "classification",
+        "decision_rule_id",
+        "formal_justification"
+      ],
+      "properties": {
+        "classification": {
+          "type": "string",
+          "enum": [
+            "DIRECT",
+            "PARTIAL",
+            "SUPPORTING",
+            "RELATED",
+            "OFF_TOPIC",
+            "INSUFFICIENT",
+            "UNKNOWN"
+          ]
+        },
+        "decision_rule_id": {
+          "type": "string"
+        },
+        "formal_justification": {
+          "type": "string"
+        },
+        "applied_contract_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Lista de identificadores de contratos semânticos atendidos ou avaliados na decisão (ex: SC-01, ADV-02)."
+        }
+      }
+    }
+  }
+}

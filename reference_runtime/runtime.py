@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from hashlib import sha256
 import re
@@ -1714,6 +1714,652 @@ class DomainCompatibilityRecord:
     confidence: float = 1.0
     evidence: tuple[str, ...] = ()
     rationale: str = ""
+
+
+# ==============================================================================
+# INC-0: FUNDAÇÃO DE DADOS E RASTREABILIDADE (CICLO 6)
+# ==============================================================================
+
+VALID_INTENT_MODES = {
+    "DEFINITION", "CONCEPTUAL_EXPLANATION", "MECHANISM", "COMPARISON",
+    "HISTORICAL", "CAUSALITY", "DIAGNOSIS", "IMPLEMENTATION",
+    "PROBLEM_SOLUTION", "DECISION_JUSTIFICATION", "TRADE_OFF_ANALYSIS"
+}
+
+VALID_DISCOURSE_ROLES = {
+    "TECHNICAL_CORE", "CONVERSATIONAL_PREAMBLE", "ANALOGY_VEHICLE",
+    "ANALOGY_GROUNDING", "HISTORICAL_METADATA", "OBSERVABILITY_SUPPORT",
+    "EMPTY_FILLER", "IGNORANCE_DECLARATION", "RETRACTED_ASSERTION"
+}
+
+VALID_THEMATIC_STATUSES = {
+    "CONFIRMED", "REBUTTED", "NOT_ESTABLISHED", "EQUIVALENCE_ESTABLISHED"
+}
+
+VALID_REBUTTAL_REASONS = {
+    "NONE", "ALIEN_PREDICATE_HOMONYMY", "METAPHORICAL_DETOUR", "DESTRUCTIVE_ANTITHESIS"
+}
+
+VALID_NEXUS_RELATIONS = {
+    "FUNCTIONALLY_SOLVES", "PARTIALLY_SOLVES", "CONTRIBUTES_TO",
+    "THEMATICALLY_ADJACENT", "NON_OPERATIVE", "EVASIVE", "IGNORANCE",
+    "DOMAIN_DISJUNCT", "UNRESOLVED_AMBIGUITY"
+}
+
+VALID_CONFIDENCE_LEVELS = {"HIGH", "MEDIUM", "LOW"}
+
+VALID_CLASSIFICATIONS = {
+    "DIRECT", "PARTIAL", "SUPPORTING", "RELATED",
+    "OFF_TOPIC", "INSUFFICIENT", "UNKNOWN"
+}
+
+_HASH_64_PATTERN = re.compile(r"^[A-F0-9]{64}$")
+_ISO_DATE_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$")
+
+
+@dataclass
+class DemandSpecification:
+    demand_id: str
+    description: str
+    is_mandatory: bool = True
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "demand_id": self.demand_id,
+            "description": self.description,
+            "is_mandatory": self.is_mandatory,
+        }
+
+
+@dataclass
+class QuestionProfile:
+    raw_question: str
+    primary_demand: DemandSpecification
+    intent_mode: str = "CONCEPTUAL_EXPLANATION"
+    secondary_demands: list[DemandSpecification] = field(default_factory=list)
+    target_entities: list[str] = field(default_factory=list)
+    context_qualifiers: list[str] = field(default_factory=list)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "raw_question": self.raw_question,
+            "intent_mode": self.intent_mode,
+            "primary_demand": self.primary_demand.to_dict() if hasattr(self.primary_demand, "to_dict") else self.primary_demand,
+            "secondary_demands": [d.to_dict() if hasattr(d, "to_dict") else d for d in self.secondary_demands],
+            "target_entities": list(self.target_entities),
+            "context_qualifiers": list(self.context_qualifiers),
+        }
+
+
+@dataclass
+class DiscourseProposition:
+    prop_id: str
+    text: str
+    discourse_role: str = "TECHNICAL_CORE"
+    is_negated: bool = False
+    negation_scope: str = ""
+    is_conditional: bool = False
+    condition_premise: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        d: dict[str, Any] = {
+            "prop_id": self.prop_id,
+            "text": self.text,
+            "discourse_role": self.discourse_role,
+            "is_negated": self.is_negated,
+            "is_conditional": self.is_conditional,
+        }
+        if self.negation_scope:
+            d["negation_scope"] = self.negation_scope
+        if self.condition_premise:
+            d["condition_premise"] = self.condition_premise
+        return d
+
+
+@dataclass
+class DiscourseProfile:
+    raw_response: str
+    propositions: list[DiscourseProposition] = field(default_factory=list)
+    isolated_preambles: list[str] = field(default_factory=list)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "raw_response": self.raw_response,
+            "isolated_preambles": list(self.isolated_preambles),
+            "propositions": [p.to_dict() if hasattr(p, "to_dict") else p for p in self.propositions],
+        }
+
+
+@dataclass
+class ThematicAffinityEvaluation:
+    entity_overlap_tokens: list[str] = field(default_factory=list)
+    thematic_presumption_status: str = "NOT_ESTABLISHED"
+    rebuttal_detected: bool = False
+    rebuttal_reason: str = "NONE"
+    disjoint_alien_domain_detected: bool = False
+    alien_domain_category: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        d: dict[str, Any] = {
+            "entity_overlap_tokens": list(self.entity_overlap_tokens),
+            "thematic_presumption_status": self.thematic_presumption_status,
+            "rebuttal_detected": self.rebuttal_detected,
+            "disjoint_alien_domain_detected": self.disjoint_alien_domain_detected,
+        }
+        if self.rebuttal_reason:
+            d["rebuttal_reason"] = self.rebuttal_reason
+        if self.alien_domain_category:
+            d["alien_domain_category"] = self.alien_domain_category
+        return d
+
+ThematicEvaluation = ThematicAffinityEvaluation
+
+
+@dataclass
+class EquivalenceEvaluation:
+    equivalence_mode: str = "NONE"
+    established_equivalences: list[dict[str, str]] = field(default_factory=list)
+    property_clash: bool = False
+    rationale: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "equivalence_mode": self.equivalence_mode,
+            "established_equivalences": list(self.established_equivalences),
+            "property_clash": self.property_clash,
+            "rationale": self.rationale,
+        }
+
+
+@dataclass
+class AnalogyEvaluation:
+    is_grounded: bool = False
+    vehicle_domain: str = ""
+    target_mechanisms_resolved: list[str] = field(default_factory=list)
+    unanchored_metaphor: bool = False
+    rationale: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "is_grounded": self.is_grounded,
+            "vehicle_domain": self.vehicle_domain,
+            "target_mechanisms_resolved": list(self.target_mechanisms_resolved),
+            "unanchored_metaphor": self.unanchored_metaphor,
+            "rationale": self.rationale,
+        }
+
+
+@dataclass
+class DemandNexusEvaluation:
+    demand_id: str
+    best_matching_prop_id: str
+    nexus_relation: str = "THEMATICALLY_ADJACENT"
+    semantic_rationale: str = ""
+    contradiction_detected: bool = False
+    contradiction_details: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        d: dict[str, Any] = {
+            "demand_id": self.demand_id,
+            "best_matching_prop_id": self.best_matching_prop_id,
+            "nexus_relation": self.nexus_relation,
+            "semantic_rationale": self.semantic_rationale,
+        }
+        if self.contradiction_detected:
+            d["contradiction_detected"] = self.contradiction_detected
+        if self.contradiction_details:
+            d["contradiction_details"] = self.contradiction_details
+        return d
+
+DemandNexusMatrix = list[DemandNexusEvaluation]
+
+
+@dataclass
+class CoverageEvaluation:
+    coverage_ratio: float = 0.0
+    mandatory_demands_count: int = 1
+    fulfilled_mandatory_demands_count: int = 0
+    unaddressed_demands: list[str] = field(default_factory=list)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "coverage_ratio": float(self.coverage_ratio),
+            "mandatory_demands_count": int(self.mandatory_demands_count),
+            "fulfilled_mandatory_demands_count": int(self.fulfilled_mandatory_demands_count),
+            "unaddressed_demands": list(self.unaddressed_demands),
+        }
+
+
+@dataclass
+class EpistemicUncertaintyRecord:
+    confidence_level: str = "HIGH"
+    unresolved_ambiguities_present: bool = False
+    epistemic_limitations: list[str] = field(default_factory=list)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "confidence_level": self.confidence_level,
+            "unresolved_ambiguities_present": self.unresolved_ambiguities_present,
+            "epistemic_limitations": list(self.epistemic_limitations),
+        }
+
+
+@dataclass
+class FinalDecisionRecord:
+    classification: str = "UNKNOWN"
+    decision_rule_id: str = "RULE-INIT"
+    formal_justification: str = ""
+    applied_contract_ids: list[str] = field(default_factory=list)
+
+    def to_dict(self) -> dict[str, Any]:
+        d: dict[str, Any] = {
+            "classification": self.classification,
+            "decision_rule_id": self.decision_rule_id,
+            "formal_justification": self.formal_justification,
+        }
+        if self.applied_contract_ids:
+            d["applied_contract_ids"] = list(self.applied_contract_ids)
+        return d
+
+
+@dataclass
+class EvidenceTraceabilityRecord:
+    evaluation_id: str
+    timestamp_utc: str
+    runtime_version_hash: str
+    question_profile: QuestionProfile
+    discourse_profile: DiscourseProfile
+    thematic_affinity_evaluation: ThematicAffinityEvaluation
+    demand_nexus_evaluations: list[DemandNexusEvaluation]
+    coverage_evaluation: CoverageEvaluation
+    epistemic_uncertainty: EpistemicUncertaintyRecord
+    final_decision: FinalDecisionRecord
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "evaluation_id": self.evaluation_id,
+            "timestamp_utc": self.timestamp_utc,
+            "runtime_version_hash": self.runtime_version_hash,
+            "question_profile": self.question_profile.to_dict(),
+            "discourse_profile": self.discourse_profile.to_dict(),
+            "thematic_affinity_evaluation": self.thematic_affinity_evaluation.to_dict(),
+            "demand_nexus_evaluations": [n.to_dict() for n in self.demand_nexus_evaluations],
+            "coverage_evaluation": self.coverage_evaluation.to_dict(),
+            "epistemic_uncertainty": self.epistemic_uncertainty.to_dict(),
+            "final_decision": self.final_decision.to_dict(),
+        }
+
+
+def validate_evidence_traceability_record(data: dict[str, Any]) -> tuple[bool, list[str]]:
+    """Validate a dictionary against the Draft-07 EvidenceTraceabilityRecord schema."""
+    errors: list[str] = []
+    if not isinstance(data, dict):
+        return False, ["Root must be an object/dict"]
+
+    top_required = [
+        "evaluation_id", "timestamp_utc", "runtime_version_hash",
+        "question_profile", "discourse_profile", "thematic_affinity_evaluation",
+        "demand_nexus_evaluations", "coverage_evaluation", "epistemic_uncertainty",
+        "final_decision"
+    ]
+    for r in top_required:
+        if r not in data:
+            errors.append(f"Missing required top-level property: '{r}'")
+
+    if errors:
+        return False, errors
+
+    # Check evaluation_id
+    if not isinstance(data["evaluation_id"], str) or not data["evaluation_id"].strip():
+        errors.append("evaluation_id must be a non-empty string")
+
+    # Check timestamp_utc
+    ts = data.get("timestamp_utc", "")
+    if not isinstance(ts, str) or not _ISO_DATE_PATTERN.match(ts):
+        errors.append(f"timestamp_utc '{ts}' is not a valid ISO date-time string")
+
+    # Check runtime_version_hash
+    rvh = data.get("runtime_version_hash", "")
+    if not isinstance(rvh, str) or not _HASH_64_PATTERN.match(rvh):
+        errors.append(f"runtime_version_hash '{rvh}' must be a 64-char uppercase hex string")
+
+    # Check question_profile
+    qp = data.get("question_profile")
+    if not isinstance(qp, dict):
+        errors.append("question_profile must be an object")
+    else:
+        for f in ["raw_question", "intent_mode", "primary_demand", "target_entities"]:
+            if f not in qp:
+                errors.append(f"question_profile missing '{f}'")
+        if qp.get("intent_mode") not in VALID_INTENT_MODES:
+            errors.append(f"question_profile.intent_mode '{qp.get('intent_mode')}' not in {VALID_INTENT_MODES}")
+        pd = qp.get("primary_demand")
+        if not isinstance(pd, dict):
+            errors.append("question_profile.primary_demand must be an object")
+        else:
+            for f in ["demand_id", "description", "is_mandatory"]:
+                if f not in pd:
+                    errors.append(f"primary_demand missing '{f}'")
+            if not isinstance(pd.get("is_mandatory"), bool):
+                errors.append("primary_demand.is_mandatory must be a boolean")
+
+    # Check discourse_profile
+    dp = data.get("discourse_profile")
+    if not isinstance(dp, dict):
+        errors.append("discourse_profile must be an object")
+    else:
+        for f in ["raw_response", "propositions", "isolated_preambles"]:
+            if f not in dp:
+                errors.append(f"discourse_profile missing '{f}'")
+        if not isinstance(dp.get("propositions"), list):
+            errors.append("discourse_profile.propositions must be an array")
+        else:
+            for i, p in enumerate(dp["propositions"]):
+                if not isinstance(p, dict):
+                    errors.append(f"discourse_profile.propositions[{i}] must be an object")
+                    continue
+                for f in ["prop_id", "text", "discourse_role", "is_negated", "is_conditional"]:
+                    if f not in p:
+                        errors.append(f"discourse_profile.propositions[{i}] missing '{f}'")
+                if p.get("discourse_role") not in VALID_DISCOURSE_ROLES:
+                    errors.append(f"propositions[{i}].discourse_role '{p.get('discourse_role')}' invalid")
+
+    # Check thematic_affinity_evaluation
+    ta = data.get("thematic_affinity_evaluation")
+    if not isinstance(ta, dict):
+        errors.append("thematic_affinity_evaluation must be an object")
+    else:
+        for f in ["entity_overlap_tokens", "thematic_presumption_status", "rebuttal_detected", "disjoint_alien_domain_detected"]:
+            if f not in ta:
+                errors.append(f"thematic_affinity_evaluation missing '{f}'")
+        if ta.get("thematic_presumption_status") not in VALID_THEMATIC_STATUSES:
+            errors.append(f"thematic_presumption_status '{ta.get('thematic_presumption_status')}' invalid")
+        if "rebuttal_reason" in ta and ta["rebuttal_reason"] not in VALID_REBUTTAL_REASONS:
+            errors.append(f"rebuttal_reason '{ta.get('rebuttal_reason')}' invalid")
+
+    # Check demand_nexus_evaluations
+    dne = data.get("demand_nexus_evaluations")
+    if not isinstance(dne, list):
+        errors.append("demand_nexus_evaluations must be an array")
+    else:
+        for i, n in enumerate(dne):
+            if not isinstance(n, dict):
+                errors.append(f"demand_nexus_evaluations[{i}] must be an object")
+                continue
+            for f in ["demand_id", "best_matching_prop_id", "nexus_relation", "semantic_rationale"]:
+                if f not in n:
+                    errors.append(f"demand_nexus_evaluations[{i}] missing '{f}'")
+            if n.get("nexus_relation") not in VALID_NEXUS_RELATIONS:
+                errors.append(f"demand_nexus_evaluations[{i}].nexus_relation '{n.get('nexus_relation')}' invalid")
+
+    # Check coverage_evaluation
+    ce = data.get("coverage_evaluation")
+    if not isinstance(ce, dict):
+        errors.append("coverage_evaluation must be an object")
+    else:
+        for f in ["coverage_ratio", "mandatory_demands_count", "fulfilled_mandatory_demands_count"]:
+            if f not in ce:
+                errors.append(f"coverage_evaluation missing '{f}'")
+        cr = ce.get("coverage_ratio")
+        if not isinstance(cr, (int, float)) or cr < 0.0 or cr > 1.0:
+            errors.append(f"coverage_evaluation.coverage_ratio '{cr}' must be between 0.0 and 1.0")
+
+    # Check epistemic_uncertainty
+    eu = data.get("epistemic_uncertainty")
+    if not isinstance(eu, dict):
+        errors.append("epistemic_uncertainty must be an object")
+    else:
+        for f in ["confidence_level", "unresolved_ambiguities_present", "epistemic_limitations"]:
+            if f not in eu:
+                errors.append(f"epistemic_uncertainty missing '{f}'")
+        if eu.get("confidence_level") not in VALID_CONFIDENCE_LEVELS:
+            errors.append(f"confidence_level '{eu.get('confidence_level')}' invalid")
+
+    # Check final_decision
+    fd = data.get("final_decision")
+    if not isinstance(fd, dict):
+        errors.append("final_decision must be an object")
+    else:
+        for f in ["classification", "decision_rule_id", "formal_justification"]:
+            if f not in fd:
+                errors.append(f"final_decision missing '{f}'")
+        if fd.get("classification") not in VALID_CLASSIFICATIONS:
+            errors.append(f"final_decision.classification '{fd.get('classification')}' invalid")
+        if "applied_contract_ids" in fd:
+            if not isinstance(fd["applied_contract_ids"], list):
+                errors.append("final_decision.applied_contract_ids must be an array of strings")
+            elif not all(isinstance(cid, str) for cid in fd["applied_contract_ids"]):
+                errors.append("final_decision.applied_contract_ids must contain only strings")
+
+    return (len(errors) == 0, errors)
+
+
+class SemanticQuestionProfiler:
+    """Increment 1: Question Profile and Epistemological Intent Engine (Stage 31.7.35)."""
+    def __init__(self):
+        self.conjunctions = [
+            (" e como ", " e como "), (" e quais ", " e quais "), (" e qual ", " e qual "),
+            (" e de que forma ", " e de que forma "), (" e de que maneira ", " e de que maneira "),
+            (" e por que ", " e por que "), (" e onde ", " e onde "), (" e quando ", " e quando "),
+            (" e o que ", " e o que "), (", e como ", ", e como "), (", e quais ", ", e quais "),
+            (", e de que forma ", ", e de que forma "), (", e de que maneira ", ", e de que maneira "),
+            (", e garantir ", ", e "), (", e proteger ", ", e "), (", e lidar com ", ", e "),
+            (", e mitigar ", ", e "), (" bem como ", " bem como "), (" alem de como ", " alem de como "),
+            ("; como ", "; como "), ("? como ", "? como "), (", como ", ", como "),
+            (" e armazena ", " e "), (" e armazenar ", " e "), (" e preserva ", " e "), (" e preservar ", " e "),
+            (" e garante ", " e "), (" e garantir ", " e "), (" e rebalancear ", " e "), (" e rebalanceia ", " e "),
+            (" e gerenciar ", " e "), (" e gerencia ", " e "), (" e manter ", " e "), (" e mantem ", " e "),
+            (" e tratar ", " e "), (" e trata ", " e "), (" e sincronizar ", " e "), (" e sincroniza ", " e "),
+            (" e mitigar ", " e "), (" e conter ", " e "), (" e isolar ", " e "), (" e jitter ", " e "),
+            (" e vice-versa", " e vice-versa"), (" e vice versa", " e vice versa"),
+            (" quanto a ", " quanto a "), (", e qual o impacto ", ", e qual o impacto "),
+            (" e executa compensacoes", " e "), (" e lida com falhas", " e "),
+            (" e lida com ", " e "), (" e executa ", " e "), (" e transita ", " e ")
+        ]
+
+    def profile_question(self, question_text: str) -> tuple[QuestionProfile, EpistemicUncertaintyRecord]:
+        q_norm = _normalize_text(question_text)
+        words = [w for w in question_text.replace("?", "").replace("!", "").replace(",", "").split()]
+        
+        # 1. Intent Mode Classification (11 canonical modes)
+        if any(p in q_norm for p in ("qual a diferenca", "diferenca entre", "comparar", "versus", " vs ")):
+            intent_mode = "COMPARISON"
+        elif any(q_norm.startswith(p) or f" {p} " in f" {q_norm} " for p in ("o que e", "qual a definicao", "defina", "qual o conceito", "o que significa", "qual a funcao")):
+            intent_mode = "DEFINITION"
+        elif any(p in q_norm for p in ("como investigar", "como diagnosticar", "quais metricas", "como identificar", "onde analisar", "como analisar", "como voce investigaria")):
+            intent_mode = "DIAGNOSIS"
+        elif any(p in q_norm for p in ("quais os trade-offs", "quais sao os trade-offs", "vantagens e desvantagens", "pros e contras")):
+            intent_mode = "TRADE_OFF_ANALYSIS"
+        elif any(p in q_norm for p in ("por que escolher", "quando usar", "quando adotar", "qual a justificativa")):
+            intent_mode = "DECISION_JUSTIFICATION"
+        elif any(p in q_norm for p in ("por que", "qual a razao", "qual a causa", "o que leva a", "qual o motivo")):
+            intent_mode = "CAUSALITY"
+        elif any(p in q_norm for p in ("quem criou", "quando surgiu", "qual a origem", "qual o artigo de")):
+            intent_mode = "HISTORICAL"
+        elif any(p in q_norm for p in ("como evitar", "como resolver", "como mitigar", "como prevenir", "como solucionar", "como proteger", "como conter")):
+            intent_mode = "PROBLEM_SOLUTION"
+        elif any(p in q_norm for p in ("como implementar", "como configurar", "como construir", "como criar", "como voce implementaria")):
+            intent_mode = "IMPLEMENTATION"
+        elif any(p in q_norm for p in ("como funciona", "como opera", "como processa", "qual a arquitetura", "qual o protocolo", "de que maneira funciona", "como ele garante")):
+            intent_mode = "MECHANISM"
+        elif any(p in q_norm for p in ("explique", "discorra", "fale sobre", "como e o conceito")):
+            intent_mode = "CONCEPTUAL_EXPLANATION"
+        else:
+            intent_mode = "CONCEPTUAL_EXPLANATION"
+
+        # 2. Extract Entities and Context Qualifiers
+        stopwords = {
+            "como", "qual", "quais", "explique", "o", "a", "os", "as", "em", "para",
+            "de", "do", "da", "dos", "das", "se", "no", "na", "nos", "nas", "por",
+            "que", "um", "uma", "uns", "umas", "voce", "ele", "ela", "com", "e"
+        }
+        target_entities = []
+        for w in words:
+            if w.istitle() and w.lower() not in stopwords and w not in target_entities:
+                target_entities.append(w)
+        
+        # Recognized CS entities if not capitalized
+        cs_terms = [
+            "kafka", "processo", "thread", "deadlock", "postgres", "redis",
+            "circuit breaker", "idempotencia", "inversao de dependencia", "b-tree",
+            "btree", "paxos", "raft", "outbox", "saga", "sharding", "particionamento",
+            "acid", "spring", "docker", "kubernetes", "rest", "graphql", "grpc"
+        ]
+        for term in cs_terms:
+            if term in q_norm and not any(term.lower() in e.lower() for e in target_entities):
+                target_entities.append(term)
+
+        # Context qualifiers
+        qualifiers = []
+        for q_word in ("ordem de entrega", "alta concorrencia", "producao", "falhas", "distribuido", "transacional", "consistencia", "latencia"):
+            if q_word in q_norm:
+                qualifiers.append(q_word)
+
+        # 3. Demands Decomposition (Primary & Secondary)
+        secondary_demands = []
+        has_split = False
+        primary_clause = q_norm
+        for pattern, split_on in self.conjunctions:
+            if pattern in q_norm:
+                parts = q_norm.split(split_on, 1)
+                primary_clause = parts[0].strip()
+                secondary_clause = parts[1].strip()
+                has_split = True
+                secondary_demands.append(DemandSpecification(
+                    demand_id="demand_2",
+                    description=secondary_clause,
+                    is_mandatory=True
+                ))
+                break
+
+        primary_demand = DemandSpecification(
+            demand_id="demand_1",
+            description=primary_clause,
+            is_mandatory=True
+        )
+
+        # 4. Epistemic Uncertainty
+        is_short = len(words) <= 2
+        is_ambiguous = ("varia conforme" in q_norm or is_short)
+        confidence = "LOW" if is_short else ("MEDIUM" if is_ambiguous else "HIGH")
+        limitations = []
+        if is_short:
+            limitations.append("Pergunta com poucas palavras; contexto sintetico reduzido")
+        if not target_entities:
+            limitations.append("Nenhuma entidade tecnica explicita identificada")
+
+        uncertainty = EpistemicUncertaintyRecord(
+            confidence_level=confidence,
+            unresolved_ambiguities_present=is_ambiguous,
+            epistemic_limitations=limitations
+        )
+
+        profile = QuestionProfile(
+            raw_question=question_text,
+            primary_demand=primary_demand,
+            intent_mode=intent_mode,
+            secondary_demands=secondary_demands,
+            target_entities=target_entities,
+            context_qualifiers=qualifiers
+        )
+
+        return profile, uncertainty
+
+
+class DiscoursePropositionEngine:
+    """Increment 1: Discourse Proposition and Preamble Isolation Engine (Stage 31.7.35)."""
+    def __init__(self):
+        # Conversational preamble markers (commute, weather, greetings, personal anecdotes)
+        self.preamble_markers = [
+            "hoje peguei muito transito", "hoje peguei um transito terrivel", "hoje peguei transito",
+            "o transito estava terrivel", "o transito estava infernal", "o transito estava um caos",
+            "essa e uma otima pergunta", "essa e uma excelente pergunta", "otima pergunta", "boa pergunta",
+            "obrigado pela oportunidade", "bom dia a todos", "boa tarde a todos", "ola pessoal",
+            "quando eu comecei minha carreira la em", "quando eu era estagiario la em",
+            "olha, para comecar", "para ser bem sincero com voce"
+        ]
+        self.retraction_markers = [
+            "na verdade nao", "na verdade,", "ou melhor,", "ou melhor", "corrigindo,",
+            "corrigindo", "quis dizer", "me confundi,", "me confundi"
+        ]
+
+    def extract_discourse_profile(self, response_text: str, question_profile: QuestionProfile | None = None) -> DiscourseProfile:
+        r_norm = _normalize_text(response_text)
+        
+        # 1. Preamble Isolation
+        isolated_preambles = []
+        remaining_text = response_text
+        for m in self.preamble_markers:
+            if m in r_norm:
+                idx = r_norm.find(m)
+                boundary = r_norm.find(".", idx)
+                if boundary != -1:
+                    preamble_sub = response_text[:boundary+1].strip()
+                    isolated_preambles.append(preamble_sub)
+                    remaining_text = response_text[boundary+1:].strip()
+                else:
+                    comma_bound = r_norm.find(",", idx + len(m))
+                    if comma_bound != -1 and comma_bound - idx < 60:
+                        preamble_sub = response_text[:comma_bound+1].strip()
+                        isolated_preambles.append(preamble_sub)
+                        remaining_text = response_text[comma_bound+1:].strip()
+                break
+
+        # 2. Proposition Decomposition
+        raw_sentences = [s.strip() for s in re.split(r'[.;\n]+', remaining_text) if s.strip()]
+        if not raw_sentences and remaining_text:
+            raw_sentences = [remaining_text]
+        if not raw_sentences and isolated_preambles:
+            raw_sentences = [isolated_preambles[0]]
+
+        propositions: list[DiscourseProposition] = []
+        for i, s in enumerate(raw_sentences, 1):
+            s_norm = _normalize_text(s)
+            prop_id = f"prop_{i}"
+
+            # Negation detection
+            neg_match = re.search(r'\b(nao|nunca|jamais|sem|nao devemos|nao se deve|evitar)\s+([^,.;]{3,40})', s_norm)
+            is_negated = bool(neg_match)
+            negation_scope = neg_match.group(2).strip() if neg_match else ""
+
+            # Conditional detection
+            cond_match = re.search(r'\b(se|caso|desde que|a nao ser que|contanto que|dependendo de|conforme)\s+([^,.;]{3,40})', s_norm)
+            is_conditional = bool(cond_match)
+            condition_premise = cond_match.group(2).strip() if cond_match else ""
+
+            # Discourse role
+            if any(t in s_norm for t in ("edgar codd", "linus torvalds", "artigo de 1970", "criado por")):
+                discourse_role = "HISTORICAL_METADATA"
+            elif any(t in s_norm for t in ("prometheus", "grafana", "datadog", "metricas no prometheus", "sentry")):
+                discourse_role = "OBSERVABILITY_SUPPORT"
+            elif any(t in s_norm for t in ("nao sei", "desconheco", "nunca trabalhei com", "nao me recordo")):
+                discourse_role = "IGNORANCE_DECLARATION"
+            elif len(s.split()) <= 3 and any(t in s_norm for t in ("sim", "ok", "conheco", "com certeza")):
+                discourse_role = "EMPTY_FILLER"
+            else:
+                discourse_role = "TECHNICAL_CORE"
+
+            propositions.append(DiscourseProposition(
+                prop_id=prop_id,
+                text=s,
+                discourse_role=discourse_role,
+                is_negated=is_negated,
+                negation_scope=negation_scope,
+                is_conditional=is_conditional,
+                condition_premise=condition_premise
+            ))
+
+        # Check self-correction / retraction retroactively (SC-21)
+        for i in range(1, len(propositions)):
+            curr_text = _normalize_text(propositions[i].text)
+            if any(rm in curr_text for rm in ("na verdade nao", "ou melhor", "corrigindo", "quis dizer", "me confundi")):
+                propositions[i-1].discourse_role = "RETRACTED_ASSERTION"
+
+        return DiscourseProfile(
+            raw_response=response_text,
+            propositions=propositions,
+            isolated_preambles=isolated_preambles
+        )
 
 
 
@@ -4053,6 +4699,8 @@ class OpenDomainPropositionEngine:
         )
         self.nexus_matcher = DemandPropositionNexusBipartiteMatcher()
         self.aggregator = StrictOntologyRelevanceAggregator()
+        self.question_profiler = SemanticQuestionProfiler()
+        self.discourse_engine = DiscoursePropositionEngine()
 
     def _normalize_morphology(self, text: str) -> str:
         """Strip clitic pronouns (-se, -la, -lo, etc.) and detached reflexive pronouns."""

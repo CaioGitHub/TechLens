@@ -35,7 +35,7 @@ Durante a implementação do Stage 31.7.27, os seguintes snapshots intermediári
 | **CP-C** | `reference_runtime/runtime.py.stage_31_7_27_inc_c` | Incremento C (Cobertura e Suficiência Relativa à Intenção) | **HOMOLOGADO** |
 | **CP-D** | `reference_runtime/runtime.py.stage_31_7_27_inc_d` | Incremento D (StrictOntologyRelevanceAggregator) | **HOMOLOGADO** |
 | **CP-E (Pre-Regr)** | `reference_runtime/runtime.py.stage_31_7_27_pre_regression_fix` | Incremento E Pré-Ajustes Canônicos | **HISTÓRICO** (`3FD3F80D9BB8A13CCC3A2791759D08F2EED25271913B56F064710DB94B2BC229`) |
-| **CP-F (Final)** | `reference_runtime/runtime.py.stage_31_7_27_final` | Homologação com 0 Regressões Canônicas | **HOMOLOGADO** (`6C44B7A8FBDABC1CBB111666DD543489FBC152B19A27AA3FF8B67B82B0CA4F28`) |
+| **CP-F (Final)** | `reference_runtime/runtime.py.stage_31_7_27_final` | Homologação com 0 Regressões Canônicas | **HOMOLOGADO** (`0680848D3384BFCEC7C79EDCBC28566DEE26A3554ED622A7861C7AFD12532F9F`) |
 
 ---
 

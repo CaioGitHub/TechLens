@@ -1,0 +1,102 @@
+{
+  "stage": "31.7.34",
+  "increment": "INC-0",
+  "module": "tests.test_stage_31_7_34_inc0_contracts",
+  "total_tests": 17,
+  "passed": 17,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "execution_time_seconds": 0.0102,
+  "success_rate_percent": 100.0,
+  "findings_resolved": [
+    "FINDING-06"
+  ],
+  "tests": [
+    {
+      "test_name": "test_01_valid_complete_evidence_traceability_record",
+      "description": "TC-INC0-01: Valid complete record must pass schema validation and serialization.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_02_valid_minimal_evidence_traceability_record",
+      "description": "TC-INC0-02: Valid minimal record with default/empty optionals must pass validation.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_03_finding_06_applied_contract_ids_populated",
+      "description": "TC-INC0-03 (FINDING-06): populated applied_contract_ids is preserved and validated.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_04_finding_06_applied_contract_ids_empty",
+      "description": "TC-INC0-04 (FINDING-06): empty applied_contract_ids list validates correctly.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_05_finding_06_applied_contract_ids_omitted_backward_compatibility",
+      "description": "TC-INC0-05 (FINDING-06): Record without applied_contract_ids remains 100% valid.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_06_finding_06_applied_contract_ids_invalid_type",
+      "description": "TC-INC0-06 (FINDING-06): applied_contract_ids with non-strings must fail validation.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_07_negative_missing_top_level_required_properties",
+      "description": "TC-INC0-07: Missing top-level required properties must fail validation.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_08_negative_invalid_runtime_version_hash",
+      "description": "TC-INC0-08: Non-64 hex or lowercase hash must fail validation.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_09_negative_invalid_timestamp_format",
+      "description": "TC-INC0-09: Invalid ISO timestamp must fail validation.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_10_negative_invalid_enum_intent_mode",
+      "description": "TC-INC0-10: Unknown intent_mode must fail validation.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_11_negative_invalid_enum_discourse_role",
+      "description": "TC-INC0-11: Unknown discourse_role must fail validation.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_12_negative_invalid_enum_nexus_relation",
+      "description": "TC-INC0-12: Unknown nexus_relation must fail validation.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_13_negative_coverage_ratio_out_of_bounds",
+      "description": "TC-INC0-13: coverage_ratio < 0.0 or > 1.0 must fail validation.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_14_negative_invalid_classification_enum",
+      "description": "TC-INC0-14: Unknown final classification must fail validation.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_15_lossless_serialization_and_deserialization",
+      "description": "TC-INC0-15: Lossless JSON roundtrip serialization and structure preservation.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_16_semantic_classification_invariance",
+      "description": "TC-INC0-16: Calling semantic relevance logic before and after INC-0 yields identical results.",
+      "status": "PASSED"
+    },
+    {
+      "test_name": "test_17_robustness_with_empty_propositions_and_unlinked_entities",
+      "description": "TC-INC0-17: Robust handling of empty propositions and edge case structures.",
+      "status": "PASSED"
+    }
+  ]
+}

@@ -191,14 +191,35 @@ ARCHITECTURE_REQUIRES_REVISION
 
 Stage 31.7.31
     ↓
-NEXT STAGE (Architectural Remediation & Refined Specification — Cycle 6)
+REFINED_ARCHITECTURE_READY_FOR_INDEPENDENT_REVIEW
+RUNTIME_PROVENANCE_RECONCILED
+
+Stage 31.7.32
+    ↓
+ARCHITECTURE_APPROVED_FOR_IMPLEMENTATION_PLANNING
+RUNTIME_PROVENANCE_RECONCILED
+
+Stage 31.7.33
+    ↓
+IMPLEMENTATION_PLAN_READY_FOR_GOVERNANCE_APPROVAL
+RUNTIME_PROVENANCE_RECONCILED
+
+Stage 31.7.34
+    ↓
+INC0_FOUNDATION_IMPLEMENTED_AND_VERIFIED
+RUNTIME_PROVENANCE_RECONCILED
+
+Stage 31.7.35
+    ↓
+NEXT STAGE (Controlled Implementation of Question Profile and Proposition Engine — Increment 1)
 ```
 
-O Stage 31.7.30 concluiu a revisão adversarial e os testes de estresse contratual da arquitetura do Ciclo 6:
-1. **Proveniência do Runtime Confirmada (`RUNTIME_PROVENANCE_RECONCILED`):** Todas as 9 alegações sobre o runtime `6C44B7A8...` foram 100% verificadas (`VERIFIED`), comprovando que ele é a versão legítima homologada com 0 regressões e autorizada pelo usuário.
-2. **Revisão Adversarial da Regra de Entidades (`ARCHITECTURE_REQUIRES_REVISION`):** A regra de "veto absoluto" de `OFF_TOPIC` por compartilhamento de entidade foi refutada pelo Cenário E (homonímia/divagação geopolítica) e pelo Cenário C (respostas corretas sem menção literal da entidade, gerando risco de falso `OFF_TOPIC`).
-3. **Prescrições Mandatórias para o Ciclo 6:** (1) Substituir o veto absoluto por presunção refutável de pertinência temática derrubada por predicados alienígenas; (2) Reconhecer equivalências conceituais e hiperônimos técnicos; (3) Instituir regra de isenção para analogias pedagógicas (e.g. disjuntor elétrico para circuit breaker); (4) Aplicar segmentação oracional para isolar preâmbulos conversacionais de ruído; (5) Filtrar elogios superficiais como `INSUFFICIENT`. O runtime permaneceu 100% congelado no hash `6C44B7A8...`.
-4. **Próximo Passo:** **Stage 31.7.31 — Architectural Remediation & Refined Specification (Cycle 6)** para incorporar as prescrições mandatórias antes de qualquer autorização de implementação.
+O Stage 31.7.34 concluiu a implementação controlada do Incremento 0 (INC-0: Fundação de Dados e Rastreabilidade) do Ciclo 6:
+1. **Fundação Estrutural e Tipagem Forte:** Introdução de dataclasses tipadas no runtime (`reference_runtime/runtime.py`) para perfis de pergunta e resposta, proposições discursivas, avaliações temáticas, nexos causais, equivalências, analogias ancoradas e registros de incerteza epistêmica.
+2. **Resolução Formal do FINDING-06:** Inclusão do campo opcional `applied_contract_ids` em `FinalDecisionRecord` e no schema JSON Draft-07 de rastreabilidade causal (`EvidenceTraceabilityRecord`), com validação determinística estrita e 100% de retrocompatibilidade.
+3. **100% dos Testes Contratuais Aprovados:** Suíte dedicada `tests/test_stage_31_7_34_inc0_contracts.py` com 17 testes automatizados cobrindo todos os critérios de schema, identificadores, enums, limites, serialização e invariância semântica.
+4. **Zero Regressões Confirmadas:** A suíte canônica completa foi expandida para **1.084 testes (1.083 OK, 1 skipped, 0 falhas, 0 erros)** e o Reference Harness atingiu aprovação total (**15/15 OK**). O runtime avançou para o hash `E047BA643A6E98975E42336C58339A12AB4D33D48082ED808FF26248478AB1B8`.
+5. **Próximo Passo Autorizado:** **Stage 31.7.35 — Controlled Implementation of Question Profile and Proposition Engine (Increment 1)**.
 
 ## Regra fundamental
 

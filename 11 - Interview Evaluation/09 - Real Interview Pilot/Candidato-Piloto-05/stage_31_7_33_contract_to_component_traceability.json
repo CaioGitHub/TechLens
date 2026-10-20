@@ -1,0 +1,358 @@
+{
+  "stage": "31.7.33",
+  "title": "Stage 31.7.33 Contract to Component Traceability Matrix",
+  "total_contracts_mapped": 35,
+  "traceability_matrix": [
+    {
+      "contract_id": "SC-01",
+      "scenario": "Direct without lexical overlap",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-1",
+      "target_component": "QuestionProfileExtractor / SufficiencyAssessmentEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement1::test_contract_SC_01",
+      "required_evidence_node": "coverage_evaluation.coverage_ratio / demand_nexus_evaluations",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em coverage_evaluation.coverage_ratio / demand_nexus_evaluations sem erros."
+    },
+    {
+      "contract_id": "SC-02",
+      "scenario": "Genuinely disjoint alien domain not previously enumerated",
+      "expected_class": "OFF_TOPIC",
+      "responsible_increment": "INC-1",
+      "target_component": "QuestionProfileExtractor / SufficiencyAssessmentEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement1::test_contract_SC_02",
+      "required_evidence_node": "coverage_evaluation.coverage_ratio / demand_nexus_evaluations",
+      "acceptance_criterion": "Execução do teste confirma classe OFF_TOPIC e registra evidência em coverage_evaluation.coverage_ratio / demand_nexus_evaluations sem erros."
+    },
+    {
+      "contract_id": "SC-03",
+      "scenario": "Historical or institutional metadata",
+      "expected_class": "RELATED",
+      "responsible_increment": "INC-5",
+      "target_component": "StrictRelevanceAggregator",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement5::test_contract_SC_03",
+      "required_evidence_node": "final_decision.canonical_class / final_decision.decision_rule_id",
+      "acceptance_criterion": "Execução do teste confirma classe RELATED e registra evidência em final_decision.canonical_class / final_decision.decision_rule_id sem erros."
+    },
+    {
+      "contract_id": "SC-04",
+      "scenario": "Related context without answering mechanism",
+      "expected_class": "RELATED",
+      "responsible_increment": "INC-5",
+      "target_component": "StrictRelevanceAggregator",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement5::test_contract_SC_04",
+      "required_evidence_node": "final_decision.canonical_class / final_decision.decision_rule_id",
+      "acceptance_criterion": "Execução do teste confirma classe RELATED e registra evidência em final_decision.canonical_class / final_decision.decision_rule_id sem erros."
+    },
+    {
+      "contract_id": "SC-05",
+      "scenario": "Auxiliary observability contribution",
+      "expected_class": "SUPPORTING",
+      "responsible_increment": "INC-1",
+      "target_component": "QuestionProfileExtractor / SufficiencyAssessmentEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement1::test_contract_SC_05",
+      "required_evidence_node": "coverage_evaluation.coverage_ratio / demand_nexus_evaluations",
+      "acceptance_criterion": "Execução do teste confirma classe SUPPORTING e registra evidência em coverage_evaluation.coverage_ratio / demand_nexus_evaluations sem erros."
+    },
+    {
+      "contract_id": "SC-06",
+      "scenario": "Partially correct answer on multi-aspect question",
+      "expected_class": "PARTIAL",
+      "responsible_increment": "INC-1",
+      "target_component": "QuestionProfileExtractor / SufficiencyAssessmentEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement1::test_contract_SC_06",
+      "required_evidence_node": "coverage_evaluation.coverage_ratio / demand_nexus_evaluations",
+      "acceptance_criterion": "Execução do teste confirma classe PARTIAL e registra evidência em coverage_evaluation.coverage_ratio / demand_nexus_evaluations sem erros."
+    },
+    {
+      "contract_id": "SC-07",
+      "scenario": "Compound question with complete fulfillment",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-1",
+      "target_component": "QuestionProfileExtractor / SufficiencyAssessmentEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement1::test_contract_SC_07",
+      "required_evidence_node": "coverage_evaluation.coverage_ratio / demand_nexus_evaluations",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em coverage_evaluation.coverage_ratio / demand_nexus_evaluations sem erros."
+    },
+    {
+      "contract_id": "SC-08",
+      "scenario": "Compound question with partial explicit omission",
+      "expected_class": "PARTIAL",
+      "responsible_increment": "INC-1",
+      "target_component": "QuestionProfileExtractor / SufficiencyAssessmentEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement1::test_contract_SC_08",
+      "required_evidence_node": "coverage_evaluation.coverage_ratio / demand_nexus_evaluations",
+      "acceptance_criterion": "Execução do teste confirma classe PARTIAL e registra evidência em coverage_evaluation.coverage_ratio / demand_nexus_evaluations sem erros."
+    },
+    {
+      "contract_id": "SC-09",
+      "scenario": "Conceptual definition without causal code requirement",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-5",
+      "target_component": "StrictRelevanceAggregator",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement5::test_contract_SC_09",
+      "required_evidence_node": "final_decision.canonical_class / final_decision.decision_rule_id",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em final_decision.canonical_class / final_decision.decision_rule_id sem erros."
+    },
+    {
+      "contract_id": "SC-10",
+      "scenario": "Historical question with origin context",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-5",
+      "target_component": "StrictRelevanceAggregator",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement5::test_contract_SC_10",
+      "required_evidence_node": "final_decision.canonical_class / final_decision.decision_rule_id",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em final_decision.canonical_class / final_decision.decision_rule_id sem erros."
+    },
+    {
+      "contract_id": "SC-11",
+      "scenario": "Comparative question with structured axes",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-1",
+      "target_component": "QuestionProfileExtractor / SufficiencyAssessmentEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement1::test_contract_SC_11",
+      "required_evidence_node": "coverage_evaluation.coverage_ratio / demand_nexus_evaluations",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em coverage_evaluation.coverage_ratio / demand_nexus_evaluations sem erros."
+    },
+    {
+      "contract_id": "SC-12",
+      "scenario": "Diagnostic investigation scenario",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-1",
+      "target_component": "QuestionProfileExtractor / SufficiencyAssessmentEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement1::test_contract_SC_12",
+      "required_evidence_node": "coverage_evaluation.coverage_ratio / demand_nexus_evaluations",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em coverage_evaluation.coverage_ratio / demand_nexus_evaluations sem erros."
+    },
+    {
+      "contract_id": "SC-13",
+      "scenario": "Implementation question with concrete mechanics",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-5",
+      "target_component": "StrictRelevanceAggregator",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement5::test_contract_SC_13",
+      "required_evidence_node": "final_decision.canonical_class / final_decision.decision_rule_id",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em final_decision.canonical_class / final_decision.decision_rule_id sem erros."
+    },
+    {
+      "contract_id": "SC-14",
+      "scenario": "Evasive business and consulting deflection",
+      "expected_class": "INSUFFICIENT",
+      "responsible_increment": "INC-5",
+      "target_component": "StrictRelevanceAggregator",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement5::test_contract_SC_14",
+      "required_evidence_node": "final_decision.canonical_class / final_decision.decision_rule_id",
+      "acceptance_criterion": "Execução do teste confirma classe INSUFFICIENT e registra evidência em final_decision.canonical_class / final_decision.decision_rule_id sem erros."
+    },
+    {
+      "contract_id": "SC-15",
+      "scenario": "Genuine semantic indeterminacy and ambiguity",
+      "expected_class": "UNKNOWN",
+      "responsible_increment": "INC-5",
+      "target_component": "StrictRelevanceAggregator",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement5::test_contract_SC_15",
+      "required_evidence_node": "final_decision.canonical_class / final_decision.decision_rule_id",
+      "acceptance_criterion": "Execução do teste confirma classe UNKNOWN e registra evidência em final_decision.canonical_class / final_decision.decision_rule_id sem erros."
+    },
+    {
+      "contract_id": "SC-16",
+      "scenario": "Colloquial engineering language and passive voice",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-5",
+      "target_component": "StrictRelevanceAggregator",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement5::test_contract_SC_16",
+      "required_evidence_node": "final_decision.canonical_class / final_decision.decision_rule_id",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em final_decision.canonical_class / final_decision.decision_rule_id sem erros."
+    },
+    {
+      "contract_id": "SC-17",
+      "scenario": "Short concise technical definition",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-2",
+      "target_component": "DiscourseSegmentationEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement2::test_contract_SC_17",
+      "required_evidence_node": "discourse_profile.propositions / discourse_profile.scopes",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em discourse_profile.propositions / discourse_profile.scopes sem erros."
+    },
+    {
+      "contract_id": "SC-18",
+      "scenario": "Long answer with irrelevant rambling padding",
+      "expected_class": "INSUFFICIENT",
+      "responsible_increment": "INC-2",
+      "target_component": "DiscourseSegmentationEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement2::test_contract_SC_18",
+      "required_evidence_node": "discourse_profile.propositions / discourse_profile.scopes",
+      "acceptance_criterion": "Execução do teste confirma classe INSUFFICIENT e registra evidência em discourse_profile.propositions / discourse_profile.scopes sem erros."
+    },
+    {
+      "contract_id": "SC-19",
+      "scenario": "Destructive antithesis without avoidance guard",
+      "expected_class": "OFF_TOPIC",
+      "responsible_increment": "INC-5",
+      "target_component": "StrictRelevanceAggregator",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement5::test_contract_SC_19",
+      "required_evidence_node": "final_decision.canonical_class / final_decision.decision_rule_id",
+      "acceptance_criterion": "Execução do teste confirma classe OFF_TOPIC e registra evidência em final_decision.canonical_class / final_decision.decision_rule_id sem erros."
+    },
+    {
+      "contract_id": "SC-20",
+      "scenario": "Avoidance guard on destructive keywords",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-2",
+      "target_component": "DiscourseSegmentationEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement2::test_contract_SC_20",
+      "required_evidence_node": "discourse_profile.propositions / discourse_profile.scopes",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em discourse_profile.propositions / discourse_profile.scopes sem erros."
+    },
+    {
+      "contract_id": "SC-21",
+      "scenario": "Unseen fictional technology with sound distributed mechanism",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-2",
+      "target_component": "DiscourseSegmentationEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement2::test_contract_SC_21",
+      "required_evidence_node": "discourse_profile.propositions / discourse_profile.scopes",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em discourse_profile.propositions / discourse_profile.scopes sem erros."
+    },
+    {
+      "contract_id": "SC-22",
+      "scenario": "Paired invariance parity across syntactic variations",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-2",
+      "target_component": "DiscourseSegmentationEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement2::test_contract_SC_22",
+      "required_evidence_node": "discourse_profile.propositions / discourse_profile.scopes",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em discourse_profile.propositions / discourse_profile.scopes sem erros."
+    },
+    {
+      "contract_id": "SC-23-REV",
+      "scenario": "Metaphorical / Pedagogical Analogy from Another Domain",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-3",
+      "target_component": "ThematicAffinityEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement3::test_contract_SC_23_REV",
+      "required_evidence_node": "thematic_affinity_evaluation.presumption_status / is_alien",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em thematic_affinity_evaluation.presumption_status / is_alien sem erros."
+    },
+    {
+      "contract_id": "SC-24-REV",
+      "scenario": "Conversational Chitchat Preamble followed by Complete Direct Mechanism",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-4",
+      "target_component": "ConceptualEquivalenceEngine / AnalogyResolutionEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement4::test_contract_SC_24_REV",
+      "required_evidence_node": "thematic_affinity_evaluation.equivalence_mode / analogy_evaluation",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em thematic_affinity_evaluation.equivalence_mode / analogy_evaluation sem erros."
+    },
+    {
+      "contract_id": "SC-25-REV",
+      "scenario": "Legitimate Infrastructure Prerequisite as Response",
+      "expected_class": "SUPPORTING",
+      "responsible_increment": "INC-4",
+      "target_component": "ConceptualEquivalenceEngine / AnalogyResolutionEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement4::test_contract_SC_25_REV",
+      "required_evidence_node": "thematic_affinity_evaluation.equivalence_mode / analogy_evaluation",
+      "acceptance_criterion": "Execução do teste confirma classe SUPPORTING e registra evidência em thematic_affinity_evaluation.equivalence_mode / analogy_evaluation sem erros."
+    },
+    {
+      "contract_id": "SC-26-REV",
+      "scenario": "Lexical Homonymy with Non-Computing Metaphor (Shared Word, Alien Predicate)",
+      "expected_class": "OFF_TOPIC",
+      "responsible_increment": "INC-4",
+      "target_component": "ConceptualEquivalenceEngine / AnalogyResolutionEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement4::test_contract_SC_26_REV",
+      "required_evidence_node": "thematic_affinity_evaluation.equivalence_mode / analogy_evaluation",
+      "acceptance_criterion": "Execução do teste confirma classe OFF_TOPIC e registra evidência em thematic_affinity_evaluation.equivalence_mode / analogy_evaluation sem erros."
+    },
+    {
+      "contract_id": "SC-27-REV",
+      "scenario": "Pure Praise / Buzzword Triviality Citing Target Entity",
+      "expected_class": "INSUFFICIENT",
+      "responsible_increment": "INC-4",
+      "target_component": "ConceptualEquivalenceEngine / AnalogyResolutionEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement4::test_contract_SC_27_REV",
+      "required_evidence_node": "thematic_affinity_evaluation.equivalence_mode / analogy_evaluation",
+      "acceptance_criterion": "Execução do teste confirma classe INSUFFICIENT e registra evidência em thematic_affinity_evaluation.equivalence_mode / analogy_evaluation sem erros."
+    },
+    {
+      "contract_id": "SC-28-REV",
+      "scenario": "Fictional Technology with Rigorous Distributed Computing Mechanics",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-4",
+      "target_component": "ConceptualEquivalenceEngine / AnalogyResolutionEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement4::test_contract_SC_28_REV",
+      "required_evidence_node": "thematic_affinity_evaluation.equivalence_mode / analogy_evaluation",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em thematic_affinity_evaluation.equivalence_mode / analogy_evaluation sem erros."
+    },
+    {
+      "contract_id": "SC-29",
+      "scenario": "Rebuttal of Entity Presumption via Alien Geopolitical Predicate (Homonymy)",
+      "expected_class": "OFF_TOPIC",
+      "responsible_increment": "INC-3",
+      "target_component": "ThematicAffinityEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement3::test_contract_SC_29",
+      "required_evidence_node": "thematic_affinity_evaluation.presumption_status / is_alien",
+      "acceptance_criterion": "Execução do teste confirma classe OFF_TOPIC e registra evidência em thematic_affinity_evaluation.presumption_status / is_alien sem erros."
+    },
+    {
+      "contract_id": "SC-30",
+      "scenario": "Correct Functional Description of Data Structure without Name Repetition",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-4",
+      "target_component": "ConceptualEquivalenceEngine / AnalogyResolutionEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement4::test_contract_SC_30",
+      "required_evidence_node": "thematic_affinity_evaluation.equivalence_mode / analogy_evaluation",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em thematic_affinity_evaluation.equivalence_mode / analogy_evaluation sem erros."
+    },
+    {
+      "contract_id": "SC-31",
+      "scenario": "Ungrounded Educational Analogy without Software Transposition",
+      "expected_class": "INSUFFICIENT",
+      "responsible_increment": "INC-4",
+      "target_component": "ConceptualEquivalenceEngine / AnalogyResolutionEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement4::test_contract_SC_31",
+      "required_evidence_node": "thematic_affinity_evaluation.equivalence_mode / analogy_evaluation",
+      "acceptance_criterion": "Execução do teste confirma classe INSUFFICIENT e registra evidência em thematic_affinity_evaluation.equivalence_mode / analogy_evaluation sem erros."
+    },
+    {
+      "contract_id": "SC-32",
+      "scenario": "Explicit Self-Correction Overriding Initial Incorrect Hypothesis",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-2",
+      "target_component": "DiscourseSegmentationEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement2::test_contract_SC_32",
+      "required_evidence_node": "discourse_profile.propositions / discourse_profile.scopes",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em discourse_profile.propositions / discourse_profile.scopes sem erros."
+    },
+    {
+      "contract_id": "SC-33",
+      "scenario": "Direct Internal Contradiction Destroying Conceptual Truth Value",
+      "expected_class": "INSUFFICIENT",
+      "responsible_increment": "INC-2",
+      "target_component": "DiscourseSegmentationEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement2::test_contract_SC_33",
+      "required_evidence_node": "discourse_profile.propositions / discourse_profile.scopes",
+      "acceptance_criterion": "Execução do teste confirma classe INSUFFICIENT e registra evidência em discourse_profile.propositions / discourse_profile.scopes sem erros."
+    },
+    {
+      "contract_id": "SC-34",
+      "scenario": "Distributed Multi-Sentence Composition (Definition + Mechanism + Trade-off)",
+      "expected_class": "DIRECT",
+      "responsible_increment": "INC-2",
+      "target_component": "DiscourseSegmentationEngine",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement2::test_contract_SC_34",
+      "required_evidence_node": "discourse_profile.propositions / discourse_profile.scopes",
+      "acceptance_criterion": "Execução do teste confirma classe DIRECT e registra evidência em discourse_profile.propositions / discourse_profile.scopes sem erros."
+    },
+    {
+      "contract_id": "SC-35",
+      "scenario": "Technical Term Attributed Incompatible / Conflicting Property",
+      "expected_class": "OFF_TOPIC",
+      "responsible_increment": "INC-5",
+      "target_component": "StrictRelevanceAggregator",
+      "test_target": "tests.test_stage_31_7_34_increments::TestIncrement5::test_contract_SC_35",
+      "required_evidence_node": "final_decision.canonical_class / final_decision.decision_rule_id",
+      "acceptance_criterion": "Execução do teste confirma classe OFF_TOPIC e registra evidência em final_decision.canonical_class / final_decision.decision_rule_id sem erros."
+    }
+  ],
+  "audit_declaration": "Mapeamento bidirecional estrito conectando cada um dos 35 contratos semânticos a seu incremento de implementação, componente de software, teste automatizado e nó de evidência no JSON de rastreabilidade."
+}

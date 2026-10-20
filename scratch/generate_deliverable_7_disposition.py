@@ -1,0 +1,119 @@
+import json
+from pathlib import Path
+
+pilot_dir = Path("11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05")
+findings_file = pilot_dir / "stage_31_7_32_architecture_findings.json"
+findings_data = json.load(open(findings_file, encoding="utf-8"))
+
+dispositions = [
+    {
+        "finding_id": "FINDING-01",
+        "title": "Mecanismo de Determinação de Predicados Alienígenas no Estágio 3",
+        "description": "A especificação define que a presunção de afinidade temática é refutada quando os predicados da resposta atuam sobre um domínio alienígena, mas não detalha como o motor infere essa incompatibilidade sem recorrer a listas lexicais fechadas.",
+        "evidence": "stage_31_7_31_thematic_connection_contract.md, Seção 3 e stage_31_7_31_open_questions.md, Questão 1",
+        "original_severity": "MAJOR",
+        "architectural_decision": "Adotar presunção refutável de conexão temática (H_tema) derrubada por predicados nucleares incompatíveis.",
+        "implementation_risk": "Tentação de criar dicionários estáticos de palavras proibidas ou regras 'if palavra in resposta' para casos conhecidos (e.g. 'petróleo', 'culinária'), violando o princípio anti-overfitting.",
+        "planned_treatment": "No Incremento 3, modelar a refutação sobre análise de papéis semânticos estruturados (SRL / sujeito-verbo-objeto) e casamento de categorias de substantivos concretos físicos (comércio internacional, culinária, artesanato), exigindo que a incompatibilidade seja comprovada pela atuação do predicado sobre o objeto físico, e não pela presença isolada de um termo.",
+        "responsible_increment": "Incremento 3 (Afinidade Temática Refutável e Resolução de Homonímia)",
+        "acceptance_criteria": "Passagem em 100% dos testes de homonímia (Caso ADV-01 e SC-29) demonstrando que a refutação ocorre pela relação predicativa alienígena, mantendo zero termos específicos em listas fechadas.",
+        "current_status": "PLANNED_AND_BOUNDED_IN_INCREMENT_3"
+    },
+    {
+        "finding_id": "FINDING-02",
+        "title": "Limites Operacionais da Equivalência Conceitual e Hiperônimos Abertos no Estágio 4",
+        "description": "O reconhecimento de equivalência aberta sem repetição de tokens literais (Caso D: árvore balanceada para B-tree) é formalmente correto, mas a generalização universal em analisador determinístico puro pode ser inexequível.",
+        "evidence": "stage_31_7_31_conceptual_equivalence_contract.md, Seção 4 e stage_31_7_31_open_questions.md, Questão 1",
+        "original_severity": "MAJOR",
+        "architectural_decision": "Reconhecimento de 8 níveis de equivalência conceitual baseados em propriedades invariantes essenciais.",
+        "implementation_risk": "Complexidade descontrolada na tentativa de cobrir todos os sinônimos de TI do mundo em código determinístico.",
+        "planned_treatment": "No Incremento 4, delimitar a equivalência funcional determinística estritamente aos invariantes centrais canônicos de ciência da computação (árvores balanceadas, tabelas hash, locks pessimistas/otimistas, quórum de maioria, réplicas, idempotência). Termos ou conceitos fora desse núcleo canônico devem ser formalmente marcados como incerteza epistêmica ('UNKNOWN') em vez de adivinhação heurística.",
+        "responsible_increment": "Incremento 4 (Equivalência Conceitual, Invariantes de CS e Analogias Ancoradas)",
+        "acceptance_criteria": "Aprovação comprovada do Caso ADV-02 (B-tree como árvore balanceada) e Caso ADV-04 (ChronoMesh com relógios vetoriais), com registro explícito de incerteza em termos ambíguos não previstos.",
+        "current_status": "PLANNED_AND_BOUNDED_IN_INCREMENT_4"
+    },
+    {
+        "finding_id": "FINDING-03",
+        "title": "Risco de Rigidez Lexical na Detecção de Aterrissagem de Analogias no Estágio 5",
+        "description": "A exigência de comprovação de aterrissagem no domínio-alvo (software) pode induzir a implementação a procurar expressões literais fixas como 'no software', 'na aplicação' ou 'em microsserviços'.",
+        "evidence": "stage_31_7_31_analogy_handling_contract.md, Seção 2 e 3",
+        "original_severity": "MODERATE",
+        "architectural_decision": "Desacoplamento estrito entre domínio-veículo (Dv) e domínio-alvo computacional (Dt), exigindo aterrissagem substantiva para DIRECT.",
+        "implementation_risk": "Falso rebaixamento para INSUFFICIENT de analogias excelentes cuja transposição computacional é feita com predicados técnicos sem usar a fórmula fixa 'na aplicação'.",
+        "planned_treatment": "No Incremento 4, a verificação de aterrissagem no domínio-alvo analisará a presença de entidades, variáveis, protocolos ou predicados do domínio de computação (HTTP, threads, locks, requisições, nós, latência) no agregado oracional da resposta, sem exigir marcadores conjuntivos específicos de transposição.",
+        "responsible_increment": "Incremento 4 (Equivalência Conceitual, Invariantes de CS e Analogias Ancoradas)",
+        "acceptance_criteria": "Aprovação como DIRECT do Caso ADV-07 (Circuit Breaker com disjuntor e HTTP/half-open) e rebaixamento para INSUFFICIENT do Caso ADV-08 (lâmina bimetálica pura sem menção a software).",
+        "current_status": "PLANNED_AND_BOUNDED_IN_INCREMENT_4"
+    },
+    {
+        "finding_id": "FINDING-04",
+        "title": "Interdependência Causal entre Afinidade Temática (Estágio 3) e Equivalência Funcional (Estágio 4)",
+        "description": "Se a resposta omitir o nome da tecnologia da pergunta e usar apenas a descrição funcional (Caso D: árvore balanceada), o Estágio 3 não encontra tokens compartilhados (Er ∩ Eq = ∅). Se emitir disjunção precipitada, invalida o Estágio 4.",
+        "evidence": "stage_31_7_31_refined_architecture.md, Seção 2.3 e 2.4",
+        "original_severity": "MODERATE",
+        "architectural_decision": "Pipeline em estágios sequenciais com preservação de evidências intermediárias.",
+        "implementation_risk": "Curto-circuito prematuro de OFF_TOPIC antes que a equivalência funcional seja avaliada.",
+        "planned_treatment": "No Incremento 3, quando Er ∩ Eq = ∅, o Estágio 3 NÃO emitirá veredito de disjunção alienígena; emitirá o status transitório 'EQUIVALENCE_PENDING'. Caberá ao Estágio 4 (Incremento 4) avaliar se há equivalência funcional ou se a resposta é de fato desprovida de nexo.",
+        "responsible_increment": "Incremento 3 (Afinidade Temática Refutável e Resolução de Homonímia) e Incremento 4",
+        "acceptance_criteria": "O pipeline processa o Caso ADV-02 sem transitar por disjunção alienígena no Estágio 3, mantendo a pendência aberta até a resolução do Estágio 4.",
+        "current_status": "PLANNED_AND_BOUNDED_IN_INCREMENT_3_AND_4"
+    },
+    {
+        "finding_id": "FINDING-05",
+        "title": "Demarcação entre Contradições Reais e Contradições Aparentes no Discurso",
+        "description": "Respostas dialéticas sofisticadas contrapõem propriedades (e.g. leitura estrita no primário vs eventual nas réplicas). Detectores ingênuos de contradição podem penalizá-las como inconsistência.",
+        "evidence": "stage_31_7_31_proposition_composition_contract.md, Seção 3 e stage_31_7_32_adversarial_counterexamples.json, ADV-12 e ADV-13",
+        "original_severity": "MODERATE",
+        "architectural_decision": "Distinção formal entre contradição destrutiva (anulação de verdade) e aparente contradição reconciliada por escopo condicional.",
+        "implementation_risk": "Falso INSUFFICIENT ou UNKNOWN em respostas completas sobre arquiteturas heterogêneas e trade-offs.",
+        "planned_treatment": "No Incremento 2, a análise de contradição verificará se as orações com polaridades opostas compartilham o mesmo escopo condicional/arquitetural. Havendo cláusulas condicionais distintas ('no primário' vs 'nas réplicas'), o sistema tratará a resposta como dialética válida e preservará o mérito técnico.",
+        "responsible_increment": "Incremento 2 (Segmentação Discursiva, Negações, Condicionais e Preâmbulos)",
+        "acceptance_criteria": "Aprovação como DIRECT do Caso ADV-13 (primário vs réplicas) e rebaixamento para INSUFFICIENT do Caso ADV-12 (consistência serializável garantida e não garantida simultaneamente).",
+        "current_status": "PLANNED_AND_BOUNDED_IN_INCREMENT_2"
+    },
+    {
+        "finding_id": "FINDING-06",
+        "title": "Omissão de Campo para Registro de Contratos no Schema de Rastreabilidade",
+        "description": "O schema JSON atual não possui um atributo explícito no nó final_decision para listar os IDs dos contratos semânticos atendidos.",
+        "evidence": "stage_31_7_31_evidence_traceability_schema.json, nó final_decision",
+        "original_severity": "MINOR",
+        "architectural_decision": "Emissão obrigatória de registro JSON de rastreabilidade para auditoria causal.",
+        "implementation_risk": "Dificuldade na validação automatizada de cobertura de contratos semânticos durante testes em lote.",
+        "planned_treatment": "No Incremento 0 (Fundação), atualizar a especificação e o schema JSON para incluir o atributo opcional 'applied_contract_ids': list[str] no nó final_decision.",
+        "responsible_increment": "Incremento 0 (Fundação e Rastreabilidade)",
+        "acceptance_criteria": "O schema JSON Draft-07 valida com o novo atributo e os testes do Incremento 0 emitem o campo preenchido com os contratos exercitados.",
+        "current_status": "PLANNED_IN_INCREMENT_0"
+    },
+    {
+        "finding_id": "FINDING-07",
+        "title": "Manutenção Obrigatória da Ressalva Metodológica REFERENCE_INDEPENDENCE_UNRESOLVED",
+        "evidence": "GEMINI_HANDOFF.md, Seções 75 a 82; stage_31_7_31_open_questions.md, Questão 4",
+        "original_severity": "MODERATE",
+        "architectural_decision": "Não utilizar benchmark interno como prova de validação independente.",
+        "implementation_risk": "Autoilusão metodológica ou alegação prematura de que o sistema está validado para produção sem comitê duplo-cego externo.",
+        "planned_treatment": "Preservar a ressalva 'REFERENCE_INDEPENDENCE_UNRESOLVED' em todos os relatórios, gates e documentos de governança até a contratação e execução de validação externa independente com transcrições reais.",
+        "responsible_increment": "Governança Contínua em Todos os Incrementos",
+        "acceptance_criteria": "Nenhum relatório ou gate declara independência do benchmark com base apenas em testes internos de regressão.",
+        "current_status": "MAINTAINED_IN_ALL_GOVERNANCE_DOCS"
+    }
+]
+
+doc = {
+    "stage": "31.7.33",
+    "title": "Stage 31.7.33 Disposition of Stage 31.7.32 Architecture Findings",
+    "total_findings_disposed": len(dispositions),
+    "summary_by_severity": {
+        "BLOCKER": 0,
+        "CRITICAL": 0,
+        "MAJOR": sum(1 for d in dispositions if d["original_severity"] == "MAJOR"),
+        "MODERATE": sum(1 for d in dispositions if d["original_severity"] == "MODERATE"),
+        "MINOR": sum(1 for d in dispositions if d["original_severity"] == "MINOR")
+    },
+    "dispositions": dispositions,
+    "audit_declaration": "Todos os sete achados da revisão arquitetural independente foram tratados individualmente com atribuição de incremento responsável, mitigação de riscos de implementação e critérios verificáveis de aceitação."
+}
+
+with open(pilot_dir / "stage_31_7_33_architecture_findings_disposition.json", "w", encoding="utf-8") as f:
+    json.dump(doc, f, indent=2, ensure_ascii=False)
+
+print(f"Generated stage_31_7_33_architecture_findings_disposition.json with {len(dispositions)} dispositions.")

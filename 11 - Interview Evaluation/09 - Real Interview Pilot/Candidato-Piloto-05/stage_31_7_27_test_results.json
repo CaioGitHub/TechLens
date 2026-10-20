@@ -1,113 +1,232 @@
 {
-  "stage": "31.7.27",
+  "stage": "Stage 31.7.27",
+  "cycle": "Cycle 5",
   "suite_name": "Stage31727ContractTests",
-  "total_contract_tests": 20,
+  "total_tests": 20,
   "passed": 20,
   "failed": 0,
-  "errors": 0,
-  "success_rate": 1.0,
-  "elapsed_seconds": 0.0223,
-  "timestamp": "2026-10-15T01:50:45Z",
-  "tests": [
+  "pass_rate": "100.00%",
+  "execution_time_seconds": 0.016,
+  "cases": [
     {
-      "test_name": "test_tc_01_no_lexical_overlap_correct",
-      "description": "TC-01: Resposta correta sem sobreposição lexical deve ser DIRECT.",
-      "status": "PASSED"
+      "id": "TC_01_NO_LEXICAL_OVERLAP_CORRECT",
+      "question": "Como garantir que um cluster mantenha um unico estado consistente durante particoes de rede?",
+      "response": "Os nos utilizam um quorum de maioria e um lider eleito para validar qualquer transicao de estado antes de persistir.",
+      "expected": "DIRECT",
+      "actual": "DIRECT",
+      "status": "PASS",
+      "relation_type": "open_domain_mechanism_assertion",
+      "functional_contribution": true,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_02_semantically_disjoint_domain",
-      "description": "TC-02: Resposta de domínio semanticamente disjunto (botânica) deve ser OFF_TOPIC.",
-      "status": "PASSED"
+      "id": "TC_02_SEMANTICALLY_DISJOINT_DOMAIN",
+      "question": "Como funciona o roteamento de pacotes no protocolo BGP?",
+      "response": "Para cuidar de orquideas regamos duas vezes por semana com adubo foliar equilibrado e poda cuidadosa das folhas secas.",
+      "expected": "OFF_TOPIC",
+      "actual": "OFF_TOPIC",
+      "status": "PASS",
+      "relation_type": "alien_domain_assertion",
+      "functional_contribution": false,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_03_thematic_no_functional_mechanism",
-      "description": "TC-03: Resposta temática sem atendimento funcional (metadados institucionais) deve ser RELATED.",
-      "status": "PASSED"
+      "id": "TC_03_THEMATIC_NO_FUNCTIONAL_MECHANISM",
+      "question": "Como o Kafka particiona as mensagens em um topico?",
+      "response": "O Apache Kafka pertence a categoria de solucoes modernas de computacao e foi desenvolvido pela fundacao de software livre com ampla popularidade de mercado.",
+      "expected": "RELATED",
+      "actual": "RELATED",
+      "status": "PASS",
+      "relation_type": "thematic_adjacency_without_mechanism",
+      "functional_contribution": false,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_04_auxiliary_observability_support",
-      "description": "TC-04: Contribuição auxiliar de observabilidade/telemetria deve ser SUPPORTING.",
-      "status": "PASSED"
+      "id": "TC_04_AUXILIARY_OBSERVABILITY_SUPPORT",
+      "question": "Como evitar vazamento de memoria em processos concorrentes?",
+      "response": "Adicionamos metricas no Prometheus e criamos alertas no Grafana para acompanhar o uso de memoria no dashboard.",
+      "expected": "SUPPORTING",
+      "actual": "SUPPORTING",
+      "status": "PASS",
+      "relation_type": "auxiliary_observability_support",
+      "functional_contribution": true,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_05_compound_partial_fulfillment",
-      "description": "TC-05: Atendimento parcial de pergunta composta deve ser PARTIAL.",
-      "status": "PASSED"
+      "id": "TC_05_COMPOUND_PARTIAL_FULFILLMENT",
+      "question": "Explique como funciona o Circuit Breaker e como configurar o tempo de retry com exponential backoff.",
+      "response": "O Circuit Breaker transita entre os estados fechado, aberto e meio-aberto para interromper chamadas a servicos com falha.",
+      "expected": "PARTIAL",
+      "actual": "PARTIAL",
+      "status": "PASS",
+      "relation_type": "multi_aspect_partial_coverage",
+      "functional_contribution": true,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_06_compound_full_fulfillment",
-      "description": "TC-06: Atendimento completo de pergunta composta deve ser DIRECT.",
-      "status": "PASSED"
+      "id": "TC_06_COMPOUND_FULL_FULFILLMENT",
+      "question": "Explique como funciona o Circuit Breaker e como configurar o tempo de retry com exponential backoff.",
+      "response": "O Circuit Breaker transita entre fechado, aberto e meio-aberto para barrar chamadas com falha, e o retry aplica exponential backoff aumentando progressivamente o intervalo entre tentativas.",
+      "expected": "DIRECT",
+      "actual": "DIRECT",
+      "status": "PASS",
+      "relation_type": "multi_aspect_full_coverage",
+      "functional_contribution": true,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_07_insufficient_deflection",
-      "description": "TC-07: Resposta insuficiente e evasiva com predicado genérico deve ser INSUFFICIENT.",
-      "status": "PASSED"
+      "id": "TC_07_INSUFFICIENT_DEFLECTION",
+      "question": "Como solucionar problemas de concorrencia em transacoes de banco?",
+      "response": "Olha, isso vai depender exclusivamente do orcamento e de muitos fatores de negocio antes de qualquer coisa.",
+      "expected": "INSUFFICIENT",
+      "actual": "INSUFFICIENT",
+      "status": "PASS",
+      "relation_type": "evasive_insufficient_content",
+      "functional_contribution": false,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_08_genuine_unknown",
-      "description": "TC-08: Indeterminação genuína com expressão semanticamente ambígua deve ser UNKNOWN.",
-      "status": "PASSED"
+      "id": "TC_08_GENUINE_UNKNOWN",
+      "question": "Como devemos tratar falhas intermitentes de conexao na replicacao do banco de dados?",
+      "response": "A abordagem pode variar conforme a situacao de como a equipe resolver fazer na hora diante da replicacao.",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN",
+      "status": "PASS",
+      "relation_type": "ambiguous_proposition",
+      "functional_contribution": false,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_09_definition_no_causality_required",
-      "description": "TC-09: Pergunta de definição sem exigência causal operacional satisfeita conceitualmente deve ser DIRECT.",
-      "status": "PASSED"
+      "id": "TC_09_DEFINITION_NO_CAUSALITY_REQUIRED",
+      "question": "O que e o principio da Inversao de Dependencia?",
+      "response": "E o principio que dita que modulos de alto nivel nao devem depender de modulos de baixo nivel, mas ambos devem depender de abstracoes.",
+      "expected": "DIRECT",
+      "actual": "DIRECT",
+      "status": "PASS",
+      "relation_type": "open_domain_mechanism_assertion",
+      "functional_contribution": true,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_10_historical_direct_answer",
-      "description": "TC-10: Pergunta histórica diretamente respondida deve ser DIRECT.",
-      "status": "PASSED"
+      "id": "TC_10_HISTORICAL_DIRECT_ANSWER",
+      "question": "Por que o Kubernetes foi doado para a Cloud Native Computing Foundation?",
+      "response": "Para fomentar um ecossistema neutro de governanca aberta de containers sem controle exclusivo de um unico fornecedor corporativo.",
+      "expected": "DIRECT",
+      "actual": "DIRECT",
+      "status": "PASS",
+      "relation_type": "open_domain_mechanism_assertion",
+      "functional_contribution": true,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_11_comparison_direct_answer",
-      "description": "TC-11: Pergunta comparativa diretamente respondida com os critérios fundamentais deve ser DIRECT.",
-      "status": "PASSED"
+      "id": "TC_11_COMPARISON_DIRECT_ANSWER",
+      "question": "Qual a diferenca entre processo e thread no sistema operacional?",
+      "response": "Processos possuem espacos de enderecamento de memoria isolados entre si, enquanto threads de um mesmo processo compartilham o mesmo espaco de memoria.",
+      "expected": "DIRECT",
+      "actual": "DIRECT",
+      "status": "PASS",
+      "relation_type": "open_domain_mechanism_assertion",
+      "functional_contribution": true,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_12_diagnosis_causal_answer",
-      "description": "TC-12: Pergunta de diagnóstico atendida com mecanismo investigativo deve ser DIRECT.",
-      "status": "PASSED"
+      "id": "TC_12_DIAGNOSIS_CAUSAL_ANSWER",
+      "question": "Como diagnosticar vazamentos de conexoes no pool de banco de dados HikariCP?",
+      "response": "Analisamos se conexoes ativas ultrapassam o limite do pool sem serem devolvidas no bloco try-finally e inspecionamos thread dumps para identificar a linha de codigo retendo a conexao.",
+      "expected": "DIRECT",
+      "actual": "DIRECT",
+      "status": "PASS",
+      "relation_type": "open_domain_mechanism_assertion",
+      "functional_contribution": true,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_13_unseen_tech_valid_response",
-      "description": "TC-13: Tecnologia inédita/abstrata operando sob mecanismo canônico válido deve ser DIRECT.",
-      "status": "PASSED"
+      "id": "TC_13_UNSEEN_TECH_VALID_RESPONSE",
+      "question": "Como o banco distribuido ZetaKVS lida com conflitos de concorrencia?",
+      "response": "O ZetaKVS utiliza carimbos de tempo logicos de Lamport e locks otimistas com verificacao de versao no momento do commit.",
+      "expected": "DIRECT",
+      "actual": "DIRECT",
+      "status": "PASS",
+      "relation_type": "open_domain_mechanism_assertion",
+      "functional_contribution": true,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_14_colloquial_and_passive_voice",
-      "description": "TC-14: Linguagem coloquial e voz passiva expressando solução técnica correta deve ser DIRECT.",
-      "status": "PASSED"
+      "id": "TC_14_COLLOQUIAL_AND_PASSIVE_VOICE",
+      "question": "Como lidar com pico repentino de requisicoes sem derrubar a API?",
+      "response": "E colocada uma fila no meio do caminho pro consumidor ir puxando as mensagens no ritmo dele sem engasgar o banco.",
+      "expected": "DIRECT",
+      "actual": "DIRECT",
+      "status": "PASS",
+      "relation_type": "open_domain_mechanism_assertion",
+      "functional_contribution": true,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_15_long_operative_disjoint",
-      "description": "TC-15: Resposta operacional de mecânica automotiva para pergunta de computação distribuída deve ser OFF_TOPIC.",
-      "status": "PASSED"
+      "id": "TC_15_LONG_OPERATIVE_DISJOINT",
+      "question": "Como o protocolo Raft garante a consistencia do log entre lideres e seguidores?",
+      "response": "A troca de oleo do motor do carro deve ser realizada a cada dez mil quilometros rodados usando lubrificante sintetico 5W30 e substituindo o filtro de combustivel e pastilhas de freio para garantir a longevidade do cabecote.",
+      "expected": "OFF_TOPIC",
+      "actual": "OFF_TOPIC",
+      "status": "PASS",
+      "relation_type": "alien_domain_assertion",
+      "functional_contribution": false,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_16_short_precise_direct",
-      "description": "TC-16: Resposta curta e precisa de definição deve ser DIRECT.",
-      "status": "PASSED"
+      "id": "TC_16_SHORT_PRECISE_DIRECT",
+      "question": "O que e idempotencia em APIs REST?",
+      "response": "E a propriedade onde multiplas requisicoes identicas produzem exatamente o mesmo efeito que uma unica requisicao.",
+      "expected": "DIRECT",
+      "actual": "DIRECT",
+      "status": "PASS",
+      "relation_type": "open_domain_mechanism_assertion",
+      "functional_contribution": true,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_17_single_dense_proposition_multiple_demands",
-      "description": "TC-17: Uma única proposição densa satisfazendo legitimamente ambas as demandas deve ser DIRECT.",
-      "status": "PASSED"
+      "id": "TC_17_SINGLE_DENSE_PROPOSITION_MULTIPLE_DEMANDS",
+      "question": "Como o Kafka particiona mensagens e garante a ordem de entrega?",
+      "response": "O Kafka calcula o hash da chave da mensagem para direciona-la a uma particao especifica onde os offsets sequenciais garantem a ordenacao estrita.",
+      "expected": "DIRECT",
+      "actual": "DIRECT",
+      "status": "PASS",
+      "relation_type": "multi_aspect_full_coverage",
+      "functional_contribution": true,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_18_circular_tautology",
-      "description": "TC-18: Tautologia circular reflexiva sem ganho informacional deve ser UNKNOWN.",
-      "status": "PASSED"
+      "id": "TC_18_CIRCULAR_TAUTOLOGY",
+      "question": "Como funciona a ordenacao no banco de dados?",
+      "response": "A ordenacao no banco funciona ordenando os dados para que eles fiquem devidamente ordenados.",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN",
+      "status": "PASS",
+      "relation_type": "circular_reasoning_tautology",
+      "functional_contribution": false,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_19_destructive_antithesis",
-      "description": "TC-19: Antítese destrutiva desativando proteções operacionais fundamentais deve ser OFF_TOPIC.",
-      "status": "PASSED"
+      "id": "TC_19_DESTRUCTIVE_ANTITHESIS",
+      "question": "Como garantir a durabilidade e seguranca dos dados gravados no banco relacional?",
+      "response": "A gente desativa o write-ahead log (WAL) e desliga a sincronizacao em disco com fsync para ficar mais rapido sem travas.",
+      "expected": "OFF_TOPIC",
+      "actual": "OFF_TOPIC",
+      "status": "PASS",
+      "relation_type": "destructive_antithesis_assertion",
+      "functional_contribution": false,
+      "confidence": "HIGH"
     },
     {
-      "test_name": "test_tc_20_paraphrase_invariance",
-      "description": "TC-20: Variação sintática em voz passiva mantendo equivalência semântica estrita deve ser DIRECT.",
-      "status": "PASSED"
+      "id": "TC_20_PARAPHRASE_INVARIANCE",
+      "question": "Como um load balancer distribui carga entre instancias?",
+      "response": "As requisicoes sao distribuidas pelo balanceador de carga entre os servidores disponiveis utilizando a tecnica de round-robin sequencial.",
+      "expected": "DIRECT",
+      "actual": "DIRECT",
+      "status": "PASS",
+      "relation_type": "open_domain_mechanism_assertion",
+      "functional_contribution": true,
+      "confidence": "HIGH"
     }
   ]
 }

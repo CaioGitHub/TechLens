@@ -1,0 +1,201 @@
+{
+  "stage": "31.7.32",
+  "title": "Stage 31.7.32 Adversarial Counterexamples and Stress Test Scenarios",
+  "total_adversarial_cases": 15,
+  "cases": [
+    {
+      "case_id": "ADV-01",
+      "category": "Homonymy & Domain Detour",
+      "question": "Como funciona Dependency Injection no Spring Framework?",
+      "response": "A dependência econômica do país em relação às importações de petróleo bruto aumenta a vulnerabilidade a flutuações geopolíticas externas.",
+      "expected_class": "OFF_TOPIC",
+      "competing_classes": [
+        "RELATED",
+        "DIRECT"
+      ],
+      "semantic_justification": "O compartilhamento da palavra 'dependência' é mera coincidência lexical/polissêmica. Os predicados verbais e complementos ('petróleo', 'geopolíticas', 'importações') pertencem exclusivamente à economia internacional. A presunção temática é refutada.",
+      "limitations": "Requer que o analisador distingua entre uma analogia econômica aplicada a arquitetura corporativa e uma divagação pura."
+    },
+    {
+      "case_id": "ADV-02",
+      "category": "Functional Equivalence Without Literal Token",
+      "question": "Como funciona uma B-tree?",
+      "response": "É uma estrutura de busca balanceada, organizada em múltiplos níveis de nós ordenados com chaves indexadas, que reduz drasticamente a profundidade e o custo de I/O em disco para localizar registros.",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "OFF_TOPIC",
+        "INSUFFICIENT"
+      ],
+      "semantic_justification": "A resposta elucida os invariantes formais do conceito (balanceamento, nós hierárquicos, chaves ordenadas, redução de I/O). A ausência da string literal 'B-tree' não prejudica a equivalência semântica plena.",
+      "limitations": "Se a descrição for excessivamente concisa (e.g. apenas 'uma árvore balanceada'), deve ser rebaixada para PARTIAL ou INSUFFICIENT."
+    },
+    {
+      "case_id": "ADV-03",
+      "category": "Shared Entity With Vacuous Content",
+      "question": "Como o PostgreSQL utiliza o mecanismo MVCC?",
+      "response": "O PostgreSQL é um banco de dados relacional excelente, muito estável, muito popular e amplamente adotado no mercado corporativo.",
+      "expected_class": "INSUFFICIENT",
+      "competing_classes": [
+        "DIRECT",
+        "RELATED"
+      ],
+      "semantic_justification": "A menção ao nome da tecnologia não supre a ausência do mecanismo perguntado (tuplas, xmin, xmax, snapshots). Trata-se de preenchimento discursivo vazio (chavão/filler).",
+      "limitations": "Não deve ser classificado como RELATED, pois não apresenta fatos históricos ou organizacionais informativos (apenas juízo afetivo)."
+    },
+    {
+      "case_id": "ADV-04",
+      "category": "Unknown / Fictional Technology With Coherent Mechanics",
+      "question": "Como o motor ChronoMesh mantém a consistência temporal?",
+      "response": "O ChronoMesh sincroniza nós utilizando relógios lógicos vetoriais de Lamport combinados com ordenação determinística por identificador de processo para desempatar eventos concorrentes.",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "OFF_TOPIC",
+        "UNKNOWN"
+      ],
+      "semantic_justification": "Embora a tecnologia 'ChronoMesh' seja desconhecida/fictícia, os fundamentos descritos pertencem legitimamente à ciência da computação e explicam causalmente a sincronização temporal.",
+      "limitations": "Depende da premissa de que a pergunta aceita uma tecnologia sob avaliação sem exigir verificação factual externa de catálogo de produtos."
+    },
+    {
+      "case_id": "ADV-05",
+      "category": "Mixed Response With Conversational Preamble",
+      "question": "Como processos distribuídos chegam a consenso?",
+      "response": "Hoje peguei um trânsito horrível na avenida e quase cheguei atrasado. Em um algoritmo Paxos, os proponentes enviam propostas com número de ordem crescente e os aceitadores aprovam se for maior que a anterior, garantindo que o quórum de maioria decida o valor.",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "OFF_TOPIC",
+        "PARTIAL"
+      ],
+      "semantic_justification": "O preâmbulo fático sobre trânsito é isolado como ruído conversacional. O núcleo técnico explica precisamente as duas fases de consenso do Paxos com quórum de maioria.",
+      "limitations": "Exige que o filtro de preâmbulo seja restrito às frases introdutórias, sem cortar partes técnicas que usem metáforas de tráfego de rede."
+    },
+    {
+      "case_id": "ADV-06",
+      "category": "Compound Demand With Missing Secondary Element",
+      "question": "Como o Apache Kafka particiona mensagens e como ele garante a ordem de entrega?",
+      "response": "O Kafka distribui as mensagens calculando o hash da chave do registro e aplicando a operação de módulo sobre a quantidade de partições ativas no tópico.",
+      "expected_class": "PARTIAL",
+      "competing_classes": [
+        "DIRECT",
+        "OFF_TOPIC"
+      ],
+      "semantic_justification": "A resposta explica com precisão o particionamento por hash de chave ($D_P$), mas omite por completo como a ordem é garantida dentro da partição ($D_S$). O atendimento parcial veta DIRECT e protege contra OFF_TOPIC.",
+      "limitations": "Se o candidato acrescentar 'garantindo a ordem', mesmo sem explicar o offset, a linha entre PARTIAL e DIRECT torna-se dependente de calibração fina de completude."
+    },
+    {
+      "case_id": "ADV-07",
+      "category": "Pedagogical Analogy With Explicit Software Grounding",
+      "question": "Como funciona um Circuit Breaker em microsserviços?",
+      "response": "Ele funciona de forma parecida com o disjuntor elétrico de uma residência: quando detecta sobrecarga de erros na dependência remota, ele abre o circuito e rejeita imediatamente novas requisições HTTP locais sem onerar o serviço remoto, transitando para meio-aberto após um cooldown.",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "OFF_TOPIC",
+        "SUPPORTING"
+      ],
+      "semantic_justification": "A metáfora do disjuntor elétrico ($D_V$) é transposta e aterrissada com precisão no sistema computacional ($D_T$), detalhando requisições HTTP, rejeição de chamadas e o estado half-open.",
+      "limitations": "Não deve sofrer veto pelo uso de termos como 'disjuntor elétrico' ou 'residência'."
+    },
+    {
+      "case_id": "ADV-08",
+      "category": "Ungrounded Pedagogical Analogy Without Software Transposition",
+      "question": "Como funciona um Circuit Breaker em microsserviços?",
+      "response": "É exatamente como um disjuntor elétrico: quando a fiação esquenta demais por excesso de corrente, a lâmina bimetálica enverga e desarma a chave geral para não queimar os eletrodomésticos da casa.",
+      "expected_class": "INSUFFICIENT",
+      "competing_classes": [
+        "DIRECT",
+        "OFF_TOPIC"
+      ],
+      "semantic_justification": "O candidato descreve minuciosamente a física da lâmina bimetálica e o disjuntor elétrico residencial, mas não explica nenhuma linha do que acontece na aplicação distribuída ou nas chamadas remotas.",
+      "limitations": "Classificado como INSUFFICIENT (ou RELATED contextual), vetando terminantemente DIRECT por falta de grounding computacional."
+    },
+    {
+      "case_id": "ADV-09",
+      "category": "Negation Scope Inversion",
+      "question": "Qual a política de persistência temporária desta arquitetura?",
+      "response": "Nós não utilizamos cache em memória na camada de edge para evitar dados obsoletos entre regiões geográficas.",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "OFF_TOPIC",
+        "INSUFFICIENT"
+      ],
+      "semantic_justification": "A proposição é uma negativa válida que define a política arquitetural ('não utilizamos cache') e fundamenta a razão ('para evitar dados obsoletos'). O escopo de negação não pode ser truncado.",
+      "limitations": "O analisador não pode extrair apenas 'utilizamos cache em memória' ignorando o operador 'não'."
+    },
+    {
+      "case_id": "ADV-10",
+      "category": "Conditional Scope Invariance",
+      "question": "Em que circunstâncias a fila rejeita mensagens?",
+      "response": "A fila rejeita mensagens somente quando o buffer de memória atinge a marca d'água de 90% e o disco está com latência de sync acima de 1 segundo.",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "PARTIAL"
+      ],
+      "semantic_justification": "A rejeição de mensagens é uma consequência estritamente subordinada à condição expressa na prótase ('quando o buffer atinge 90%'). O escopo condicional é essencial para a correção técnica.",
+      "limitations": "Remover a condição transformaria a resposta em uma afirmação falsa de que a fila rejeita mensagens indiscriminadamente."
+    },
+    {
+      "case_id": "ADV-11",
+      "category": "Discourse Self-Correction Resolution",
+      "question": "Qual estratégia de consistência foi configurada no banco de dados?",
+      "response": "Eu acreditava inicialmente que a consistência configurada no cluster era eventual, mas, analisando as transações no log e as garantias de quórum com leitura linearizada, confirmei que a garantia real é de consistência estrita serializável.",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "UNKNOWN",
+        "PARTIAL"
+      ],
+      "semantic_justification": "O respondente relata uma hipótese prévia equivocada, seguida de marcador explícito de retratação empírica ('mas, analisando... confirmei que'). A conclusão corretiva é serializável.",
+      "limitations": "Requer que o motor identifique que a primeira menção ('consistência eventual') foi retratada e não configura contradição irresolúvel."
+    },
+    {
+      "case_id": "ADV-12",
+      "category": "Real Internal Contradiction Destroying Truth Value",
+      "question": "Qual nível de isolamento transacional é oferecido pela ferramenta?",
+      "response": "O sistema garante isolamento serializável estrito em absolutamente todas as transações concorrentes, mas na verdade ele não oferece nenhuma garantia de isolamento nem bloqueia leituras sujas.",
+      "expected_class": "INSUFFICIENT",
+      "competing_classes": [
+        "DIRECT",
+        "OFF_TOPIC"
+      ],
+      "semantic_justification": "A segunda oração afirma o oposto exato da primeira oração sobre o mesmo objeto ('garante serializável em todas' vs 'não oferece nenhuma garantia'), sem reconciliação condicional. O valor de verdade é destruído.",
+      "limitations": "O motor não pode selecionar arbitrariamente a primeira oração e dar DIRECT."
+    },
+    {
+      "case_id": "ADV-13",
+      "category": "Apparent Contradiction Reconciled by Operational Context",
+      "question": "Como a consistência de leitura se comporta no cluster de banco de dados?",
+      "response": "O sistema garante consistência estrita forte quando a consulta é direcionada ao nó primário, mas permite leituras eventualmente consistentes quando a query consome das réplicas secundárias.",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "UNKNOWN",
+        "INSUFFICIENT"
+      ],
+      "semantic_justification": "A aparente contradição ('consistência estrita' vs 'leituras eventualmente consistentes') é plenamente reconciliada pela divisão funcional da arquitetura (nó primário vs réplicas secundárias).",
+      "limitations": "O motor não pode disparar alerta de contradição interna cego sem checar os escopos de contexto dos predicados."
+    },
+    {
+      "case_id": "ADV-14",
+      "category": "Distributed Evidence Across Multiple Sentences",
+      "question": "Como o conceito de idempotência se aplica a APIs REST?",
+      "response": "Idempotência significa que múltiplas requisições idênticas produzem o mesmo efeito final no servidor. Em APIs REST, nós a implementamos gerando um Idempotency-Key no cliente e verificando a chave em tabela antes da mutação. O trade-off é a necessidade de expiração e expurgo dessa tabela no banco.",
+      "expected_class": "DIRECT",
+      "competing_classes": [
+        "PARTIAL"
+      ],
+      "semantic_justification": "A resposta distribui a evidência: Sentença 1 define o conceito; Sentença 2 apresenta o mecanismo técnico de implementação; Sentença 3 pondera trade-offs operacionais. A síntese cumulativa é DIRECT pleno.",
+      "limitations": "O motor não pode avaliar cada frase como se fosse uma resposta isolada."
+    },
+    {
+      "case_id": "ADV-15",
+      "category": "Incompatible Physical Properties in Jargon",
+      "question": "Como funciona o consumo em uma fila assíncrona?",
+      "response": "A fila assíncrona funciona travando a thread consumidora em chamada bloqueante permanente, impedindo o processamento de novos eventos até que a conexão TCP síncrona seja finalizada pelo produtor.",
+      "expected_class": "OFF_TOPIC",
+      "competing_classes": [
+        "DIRECT",
+        "INSUFFICIENT"
+      ],
+      "semantic_justification": "A resposta usa o rótulo 'fila assíncrona', mas atribui ao mecanismo as propriedades diametralmente opostas de uma chamada síncrona bloqueante. Incompatibilidade ontológica estrutural.",
+      "limitations": "Diferente de um simples erro de sintaxe, aqui a propriedade física essencial do conceito é violentada."
+    }
+  ],
+  "audit_declaration": "Estes 15 casos cobrem exaustivamente as fronteiras de homonímia, paráfrase aberta, fillers vazios, tecnologias fictícias, preâmbulos ruidosos, analogias ancoradas e não ancoradas, escopos de negação e condição, autocorreções, contradições reais vs aparentes, evidência distribuída e jargões com propriedades incompatíveis."
+}
