@@ -1,0 +1,147 @@
+--- audit-entry/runtime.py
++++ audit-fixes/runtime.py
+@@ -2216,22 +2216,38 @@
+                 qualifiers.append(q_word)
+ 
+         # 3. Demands Decomposition (Primary & Secondary)
+-        secondary_demands = []
+-        has_split = False
+-        primary_clause = q_norm
+-        for pattern, split_on in self.conjunctions:
+-            if pattern in q_norm:
+-                parts = q_norm.split(split_on, 1)
+-                primary_clause = parts[0].strip()
+-                secondary_clause = parts[1].strip()
+-                has_split = True
+-                secondary_demands.append(DemandSpecification(
+-                    demand_id="demand_2",
+-                    description=secondary_clause,
+-                    is_mandatory=True
+-                ))
+-                break
+-
++        # Split repeated explicit requests, without splitting lists of entities.
++        clauses = re.split(
++            r"(?:,?\s+e\s+|;\s*|\?\s*)(?=(?:como|quais|qual|por que|onde|quando|o que|de que forma|de que maneira)\b)",
++            q_norm,
++        )
++        # Retain existing implicit coordination boundaries, applying them to every
++        # clause instead of stopping after the first match in the question.
++        expanded = []
++        pending = list(clauses)
++        while pending:
++            clause = pending.pop(0).strip()
++            candidates = []
++            for pattern, delimiter in self.conjunctions:
++                position = clause.find(pattern)
++                if position >= 0:
++                    candidates.append((position, delimiter, pattern))
++            if candidates:
++                position, delimiter, pattern = min(candidates, key=lambda item: item[0])
++                split_at = clause.find(delimiter, position)
++                left = clause[:split_at].strip()
++                right = clause[split_at + len(delimiter):].strip()
++                if left and right:
++                    expanded.append(left)
++                    pending.insert(0, right)
++                    continue
++            expanded.append(clause)
++        primary_clause = expanded[0]
++        secondary_demands = [
++            DemandSpecification(demand_id=f"demand_{index}", description=clause, is_mandatory=True)
++            for index, clause in enumerate(expanded[1:], 2)
++        ]
++
+         primary_demand = DemandSpecification(
+             demand_id="demand_1",
+             description=primary_clause,
+@@ -2284,34 +2300,30 @@
+         ]
+ 
+     def extract_discourse_profile(self, response_text: str, question_profile: QuestionProfile | None = None) -> DiscourseProfile:
+-        r_norm = _normalize_text(response_text)
+-        
+-        # 1. Preamble Isolation
+-        isolated_preambles = []
+-        remaining_text = response_text
+-        for m in self.preamble_markers:
+-            if m in r_norm:
+-                idx = r_norm.find(m)
+-                boundary = r_norm.find(".", idx)
+-                if boundary != -1:
+-                    preamble_sub = response_text[:boundary+1].strip()
+-                    isolated_preambles.append(preamble_sub)
+-                    remaining_text = response_text[boundary+1:].strip()
+-                else:
+-                    comma_bound = r_norm.find(",", idx + len(m))
+-                    if comma_bound != -1 and comma_bound - idx < 60:
+-                        preamble_sub = response_text[:comma_bound+1].strip()
+-                        isolated_preambles.append(preamble_sub)
+-                        remaining_text = response_text[comma_bound+1:].strip()
+-                break
+-
+-        # 2. Proposition Decomposition
+-        raw_sentences = [s.strip() for s in re.split(r'[.;\n]+', remaining_text) if s.strip()]
+-        if not raw_sentences and remaining_text:
+-            raw_sentences = [remaining_text]
+-        if not raw_sentences and isolated_preambles:
+-            raw_sentences = [isolated_preambles[0]]
+-
++        # Segment original text first. Normalized offsets cannot safely index
++        # original Unicode text, and a marker must never consume earlier clauses.
++        isolated_preambles = []
++        raw_sentences = []
++        for match in re.finditer(r"[^.;\n]+[.;]?", response_text):
++            segment = match.group().strip()
++            if not segment:
++                continue
++            normalized = _normalize_text(segment).strip(" .;")
++            marker = next((m for m in self.preamble_markers
++                           if normalized == m or normalized.startswith(m + ",")), None)
++            if marker is None:
++                raw_sentences.append(segment.rstrip(".;"))
++            elif normalized == marker:
++                isolated_preambles.append(segment)
++            else:
++                # Isolate only a complete conversational prefix. Preserve the
++                # remainder, which can contain technical evidence or experience.
++                boundary = segment.find(",")
++                isolated_preambles.append(segment[:boundary + 1].strip())
++                remainder = segment[boundary + 1:].strip().rstrip(".;")
++                if remainder:
++                    raw_sentences.append(remainder)
++
+         propositions: list[DiscourseProposition] = []
+         for i, s in enumerate(raw_sentences, 1):
+             s_norm = _normalize_text(s)
+@@ -2349,12 +2361,24 @@
+                 condition_premise=condition_premise
+             ))
+ 
+-        # Check self-correction / retraction retroactively (SC-21)
+-        for i in range(1, len(propositions)):
+-            curr_text = _normalize_text(propositions[i].text)
+-            if any(rm in curr_text for rm in ("na verdade nao", "ou melhor", "corrigindo", "quis dizer", "me confundi")):
+-                propositions[i-1].discourse_role = "RETRACTED_ASSERTION"
+-
++        # A reformulation marker alone does not establish contradiction.
++        # Retract only an explicit polarity reversal of the same assertion;
++        # broader contradiction adjudication belongs to later increments.
++        for i in range(1, len(propositions)):
++            current = _normalize_text(propositions[i].text)
++            marker = re.match(r"^(?:na verdade|ou melhor|corrigindo|quis dizer|me confundi)[, :]*\s*", current)
++            if not marker:
++                continue
++            previous = _normalize_text(propositions[i - 1].text).strip()
++            replacement = current[marker.end():].strip()
++            previous_negative = bool(re.match(r"^nao\b", previous))
++            replacement_negative = bool(re.match(r"^nao\b", replacement))
++            previous_core = re.sub(r"^nao\s+", "", previous).strip()
++            replacement_core = re.sub(r"^nao\s+", "", replacement).strip()
++            if (previous_negative != replacement_negative
++                    and previous_core == replacement_core and previous_core):
++                propositions[i - 1].discourse_role = "RETRACTED_ASSERTION"
++
+         return DiscourseProfile(
+             raw_response=response_text,
+             propositions=propositions,

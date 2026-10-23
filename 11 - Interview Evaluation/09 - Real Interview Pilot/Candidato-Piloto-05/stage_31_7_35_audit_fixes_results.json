@@ -1,0 +1,37 @@
+{
+  "stage": "31.7.35",
+  "scope": "Three reproduced INC-1 extraction defects",
+  "date": "2026-10-23",
+  "runtime_sha256": "57D01E8222CE3E16F21792B3587C53BC89920E73D368E005EF0A579C97FEC909",
+  "snapshot": "reference_runtime/runtime.py.audit_20261023_pre_fix",
+  "specific_and_foundation": {
+    "run": 30,
+    "passed": 30,
+    "errors": 0,
+    "failures": 0,
+    "seconds": 0.011
+  },
+  "canonical": {
+    "run": 1097,
+    "passed": 1096,
+    "skipped": 1,
+    "errors": 0,
+    "failures": 0,
+    "seconds": 37.16
+  },
+  "harness": {
+    "run": 15,
+    "passed": 15,
+    "errors": 0,
+    "failures": 0,
+    "seconds": 45.396
+  },
+  "source_outside_two_inc1_classes_unchanged_ast": true,
+  "gate": "AUDIT_FIXES_VERIFIED_INC1_FULL_ACCEPTANCE_PENDING",
+  "limitations": [
+    "Historical snapshot chronology unresolved",
+    "No independent semantic validation",
+    "Full INC-1 contract coverage is not established by these 13 regression tests",
+    "Retraction detection is limited to explicit reversal of the same assertion"
+  ]
+}
