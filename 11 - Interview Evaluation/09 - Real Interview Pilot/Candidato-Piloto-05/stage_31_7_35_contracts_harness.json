@@ -1,0 +1,15 @@
+{
+  "suite": "harness",
+  "run": 15,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 15,
+  "seconds": 34.229,
+  "successful": true,
+  "hash_before": "E537ED4DD81892B1378877536976E668A14ECCF975B8EE87BFF1245746E8E6B0",
+  "hash_after": "E537ED4DD81892B1378877536976E668A14ECCF975B8EE87BFF1245746E8E6B0",
+  "runtime_unchanged_during_tests": true,
+  "ast_unchanged_outside_extraction_classes": true,
+  "output": "...............\n----------------------------------------------------------------------\nRan 15 tests in 34.228s\n\nOK\n"
+}

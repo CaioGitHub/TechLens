@@ -3257,3 +3257,8 @@ A regra simplista de veto absoluto de `OFF_TOPIC` por presença de entidade prop
 ## Auditoria e correções locais — 2026-10-23
 
 Stage 31.7.35 permanece em andamento. Três falhas de extração foram corrigidas e cobertas por 13 novos testes. Regressão atual: 1.097 testes (1.096 aprovados, 1 ignorado), sem falhas ou erros. Classificador fora das duas classes INC-1 permaneceu inalterado por comparação AST. Gate limitado: `AUDIT_FIXES_VERIFIED_INC1_FULL_ACCEPTANCE_PENDING`. Ver [[stage_31_7_35_audit_fixes_report]]. A proveniência histórica dos snapshots continua não comprovada; esta nota não substitui os registros históricos.
+
+
+## Cobertura complementar do Stage 31.7.35 — 2026-10-23
+
+22 novos testes complementares e correções em grupos sequenciais. Regressão: 1119 testes (1118 aprovados, 1 ignorado), sem falhas ou erros; harness 15/15. Gate limitado: `CONTRACT_SCENARIOS_VERIFIED_GOVERNANCE_RECONCILIATION_PENDING`. Ver [[stage_31_7_35_remaining_contracts_report]]. Etapa continua aberta para reconciliação de escopo entre os planos e limites semânticos documentados; não houve promoção automática ao próximo incremento.

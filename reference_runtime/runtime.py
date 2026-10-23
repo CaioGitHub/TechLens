@@ -2162,7 +2162,8 @@ class SemanticQuestionProfiler:
         words = [w for w in question_text.replace("?", "").replace("!", "").replace(",", "").split()]
         
         # 1. Intent Mode Classification (11 canonical modes)
-        if any(p in q_norm for p in ("qual a diferenca", "diferenca entre", "comparar", "versus", " vs ")):
+        intent_recognized = True
+        if any(p in q_norm for p in ("qual a diferenca", "diferenca entre", "compare ", "comparar", "versus", " vs ")):
             intent_mode = "COMPARISON"
         elif any(q_norm.startswith(p) or f" {p} " in f" {q_norm} " for p in ("o que e", "qual a definicao", "defina", "qual o conceito", "o que significa", "qual a funcao")):
             intent_mode = "DEFINITION"
@@ -2186,6 +2187,7 @@ class SemanticQuestionProfiler:
             intent_mode = "CONCEPTUAL_EXPLANATION"
         else:
             intent_mode = "CONCEPTUAL_EXPLANATION"
+            intent_recognized = False
 
         # 2. Extract Entities and Context Qualifiers
         stopwords = {
@@ -2209,16 +2211,31 @@ class SemanticQuestionProfiler:
             if term in q_norm and not any(term.lower() in e.lower() for e in target_entities):
                 target_entities.append(term)
 
+        # Contrast constructions supply open entity phrases independently of
+        # capitalization or membership in a technology dictionary.
+        contrast = re.search(r"\bcompar(?:e|ar)\s+(.+?)\s+(?:com|versus|vs\.?)\s+(.+?)(?:[?;.]|$)", q_norm)
+        if contrast is None:
+            contrast = re.search(r"\bdiferenca entre\s+(.+?)\s+e\s+(.+?)(?:[?;.]|$)", q_norm)
+        if contrast:
+            for entity in contrast.groups():
+                entity = re.sub(r"^(?:o|a|os|as)\s+", "", entity.strip())
+                if entity and entity not in target_entities:
+                    target_entities.append(entity)
+
         # Context qualifiers
         qualifiers = []
         for q_word in ("ordem de entrega", "alta concorrencia", "producao", "falhas", "distribuido", "transacional", "consistencia", "latencia"):
             if q_word in q_norm:
                 qualifiers.append(q_word)
 
+        for numeric in re.finditer(r"\b\d+(?:[.,]\d+)?\s+[^?;,.]+", q_norm):
+            qualifiers.append(numeric.group().strip())
+
         # 3. Demands Decomposition (Primary & Secondary)
         # Split repeated explicit requests, without splitting lists of entities.
         clauses = re.split(
-            r"(?:,?\s+e\s+|;\s*|\?\s*)(?=(?:como|quais|qual|por que|onde|quando|o que|de que forma|de que maneira)\b)",
+            r"(?:,?\s+e\s+|;\s*|\?\s*)(?=(?:como|quais|qual|por que|onde|quando|o que|de que forma|de que maneira)\b)"
+            r"|\s+e,?\s*(?=(?:se souber|opcionalmente|se possivel)\b)",
             q_norm,
         )
         # Retain existing implicit coordination boundaries, applying them to every
@@ -2244,7 +2261,10 @@ class SemanticQuestionProfiler:
             expanded.append(clause)
         primary_clause = expanded[0]
         secondary_demands = [
-            DemandSpecification(demand_id=f"demand_{index}", description=clause, is_mandatory=True)
+            DemandSpecification(
+                demand_id=f"demand_{index}", description=clause,
+                is_mandatory=not bool(re.match(r"^(?:se souber|opcionalmente|se possivel)\b", clause)),
+            )
             for index, clause in enumerate(expanded[1:], 2)
         ]
 
@@ -2256,13 +2276,15 @@ class SemanticQuestionProfiler:
 
         # 4. Epistemic Uncertainty
         is_short = len(words) <= 2
-        is_ambiguous = ("varia conforme" in q_norm or is_short)
+        is_ambiguous = ("varia conforme" in q_norm or is_short or not intent_recognized)
         confidence = "LOW" if is_short else ("MEDIUM" if is_ambiguous else "HIGH")
         limitations = []
         if is_short:
             limitations.append("Pergunta com poucas palavras; contexto sintetico reduzido")
         if not target_entities:
             limitations.append("Nenhuma entidade tecnica explicita identificada")
+        if not intent_recognized:
+            limitations.append("Intencao nao identificada explicitamente; modo conceitual usado como representacao provisoria")
 
         uncertainty = EpistemicUncertaintyRecord(
             confidence_level=confidence,
@@ -2311,6 +2333,22 @@ class DiscoursePropositionEngine:
             normalized = _normalize_text(segment).strip(" .;")
             marker = next((m for m in self.preamble_markers
                            if normalized == m or normalized.startswith(m + ",")), None)
+            # Traffic narratives can be longer than their opening formula.
+            # Keep the scope sentence-local and preserve any following clauses.
+            if marker is None and re.match(r"^(?:hoje peguei|o transito estava)\b", normalized):
+                narrative = re.match(r"^(.+?)(?=,|$)", normalized)
+                if narrative and "transito" in narrative.group(1):
+                    # The opening identifies conversational context, not the
+                    # role of every coordinated clause. Only stative/duration
+                    # continuations can be isolated without further evidence.
+                    clauses = re.split(r"\s+e\s+", narrative.group(1))
+                    duration = r"^(?:(?:a|o|minha|meu)\s+\w+\s+)?(?:fiquei|ficamos|estava|estavamos|levou|demorou|durou|esperei|esperamos)\b"
+                    conversational = all(re.match(duration, clause) for clause in clauses[1:])
+                    if conversational:
+                        marker = narrative.group(1)
+                        if "," not in segment:
+                            isolated_preambles.append(segment)
+                            continue
             if marker is None:
                 raw_sentences.append(segment.rstrip(".;"))
             elif normalized == marker:
@@ -2324,18 +2362,27 @@ class DiscoursePropositionEngine:
                 if remainder:
                     raw_sentences.append(remainder)
 
+        # Explicit intraphrase reformulation is a proposition boundary. Retain
+        # the marker on the new clause so the target check below remains local.
+        raw_sentences = [
+            clause.strip() for sentence in raw_sentences
+            for clause in re.split(
+                r",\s*(?=(?:corrigindo|ou melhor|quis dizer|na verdade|me confundi)\b)",
+                sentence, flags=re.IGNORECASE,
+            ) if clause.strip()
+        ]
         propositions: list[DiscourseProposition] = []
         for i, s in enumerate(raw_sentences, 1):
             s_norm = _normalize_text(s)
             prop_id = f"prop_{i}"
 
             # Negation detection
-            neg_match = re.search(r'\b(nao|nunca|jamais|sem|nao devemos|nao se deve|evitar)\s+([^,.;]{3,40})', s_norm)
+            neg_match = re.search(r'\b(nao|nunca|jamais|sem|nao devemos|nao se deve|evitar)\s+([^,.;]+)', s_norm)
             is_negated = bool(neg_match)
             negation_scope = neg_match.group(2).strip() if neg_match else ""
 
             # Conditional detection
-            cond_match = re.search(r'\b(se|caso|desde que|a nao ser que|contanto que|dependendo de|conforme)\s+([^,.;]{3,40})', s_norm)
+            cond_match = re.search(r'\b(se|caso|desde que|a nao ser que|contanto que|dependendo de|conforme)\s+([^,.;]+)', s_norm)
             is_conditional = bool(cond_match)
             condition_premise = cond_match.group(2).strip() if cond_match else ""
 

@@ -1,0 +1,111 @@
+{
+  "stage": "31.7.35",
+  "date": "2026-10-23",
+  "runtime_sha256": "E537ED4DD81892B1378877536976E668A14ECCF975B8EE87BFF1245746E8E6B0",
+  "coverage_meaning": "Named behavioral scenarios pass; not proof of universal semantic coverage",
+  "contracts": [
+    {
+      "contract_id": "SC-01",
+      "tests": [
+        "test_sc01_all_eleven_intents",
+        "test_sc01_unrecognized_intent_records_uncertainty"
+      ],
+      "status": "SCENARIOS_VERIFIED"
+    },
+    {
+      "contract_id": "SC-02",
+      "tests": [
+        "test_sc02_four_requests_preserve_order",
+        "test_sc02_optional_secondary_demand"
+      ],
+      "status": "SCENARIOS_VERIFIED"
+    },
+    {
+      "contract_id": "SC-05",
+      "tests": [
+        "test_sc05_open_lowercase_entities"
+      ],
+      "status": "SCENARIOS_VERIFIED"
+    },
+    {
+      "contract_id": "SC-06",
+      "tests": [
+        "test_sc06_open_numeric_context",
+        "test_sc06_shared_operational_context"
+      ],
+      "status": "SCENARIOS_VERIFIED"
+    },
+    {
+      "contract_id": "SC-17",
+      "tests": [
+        "test_sc17_long_preamble_keeps_technical_core",
+        "test_sc17_technical_narrative_is_retained",
+        "test_sc17_mixed_traffic_sentence_preserves_technical_clause"
+      ],
+      "status": "SCENARIOS_VERIFIED"
+    },
+    {
+      "contract_id": "SC-18",
+      "tests": [
+        "test_sc18_complete_long_negation_scope",
+        "test_sc18_negation_does_not_leak"
+      ],
+      "status": "SCENARIOS_VERIFIED"
+    },
+    {
+      "contract_id": "SC-20",
+      "tests": [
+        "test_sc20_trailing_condition",
+        "test_sc20_complete_long_condition"
+      ],
+      "status": "SCENARIOS_VERIFIED"
+    },
+    {
+      "contract_id": "SC-21",
+      "tests": [
+        "test_sc21_same_sentence_explicit_correction",
+        "test_sc21_same_sentence_refinement_is_not_retracted",
+        "test_sc21_unrelated_assertion_not_retracted"
+      ],
+      "status": "SCENARIOS_VERIFIED"
+    },
+    {
+      "contract_id": "ADV-05",
+      "tests": [
+        "test_adv05_long_preamble_pair_invariance"
+      ],
+      "status": "SCENARIOS_VERIFIED"
+    },
+    {
+      "contract_id": "ADV-06",
+      "tests": [
+        "test_adv06_implicit_joint_demands"
+      ],
+      "status": "SCENARIOS_VERIFIED"
+    },
+    {
+      "contract_id": "ADV-11",
+      "tests": [
+        "test_adv11_prevention_and_destructive_action_differ"
+      ],
+      "status": "SCENARIOS_VERIFIED"
+    },
+    {
+      "contract_id": "ADV-12",
+      "tests": [
+        "test_adv12_conditions_remain_local",
+        "test_sc21_conditional_polarity_is_not_global_retraction"
+      ],
+      "status": "SCENARIOS_VERIFIED"
+    }
+  ],
+  "gate": "CONTRACT_SCENARIOS_VERIFIED_GOVERNANCE_RECONCILIATION_PENDING",
+  "open_limitations": [
+    "31.7.33 assigns discourse segmentation to INC-2 and semantic sufficiency to INC-1; 31.7.35 groups representation only",
+    "31.7.33 describes ten intents; current plan and runtime enum define eleven",
+    "No historical chronology can be established from the mislabeled snapshot alone",
+    "Preamble and entity extraction remain linguistic heuristics, not unrestricted semantic analysis",
+    "Retraction recognizes exact local polarity reversals, not arbitrary paraphrases or remote correction targets",
+    "Independent blind semantic validation not performed"
+  ]
+}
