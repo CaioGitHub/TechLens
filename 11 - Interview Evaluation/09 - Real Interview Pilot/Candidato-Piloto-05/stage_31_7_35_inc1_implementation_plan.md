@@ -63,3 +63,8 @@ O objetivo do INC-1 é **estritamente representacional e estruturante**: transfo
 2. **Edição Não-Destrutiva**: Os novos componentes serão adicionados em `reference_runtime/runtime.py` sem alterar a assinatura de funções públicas existentes nem quebrar os branches do pipeline atual.
 3. **Regressão Canônica Completa**: Execução dos 1.084 testes canônicos e dos 15 testes do Reference Harness.
 4. **Critério de Aborto**: Qualquer falha na suíte canônica interrompe o estágio imediatamente e dispara o rollback automático.
+
+
+## Adendo de pendências semânticas — 2026-10-23
+
+Ver [[stage_31_7_35_scope_reconciliation]] e [[stage_31_7_35_semantic_acceptance_inventory]]. Foram inventariados 16 critérios semânticos e oito casos adversariais das fontes originais. Os testes locais de extração não comprovam a aceitação final desses contratos. O módulo planejado de testes não existe e nomes de componentes divergem; isso exige diagnóstico funcional, não conclusão automática de ausência de capacidade. Caminhos de evidência e oracles concretos precisam ser fixados antes de executar e corrigir o motor. Stage 31.7.35 continua aberto; nenhuma regra ou expectativa histórica foi dispensada.

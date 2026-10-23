@@ -3267,3 +3267,8 @@ Stage 31.7.35 permanece em andamento. Três falhas de extração foram corrigida
 ## Reconciliação de referências e aceite — 2026-10-23
 
 Ver [[stage_31_7_35_scope_reconciliation]]. IDs locais da rastreabilidade representacional não equivalem aos IDs homônimos da matriz semântica: novas referências usam arquivo + identificador. Dez famílias históricas de suficiência agrupam Definição/Conceito; onze modos representacionais os distinguem. 52 testes direcionados reexecutados e aprovados; runtime inalterado. Gate limitado: `REPRESENTATION_REFERENCES_RECONCILED_SEMANTIC_ACCEPTANCE_OPEN`. Stage 31.7.35 continua aberto para critérios funcionais próprios de suficiência e segmentação, sem dispensa dos contratos históricos ou homologação automática.
+
+
+## Inventário de aceitação semântica — 2026-10-23
+
+Ver [[stage_31_7_35_semantic_acceptance_inventory]]. 16 critérios semânticos e oito casos adversariais registrados com fonte, expectativa e evidência necessária. Próximo passo: fixar oracles/caminhos de rastreabilidade e executar diagnóstico funcional da API existente antes de novas correções. Estado limitado: `SEMANTIC_ACCEPTANCE_INVENTORIED_NOT_VALIDATED`; runtime inalterado. Módulos planejados ausentes não demonstram inexistência de capacidade equivalente. Sem novas previsões ou homologação semântica nesta etapa documental.
