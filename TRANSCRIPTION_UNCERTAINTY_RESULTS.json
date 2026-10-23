@@ -1,0 +1,79 @@
+{
+  "runtime_hash_before": "0B87BB827F8D65315F2C5E17CB56885647200BBB6A149EE64FA5A273C8729210",
+  "runtime_hash_after": "0B87BB827F8D65315F2C5E17CB56885647200BBB6A149EE64FA5A273C8729210",
+  "runtime_unchanged_during_tests": true,
+  "suites": [
+    {
+      "suite": "canonical",
+      "tests_run": 568,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "seconds": 22.028,
+      "output": "........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 568 tests in 22.028s\n\nOK\n"
+    },
+    {
+      "suite": "harness",
+      "tests_run": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "seconds": 18.586,
+      "output": "...............\n----------------------------------------------------------------------\nRan 15 tests in 18.585s\n\nOK\n"
+    }
+  ],
+  "historical_baseline": "TRANSCRIPTION_BASELINE_TEST_RESULTS.json",
+  "correction_module_hash_before": "070DCFFAD2427C3E7A03E7153EE2163AEB7A58D12127F7DF6A7CDD2DF5FFB9A3",
+  "correction_module_hash_after": "070DCFFAD2427C3E7A03E7153EE2163AEB7A58D12127F7DF6A7CDD2DF5FFB9A3",
+  "real_pilot": {
+    "source_sha256": "cc4f32704bfbbca7261b3637f04b36e6950850c2f07d00f4a3b4a89559a51523",
+    "uncertainty_ids": [
+      "REF-01",
+      "REF-02"
+    ],
+    "evaluation_deferrals": [
+      {
+        "question_id": "Q3",
+        "response_ids": [
+          "R12",
+          "R14"
+        ],
+        "status": "DEFERRED_TRANSCRIPTION_UNCERTAINTY",
+        "score": null,
+        "reason": "Source transcription unresolved; no candidate judgment on this question.",
+        "uncertainty_ids": [
+          "REF-01"
+        ],
+        "source_segment_ids": [
+          "RP05-024"
+        ]
+      },
+      {
+        "question_id": null,
+        "response_ids": [
+          "R26"
+        ],
+        "status": "DEFERRED_TRANSCRIPTION_UNCERTAINTY",
+        "score": null,
+        "reason": "Source transcription unresolved; no candidate judgment on this question.",
+        "uncertainty_ids": [
+          "REF-02"
+        ],
+        "source_segment_ids": [
+          "RP05-052"
+        ]
+      }
+    ],
+    "remaining_evaluation_count": 10,
+    "assessment_complete": false
+  },
+  "implementation_files_sha256": {
+    "reference_runtime/runtime.py": "0b87bb827f8d65315f2c5e17cb56885647200bbb6a149ee64fa5a273c8729210",
+    "reference_runtime/interview_pipeline.py": "c6a5e1bb6605898498e9cf97707cdfcbe246c10184380334a5180ec7cee39984",
+    "reference_runtime/real_pilot.py": "bca79cf57b007c5976500ca2f53bec2b33703f9b1698e2011048e26e9c5275c4",
+    "reference_runtime/transcription_uncertainty.py": "a6aa2493c9de6b5e7e19b81fd2cc721073a99803cd8d06ae83737584affc7e38",
+    "tests/test_transcription_uncertainty.py": "cbc42b5510a1eee64dcb1513798a4d5e82571edf6f2444b3989679ee168a0766"
+  }
+}

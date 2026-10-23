@@ -262,7 +262,7 @@ def _run_structured(
             return _stop(result, stage_id, override["status"], f"{stage_id} blocked the pipeline")
         _append(result, _stage(stage_id, READY_WITH_WARNINGS if result["warnings"] else READY, override.get("gate", "READY") if override else "READY"))
     result["pipeline"]["status"] = READY_WITH_WARNINGS if result["warnings"] else READY
-    result["readiness"]["ready_for_next_stage"] = True
+    result["readiness"]["ready_for_next_stage"] = not bool(result["artifacts"].get("transcription_uncertainties"))
     return result
 
 
@@ -280,7 +280,10 @@ def run_interview_pipeline(
     if stale:
         result["stale_artifacts"] = stale
         return _stop(result, "stale-detection", BLOCKED, f"stale downstream artifacts: {', '.join(stale)}")
-    if previous_result and previous_result.get("pipeline", {}).get("run_id") == run_id:
+    uncertainty_present = (
+        isinstance(source, dict) and bool(source.get("transcription_uncertainties"))
+    ) or bool((previous_result or {}).get("artifacts", {}).get("transcription_uncertainties"))
+    if previous_result and previous_result.get("pipeline", {}).get("run_id") == run_id and not uncertainty_present:
         result["reused"] = True
         reused = deepcopy(previous_result)
         reused["reused"] = True

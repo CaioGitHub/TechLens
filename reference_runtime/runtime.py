@@ -1134,6 +1134,7 @@ def _stage_21(validation: dict[str, Any], fixture: dict[str, Any]) -> tuple[dict
         item
         for item in validation["structured_interview"]["responses"]
         if item["response_status"] != "missing"
+        and item.get("evaluation_eligible", True)
         and item["response_id"] is not None
         and any(
             term in (item.get("reconstructed_text") or "").lower()
@@ -1144,6 +1145,7 @@ def _stage_21(validation: dict[str, Any], fixture: dict[str, Any]) -> tuple[dict
         item
         for item in validation["structured_interview"]["responses"]
         if item["response_status"] != "missing"
+        and item.get("evaluation_eligible", True)
         and item["response_id"] is not None
         and any(
             term in (item.get("reconstructed_text") or "").lower()
@@ -1184,6 +1186,9 @@ def _stage_21(validation: dict[str, Any], fixture: dict[str, Any]) -> tuple[dict
         "status": status,
         "warnings": list(validation["warnings"]),
     }
+    if validation.get("transcription_uncertainties"):
+        result["transcription_uncertainties"] = deepcopy(validation["transcription_uncertainties"])
+        result["evaluation_deferrals"] = deepcopy(validation["evaluation_deferrals"])
     return result, _stage("21", status, "structured-interview", "evidence-set", result["warnings"])
 
 
@@ -1304,6 +1309,10 @@ def _stage_report(
             for evaluation in evaluations
         ],
     }
+    if validation.get("transcription_uncertainties"):
+        report["transcription_uncertainties"] = deepcopy(validation["transcription_uncertainties"])
+        report["evaluation_deferrals"] = deepcopy(validation["evaluation_deferrals"])
+        report["assessment_complete"] = False
     return report, _stage("report", "COMPLETED", "evaluations", report["report_id"], report["warnings"])
 
 
@@ -1348,6 +1357,14 @@ def run_pipeline(fixture: dict[str, Any], job_context: dict[str, Any] | None = N
     result["stages"].append(stage)
     result["artifacts"]["reconstructed_responses"] = responses
 
+    from .transcription_uncertainty import apply_transcription_uncertainty
+    uncertainty_records, evaluation_deferrals = apply_transcription_uncertainty(
+        fixture, segments, questions, responses
+    )
+    if uncertainty_records:
+        result["artifacts"]["transcription_uncertainties"] = uncertainty_records
+        result["artifacts"]["evaluation_deferrals"] = evaluation_deferrals
+
     links, stage = _stage_206(questions, responses)
     result["stages"].append(stage)
     result["artifacts"]["links"] = links
@@ -1356,6 +1373,15 @@ def run_pipeline(fixture: dict[str, Any], job_context: dict[str, Any] | None = N
         fixture, segments, participants, questions, responses, links
     )
     result["stages"].append(stage)
+    if uncertainty_records:
+        warning = "Unresolved transcription: assessment incomplete; affected questions deferred."
+        validation["warnings"].append(warning)
+        validation["transcription_uncertainties"] = deepcopy(uncertainty_records)
+        validation["evaluation_deferrals"] = deepcopy(evaluation_deferrals)
+        if validation["status"] != "BLOCKED":
+            validation["status"] = validation["readiness"] = "READY_WITH_WARNINGS"
+            stage["status"] = "READY_WITH_WARNINGS"
+        stage["warnings"] = list(validation["warnings"])
     result["artifacts"]["validation"] = validation
     result["artifacts"]["candidate_questions"] = deepcopy(
         validation.get("candidate_questions", [])

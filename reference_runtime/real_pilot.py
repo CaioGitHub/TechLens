@@ -127,6 +127,10 @@ def render_derived_artifact(
         }
     else:
         raise ValueError(f"unknown derived artifact: {name}")
+    if artifacts.get("transcription_uncertainties"):
+        body["transcription_uncertainties"] = deepcopy(artifacts["transcription_uncertainties"])
+        body["evaluation_deferrals"] = deepcopy(artifacts.get("evaluation_deferrals", []))
+        body["assessment_complete"] = False
     lines = [f"# {name.title()} — Candidato-Piloto-05", "", "```json"]
     import json
     lines.append(json.dumps(body, ensure_ascii=False, indent=2, sort_keys=True))
