@@ -3262,3 +3262,8 @@ Stage 31.7.35 permanece em andamento. Três falhas de extração foram corrigida
 ## Cobertura complementar do Stage 31.7.35 — 2026-10-23
 
 22 novos testes complementares e correções em grupos sequenciais. Regressão: 1119 testes (1118 aprovados, 1 ignorado), sem falhas ou erros; harness 15/15. Gate limitado: `CONTRACT_SCENARIOS_VERIFIED_GOVERNANCE_RECONCILIATION_PENDING`. Ver [[stage_31_7_35_remaining_contracts_report]]. Etapa continua aberta para reconciliação de escopo entre os planos e limites semânticos documentados; não houve promoção automática ao próximo incremento.
+
+
+## Reconciliação de referências e aceite — 2026-10-23
+
+Ver [[stage_31_7_35_scope_reconciliation]]. IDs locais da rastreabilidade representacional não equivalem aos IDs homônimos da matriz semântica: novas referências usam arquivo + identificador. Dez famílias históricas de suficiência agrupam Definição/Conceito; onze modos representacionais os distinguem. 52 testes direcionados reexecutados e aprovados; runtime inalterado. Gate limitado: `REPRESENTATION_REFERENCES_RECONCILED_SEMANTIC_ACCEPTANCE_OPEN`. Stage 31.7.35 continua aberto para critérios funcionais próprios de suficiência e segmentação, sem dispensa dos contratos históricos ou homologação automática.

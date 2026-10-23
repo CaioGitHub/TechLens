@@ -1,0 +1,211 @@
+{
+  "stage": "31.7.35",
+  "date": "2026-10-23",
+  "purpose": "Additive interpretation of evidence; no semantic contract waived or redefined",
+  "runtime_sha256": "E537ED4DD81892B1378877536976E668A14ECCF975B8EE87BFF1245746E8E6B0",
+  "source_hashes": {
+    "stage_31_7_31_contract_counterexample_matrix.json": "C4A489A02A3FC57194B94E78B5BAB2380E2EC2E843A6B12D00A23E7FACCB7FB4",
+    "stage_31_7_35_inc1_contract_traceability.json": "179AD2B6079E21BDD0DA8FD5385BD120AB12F58D07AFBF9622BB07E321F5FDE1",
+    "stage_31_7_35_remaining_contracts_coverage.json": "041E007BB8D5143F4A4DA2D53A8059F381158F3F4DB46ACA479520F76373F796",
+    "stage_31_7_33_implementation_roadmap.md": "6691E79D12EB106A296BB62CC71CDC05FD86F2152726963077EE4339A5C36332",
+    "stage_31_7_33_increment_contracts.json": "DA1471203482211058E85E9A9E921605233772452C26E09F0C7C48DCEC6C4AB1",
+    "stage_31_7_35_inc1_implementation_plan.md": "5C74DF2EECA91680EC8E17AE9603098D53C31DB85D717C433BAA3478EF734B53",
+    "stage_31_7_31_demand_sufficiency_contract.md": "1736B3BE2EC7694C2BB53A71606EF28DBF551E10852457A16B3D41A42167FF47",
+    "stage_31_7_32_adversarial_counterexamples.json": "1631AB977288F03B42E6A84E421940BB6AF821DEFD945C7F1714591005D48F49"
+  },
+  "dispositions": [
+    {
+      "local_id": "SC-01",
+      "representation_reference": "stage_31_7_35_inc1_contract_traceability.json#SC-01",
+      "representation_meaning": "Identificação de Modo de Intenção Epistemológica",
+      "tests": [
+        "test_sc01_all_eleven_intents",
+        "test_sc01_unrecognized_intent_records_uncertainty"
+      ],
+      "representation_status": "NAMED_SCENARIOS_VERIFIED",
+      "semantic_reference": "stage_31_7_31_contract_counterexample_matrix.json#SC-01",
+      "semantic_meaning": "Direct without lexical overlap",
+      "semantic_expected_class": "DIRECT",
+      "semantic_status": "NOT_ESTABLISHED_BY_REPRESENTATION_TESTS",
+      "equivalence_asserted": false
+    },
+    {
+      "local_id": "SC-02",
+      "representation_reference": "stage_31_7_35_inc1_contract_traceability.json#SC-02",
+      "representation_meaning": "Decomposição Aberta de Demandas com Obrigatoriedade",
+      "tests": [
+        "test_sc02_four_requests_preserve_order",
+        "test_sc02_optional_secondary_demand"
+      ],
+      "representation_status": "NAMED_SCENARIOS_VERIFIED",
+      "semantic_reference": "stage_31_7_31_contract_counterexample_matrix.json#SC-02",
+      "semantic_meaning": "Genuinely disjoint alien domain not previously enumerated",
+      "semantic_expected_class": "OFF_TOPIC",
+      "semantic_status": "NOT_ESTABLISHED_BY_REPRESENTATION_TESTS",
+      "equivalence_asserted": false
+    },
+    {
+      "local_id": "SC-05",
+      "representation_reference": "stage_31_7_35_inc1_contract_traceability.json#SC-05",
+      "representation_meaning": "Suporte a Perguntas Comparativas (A vs B)",
+      "tests": [
+        "test_sc05_open_lowercase_entities"
+      ],
+      "representation_status": "NAMED_SCENARIOS_VERIFIED",
+      "semantic_reference": "stage_31_7_31_contract_counterexample_matrix.json#SC-05",
+      "semantic_meaning": "Auxiliary observability contribution",
+      "semantic_expected_class": "SUPPORTING",
+      "semantic_status": "NOT_ESTABLISHED_BY_REPRESENTATION_TESTS",
+      "equivalence_asserted": false
+    },
+    {
+      "local_id": "SC-06",
+      "representation_reference": "stage_31_7_35_inc1_contract_traceability.json#SC-06",
+      "representation_meaning": "Extração de Qualificadores de Restrição e Contexto",
+      "tests": [
+        "test_sc06_open_numeric_context",
+        "test_sc06_shared_operational_context"
+      ],
+      "representation_status": "NAMED_SCENARIOS_VERIFIED",
+      "semantic_reference": "stage_31_7_31_contract_counterexample_matrix.json#SC-06",
+      "semantic_meaning": "Partially correct answer on multi-aspect question",
+      "semantic_expected_class": "PARTIAL",
+      "semantic_status": "NOT_ESTABLISHED_BY_REPRESENTATION_TESTS",
+      "equivalence_asserted": false
+    },
+    {
+      "local_id": "SC-17",
+      "representation_reference": "stage_31_7_35_inc1_contract_traceability.json#SC-17",
+      "representation_meaning": "Isolamento de Preâmbulos Fáticos Conversacionais",
+      "tests": [
+        "test_sc17_long_preamble_keeps_technical_core",
+        "test_sc17_technical_narrative_is_retained",
+        "test_sc17_mixed_traffic_sentence_preserves_technical_clause"
+      ],
+      "representation_status": "NAMED_SCENARIOS_VERIFIED",
+      "semantic_reference": "stage_31_7_31_contract_counterexample_matrix.json#SC-17",
+      "semantic_meaning": "Short concise technical definition",
+      "semantic_expected_class": "DIRECT",
+      "semantic_status": "NOT_ESTABLISHED_BY_REPRESENTATION_TESTS",
+      "equivalence_asserted": false
+    },
+    {
+      "local_id": "SC-18",
+      "representation_reference": "stage_31_7_35_inc1_contract_traceability.json#SC-18",
+      "representation_meaning": "Preservação de Operadores e Escopo de Negação",
+      "tests": [
+        "test_sc18_complete_long_negation_scope",
+        "test_sc18_negation_does_not_leak"
+      ],
+      "representation_status": "NAMED_SCENARIOS_VERIFIED",
+      "semantic_reference": "stage_31_7_31_contract_counterexample_matrix.json#SC-18",
+      "semantic_meaning": "Long answer with irrelevant rambling padding",
+      "semantic_expected_class": "INSUFFICIENT",
+      "semantic_status": "NOT_ESTABLISHED_BY_REPRESENTATION_TESTS",
+      "equivalence_asserted": false
+    },
+    {
+      "local_id": "SC-20",
+      "representation_reference": "stage_31_7_35_inc1_contract_traceability.json#SC-20",
+      "representation_meaning": "Preservação de Operadores e Premissas Condicionais",
+      "tests": [
+        "test_sc20_trailing_condition",
+        "test_sc20_complete_long_condition"
+      ],
+      "representation_status": "NAMED_SCENARIOS_VERIFIED",
+      "semantic_reference": "stage_31_7_31_contract_counterexample_matrix.json#SC-20",
+      "semantic_meaning": "Avoidance guard on destructive keywords",
+      "semantic_expected_class": "DIRECT",
+      "semantic_status": "NOT_ESTABLISHED_BY_REPRESENTATION_TESTS",
+      "equivalence_asserted": false
+    },
+    {
+      "local_id": "SC-21",
+      "representation_reference": "stage_31_7_35_inc1_contract_traceability.json#SC-21",
+      "representation_meaning": "Resolução de Autocorreção e Retratação Explícita",
+      "tests": [
+        "test_sc21_same_sentence_explicit_correction",
+        "test_sc21_same_sentence_refinement_is_not_retracted",
+        "test_sc21_unrelated_assertion_not_retracted"
+      ],
+      "representation_status": "NAMED_SCENARIOS_VERIFIED",
+      "semantic_reference": "stage_31_7_31_contract_counterexample_matrix.json#SC-21",
+      "semantic_meaning": "Unseen fictional technology with sound distributed mechanism",
+      "semantic_expected_class": "DIRECT",
+      "semantic_status": "NOT_ESTABLISHED_BY_REPRESENTATION_TESTS",
+      "equivalence_asserted": false
+    },
+    {
+      "local_id": "ADV-05",
+      "representation_reference": "stage_31_7_35_inc1_contract_traceability.json#ADV-05",
+      "representation_meaning": "Invariância Estrutural a Preâmbulos Conversacionais Longos",
+      "tests": [
+        "test_adv05_long_preamble_pair_invariance"
+      ],
+      "representation_status": "NAMED_SCENARIOS_VERIFIED",
+      "semantic_reference": "stage_31_7_32_adversarial_counterexamples.json#ADV-05",
+      "semantic_meaning": "Mixed Response With Conversational Preamble",
+      "semantic_expected_class": "DIRECT",
+      "semantic_status": "NOT_ESTABLISHED_BY_REPRESENTATION_TESTS",
+      "equivalence_asserted": false
+    },
+    {
+      "local_id": "ADV-06",
+      "representation_reference": "stage_31_7_35_inc1_contract_traceability.json#ADV-06",
+      "representation_meaning": "Perguntas Compostas com Múltiplas Demandas Conjuntas",
+      "tests": [
+        "test_adv06_implicit_joint_demands"
+      ],
+      "representation_status": "NAMED_SCENARIOS_VERIFIED",
+      "semantic_reference": "stage_31_7_32_adversarial_counterexamples.json#ADV-06",
+      "semantic_meaning": "Compound Demand With Missing Secondary Element",
+      "semantic_expected_class": "PARTIAL",
+      "semantic_status": "NOT_ESTABLISHED_BY_REPRESENTATION_TESTS",
+      "equivalence_asserted": false
+    },
+    {
+      "local_id": "ADV-11",
+      "representation_reference": "stage_31_7_35_inc1_contract_traceability.json#ADV-11",
+      "representation_meaning": "Preservação de Negação Preventiva",
+      "tests": [
+        "test_adv11_prevention_and_destructive_action_differ"
+      ],
+      "representation_status": "NAMED_SCENARIOS_VERIFIED",
+      "semantic_reference": "stage_31_7_32_adversarial_counterexamples.json#ADV-11",
+      "semantic_meaning": "Discourse Self-Correction Resolution",
+      "semantic_expected_class": "DIRECT",
+      "semantic_status": "NOT_ESTABLISHED_BY_REPRESENTATION_TESTS",
+      "equivalence_asserted": false
+    },
+    {
+      "local_id": "ADV-12",
+      "representation_reference": "stage_31_7_35_inc1_contract_traceability.json#ADV-12",
+      "representation_meaning": "Condicionais sob Escopos Distintos",
+      "tests": [
+        "test_adv12_conditions_remain_local",
+        "test_sc21_conditional_polarity_is_not_global_retraction"
+      ],
+      "representation_status": "NAMED_SCENARIOS_VERIFIED",
+      "semantic_reference": "stage_31_7_32_adversarial_counterexamples.json#ADV-12",
+      "semantic_meaning": "Real Internal Contradiction Destroying Truth Value",
+      "semantic_expected_class": "INSUFFICIENT",
+      "semantic_status": "NOT_ESTABLISHED_BY_REPRESENTATION_TESTS",
+      "equivalence_asserted": false
+    }
+  ],
+  "rules": [
+    "A contract reference is the tuple (source document, local identifier); bare identifiers are ambiguous",
+    "An equal identifier across documents does not imply semantic equivalence",
+    "The ten sufficiency families preserve the historical Definition/Concept grouping; the eleven runtime modes split DEFINITION and CONCEPTUAL_EXPLANATION",
+    "Representation tests do not establish DIRECT/PARTIAL or other final classifications",
+    "The historical INC-1 sufficiency scope and INC-2 discourse acceptance remain open until separately evidenced"
+  ],
+  "targeted_tests": {
+    "run": 52,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "output": "....................................................\n----------------------------------------------------------------------\nRan 52 tests in 0.014s\n\nOK\n"
+  },
+  "gate": "REPRESENTATION_REFERENCES_RECONCILED_SEMANTIC_ACCEPTANCE_OPEN"
+}
