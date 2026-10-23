@@ -85,3 +85,8 @@ Branch `codex/transcription-baseline`, criada a partir de `transcriptionProcessi
 ## Recuperação da regressão da base de transcrição — 2026-10-23
 
 Ver [[TRANSCRIPTION_BASELINE_CORRECTIONS]]. Dois defeitos de evidência corrigidos, quatro testes novos e dois testes de snapshots históricos reescritos com autorização explícita para invariantes comportamentais. Regressão completa: 530/530 aprovados; harness 15/15. Estado limitado: `TRANSCRIPTION_BASELINE_REGRESSION_RECOVERED`. A baseline inicial de cinco falhas permanece preservada. Não houve aprovação semântica independente nem revogação dos bloqueios históricos. Próximo passo: plano incremental de transcrição sobre o fluxo de texto existente.
+
+
+## Núcleo de correção fiel da transcrição — 2026-10-23
+
+Ver [[TRANSCRIPTION_CORRECTION_FIDELITY]] e [[TRANSCRIPTION_IMPLEMENTATION_PLAN]]. Propostas e original separados; aprovação explícita ligada à fonte, rejeição e aplicação revisada integradas à reconstrução 20.5 antes da avaliação. 549 testes globais e 15 do harness aprovados. Estado limitado: `FAITHFUL_TRANSCRIPT_REVIEW_CORE_IMPLEMENTED_AND_REGRESSION_VERIFIED`. Não é corretor semântico geral nem validação humana independente; os bloqueios históricos permanecem.

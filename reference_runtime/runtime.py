@@ -492,6 +492,16 @@ def _stage_204(
 def _stage_205(
     fixture: dict[str, Any], responses: list[dict[str, Any]], segments: list[dict[str, Any]]
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    from .transcription_correction import materialize_corrections, CorrectionPolicyError
+
+    plans = fixture.get("transcription_correction_plans", {})
+    if not isinstance(plans, dict):
+        raise CorrectionPolicyError("Correction plans must be keyed by response ID.")
+    if plans and fixture.get("reconstructions"):
+        raise CorrectionPolicyError("Reviewed correction plans cannot be mixed with legacy reconstruction overrides.")
+    unknown = set(plans) - {r["response_id"] for r in responses if r["response_status"] != "missing"}
+    if unknown:
+        raise CorrectionPolicyError("Correction plans refer to unknown or missing responses: " + ", ".join(sorted(unknown)))
     by_id = {segment["id"]: segment for segment in segments}
     reconstructed: list[dict[str, Any]] = []
     for response in responses:
@@ -507,7 +517,18 @@ def _stage_205(
         source_ids = item["original_segments"]
         original = " ".join(by_id[segment_id]["text"] for segment_id in source_ids)
         item["original_text"] = original
-        reconstructed_text = fixture.get("reconstructions", {}).get(item["response_id"], original)
+        if item["response_id"] in plans:
+            plan = plans[item["response_id"]]
+            if plan.get("original_text") != original:
+                raise CorrectionPolicyError("Correction plan does not match the actual source response.")
+            if set(plan.get("source_segment_ids", [])) != set(source_ids):
+                raise CorrectionPolicyError("Correction plan source segment references do not match the response.")
+            reconstructed_text = materialize_corrections(plan)
+            item["correction_audit"] = deepcopy(plan)
+            item["correction_audit"]["corrected_text"] = reconstructed_text
+            item["reconstruction_confidence"] = "medium" if plan["corrections"] else "high"
+        else:
+            reconstructed_text = fixture.get("reconstructions", {}).get(item["response_id"], original)
         item["reconstructed_text"] = reconstructed_text
         item["normalization_applied"] = (
             item["reconstructed_text"] != item["original_text"]
