@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "status": "REFERENCE_REVIEW_PENDING",
+  "independent_interview_count": 1,
+  "distinct_transcript_content_count": 2,
+  "sources": [
+    {
+      "path": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05/Transcript Original.md",
+      "sha256": "cc4f32704bfbbca7261b3637f04b36e6950850c2f07d00f4a3b4a89559a51523",
+      "transcript_sha256": "39735f69e18fa55a26b5a8c5b21ce50d3d60ce068a48955d924b281693ff8c71",
+      "interview_group": "interview-2026-09-14-01",
+      "metadata": {
+        "pilot_id": "REAL-PILOT-2026-09-14-01-v3",
+        "candidate_id": "Candidato-Piloto-01",
+        "interview_date": "2026-09-14",
+        "coverage": "00:03–20:01"
+      },
+      "human_reference_status": "PENDING_REVIEW"
+    },
+    {
+      "path": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-01/Pilot Input - Source Transcript v2.md",
+      "sha256": "99b601b3dc335d7d491742a1fd55f330696e3c06ac5275d10d956335bc0af3bc",
+      "transcript_sha256": "bf763a981c6e47afdfc4fc0882a798c8485bd5f7e55d9ca2936aedb2e34625a0",
+      "interview_group": "interview-2026-09-14-01",
+      "metadata": {
+        "pilot_id": "REAL-PILOT-2026-09-14-01-v2",
+        "candidate_id": "Candidato-Piloto-01",
+        "interview_date": "2026-09-14",
+        "coverage": "00:03–04:27 and 19:13–20:01"
+      },
+      "human_reference_status": "PENDING_REVIEW"
+    },
+    {
+      "path": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-01/Pilot Input - Source Transcript v3.md",
+      "sha256": "cc4f32704bfbbca7261b3637f04b36e6950850c2f07d00f4a3b4a89559a51523",
+      "transcript_sha256": "39735f69e18fa55a26b5a8c5b21ce50d3d60ce068a48955d924b281693ff8c71",
+      "interview_group": "interview-2026-09-14-01",
+      "metadata": {
+        "pilot_id": "REAL-PILOT-2026-09-14-01-v3",
+        "candidate_id": "Candidato-Piloto-01",
+        "interview_date": "2026-09-14",
+        "coverage": "00:03–20:01"
+      },
+      "human_reference_status": "PENDING_REVIEW"
+    }
+  ],
+  "cases": [
+    {
+      "id": "REF-01",
+      "category": "Termo possivelmente reconhecido incorretamente",
+      "source_path": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05/Transcript Original.md",
+      "source_sha256": "cc4f32704bfbbca7261b3637f04b36e6950850c2f07d00f4a3b4a89559a51523",
+      "source_start_line": 101,
+      "source_end_line": 101,
+      "timestamp": "03:49",
+      "excerpt_sha256": "ee9b516dc2cc1b2f703121a2ed74e5ddb0a104969b511b06121eb8d0b0afaf05",
+      "reference_status": "PENDING_HUMAN_REVIEW",
+      "expected_action": null,
+      "approved_replacement": null,
+      "reviewer": null,
+      "source_checked": false,
+      "source_evidence": null
+    },
+    {
+      "id": "REF-02",
+      "category": "Nome de produto ambíguo",
+      "source_path": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05/Transcript Original.md",
+      "source_sha256": "cc4f32704bfbbca7261b3637f04b36e6950850c2f07d00f4a3b4a89559a51523",
+      "source_start_line": 185,
+      "source_end_line": 185,
+      "timestamp": "07:22",
+      "excerpt_sha256": "236eb9d2633a817ef5951f58597950df9502e57dd3d95b7a64c958aa3dd4c182",
+      "reference_status": "PENDING_HUMAN_REVIEW",
+      "expected_action": null,
+      "approved_replacement": null,
+      "reviewer": null,
+      "source_checked": false,
+      "source_evidence": null
+    },
+    {
+      "id": "REF-03",
+      "category": "Negação e experiência declarada",
+      "source_path": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05/Transcript Original.md",
+      "source_sha256": "cc4f32704bfbbca7261b3637f04b36e6950850c2f07d00f4a3b4a89559a51523",
+      "source_start_line": 155,
+      "source_end_line": 155,
+      "timestamp": "05:36",
+      "excerpt_sha256": "c6a11e1f5736f7545b7eea1df61fd4a02936b1c2158e476d83c7753125a42b8c",
+      "reference_status": "PENDING_HUMAN_REVIEW",
+      "expected_action": null,
+      "approved_replacement": null,
+      "reviewer": null,
+      "source_checked": false,
+      "source_evidence": null
+    },
+    {
+      "id": "REF-04",
+      "category": "Incerteza e hipótese",
+      "source_path": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05/Transcript Original.md",
+      "source_sha256": "cc4f32704bfbbca7261b3637f04b36e6950850c2f07d00f4a3b4a89559a51523",
+      "source_start_line": 200,
+      "source_end_line": 200,
+      "timestamp": "08:16",
+      "excerpt_sha256": "06a4d149b0b26ddfd90ffccd0bc872fa3d57124365f7d3dc910e6efda696cd2d",
+      "reference_status": "PENDING_HUMAN_REVIEW",
+      "expected_action": null,
+      "approved_replacement": null,
+      "reviewer": null,
+      "source_checked": false,
+      "source_evidence": null
+    },
+    {
+      "id": "REF-05",
+      "category": "Números e versões",
+      "source_path": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05/Transcript Original.md",
+      "source_sha256": "cc4f32704bfbbca7261b3637f04b36e6950850c2f07d00f4a3b4a89559a51523",
+      "source_start_line": 119,
+      "source_end_line": 119,
+      "timestamp": "04:05",
+      "excerpt_sha256": "8c47e4a4b076ef757d8a7bb06689d29031879eab5c2f489ea7c2fcf3c2774f79",
+      "reference_status": "PENDING_HUMAN_REVIEW",
+      "expected_action": null,
+      "approved_replacement": null,
+      "reviewer": null,
+      "source_checked": false,
+      "source_evidence": null
+    },
+    {
+      "id": "REF-06",
+      "category": "Frase interrompida",
+      "source_path": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05/Transcript Original.md",
+      "source_sha256": "cc4f32704bfbbca7261b3637f04b36e6950850c2f07d00f4a3b4a89559a51523",
+      "source_start_line": 83,
+      "source_end_line": 83,
+      "timestamp": "02:53",
+      "excerpt_sha256": "235f287031f6555ca8736d36d07487b0a90a1b08877993c6e1b90384a73f1278",
+      "reference_status": "PENDING_HUMAN_REVIEW",
+      "expected_action": null,
+      "approved_replacement": null,
+      "reviewer": null,
+      "source_checked": false,
+      "source_evidence": null
+    },
+    {
+      "id": "REF-07",
+      "category": "Afirmação técnica preservada",
+      "source_path": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05/Transcript Original.md",
+      "source_sha256": "cc4f32704bfbbca7261b3637f04b36e6950850c2f07d00f4a3b4a89559a51523",
+      "source_start_line": 131,
+      "source_end_line": 131,
+      "timestamp": "04:37",
+      "excerpt_sha256": "59e583c99a0af805e11363a79a9da479967011c704581f213b9f7e33bb3f9806",
+      "reference_status": "PENDING_HUMAN_REVIEW",
+      "expected_action": null,
+      "approved_replacement": null,
+      "reviewer": null,
+      "source_checked": false,
+      "source_evidence": null
+    },
+    {
+      "id": "REF-08",
+      "category": "Duração da experiência",
+      "source_path": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-05/Transcript Original.md",
+      "source_sha256": "cc4f32704bfbbca7261b3637f04b36e6950850c2f07d00f4a3b4a89559a51523",
+      "source_start_line": 77,
+      "source_end_line": 77,
+      "timestamp": "02:28",
+      "excerpt_sha256": "2909b917f471c7ae77ff93b66ba1c9a7ec3c359f78799f096e1960540ecc613f",
+      "reference_status": "PENDING_HUMAN_REVIEW",
+      "expected_action": null,
+      "approved_replacement": null,
+      "reviewer": null,
+      "source_checked": false,
+      "source_evidence": null
+    }
+  ],
+  "validated_human_references": 0
+}

@@ -42,3 +42,8 @@ Próximo trabalho autorizado: implementar e verificar as etapas 1 e 2 com testes
 ## Atualização de execução — 2026-10-23
 
 Etapas 1 e 2 implementadas no escopo conservador documentado em [[TRANSCRIPTION_CORRECTION_FIDELITY]]. A aplicação exige revisão explícita das propostas lexicais e confirmação de fonte; não é uma prova automática de equivalência semântica. Há 19 novos métodos de teste, integração à reconstrução e regressão final registrada. Entrada genérica, UI, base técnica automática e propostas semânticas amplas permanecem etapas futuras, sem promoção automática de seus critérios.
+
+
+## Piloto de referência real — 2026-10-23
+
+Ver [[TRANSCRIPTION_REFERENCE_SET_PLAN]] e `TRANSCRIPTION_REFERENCE_SET_MANIFEST.json`: oito trechos localizados, três arquivos de uma entrevista, duas versões de conteúdo, zero referências humanas validadas. Critérios de aceite e procedimento incremental registrados. Revisão fundamentada desta entrevista pendente; outra entrevista distinta necessária para ampliar generalização. Runtime e gates históricos inalterados.

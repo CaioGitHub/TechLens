@@ -1923,3 +1923,8 @@ Ver [[TRANSCRIPTION_BASELINE_CORRECTIONS]]. Dois defeitos de evidência corrigid
 ## Núcleo de correção fiel da transcrição — 2026-10-23
 
 Ver [[TRANSCRIPTION_CORRECTION_FIDELITY]] e [[TRANSCRIPTION_IMPLEMENTATION_PLAN]]. Propostas e original separados; aprovação explícita ligada à fonte, rejeição e aplicação revisada integradas à reconstrução 20.5 antes da avaliação. 549 testes globais e 15 do harness aprovados. Estado limitado: `FAITHFUL_TRANSCRIPT_REVIEW_CORE_IMPLEMENTED_AND_REGRESSION_VERIFIED`. Não é corretor semântico geral nem validação humana independente; os bloqueios históricos permanecem.
+
+
+## Piloto de referência real — 2026-10-23
+
+Ver [[TRANSCRIPTION_REFERENCE_SET_PLAN]] e `TRANSCRIPTION_REFERENCE_SET_MANIFEST.json`: oito trechos localizados, três arquivos de uma entrevista, duas versões de conteúdo, zero referências humanas validadas. Critérios de aceite e procedimento incremental registrados. Revisão fundamentada desta entrevista pendente; outra entrevista distinta necessária para ampliar generalização. Runtime e gates históricos inalterados.
