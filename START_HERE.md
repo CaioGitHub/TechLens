@@ -75,3 +75,8 @@ Não interpretar `BLOCKED` como aprovação.
 ## Princípio
 
 > Não estamos construindo um sistema que parece inteligente. Estamos construindo um sistema cuja avaliação pode ser investigada, reproduzida, contestada e corrigida.
+
+
+## Marco de retomada da transcrição — 2026-10-23
+
+Branch `codex/transcription-baseline`, criada a partir de `transcriptionProcessingModel` no commit `06e506e`. Ver [[TRANSCRIPTION_BASELINE]]. A medição nesta origem executou 526 testes: 521 aprovados, cinco falhas, zero erros. Estado limitado: `TRANSCRIPTION_BASELINE_RECORDED_WITH_KNOWN_FAILURES`; não é homologação semântica. Os bloqueios históricos permanecem. A frente recente foi preservada na branch `codex/inc1-contract-coverage`, com checkpoint pendente `8c0280c`. Não transportar automaticamente para esta origem os achados de versões posteriores.
