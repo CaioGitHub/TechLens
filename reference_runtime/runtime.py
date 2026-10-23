@@ -636,6 +636,12 @@ def _blind_evidence_specs(question: dict[str, Any], response: dict[str, Any]) ->
     reasoning = (
         any(term in lower for term in ("antes de", "então", "compararia", "prioriz"))
         or bool(re.search(r"\bse\b", lower))
+        # A choice tied to an explicit reason is evaluable reasoning even
+        # without a conditional or a particular technology name.
+        or bool(re.search(
+            r"\b(?:escolh\w*|opt\w*|prefer\w*)\b[^.;!?]+\b(?:pela|pelo|porque|devido a|por causa de)\b",
+            normalized_lower,
+        ))
     )
     practical = concrete or any(
         term in lower
@@ -787,8 +793,16 @@ def _technical_anchors(text: str) -> set[str]:
     }
     anchors = set()
     first_token = True
-    for match in re.findall(r"\b[A-Z][A-Za-z0-9+#@.-]*\b", text):
+    for token in re.finditer(r"\b[A-Z][A-Za-z0-9+#@.-]*\b", text):
+        match = token.group()
         normalized = match.lower()
+        prefix = text[:token.start()]
+        sentence_initial = not prefix.strip() or bool(re.search(r"[.!?]\s*$", prefix))
+        # A leading modifier followed by a personal subject is not itself
+        # evidence of a named technical entity (e.g. temporal transitions).
+        if sentence_initial and re.match(r"\s+(?:eu|voce|voc\u00ea|ele|ela|nos|n\u00f3s|eles|elas)\b", text[token.end():], re.IGNORECASE):
+            first_token = False
+            continue
         verb_like_initial = (
             first_token
             and match.isascii()

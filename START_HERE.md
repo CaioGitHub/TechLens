@@ -80,3 +80,8 @@ Não interpretar `BLOCKED` como aprovação.
 ## Marco de retomada da transcrição — 2026-10-23
 
 Branch `codex/transcription-baseline`, criada a partir de `transcriptionProcessingModel` no commit `06e506e`. Ver [[TRANSCRIPTION_BASELINE]]. A medição nesta origem executou 526 testes: 521 aprovados, cinco falhas, zero erros. Estado limitado: `TRANSCRIPTION_BASELINE_RECORDED_WITH_KNOWN_FAILURES`; não é homologação semântica. Os bloqueios históricos permanecem. A frente recente foi preservada na branch `codex/inc1-contract-coverage`, com checkpoint pendente `8c0280c`. Não transportar automaticamente para esta origem os achados de versões posteriores.
+
+
+## Recuperação da regressão da base de transcrição — 2026-10-23
+
+Ver [[TRANSCRIPTION_BASELINE_CORRECTIONS]]. Dois defeitos de evidência corrigidos, quatro testes novos e dois testes de snapshots históricos reescritos com autorização explícita para invariantes comportamentais. Regressão completa: 530/530 aprovados; harness 15/15. Estado limitado: `TRANSCRIPTION_BASELINE_REGRESSION_RECOVERED`. A baseline inicial de cinco falhas permanece preservada. Não houve aprovação semântica independente nem revogação dos bloqueios históricos. Próximo passo: plano incremental de transcrição sobre o fluxo de texto existente.

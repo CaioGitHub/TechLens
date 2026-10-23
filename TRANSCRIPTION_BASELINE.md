@@ -43,3 +43,8 @@ Estado do marco: `TRANSCRIPTION_BASELINE_RECORDED_WITH_KNOWN_FAILURES`.
 Este marco é uma âncora de versionamento, não uma autorização para pular os gates existentes. Antes de novas implementações, identificar a primeira falha relevante à frente de transcrição, fixar seu teste e executar a cobertura específica. Resolver falhas inesperadas antes de avançar ao próximo grupo. O desenvolvimento deve preservar o conhecimento e os contratos existentes, sem redesign automático do avaliador.
 
 O escopo de transcrição deve distinguir processamento de texto já transcrito de conversão de áudio em texto. A base atual documenta explicitamente o primeiro. A seleção de serviço ou modelo de reconhecimento de fala não faz parte deste marco.
+
+
+## Recuperação da regressão da base de transcrição — 2026-10-23
+
+Ver [[TRANSCRIPTION_BASELINE_CORRECTIONS]]. Dois defeitos de evidência corrigidos, quatro testes novos e dois testes de snapshots históricos reescritos com autorização explícita para invariantes comportamentais. Regressão completa: 530/530 aprovados; harness 15/15. Estado limitado: `TRANSCRIPTION_BASELINE_REGRESSION_RECOVERED`. A baseline inicial de cinco falhas permanece preservada. Não houve aprovação semântica independente nem revogação dos bloqueios históricos. Próximo passo: plano incremental de transcrição sobre o fluxo de texto existente.

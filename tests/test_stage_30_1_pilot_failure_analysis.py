@@ -1,7 +1,8 @@
+import copy
 import unittest
 from pathlib import Path
 
-from reference_runtime import run_real_pilot
+from reference_runtime import build_real_pilot_fixture, run_interview_pipeline, run_real_pilot
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -63,22 +64,23 @@ class Stage301PilotFailureAnalysisTests(unittest.TestCase):
                 )
 
     def test_before_after_impact_is_limited_to_removed_context_question(self):
-        baseline = {
-            "questions": 12,
-            "responses": 47,
-            "evidence": 25,
-            "evaluations": 12,
-            "scores": [4.0, 7.05, 4.0, 7.05, 4.45, 5.85, 6.0, 7.05, 4.0, 7.65, 4.0, 6.0],
-        }
-        current_scores = [item["score"] for item in self.artifacts["evaluations"]]
-        self.assertEqual(len(self.artifacts["responses"]), baseline["responses"])
-        self.assertEqual(len(self.artifacts["questions"]), baseline["questions"] - 1)
-        self.assertEqual(
-            len(self.artifacts["evidence"]["evidence_set"]),
-            baseline["evidence"] - 1,
-        )
-        self.assertEqual(len(self.artifacts["evaluations"]), baseline["evaluations"] - 1)
-        self.assertEqual(current_scores, baseline["scores"][:-1])
+        # Same-version metamorphic oracle: an already excluded conversational
+        # question must not affect technical evidence or scores. Historical
+        # Stage 30 counts/scores remain in its reports, not runtime targets.
+        fixture = build_real_pilot_fixture(SOURCE)
+        without_context = copy.deepcopy(fixture)
+        conversational_text = "E tem uma Daily também, só nossa, né?"
+        removed = [r for r in fixture["raw_transcript"] if r["text"] == conversational_text]
+        self.assertEqual(len(removed), 1)
+        without_context["raw_transcript"] = [
+            r for r in without_context["raw_transcript"] if r["text"] != conversational_text
+        ]
+        control = run_interview_pipeline(without_context)["artifacts"]
+        for key in ("questions", "responses", "evidence", "evaluations"):
+            self.assertEqual(self.artifacts[key], control[key], key)
+        removed_ids = {r["id"] for r in removed}
+        for item in control["evidence"]["evidence_set"]:
+            self.assertTrue(removed_ids.isdisjoint(item["source"]["segment_ids"]))
 
     def test_reexecution_is_deterministic(self):
         repeated = run_real_pilot(SOURCE)["pipeline"]["artifacts"]
