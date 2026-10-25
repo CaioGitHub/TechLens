@@ -237,7 +237,13 @@ def _prepare_raw_fixture(fixture: dict[str, Any]) -> dict[str, Any]:
             "speaker_role": role,
             "text": text,
         }
-        for field in ("needs_review", "reconstruction_confidence", "linking_confidence"):
+        if raw.get("participant_id") is not None:
+            participant = next((p for p in participants if p.get("name") == raw.get("speaker")), None)
+            if participant is None or participant["participant_id"] != raw["participant_id"]:
+                raise ValueError("Source participant ID conflicts with the configured speaker label.")
+            segment["participant_id"] = participant["participant_id"]
+            segment["speaker_id"] = participant["participant_id"]
+        for field in ("needs_review", "reconstruction_confidence", "linking_confidence", "ambiguous_speaker"):
             if field in raw:
                 segment[field] = raw[field]
         if raw.get("speaker") in (None, "UNKNOWN"):
@@ -1333,6 +1339,8 @@ def run_pipeline(fixture: dict[str, Any], job_context: dict[str, Any] | None = N
         "artifacts": {},
         "job_context": deepcopy(job_context),
     }
+    if fixture.get("transcription_source") is not None:
+        result["artifacts"]["transcription_source"] = deepcopy(fixture["transcription_source"])
     if fixture.get("_raw_input") is not None:
         result["artifacts"]["raw_transcript"] = deepcopy(fixture["_raw_input"])
 

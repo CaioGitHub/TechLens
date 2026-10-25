@@ -1,0 +1,38 @@
+{
+  "runtime_hash_before": "50D8273E0B819F0858C24BCCF18F4FC32A44D7EB5C170A912D477AB6A8798C11",
+  "runtime_hash_after": "50D8273E0B819F0858C24BCCF18F4FC32A44D7EB5C170A912D477AB6A8798C11",
+  "runtime_unchanged_during_tests": true,
+  "suites": [
+    {
+      "suite": "canonical",
+      "tests_run": 600,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "seconds": 28.005,
+      "output": "........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 600 tests in 28.005s\n\nOK\n"
+    },
+    {
+      "suite": "harness",
+      "tests_run": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "seconds": 19.645,
+      "output": "...............\n----------------------------------------------------------------------\nRan 15 tests in 19.644s\n\nOK\n"
+    }
+  ],
+  "historical_baseline": "TRANSCRIPTION_BASELINE_TEST_RESULTS.json",
+  "correction_module_hash_before": "070DCFFAD2427C3E7A03E7153EE2163AEB7A58D12127F7DF6A7CDD2DF5FFB9A3",
+  "correction_module_hash_after": "070DCFFAD2427C3E7A03E7153EE2163AEB7A58D12127F7DF6A7CDD2DF5FFB9A3",
+  "date": "2026-10-25",
+  "new_test_methods": 10,
+  "targeted_tests_passed": 70,
+  "implementation_files_sha256": {
+    "reference_runtime/transcription_input.py": "7e1995b6d149fea4201fef0d64ba104fd2f27734418bb93c97b5422a9847b308",
+    "reference_runtime/runtime.py": "50d8273e0b819f0858c24bccf18f4fc32a44d7eb5c170a912d477ab6a8798c11",
+    "tests/test_transcription_input.py": "b1d7b277d33e523e44a659c1b259cb9dcac1adc2af9a4f9516beb5c95673b31c"
+  }
+}
