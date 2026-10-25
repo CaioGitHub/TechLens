@@ -1,0 +1,4 @@
+*.json text eol=crlf
+*.md text eol=crlf
+*.before-review.md text eol=lf
+*.py text eol=lf

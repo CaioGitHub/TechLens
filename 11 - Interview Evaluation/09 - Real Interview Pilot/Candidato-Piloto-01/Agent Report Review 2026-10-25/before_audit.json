@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "violations": [
+    {
+      "claim_id": "E07-before",
+      "code": "UNRECOVERABLE_SOURCE_USED_FOR_CANDIDATE_JUDGMENT",
+      "sources": [
+        "P1@07:22"
+      ]
+    }
+  ],
+  "scope": "EXPLICIT_DEPENDENCIES_ONLY_NOT_FREEFORM_SEMANTIC_VALIDATION"
+}

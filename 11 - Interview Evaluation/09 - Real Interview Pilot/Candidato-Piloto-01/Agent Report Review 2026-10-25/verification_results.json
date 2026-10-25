@@ -1,0 +1,196 @@
+{
+  "status": "CONTROLLED_REVIEW_VERIFIED",
+  "checks": {
+    "original_report_preserved": true,
+    "received_source_unchanged": true,
+    "all_four_scoring_sections_unchanged": true,
+    "numeric_scores_unchanged": true,
+    "scored_subset_mean_unchanged": true,
+    "partial_report_label": true,
+    "E07_not_in_used_evidence_table": true,
+    "Q9_explicitly_deferred": true,
+    "old_negative_Azure_judgment_removed": true,
+    "F01_reconfirmed": true,
+    "baseline_failure_reproduced": true,
+    "current_explicit_dependencies_pass": true
+  },
+  "before_dependency_audit": {
+    "passed": false,
+    "violations": [
+      {
+        "claim_id": "E07-before",
+        "code": "UNRECOVERABLE_SOURCE_USED_FOR_CANDIDATE_JUDGMENT",
+        "sources": [
+          "P1@07:22"
+        ]
+      }
+    ],
+    "scope": "EXPLICIT_DEPENDENCIES_ONLY_NOT_FREEFORM_SEMANTIC_VALIDATION"
+  },
+  "after_dependency_audit": {
+    "passed": true,
+    "violations": [],
+    "scope": "EXPLICIT_DEPENDENCIES_ONLY_NOT_FREEFORM_SEMANTIC_VALIDATION"
+  },
+  "final_claim_dependencies": {
+    "source_states": {
+      "P2@04:27": "confirmed_wording",
+      "P1@04:34": "usable",
+      "P1@04:37": "usable",
+      "P1@05:04": "usable",
+      "P1@05:10": "usable",
+      "P1@05:36": "usable",
+      "P1@05:53": "usable",
+      "P1@08:01": "usable",
+      "P1@08:16": "usable",
+      "P1@08:21": "usable",
+      "P1@08:26": "usable",
+      "P1@07:22": "unrecoverable"
+    },
+    "claims": [
+      {
+        "id": "AV-Q4",
+        "scope": "candidate_knowledge",
+        "source_ids": [
+          "P2@04:27",
+          "P1@04:34",
+          "P1@04:37"
+        ],
+        "text": "Existing technical judgment preserved; evidence references manually audited."
+      },
+      {
+        "id": "AV-Q5",
+        "scope": "candidate_knowledge",
+        "source_ids": [
+          "P1@05:04",
+          "P1@05:10"
+        ],
+        "text": "Existing technical judgment preserved; evidence references manually audited."
+      },
+      {
+        "id": "AV-Q6.1",
+        "scope": "candidate_knowledge",
+        "source_ids": [
+          "P1@05:36",
+          "P1@05:53"
+        ],
+        "text": "Existing technical judgment preserved; evidence references manually audited."
+      },
+      {
+        "id": "AV-Q10",
+        "scope": "candidate_knowledge",
+        "source_ids": [
+          "P1@08:01",
+          "P1@08:16",
+          "P1@08:21",
+          "P1@08:26"
+        ],
+        "text": "Existing technical judgment preserved; evidence references manually audited."
+      },
+      {
+        "id": "Q9-status",
+        "scope": "assessment_status",
+        "source_ids": [
+          "P1@07:22"
+        ],
+        "text": "Resposta adiada por transcrição irrecuperável; conhecimento não avaliado."
+      }
+    ],
+    "evaluations": [
+      {
+        "id": "AV-Q4",
+        "score": 0.0,
+        "source_ids": [
+          "P2@04:27",
+          "P1@04:34",
+          "P1@04:37"
+        ]
+      },
+      {
+        "id": "AV-Q5",
+        "score": 4.0,
+        "source_ids": [
+          "P1@05:04",
+          "P1@05:10"
+        ]
+      },
+      {
+        "id": "AV-Q6.1",
+        "score": 8.0,
+        "source_ids": [
+          "P1@05:36",
+          "P1@05:53"
+        ]
+      },
+      {
+        "id": "AV-Q10",
+        "score": 4.0,
+        "source_ids": [
+          "P1@08:01",
+          "P1@08:16",
+          "P1@08:21",
+          "P1@08:26"
+        ]
+      },
+      {
+        "id": "Q9",
+        "score": null,
+        "source_ids": [
+          "P1@07:22"
+        ]
+      }
+    ]
+  },
+  "limitation": "Dependencies and prose classifications are manually supplied. These checks do not detect all semantic claims in free text or validate score calibration.",
+  "final_report_sha256_lf": "21235fb873c07d01db598553fac339aac4ce352b1c6310d94fb7b83df110ed9e",
+  "policy_tests": {
+    "tests_run": 8,
+    "failures": 0,
+    "errors": 0,
+    "successful": true
+  },
+  "semantic_audit_method": "Manual review of the report and explicit claim dependencies; not independent and no audio verification.",
+  "other_uncertainties_reviewed": [
+    {
+      "id": "U01",
+      "scope": "Biographical terms",
+      "finding": "Original retained; no technical score or capacity conclusion relies on decoding these terms."
+    },
+    {
+      "id": "U02",
+      "scope": "03:49 lexical ambiguity",
+      "finding": "Hypothesis not applied; neighboring clear statements may be used for their own limited informational content."
+    },
+    {
+      "id": "U03",
+      "scope": "Tool naming",
+      "finding": "Literal naming preserved as declaration only; no operation or tool proficiency inferred."
+    },
+    {
+      "id": "U04",
+      "scope": "Whole response 07:22",
+      "finding": "E07 withdrawn; all candidate judgments from R9 deferred, including unscored qualitative claims."
+    },
+    {
+      "id": "U05",
+      "scope": "Agile term",
+      "finding": "No Scrum reconstruction or methodology proficiency inferred."
+    },
+    {
+      "id": "U06",
+      "scope": "AI product name",
+      "finding": "No cloud-to-Claude correction; clear Copilot declaration not promoted to technical proficiency."
+    },
+    {
+      "id": "U07",
+      "scope": "Interviewer explanations",
+      "finding": "Not attributed as candidate knowledge."
+    },
+    {
+      "id": "U08",
+      "scope": "Fragmentary/social speech",
+      "finding": "Not redistributed to candidate technical evidence."
+    }
+  ],
+  "runtime_regression_executed": false
+}

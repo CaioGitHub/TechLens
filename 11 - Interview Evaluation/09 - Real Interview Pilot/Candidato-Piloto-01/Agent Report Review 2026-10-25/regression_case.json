@@ -1,0 +1,29 @@
+{
+  "id": "REG-QUAL-UNCERT-0722",
+  "source_states": {
+    "P1@07:22": "unrecoverable",
+    "P1@06:58": "usable"
+  },
+  "claims": [
+    {
+      "id": "E07-before",
+      "scope": "candidate_knowledge",
+      "source_ids": [
+        "P1@07:22"
+      ],
+      "text": "Limitação declarada nesse recorte; não generalizar para toda a plataforma Azure."
+    }
+  ],
+  "evaluations": [
+    {
+      "id": "Q9",
+      "source_ids": [
+        "P1@07:22"
+      ],
+      "score": null
+    }
+  ],
+  "expected_before_pass": false,
+  "expected_after_pass": true,
+  "principle": "Unscored qualitative conclusions must obey the same source fidelity boundary as scores."
+}

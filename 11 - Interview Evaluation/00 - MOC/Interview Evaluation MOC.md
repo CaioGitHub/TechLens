@@ -2,7 +2,7 @@
 type: reference
 status: learning
 created: 2026-09-09
-updated: 2026-09-20
+updated: 2026-10-25
 tags:
   - moc
   - interview-evaluation
@@ -55,11 +55,11 @@ Esta camada é separada da base de conhecimento técnico. Ela utiliza a base té
 
 ## Registros de entrevistas
 
-Espaço reservado para futura conexão com as notas de `05 - Interview Records/`.
+- [[11 - Interview Evaluation/05 - Interview Records/Ingrid Mazoni - Fonte recebida 2026-10-25|Ingrid Mazoni — transcrição recebida em 2026-10-25]]
 
 ## Relatórios
 
-Espaço reservado para futura conexão com as notas de `06 - Reports/`.
+- [[11 - Interview Evaluation/06 - Reports/Relatório-Ingrid Mazoni|Relatório parcial — Ingrid Mazoni]]
 
 ## Ver também
 

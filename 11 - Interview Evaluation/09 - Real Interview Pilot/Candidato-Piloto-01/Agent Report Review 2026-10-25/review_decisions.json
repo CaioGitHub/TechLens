@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-25",
+  "review_type": "CONTROLLED_REPORT_REVISION_NOT_BLIND_VALIDATION",
+  "report_path": "11 - Interview Evaluation/06 - Reports/Relatório-Ingrid Mazoni.md",
+  "source_path": "11 - Interview Evaluation/05 - Interview Records/Ingrid Mazoni - Fonte recebida 2026-10-25.md",
+  "original_report_sha256": "1fc0039da040f18f57ce21573ddae42d947615bb782b0aa8b1645c5f5ee651b0",
+  "received_source_sha256_lf": "27d7349eb3a5eafc3dd43286bc4cc3f4ceb0f177d9a11ace3aec90bdd8b960f6",
+  "F01": {
+    "status": "USER_CONFIRMED",
+    "question_timestamp": "04:27",
+    "confirmed_wording": "produces e consumes em API REST",
+    "reply": "Sim, confirmei essa formulação",
+    "reviewer": "user_in_current_conversation",
+    "audio_checked": false,
+    "effect": "Keep REST question interpretation and the four existing scores; no new scoring judgment."
+  },
+  "U04": {
+    "status": "WHOLE_RESPONSE_UNRECOVERABLE",
+    "source_id": "P1@07:22",
+    "basis": "TRANSCRIPTION_PILOT_USER_REVIEW.md and user-approved correction strategy",
+    "effect": "Exclude from candidate knowledge, experience and performance judgments, including unscored conclusions.",
+    "replacement": null
+  },
+  "expected_scores": {
+    "AV-Q4": 0,
+    "AV-Q5": 4,
+    "AV-Q6.1": 8,
+    "AV-Q10": 4
+  },
+  "expected_scored_subset_mean": 4.0,
+  "full_interview_assessment_complete": false
+}

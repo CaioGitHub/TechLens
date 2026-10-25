@@ -125,3 +125,8 @@ Ver [[TRANSCRIPTION_GENERIC_INPUT]], `TRANSCRIPTION_GENERIC_INPUT_RESULTS.json` 
 ## Validação diagnóstica do roteiro — 2026-10-25
 
 Ver `11 - Interview Evaluation/09 - Synthetic Validation/Agent Workflow 2026-10-25/RESULTS.md`: três cenários fictícios analisados, entradas fixadas, revisão F01 registrada, 30 verificações estruturais e dois controles negativos. Autoavaliação não cega, sem comprovação independente de qualidade semântica. Runtime e gates históricos inalterados.
+
+
+## Revisão controlada de fidelidade do relatório real — 2026-10-25
+
+Ver `11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-01/Agent Report Review 2026-10-25/REVIEW.md`. O usuário reconfirmou F01; quatro avaliações e justificativas permaneceram intactas, com notas 0/4/8/4 e média descritiva 4,0. O uso qualitativo de 07:22 como E07 foi retirado; Q9/R9 permanece adiada e o relatório/MOC identificam análise parcial. Fonte preservada e versão inicial arquivada. Regra do guia ampliada: fonte irrecuperável não sustenta conclusão favorável nem desfavorável, mesmo sem nota. Oito testes de política e doze verificações da revisão aprovados. Auditor de dependências explícitas, com classificação manual; não valida automaticamente toda a semântica da prosa nem a calibração das notas. Sem alteração do runtime, da rubrica ou dos gates históricos.
