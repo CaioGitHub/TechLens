@@ -1,0 +1,31 @@
+{
+  "source_commit": "b5f4834ee966647b96c48ca6a6c4ffe844bf4bca",
+  "method_sources": [
+    "AGENTS.md",
+    "SECOND_BRAIN.md",
+    "GEMINI_GUARDRAILS.md",
+    "TRANSCRIPTION_AGENT_WORKFLOW.md",
+    "TRANSCRIPTION_CORRECTION_FIDELITY.md",
+    "TRANSCRIPTION_UNCERTAINTY.md",
+    "11 - Interview Evaluation/01 - Evaluation Framework/Interview Evaluation Model.md",
+    "11 - Interview Evaluation/01 - Evaluation Framework/Transcription Processing Model.md",
+    "11 - Interview Evaluation/01 - Evaluation Framework/Evaluation Engine.md",
+    "11 - Interview Evaluation/08 - Evidence Model/21 - Evidence Model.md",
+    "11 - Interview Evaluation/02 - Question Types/Question Taxonomy.md",
+    "11 - Interview Evaluation/04 - Rubrics/Scoring Rubric.md",
+    "03 - Architecture/Hexagonal Architecture/Hexagonal Architecture.md",
+    "03 - Architecture/Hexagonal Architecture/Ports.md",
+    "03 - Architecture/Hexagonal Architecture/Adapters.md",
+    "02 - Technologies/Spring Boot/Spring REST.md",
+    "02 - Technologies/Spring Boot/Spring Data.md",
+    "07 - Troubleshooting/End-to-End Troubleshooting Playbook.md",
+    "11 - Interview Evaluation/07 - Transcription Processing/20.1 - Participant Identification.md",
+    "11 - Interview Evaluation/07 - Transcription Processing/20.2 - Speaker Attribution.md",
+    "11 - Interview Evaluation/07 - Transcription Processing/20.3 - Question Extraction.md",
+    "11 - Interview Evaluation/07 - Transcription Processing/20.4 - Response Extraction.md",
+    "11 - Interview Evaluation/07 - Transcription Processing/20.5 - Reconstruction & Normalization.md",
+    "11 - Interview Evaluation/07 - Transcription Processing/20.6 - Question-Response Linking.md",
+    "11 - Interview Evaluation/07 - Transcription Processing/20.7 - Validation.md"
+  ],
+  "transcript_source": "11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-01/Pilot Input - Source Transcript v3.md"
+}

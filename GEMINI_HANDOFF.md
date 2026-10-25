@@ -1967,3 +1967,10 @@ Execução não cega e não independente: o mesmo agente criou casos, conheceu e
 ## Revisão controlada de fidelidade do relatório real — 2026-10-25
 
 Ver `11 - Interview Evaluation/09 - Real Interview Pilot/Candidato-Piloto-01/Agent Report Review 2026-10-25/REVIEW.md`. O usuário reconfirmou F01; quatro avaliações e justificativas permaneceram intactas, com notas 0/4/8/4 e média descritiva 4,0. O uso qualitativo de 07:22 como E07 foi retirado; Q9/R9 permanece adiada e o relatório/MOC identificam análise parcial. Fonte preservada e versão inicial arquivada. Regra do guia ampliada: fonte irrecuperável não sustenta conclusão favorável nem desfavorável, mesmo sem nota. Oito testes de política e doze verificações da revisão aprovados. Auditor de dependências explícitas, com classificação manual; não valida automaticamente toda a semântica da prosa nem a calibração das notas. Sem alteração do runtime, da rubrica ou dos gates históricos.
+
+
+## Pacote de reteste controlado pronto — 2026-10-25
+
+Ver `11 - Interview Evaluation/09 - Real Interview Pilot/Agent Retest 2026-10-25/README.md`. Foi preparado um snapshot executor sem relatórios anteriores, com 164 turnos, 25 fontes de método e condições de origem explicitamente fornecidas pelo usuário (F01, 03:49 e frase integral 07:22). Critérios de comparação ficam fora do ZIP executor. Integridade do arquivo, hashes, preservação da contagem e exclusão dos diretórios de relatórios foram conferidas. A origem Git está fixada em build_spec.json; resultado local em package_verification.json.
+
+Estado: `PACKAGE_READY_AWAITING_USER_AGENT_EXECUTION`. Não foi executado outro agente, não há resultado do reteste nem validação independente a declarar. Usar conversa nova e pasta separada, guardando a entrega antes da comparação. O pacote separa entradas, mas não impõe restrição técnica de acesso ao histórico/arquivos externos. Testa aplicação do método com limitações conhecidas, não detecção cega de texto irrecuperável. Runtime e gates históricos inalterados.

@@ -1,0 +1,17 @@
+{
+  "status": "READY_AWAITING_USER_AGENT_EXECUTION",
+  "folder": "C:\\Users\\caiop\\Documents\\ChatGPT\\TechLens\\validation_packages\\Reteste-Agente-2026-10-25",
+  "zip": "C:\\Users\\caiop\\Documents\\ChatGPT\\TechLens\\validation_packages\\Reteste-Agente-2026-10-25.zip",
+  "zip_sha256": "c339171355a2ffcfeb5cde8488eed06fe24300b2d77602ed53ec54eaacb6b432",
+  "method_source_count": 25,
+  "file_count": 32,
+  "transcript_turn_count": 164,
+  "package_checks": {
+    "prior_score_markers_absent": true,
+    "source_turn_count_preserved": true,
+    "archive_integrity": true,
+    "file_hashes_verified": true,
+    "prior_report_directories_absent": true
+  },
+  "execution_performed": false
+}
