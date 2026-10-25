@@ -74,3 +74,10 @@ Ver [[TRANSCRIPTION_GENERIC_INPUT]], `TRANSCRIPTION_GENERIC_INPUT_RESULTS.json` 
 Diretriz vigente em [[TRANSCRIPTION_AGENT_WORKFLOW]]: a transcrição é enviada como prompt ao agente já utilizado pelo usuário, e este projeto fornece método, critérios e conhecimento. A IA realiza a análise completa; a intervenção humana fica nas exceções justificadas, sem revisão obrigatória de todos os turnos. Não há necessidade de conectar modelos, APIs ou agentes dentro do projeto para esse uso. README, START_HERE e AGENTS apontam para o roteiro.
 
 O experimento não publicado de adaptadores/conectores foi preservado localmente e retirado da entrega. Código permanece no checkpoint publicado `fcfefc4`, com a entrada genérica e as proteções existentes. Os testes desse experimento não devem ser usados como resultado da entrega atual. Próxima validação: executar o roteiro com uma transcrição por um agente que tenha acesso às fontes e auditar a saída; outra entrevista distinta continua necessária para generalização. Gates históricos permanecem preservados.
+
+
+## Primeira validação diagnóstica do roteiro — 2026-10-25
+
+Resultados em `11 - Interview Evaluation/09 - Synthetic Validation/Agent Workflow 2026-10-25/RESULTS.md`. Três casos fictícios e 20 turnos analisados pelo agente usando a base como método; entradas e 15 expectativas fixadas antes dos relatórios. 30 verificações estruturais aprovadas e dois controles negativos detectados. Uma justificativa de Q1 foi revisada para evitar contaminação por outra pergunta, preservando a versão inicial. Não houve alteração do runtime, critérios ou fontes históricas.
+
+Execução não cega e não independente: o mesmo agente criou casos, conheceu expectativas, analisou e revisou as saídas. Não é prova de acurácia ou homologação semântica. O caso ambíguo ficou parcial e sua segunda pergunta é informativa, deixando pendente um controle adicional de nota técnica não afetada. Ainda faltam avaliação independente e entrevista distinta; gates históricos permanecem preservados. Não foram executados testes de regressão do runtime nesta rodada de documentação e artefatos.

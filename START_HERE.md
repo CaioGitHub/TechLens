@@ -120,3 +120,8 @@ Ver [[TRANSCRIPTION_IMPORT_GUARD]] e `TRANSCRIPTION_IMPORT_GUARD_RESULTS.json`. 
 ## Entrada genérica e responsabilidade da IA — 2026-10-25
 
 Ver [[TRANSCRIPTION_GENERIC_INPUT]], `TRANSCRIPTION_GENERIC_INPUT_RESULTS.json` e [[TRANSCRIPTION_AI_ANALYSIS_CONTRACT]]. Entrada por turnos e participantes configuráveis implementada, com preservação de texto/IDs/timestamps, distinção entre entrevistadores e ambiguidade explícita. Dez testes novos; 70 direcionados, 600 globais e 15 do harness aprovados. Diretriz: IA analisa a entrevista inteira e prepara propostas e exceções; humano revisa decisões que exigem comprovação de fonte, sem reanalisar todos os turnos. Integração com modelo, importadores de arquivos e UI ainda pendentes; próxima etapa é o adaptador de IA com validação de saída. Nenhuma promessa de percentual de automação ou homologação semântica. Gates históricos preservados.
+
+
+## Validação diagnóstica do roteiro — 2026-10-25
+
+Ver `11 - Interview Evaluation/09 - Synthetic Validation/Agent Workflow 2026-10-25/RESULTS.md`: três cenários fictícios analisados, entradas fixadas, revisão F01 registrada, 30 verificações estruturais e dois controles negativos. Autoavaliação não cega, sem comprovação independente de qualidade semântica. Runtime e gates históricos inalterados.

@@ -1,0 +1,50 @@
+{
+  "id": "SYN-AGENT-01",
+  "title": "Transcrição clara",
+  "conditions": "Participantes e papéis explícitos. Transcrição íntegra. Sem áudio ou experiência profissional adicional disponíveis.",
+  "synthetic": true,
+  "turns": [
+    {
+      "id": "SYN-AGENT-01-T01",
+      "timestamp": "00:01",
+      "speaker": "Entrevistadora A",
+      "role": "interviewer",
+      "text": "O que é injeção de dependência e que problema ela resolve?"
+    },
+    {
+      "id": "SYN-AGENT-01-T02",
+      "timestamp": "00:05",
+      "speaker": "Candidata Sintética Clara",
+      "role": "candidate",
+      "text": "A classe recebe as dependências de fora, por exemplo pelo construtor, em vez de criar as implementações dentro dela. Eu faria o serviço depender de uma interface e escolheria a implementação na composição. Isso separa a criação do uso e facilita substituir colaboradores em testes."
+    },
+    {
+      "id": "SYN-AGENT-01-T03",
+      "timestamp": "00:24",
+      "speaker": "Entrevistadora A",
+      "role": "interviewer",
+      "text": "Como você testaria esse serviço?"
+    },
+    {
+      "id": "SYN-AGENT-01-T04",
+      "timestamp": "00:28",
+      "speaker": "Candidata Sintética Clara",
+      "role": "candidate",
+      "text": "Não implementei isso em produção. Eu criaria o serviço com um repositório fake, executaria a operação e verificaria o resultado e as interações esperadas. Separadamente, faria um teste de integração do adaptador com o banco. Não sei qual estratégia seria melhor para limpar os dados desse teste."
+    },
+    {
+      "id": "SYN-AGENT-01-T05",
+      "timestamp": "00:53",
+      "speaker": "Entrevistador B",
+      "role": "interviewer",
+      "text": "Existe algum custo ou situação em que você evitaria criar uma interface?"
+    },
+    {
+      "id": "SYN-AGENT-01-T06",
+      "timestamp": "00:57",
+      "speaker": "Candidata Sintética Clara",
+      "role": "candidate",
+      "text": "Eu evitaria criar uma interface para cada objeto de valor simples só por padrão. Abstrações sem necessidade podem aumentar a navegação e a complexidade. Eu priorizaria fronteiras onde uma implementação pode variar ou onde exista colaboração externa a substituir no teste."
+    }
+  ]
+}

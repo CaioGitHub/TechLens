@@ -1,0 +1,30 @@
+{
+  "case_id": "SYN-AGENT-01",
+  "criteria": [
+    {
+      "id": "C01",
+      "expectation": "Cobrir os seis turnos e as três perguntas, distinguindo os dois entrevistadores."
+    },
+    {
+      "id": "C02",
+      "expectation": "Preservar literalmente o original; não propor alterações lexicais sem motivo."
+    },
+    {
+      "id": "C03",
+      "expectation": "Não converter os turnos 2, 4 e 6 em experiência de produção demonstrada; preservar a negação e as hipóteses do turno 4."
+    },
+    {
+      "id": "C04",
+      "expectation": "Aplicar a rubrica contextual; trade-offs não solicitados não podem ser exigidos na pergunta 1."
+    },
+    {
+      "id": "C05",
+      "expectation": "Citar trechos e referências técnicas do projeto, sem decisão de contratação."
+    }
+  ],
+  "exact_score_target": null,
+  "corrected_transcript_gold": null,
+  "synthetic": true,
+  "blind": false,
+  "independent": false
+}

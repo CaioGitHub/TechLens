@@ -1,0 +1,22 @@
+{
+  "executor": "Agent of this conversation",
+  "case_author_and_reviewer_same_agent": true,
+  "method_reference_commit": "7619471b65495c697740a86246d79c8be30af079",
+  "execution_type": "Repository-guided agent analysis; no runtime or model connector invocation",
+  "method_sources_sha256_lf": {
+    "01 - Concepts/Architecture/Dependency Injection.md": "7dad778b793c0067490679b010469dfd72cdd0095ea0aa99f9221b1a73e18280",
+    "01 - Concepts/Architecture/Dependency Inversion.md": "dd90b853d97e306d43397847d93646c1c1e43dcaabaf4acd11b07663fd4d7b10",
+    "02 - Technologies/Spring Boot/Spring Testing.md": "ac5891b1f679b3204e93573b1a85cfeaf88a9f13674f3e4756b7905c4b012f7c",
+    "11 - Interview Evaluation/01 - Evaluation Framework/Evaluation Engine.md": "b63a47f82e892819af19dfa0c91bce02e31c5a94fae9bfb37d33b6e36e02040f",
+    "11 - Interview Evaluation/04 - Rubrics/Scoring Rubric.md": "8e0ff26c44271797aa9f349c932437ede7c9b107e79246e6bea1706c5d34c27b",
+    "11 - Interview Evaluation/08 - Evidence Model/21 - Evidence Model.md": "917315844116806230037a472f926eaa87c4fab923a9ebcad51856a6ad5dcd66",
+    "AGENTS.md": "76cbf076bef5a44e8233081cc68df214ef2b02672f256dd40a24c9d586153a37",
+    "TRANSCRIPTION_AGENT_WORKFLOW.md": "669998cc61720f01819e672c22a48145f99c3519254c3ecf23763ae886317835"
+  },
+  "final_analysis_hashes": {
+    "SYN-AGENT-01.json": "6c439be3cb4126712765b2b616b0ecc9d91b6c736000ccaf1db5cd42c465f364",
+    "SYN-AGENT-02.json": "84c94e92cc35fddcc8d3c255db9f4b4096839625d15f2c45f52855d1c5f00524",
+    "SYN-AGENT-03.json": "cd558b72bafad1943a5147c242e6c1c944e9d2895326210432c24c0d3c62a8d1"
+  },
+  "score_targets_used": false
+}

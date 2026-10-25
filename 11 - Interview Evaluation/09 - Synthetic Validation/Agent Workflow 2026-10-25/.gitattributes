@@ -1,0 +1,4 @@
+# Pin worktree line endings to preserve frozen hashes across checkouts.
+*.json text eol=crlf
+*.md text eol=crlf
+*.py text eol=lf

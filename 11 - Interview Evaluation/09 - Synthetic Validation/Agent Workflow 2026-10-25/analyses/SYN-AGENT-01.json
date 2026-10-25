@@ -1,0 +1,257 @@
+{
+  "case_id": "SYN-AGENT-01",
+  "synthetic": true,
+  "execution": "Agent in current conversation; repository-guided analysis, not runtime execution.",
+  "independent": false,
+  "blind": false,
+  "status": "DIAGNOSTIC_ANALYSIS_COMPLETE",
+  "assessment_complete": true,
+  "original_transcript": [
+    {
+      "id": "SYN-AGENT-01-T01",
+      "timestamp": "00:01",
+      "speaker": "Entrevistadora A",
+      "role": "interviewer",
+      "text": "O que é injeção de dependência e que problema ela resolve?"
+    },
+    {
+      "id": "SYN-AGENT-01-T02",
+      "timestamp": "00:05",
+      "speaker": "Candidata Sintética Clara",
+      "role": "candidate",
+      "text": "A classe recebe as dependências de fora, por exemplo pelo construtor, em vez de criar as implementações dentro dela. Eu faria o serviço depender de uma interface e escolheria a implementação na composição. Isso separa a criação do uso e facilita substituir colaboradores em testes."
+    },
+    {
+      "id": "SYN-AGENT-01-T03",
+      "timestamp": "00:24",
+      "speaker": "Entrevistadora A",
+      "role": "interviewer",
+      "text": "Como você testaria esse serviço?"
+    },
+    {
+      "id": "SYN-AGENT-01-T04",
+      "timestamp": "00:28",
+      "speaker": "Candidata Sintética Clara",
+      "role": "candidate",
+      "text": "Não implementei isso em produção. Eu criaria o serviço com um repositório fake, executaria a operação e verificaria o resultado e as interações esperadas. Separadamente, faria um teste de integração do adaptador com o banco. Não sei qual estratégia seria melhor para limpar os dados desse teste."
+    },
+    {
+      "id": "SYN-AGENT-01-T05",
+      "timestamp": "00:53",
+      "speaker": "Entrevistador B",
+      "role": "interviewer",
+      "text": "Existe algum custo ou situação em que você evitaria criar uma interface?"
+    },
+    {
+      "id": "SYN-AGENT-01-T06",
+      "timestamp": "00:57",
+      "speaker": "Candidata Sintética Clara",
+      "role": "candidate",
+      "text": "Eu evitaria criar uma interface para cada objeto de valor simples só por padrão. Abstrações sem necessidade podem aumentar a navegação e a complexidade. Eu priorizaria fronteiras onde uma implementação pode variar ou onde exista colaboração externa a substituir no teste."
+    }
+  ],
+  "turn_disposition": [
+    {
+      "source_id": "SYN-AGENT-01-T01",
+      "classification": "technical_question",
+      "question_id": "Q1",
+      "used_as_candidate_evidence": false
+    },
+    {
+      "source_id": "SYN-AGENT-01-T02",
+      "classification": "hypothetical_conceptual_answer",
+      "question_id": "Q1",
+      "used_as_candidate_evidence": true
+    },
+    {
+      "source_id": "SYN-AGENT-01-T03",
+      "classification": "technical_question",
+      "question_id": "Q2",
+      "used_as_candidate_evidence": false
+    },
+    {
+      "source_id": "SYN-AGENT-01-T04",
+      "classification": "hypothetical_test_strategy",
+      "question_id": "Q2",
+      "used_as_candidate_evidence": true
+    },
+    {
+      "source_id": "SYN-AGENT-01-T05",
+      "classification": "technical_question",
+      "question_id": "Q3",
+      "used_as_candidate_evidence": false
+    },
+    {
+      "source_id": "SYN-AGENT-01-T06",
+      "classification": "hypothetical_tradeoff_answer",
+      "question_id": "Q3",
+      "used_as_candidate_evidence": true
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYN-AGENT-01-E01",
+      "source_id": "SYN-AGENT-01-T02",
+      "author": "Candidata Sintética Clara",
+      "quote": "A classe recebe as dependências de fora, por exemplo pelo construtor, em vez de criar as implementações dentro dela. Eu faria o serviço depender de uma interface e escolheria a implementação na composição. Isso separa a criação do uso e facilita substituir colaboradores em testes.",
+      "question_id": "Q1",
+      "interpretation": "Evidência produzida no recorte; não equivale a confirmação de atuação profissional."
+    },
+    {
+      "id": "SYN-AGENT-01-E02",
+      "source_id": "SYN-AGENT-01-T04",
+      "author": "Candidata Sintética Clara",
+      "quote": "Não implementei isso em produção. Eu criaria o serviço com um repositório fake, executaria a operação e verificaria o resultado e as interações esperadas. Separadamente, faria um teste de integração do adaptador com o banco. Não sei qual estratégia seria melhor para limpar os dados desse teste.",
+      "question_id": "Q2",
+      "interpretation": "Evidência produzida no recorte; não equivale a confirmação de atuação profissional."
+    },
+    {
+      "id": "SYN-AGENT-01-E03",
+      "source_id": "SYN-AGENT-01-T06",
+      "author": "Candidata Sintética Clara",
+      "quote": "Eu evitaria criar uma interface para cada objeto de valor simples só por padrão. Abstrações sem necessidade podem aumentar a navegação e a complexidade. Eu priorizaria fronteiras onde uma implementação pode variar ou onde exista colaboração externa a substituir no teste.",
+      "question_id": "Q3",
+      "interpretation": "Evidência produzida no recorte; não equivale a confirmação de atuação profissional."
+    }
+  ],
+  "evaluations": [
+    {
+      "id": "Q1",
+      "prompt_turns": [
+        "SYN-AGENT-01-T01"
+      ],
+      "response_turns": [
+        "SYN-AGENT-01-T02"
+      ],
+      "status": "EVALUATED",
+      "score": 8.0,
+      "rationale": "Explica recebimento externo de dependências, composição e substituição em testes; a interface é usada como opção de design e não confundida com a definição exclusiva de DI. Evidência conceitual forte para a pergunta. A fala é hipotética, sem implementação profissional demonstrada.",
+      "dimensions": {
+        "correctness": {
+          "applicable": true,
+          "assessment": "Correta"
+        },
+        "completeness": {
+          "applicable": true,
+          "assessment": "Boa cobertura do núcleo"
+        },
+        "depth": {
+          "applicable": true,
+          "assessment": "Explica composição e efeito no teste"
+        },
+        "reasoning": {
+          "applicable": true,
+          "assessment": "Coerente e causal"
+        },
+        "practical_application": {
+          "applicable": false,
+          "assessment": "N/A"
+        },
+        "trade_offs": {
+          "applicable": false,
+          "assessment": "N/A"
+        }
+      },
+      "confidence": "medium"
+    },
+    {
+      "id": "Q2",
+      "prompt_turns": [
+        "SYN-AGENT-01-T03"
+      ],
+      "response_turns": [
+        "SYN-AGENT-01-T04"
+      ],
+      "status": "EVALUATED",
+      "score": 8.0,
+      "rationale": "Distingue teste isolado com fake de integração com banco, propõe verificar resultado e interações e admite uma lacuna sobre limpeza de dados. Responde ao cenário hipotético; a negação de experiência em produção permanece explícita e não é penalizada como erro técnico.",
+      "dimensions": {
+        "correctness": {
+          "applicable": true,
+          "assessment": "Correta"
+        },
+        "completeness": {
+          "applicable": true,
+          "assessment": "Boa cobertura dos níveis solicitados"
+        },
+        "depth": {
+          "applicable": true,
+          "assessment": "Distingue isolamento e integração"
+        },
+        "reasoning": {
+          "applicable": true,
+          "assessment": "Estratégia coerente"
+        },
+        "practical_application": {
+          "applicable": true,
+          "assessment": "Proposta hipotética concreta"
+        },
+        "trade_offs": {
+          "applicable": false,
+          "assessment": "N/A"
+        }
+      },
+      "confidence": "medium"
+    },
+    {
+      "id": "Q3",
+      "prompt_turns": [
+        "SYN-AGENT-01-T05"
+      ],
+      "response_turns": [
+        "SYN-AGENT-01-T06"
+      ],
+      "status": "EVALUATED",
+      "score": 8.0,
+      "rationale": "Identifica custo de abstrações indiscriminadas e uma condição útil de uso: variação de implementação ou colaboração externa. Não exige estimativas de custo que a pergunta não solicitou.",
+      "dimensions": {
+        "correctness": {
+          "applicable": true,
+          "assessment": "Correta"
+        },
+        "completeness": {
+          "applicable": true,
+          "assessment": "Boa cobertura"
+        },
+        "depth": {
+          "applicable": true,
+          "assessment": "Relaciona limites e consequências"
+        },
+        "reasoning": {
+          "applicable": true,
+          "assessment": "Critério de decisão explícito"
+        },
+        "practical_application": {
+          "applicable": false,
+          "assessment": "N/A"
+        },
+        "trade_offs": {
+          "applicable": true,
+          "assessment": "Reconhece complexidade e variação"
+        }
+      },
+      "confidence": "medium"
+    }
+  ],
+  "transcript_proposals": [],
+  "pending_review": [],
+  "consulted_project_sources": [
+    "TRANSCRIPTION_AGENT_WORKFLOW.md",
+    "AGENTS.md",
+    "11 - Interview Evaluation/08 - Evidence Model/21 - Evidence Model.md",
+    "11 - Interview Evaluation/04 - Rubrics/Scoring Rubric.md",
+    "11 - Interview Evaluation/01 - Evaluation Framework/Evaluation Engine.md",
+    "01 - Concepts/Architecture/Dependency Injection.md",
+    "01 - Concepts/Architecture/Dependency Inversion.md",
+    "02 - Technologies/Spring Boot/Spring Testing.md"
+  ],
+  "summary": "O recorte sustenta boa compreensão de DI, teste isolado e trade-offs de abstração. Não comprova execução em produção. Não há exceções que exijam reanálise humana deste exercício.",
+  "findings": [
+    "Três perguntas técnicas, seis turnos preservados e duas identidades distintas de entrevistador.",
+    "Conhecimento conceitual e raciocínio hipotético demonstrados; experiência real de produção não demonstrada neste recorte.",
+    "N/A significa não aplicável e não zero. Pesos de referência orientam julgamento contextual, sem média mecânica de rótulos."
+  ],
+  "global_score": null,
+  "global_score_note": "Not computed in this diagnostic exercise; individual rubric judgments only.",
+  "methodology_limit": "Same agent authored cases, knew expectations and analyzed outputs. No independent quality measurement."
+}

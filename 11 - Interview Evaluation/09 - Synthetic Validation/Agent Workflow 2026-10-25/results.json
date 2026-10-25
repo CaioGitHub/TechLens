@@ -1,0 +1,186 @@
+{
+  "status": "DIAGNOSTIC_COMPLETED_LIMITED_EVIDENCE",
+  "synthetic": true,
+  "blind": false,
+  "independent": false,
+  "source_turn_count": 20,
+  "case_count": 3,
+  "structural_checks": {
+    "scope": "STRUCTURAL_CHECKS_ONLY",
+    "blind": false,
+    "independent": false,
+    "cases": [
+      {
+        "case_id": "SYN-AGENT-01",
+        "checks": {
+          "frozen_inputs_and_expectations": true,
+          "exact_original_preserved": true,
+          "every_turn_accounted_once": true,
+          "evidence_quotes_and_authors_match_source": true,
+          "question_and_response_references_exist": true,
+          "dimension_contract": true,
+          "uncertainty_not_scored_as_zero": true,
+          "cited_project_sources_exist": true,
+          "synthetic_nonblind_limit_visible": true,
+          "no_global_score_or_applied_lexical_changes": true
+        },
+        "all_structural_checks_passed": true
+      },
+      {
+        "case_id": "SYN-AGENT-02",
+        "checks": {
+          "frozen_inputs_and_expectations": true,
+          "exact_original_preserved": true,
+          "every_turn_accounted_once": true,
+          "evidence_quotes_and_authors_match_source": true,
+          "question_and_response_references_exist": true,
+          "dimension_contract": true,
+          "uncertainty_not_scored_as_zero": true,
+          "cited_project_sources_exist": true,
+          "synthetic_nonblind_limit_visible": true,
+          "no_global_score_or_applied_lexical_changes": true
+        },
+        "all_structural_checks_passed": true
+      },
+      {
+        "case_id": "SYN-AGENT-03",
+        "checks": {
+          "frozen_inputs_and_expectations": true,
+          "exact_original_preserved": true,
+          "every_turn_accounted_once": true,
+          "evidence_quotes_and_authors_match_source": true,
+          "question_and_response_references_exist": true,
+          "dimension_contract": true,
+          "uncertainty_not_scored_as_zero": true,
+          "cited_project_sources_exist": true,
+          "synthetic_nonblind_limit_visible": true,
+          "no_global_score_or_applied_lexical_changes": true
+        },
+        "all_structural_checks_passed": true
+      }
+    ],
+    "negative_controls": [
+      {
+        "name": "invented_quote_is_detected",
+        "detected": true
+      },
+      {
+        "name": "zero_for_transcription_loss_is_detected",
+        "detected": true
+      }
+    ],
+    "structural_check_count": 30,
+    "all_structural_checks_passed": true,
+    "all_negative_controls_detected": true
+  },
+  "manual_review": [
+    {
+      "case_id": "SYN-AGENT-01",
+      "method": "MANUAL_SELF_REVIEW_NOT_INDEPENDENT",
+      "criteria": [
+        {
+          "id": "C01",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "Seis turnos preservados e Q1/Q2/Q3 estruturadas; dois entrevistadores separados."
+        },
+        {
+          "id": "C02",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "Original mantido; nenhuma proposta lexical."
+        },
+        {
+          "id": "C03",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "As interpretações identificam hipóteses e negam comprovação de produção."
+        },
+        {
+          "id": "C04",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "Dimensões condicionais N/A em Q1; trade-offs são avaliados quando solicitados em Q3."
+        },
+        {
+          "id": "C05",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "Citações literais e fontes do projeto registradas, sem decisão de contratação."
+        }
+      ]
+    },
+    {
+      "case_id": "SYN-AGENT-02",
+      "method": "MANUAL_SELF_REVIEW_NOT_INDEPENDENT",
+      "criteria": [
+        {
+          "id": "C01",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "Seis turnos classificados, sem transformar encerramento ou voz desconhecida em pergunta/resposta da candidata."
+        },
+        {
+          "id": "C02",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "Original integral; Application Insights aparece só como hipótese não aplicada."
+        },
+        {
+          "id": "C03",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "Q1 adiada com score null e assessment_complete false; Q2 analisada como informativa."
+        },
+        {
+          "id": "C04",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "Java 17 e negação preservados; a declaração de estudo não virou evidência de domínio."
+        },
+        {
+          "id": "C05",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "Voz desconhecida excluída da evidência da candidata; nenhuma nova cobrança por fonte indisponível."
+        }
+      ]
+    },
+    {
+      "case_id": "SYN-AGENT-03",
+      "method": "MANUAL_SELF_REVIEW_NOT_INDEPENDENT",
+      "criteria": [
+        {
+          "id": "C01",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "Oito turnos e três unidades avaliadas; encerramento separado."
+        },
+        {
+          "id": "C02",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "As citações incorretas permanecem exatas; os erros estão na análise técnica."
+        },
+        {
+          "id": "C03",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "Turno 5 ligado a Q1, com uma única avaliação; a revisão F01 corrigiu o risco de contaminação da justificativa por Q2."
+        },
+        {
+          "id": "C04",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "Erro central do DIP identificado em Q2; não tratado como retirado automaticamente."
+        },
+        {
+          "id": "C05",
+          "status": "OBSERVED_AFTER_REVIEW",
+          "evidence": "Universalizações sobre banco real e invalidação de fakes identificadas como erros de Q3."
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "status": "CORRECTED_IN_DIAGNOSTIC_REPORT",
+      "issue": "Q1 rationale risked contamination by a different question.",
+      "revision": "Scope of Q1 rationale clarified; original preserved."
+    }
+  ],
+  "remaining_limits": [
+    "Case 2 second question is informational, so it does not test invariance of an unaffected technical score.",
+    "Same agent authored inputs and expectations, produced analyses, and reviewed them.",
+    "Three short synthetic cases do not measure real interview accuracy or human review effort.",
+    "No independent, blind, cross-agent or human review was executed."
+  ],
+  "runtime_regression_executed_in_this_exercise": false
+}

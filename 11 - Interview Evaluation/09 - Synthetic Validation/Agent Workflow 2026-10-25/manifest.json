@@ -1,0 +1,27 @@
+{
+  "status": "INPUTS_AND_EXPECTATIONS_FROZEN",
+  "synthetic": true,
+  "blind": false,
+  "independent": false,
+  "expectation_authorship": "Same agent preparing and analyzing the exercise; diagnostic only.",
+  "cases": [
+    {
+      "case_id": "SYN-AGENT-01",
+      "turn_count": 6,
+      "input_sha256": "15f442d455b7b7e4baa75a86d7ee002f12de5c4deeccd0e6e6c9e6c98a826fbb",
+      "expectations_sha256": "99f4ecde7db75d6732d17979719efd8abf778215c0b2c99c4358f1d734e187b4"
+    },
+    {
+      "case_id": "SYN-AGENT-02",
+      "turn_count": 6,
+      "input_sha256": "17542a9ca77e759866d9b7b1203ed97e38a7e21b42a55069a9a2c357a87350f0",
+      "expectations_sha256": "7b927e92d11ac54ffb9f8e7c04e852644f7cca021712ae54e1e700168e5c83dd"
+    },
+    {
+      "case_id": "SYN-AGENT-03",
+      "turn_count": 8,
+      "input_sha256": "07b0cee24b0ed3e43c2c5aca9404fc4d920a48fa1f91e7b609a35b011bc67fde",
+      "expectations_sha256": "b491ecb1e48856808b1e13f389d888f285475a3a2b5d263e0a1ce8a4add37cda"
+    }
+  ]
+}

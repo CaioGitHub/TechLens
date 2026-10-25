@@ -1,0 +1,30 @@
+{
+  "case_id": "SYN-AGENT-03",
+  "criteria": [
+    {
+      "id": "C01",
+      "expectation": "Cobrir os oito turnos e três perguntas; não transformar o encerramento em pergunta técnica."
+    },
+    {
+      "id": "C02",
+      "expectation": "Preservar literalmente as afirmações tecnicamente incorretas e avaliar seu conteúdo fora da normalização."
+    },
+    {
+      "id": "C03",
+      "expectation": "Vincular a autocorreção do turno 5 apenas à primeira resposta, sem nova pergunta ou pontuação duplicada."
+    },
+    {
+      "id": "C04",
+      "expectation": "Identificar a inversão incorreta do sentido do DIP no turno 4; não presumir que a autocorreção tenha retirado essa afirmação."
+    },
+    {
+      "id": "C05",
+      "expectation": "Identificar como incorreta a obrigatoriedade universal de banco real e a invalidação universal de fakes/mocks no turno 7."
+    }
+  ],
+  "exact_score_target": null,
+  "corrected_transcript_gold": null,
+  "synthetic": true,
+  "blind": false,
+  "independent": false
+}

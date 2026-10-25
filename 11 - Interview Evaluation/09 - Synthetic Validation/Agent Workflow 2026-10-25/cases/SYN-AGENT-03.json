@@ -1,0 +1,64 @@
+{
+  "id": "SYN-AGENT-03",
+  "title": "Erros técnicos preservados e autocorreção delimitada",
+  "conditions": "Transcrição íntegra. Não há indício de falha de reconhecimento. A correção do quinto turno é espontânea e se refere explicitamente apenas à primeira resposta.",
+  "synthetic": true,
+  "turns": [
+    {
+      "id": "SYN-AGENT-03-T01",
+      "timestamp": "00:01",
+      "speaker": "Entrevistadora A",
+      "role": "interviewer",
+      "text": "Receber uma dependência pelo construtor garante baixo acoplamento?"
+    },
+    {
+      "id": "SYN-AGENT-03-T02",
+      "timestamp": "00:05",
+      "speaker": "Candidato Sintético Técnico",
+      "role": "candidate",
+      "text": "Sim, só usar o construtor já elimina todo acoplamento, mesmo quando a classe depende diretamente de uma implementação concreta."
+    },
+    {
+      "id": "SYN-AGENT-03-T03",
+      "timestamp": "00:17",
+      "speaker": "Entrevistadora A",
+      "role": "interviewer",
+      "text": "No princípio da inversão de dependência, como a regra de negócio deve se relacionar com o repositório?"
+    },
+    {
+      "id": "SYN-AGENT-03-T04",
+      "timestamp": "00:23",
+      "speaker": "Candidato Sintético Técnico",
+      "role": "candidate",
+      "text": "A regra de negócio deve importar diretamente o repositório concreto. Quando mudar o banco, mudar a regra de negócio é justamente o objetivo da inversão de dependência."
+    },
+    {
+      "id": "SYN-AGENT-03-T05",
+      "timestamp": "00:39",
+      "speaker": "Candidato Sintético Técnico",
+      "role": "candidate",
+      "text": "Antes de continuar, quero corrigir minha primeira resposta: o construtor sozinho não garante baixo acoplamento. O tipo do qual a classe depende importa; depender de abstrações pode permitir trocar a implementação sem mudar a regra. Minha afirmação de que o construtor elimina todo acoplamento estava errada."
+    },
+    {
+      "id": "SYN-AGENT-03-T06",
+      "timestamp": "01:02",
+      "speaker": "Entrevistadora A",
+      "role": "interviewer",
+      "text": "Para testar isoladamente esse serviço, é obrigatório acessar um banco real?"
+    },
+    {
+      "id": "SYN-AGENT-03-T07",
+      "timestamp": "01:08",
+      "speaker": "Candidato Sintético Técnico",
+      "role": "candidate",
+      "text": "Sim, todo teste do serviço precisa acessar um banco real. Usar fake ou mock sempre invalida qualquer teste."
+    },
+    {
+      "id": "SYN-AGENT-03-T08",
+      "timestamp": "01:20",
+      "speaker": "Entrevistadora A",
+      "role": "interviewer",
+      "text": "Obrigado, concluímos as perguntas."
+    }
+  ]
+}

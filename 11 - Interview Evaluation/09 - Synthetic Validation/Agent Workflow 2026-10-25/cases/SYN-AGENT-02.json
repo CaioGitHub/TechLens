@@ -1,0 +1,50 @@
+{
+  "id": "SYN-AGENT-02",
+  "title": "Reconhecimento incompleto e autoria ambígua",
+  "conditions": "Há indícios de erro de reconhecimento no segundo turno. Não há áudio, texto correto recuperável ou confirmação da palavra pronunciada. Uma voz não foi identificada; não é permitido atribuí-la à candidata.",
+  "synthetic": true,
+  "turns": [
+    {
+      "id": "SYN-AGENT-02-T01",
+      "timestamp": "00:01",
+      "speaker": "Entrevistadora A",
+      "role": "interviewer",
+      "text": "Você já usou Application Insights em produção?"
+    },
+    {
+      "id": "SYN-AGENT-02-T02",
+      "timestamp": "00:05",
+      "speaker": "Candidata Sintética Ambígua",
+      "role": "candidate",
+      "text": "Eu não usei o Application insite em produção. Talvez eu olhasse [trecho não recuperado]."
+    },
+    {
+      "id": "SYN-AGENT-02-T03",
+      "timestamp": "00:20",
+      "speaker": "Entrevistadora A",
+      "role": "interviewer",
+      "text": "Que versão do Java você está estudando?"
+    },
+    {
+      "id": "SYN-AGENT-02-T04",
+      "timestamp": "00:24",
+      "speaker": "Candidata Sintética Ambígua",
+      "role": "candidate",
+      "text": "Estou estudando Java 17. Não trabalhei com essa versão em produção."
+    },
+    {
+      "id": "SYN-AGENT-02-T05",
+      "timestamp": "00:31",
+      "speaker": "Voz não identificada",
+      "role": "unknown",
+      "text": "No cliente anterior, isso foi feito por outra equipe."
+    },
+    {
+      "id": "SYN-AGENT-02-T06",
+      "timestamp": "00:38",
+      "speaker": "Entrevistadora A",
+      "role": "interviewer",
+      "text": "Obrigado, vamos encerrar por aqui."
+    }
+  ]
+}

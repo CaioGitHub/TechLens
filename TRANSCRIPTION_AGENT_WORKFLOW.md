@@ -67,3 +67,10 @@ O usuário indica que deseja analisar a entrevista segundo este projeto e fornec
 ## Estado e limites
 
 Este guia define o modo de uso e o contrato da entrega; não demonstra que qualquer agente ou modelo já tenha sido validado nele. As proteções implementadas no runtime não se transferem automaticamente para agentes externos: o seguimento das regras precisa ser verificado pelas evidências da saída. Validar o roteiro com uma análise de ponta a ponta e uma entrevista distinta continua pendente. Não apresentar esse processo como homologação semântica geral.
+
+
+## Primeira validação diagnóstica do roteiro — 2026-10-25
+
+Resultados em `11 - Interview Evaluation/09 - Synthetic Validation/Agent Workflow 2026-10-25/RESULTS.md`. Três casos fictícios e 20 turnos analisados pelo agente usando a base como método; entradas e 15 expectativas fixadas antes dos relatórios. 30 verificações estruturais aprovadas e dois controles negativos detectados. Uma justificativa de Q1 foi revisada para evitar contaminação por outra pergunta, preservando a versão inicial. Não houve alteração do runtime, critérios ou fontes históricas.
+
+Execução não cega e não independente: o mesmo agente criou casos, conheceu expectativas, analisou e revisou as saídas. Não é prova de acurácia ou homologação semântica. O caso ambíguo ficou parcial e sua segunda pergunta é informativa, deixando pendente um controle adicional de nota técnica não afetada. Ainda faltam avaliação independente e entrevista distinta; gates históricos permanecem preservados. Não foram executados testes de regressão do runtime nesta rodada de documentação e artefatos.

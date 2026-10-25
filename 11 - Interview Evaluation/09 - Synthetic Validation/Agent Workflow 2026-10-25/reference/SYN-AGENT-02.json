@@ -1,0 +1,30 @@
+{
+  "case_id": "SYN-AGENT-02",
+  "criteria": [
+    {
+      "id": "C01",
+      "expectation": "Cobrir os seis turnos; duas perguntas e duas respostas identificadas, uma intervenção sem autoria e um encerramento."
+    },
+    {
+      "id": "C02",
+      "expectation": "Manter Application insite, não usei, Talvez e o trecho não recuperado no original; não fabricar texto correto."
+    },
+    {
+      "id": "C03",
+      "expectation": "Adiar a primeira pergunta sem nota zero e continuar a segunda; não criar média global completa."
+    },
+    {
+      "id": "C04",
+      "expectation": "Preservar Java 17 e a negação de experiência; a afirmação informativa não comprova domínio da versão."
+    },
+    {
+      "id": "C05",
+      "expectation": "Não atribuir a voz desconhecida à candidata nem usar seu conteúdo como evidência dela; não insistir em fonte declarada indisponível."
+    }
+  ],
+  "exact_score_target": null,
+  "corrected_transcript_gold": null,
+  "synthetic": true,
+  "blind": false,
+  "independent": false
+}

@@ -1,0 +1,68 @@
+{
+  "scope": "STRUCTURAL_CHECKS_ONLY",
+  "blind": false,
+  "independent": false,
+  "cases": [
+    {
+      "case_id": "SYN-AGENT-01",
+      "checks": {
+        "frozen_inputs_and_expectations": true,
+        "exact_original_preserved": true,
+        "every_turn_accounted_once": true,
+        "evidence_quotes_and_authors_match_source": true,
+        "question_and_response_references_exist": true,
+        "dimension_contract": true,
+        "uncertainty_not_scored_as_zero": true,
+        "cited_project_sources_exist": true,
+        "synthetic_nonblind_limit_visible": true,
+        "no_global_score_or_applied_lexical_changes": true
+      },
+      "all_structural_checks_passed": true
+    },
+    {
+      "case_id": "SYN-AGENT-02",
+      "checks": {
+        "frozen_inputs_and_expectations": true,
+        "exact_original_preserved": true,
+        "every_turn_accounted_once": true,
+        "evidence_quotes_and_authors_match_source": true,
+        "question_and_response_references_exist": true,
+        "dimension_contract": true,
+        "uncertainty_not_scored_as_zero": true,
+        "cited_project_sources_exist": true,
+        "synthetic_nonblind_limit_visible": true,
+        "no_global_score_or_applied_lexical_changes": true
+      },
+      "all_structural_checks_passed": true
+    },
+    {
+      "case_id": "SYN-AGENT-03",
+      "checks": {
+        "frozen_inputs_and_expectations": true,
+        "exact_original_preserved": true,
+        "every_turn_accounted_once": true,
+        "evidence_quotes_and_authors_match_source": true,
+        "question_and_response_references_exist": true,
+        "dimension_contract": true,
+        "uncertainty_not_scored_as_zero": true,
+        "cited_project_sources_exist": true,
+        "synthetic_nonblind_limit_visible": true,
+        "no_global_score_or_applied_lexical_changes": true
+      },
+      "all_structural_checks_passed": true
+    }
+  ],
+  "negative_controls": [
+    {
+      "name": "invented_quote_is_detected",
+      "detected": true
+    },
+    {
+      "name": "zero_for_transcription_loss_is_detected",
+      "detected": true
+    }
+  ],
+  "structural_check_count": 30,
+  "all_structural_checks_passed": true,
+  "all_negative_controls_detected": true
+}
