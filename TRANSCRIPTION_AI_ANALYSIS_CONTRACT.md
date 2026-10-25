@@ -1,5 +1,10 @@
 # Contrato de análise da transcrição com IA
 
+## Esclarecimento de uso — 2026-10-25
+
+O usuário envia a transcrição como prompt ao agente que já utiliza. Este repositório é a fonte do método e da análise; não é uma aplicação que hospeda ou conecta modelos. `TRANSCRIPTION_AGENT_WORKFLOW.md` é a orientação vigente. As responsabilidades de análise e fidelidade abaixo continuam válidas, mas as referências anteriores a integrar provedor, adaptador ou modelo no projeto deixam de definir o próximo incremento.
+
+
 Data: 2026-10-25. Diretriz do usuário: a IA deve fazer a maior parte da análise. Este documento define o comportamento-alvo; a conexão a um modelo ainda não está implementada.
 
 ## Divisão de trabalho

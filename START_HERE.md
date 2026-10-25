@@ -1,5 +1,10 @@
 # START HERE
 
+## Para analisar uma entrevista recebida como prompt
+
+Começar por `TRANSCRIPTION_AGENT_WORKFLOW.md`. O agente escolhido pelo usuário consulta este projeto como método e referência; o projeto não precisa chamar ou hospedar modelos. O agente deve fazer a maior parte da análise e devolver relatório e exceções justificadas. Para desenvolvimento do projeto, seguir também a continuidade abaixo.
+
+
 Este projeto possui histórico e metodologia já estabelecidos.
 
 ## Antes de fazer qualquer alteração

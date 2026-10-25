@@ -7,6 +7,11 @@ tags:
 ---
 # Second Brain Técnico
 
+## Análise de entrevistas com seu agente
+
+Envie a transcrição ao agente que você já utiliza e disponibilize o método deste projeto. O ponto de entrada é [Como analisar uma transcrição](TRANSCRIPTION_AGENT_WORKFLOW.md). O agente realiza a análise e prepara o relatório; o usuário revisa as exceções que exigem confirmação de fonte. Não é necessário conectar uma API de modelo a este repositório.
+
+
 ## Propósito
 
 Este repositório é um Second Brain técnico construído para organizar, conectar e reutilizar conhecimento sobre:

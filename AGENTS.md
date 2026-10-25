@@ -15,6 +15,11 @@ tags:
 
 # AGENTS.md — Instruções para Agentes de IA
 
+## Quando o usuário enviar uma transcrição para análise
+
+Consultar `TRANSCRIPTION_AGENT_WORKFLOW.md`. A transcrição entra como prompt no agente do usuário; este projeto fornece o método e a base de conhecimento. O agente executa a análise completa e concentra revisão humana nas exceções. Não exigir conexão de modelo, API ou exportação JSON para esse uso. Preservar a fonte, justificar propostas, manter incertezas sem inventar correções e seguir as regras de evidência, rubrica e persistência deste arquivo. As regras de desenvolvimento e os gates históricos continuam aplicáveis aos seus respectivos escopos.
+
+
 Este arquivo define como agentes de IA devem agir como "Knowledge Manager" e agentes de desenvolvimento deste Second Brain.
 
 As regras e princípios fundamentais estão em:

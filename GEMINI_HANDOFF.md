@@ -1948,3 +1948,10 @@ Ver [[TRANSCRIPTION_IMPORT_GUARD]] e `TRANSCRIPTION_IMPORT_GUARD_RESULTS.json`. 
 ## Entrada genérica e responsabilidade da IA — 2026-10-25
 
 Ver [[TRANSCRIPTION_GENERIC_INPUT]], `TRANSCRIPTION_GENERIC_INPUT_RESULTS.json` e [[TRANSCRIPTION_AI_ANALYSIS_CONTRACT]]. Entrada por turnos e participantes configuráveis implementada, com preservação de texto/IDs/timestamps, distinção entre entrevistadores e ambiguidade explícita. Dez testes novos; 70 direcionados, 600 globais e 15 do harness aprovados. Diretriz: IA analisa a entrevista inteira e prepara propostas e exceções; humano revisa decisões que exigem comprovação de fonte, sem reanalisar todos os turnos. Integração com modelo, importadores de arquivos e UI ainda pendentes; próxima etapa é o adaptador de IA com validação de saída. Nenhuma promessa de percentual de automação ou homologação semântica. Gates históricos preservados.
+
+
+## Fluxo esclarecido: agente do usuário consulta o projeto — 2026-10-25
+
+Diretriz vigente em [[TRANSCRIPTION_AGENT_WORKFLOW]]: a transcrição é enviada como prompt ao agente já utilizado pelo usuário, e este projeto fornece método, critérios e conhecimento. A IA realiza a análise completa; a intervenção humana fica nas exceções justificadas, sem revisão obrigatória de todos os turnos. Não há necessidade de conectar modelos, APIs ou agentes dentro do projeto para esse uso. README, START_HERE e AGENTS apontam para o roteiro.
+
+O experimento não publicado de adaptadores/conectores foi preservado localmente e retirado da entrega. Código permanece no checkpoint publicado `fcfefc4`, com a entrada genérica e as proteções existentes. Os testes desse experimento não devem ser usados como resultado da entrega atual. Próxima validação: executar o roteiro com uma transcrição por um agente que tenha acesso às fontes e auditar a saída; outra entrevista distinta continua necessária para generalização. Gates históricos permanecem preservados.
