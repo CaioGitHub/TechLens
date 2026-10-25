@@ -65,6 +65,8 @@ def _scalar(text: str, key: str) -> str | None:
 
 
 def load_individual_evaluations(path: str | Path) -> list[dict[str, Any]]:
+    from .transcription_import import inspect_transcription_import
+    inspect_transcription_import(evaluations=path)
     text = Path(path).read_text(encoding="utf-8")
     blocks = re.split(r"(?=^## EV-Q\d+ — Q\d+$)", text, flags=re.MULTILINE)
     evaluations: list[dict[str, Any]] = []
@@ -147,6 +149,8 @@ def load_individual_evaluations(path: str | Path) -> list[dict[str, Any]]:
 
 
 def load_evidence_set(path: str | Path) -> list[dict[str, Any]]:
+    from .transcription_import import inspect_transcription_import
+    inspect_transcription_import(evidence=path)
     text = Path(path).read_text(encoding="utf-8")
     items: list[dict[str, Any]] = []
     blocks = re.split(r"(?=^\s+- evidence_id: E-\d+$)", text, flags=re.MULTILINE)
@@ -171,8 +175,13 @@ def load_evidence_set(path: str | Path) -> list[dict[str, Any]]:
 
 
 def load_pilot_input(
-    evaluations_path: str | Path, evidence_path: str | Path
+    evaluations_path: str | Path, evidence_path: str | Path,
+    *, structured_interview: str | Path | None = None,
+    transcription_review: str | Path | None = None,
 ) -> EvaluationInput:
+    from .transcription_import import inspect_transcription_import
+    inspect_transcription_import(evaluations_path, evidence_path,
+        structured_interview=structured_interview, transcription_review=transcription_review)
     return EvaluationInput(
         load_individual_evaluations(evaluations_path),
         load_evidence_set(evidence_path),

@@ -105,3 +105,8 @@ Ver [[TRANSCRIPTION_UNCERTAINTY]] e `TRANSCRIPTION_UNCERTAINTY_RESULTS.json`. Ma
 ## Incerteza de transcrição — checkpoint de implementação
 
 Ver [[TRANSCRIPTION_UNCERTAINTY]] e `TRANSCRIPTION_UNCERTAINTY_RESULTS.json`. Marcações ligadas à fonte propagadas até evidências, relatório e quatro exportações. Perguntas afetadas adiadas sem nota; texto original preservado; coordenação impede avanço como avaliação integral. 15 novos testes; 38 direcionados, 568 globais e 15 do harness aprovados. Na entrevista real, uma pergunta identificada e uma resposta sem vínculo confiável ficam adiadas, sem contaminar outras respostas com marcador `unknown`. Limite: nova entrada do runtime, sem proteção retroativa do importador de arquivos históricos. UI e generalização com outra entrevista continuam pendentes; bloqueios semânticos históricos preservados.
+
+
+## Proteção do importador histórico — 2026-10-25
+
+Ver [[TRANSCRIPTION_IMPORT_GUARD]] e `TRANSCRIPTION_IMPORT_GUARD_RESULTS.json`. Importação, carregadores individuais e geração direta verificam incerteza declarada; coordenação bloqueia antes de consolidar ou gravar. Revisão auxiliar opcional vinculada por hashes, conflitos e metadados inválidos bloqueados, reutilização antiga revalidada. 22 novos testes; 80 direcionados, 590 globais e 15 do harness aprovados. Ausência de marcação não prova fidelidade; revisão externa deve ser fornecida explicitamente. Entrada genérica e UI de revisão seguem pendentes. Bloqueios semânticos históricos preservados; este adendo é o estado atual e sucede os limites do checkpoint anterior quanto ao importador.

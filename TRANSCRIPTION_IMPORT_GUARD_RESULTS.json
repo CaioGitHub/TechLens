@@ -1,0 +1,41 @@
+{
+  "runtime_hash_before": "0B87BB827F8D65315F2C5E17CB56885647200BBB6A149EE64FA5A273C8729210",
+  "runtime_hash_after": "0B87BB827F8D65315F2C5E17CB56885647200BBB6A149EE64FA5A273C8729210",
+  "runtime_unchanged_during_tests": true,
+  "suites": [
+    {
+      "suite": "canonical",
+      "tests_run": 590,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "seconds": 40.904,
+      "output": "..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 590 tests in 40.904s\n\nOK\n"
+    },
+    {
+      "suite": "harness",
+      "tests_run": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "seconds": 24.792,
+      "output": "...............\n----------------------------------------------------------------------\nRan 15 tests in 24.791s\n\nOK\n"
+    }
+  ],
+  "historical_baseline": "TRANSCRIPTION_BASELINE_TEST_RESULTS.json",
+  "correction_module_hash_before": "070DCFFAD2427C3E7A03E7153EE2163AEB7A58D12127F7DF6A7CDD2DF5FFB9A3",
+  "correction_module_hash_after": "070DCFFAD2427C3E7A03E7153EE2163AEB7A58D12127F7DF6A7CDD2DF5FFB9A3",
+  "date": "2026-10-25",
+  "targeted_tests_passed": 80,
+  "new_test_methods": 22,
+  "implementation_files_sha256": {
+    "reference_runtime/transcription_import.py": "fa9db62e764438c5b7daa8707a4bf6e330672d2bb5f0b9d774c32b5e8f5b83e5",
+    "reference_runtime/evaluation_engine.py": "21800eb6ed48501b8640a4ac42d85916e68bc2c4c349c51e3a8ea6fa6605f518",
+    "reference_runtime/interview_pipeline.py": "22df2d1ec7bcfe03f550c04c7a8091f97c491fc60a35c15ebb95509a58d4676d",
+    "reference_runtime/materialization.py": "b9bad394bc087d68dfea268df2d06351db3aa0156e69d3d2b277847953dad758",
+    "tests/test_transcription_import_guard.py": "7f836a6e630648c0e92ac791308c4c324e9d36fc69edc8a5a06720f8f50511f0"
+  },
+  "scope": "Declared transcription metadata and explicitly supplied review sidecar; no automatic fidelity verification."
+}

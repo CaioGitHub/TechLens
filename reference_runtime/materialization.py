@@ -316,8 +316,11 @@ def materialize_interview_evaluation_v2(
     interview_date: str = "2026-09-14",
     structured_interview_source: str = "Structured Interview - Controlled Correction v6.md",
     audit_source: str = "Stage 23.1 — Global Evaluation Semantic Audit.md",
+    structured_interview_path: str | Path | None = None,
+    transcription_review: str | Path | None = None,
 ) -> dict[str, Any]:
-    input_data: EvaluationInput = load_pilot_input(evaluations_path, evidence_path)
+    input_data: EvaluationInput = load_pilot_input(evaluations_path, evidence_path,
+        structured_interview=structured_interview_path, transcription_review=transcription_review)
     runtime = run_evaluation_engine(input_data)["interview_evaluation"]
     audit = audit_global_output(input_data, runtime)
     content = render_interview_evaluation_v2(

@@ -29,6 +29,7 @@ class PilotPaths:
     materialized_output: Path
     structured_interview: Path | None = None
     audit: Path | None = None
+    transcription_review: Path | None = None
 
 
 def _stage(stage: str, status: str, gate: str, *, warnings=None, errors=None, artifact=None) -> dict[str, Any]:
@@ -152,7 +153,9 @@ def _run_canonical(
         if override and override.get("status") in {BLOCKED, FAILED}:
             _append(result, _stage("23", override["status"], override.get("gate", "BLOCKED"), warnings=override.get("warnings"), errors=override.get("errors")))
             return _stop(result, "23", override["status"], "23 blocked the pipeline")
-        input_data = load_pilot_input(paths.evaluations, paths.evidence)
+        input_data = load_pilot_input(paths.evaluations, paths.evidence,
+            structured_interview=paths.structured_interview,
+            transcription_review=paths.transcription_review)
         runtime = run_evaluation_engine(input_data)["interview_evaluation"]
     except Exception as error:
         return _stop(result, "23", FAILED, str(error))
@@ -194,6 +197,8 @@ def _run_canonical(
         paths.evaluations,
         paths.evidence,
         paths.materialized_output,
+        structured_interview_path=paths.structured_interview,
+        transcription_review=paths.transcription_review,
     )
     result["artifacts"]["interview_evaluation_v2"] = str(paths.materialized_output)
     _append(result, _stage(
@@ -280,6 +285,20 @@ def run_interview_pipeline(
     if stale:
         result["stale_artifacts"] = stale
         return _stop(result, "stale-detection", BLOCKED, f"stale downstream artifacts: {', '.join(stale)}")
+    if isinstance(source, PilotPaths):
+        from .transcription_import import inspect_transcription_import, TranscriptionImportBlocked
+        try:
+            import_review = inspect_transcription_import(source.evaluations, source.evidence,
+                structured_interview=source.structured_interview,
+                transcription_review=source.transcription_review)
+        except TranscriptionImportBlocked as error:
+            result["artifacts"]["transcription_import_review"] = error.review
+            _append(result, _stage("20.7", BLOCKED, "TRANSCRIPTION_IMPORT_BLOCKED",
+                errors=error.review["blockers"]))
+            return _stop(result, "20.7", BLOCKED, str(error))
+        result["artifacts"]["transcription_import_review"] = import_review
+        if previous_result and previous_result.get("artifacts", {}).get("transcription_import_review", {}).get("input_fingerprint") != import_review["input_fingerprint"]:
+            previous_result = None
     uncertainty_present = (
         isinstance(source, dict) and bool(source.get("transcription_uncertainties"))
     ) or bool((previous_result or {}).get("artifacts", {}).get("transcription_uncertainties"))
