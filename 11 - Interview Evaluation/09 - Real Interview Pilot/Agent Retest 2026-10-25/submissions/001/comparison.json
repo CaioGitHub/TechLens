@@ -1,0 +1,81 @@
+{
+  "status": "PRIMARY_SOURCE_GUARD_OBSERVED_SCORING_SCOPE_REVIEW_REQUIRED",
+  "original_submission_edited": false,
+  "original_report_or_rubric_edited": false,
+  "comparison_is_score_target": false,
+  "independent_validation": false,
+  "criteria": [
+    {
+      "id": "C01",
+      "status": "OBSERVED_WITH_VERIFICATION_LIMIT",
+      "evidence": "Hash da fonte coincide; 24 referências explícitas resolvem e 14 citações diretamente associadas coincidem. Cobertura declarada de 164 turnos não comprova por si só leitura efetiva de cada turno."
+    },
+    {
+      "id": "C02",
+      "status": "OBSERVED",
+      "evidence": "Q04/C01/AV01 usam a formulação REST fornecida, preservam o original e distinguem o objeto da pergunta do que foi ouvido."
+    },
+    {
+      "id": "C03",
+      "status": "OBSERVED",
+      "evidence": "03:49 permanece irrecuperável, Q02 adiada; o eco do entrevistador e a versão declarada não recuperam o termo."
+    },
+    {
+      "id": "C04",
+      "status": "OBSERVED",
+      "evidence": "07:22 foi excluída integralmente, com score null e sem inferência positiva ou negativa de conhecimento, experiência ou desempenho."
+    },
+    {
+      "id": "C05",
+      "status": "OBSERVED",
+      "evidence": "Os três adiamentos têm null; o zero REST é justificado por ausência de resposta ao objeto confirmado, não pela fonte irrecuperável."
+    },
+    {
+      "id": "C06",
+      "status": "OBSERVED",
+      "evidence": "Outras partes foram analisadas; não se repete pedido de fonte irrecuperável nem se exige revisão de todos os turnos."
+    },
+    {
+      "id": "C07",
+      "status": "OBSERVED",
+      "evidence": "Papéis, falas de entrevistadores, hipótese e experiência declarada separados; a nova E07 refere-se a 06:58, não à antiga E07 de 07:22."
+    },
+    {
+      "id": "C08",
+      "status": "NEEDS_SCORING_SCOPE_REVIEW",
+      "evidence": "AV04 atribui 2 por falta de demonstração numa pergunta fechada de inventário. A própria entrega reconhece que não foi pedido exemplo. Revisar aplicação da seção 8.1 à luz da seção 3 e da não extrapolação da taxonomia; não exigir igualdade com notas anteriores."
+    },
+    {
+      "id": "C09",
+      "status": "OBSERVED",
+      "evidence": "assessment_complete false, adiamentos separados e média 3,6 restrita às cinco unidades; aritmética confere, mas a inclusão de AV04 ainda requer revisão."
+    },
+    {
+      "id": "C10",
+      "status": "PARTLY_VERIFIABLE",
+      "evidence": "A entrega salva existe e coincide com o texto recebido; arquivos de entrada permanecem íntegros. Leituras efetivas, ausência de consulta a outros contextos e todas as atividades declaradas não podem ser comprovadas só pelo relatório."
+    }
+  ],
+  "finding": {
+    "id": "F-RETEST-001",
+    "priority": "REVIEW_BEFORE_ACCEPTING_SCORING_SET",
+    "submission_location": "AV04 / Q08 / R08 / S-P2-0658",
+    "issue": "Practical-demonstration grading was applied to a closed tool-use inventory question.",
+    "evidence": [
+      "A pergunta permitia resposta curta de inventário e o entrevistador não pediu exemplo.",
+      "Co suficiente para inventário nominal, insuficiente para demonstrar experiência técnica."
+    ],
+    "method_basis": [
+      "Scoring Rubric section 3: conditional dimensions, do not penalize unrequested detail.",
+      "Scoring Rubric section 8.1: low scores for insufficient experience demonstration when appropriate to what was requested.",
+      "Question Taxonomy section 8: classify only what the question actually asks."
+    ],
+    "recommendation": "Clarify inventory versus request to demonstrate experience, then revisit whether AV04 belongs in the scored subset. No numerical score is prescribed."
+  },
+  "limitations": [
+    "No audio verification or independent score calibration.",
+    "No proof of context/access isolation or identity of the executor.",
+    "Identical or different scores compared with previous runs do not establish correctness.",
+    "The transcript, submission, rubric and candidate report remain unchanged in this comparison."
+  ]
+}

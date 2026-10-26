@@ -1,0 +1,3 @@
+*.json text eol=crlf
+*.md text eol=crlf
+ENTREGA_RECEBIDA.md text eol=crlf

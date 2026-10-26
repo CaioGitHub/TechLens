@@ -1,0 +1,22 @@
+{
+  "source_turn_count": 164,
+  "explicit_source_reference_count": 24,
+  "invalid_explicit_references": [],
+  "directly_checkable_literal_excerpts": 14,
+  "literal_quote_mismatches": [],
+  "package_input_hashes_unchanged": true,
+  "claimed_source_hash_verified": true,
+  "saved_delivery_verified": true,
+  "blocked_0722_reference_absent_from_evidence_table": true,
+  "claimed_scores": [
+    0,
+    4,
+    8,
+    2,
+    4
+  ],
+  "computed_sum": 18,
+  "computed_mean": 3.6,
+  "arithmetic_matches_report": true,
+  "scope": "Source references, listed excerpts, hashes and arithmetic only; not proof that every turn was read or all judgments are valid."
+}

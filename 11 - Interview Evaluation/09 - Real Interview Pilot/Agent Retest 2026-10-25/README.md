@@ -11,3 +11,8 @@ Para usar: extrair o ZIP numa pasta separada, abrir uma conversa nova com acesso
 O guia distribuído conserva o método e omite o apêndice de execuções anteriores. Exemplos de nomes de participantes em um documento metodológico foram generalizados; critérios e fonte da entrevista não foram alterados. Transformações e hashes estão no manifesto interno do pacote. A versão de origem do método está fixa em build_spec.json.
 
 COMPARACAO_RESERVADA.md define os critérios para a comparação posterior. Nenhuma nova análise foi executada nem aprovada nesta etapa. Para reconstruir outro pacote, usar build_package.py com --repo, --output e, se necessário, --git; ele lê a revisão Git fixada e se recusa a sobrescrever saída existente.
+
+
+## Estado posterior à preparação
+
+Entrega 001 recebida; original e comparação em `submissions/001/`. A proteção principal de fonte foi observada, mas há achado sobre pontuação de inventário versus demonstração prática. O estado inicial de preparação acima é histórico; não equivale ao resultado atual.
