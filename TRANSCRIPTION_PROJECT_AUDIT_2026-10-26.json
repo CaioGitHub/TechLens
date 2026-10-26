@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-26",
+  "status": "READY_FOR_SUPERVISED_PILOT_PREPARATION_NOT_SEMANTIC_HOMOLOGATION",
+  "head_at_audit_start": "34befda7a0dbf0cbaa3c4ffe7ea28b965d9afaa8",
+  "branch": "codex/transcription-baseline",
+  "matches_local_origin_tracking_at_start": true,
+  "initial_worktree_clean": false,
+  "canonical": {
+    "tests_run": 600,
+    "seconds": 35.02,
+    "failures": 0,
+    "errors": 0,
+    "successful": true,
+    "log_sha256": "8dad6a5ab022fcdb2652de8ccfa26513c3c2655d15ade2d8185af2235024204d",
+    "log_local_path": "C:\\Users\\caiop\\Documents\\ChatGPT\\TechLens\\AUDIT_PROJECT_2026-10-26_full.log"
+  },
+  "reference_harness": {
+    "tests_run": 15,
+    "seconds": 16.903,
+    "failures": 0,
+    "errors": 0,
+    "successful": true,
+    "log_sha256": "b9da29c425725f7b165736ff3a653976d2f377ed68d024db252343abd15c19e7",
+    "log_local_path": "C:\\Users\\caiop\\Documents\\ChatGPT\\TechLens\\AUDIT_PROJECT_2026-10-26_harness.log"
+  },
+  "runtime_sha256": "50D8273E0B819F0858C24BCCF18F4FC32A44D7EB5C170A912D477AB6A8798C11",
+  "runtime_matches_generic_input_checkpoint": true,
+  "runtime_and_tests_unchanged": true,
+  "local_package_manifest_checks": [
+    {
+      "package": "Reteste-Agente-2026-10-25",
+      "inputs_unchanged": true,
+      "input_file_count": 31
+    },
+    {
+      "package": "Reteste-Agente-v2-2026-10-25",
+      "inputs_unchanged": true,
+      "input_file_count": 31
+    },
+    {
+      "package": "Revisao-Agente-v2-2026-10-25",
+      "inputs_unchanged": true,
+      "input_file_count": 31
+    },
+    {
+      "package": "Revisao-Agente-v2-R2-2026-10-25",
+      "inputs_unchanged": true,
+      "input_file_count": 31
+    },
+    {
+      "package": "Teste-Contrastes-2026-10-26",
+      "inputs_unchanged": true,
+      "input_file_count": 37
+    },
+    {
+      "package": "Teste-Fundamento-v3-2026-10-26",
+      "inputs_unchanged": true,
+      "input_file_count": 40
+    },
+    {
+      "package": "Teste-Lacunas-v4-2026-10-26",
+      "inputs_unchanged": true,
+      "input_file_count": 32
+    }
+  ],
+  "semantic_audit_states": {
+    "contrasts": "MIXED_DIAGNOSTIC_RESULT_NOT_APPROVED_AS_GENERAL_VALIDATION",
+    "method_v3": "SUBSTANTIAL_PROGRESS_WITH_RESIDUAL_SCOPE_FAILURE",
+    "focused_v4": "CORE_CONTRAST_OBSERVED_WITH_RESIDUAL_RATIONALE_ISSUES",
+    "v4_assisted_correction": "CONSOLIDATED_WITH_ASSISTED_CORRECTION"
+  },
+  "real_interviews_found_in_inventory": 1,
+  "new_real_interview_available": false,
+  "user_confirmed_no_other_interview": true,
+  "semantic_independent_validation": false,
+  "next_pilot": "PREPARED_AWAITING_DISTINCT_SOURCE",
+  "git_publication_performed": false
+}

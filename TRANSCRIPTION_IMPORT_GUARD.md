@@ -1,5 +1,11 @@
 # Proteção do importador histórico contra incerteza de transcrição
 
+
+## Atualização de uso — 2026-10-26
+
+Este documento conserva o checkpoint de implementação descrito abaixo. Para o estado corrente e a distinção entre implementação e validação semântica, consultar `TRANSCRIPTION_PROJECT_STATUS_2026-10-26.md`. O uso vigente é a transcrição enviada ao agente do usuário, que consulta o projeto como método; conectar provedor/modelo interno não é requisito nem próximo incremento obrigatório. A entrada genérica e a proteção do importador já existem; outra entrevista distinta permanece pendente.
+
+
 Data: 2026-10-25. Estado limitado: `TRANSCRIPTION_IMPORT_GUARD_VERIFIED`.
 
 ## Problema e comportamento

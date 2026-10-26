@@ -1,5 +1,11 @@
 # Entrada genérica de transcrições
 
+
+## Atualização de uso — 2026-10-26
+
+Este documento conserva o checkpoint de implementação descrito abaixo. Para o estado corrente e a distinção entre implementação e validação semântica, consultar `TRANSCRIPTION_PROJECT_STATUS_2026-10-26.md`. O uso vigente é a transcrição enviada ao agente do usuário, que consulta o projeto como método; conectar provedor/modelo interno não é requisito nem próximo incremento obrigatório. A entrada genérica e a proteção do importador já existem; outra entrevista distinta permanece pendente.
+
+
 Data: 2026-10-25. Estado limitado: `GENERIC_TRANSCRIPTION_INPUT_VERIFIED`.
 
 `reference_runtime.transcription_input.build_transcription_fixture(turns, participants, interview_id=...)` recebe turnos e participantes configuráveis. Não depende de nomes, tecnologias ou prefixos de IDs de um piloto.
