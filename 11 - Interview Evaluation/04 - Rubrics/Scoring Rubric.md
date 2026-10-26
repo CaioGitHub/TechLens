@@ -58,6 +58,8 @@ Esses pesos são referência geral, não regra matemática absoluta.
 
 ### Dimensões condicionais
 
+Antes de pontuar, registrar pedido, evidência, condições e fundamento de cada lacuna conforme `TRANSCRIPTION_EVALUATION_CHECK.md`. Uma ausência só afeta a avaliação quando sua necessidade para responder ao pedido estiver justificada; não transformar exemplos da base em checklist obrigatório. Conferir títulos, tabelas e sínteses antes de entregar. Este controle não altera os pesos de referência nem as âncoras.
+
 Nem toda pergunta exige todas as dimensões. Identificar, usando a classificação de [[Question Taxonomy]] (tipo, dimensões, complexidade), quais dimensões são relevantes antes de avaliar. Não penalizar o candidato por não abordar algo que a pergunta não solicitou.
 
 Exemplos:

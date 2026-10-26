@@ -138,6 +138,8 @@ Exemplo: "Quando você escolheria uma abordagem em vez de outra?"
 Avalia a experiência demonstrada na resposta quando a pergunta solicita relato, ações, decisões ou resultados de uma situação vivida; não certifica a experiência profissional real do candidato.
 Exemplo: "Conte sobre um problema de produção que você resolveu."
 
+Escopo da demanda e confiabilidade da fonte são eixos separados: um inventário com nome incerto continua contextual e sem nota técnica, com identificação pendente. Não o converter em avaliação técnica adiada. Ver `TRANSCRIPTION_EVALUATION_CHECK.md`.
+
 **Distinguir de inventário contextual antes de pontuar.** "Já usou essa ferramenta?" ou "Quais ferramentas você utilizou?", sem pedido de explicação, são levantamento de uso declarado. Registrar a declaração e seus limites, sem nota de proficiência técnica e sem inferir ausência de experiência por falta de relato não solicitado. Isso não é uma nova classe técnica nem uma regra de N/A para toda pergunta de experiência.
 
 "Já usou essa ferramenta? Como investigou um problema com ela?" contém pedido de demonstração e permite avaliação técnica dessa demanda. A forma interrogativa fechada, a extensão da resposta e o nome da ferramenta não decidem o enquadramento: decide a ação efetivamente solicitada, incluindo complementações vinculadas do entrevistador. Uma pergunta curta como "O que é um índice?" solicita conteúdo técnico e continua avaliável.

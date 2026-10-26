@@ -31,3 +31,8 @@ A proteção depende de marcação explícita e válida na entrada de texto estr
 Não há correção recuperada para os dois trechos, nem validação semântica independente. A regra conservadora adia a pergunta toda; liberar parcialmente uma resposta exigirá escopo e testes próprios. Não calcular uma conclusão global usando apenas as notas restantes como se a entrevista estivesse completa.
 
 Próximos incrementos: entrada genérica de participantes e fontes, apresentação de revisão com estado de incerteza visível e uma entrevista distinta para avaliar generalização. Resolver uma marcação futuramente exigirá fonte e histórico de revisão explícitos; não basta renomear seu status como resolvido nesta entrada.
+
+
+## Escopo do relatório produzido pelo agente — 2026-10-26
+
+O comportamento implementado acima descreve marcações estruturadas no runtime e permanece inalterado. Para análises textuais pelo agente do usuário, aplicar `TRANSCRIPTION_EVALUATION_CHECK.md`: classificar separadamente escopo da demanda e confiabilidade da fonte. Uma identificação lexical pendente em inventário permanece contextual sem nota técnica, com informação não confirmada; não constitui uma avaliação técnica adiada. Em demanda técnica cuja fonte impeça julgamento confiável, registrar adiamento sem zero nem inferência a partir do trecho comprometido. Não liberar evidência de frase irrecuperável usando essa distinção. O esclarecimento é de método e não implementa novo esquema de dados ou alteração retroativa dos bloqueios existentes.

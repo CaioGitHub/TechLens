@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-26",
+  "scope": "Documentation, cross-references and unchanged rubric parameters only; no model execution or runtime tests.",
+  "checks": {
+    "reference_weight_table_unchanged": true,
+    "score_anchor_section_unchanged": true,
+    "all_method_crosslinks_exist": true,
+    "diff_whitespace_valid": true,
+    "no_tracked_runtime_or_historical_result_changed": true
+  },
+  "behavioral_validation": "PENDING_NEW_SYNTHETIC_EXECUTION",
+  "new_check_document_sha256": "24b7979ef45f95af227c0d73539cfae57a0028dadd949ab529ce561adb72bc37"
+}

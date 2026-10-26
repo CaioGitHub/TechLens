@@ -216,6 +216,10 @@ Para perguntas do tipo "X ou Y?", avaliar compreensão de X, compreensão de Y, 
 
 Perguntas como "microservices ou monolith?" não devem ser avaliadas pela preferência em si. Avaliar justificativa, contexto, trade-offs, experiência, consequências e capacidade de reconhecer quando a alternativa poderia ser melhor. Não considerar uma preferência diferente da do Second Brain como erro.
 
+## Conferência prévia do julgamento e das sínteses
+
+Antes da nota, aplicar `TRANSCRIPTION_EVALUATION_CHECK.md`: registrar pedido, evidência, condições e fundamento da lacuna, separar escopo da demanda e confiabilidade da fonte e revisar as sínteses antes da entrega. Conteúdo não explorado não constitui deficiência sem ligação ao pedido. Inventário com identificação pendente continua sem nota técnica; somente uma demanda técnica com impedimento de fonte recebe julgamento técnico adiado. Não altera pesos, âncoras ou bloqueios implementados no runtime.
+
 ## 19. Perguntas de experiência
 
 Quando o candidato afirma "já implementei isso", separar **Declaração** (afirmação de possuir experiência) de **Evidência demonstrada** (explicação de contexto, problema, decisão, implementação, motivo, resultado, dificuldades, trade-offs). A segunda possui maior valor como evidência técnica. Não classificar automaticamente a declaração como falsa.
