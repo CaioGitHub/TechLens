@@ -135,8 +135,14 @@ Avalia capacidade de comparar alternativas e justificar decisões.
 Exemplo: "Quando você escolheria uma abordagem em vez de outra?"
 
 ### 2.14 Experiência prática
-Avalia experiência real do candidato.
+Avalia a experiência demonstrada na resposta quando a pergunta solicita relato, ações, decisões ou resultados de uma situação vivida; não certifica a experiência profissional real do candidato.
 Exemplo: "Conte sobre um problema de produção que você resolveu."
+
+**Distinguir de inventário contextual antes de pontuar.** "Já usou essa ferramenta?" ou "Quais ferramentas você utilizou?", sem pedido de explicação, são levantamento de uso declarado. Registrar a declaração e seus limites, sem nota de proficiência técnica e sem inferir ausência de experiência por falta de relato não solicitado. Isso não é uma nova classe técnica nem uma regra de N/A para toda pergunta de experiência.
+
+"Já usou essa ferramenta? Como investigou um problema com ela?" contém pedido de demonstração e permite avaliação técnica dessa demanda. A forma interrogativa fechada, a extensão da resposta e o nome da ferramenta não decidem o enquadramento: decide a ação efetivamente solicitada, incluindo complementações vinculadas do entrevistador. Uma pergunta curta como "O que é um índice?" solicita conteúdo técnico e continua avaliável.
+
+Se surgir relato técnico espontâneo em um inventário, registrá-lo como evidência adicional com sua origem. Não criar silenciosamente uma nova unidade pontuada nem penalizar dimensões não solicitadas; uma unidade técnica separada precisa de escopo e critérios explícitos. Ver [[Scoring Rubric]], §8.1.
 
 ### 2.15 Cenário / Caso prático
 Apresenta um cenário e solicita solução ou raciocínio. **Uso restrito** (ver seção 9 e "Critério de desempate", seção 9.1): utilizar como tipo principal apenas quando o cenário for o formato central da pergunta e a ação solicitada não se enquadrar adequadamente em nenhum tipo mais específico (Troubleshooting, Arquitetura, Trade-off/Decisão técnica, Performance, Segurança, etc.). Quando um tipo mais específico for identificável, ele deve prevalecer — "Cenário/Caso prático" funciona como *fallback*, não como categoria padrão para toda pergunta que descreve uma situação.

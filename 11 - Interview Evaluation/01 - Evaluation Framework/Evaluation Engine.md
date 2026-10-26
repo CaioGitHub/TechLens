@@ -220,7 +220,7 @@ Perguntas como "microservices ou monolith?" não devem ser avaliadas pela prefer
 
 Quando o candidato afirma "já implementei isso", separar **Declaração** (afirmação de possuir experiência) de **Evidência demonstrada** (explicação de contexto, problema, decisão, implementação, motivo, resultado, dificuldades, trade-offs). A segunda possui maior valor como evidência técnica. Não classificar automaticamente a declaração como falsa.
 
-A pergunta continua recebendo nota 0–10 normalmente; a nota reflete o que a resposta demonstrou, não uma conclusão sobre a experiência real do candidato (ver critério de pontuação detalhado em [[Scoring Rubric]], seção 8.1). Se a resposta for puramente hipotética (ex.: "se eu tivesse esse problema, eu faria X"), registrar conhecimento/raciocínio possivelmente demonstrado separadamente de experiência prática demonstrada (insuficiente) — não atribuir experiência prática com base em uma resposta explicitamente hipotética. Se o candidato relatar não lembrar detalhes de uma experiência declarada, registrar experiência declarada presente e demonstração limitada/insuficiente, sem inferir ausência de experiência nem classificar a lacuna de memória como erro técnico.
+Após verificar o escopo solicitado: inventário de uso declarado fica contextual e sem nota técnica; perguntas que pedem demonstração continuam recebendo nota 0–10 normalmente. A nota reflete o que a resposta demonstrou, não uma conclusão sobre a experiência real do candidato (ver critério de pontuação detalhado em [[Scoring Rubric]], seção 8.1). Se a resposta for puramente hipotética (ex.: "se eu tivesse esse problema, eu faria X"), registrar conhecimento/raciocínio possivelmente demonstrado separadamente de experiência prática demonstrada (insuficiente) — não atribuir experiência prática com base em uma resposta explicitamente hipotética. Se o candidato relatar não lembrar detalhes de uma experiência declarada, registrar experiência declarada presente e demonstração limitada/insuficiente, sem inferir ausência de experiência nem classificar a lacuna de memória como erro técnico.
 
 ## 20. Versionamento
 
@@ -695,7 +695,7 @@ quando houver alta confiança de que a experiência solicitada não foi demonstr
 
 ## 42. Experiência, hipótese e limitação
 
-Perguntas de experiência continuam recebendo `0–10`:
+Perguntas que solicitam demonstração de experiência continuam recebendo `0–10`, após a verificação de escopo de [[Scoring Rubric]], §8.1. Inventários de uso declarado permanecem contextuais e fora das médias técnicas. Para pedidos de demonstração:
 
 ```text
 Nível 1 → somente declaração

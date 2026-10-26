@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-25",
+  "checks": [
+    {
+      "check": "received_submission_byte_hash_preserved",
+      "passed": true
+    },
+    {
+      "check": "historical_record_unchanged:ENTREGA_RECEBIDA.md",
+      "passed": true
+    },
+    {
+      "check": "historical_record_unchanged:REVIEW.md",
+      "passed": true
+    },
+    {
+      "check": "historical_record_unchanged:comparison.json",
+      "passed": true
+    },
+    {
+      "check": "historical_record_unchanged:receipt.json",
+      "passed": true
+    },
+    {
+      "check": "historical_record_unchanged:structural_checks.json",
+      "passed": true
+    },
+    {
+      "check": "frozen_executor_inputs_preserved",
+      "passed": true
+    },
+    {
+      "check": "tracked_changes_documentation_only",
+      "passed": true
+    },
+    {
+      "check": "no_whitespace_errors",
+      "passed": true
+    },
+    {
+      "check": "revised_subset_arithmetic",
+      "passed": true
+    }
+  ],
+  "passed": 10,
+  "scope": "Integrity, documentation diff and arithmetic only. No model execution, semantic quality validation or runtime regression performed.",
+  "received_submission_sha256": "43a4924ad0cabcaba88f58ffaec23371a5c2c3c40d711e3360799e61fe3678ce",
+  "original_score_values": [
+    0,
+    4,
+    8,
+    2,
+    4
+  ],
+  "revised_scored_units": [
+    "AV01",
+    "AV02",
+    "AV03",
+    "AV05"
+  ],
+  "revised_score_values": [
+    0,
+    4,
+    8,
+    4
+  ],
+  "contextual_unscored_unit": "AV04",
+  "revised_subset_mean": 4.0,
+  "global_interview_score": null
+}

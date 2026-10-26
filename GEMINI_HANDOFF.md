@@ -1979,3 +1979,8 @@ Estado: `PACKAGE_READY_AWAITING_USER_AGENT_EXECUTION`. Não foi executado outro 
 ## Reteste — entrega 001 recebida em 2026-10-25
 
 Comparação em `11 - Interview Evaluation/09 - Real Interview Pilot/Agent Retest 2026-10-25/submissions/001/REVIEW.md`. Entrega original preservada. Proteção de 07:22 observada, com adiamento e ausência de conclusões pessoais a partir dessa fonte. Entradas do pacote íntegras; hash da transcrição, 24 referências explícitas, 14 citações e persistência da entrega conferidos. F-RETEST-001: nota 2 em pergunta fechada de inventário de observabilidade requer revisão do escopo solicitado versus demonstração prática, à luz da rubrica e taxonomia. Não foram alteradas notas ou rubrica. Não há comprovação de isolamento de contexto, cegamento ou calibração independente. Resultado: proteção observada, escopo de uma pontuação ainda pendente; não homologação geral.
+
+
+## Esclarecimento de escopo e revisão de AV04 — 2026-10-25
+
+Taxonomia §2.14, rubrica §8.1, Engine §§19/42 e roteiro do agente agora distinguem inventário de uso declarado (contextual, sem nota técnica) de pedido de demonstração (pontuável). Não houve alteração de pesos ou âncoras. Ver `11 - Interview Evaluation/09 - Real Interview Pilot/Agent Retest 2026-10-25/submissions/001/SCORING_SCOPE_ADDENDUM.md`: AV04/Q08 passa a contextual na revisão; quatro outras notas preservadas, média descritiva revisada 4,0, sem nota global. Entrega original e comparação inicial preservadas, inclusive a média histórica 3,6. Os seis contrastes na rubrica são exemplos de política, não testes de comportamento de outro agente. Pacote executor anterior congelado, nova execução e entrevista distinta ainda pendentes. Runtime e gates históricos inalterados.

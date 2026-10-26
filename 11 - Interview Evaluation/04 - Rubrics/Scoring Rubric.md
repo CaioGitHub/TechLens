@@ -160,7 +160,22 @@ Não exigir experiência prática em perguntas puramente conceituais. Não assum
 
 ### 8.1 Perguntas de Experiência prática — critério de pontuação
 
-Perguntas do tipo `Experiência prática` (ver [[Question Taxonomy]], §2.14) continuam recebendo nota `0–10` normalmente — não existe regra que force `N/A` para esse tipo de pergunta. A nota reflete **o que foi demonstrado na resposta**, nunca uma conclusão sobre a vida profissional real do candidato.
+**Verificação de escopo anterior à nota:** distinguir inventário contextual de pedido de demonstração, conforme [[Question Taxonomy]], §2.14. Quando a pergunta solicita somente confirmação de uso ou nomes de ferramentas, registrar experiência declarada e classificar a unidade como contextual, sem pontuação técnica. Não atribuir zero, nota baixa ou nota alta pela presença ou ausência de demonstração que não foi solicitada. Excluir essa unidade do numerador e do denominador de médias técnicas; isso difere de adiar uma pergunta por fonte comprometida. Não transformar a ausência de aprofundamento da entrevista em deficiência do candidato.
+
+Quando a pergunta solicita demonstração de experiência (relato, ações, decisões ou resultados), continua recebendo nota `0–10` normalmente — não existe regra que force `N/A` para esse tipo de pergunta. Uma resposta apenas declarativa pode ser insuficiente para esse pedido. A nota reflete **o que foi demonstrado em relação ao que foi solicitado**, nunca uma conclusão sobre a vida profissional real do candidato. Aplicar também as dimensões condicionais da seção 3.
+
+Exemplos de contraste, independentes do domínio:
+
+| Pergunta e resposta | Tratamento |
+| --- | --- |
+| "Quais ferramentas usou?" → "Usei a ferramenta X." | Inventário contextual; uso declarado, sem nota de proficiência. |
+| "Conte um problema que resolveu com X e suas ações." → "Usei X." | Pedido de demonstração; evidência insuficiente para o pedido, pontuável pelas âncoras aplicáveis. |
+| "Já usou X? Como resolveu um problema com ela?" → "Usei X." | Pedido misto com demanda técnica explícita; não descartar essa demanda por começar com sim/não. |
+| "O que é um índice?" → uma definição | Conteúdo técnico avaliável, mesmo em pergunta e resposta curtas. |
+| "Conte um caso real." → "Não lembro dos detalhes." | Demonstração limitada; avaliar o produzido sem inferir ausência de experiência ou erro técnico de memória. |
+| "Quais ferramentas usou?" → relato técnico espontâneo | Preservar a evidência adicional; não inventar demanda retroativa nem nota automática para o inventário. |
+
+Esses contrastes definem elegibilidade e limites de julgamento, não notas esperadas. Não alterar pesos nem calibrar avaliações para reproduzir médias anteriores.
 
 **Regra fundamental:**
 
@@ -170,7 +185,7 @@ Experiência declarada ≠ Experiência demonstrada ≠ Ausência de experiênci
 
 A pergunta que orienta a nota é sempre "o que esta resposta demonstrou?", nunca "o candidato possui ou não possui essa experiência?" quando a resposta não fornece evidência suficiente para essa segunda pergunta.
 
-**Escala de demonstração** (orientativa, não é um novo esquema de pontuação — apenas descreve o padrão de evidência esperado ao aplicar a escala 0–10 desta rubrica a perguntas de experiência):
+**Escala de demonstração para pedidos de demonstração, após a verificação de escopo** (orientativa, não é um novo esquema de pontuação — apenas descreve o padrão de evidência esperado ao aplicar a escala 0–10 desta rubrica a perguntas de experiência):
 
 - **Apenas declaração** (ex.: "Sim, trabalhei bastante com observabilidade", sem exemplos, ferramentas, decisões ou situações concretas): Experiência declarada presente; Experiência demonstrada e evidência técnica insuficientes. Nota baixa, coerente com a insuficiência da resposta ao que foi solicitado — não com uma conclusão de que o candidato não tem a experiência.
 - **Declaração + poucos detalhes técnicos** (ex.: menciona uma ferramenta e um uso genérico, sem aprofundar): experiência demonstrada parcial; evidência técnica presente, porém limitada. Nota superior ao caso anterior, quando a pergunta permitir essa distinção.
