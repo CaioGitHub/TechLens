@@ -9,7 +9,7 @@ tags:
 
 ## Análise de entrevistas com seu agente
 
-Envie a transcrição ao agente que você já utiliza e disponibilize o método deste projeto. O ponto de entrada é [Como analisar uma transcrição](TRANSCRIPTION_AGENT_WORKFLOW.md). O agente realiza a análise e prepara o relatório; o usuário revisa as exceções que exigem confirmação de fonte. Não é necessário conectar uma API de modelo a este repositório.
+Envie a transcrição ao agente que você já utiliza e disponibilize o método deste projeto. Comece pelo [guia de uso para análise de entrevistas](ANALISAR_ENTREVISTA.md), com pedido copiável, condições da fonte e formato de entrega. O [roteiro detalhado](TRANSCRIPTION_AGENT_WORKFLOW.md) continua como referência do método. O agente realiza a análise e prepara o relatório; o usuário revisa as exceções que exigem confirmação de fonte. Não é necessário conectar uma API de modelo a este repositório.
 
 
 ## Propósito

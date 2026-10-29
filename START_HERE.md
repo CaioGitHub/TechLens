@@ -1,8 +1,18 @@
 # START HERE
 
+## Continuidade operacional — 2026-10-28
+
+Consultar `CONTINUIDADE_2026-10-28.md` para as pendências e `ANALISAR_ENTREVISTA.md` para uso pelo agente da empresa. A preparação privada de reteste v2 continua local e sem autorização específica de publicação; não incluir automaticamente. O próximo piloto aguarda entrevista distinta, sem nova fonte disponível. A última regressão registrada é de 2026-10-26; esta rodada organiza documentação e não declara novos testes de runtime ou homologação semântica.
+
+
+## Estado consolidado antes do próximo piloto — 2026-10-26
+
+Consultar `TRANSCRIPTION_PROJECT_STATUS_2026-10-26.md` para o estado corrente. A regressão desta auditoria passou com 600 testes e 15 do harness. Ensaios sintéticos tiveram avanços e ressalvas, seguidos de correções assistidas; não há homologação semântica. A execução dos retestes já ocorreu, apesar das notas históricas de preparação abaixo. O usuário confirmou não possuir outra entrevista: próximo piloto preparado, aguardando fonte distinta. Histórico e gates preservados; pendências locais de publicação continuam identificadas.
+
+
 ## Para analisar uma entrevista recebida como prompt
 
-Começar por `TRANSCRIPTION_AGENT_WORKFLOW.md`. O agente escolhido pelo usuário consulta este projeto como método e referência; o projeto não precisa chamar ou hospedar modelos. O agente deve fazer a maior parte da análise e devolver relatório e exceções justificadas. Para desenvolvimento do projeto, seguir também a continuidade abaixo.
+Para uso operacional, começar por `ANALISAR_ENTREVISTA.md`; o método detalhado permanece em `TRANSCRIPTION_AGENT_WORKFLOW.md`. O agente escolhido pelo usuário consulta este projeto como método e referência; o projeto não precisa chamar ou hospedar modelos. O agente deve fazer a maior parte da análise e devolver relatório e exceções justificadas. Para desenvolvimento do projeto, seguir também a continuidade abaixo.
 
 
 Este projeto possui histórico e metodologia já estabelecidos.
@@ -147,3 +157,13 @@ Comparação em `11 - Interview Evaluation/09 - Real Interview Pilot/Agent Retes
 ## Esclarecimento de escopo e revisão de AV04 — 2026-10-25
 
 Taxonomia §2.14, rubrica §8.1, Engine §§19/42 e roteiro do agente agora distinguem inventário de uso declarado (contextual, sem nota técnica) de pedido de demonstração (pontuável). Não houve alteração de pesos ou âncoras. Ver `11 - Interview Evaluation/09 - Real Interview Pilot/Agent Retest 2026-10-25/submissions/001/SCORING_SCOPE_ADDENDUM.md`: AV04/Q08 passa a contextual na revisão; quatro outras notas preservadas, média descritiva revisada 4,0, sem nota global. Entrega original e comparação inicial preservadas, inclusive a média histórica 3,6. Os seis contrastes na rubrica são exemplos de política, não testes de comportamento de outro agente. Pacote executor anterior congelado, nova execução e entrevista distinta ainda pendentes. Runtime e gates históricos inalterados.
+
+
+## Reteste v2 preparado — 2026-10-25
+
+Pacote executor novo com método fixado em dd15159, mesma transcrição e nenhuma entrega anterior. Preparação e verificações em `11 - Interview Evaluation/09 - Real Interview Pilot/Agent Retest v2 2026-10-25/README.md`. O pacote v1 permanece preservado; ler uma entrega anterior limita independência de qualquer execução. A tarefa v2 exige iniciar sem entrega e registrar a versão das fontes. Critérios reservados fora do ZIP; execução pelo agente do usuário ainda pendente. Runtime e gates históricos inalterados.
+
+
+## Controle antes da nota e das sínteses — 2026-10-26
+
+Consultar `TRANSCRIPTION_EVALUATION_CHECK.md` e `TRANSCRIPTION_METHOD_REVIEW_2026-10-26.md`. Foram ligados ao roteiro, taxonomia, rubrica, Engine e orientação de incerteza os registros de pedido/evidência/condições/lacuna, a separação de escopo e confiabilidade e a conferência de sínteses. Pesos, âncoras, runtime e gates preservados. Novo ensaio sintético deve fixar critérios antes de executar; não há validação comportamental da atualização a declarar. O ensaio anterior teve resultados mistos e permanece histórico, sem reescrita para aprovação.
