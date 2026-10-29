@@ -1,0 +1,29 @@
+{
+  "state": "PROTOCOL_REHEARSAL_PREPARED_NOT_EXECUTED",
+  "protocol_source_commit": "6ab1d71df5989b69022d7af9bbf12993015225f9",
+  "method_source_commit": "4d015eb6b12e73b219f3790a848040e5eac2c0d5",
+  "builds": [
+    {
+      "phase": "Revisor-Fase-1-2026-10-29",
+      "zip": "C:\\Users\\caiop\\Documents\\ChatGPT\\TechLens\\validation_packages\\Revisor-Fase-1-2026-10-29.zip",
+      "zip_sha256": "f3257e8273202941ab04facffda1f154efb1b6aec41b95b74bede33528d48fe9",
+      "status": "PRE_REVIEW_PENDING"
+    },
+    {
+      "phase": "Revisor-Fase-2-2026-10-29",
+      "zip": "C:\\Users\\caiop\\Documents\\ChatGPT\\TechLens\\validation_packages\\Revisor-Fase-2-2026-10-29.zip",
+      "zip_sha256": "c991117d040179162d7dbf86ba4c41840b2a5e529405ed640fe70bd15757c66b",
+      "status": "COMPARISON_NOT_RELEASED"
+    }
+  ],
+  "checks": {
+    "phase1_no_executor_output_or_prior_review": true,
+    "phase2_original_output_preserved": true,
+    "source_and_conditions_preserved": true,
+    "zip_integrity_and_hashes_verified": true,
+    "forms_pending": true
+  },
+  "independent_review_completed": false,
+  "real_interview_validation_completed": false,
+  "human_decision_completed": false
+}
