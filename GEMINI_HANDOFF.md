@@ -1,5 +1,10 @@
 # GEMINI HANDOFF — Guia de Continuidade do Projeto
 
+## Leitura prévia recebida e comparação liberada — 2026-10-29
+
+Recebimento da fase 1 em 11 - Interview Evaluation/09 - Synthetic Validation/Staged Review Rehearsal 2026-10-29/phase1-receipt-001/. Os dois arquivos do revisor foram preservados com hashes antes da liberação da análise do executor. Foram conferidos 42 arquivos de entrada e a estrutura da ficha, com 25 unidades e sete campos por unidade. Isso não certifica o conteúdo técnico nem independência: o revisor declara não conhecer a análise anterior, sem isolamento técnico comprovado. Comparação liberada em pacote local próprio, ainda não executada. Decisão humana e validação real/independente continuam pendentes. Nenhum método, nota, peso, código ou gate foi alterado; não houve nova regressão nesta consolidação documental.
+
+
 ## Protocolo híbrido de validação — 2026-10-29
 
 Protocolo em PROTOCOLO_VALIDACAO.md e formulários em 99 - Templates/Interview Validation/. A leitura prévia do revisor deve ser preservada antes de liberar a análise do executor. Comparação por unidade, classificação de divergências e decisão humana do escopo material; sem nota alvo ou alegação automática de independência. Primeiro ensaio preparado com a simulação existente, mas a execução e a comparação do novo revisor continuam pendentes. Nenhuma validação real, revisão independente ou calibração foi concluída nesta preparação; método de pontuação e gates preservados.

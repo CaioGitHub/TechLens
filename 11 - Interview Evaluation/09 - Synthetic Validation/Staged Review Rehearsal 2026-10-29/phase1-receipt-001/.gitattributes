@@ -1,0 +1,5 @@
+LEITURA_PREVIA.md -text whitespace=cr-at-eol,-blank-at-eol
+REGISTRO_REVISOR.md -text whitespace=cr-at-eol,-blank-at-eol
+RECEIPT.json -text whitespace=cr-at-eol,-blank-at-eol
+README.md -text whitespace=cr-at-eol,-blank-at-eol
+PHASE2_RELEASE_VERIFICATION.json -text whitespace=cr-at-eol,-blank-at-eol

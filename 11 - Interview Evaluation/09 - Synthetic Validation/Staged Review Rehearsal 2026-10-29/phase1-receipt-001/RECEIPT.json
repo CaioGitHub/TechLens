@@ -1,0 +1,22 @@
+{
+  "received_date_client": "2026-10-29",
+  "state": "PHASE1_RECEIVED_PRESERVED_COMPARISON_RELEASED",
+  "protocol_source_commit": "6ab1d71df5989b69022d7af9bbf12993015225f9",
+  "method_source_commit": "4d015eb6b12e73b219f3790a848040e5eac2c0d5",
+  "reviewer_declared": "Codex/OpenAI, GPT-6 family; declaration not independently authenticated",
+  "received_file_sha256": {
+    "LEITURA_PREVIA.md": "30cf30688663ae4b0743a8b31429edab1706fb5a16aa811ce3cdab45e503ba6c",
+    "REGISTRO_REVISOR.md": "06351cd592bace39d8922e5309c8fb11c40d01e487723e2d2d31beff8a1df018"
+  },
+  "input_files_verified": 42,
+  "input_changes": [],
+  "reading_units": 25,
+  "fields_per_unit": 7,
+  "notes_assigned_in_phase1": false,
+  "reading_exposure_statement": "Reviewer declares no prior analysis or conclusions accessed; no technical isolation or independence guarantee.",
+  "coverage_note": "Reading combines invitation at 16:06 with candidate question at 16:13; 25 rows need not equal executor judgment count. Align by source location in comparison.",
+  "comparison_execution_completed": false,
+  "human_decision_completed": false,
+  "semantic_validation_concluded": false,
+  "release_basis": "Authorized staged protocol: received outputs copied and hashed before access to executor analysis is released. Not an approval of their technical content."
+}

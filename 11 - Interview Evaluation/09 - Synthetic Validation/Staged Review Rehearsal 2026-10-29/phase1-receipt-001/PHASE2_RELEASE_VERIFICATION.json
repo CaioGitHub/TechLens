@@ -1,0 +1,16 @@
+{
+  "state": "PHASE1_RECEIVED_PRESERVED_COMPARISON_RELEASED",
+  "receipt_folder": "C:\\Users\\caiop\\Documents\\ChatGPT\\TechLens\\validation_packages\\Coordenacao-Validacao-2026-10-29\\recebimento-fase1-001",
+  "zip": "C:\\Users\\caiop\\Documents\\ChatGPT\\TechLens\\validation_packages\\Revisor-Fase-2-Liberada-2026-10-29.zip",
+  "zip_sha256": "f08b16666d283676b031a8af4a97d9cb2af7b60ec1d9d34253f92f705695ca77",
+  "checks": {
+    "phase1_inputs_unchanged": true,
+    "received_outputs_preserved": true,
+    "declared_reading_hash_matches": true,
+    "original_executor_bytes_preserved": true,
+    "archive_verified": true,
+    "no_prior_author_audit_in_release": true
+  },
+  "comparison_execution_completed": false,
+  "human_decision_completed": false
+}
