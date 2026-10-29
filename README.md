@@ -455,3 +455,8 @@ ANÁLISE
 A base deve ser capaz de fornecer contexto técnico suficiente para que o Codex consiga analisar problemas, estudar conceitos e, posteriormente, auxiliar na avaliação técnica de candidatos.
 
 A camada de avaliação deve utilizar a base como referência sem transformar o conhecimento em um gabarito rígido.
+
+
+## Pacote reproduzível do método — 2026-10-28
+
+Ver [PACOTE_DO_METODO.md](PACOTE_DO_METODO.md). A distribuição pode ser gerada de uma revisão Git fixa e verificada por lista de fontes e hashes, sem incluir pastas de entrevistas ou relatórios. O agente da empresa segue o guia único; não precisa configurar provedor interno. A nova verificação é de empacotamento, não de qualidade semântica. Outra entrevista real continua pendente.

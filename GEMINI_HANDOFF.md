@@ -2004,3 +2004,8 @@ Pacote executor novo com método fixado em dd15159, mesma transcrição e nenhum
 ## Controle antes da nota e das sínteses — 2026-10-26
 
 Consultar `TRANSCRIPTION_EVALUATION_CHECK.md` e `TRANSCRIPTION_METHOD_REVIEW_2026-10-26.md`. Foram ligados ao roteiro, taxonomia, rubrica, Engine e orientação de incerteza os registros de pedido/evidência/condições/lacuna, a separação de escopo e confiabilidade e a conferência de sínteses. Pesos, âncoras, runtime e gates preservados. Novo ensaio sintético deve fixar critérios antes de executar; não há validação comportamental da atualização a declarar. O ensaio anterior teve resultados mistos e permanece histórico, sem reescrita para aprovação.
+
+
+## Distribuição do método — 2026-10-28
+
+Construtor/verificador em scripts/agent_method_package.py e orientação em PACOTE_DO_METODO.md. Exporta somente a seleção explícita de documentos de uma revisão fixa, com manifesto e ZIP, sem transcrição de entrada. Não altera runtime, score, pesos ou gates. Não incluir a preparação privada de reteste v2. Validação semântica com outra entrevista continua pendente.

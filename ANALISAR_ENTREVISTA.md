@@ -2,7 +2,7 @@
 
 Use este guia com o agente que sua empresa já utiliza e que tenha acesso ao projeto. O TechLens fornece o método e a base de referência. O agente faz a análise, confere o próprio relatório e apresenta apenas as exceções que dependem de confirmação da fonte. Não é necessário cadastrar modelo, chave ou API no projeto.
 
-Uso atual: piloto supervisionado. O método tem ensaios diagnósticos com avanços e limitações; não há validação semântica independente ou garantia de resultado para qualquer agente. A última regressão de código registrada é de 2026-10-26, com 600 testes e 15 do harness aprovados; isso não mede a qualidade de uma nova análise textual.
+Uso atual: piloto supervisionado. O método tem ensaios diagnósticos com avanços e limitações; não há validação semântica independente ou garantia de resultado para qualquer agente. A regressão de código registrada em 2026-10-26 terminou, com 600 testes e 15 do harness aprovados; isso não mede a qualidade de uma nova análise textual.
 
 ## 1. Disponibilize a fonte
 

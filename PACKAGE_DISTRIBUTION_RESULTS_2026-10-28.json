@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-28",
+  "status": "METHOD_PACKAGE_DISTRIBUTION_VERIFIED",
+  "directed_contracts": {
+    "tests_run": 10,
+    "successful": true
+  },
+  "canonical": {
+    "tests_run": 610,
+    "seconds": 51.619,
+    "failures": 0,
+    "errors": 0,
+    "successful": true,
+    "log_sha256": "ddea02c4acabf2635e1575f3f027d135272d6201e167f9f2d1d3b43310ad7383"
+  },
+  "reference_harness": {
+    "tests_run": 15,
+    "seconds": 21.442,
+    "failures": 0,
+    "errors": 0,
+    "successful": true,
+    "log_sha256": "feaab4ef6a1881f5361bb2ff7264155741e6c8d26dcb4746f4dfc1ae94ff4d29"
+  },
+  "implementation_sha256": "50de329139e676e9e89a6153e3bfc6613a8cf8775d538fae7f2e62f57e7705b3",
+  "runtime_and_rubric_unchanged": true,
+  "synthetic_git_fixtures_only": true,
+  "preview_package_source_commit": "514ce85d6e612faa25168bd479859f1bada608ce",
+  "limits": [
+    "Internal ZIP integrity is not origin authentication.",
+    "Document allowlist is not a sensitive-content classifier.",
+    "Software verification is not semantic validation of agent analysis.",
+    "Another real interview remains pending."
+  ],
+  "independent_semantic_validation": false
+}

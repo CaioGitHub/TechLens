@@ -22,3 +22,11 @@ A organização documental não pressupõe árvore Git totalmente limpa: a pasta
 ## Próximo passo dependente de fonte
 
 Quando existir outra entrevista, iniciar pelo guia, guardar a primeira análise antes da revisão e confrontá-la com a fonte e o método. Não reutilizar versões da mesma entrevista como evidência de generalização. Até lá, o estado continua PILOTO_SUPERVISIONADO_PREPARADO_AGUARDANDO_ENTREVISTA_DISTINTA. Não há motivo demonstrado para repetir os ensaios sintéticos encerrados ou mudar pesos/âncoras.
+
+
+## Pacote reproduzível do método — 2026-10-28
+
+Ver [PACOTE_DO_METODO.md](PACOTE_DO_METODO.md). A distribuição pode ser gerada de uma revisão Git fixa e verificada por lista de fontes e hashes, sem incluir pastas de entrevistas ou relatórios. O agente da empresa segue o guia único; não precisa configurar provedor interno. A nova verificação é de empacotamento, não de qualidade semântica. Outra entrevista real continua pendente.
+
+
+Verificação desta rodada: dez contratos de empacotamento aprovados; regressão completa com 610 testes e Reference Harness com 15, sem falhas ou erros. ZIP de ensaio construído e verificado. Resultados em PACKAGE_DISTRIBUTION_RESULTS_2026-10-28.json. A validação do próximo piloto com entrevista distinta permanece pendente; o novo pacote não inclui fonte ou avaliação de candidato.
