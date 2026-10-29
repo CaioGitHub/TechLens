@@ -1,5 +1,10 @@
 # GEMINI HANDOFF — Guia de Continuidade do Projeto
 
+## Simulação longa consolidada — 2026-10-29
+
+Resultado e evidências em `11 - Interview Evaluation/09 - Synthetic Validation/Full Simulated Interview 2026-10-29/README.md`. A revisão da primeira entrega não identificou desvio metodológico material neste ensaio fictício. Fonte, condições, entrega, registro e conferência foram preservados com hashes, sem correção da saída para aprovação. Foram conferidos 66 turnos, 29 pedidos/continuações e 12 unidades pontuadas, uma adiada e 13 contextuais. Não há nota global ou gabarito numérico; revisão retrospectiva pelo autor da simulação, sem independência ou cegamento. A calibração de notas e a generalização para outra entrevista real permanecem pendentes. Não há nova regressão nesta alteração documental: o último resultado de código é 610 testes e 15 do harness aprovados em 2026-10-28. Nenhum peso, âncora, código ou gate histórico foi alterado. Pacote do método continua disponível para piloto supervisionado; não inclui este arquivo de resultados.
+
+
 ## Continuidade operacional — 2026-10-28
 
 Consultar `CONTINUIDADE_2026-10-28.md` para as pendências e `ANALISAR_ENTREVISTA.md` para uso pelo agente da empresa. A preparação privada de reteste v2 continua local e sem autorização específica de publicação; não incluir automaticamente. O próximo piloto aguarda entrevista distinta, sem nova fonte disponível. A última regressão registrada é de 2026-10-26; esta rodada organiza documentação e não declara novos testes de runtime ou homologação semântica.

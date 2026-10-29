@@ -30,3 +30,8 @@ Ver [PACOTE_DO_METODO.md](PACOTE_DO_METODO.md). A distribuição pode ser gerada
 
 
 Verificação desta rodada: dez contratos de empacotamento aprovados; regressão completa com 610 testes e Reference Harness com 15, sem falhas ou erros. ZIP de ensaio construído e verificado. Resultados em PACKAGE_DISTRIBUTION_RESULTS_2026-10-28.json. A validação do próximo piloto com entrevista distinta permanece pendente; o novo pacote não inclui fonte ou avaliação de candidato.
+
+
+## Simulação longa consolidada — 2026-10-29
+
+Resultado e evidências em `11 - Interview Evaluation/09 - Synthetic Validation/Full Simulated Interview 2026-10-29/README.md`. A revisão da primeira entrega não identificou desvio metodológico material neste ensaio fictício. Fonte, condições, entrega, registro e conferência foram preservados com hashes, sem correção da saída para aprovação. Foram conferidos 66 turnos, 29 pedidos/continuações e 12 unidades pontuadas, uma adiada e 13 contextuais. Não há nota global ou gabarito numérico; revisão retrospectiva pelo autor da simulação, sem independência ou cegamento. A calibração de notas e a generalização para outra entrevista real permanecem pendentes. Não há nova regressão nesta alteração documental: o último resultado de código é 610 testes e 15 do harness aprovados em 2026-10-28. Nenhum peso, âncora, código ou gate histórico foi alterado. Pacote do método continua disponível para piloto supervisionado; não inclui este arquivo de resultados.

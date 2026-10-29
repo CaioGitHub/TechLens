@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-29",
+  "state": "SIMULATED_LONG_INTERVIEW_DIAGNOSTIC_CONSOLIDATED",
+  "method_source_commit": "4d015eb6b12e73b219f3790a848040e5eac2c0d5",
+  "preserved_file_sha256": {
+    "TRANSCRICAO_SIMULADA.md": "89910b4a452d7cd6455cd0972614e5cc6717b5c4e4bc5aab008fbb4f9e4acf74",
+    "CONDICOES_DA_SIMULACAO.md": "de578f5d50cf005805ffac4993bedeb97868f320ac9a1887cfd5473aa6f51954",
+    "PREPARACAO.json": "7e1c7b95c781d67848288955a658e812445e640efe1bcfe30388fc8484cc4108",
+    "ENTREGA_DA_ANALISE.md": "fc4a777cd5b3633a8279bfb7479c85816a8133854ae667dfffea04e2708d2b0f",
+    "REGISTRO_DE_EXECUCAO.md": "6077afae09c964cce755ea352359977157f8786ecc5218b43da45e09f7758429",
+    "CONFERENCIA.md": "f5589343e380855013ba94d78037fc5ddb27ba28cb720a012ae995d430c44945",
+    "AUDIT_RESULTS.json": "7f41321541cb0444af94a5b6cf2f8c63c5bc060647f63bbcdbd26bac23cbeda9"
+  },
+  "source_type": "entirely_fictional_interview_without_audio",
+  "review_type": "retrospective_author_review_not_blind_not_independent",
+  "score_oracle_defined": false,
+  "received_outputs_rewritten": false,
+  "semantic_homologation": false,
+  "independent_score_calibration": false,
+  "structural_counts": {
+    "source_turns": 66,
+    "requests_and_continuations": 29,
+    "scored_units": 12,
+    "deferred_units": 1,
+    "contextual_units": 13,
+    "merged_continuations": 3
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "date": "2026-10-29",
+  "status": "NO_MATERIAL_METHOD_DEVIATION_IDENTIFIED_IN_THIS_REVIEW",
+  "review_protocol": "Retrospective application of existing method and pre-supplied simulation conditions. No new frozen score oracle or claim of preregistered exhaustive criteria.",
+  "method_source_commit": "4d015eb6b12e73b219f3790a848040e5eac2c0d5",
+  "received_sha256": {
+    "ENTREGA_DA_ANALISE.md": "fc4a777cd5b3633a8279bfb7479c85816a8133854ae667dfffea04e2708d2b0f",
+    "REGISTRO_DE_EXECUCAO.md": "6077afae09c964cce755ea352359977157f8786ecc5218b43da45e09f7758429"
+  },
+  "source_sha256": "89910b4a452d7cd6455cd0972614e5cc6717b5c4e4bc5aab008fbb4f9e4acf74",
+  "conditions_sha256": "de578f5d50cf005805ffac4993bedeb97868f320ac9a1887cfd5473aa6f51954",
+  "package_input_changes": [],
+  "source_matches_preparation_hash": true,
+  "source_hashes_match_executor_record": true,
+  "structural_counts": {
+    "source_turns": 66,
+    "requests_and_continuations": 29,
+    "scored_units": 12,
+    "deferred_units": 1,
+    "contextual_units": 13,
+    "merged_continuations": 3
+  },
+  "checks": [
+    {
+      "criterion": "Fonte irrecuperável",
+      "status": "ATENDE",
+      "delivery_line": 127,
+      "assessment": "09:14 mantém Q11 adiada, sem nota ou conclusão de desempenho retirada de fragmentos."
+    },
+    {
+      "criterion": "Hipóteses lexicais",
+      "status": "ATENDE",
+      "delivery_line": 73,
+      "assessment": "OpenTelemetry e Jira permanecem hipóteses não aplicadas; nome esquecido continua não informado."
+    },
+    {
+      "criterion": "Inventário e fonte incerta",
+      "status": "ATENDE",
+      "delivery_line": 196,
+      "assessment": "Nome de ferramenta pendente não cria avaliação técnica adiada ou cobrança de demonstração."
+    },
+    {
+      "criterion": "Pedido inicial e investigação ampliada",
+      "status": "ATENDE",
+      "delivery_line": 135,
+      "assessment": "Q12 recebe julgamento pelo primeiro passo; Q12.1 trata a nova demanda explícita com condições próprias, sem atribuir execução real."
+    },
+    {
+      "criterion": "Benefício versus custo",
+      "status": "ATENDE",
+      "delivery_line": 111,
+      "assessment": "Benefícios não são reclassificados como resposta ao custo. Não lembrar é preservado sem diagnóstico geral de capacidade."
+    },
+    {
+      "criterion": "Experiência e autoria",
+      "status": "ATENDE",
+      "delivery_line": 151,
+      "assessment": "Relato detalhado, limites dos testes, métricas não lembradas e execução pelo time de banco permanecem separados."
+    },
+    {
+      "criterion": "Erro técnico versus transcrição",
+      "status": "ATENDE",
+      "delivery_line": 159,
+      "assessment": "A afirmação sobre índice não é corrigida lexicalmente; recebe julgamento próprio sem apagar o relato de otimização."
+    },
+    {
+      "criterion": "Ausência de exigências extras",
+      "status": "ATENDE_NA_REVISAO",
+      "delivery_line": 167,
+      "assessment": "Na revisão dos fundamentos não se identificou requisito material inventado que exija nova correção. Isso não é certificação exaustiva."
+    },
+    {
+      "criterion": "Cobertura e consolidação",
+      "status": "CONFERIDO_ESTRUTURALMENTE",
+      "delivery_line": 62,
+      "assessment": "29 pedidos/continuações; 12 unidades pontuadas, 1 adiada, 13 contextuais; três continuações incorporadas. Não há nota global."
+    },
+    {
+      "criterion": "Limites de execução",
+      "status": "ADEQUADAMENTE_DECLARADOS",
+      "delivery_line": 252,
+      "assessment": "Registro distingue autoconferência, fontes externas e limitações; consulta efetiva de todos os arquivos não é comprovada sem log de ferramentas."
+    }
+  ],
+  "scores_as_received_not_targets": [
+    {
+      "unit": "Q04",
+      "profile": "CM",
+      "score": 9.0,
+      "confidence": "alta"
+    },
+    {
+      "unit": "Q05",
+      "profile": "CM",
+      "score": 9.0,
+      "confidence": "alta"
+    },
+    {
+      "unit": "Q05.1",
+      "profile": "CMPRA",
+      "score": 7.0,
+      "confidence": "média"
+    },
+    {
+      "unit": "Q07",
+      "profile": "CMPR",
+      "score": 9.0,
+      "confidence": "alta"
+    },
+    {
+      "unit": "Q08 + Q08.1",
+      "profile": "Todas",
+      "score": 0.0,
+      "confidence": "alta"
+    },
+    {
+      "unit": "Q09 + Q09.1",
+      "profile": "CMPR",
+      "score": 9.0,
+      "confidence": "alta"
+    },
+    {
+      "unit": "Q12",
+      "profile": "CMRA",
+      "score": 9.0,
+      "confidence": "alta"
+    },
+    {
+      "unit": "Q12.1",
+      "profile": "CMPRA",
+      "score": 8.0,
+      "confidence": "alta"
+    },
+    {
+      "unit": "Q13 + Q13.1",
+      "profile": "CMPRA",
+      "score": 8.0,
+      "confidence": "média"
+    },
+    {
+      "unit": "Q14",
+      "profile": "CM",
+      "score": 0.0,
+      "confidence": "alta"
+    },
+    {
+      "unit": "Q15",
+      "profile": "CM",
+      "score": 9.0,
+      "confidence": "alta"
+    },
+    {
+      "unit": "Q15.1",
+      "profile": "Todas",
+      "score": 9.0,
+      "confidence": "alta"
+    }
+  ],
+  "numeric_calibration_independently_validated": false,
+  "external_references_checked_by_reviewer": [
+    {
+      "url": "https://www.postgresql.org/docs/18/indexes-unique.html",
+      "review": "Conteúdo oficial consultado nesta conferência: unicidade é propriedade específica do índice/restrição, não consequência de qualquer índice."
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2",
+      "review": "Fonte primária de semântica HTTP indicada para idempotência; a consulta ao documento não comprova a leitura anterior pelo executor."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/entra/fundamentals/identity-fundamental-concepts",
+      "review": "Conteúdo retornado distingue autenticação e autorização. Aviso de autorização na página não impediu leitura desse corpo."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside",
+      "review": "Conteúdo retornado trata benefício de cache e desatualização; não comprova uso de Azure pelo candidato fictício."
+    }
+  ],
+  "not_verified": [
+    "Actual use of every source claimed by executor without its tool log",
+    "Independent executor/reviewer identity or blindness",
+    "Agreement with independent human score calibration",
+    "Generalization to distinct real interviews"
+  ],
+  "model_execution_performed_by_reviewer": false,
+  "runtime_tests_executed": false,
+  "received_outputs_modified": false,
+  "git_publication_performed": false
+}

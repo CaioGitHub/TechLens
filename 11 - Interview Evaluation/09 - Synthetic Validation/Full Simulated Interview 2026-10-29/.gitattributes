@@ -1,0 +1,7 @@
+TRANSCRICAO_SIMULADA.md -text whitespace=cr-at-eol,-blank-at-eol
+CONDICOES_DA_SIMULACAO.md -text whitespace=cr-at-eol,-blank-at-eol
+PREPARACAO.json -text whitespace=cr-at-eol,-blank-at-eol
+ENTREGA_DA_ANALISE.md -text whitespace=cr-at-eol,-blank-at-eol
+REGISTRO_DE_EXECUCAO.md -text whitespace=cr-at-eol,-blank-at-eol
+CONFERENCIA.md -text whitespace=cr-at-eol,-blank-at-eol
+AUDIT_RESULTS.json -text whitespace=cr-at-eol,-blank-at-eol
