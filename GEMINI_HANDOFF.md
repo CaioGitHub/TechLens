@@ -1,5 +1,10 @@
 # GEMINI HANDOFF — Guia de Continuidade do Projeto
 
+## Protocolo híbrido de validação — 2026-10-29
+
+Protocolo em PROTOCOLO_VALIDACAO.md e formulários em 99 - Templates/Interview Validation/. A leitura prévia do revisor deve ser preservada antes de liberar a análise do executor. Comparação por unidade, classificação de divergências e decisão humana do escopo material; sem nota alvo ou alegação automática de independência. Primeiro ensaio preparado com a simulação existente, mas a execução e a comparação do novo revisor continuam pendentes. Nenhuma validação real, revisão independente ou calibração foi concluída nesta preparação; método de pontuação e gates preservados.
+
+
 ## Simulação longa consolidada — 2026-10-29
 
 Resultado e evidências em `11 - Interview Evaluation/09 - Synthetic Validation/Full Simulated Interview 2026-10-29/README.md`. A revisão da primeira entrega não identificou desvio metodológico material neste ensaio fictício. Fonte, condições, entrega, registro e conferência foram preservados com hashes, sem correção da saída para aprovação. Foram conferidos 66 turnos, 29 pedidos/continuações e 12 unidades pontuadas, uma adiada e 13 contextuais. Não há nota global ou gabarito numérico; revisão retrospectiva pelo autor da simulação, sem independência ou cegamento. A calibração de notas e a generalização para outra entrevista real permanecem pendentes. Não há nova regressão nesta alteração documental: o último resultado de código é 610 testes e 15 do harness aprovados em 2026-10-28. Nenhum peso, âncora, código ou gate histórico foi alterado. Pacote do método continua disponível para piloto supervisionado; não inclui este arquivo de resultados.

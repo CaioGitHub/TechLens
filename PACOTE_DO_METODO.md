@@ -39,3 +39,8 @@ Dez contratos cobrem seleção de fontes, exclusão de artefatos privados, deter
 
 
 Verificação desta rodada: dez contratos de empacotamento aprovados; regressão completa com 610 testes e Reference Harness com 15, sem falhas ou erros. ZIP de ensaio construído e verificado. Resultados em PACKAGE_DISTRIBUTION_RESULTS_2026-10-28.json. A validação do próximo piloto com entrevista distinta permanece pendente; o novo pacote não inclui fonte ou avaliação de candidato.
+
+
+## Protocolo híbrido de validação — 2026-10-29
+
+Protocolo em PROTOCOLO_VALIDACAO.md e formulários em 99 - Templates/Interview Validation/. A leitura prévia do revisor deve ser preservada antes de liberar a análise do executor. Comparação por unidade, classificação de divergências e decisão humana do escopo material; sem nota alvo ou alegação automática de independência. Primeiro ensaio preparado com a simulação existente, mas a execução e a comparação do novo revisor continuam pendentes. Nenhuma validação real, revisão independente ou calibração foi concluída nesta preparação; método de pontuação e gates preservados.
