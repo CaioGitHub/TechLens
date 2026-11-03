@@ -37,3 +37,8 @@ Envie a pasta completa `revisao-001` ao revisor. Ela traz método, fonte, condi�
 - Preservação de arquivos não comprova leitura real pelo agente. O responsável recebe a análise, confere as exceções indispensáveis e mantém adiamentos visíveis, sem transformar erro de transcrição em falha do candidato.
 
 Por decisão do usuário em 2026-11-03, o desenvolvimento prossegue sem exigir agora outra entrevista real. Essa validação permanece não realizada, com generalização e calibração pendentes; não foi substituída por homologação. O ciclo fictício anterior teve falhas na primeira tentativa e correções assistidas até R2. Os gates históricos, método, pesos e runtime permanecem inalterados.
+
+
+## Compatibilidade da entrega piloto
+
+O preparador aceita pacotes techlens.method.v1 e techlens.method.v2. O v2 inclui protocolo, formulários e guia do piloto; a revisão recebe todos os documentos daquela versão. Use o ZIP original como entrada do comando analysis, não um ZIP de pasta já enriquecida com entrevistas ou resultados. A construção opcional do ZIP a partir do checkout pode usar --release-version 0.1.0-piloto.1, conforme PACOTE_DO_METODO.md. Nenhuma instalação é necessária para quem usa diretamente o pacote com seu agente.

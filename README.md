@@ -14,6 +14,10 @@ Envie a transcrição ao agente que você já utiliza e disponibilize o método 
 
 Para reunir fonte, condições, método e entregas em pastas completas, consulte [Preparar análise e revisão](PREPARAR_ANALISE.md). A ferramenta local é opcional; o agente da empresa continua executando a análise.
 
+## Piloto para empresas
+
+A primeira entrega controlada é 0.1.0-piloto.1. Use o pacote de método com seu próprio agente e transcrição em texto, TXT ou Markdown; comece por LEIA_PRIMEIRO.md no ZIP e ANALISAR_ENTREVISTA.md. [GUIA_DO_PILOTO.md](GUIA_DO_PILOTO.md) explica acompanhamento e exceções; [PACOTE_DO_METODO.md](PACOTE_DO_METODO.md) orienta a preparação da distribuição. Não há serviço hospedado, instalação obrigatória ou integração com modelos.
+
 ## Propósito
 
 Este repositório é um Second Brain técnico construído para organizar, conectar e reutilizar conhecimento sobre:

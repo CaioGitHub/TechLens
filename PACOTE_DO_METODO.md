@@ -49,3 +49,19 @@ Protocolo em PROTOCOLO_VALIDACAO.md e formulários em 99 - Templates/Interview V
 ## Pastas completas de trabalho — 2026-11-03
 
 Ver PREPARAR_ANALISE.md e scripts/interview_workspace.py. O preparador consome este ZIP de método, preserva fonte e condições e reúne os arquivos selecionados em outra pasta para revisão. A distribuição do método continua sem entrevistas; as pastas de trabalho incluem somente a entrevista e as entregas selecionadas pelo usuário e não são publicadas automaticamente.
+
+
+## Entrega 0.1.0-piloto.1 — formato v2
+
+O construtor passa a gerar techlens.method.v2 por padrão, acrescentando PROTOCOLO_VALIDACAO.md, os três formulários de revisão em branco, GUIA_DO_PILOTO.md e REGISTRO_DO_PILOTO.md. O primeiro arquivo da jornada é LEIA_PRIMEIRO.md; ANALISAR_ENTREVISTA.md contém o pedido principal. A entrega é para envio controlado, sem lançamento público ou entrevistas de exemplo no ZIP.
+
+```
+python -m scripts.agent_method_package build --repo . --ref HEAD --release-version 0.1.0-piloto.1 --output TechLens-0.1.0-piloto.1.zip
+python -m scripts.agent_method_package verify TechLens-0.1.0-piloto.1.zip
+```
+
+O manifesto v2 registra release_version, package_format, source_commit e hashes. O verificador continua aceitando ZIPs v1 existentes sem exigir metadados que não existiam. Para reconstruir uma revisão histórica com a seleção antiga, usar --package-format techlens.method.v1. A mesma revisão, seleção e versão do construtor geram os mesmos bytes no mesmo ambiente de compactação.
+
+scripts/interview_workspace.py aceita ambos os formatos e preserva a seleção correspondente na preparação de análise e revisão, incluindo pastas v1 anteriores sem metadados novos. O registro de acompanhamento da empresa deve ficar fora do ZIP original. Templates em branco não são execução ou aprovação.
+
+A mensagem de entrega e o registro técnico da preparação ficam separados do ZIP de método. O conteúdo fornecido a uma empresa continua sem relatos de candidatos, critérios reservados ou resultados históricos. Os sete arquivos privados de preparação do reteste antigo foram arquivados fora do repositório, com conferência de hashes e recibo exclusivamente local; não foram publicados.

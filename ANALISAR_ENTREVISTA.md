@@ -2,11 +2,15 @@
 
 Use este guia com o agente que sua empresa já utiliza e que tenha acesso ao projeto. O TechLens fornece o método e a base de referência. O agente faz a análise, confere o próprio relatório e apresenta apenas as exceções que dependem de confirmação da fonte. Não é necessário cadastrar modelo, chave ou API no projeto.
 
-Uso atual: piloto supervisionado. O método tem ensaios diagnósticos com avanços e limitações; não há validação semântica independente ou garantia de resultado para qualquer agente. A regressão de código registrada em 2026-10-26 terminou, com 600 testes e 15 do harness aprovados; isso não mede a qualidade de uma nova análise textual.
+Uso atual: piloto supervisionado. O método tem ensaios diagnósticos com avanços e limitações; não há validação semântica independente ou garantia de resultado para qualquer agente. Verificações de software e de integridade não medem a qualidade semântica de uma nova análise textual.
+
+## Caminho de início
+
+No pacote recebido, abra LEIA_PRIMEIRO.md e siga este guia. Disponibilize ao agente a pasta inteira extraída e sua transcrição. Não é necessário ler o histórico de desenvolvimento ou instalar ferramentas. GUIA_DO_PILOTO.md descreve o acompanhamento e como registrar problemas quando estiver incluído no pacote.
 
 ## 1. Disponibilize a fonte
 
-Envie a transcrição original e dê ao agente acesso ao repositório ou ao snapshot de método preparado para a análise. Não envie relatórios anteriores como resposta esperada. Preservar o arquivo recebido; correções e reconstruções devem ficar separadas. Se não houver transcrição, o agente deve aguardar a fonte, sem gerar relatório de candidato.
+Envie a transcrição original, colada na conversa ou em arquivo TXT/Markdown, e dê ao agente acesso ao repositório ou ao snapshot de método preparado para a análise. Arquivos precisam estar em texto UTF-8; este fluxo não converte Word/PDF nem gera transcrição de áudio. Se usar texto colado, preserve também sua versão original na área autorizada, sem correções silenciosas. Não envie relatórios anteriores como resposta esperada. Preservar o arquivo recebido; correções e reconstruções devem ficar separadas. Se não houver transcrição, o agente deve aguardar a fonte, sem gerar relatório de candidato.
 
 O texto pode ter timestamps ou rótulos de falante incompletos. Não complete informações ausentes por suposição. Quando necessário, o agente atribui identificadores de posição e informa essa convenção. Não apresentar outra versão da mesma entrevista como nova entrevista independente.
 
@@ -87,6 +91,18 @@ Os nomes acima servem à entrega de trabalho em uma área separada. A persistên
 Guarde a primeira entrega antes de fornecer comentários. Confira as exceções com a fonte quando isso for possível. Se não houver como recuperar um trecho, registre a limitação e continue com as demais unidades utilizáveis. Não completar a resposta do candidato para torná-la tecnicamente correta.
 
 Correção posterior deve virar nova versão acompanhada do motivo, mantendo original e primeira saída. Uma revisão guiada não comprova que a primeira execução acertou. A calibração das notas e a generalização para outras entrevistas continuam exigindo evidência própria.
+
+## 6. Revisão, entrega e acompanhamento
+
+Para pedir revisão, disponibilize fonte original, condições, método completo, análise recebida, registro e comentários, quando existirem. Fornecer apenas o feedback não substitui o acesso à fonte. Peça uma versão completa em ENTREGA_REVISADA.md e o histórico de mudanças em REGISTRO_DA_REVISAO.md, em uma pasta nova. Preserve primeira entrega e cada revisão. Se o agente não puder gravar arquivos, ele apresenta os conteúdos e declara a limitação.
+
+O agente reavalia o fundamento de cada limitação pelo pedido real, explicita as seis dimensões oficiais e atualiza indicadores e sínteses. Não exigir aumento de nota, acordo com outro agente ou desfecho positivo não solicitado. O usuário resolve somente exceções novas indispensáveis; não precisa homologar toda pergunta para receber a análise no escopo possível.
+
+Revisão com comentários é assistida; sem comentários, mas com acesso à análise, é exposta ao resultado. Para leitura prévia separada, quando o protocolo acompanhar o pacote, seguir PROTOCOLO_VALIDACAO.md antes de liberar a análise. Não simular leitura cega depois da exposição. Nenhuma revisão equivale automaticamente à decisão humana.
+
+O relatório utilizável mantém incertezas, adiamentos e alcance do subconjunto pontuado. Fonte ausente exige aguardar; arquivo essencial inacessível exige declarar impedimento e limitar a entrega. Quando uma saída já existir, escolher nova pasta com o responsável antes de gravar, sem apagá-la. Uma questão de fonte irrecuperável permanece limitada, não é resolvida por consenso.
+
+Para empresas participantes, o guia do piloto e o registro local orientam o retorno de problemas. Não é preciso fornecer entrevistas inteiras ou dados de candidatos para informar inicialmente uma dificuldade.
 
 ## Referências
 
