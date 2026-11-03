@@ -6,11 +6,11 @@ import json
 from pathlib import Path
 import zipfile
 
-from scripts.agent_method_package import GENERATED, METHOD_SOURCES, _verify
+from scripts.agent_method_package import FORMAT_V1, member_names, read_verified_package
 
 FORMAT = "techlens.interview-workspace.v1"
 MAX_TEXT_BYTES = 10 * 1024 * 1024
-METHOD_FILES = set(METHOD_SOURCES) | set(GENERATED) | {"package_manifest.json"}
+METHOD_FILES = member_names(FORMAT_V1)  # Legacy fixtures/workspaces remain supported.
 ANALYSIS_FILES = {"METODO/" + n for n in METHOD_FILES} | {
     "TRANSCRICAO_ORIGINAL.md", "CONDICOES_DA_FONTE.md", "LEIA_PRIMEIRO.md", "TAREFA.md"}
 DEFAULT_CONDITIONS = """# Condições da fonte
@@ -58,9 +58,8 @@ def prepare_analysis(method_package, transcript, output, conditions=None):
     if Path(output).exists():
         raise FileExistsError(output)
     raw = Path(method_package).read_bytes()
-    verified = _verify(io.BytesIO(raw))
-    with zipfile.ZipFile(io.BytesIO(raw)) as z:
-        files = {"METODO/" + n: z.read(n) for n in sorted(METHOD_FILES)}
+    verified, method_files = read_verified_package(io.BytesIO(raw))
+    files = {"METODO/" + n: b for n, b in method_files.items()}
     files["TRANSCRICAO_ORIGINAL.md"] = _text(transcript)
     files["CONDICOES_DA_FONTE.md"] = _text(conditions) if conditions else DEFAULT_CONDITIONS.encode()
     files["LEIA_PRIMEIRO.md"] = (
@@ -83,7 +82,9 @@ def prepare_analysis(method_package, transcript, output, conditions=None):
         "Não alegar independência, aprovação humana ou avaliação integral com parte adiada.\n").encode()
     return _save(output, files, {"phase": "analysis", "method_source_commit": verified["source_commit"],
                                 "method_zip_sha256": sha256(raw).hexdigest(),
-                                "conditions_supplied": conditions is not None})
+                                "conditions_supplied": conditions is not None,
+                                "method_package_format": verified["package_format"],
+                                "release_version": verified["release_version"]})
 
 
 def _read_analysis(workspace):
@@ -92,11 +93,14 @@ def _read_analysis(workspace):
     if not isinstance(manifest, dict):
         raise ValueError("Invalid workspace manifest")
     hashes = manifest.get("file_sha256", {})
+    method_files = member_names(manifest.get("method_package_format", FORMAT_V1))
+    expected = {"METODO/" + n for n in method_files} | {
+        "TRANSCRICAO_ORIGINAL.md", "CONDICOES_DA_FONTE.md", "LEIA_PRIMEIRO.md", "TAREFA.md"}
     if (manifest.get("workspace_format") != FORMAT or manifest.get("phase") != "analysis"
-            or not isinstance(hashes, dict) or set(hashes) != ANALYSIS_FILES):
+            or not isinstance(hashes, dict) or set(hashes) != expected):
         raise ValueError("Not a supported analysis workspace")
     files = {}
-    for name in sorted(ANALYSIS_FILES):
+    for name in sorted(expected):
         path = workspace / name
         if path.is_symlink() or not path.resolve().is_relative_to(workspace):
             raise ValueError("Workspace input escapes its source folder")
@@ -108,10 +112,12 @@ def _read_analysis(workspace):
     # Revalidate the original method allowlist and internal hashes, not just outer metadata.
     stream = io.BytesIO()
     with zipfile.ZipFile(stream, "w") as z:
-        for name in METHOD_FILES:
+        for name in method_files:
             z.writestr(name, files["METODO/" + name])
-    verified = _verify(io.BytesIO(stream.getvalue()))
-    if verified["source_commit"] != manifest.get("method_source_commit"):
+    verified, _ = read_verified_package(io.BytesIO(stream.getvalue()))
+    if (verified["source_commit"] != manifest.get("method_source_commit")
+            or verified["package_format"] != manifest.get("method_package_format", FORMAT_V1)
+            or verified["release_version"] != manifest.get("release_version")):
         raise ValueError("Method revision mismatch")
     return files, verified
 
@@ -149,7 +155,9 @@ def prepare_review(workspace, analysis, execution_record, output, feedback=None)
         "independência, assinatura humana ou homologação. Não publicar os arquivos.\n").encode()
     return _save(output, files, {"phase": "assisted_review" if feedback else "exposed_review",
                                 "method_source_commit": verified["source_commit"],
-                                "previous_outputs_preserved": True})
+                                "previous_outputs_preserved": True,
+                                "method_package_format": verified["package_format"],
+                                "release_version": verified["release_version"]})
 
 
 def main():

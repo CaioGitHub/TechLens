@@ -5,7 +5,7 @@ import tempfile
 import unittest
 import zipfile
 
-from scripts.agent_method_package import FORMAT as METHOD_FORMAT
+from scripts.agent_method_package import FORMAT_V1 as METHOD_FORMAT, FORMAT as METHOD_V2, member_names
 from scripts.interview_workspace import METHOD_FILES, prepare_analysis, prepare_review
 
 
@@ -46,6 +46,34 @@ class InterviewWorkspaceTests(unittest.TestCase):
         for name in METHOD_FILES:
             self.assertTrue((self.workspace/'METODO'/name).is_file())
         self.assertFalse((self.workspace/'ENTREGA_DA_ANALISE.md').exists())
+
+    def test_v2_analysis_and_review_preserve_full_method_and_release(self):
+        with zipfile.ZipFile(self.method) as z:
+            files = {n: z.read(n) for n in z.namelist()}
+        for name in member_names(METHOD_V2) - set(files):
+            files[name] = b"# Blank pilot method fixture\n"
+        manifest = json.loads(files["package_manifest.json"])
+        manifest.update(package_format=METHOD_V2, release_version="0.1.0-piloto.1")
+        manifest["file_sha256"] = {n:sha256(b).hexdigest() for n,b in files.items() if n != "package_manifest.json"}
+        files["package_manifest.json"] = json.dumps(manifest).encode()
+        with zipfile.ZipFile(self.method, "w") as z:
+            for name, raw in files.items():
+                z.writestr(name, raw)
+        self.prepare()
+        prepare_review(self.workspace, self.analysis, self.record, self.review)
+        for folder in (self.workspace, self.review):
+            self.assertTrue((folder/"METODO/PROTOCOLO_VALIDACAO.md").is_file())
+            self.assertEqual(json.loads((folder/"workspace_manifest.json").read_bytes())["release_version"], "0.1.0-piloto.1")
+
+    def test_preexisting_legacy_workspace_without_new_metadata_remains_supported(self):
+        self.prepare()
+        p = self.workspace/"workspace_manifest.json"
+        manifest = json.loads(p.read_bytes())
+        manifest.pop("method_package_format")
+        manifest.pop("release_version")
+        p.write_text(json.dumps(manifest))
+        prepare_review(self.workspace, self.analysis, self.record, self.review)
+        self.assertTrue((self.review/"TRANSCRICAO_ORIGINAL.md").is_file())
 
     def test_missing_conditions_are_unknown_not_confirmed(self):
         self.prepare()

@@ -39,11 +39,39 @@ METHOD_SOURCES = (
     'TRANSCRIPTION_EVALUATION_CHECK.md',
 )
 
-FORMAT = "techlens.method.v1"
+FORMAT_V1 = "techlens.method.v1"
+FORMAT = "techlens.method.v2"
+DEFAULT_RELEASE = "0.1.0-piloto.1"
+V2_SOURCES = METHOD_SOURCES + (
+    "PROTOCOLO_VALIDACAO.md",
+    "99 - Templates/Interview Validation/FICHA_REVISAO_PREVIA.md",
+    "99 - Templates/Interview Validation/MATRIZ_DIVERGENCIAS.md",
+    "99 - Templates/Interview Validation/DECISAO_VALIDACAO.md",
+    "GUIA_DO_PILOTO.md",
+    "99 - Templates/Interview Validation/REGISTRO_DO_PILOTO.md",
+)
+
+
+def sources_for_format(package_format):
+    if package_format == FORMAT_V1:
+        return METHOD_SOURCES
+    if package_format == FORMAT:
+        return V2_SOURCES
+    raise ValueError("Unsupported package format")
+
+
+def member_names(package_format):
+    return set(sources_for_format(package_format)) | set(GENERATED) | {"package_manifest.json"}
+
+
+def _release_valid(value):
+    return isinstance(value, str) and re.fullmatch(
+        r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[0-9A-Za-z]+(?:[.-][0-9A-Za-z]+)*)?", value) is not None
+
 MAX_TOTAL_BYTES = 20 * 1024 * 1024
 GENERATED = {
-    "README.md": "# TechLens — pacote de método\n\nComece por ANALISAR_ENTREVISTA.md. Este ZIP contém somente referências de método e exemplos metodológicos, sem entrevista de entrada ou relatório de candidato. Extraia em uma pasta nova. Use seu próprio agente com acesso aos arquivos. Não é necessário executar Python para analisar.\n\nO manifesto identifica a revisão Git usada. Integridade de bytes não comprova fidelidade de uma transcrição, autoria do pacote ou qualidade semântica do agente. Não há fonte real neste pacote: aguardar uma transcrição fornecida pelo usuário. Não reutilizar relatórios anteriores como gabarito.\n",
-    "LEIA_PRIMEIRO.md": "# Início\n\nAbra README.md e ANALISAR_ENTREVISTA.md em uma conversa nova do seu agente. Preserve o ZIP original; a verificação se aplica ao ZIP antes de adicionar transcrição e saídas à pasta extraída. Registre o contexto e as limitações reais; uma pasta separada não garante cegamento.\n",
+    "README.md": "# TechLens — pacote de método\n\nComece por LEIA_PRIMEIRO.md, depois ANALISAR_ENTREVISTA.md. Este ZIP contém somente referências de método e exemplos metodológicos, sem entrevista de entrada ou relatório de candidato. Extraia em uma pasta nova. Use seu próprio agente com acesso aos arquivos. Não é necessário executar Python para analisar.\n\nO manifesto identifica a revisão Git usada. Integridade de bytes não comprova fidelidade de uma transcrição, autoria do pacote ou qualidade semântica do agente. Não há fonte real neste pacote: aguardar uma transcrição fornecida pelo usuário. Não reutilizar relatórios anteriores como gabarito.\n",
+    "LEIA_PRIMEIRO.md": "# Início\n\nAbra ANALISAR_ENTREVISTA.md e siga o pedido copiável com sua transcrição. GUIA_DO_PILOTO.md orienta o acompanhamento quando estiver incluído. Use uma conversa sem relatórios anteriores e declare seu contexto real. Preserve o ZIP original; a verificação se aplica ao ZIP antes de adicionar transcrição e saídas à pasta extraída. Registre o contexto e as limitações reais; uma pasta separada não garante cegamento.\n",
     "START_HERE.md": "# Entrada do snapshot\n\nEste é um pacote limitado do método, não o checkout de desenvolvimento. Siga ANALISAR_ENTREVISTA.md e TRANSCRIPTION_AGENT_WORKFLOW.md. Referências ausentes de histórico/runtime não são necessárias à análise textual. Declare fonte técnica essencial que esteja indisponível. Não afirmar consulta inexistente.\n",
     "GEMINI_HANDOFF.md": "# Escopo deste pacote\n\nO agente do usuário consulta o projeto como método. Este snapshot não contém relatórios ou resultados de entrevistas anteriores. Há exemplos legítimos na rubrica. Gates históricos não são promovidos por uma nova análise. Não implementar integrações ou executar runtime para analisar.\n",
     "CONTINUIDADE_2026-10-28.md": "# Continuidade no pacote distribuído\n\nDocumento de orientação gerado, não reprodução do histórico do repositório. Use ANALISAR_ENTREVISTA.md. A metodologia tem validações diagnósticas com limitações; uso supervisionado. Não há independência comprovada ou homologação semântica geral. A revisão de origem consta do manifesto.\n",
@@ -78,10 +106,13 @@ def _transform(name, raw):
     return text.encode("utf-8"), changes
 
 
-def build_package(repo, output, ref="HEAD", git=None):
+def build_package(repo, output, ref="HEAD", git=None, release_version=DEFAULT_RELEASE, package_format=FORMAT):
     repo, output = Path(repo), Path(output)
     if output.exists():
         raise FileExistsError(output)
+    sources = sources_for_format(package_format)
+    if package_format == FORMAT and not _release_valid(release_version):
+        raise ValueError("Invalid release version")
     git = git or shutil.which("git")
     if not git:
         raise ValueError("Git is required to read a fixed source revision")
@@ -89,7 +120,7 @@ def build_package(repo, output, ref="HEAD", git=None):
     if not re.fullmatch(r"[0-9a-f]{40}|[0-9a-f]{64}", commit):
         raise ValueError("Invalid resolved source commit")
     files, source_hashes, transforms = {}, {}, []
-    for name in METHOD_SOURCES:
+    for name in sources:
         raw = _git(repo, git, "show", commit + ":" + name)
         source_hashes[name] = sha256(raw).hexdigest()
         files[name], changes = _transform(name, raw)
@@ -97,7 +128,7 @@ def build_package(repo, output, ref="HEAD", git=None):
             transforms.append({"path": name, "changes": changes})
     files.update({name: body.encode("utf-8") for name, body in GENERATED.items()})
     manifest = {
-        "package_format": FORMAT,
+        "package_format": package_format,
         "source_commit": commit,
         "source_file_sha256": source_hashes,
         "file_sha256": {name: sha256(raw).hexdigest() for name, raw in files.items()},
@@ -109,6 +140,9 @@ def build_package(repo, output, ref="HEAD", git=None):
         "independent_semantic_validation": False,
         "integrity_is_authenticity_proof": False,
     }
+    if package_format == FORMAT:
+        manifest["release_version"] = release_version
+        manifest["distribution"] = "CONTROLLED_SUPERVISED_PILOT"
     files["package_manifest.json"] = _canonical(manifest)
     stream = io.BytesIO()
     with zipfile.ZipFile(stream, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
@@ -125,42 +159,54 @@ def build_package(repo, output, ref="HEAD", git=None):
     with output.open("xb") as handle:
         handle.write(data)
     return {"status": "PACKAGE_BUILT", "source_commit": commit, "zip": str(output),
-            "zip_sha256": sha256(data).hexdigest(), "file_count": len(files)}
+            "zip_sha256": sha256(data).hexdigest(), "file_count": len(files),
+            "package_format": package_format, "release_version": manifest.get("release_version")}
 
 
-def _verify(source):
-    expected = set(METHOD_SOURCES) | set(GENERATED) | {"package_manifest.json"}
+def read_verified_package(source):
+    """Return metadata and exactly the validated members from one archive read."""
     try:
         with zipfile.ZipFile(source) as z:
             names = z.namelist()
-            if len(names) != len(set(names)) or set(names) != expected:
-                raise ValueError("Archive members do not match the method-only allowlist")
+            if len(names) != len(set(names)) or "package_manifest.json" not in names:
+                raise ValueError("Duplicate members or missing manifest")
             if sum(i.file_size for i in z.infolist()) > MAX_TOTAL_BYTES:
                 raise ValueError("Method package exceeds size limit")
             if any(i.flag_bits & 1 or i.is_dir() or (i.external_attr >> 16) & 0o170000 == 0o120000 for i in z.infolist()):
                 raise ValueError("Unsupported encrypted, directory or symbolic-link member")
             manifest = json.loads(z.read("package_manifest.json"))
-            if manifest.get("package_format") != FORMAT:
-                raise ValueError("Unsupported package format")
+            package_format = manifest.get("package_format")
+            expected = member_names(package_format)
+            if set(names) != expected:
+                raise ValueError("Archive members do not match the method-only allowlist")
+            if package_format == FORMAT and not _release_valid(manifest.get("release_version")):
+                raise ValueError("Missing or invalid release version")
             if not re.fullmatch(r"[0-9a-f]{40}|[0-9a-f]{64}", manifest.get("source_commit", "")):
                 raise ValueError("Missing source revision")
             hashes = manifest.get("file_sha256", {})
-            if set(hashes) != expected - {"package_manifest.json"}:
+            if not isinstance(hashes, dict) or set(hashes) != expected - {"package_manifest.json"}:
                 raise ValueError("Manifest members do not match archive")
+            files = {name: z.read(name) for name in sorted(expected)}
             for name, digest in hashes.items():
-                if not isinstance(digest, str) or sha256(z.read(name)).hexdigest() != digest:
+                if not isinstance(digest, str) or sha256(files[name]).hexdigest() != digest:
                     raise ValueError("Hash mismatch: " + name)
             if manifest.get("transcript_included") is not False or manifest.get("candidate_report_included") is not False:
                 raise ValueError("Not a method-only package")
     except (zipfile.BadZipFile, json.JSONDecodeError, UnicodeDecodeError, KeyError, TypeError, AttributeError, RuntimeError) as exc:
         raise ValueError("Invalid method archive or manifest") from exc
     return {"status": "INTEGRITY_VERIFIED", "source_commit": manifest["source_commit"],
-            "file_count": len(expected), "authenticity_verified": False, "semantic_validation": False}
+            "package_format": package_format, "release_version": manifest.get("release_version"),
+            "file_count": len(expected), "authenticity_verified": False, "semantic_validation": False}, files
+
+
+def _verify(source):
+    return read_verified_package(source)[0]
 
 
 def verify_package(archive):
-    result = _verify(Path(archive))
-    result["zip_sha256"] = sha256(Path(archive).read_bytes()).hexdigest()
+    raw = Path(archive).read_bytes()
+    result = _verify(io.BytesIO(raw))
+    result["zip_sha256"] = sha256(raw).hexdigest()
     return result
 
 
@@ -172,11 +218,13 @@ def main():
     build.add_argument("--output", type=Path, required=True)
     build.add_argument("--ref", default="HEAD")
     build.add_argument("--git")
+    build.add_argument("--release-version", default=DEFAULT_RELEASE)
+    build.add_argument("--package-format", choices=(FORMAT_V1, FORMAT), default=FORMAT)
     verify = sub.add_parser("verify")
     verify.add_argument("archive", type=Path)
     args = parser.parse_args()
     try:
-        result = build_package(args.repo, args.output, args.ref, args.git) if args.command == "build" else verify_package(args.archive)
+        result = build_package(args.repo, args.output, args.ref, args.git, args.release_version, args.package_format) if args.command == "build" else verify_package(args.archive)
     except (ValueError, FileExistsError, OSError) as exc:
         parser.exit(1, str(exc) + "\n")
     print(json.dumps(result, ensure_ascii=True, indent=2))

@@ -6,7 +6,7 @@ import tempfile
 import unittest
 import zipfile
 
-from scripts.agent_method_package import METHOD_SOURCES, build_package, verify_package
+from scripts.agent_method_package import METHOD_SOURCES, V2_SOURCES, FORMAT, FORMAT_V1, build_package, verify_package
 
 
 class AgentMethodPackageTests(unittest.TestCase):
@@ -24,7 +24,7 @@ class AgentMethodPackageTests(unittest.TestCase):
         self.run_git("init", "-q")
         self.run_git("config", "user.name", "Package test")
         self.run_git("config", "user.email", "package@example.invalid")
-        for name in METHOD_SOURCES:
+        for name in V2_SOURCES:
             p = self.repo / name
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_text("# Method fixture\n\nStable method text.\n", encoding="utf-8")
@@ -56,6 +56,49 @@ class AgentMethodPackageTests(unittest.TestCase):
         with zipfile.ZipFile(self.output) as z:
             self.assertFalse(any("Reports/" in n or n.startswith(".git/") for n in z.namelist()))
             self.assertNotIn(b"PRIVATE_INTERVIEW_SENTINEL", b"".join(z.read(n) for n in z.namelist()))
+
+    def test_v2_contains_protocol_forms_and_release(self):
+        self.build()
+        result = verify_package(self.output)
+        self.assertEqual(result["package_format"], FORMAT)
+        self.assertEqual(result["release_version"], "0.1.0-piloto.1")
+        with zipfile.ZipFile(self.output) as z:
+            for name in set(V2_SOURCES) - set(METHOD_SOURCES):
+                self.assertIn(name, z.namelist())
+
+    def test_v1_build_and_verification_remain_supported(self):
+        build_package(self.repo, self.output, git=self.git, package_format=FORMAT_V1)
+        self.assertEqual(verify_package(self.output)["package_format"], FORMAT_V1)
+        with zipfile.ZipFile(self.output) as z:
+            self.assertNotIn("PROTOCOLO_VALIDACAO.md", z.namelist())
+
+    def test_invalid_release_leaves_no_output(self):
+        with self.assertRaises(ValueError):
+            build_package(self.repo, self.output, git=self.git, release_version="../bad")
+        self.assertFalse(self.output.exists())
+
+    def test_missing_protocol_leaves_no_output(self):
+        self.run_git("rm", "--", "PROTOCOLO_VALIDACAO.md")
+        self.run_git("commit", "-qm", "missing protocol")
+        with self.assertRaises(ValueError):
+            self.build()
+        self.assertFalse(self.output.exists())
+
+    def test_v2_without_release_is_rejected(self):
+        self.build()
+        def mutation(entries):
+            manifest = json.loads(entries["package_manifest.json"])
+            del manifest["release_version"]
+            entries["package_manifest.json"] = json.dumps(manifest).encode()
+        self.rewrite_zip(mutation)
+        with self.assertRaises(ValueError):
+            verify_package(self.output)
+
+    def test_missing_blank_form_is_rejected(self):
+        self.build()
+        self.rewrite_zip(lambda entries: entries.pop("99 - Templates/Interview Validation/DECISAO_VALIDACAO.md"))
+        with self.assertRaises(ValueError):
+            verify_package(self.output)
 
     def test_same_revision_produces_same_zip(self):
         self.build()
