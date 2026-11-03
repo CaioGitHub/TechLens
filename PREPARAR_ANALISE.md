@@ -42,3 +42,8 @@ Por decisão do usuário em 2026-11-03, o desenvolvimento prossegue sem exigir a
 ## Compatibilidade da entrega piloto
 
 O preparador aceita pacotes techlens.method.v1 e techlens.method.v2. O v2 inclui protocolo, formulários e guia do piloto; a revisão recebe todos os documentos daquela versão. Use o ZIP original como entrada do comando analysis, não um ZIP de pasta já enriquecida com entrevistas ou resultados. A construção opcional do ZIP a partir do checkout pode usar --release-version 0.1.0-piloto.1, conforme PACOTE_DO_METODO.md. Nenhuma instalação é necessária para quem usa diretamente o pacote com seu agente.
+
+
+## Controle de entrega — atualização 0.1.0-piloto.2
+
+As tarefas de análise e revisão pedem o controle final rastreável do Check no próprio registro da execução/revisão. Isso exige referências e limites, não aprovação automática. Pacotes .1 e v1 anteriores continuam aceitos; não substituir a versão usada por uma entrevista em andamento sem registrar a mudança.

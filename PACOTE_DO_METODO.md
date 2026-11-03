@@ -65,3 +65,8 @@ O manifesto v2 registra release_version, package_format, source_commit e hashes.
 scripts/interview_workspace.py aceita ambos os formatos e preserva a seleção correspondente na preparação de análise e revisão, incluindo pastas v1 anteriores sem metadados novos. O registro de acompanhamento da empresa deve ficar fora do ZIP original. Templates em branco não são execução ou aprovação.
 
 A mensagem de entrega e o registro técnico da preparação ficam separados do ZIP de método. O conteúdo fornecido a uma empresa continua sem relatos de candidatos, critérios reservados ou resultados históricos. Os sete arquivos privados de preparação do reteste antigo foram arquivados fora do repositório, com conferência de hashes e recibo exclusivamente local; não foram publicados.
+
+
+## Atualização 0.1.0-piloto.2
+
+A versão padrão passa a 0.1.0-piloto.2, conservando o formato v2 e a compatibilidade v1. A mesma seleção incorpora o controle final rastreável atualizado e suas referências no roteiro/guia. Construir com --release-version 0.1.0-piloto.2 e um destino novo; não sobrescrever o ZIP .1. O pacote continua sem resultados de candidatos, critérios reservados ou conteúdo privado de piloto. Ver PILOT_FEEDBACK_2026-11-03.md no checkout para o resumo geral do retorno; esse resumo de desenvolvimento não é distribuído ao executor.

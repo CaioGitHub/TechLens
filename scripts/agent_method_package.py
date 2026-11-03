@@ -41,7 +41,7 @@ METHOD_SOURCES = (
 
 FORMAT_V1 = "techlens.method.v1"
 FORMAT = "techlens.method.v2"
-DEFAULT_RELEASE = "0.1.0-piloto.1"
+DEFAULT_RELEASE = "0.1.0-piloto.2"
 V2_SOURCES = METHOD_SOURCES + (
     "PROTOCOLO_VALIDACAO.md",
     "99 - Templates/Interview Validation/FICHA_REVISAO_PREVIA.md",

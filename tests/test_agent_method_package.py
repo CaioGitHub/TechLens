@@ -61,7 +61,7 @@ class AgentMethodPackageTests(unittest.TestCase):
         self.build()
         result = verify_package(self.output)
         self.assertEqual(result["package_format"], FORMAT)
-        self.assertEqual(result["release_version"], "0.1.0-piloto.1")
+        self.assertEqual(result["release_version"], "0.1.0-piloto.2")
         with zipfile.ZipFile(self.output) as z:
             for name in set(V2_SOURCES) - set(METHOD_SOURCES):
                 self.assertIn(name, z.namelist())

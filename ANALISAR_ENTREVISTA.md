@@ -56,6 +56,8 @@ checklist técnico ou presumir cenário. Distinga assunto não explorado
 de conteúdo solicitado que não foi explicado. Nota e pesos seguem a
 rubrica existente, sem resultado numérico esperado.
 
+Execute o controle final rastreável de TRANSCRIPTION_EVALUATION_CHECK.md
+e registre resultados com evidências no REGISTRO_DE_EXECUCAO.md.
 Confira tabelas, títulos e sínteses antes de entregar. Não transforme
 preferência em exclusividade, inspeção em reprodução comprovada,
 benefício em trade-off nem resposta limitada em diagnóstico profissional.
@@ -80,7 +82,7 @@ O agente organiza a entrega abaixo; o usuário não precisa preencher um relató
 | Arquivo | Conteúdo |
 | --- | --- |
 | ENTREGA_DA_ANALISE.md | Cobertura e limites; participantes e autoria sustentados; perguntas/respostas vinculadas à fonte; quadro separado de propostas, confirmações e incertezas; evidências e conferência por unidade antes da nota; avaliação fundamentada; síntese com capacidades demonstradas e conteúdo não explorado; exceções indispensáveis. |
-| REGISTRO_DE_EXECUCAO.md | Origem e versão do método, arquivos efetivamente consultados, contexto/histórico acessível, condições fornecidas, local das saídas, verificações realizadas e limites não verificáveis. Não presumir independência ou cegamento. |
+| REGISTRO_DE_EXECUCAO.md | Origem e versão do método, arquivos efetivamente consultados, contexto/histórico acessível, condições fornecidas, local das saídas, quadro de controle final com resultados/evidências, correções antes da entrega e limites não verificáveis. Não presumir independência ou cegamento. |
 
 Informar em cada unidade se é contextual sem nota, técnica avaliável ou técnica adiada por impedimento de fonte. Conservar distinção entre experiência declarada e demonstrada. Se houver indicadores, explicitar o subconjunto usado e conferir cálculo; não apresentar média parcial como nota global nem inferir senioridade ou contratação.
 
@@ -96,7 +98,7 @@ Correção posterior deve virar nova versão acompanhada do motivo, mantendo ori
 
 Para pedir revisão, disponibilize fonte original, condições, método completo, análise recebida, registro e comentários, quando existirem. Fornecer apenas o feedback não substitui o acesso à fonte. Peça uma versão completa em ENTREGA_REVISADA.md e o histórico de mudanças em REGISTRO_DA_REVISAO.md, em uma pasta nova. Preserve primeira entrega e cada revisão. Se o agente não puder gravar arquivos, ele apresenta os conteúdos e declara a limitação.
 
-O agente reavalia o fundamento de cada limitação pelo pedido real, explicita as seis dimensões oficiais e atualiza indicadores e sínteses. Não exigir aumento de nota, acordo com outro agente ou desfecho positivo não solicitado. O usuário resolve somente exceções novas indispensáveis; não precisa homologar toda pergunta para receber a análise no escopo possível.
+O agente registra o controle final também no novo registro da revisão e reavalia o fundamento de cada limitação pelo pedido real, explicita as seis dimensões oficiais e atualiza indicadores e sínteses. Não exigir aumento de nota, acordo com outro agente ou desfecho positivo não solicitado. O usuário resolve somente exceções novas indispensáveis; não precisa homologar toda pergunta para receber a análise no escopo possível.
 
 Revisão com comentários é assistida; sem comentários, mas com acesso à análise, é exposta ao resultado. Para leitura prévia separada, quando o protocolo acompanhar o pacote, seguir PROTOCOLO_VALIDACAO.md antes de liberar a análise. Não simular leitura cega depois da exposição. Nenhuma revisão equivale automaticamente à decisão humana.
 

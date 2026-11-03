@@ -1,6 +1,6 @@
 # Conferência de fundamento antes da nota e da entrega
 
-Data: 2026-10-26. Controle do método seguido pelo agente do usuário. Não modifica o runtime, os pesos de referência ou as âncoras da rubrica. Não demonstra validação independente do agente.
+Criado em 2026-10-26; controle de entrega atualizado em 2026-11-03. Controle do método seguido pelo agente do usuário. Não modifica o runtime, os pesos de referência ou as âncoras da rubrica. Não demonstra validação independente do agente.
 
 ## Registro obrigatório antes da pontuação
 
@@ -48,3 +48,21 @@ Antes de entregar, comparar tabelas, títulos, justificativas e síntese com os 
 - Conferir fontes efetivamente consultadas e verificações realmente realizadas. Não declarar ausência de alucinação, conformidade integral ou cegamento apenas pela própria afirmação ou por ignorar um histórico acessível.
 
 Se houver inconsistência, corrigir antes da entrega. Registrar limites remanescentes em vez de afirmar garantia total. O usuário recebe a análise concluída no escopo possível e apenas as exceções necessárias; não precisa executar esta conferência no lugar do agente.
+
+
+## Controle final rastreável
+
+Antes de apresentar a primeira entrega, o agente executa as verificações abaixo sobre a própria análise e registra um quadro compacto ao final de REGISTRO_DE_EXECUCAO.md. Em uma revisão, registrar no novo REGISTRO_DA_REVISAO.md. Usar ATENDE, FALHA ou NAO_VERIFICAVEL, com unidades/localizações conferidas, evidência do resultado e eventual correção ou limite. Não preencher ATENDE apenas por ter lido esta instrução ou marcado uma lista. Este é um controle do próprio agente, não prova de auditoria independente, decisão humana ou execução de software.
+
+| Controle | Verificação que deve ter evidência na entrega |
+| --- | --- |
+| Elegibilidade de cada nota | Identificar a ação pedida e sua localização antes de usar a riqueza da resposta como justificativa para pontuar. Confirmar uso/conhecimento ou listar ferramentas continua contextual sem nota, mesmo com explicação espontânea. Se houver complemento técnico real, citar seu pedido e separar o escopo, sem criar pergunta retrospectiva ou nota duplicada. |
+| Fundamento das penalizações | Para cada limitação que afete julgamento, ligar pedido → conteúdo ausente/incorreto → necessidade desse conteúdo → regra aplicável. Dizer que um item é relevante ou que não é checklist não demonstra sua necessidade. Não presumir produção, restrições, causa raiz, resultado positivo ou implementação completa. Limites factuais podem ser registrados sem serem penalizações. Se não houver fundamento, retirar a penalização sem aumentar nota automaticamente. |
+| Origem das condições e confirmações | Identificar quem confirmou, qual trecho e o alcance: usuário, fala do entrevistador, declaração do candidato ou hipótese do agente. Uma confirmação do usuário não é fala audível do entrevistador. Conservar o original e a proveniência separadamente; não transformar hipótese em confirmação nem pedir novamente condição já fornecida. |
+| Vínculos e sínteses | Conferir autor, timestamp/posição, pergunta e resposta, incluindo perguntas do candidato à equipe. A opinião do entrevistador e o contexto da vaga não completam respostas. Repercutir toda mudança de elegibilidade/fundamento em títulos, tabelas, resumo e indicadores, preservando modalidades e fonte comprometida. |
+| Lista de notas e indicadores | Se houver estatísticas, partir de uma lista única das unidades elegíveis. Conferir soma, denominador, arredondamento e frequências. Usar frequências por valor exato ou intervalos explícitos que contemplem notas fracionárias sem lacunas ou sobreposição. Contextuais e adiadas ficam fora por motivos distintos. A média do subconjunto não vira avaliação integral. Não é obrigatório gerar estatísticas. |
+| Fidelidade e verificabilidade | Não extrair desempenho de frase integralmente comprometida. Distinguir dimensão N/A ao pedido de julgamento indisponível pela fonte. Declarar arquivos realmente consultados, contexto exposto, consultas não verificáveis e correções feitas antes da entrega. Não afirmar teste, escuta, isolamento ou assinatura humana que não ocorreu. |
+
+Uma FALHA encontrada deve ser corrigida e novamente conferida antes da entrega. No quadro, registrar a correção realizada e o resultado da nova conferência, sem apagar sua ocorrência. Se faltar evidência ou acesso para resolver uma pendência, registrar NAO_VERIFICAVEL, seu alcance e o que permanece indisponível; não liberar nota ou conclusão dependente como se estivesse verificada. As partes não afetadas podem ser entregues com limites explícitos. Não tornar o usuário responsável por refazer esse controle em cada unidade.
+
+Uma versão já entregue permanece preservada. Alteração após feedback é revisão assistida com novo arquivo e registro; nunca reescrever a primeira tentativa para aparentar sucesso. Este reforço organiza a aplicação das regras existentes e não altera pesos, âncoras, rubrica ou gates históricos. Sua inclusão no pacote não comprova que qualquer agente já passou a executá-lo corretamente.
