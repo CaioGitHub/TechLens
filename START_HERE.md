@@ -1,5 +1,14 @@
 # START HERE
 
+## Entrega de piloto preparada — 2026-11-03
+
+As três etapas aprovadas foram implementadas e conferidas. Consultar ENTREGA_PILOTO_0.1.0-piloto.1.md, GUIA_DO_PILOTO.md e PILOT_RELEASE_RESULTS_2026-11-03.json. O ZIP local TechLens-0.1.0-piloto.1.zip foi gerado do commit 90d93194f231ef093e5790d0d3a6cf223467295c, com 40 arquivos e hash 98c3e7d8019cfd078af0550a5f16eb0965d0548792bd8b1a6890da2dfc2481e5. O formato v2 inclui protocolo e formulários; o verificador e o preparador continuam compatíveis com v1. 28 testes direcionados, 628 de regressão e 15 do harness aprovados; reconstrução idêntica e preparação completa de análise/revisão conferidas com fixtures fictícios, sem execução de agente.
+
+Os sete arquivos de preparação privada do reteste antigo foram movidos para arquivo privado fora do checkout, com hashes e recibo local; não há necessidade de ignorá-los nem publicá-los. As notas anteriores de pasta privada pendente descrevem seu estado histórico. A primeira tentativa e as revisões dos ensaios continuam preservadas. Mensagem e registro do piloto preparados; nenhuma empresa recebeu arquivos automaticamente. Tag operacional v0.1.0-piloto.1 corresponde ao commit de origem do ZIP; o registro de aceite é posterior.
+
+Próxima ação: disponibilizar manualmente ZIP, hash e mensagem a uma empresa convidada. O responsável acompanha problemas pelo registro local e protocolo, com decisões humanas somente onde necessárias. Não enviar a pasta de verificação ou registros preenchidos como parte do pacote. Teste real distinto permanece adiado, sem generalização ou calibração comprovada. O aceite operacional não altera gates históricos nem aprova entrevistas/candidatos.
+
+
 ## Preparação automática de análise e revisão — 2026-11-03
 
 O usuário autorizou prosseguir sem realizar agora teste com outra entrevista real. Essa validação fica adiada, não aprovada; generalização, calibração e gates históricos continuam pendentes. O ciclo fictício de 2026-11-02 teve falhas na primeira execução e duas revisões assistidas. Os achados específicos foram resolvidos na R2, com referência editorial incorreta ao registro anotada e sem independência certificada. Recebimentos preservados em 11 - Interview Evaluation/09 - Synthetic Validation/Continuation Trial 2026-11-02/receipts/. Isso substitui apenas a descrição operacional anterior de ensaio ainda não executado, preservando o histórico.

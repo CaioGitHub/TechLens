@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-03",
+  "release_version": "0.1.0-piloto.1",
+  "status": "PREPARED_FOR_CONTROLLED_SUPERVISED_PILOT",
+  "package_source_commit": "90d93194f231ef093e5790d0d3a6cf223467295c",
+  "release_tag": "v0.1.0-piloto.1",
+  "release_tag_target": "90d93194f231ef093e5790d0d3a6cf223467295c",
+  "operational_acceptance_completed": true,
+  "test_results": {
+    "targeted": {
+      "tests": 28,
+      "status": "OK",
+      "seconds": 45.173,
+      "log_sha256": "0c49a6435a8a98274750f8402769f9ae9709c4faf0acd15ddf2d422cec5b5cd1"
+    },
+    "full": {
+      "tests": 628,
+      "status": "OK",
+      "seconds": 78.586,
+      "log_sha256": "886c0a58b8255b6baedca1ace4075630469ea86638df41edad4c9a544c17a215"
+    },
+    "harness": {
+      "tests": 15,
+      "status": "OK",
+      "seconds": 23.111,
+      "log_sha256": "c2119ad1d37be8546aedfc338a34508dec37fba952147e13b043cbbe7f74a32a"
+    }
+  },
+  "package_checks": {
+    "release_version": "0.1.0-piloto.1",
+    "source_commit": "90d93194f231ef093e5790d0d3a6cf223467295c",
+    "zip_sha256": "98c3e7d8019cfd078af0550a5f16eb0965d0548792bd8b1a6890da2dfc2481e5",
+    "method_format": "techlens.method.v2",
+    "file_count": 40,
+    "deterministic_rebuild": true,
+    "entrypoint_links_checked": true,
+    "analysis_command": "PREPARED_NOT_EXECUTED",
+    "review_command": "PREPARED_NOT_EXECUTED",
+    "original_bytes_preserved": true,
+    "existing_output_and_missing_inputs_rejected": true,
+    "real_interview_used": false,
+    "agent_analysis_executed": false,
+    "semantic_validation": false
+  },
+  "private_history_archived_files": 7,
+  "private_archive_hashes_verified": true,
+  "private_archive_published": false,
+  "company_pilot_started": false,
+  "external_delivery_performed": false,
+  "real_interview_validation": "DEFERRED_BY_USER_NOT_PERFORMED",
+  "semantic_homologation": false,
+  "independence_certified": false,
+  "historical_gates_changed": false,
+  "runtime_weights_or_rubric_changed": false
+}
