@@ -1,0 +1,20 @@
+{
+  "received_on": "2026-11-02",
+  "state": "ASSISTED_REVISION_PARTIALLY_RESOLVED",
+  "received_file_sha256": {
+    "ENTREGA_REVISADA.md": "f0ca2c4f4da1ae5691b1a13644f9aa691fa6a6543396db2ad6a02ce54ed74234",
+    "REGISTRO_DA_REVISAO.md": "553f29df50774da5de4335333a6e06d7fff9c6dd3199ae1d38c7c6a8e049d4e1"
+  },
+  "original_source_inputs_verified": 38,
+  "original_outputs_unchanged": true,
+  "reported_sum": 51.0,
+  "reported_mean": 6.375,
+  "reported_median": 7.75,
+  "arithmetic_verified": true,
+  "F01_Q5": "RESOLVED_IN_ASSISTED_REVISION",
+  "F02_Q6": "NECESSITY_OF_PENALIZED_GAP_STILL_UNEXPLAINED",
+  "dimensions": "CANONICAL_MAPPING_AND_DEFERRAL_DISTINCTION_PENDING",
+  "human_decision_completed": false,
+  "independence_certified": false,
+  "runtime_tests_executed": false
+}

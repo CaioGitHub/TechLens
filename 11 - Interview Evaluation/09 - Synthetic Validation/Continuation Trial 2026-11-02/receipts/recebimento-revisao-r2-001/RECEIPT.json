@@ -1,0 +1,22 @@
+{
+  "received_on": "2026-11-02",
+  "state": "TARGETED_FINDINGS_RESOLVED_AFTER_ASSISTANCE_WITH_EDITORIAL_NOTE",
+  "input_files_verified": 43,
+  "changed_inputs": [],
+  "received_file_sha256": {
+    "ENTREGA_REVISADA_R2.md": "76dfe4ff0d7a1b93c27698d7f758ddfe928a5c2b030740bcb781b6cd7e7a7c15",
+    "REGISTRO_DA_REVISAO_R2.md": "036309c941fc381f40ee48bf113f786751ba04323a4d74aaa4cf401083f8e5b8"
+  },
+  "reported_arithmetic_verified": {
+    "count": 8,
+    "sum": 53.5,
+    "mean": 6.6875,
+    "median": 8.0
+  },
+  "original_attempt_success": false,
+  "assisted_revision": true,
+  "independence_certified": false,
+  "human_decision_completed": false,
+  "runtime_tests_executed": false,
+  "remaining_note": "REGISTRO_DA_EXECUCAO.md cited; actual input is REGISTRO_DE_EXECUCAO.md. Reading history not authenticated."
+}

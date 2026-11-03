@@ -1,5 +1,14 @@
 # GEMINI HANDOFF — Guia de Continuidade do Projeto
 
+## Preparação automática de análise e revisão — 2026-11-03
+
+O usuário autorizou prosseguir sem realizar agora teste com outra entrevista real. Essa validação fica adiada, não aprovada; generalização, calibração e gates históricos continuam pendentes. O ciclo fictício de 2026-11-02 teve falhas na primeira execução e duas revisões assistidas. Os achados específicos foram resolvidos na R2, com referência editorial incorreta ao registro anotada e sem independência certificada. Recebimentos preservados em 11 - Interview Evaluation/09 - Synthetic Validation/Continuation Trial 2026-11-02/receipts/. Isso substitui apenas a descrição operacional anterior de ensaio ainda não executado, preservando o histórico.
+
+Incremento em scripts/interview_workspace.py e guia PREPARAR_ANALISE.md: prepara pastas completas com método, transcrição e condições; revisão recebe também análise, registro e feedback opcional. Confere hashes, recusa destino existente e preserva bytes. Não conecta modelo, não calcula notas e não promove revisão exposta à análise para leitura cega. A ferramenta opera localmente; pastas com entrevistas não são incluídas em commits ou publicadas pelo comando.
+
+Verificação: 10 testes novos e 10 do pacote de método aprovados; regressão com 620 testes e harness com 15, sem falhas. Os dois comandos foram usados com fonte fictícia já existente para conferir preparação, sem executar nova análise. Resultados em WORKSPACE_PREPARATION_RESULTS_2026-11-03.json. Runtime, rubrica e pesos preservados. Próximo uso operacional: preparar uma pasta completa e fornecê-la ao agente habitual; validação real segue adiada e não é pré-condição para usar este preparador local.
+
+
 ## Comparação recebida e novo ensaio preparado — 2026-11-02
 
 Recebimento e minuta de decisão em 11 - Interview Evaluation/09 - Synthetic Validation/Staged Review Rehearsal 2026-10-29/phase2-receipt-001/. As 51 entradas do pacote anterior conferem; os dois arquivos da comparação foram preservados. Revisor cobre 25 agrupamentos equivalentes às 26 unidades do executor, sem erro material identificado no escopo de sua comparação; diferença de julgamento em 04:22 registrada. Conferência de recebimento não repete nem autentica toda consulta histórica. Decisão humana permanece PENDENTE: autorização para avançar não foi interpretada como assinatura ou homologação. Q11 segue adiada e nomes seguem não confirmados.

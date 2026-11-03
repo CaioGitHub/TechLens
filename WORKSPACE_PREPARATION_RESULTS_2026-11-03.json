@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-03",
+  "increment": "Self-contained analysis and review workspaces",
+  "targeted_tests": {
+    "count": 20,
+    "status": "OK",
+    "new_workspace_tests": 10
+  },
+  "regression": {
+    "full": {
+      "tests": 620,
+      "seconds": 66.439,
+      "status": "OK",
+      "log_sha256": "a3a80cb547482345151a40581eda375e654cada8a4565f6e44815055ed282c14"
+    },
+    "harness": {
+      "tests": 15,
+      "seconds": 22.689,
+      "status": "OK",
+      "log_sha256": "9458d4ae9999126ee30739011ef894e79488ce1b0637fc24d482182e4a5da790"
+    }
+  },
+  "cli_smoke": {
+    "analysis": "OK",
+    "review": "OK",
+    "source": "Existing fictional transcript, no new agent analysis",
+    "method_source_commit": "4d015eb6b12e73b219f3790a848040e5eac2c0d5"
+  },
+  "real_interview_validation": "DEFERRED_BY_USER_NOT_PERFORMED",
+  "runtime_or_rubric_changed": false,
+  "semantic_validation_claimed": false,
+  "human_decision_completed": false
+}

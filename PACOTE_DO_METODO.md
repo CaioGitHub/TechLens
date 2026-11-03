@@ -44,3 +44,8 @@ Verificação desta rodada: dez contratos de empacotamento aprovados; regressão
 ## Protocolo híbrido de validação — 2026-10-29
 
 Protocolo em PROTOCOLO_VALIDACAO.md e formulários em 99 - Templates/Interview Validation/. A leitura prévia do revisor deve ser preservada antes de liberar a análise do executor. Comparação por unidade, classificação de divergências e decisão humana do escopo material; sem nota alvo ou alegação automática de independência. Primeiro ensaio preparado com a simulação existente, mas a execução e a comparação do novo revisor continuam pendentes. Nenhuma validação real, revisão independente ou calibração foi concluída nesta preparação; método de pontuação e gates preservados.
+
+
+## Pastas completas de trabalho — 2026-11-03
+
+Ver PREPARAR_ANALISE.md e scripts/interview_workspace.py. O preparador consome este ZIP de método, preserva fonte e condições e reúne os arquivos selecionados em outra pasta para revisão. A distribuição do método continua sem entrevistas; as pastas de trabalho incluem somente a entrevista e as entregas selecionadas pelo usuário e não são publicadas automaticamente.

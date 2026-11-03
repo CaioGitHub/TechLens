@@ -1,7 +1,7 @@
 ---
 type: reference
 created: 2026-09-08
-updated: 2026-09-09
+updated: 2026-11-03
 tags:
   - meta
 ---
@@ -11,6 +11,8 @@ tags:
 
 Envie a transcrição ao agente que você já utiliza e disponibilize o método deste projeto. Comece pelo [guia de uso para análise de entrevistas](ANALISAR_ENTREVISTA.md), com pedido copiável, condições da fonte e formato de entrega. O [roteiro detalhado](TRANSCRIPTION_AGENT_WORKFLOW.md) continua como referência do método. O agente realiza a análise e prepara o relatório; o usuário revisa as exceções que exigem confirmação de fonte. Não é necessário conectar uma API de modelo a este repositório.
 
+
+Para reunir fonte, condições, método e entregas em pastas completas, consulte [Preparar análise e revisão](PREPARAR_ANALISE.md). A ferramenta local é opcional; o agente da empresa continua executando a análise.
 
 ## Propósito
 

@@ -1,0 +1,26 @@
+{
+  "received_on": "2026-11-02",
+  "timezone": "America/Fortaleza",
+  "state": "RECEIVED_MATERIAL_SCOPE_FINDINGS_ASSISTED_REVISION_RECOMMENDED",
+  "method_source_commit": "4d015eb6b12e73b219f3790a848040e5eac2c0d5",
+  "input_files_verified": 38,
+  "changed_inputs": [],
+  "received_file_sha256": {
+    "ENTREGA_DA_ANALISE.md": "c8341ca69a81013e62a200f6e078a2313b652016ee6d85ffd58425320c07e04f",
+    "REGISTRO_DE_EXECUCAO.md": "d342bc730c1ffdbc4de78d7262e1081b0c56641ab91ca708cc3c647aad16813a"
+  },
+  "reported_arithmetic_verified": {
+    "sum": 57.0,
+    "count": 9,
+    "mean": 6.333333333333333,
+    "median": 7.5
+  },
+  "arithmetic_does_not_validate_eligibility_or_scores": true,
+  "material_findings": [
+    "F01_Q5_CONTEXTUAL_SCORED",
+    "F02_Q6_UNSUPPORTED_ADDED_REQUIREMENT"
+  ],
+  "human_decision_completed": false,
+  "independence_certified": false,
+  "runtime_tests_executed": false
+}
