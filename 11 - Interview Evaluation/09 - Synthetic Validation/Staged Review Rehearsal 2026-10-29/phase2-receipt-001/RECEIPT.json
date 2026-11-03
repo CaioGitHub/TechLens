@@ -1,0 +1,18 @@
+{
+  "received_on": "2026-11-02",
+  "timezone": "America/Fortaleza",
+  "reviewer_declared_execution_date": "2026-10-29",
+  "state": "COMPARISON_RECEIVED_HUMAN_DECISION_PENDING",
+  "input_files_verified": 51,
+  "changed_inputs": [],
+  "received_file_sha256": {
+    "MATRIZ_DIVERGENCIAS_PREENCHIDA.md": "23ff54bc58a6be5d1dbf66055124b39df61bddcf8bca3f1ad6e4394dba8f5905",
+    "REGISTRO_COMPARACAO.md": "b498b0d0aea34f916b5e2d9a0bb502d49db5e682cf77f2682d483a04aea8a386"
+  },
+  "reviewer_reported_material_errors": 0,
+  "reviewer_units": 25,
+  "executor_judgment_units": 26,
+  "human_decision_completed": false,
+  "independence_certified": false,
+  "semantic_method_homologated": false
+}

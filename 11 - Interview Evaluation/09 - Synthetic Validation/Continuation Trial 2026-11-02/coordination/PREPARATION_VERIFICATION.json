@@ -1,0 +1,14 @@
+{
+  "prepared_on": "2026-11-02",
+  "state": "PREPARED_NOT_EXECUTED",
+  "archive": "Ensaio-Continuidade-2026-11-02.zip",
+  "archive_sha256": "fa22e5aed63f7e0df3a28dc53f709c0381110bd1224cf31c2ccbfd65e497a68a",
+  "files_in_archive": 39,
+  "inputs_with_hashes": 38,
+  "zip_integrity_checked": true,
+  "all_archived_bytes_match": true,
+  "specific_observation_criteria_in_executor_package": false,
+  "criteria_sha256": "1a0e094a8b7a08b59f0a8817f6807e0082dfc404556d5a8b36bdd5c8b0a9508e",
+  "method_unchanged": true,
+  "runtime_tests_executed": false
+}

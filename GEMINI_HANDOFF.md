@@ -1,5 +1,12 @@
 # GEMINI HANDOFF — Guia de Continuidade do Projeto
 
+## Comparação recebida e novo ensaio preparado — 2026-11-02
+
+Recebimento e minuta de decisão em 11 - Interview Evaluation/09 - Synthetic Validation/Staged Review Rehearsal 2026-10-29/phase2-receipt-001/. As 51 entradas do pacote anterior conferem; os dois arquivos da comparação foram preservados. Revisor cobre 25 agrupamentos equivalentes às 26 unidades do executor, sem erro material identificado no escopo de sua comparação; diferença de julgamento em 04:22 registrada. Conferência de recebimento não repete nem autentica toda consulta histórica. Decisão humana permanece PENDENTE: autorização para avançar não foi interpretada como assinatura ou homologação. Q11 segue adiada e nomes seguem não confirmados.
+
+Novo diagnóstico preparado em 11 - Interview Evaluation/09 - Synthetic Validation/Continuation Trial 2026-11-02/. Outra fonte fictícia, método mantido no commit 4d015eb, critérios registrados antes da execução e fora do pacote do executor. Pacote local Ensaio-Continuidade-2026-11-02.zip, 39 arquivos, conferidos contra os bytes de origem; ainda não executado. O diretório histórico contém critérios da coordenação: não enviar esse diretório inteiro ao agente. Não há nota alvo, generalização para entrevista real, independência certificada ou alteração de método/runtime/gates. Nenhuma nova regressão executada nesta preparação documental; último resultado de código registrado: 610 testes e 15 do harness aprovados em 2026-10-28. Preparação privada de reteste real v2 continua fora do escopo de publicação.
+
+
 ## Leitura prévia recebida e comparação liberada — 2026-10-29
 
 Recebimento da fase 1 em 11 - Interview Evaluation/09 - Synthetic Validation/Staged Review Rehearsal 2026-10-29/phase1-receipt-001/. Os dois arquivos do revisor foram preservados com hashes antes da liberação da análise do executor. Foram conferidos 42 arquivos de entrada e a estrutura da ficha, com 25 unidades e sete campos por unidade. Isso não certifica o conteúdo técnico nem independência: o revisor declara não conhecer a análise anterior, sem isolamento técnico comprovado. Comparação liberada em pacote local próprio, ainda não executada. Decisão humana e validação real/independente continuam pendentes. Nenhum método, nota, peso, código ou gate foi alterado; não houve nova regressão nesta consolidação documental.
