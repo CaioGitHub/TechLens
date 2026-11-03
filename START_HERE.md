@@ -1,5 +1,16 @@
 # START HERE
 
+## Conferência final reforçada e piloto consolidado — 2026-11-03
+
+Versão atual: 0.1.0-piloto.2. Consultar ENTREGA_PILOTO_0.1.0-piloto.2.md e PILOT_CHECK_RESULTS_2026-11-03.json. O reteste da fonte conhecida apresentou falhas na primeira tentativa, corrigidas após feedback; revisão e errata permanecem privadas e preservadas. PILOT_FEEDBACK_2026-11-03.md registra apenas aprendizados gerais sem dados de candidatos. Não se declarou acerto inicial ou independência.
+
+TRANSCRIPTION_EVALUATION_CHECK.md exige controle final com resultados e evidências no registro existente: elegibilidade, fundamento, proveniência, vínculos/sínteses, indicadores e verificabilidade. Roteiro, pedido copiável, guia e tarefas do preparador foram alinhados. O usuário não recebe obrigação de refazer a análise unidade a unidade. Falhas devem ser corrigidas antes da entrega; pontos não verificáveis conservam limites.
+
+Pacote .2 local, formato v2 com 40 arquivos, origem f70a3f1c9f7461222a1699690df1d451c2908caa e hash 5446b9c15447b600b543740d3fe5a82bc23c8bb059a3f8f31a0705b3323a0209. Reconstrução idêntica, links e operação de análise/revisão com fixtures fictícios conferidos. 28 testes direcionados, 628 de regressão e 15 do harness aprovados. A tag v0.1.0-piloto.2 identifica a origem do ZIP; a .1 permanece intacta. Nenhum material real foi incluído no pacote ou publicado.
+
+A eficácia semântica das novas instruções ainda não foi medida por nova execução de agente. Não há mudança de rubrica, pesos ou lógica de avaliação do runtime. Generalização, calibração e gates continuam pendentes. Pacote preparado para envio manual controlado, sem mensagem enviada ou piloto externo iniciado automaticamente.
+
+
 ## Entrega de piloto preparada — 2026-11-03
 
 As três etapas aprovadas foram implementadas e conferidas. Consultar ENTREGA_PILOTO_0.1.0-piloto.1.md, GUIA_DO_PILOTO.md e PILOT_RELEASE_RESULTS_2026-11-03.json. O ZIP local TechLens-0.1.0-piloto.1.zip foi gerado do commit 90d93194f231ef093e5790d0d3a6cf223467295c, com 40 arquivos e hash 98c3e7d8019cfd078af0550a5f16eb0965d0548792bd8b1a6890da2dfc2481e5. O formato v2 inclui protocolo e formulários; o verificador e o preparador continuam compatíveis com v1. 28 testes direcionados, 628 de regressão e 15 do harness aprovados; reconstrução idêntica e preparação completa de análise/revisão conferidas com fixtures fictícios, sem execução de agente.

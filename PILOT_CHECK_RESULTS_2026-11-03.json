@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-03",
+  "release_version": "0.1.0-piloto.2",
+  "status": "INSTRUCTION_UPDATE_OPERATIONALLY_VERIFIED_NOT_AGENT_VALIDATED",
+  "package_source_commit": "f70a3f1c9f7461222a1699690df1d451c2908caa",
+  "package_verification": {
+    "release_version": "0.1.0-piloto.2",
+    "source_commit": "f70a3f1c9f7461222a1699690df1d451c2908caa",
+    "zip_sha256": "5446b9c15447b600b543740d3fe5a82bc23c8bb059a3f8f31a0705b3323a0209",
+    "method_format": "techlens.method.v2",
+    "file_count": 40,
+    "deterministic_rebuild": true,
+    "entrypoint_links_checked": true,
+    "analysis_command": "PREPARED_NOT_EXECUTED",
+    "review_command": "PREPARED_NOT_EXECUTED",
+    "original_bytes_preserved": true,
+    "existing_output_and_missing_inputs_rejected": true,
+    "real_interview_used": false,
+    "agent_analysis_executed": false,
+    "semantic_validation": false
+  },
+  "test_results": {
+    "targeted": {
+      "tests": 28,
+      "status": "OK",
+      "seconds": 41.538,
+      "log_sha256": "373c6d8062653c3e0fce82f07661d30afd63197ad1ea01a78685d638ce56afc2"
+    },
+    "full": {
+      "tests": 628,
+      "status": "OK",
+      "seconds": 79.022,
+      "log_sha256": "7415b9efda813a1c344997f332e85e6c388dcce3822b2d4aa0f7e659da31b3ba"
+    },
+    "harness": {
+      "tests": 15,
+      "status": "OK",
+      "seconds": 28.439,
+      "log_sha256": "8133806b86c5c0cca1baa69f27bae0027a5f39cd887f2452868e33f5a1db8362"
+    }
+  },
+  "release_tag": "v0.1.0-piloto.2",
+  "tag_target": "f70a3f1c9f7461222a1699690df1d451c2908caa",
+  "first_attempt_findings_preserved": true,
+  "assisted_review_and_erratum_preserved_privately": true,
+  "private_interview_material_included": false,
+  "previous_release_preserved": true,
+  "rubric_weights_or_runtime_changed": false,
+  "agent_behavior_retested": false,
+  "semantic_improvement_proven": false,
+  "independent_calibration_completed": false,
+  "external_company_delivery_performed": false,
+  "historical_gates_changed": false
+}
